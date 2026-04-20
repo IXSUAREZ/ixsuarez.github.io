@@ -8,7 +8,7 @@
       name="description"
       content="Browse and search every AC 61-65 endorsement with curated subcategories for common training and checkride use cases."
     >
-    <meta name="theme-color" content="#ffffff">
+    <meta id="themeColorMeta" name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Simply Endorsed">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="APP-ICONs/favicon-32.png?v=4">
     <link rel="icon" type="image/png" sizes="192x192" href="APP-ICONs/favicon-192.png?v=4">
     <link rel="apple-touch-icon" sizes="180x180" href="APP-ICONs/apple-touch-icon.png?v=4">
-    <link rel="stylesheet" href="css/app.css?v=4">
+    <link rel="stylesheet" href="css/app.css?v=6">
   </head>
   <body>
     <div class="app-shell">
@@ -96,23 +96,32 @@
 
         <main class="content-area">
           <section id="selectionSummary" class="selection-summary" aria-live="polite" tabindex="-1">
-            <nav id="selectionBreadcrumbs" class="selection-breadcrumbs" aria-label="Current browse path">
-            </nav>
+            <nav id="selectionBreadcrumbs" class="selection-breadcrumbs" aria-label="Current browse path"></nav>
             <h2 id="selectionTitle">All Endorsements</h2>
-            <p id="selectionDescription" class="selection-description">
-              Loading endorsement library...
-            </p>
-            <div class="selection-footer-row">
+            <p id="selectionDescription" class="selection-description">Loading endorsement library...</p>
+            <div class="selection-meta-row">
               <div id="selectionMeta" class="selection-meta"></div>
-              <div id="selectionActions" class="selection-actions"></div>
+              <button
+                type="button"
+                id="filtersToggle"
+                class="filters-toggle"
+                aria-expanded="false"
+                aria-controls="filterPopover"
+                hidden
+              >
+                Filters <span class="filters-toggle-count" hidden></span> <span class="filters-toggle-caret" aria-hidden="true">▾</span>
+              </button>
             </div>
             <div id="activeFiltersBar" class="active-filters-bar"></div>
-            <div id="scopeControls" class="scope-controls"></div>
-            <div id="bundleBar" class="bundle-bar" hidden></div>
+            <div id="filterPopover" class="filter-popover" hidden>
+              <div id="scopeControls" class="scope-controls"></div>
+            </div>
+            <div id="bundleBar" class="bundle-strip" hidden></div>
           </section>
 
           <section class="status-row">
             <p id="resultsSummary">Loading endorsements...</p>
+            <div id="resultsToolbar" class="results-toolbar"></div>
           </section>
 
           <section id="featuredStrip" class="featured-strip" hidden aria-label="Instructor quick starts">
@@ -150,6 +159,6 @@
     <script src="js/endorsements-data.js?v=3"></script>
     <script src="js/browse-structure.js?v=3"></script>
     <script src="js/guidance-content.js?v=1"></script>
-    <script src="js/app.js?v=3"></script>
+    <script src="js/app.js?v=5"></script>
   </body>
 </html>

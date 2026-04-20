@@ -244,6 +244,9 @@
     },
   ];
 
+  const DEFAULT_THEME_COLOR = "#ffffff";
+  const SIDEBAR_THEME_COLOR = "#c1c3c7";
+
   const STORAGE_KEYS = {
     favorites: "simply-endorsed:favorites",
     recentEndorsements: "simply-endorsed:recent-endorsements",
@@ -334,6 +337,9 @@
     category: "all",
     subcategory: null,
     includeSupplemental: false,
+    filterPopoverOpen: false,
+    descriptionExpanded: false,
+    selectionUiKey: "",
     expandedIds: new Set(),
     openCategory: null,
     sidebarOpen: false,
@@ -360,8 +366,9 @@
     selectionTitle: document.getElementById("selectionTitle"),
     selectionDescription: document.getElementById("selectionDescription"),
     selectionMeta: document.getElementById("selectionMeta"),
-    selectionActions: document.getElementById("selectionActions"),
+    filtersToggle: document.getElementById("filtersToggle"),
     activeFiltersBar: document.getElementById("activeFiltersBar"),
+    filterPopover: document.getElementById("filterPopover"),
     scopeControls: document.getElementById("scopeControls"),
     bundleBar: document.getElementById("bundleBar"),
     featuredStrip: document.getElementById("featuredStrip"),
@@ -369,10 +376,12 @@
     filterRail: document.getElementById("filterRail"),
     sidebarToggleBtn: document.getElementById("sidebarToggleBtn"),
     sidebarBackdrop: document.getElementById("sidebarBackdrop"),
+    themeColorMeta: document.getElementById("themeColorMeta"),
     railCloseBtn: document.getElementById("railCloseBtn"),
     topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     guidanceView: document.getElementById("guidanceView"),
     statusRow: document.querySelector(".status-row"),
+    resultsToolbar: document.getElementById("resultsToolbar"),
   };
 
   function escapeHtml(value) {
@@ -1541,61 +1550,27 @@
     dom.selectionBreadcrumbs.innerHTML = crumbs.join('<span class="breadcrumb-separator" aria-hidden="true">›</span>');
   }
 
-  function renderSelectionActions() {
-    if (!dom.selectionActions) {
+  function hasActiveFilters() {
+    return state.filters.issuer !== "all" || state.filters.validity !== "all";
+  }
+
+  function getActiveFilterCount() {
+    return getActiveFilterChips().length;
+  }
+
+  function hasApplicableFilters() {
+    return state.view !== "guidance" && FILTER_GROUPS.some((group) => Array.isArray(group.options) && group.options.length);
+  }
+
+  function syncSelectionUiState() {
+    const nextKey = state.view + ":" + state.category + ":" + (state.subcategory || "");
+    if (state.selectionUiKey === nextKey) {
       return;
     }
 
-    const actions = [];
-    const category = CATEGORY_MAP.get(state.category);
-    const visible = getVisibleEndorsements();
-    const allExpanded = visible.length > 0 && visible.every((item) => state.expandedIds.has(item.id));
-    const subcategory = getSelectedSubcategory();
-
-    if (state.subcategory && category) {
-      actions.push(
-        '<button type="button" class="selection-reset" data-action="view-category" data-category="' +
-        escapeHtml(category.id) +
-        '">' +
-        "View " +
-        escapeHtml(category.label) +
-        "</button>",
-      );
-    }
-
-    if (state.category !== "all") {
-      actions.push('<button type="button" class="selection-reset" data-action="all">Back to All Endorsements</button>');
-    }
-
-    if (state.query || hasActiveFilters()) {
-      actions.push('<button type="button" class="selection-reset" data-action="clear-all">Clear all</button>');
-    }
-
-    if (visible.length > 1 && visible.length <= 12) {
-      actions.push(
-        '<button type="button" class="selection-reset" data-action="' +
-        (allExpanded ? "collapse-all" : "expand-all") +
-        '">' +
-        (allExpanded ? "Collapse all" : "Expand all") +
-        "</button>",
-      );
-    }
-
-    if (visible.length && (subcategory || state.query || visible.length <= 6)) {
-      actions.push(
-        '<button type="button" class="selection-reset" data-action="copy-visible-faa">' +
-        escapeHtml(subcategory && !state.query ? (state.includeSupplemental ? "Copy full bundle" : "Copy path text") : "Copy visible FAA text") +
-        "</button>",
-      );
-      actions.push('<button type="button" class="selection-reset" data-action="copy-visible-packet">Copy instructor packet</button>');
-      actions.push('<button type="button" class="selection-reset" data-action="print-scope">Print / save PDF</button>');
-    }
-
-    dom.selectionActions.innerHTML = actions.join("");
-  }
-
-  function hasActiveFilters() {
-    return state.filters.issuer !== "all" || state.filters.validity !== "all";
+    state.selectionUiKey = nextKey;
+    state.filterPopoverOpen = false;
+    state.descriptionExpanded = false;
   }
 
   function getFilterGroup(groupId) {
@@ -1640,6 +1615,91 @@
     state.filters.validity = "all";
   }
 
+  function renderSelectionDescription(text) {
+    if (!dom.selectionDescription) {
+      return;
+    }
+
+    const safeText = String(text || "");
+    dom.selectionDescription.dataset.fullText = safeText;
+    dom.selectionDescription.classList.toggle("is-expanded", state.descriptionExpanded);
+    dom.selectionDescription.innerHTML =
+      '<span class="selection-description-copy">' +
+      escapeHtml(safeText) +
+      "</span>" +
+      '<button type="button" class="inline-action selection-description-toggle" data-action="toggle-description" hidden>' +
+      (state.descriptionExpanded ? "Less" : "More") +
+      "</button>";
+
+    syncSelectionDescriptionToggle();
+  }
+
+  function syncSelectionDescriptionToggle() {
+    if (!dom.selectionDescription) {
+      return;
+    }
+
+    const copy = dom.selectionDescription.querySelector(".selection-description-copy");
+    const toggle = dom.selectionDescription.querySelector(".selection-description-toggle");
+    if (!copy || !toggle) {
+      return;
+    }
+
+    dom.selectionDescription.classList.toggle("is-expanded", state.descriptionExpanded);
+
+    if (!window.matchMedia("(max-width: 720px)").matches) {
+      dom.selectionDescription.classList.remove("can-expand");
+      toggle.hidden = true;
+      return;
+    }
+
+    const wasExpanded = state.descriptionExpanded;
+    if (wasExpanded) {
+      dom.selectionDescription.classList.remove("is-expanded");
+    }
+
+    const hasOverflow = copy.scrollHeight > copy.clientHeight + 1;
+
+    if (wasExpanded) {
+      dom.selectionDescription.classList.add("is-expanded");
+    }
+
+    dom.selectionDescription.classList.toggle("can-expand", hasOverflow);
+    toggle.hidden = !hasOverflow;
+    toggle.textContent = state.descriptionExpanded ? "Less" : "More";
+  }
+
+  function renderFiltersToggle() {
+    if (!dom.filtersToggle) {
+      return;
+    }
+
+    const canRenderFilters = hasApplicableFilters();
+    const activeCount = getActiveFilterCount();
+    const countLabel = dom.filtersToggle.querySelector(".filters-toggle-count");
+
+    dom.filtersToggle.hidden = !canRenderFilters;
+    dom.filtersToggle.setAttribute("aria-expanded", canRenderFilters && state.filterPopoverOpen ? "true" : "false");
+
+    if (countLabel) {
+      countLabel.hidden = activeCount === 0;
+      countLabel.textContent = activeCount ? "(" + activeCount + ")" : "";
+    }
+
+    if (dom.filterPopover) {
+      dom.filterPopover.hidden = !canRenderFilters || !state.filterPopoverOpen;
+    }
+  }
+
+  function closeFilterPopover() {
+    if (!state.filterPopoverOpen) {
+      return;
+    }
+
+    state.filterPopoverOpen = false;
+    renderFiltersToggle();
+  }
+
   function renderSelectionMeta() {
     if (!dom.selectionMeta) {
       return;
@@ -1647,27 +1707,29 @@
 
     const subcategory = getSelectedSubcategory();
     const renderer = getSubcategoryContentRenderer(subcategory);
-    const scopedCount = subcategory ? getBundleCount(subcategory) : getScopedEndorsements().length;
-    const matchedCount = getSearchMatchedEndorsements().length;
-    const items = [renderMetaItem(formatItemCount(scopedCount, subcategory) + " in scope")];
+    const visibleCount = renderer === "pre-solo"
+      ? getPreSoloPrerequisiteCount()
+      : getVisibleEndorsements().length;
+    const items = ['<span class="selection-meta-item">' + escapeHtml(formatItemCount(visibleCount, subcategory)) + "</span>"];
 
     if (state.category === "all") {
-      items.push(renderMetaItem(
-        String(CATEGORY_DEFS.filter((category) => category.id !== "all").length) + " browse categories",
-      ));
-    }
-
-    if (state.query && renderer !== "pre-solo") {
-      items.push(renderMetaItem('Search "' + state.query + '"'));
-      items.push(renderMetaItem(String(matchedCount) + " matched"));
+      items.push(
+        '<span class="selection-meta-item">' +
+        escapeHtml(String(CATEGORY_DEFS.filter((category) => category.id !== "all").length) + " browse categories") +
+        "</span>",
+      );
     }
 
     if (subcategory) {
-      items.push(renderMetaItem(formatItemCount(getBundleCount(subcategory), subcategory) + " in this path"));
+      items.push(
+        '<span class="selection-meta-item">' +
+        escapeHtml(String(getBundleCount(subcategory)) + " in this path") +
+        "</span>",
+      );
     }
 
     if (state.includeSupplemental && subcategory) {
-      items.push(renderMetaItem("Showing full bundle"));
+      items.push('<span class="selection-meta-item">Showing full bundle</span>');
     }
 
     dom.selectionMeta.innerHTML = items.join("");
@@ -1685,8 +1747,9 @@
 
     const activeFilters = getActiveFilterChips();
     const hiddenCount = getFilteredOutCount();
+    const hasClearAll = Boolean(state.query || activeFilters.length);
 
-    if (!activeFilters.length) {
+    if (!hasClearAll) {
       dom.activeFiltersBar.innerHTML = "";
       return;
     }
@@ -1702,10 +1765,17 @@
       "</span>" +
       '<span class="active-filter-remove" aria-hidden="true">×</span>' +
       "</button>"
-    )).join("");
+    ));
+
+    chips.push(
+      '<button type="button" class="active-filter-chip active-filter-chip--clear" data-action="clear-all" aria-label="Clear search and filters">' +
+      '<span class="active-filter-remove" aria-hidden="true">×</span>' +
+      '<span class="active-filter-label">Clear all</span>' +
+      "</button>",
+    );
 
     dom.activeFiltersBar.innerHTML =
-      '<div class="active-filter-chip-row">' + chips + "</div>" +
+      '<div class="active-filter-chip-row">' + chips.join("") + "</div>" +
       (hiddenCount > 0
         ? '<span class="active-filter-feedback">' +
           escapeHtml(String(hiddenCount) + " endorsement" + (hiddenCount === 1 ? "" : "s") + " hidden by filters") +
@@ -1743,11 +1813,39 @@
     )).join("");
   }
 
+  function renderResultsToolbar() {
+    if (!dom.resultsToolbar) {
+      return;
+    }
+
+    if (state.view === "guidance") {
+      dom.resultsToolbar.innerHTML = "";
+      return;
+    }
+
+    const visible = getVisibleEndorsements();
+    if (!(visible.length > 1 && visible.length <= 12)) {
+      dom.resultsToolbar.innerHTML = "";
+      return;
+    }
+
+    const allExpanded = visible.every((item) => state.expandedIds.has(item.id));
+    dom.resultsToolbar.innerHTML =
+      '<button type="button" class="selection-reset" data-action="' +
+      (allExpanded ? "collapse-all" : "expand-all") +
+      '">' +
+      (allExpanded ? "Collapse all" : "Expand all") +
+      "</button>";
+  }
+
   function renderSelectionSummary() {
     const category = CATEGORY_MAP.get(state.category) || CATEGORY_MAP.get("all");
     const subcategory = getSelectedSubcategory();
     const renderer = getSubcategoryContentRenderer(subcategory);
     const themeCategoryId = category && category.id ? category.id : "all";
+    let descriptionText = category.description;
+
+    syncSelectionUiState();
 
     applyCategoryTheme(dom.selectionSummary, themeCategoryId);
 
@@ -1760,29 +1858,25 @@
         "<span>" + escapeHtml(subcategory ? subcategory.label : category.label) + "</span>" +
         "</span>";
     }
-    if (dom.selectionDescription) {
-      if (subcategory) {
-        if (renderer === "pre-solo") {
-          const preSoloContent = getPreSoloContent();
-          dom.selectionDescription.textContent = preSoloContent && preSoloContent.intro
-            ? preSoloContent.intro
-            : subcategory.description;
-        } else {
-          dom.selectionDescription.textContent = subcategory.note
-            ? subcategory.description + " " + subcategory.note
-            : subcategory.description;
-        }
-      } else if (state.category === "all") {
-        dom.selectionDescription.textContent = category.description;
+
+    if (subcategory) {
+      if (renderer === "pre-solo") {
+        const preSoloContent = getPreSoloContent();
+        descriptionText = preSoloContent && preSoloContent.intro
+          ? preSoloContent.intro
+          : subcategory.description;
       } else {
-        dom.selectionDescription.textContent = category.description;
+        descriptionText = subcategory.note
+          ? subcategory.description + " " + subcategory.note
+          : subcategory.description;
       }
     }
 
+    renderSelectionDescription(descriptionText);
     renderSelectionMeta();
-    renderSelectionActions();
     renderActiveFiltersBar();
     renderScopeControls();
+    renderFiltersToggle();
     renderBundleBar(subcategory);
   }
 
@@ -1802,58 +1896,18 @@
       return;
     }
 
-    const chips = subcategory.supplementalIds
-      .map((id) => '<span class="bundle-chip mono">' + escapeHtml(id) + "</span>")
-      .join("");
+    const supplementalRef = "[" + subcategory.supplementalIds.join(", ") + "]";
 
     dom.bundleBar.hidden = false;
     dom.bundleBar.innerHTML =
-      '<div class="bundle-copy">' +
-      '<p class="bundle-label">' +
-      escapeHtml(subcategory.supplementalLabel || "Also commonly included") +
-      "</p>" +
-      '<div class="bundle-chip-row">' + chips + "</div>" +
-      "</div>" +
-      '<button type="button" class="bundle-toggle" data-toggle-supplemental="true">' +
-      (state.includeSupplemental ? "Show primary only" : "Show full bundle") +
+      '<span class="bundle-strip-ref mono">' + escapeHtml(supplementalRef) + "</span>" +
+      '<span class="bundle-strip-separator bundle-strip-separator-note" aria-hidden="true">·</span>' +
+      '<span class="bundle-strip-note">' + escapeHtml(subcategory.supplementalLabel || "Also commonly included") + "</span>" +
+      '<span class="bundle-strip-separator" aria-hidden="true">·</span>' +
+      '<button type="button" class="bundle-strip-toggle" data-action="toggle-supplemental">' +
+      '<span>' + escapeHtml(state.includeSupplemental ? "Show path only" : "Show full bundle") + "</span>" +
+      '<span class="bundle-strip-arrow" aria-hidden="true">›</span>' +
       "</button>";
-  }
-
-  function getScopeLabel() {
-    const category = CATEGORY_MAP.get(state.category) || CATEGORY_MAP.get("all");
-    const subcategory = getSelectedSubcategory();
-    return subcategory ? subcategory.label : category.label;
-  }
-
-  function getPrintableScopeItems() {
-    return getVisibleEndorsements();
-  }
-
-  function buildScopeCopyText(mode) {
-    const items = getPrintableScopeItems();
-    const includePacketMeta = mode === "packet";
-
-    return items.map((item) => {
-      const lines = [item.id + " — " + item.title];
-
-      if (includePacketMeta) {
-        lines.push("Signer: " + getSpecialIssuerLabel(item));
-        lines.push("Validity: " + getExpirationPlainText(item.expiration));
-        if (item.perFlight) {
-          lines.push("Use caution: Required for each individual flight.");
-        }
-        if (Array.isArray(item.cfr) && item.cfr.length) {
-          lines.push("CFR: " + item.cfr.join(" | "));
-        }
-        lines.push("Source: " + getAcRef(item) + " | Page " + item.sourcePage);
-        if (item.explanation) {
-          lines.push("Instructor summary: " + item.explanation);
-        }
-      }
-
-      lines.push(item.verbatimText);
-      return lines.join("\n");
-    }).join("\n\n" + "=".repeat(72) + "\n\n");
   }
 
   function copyTextToClipboard(text, button, successLabel) {
@@ -1893,30 +1947,6 @@
     }
 
     fallbackCopy();
-  }
-
-  function printCurrentScope() {
-    const priorExpanded = new Set(state.expandedIds);
-    state.expandedIds = new Set(getVisibleEndorsements().map((item) => item.id));
-    refresh();
-
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        let restored = false;
-        const restore = () => {
-          if (restored) {
-            return;
-          }
-          restored = true;
-          state.expandedIds = priorExpanded;
-          refresh();
-        };
-
-        window.addEventListener("afterprint", restore, { once: true });
-        window.print();
-        window.setTimeout(restore, 800);
-      });
-    });
   }
 
   function openEndorsementById(endorsementId, options = {}) {
@@ -2086,32 +2116,27 @@
       return;
     }
 
-    const category = CATEGORY_MAP.get(state.category) || CATEGORY_MAP.get("all");
     const subcategory = getSelectedSubcategory();
     const renderer = getSubcategoryContentRenderer(subcategory);
-    const scopeLabel = subcategory
-      ? category.label + " / " + subcategory.label
-      : category.label;
     const searchApplies = Boolean(state.query) && renderer !== "pre-solo";
-    const scopePrefix = (searchApplies ? "Searching " : "Viewing ") + scopeLabel + " — ";
-    const countLabel = searchApplies
-      ? visibleCount + " of " + scopeCount + " " + getItemNoun(subcategory) + (scopeCount === 1 ? "" : "s")
-      : formatItemCount(visibleCount, subcategory);
-    const parts = [countLabel];
+    const parts = [
+      formatItemCount(visibleCount, subcategory) + (visibleCount === 1 ? " matches" : " match") + " your selection",
+    ];
 
+    if (searchApplies && scopeCount !== visibleCount) {
+      parts.push("from " + formatItemCount(scopeCount, subcategory));
+    }
+    if (state.includeSupplemental && subcategory) {
+      parts.push("full bundle");
+    }
+    if (hasActiveFilters()) {
+      parts.push("filters active");
+    }
     if (searchApplies) {
       parts.push('search "' + state.query + '"');
     }
 
-    if (state.includeSupplemental && subcategory) {
-      parts.push("full bundle");
-    }
-
-    if (hasActiveFilters()) {
-      parts.push("filters active");
-    }
-
-    dom.resultsSummary.textContent = scopePrefix + parts.join("  |  ");
+    dom.resultsSummary.textContent = parts.join(" · ");
   }
 
   function renderEndorsementCard(item) {
@@ -2439,6 +2464,22 @@
     const isGuidance = state.view === "guidance";
     if (!isGuidance) document.title = "Simply Endorsed";
 
+    if (isGuidance) {
+      state.filterPopoverOpen = false;
+      state.descriptionExpanded = false;
+      state.selectionUiKey = "";
+      if (dom.resultsToolbar) {
+        dom.resultsToolbar.innerHTML = "";
+      }
+      if (dom.filtersToggle) {
+        dom.filtersToggle.hidden = true;
+        dom.filtersToggle.setAttribute("aria-expanded", "false");
+      }
+      if (dom.filterPopover) {
+        dom.filterPopover.hidden = true;
+      }
+    }
+
     if (dom.selectionSummary) dom.selectionSummary.hidden = isGuidance;
     if (dom.statusRow) dom.statusRow.hidden = isGuidance;
     if (dom.endorsementList) dom.endorsementList.hidden = isGuidance;
@@ -2451,6 +2492,7 @@
       renderFeaturedStrip();
       renderSelectionSummary();
       renderEndorsements();
+      renderResultsToolbar();
     }
 
     if (dom.topbarGuidanceBtn) {
@@ -2665,9 +2707,21 @@
     dom.filterRail.inert = false;
   }
 
+  function syncThemeColor() {
+    if (!dom.themeColorMeta) {
+      return;
+    }
+
+    dom.themeColorMeta.setAttribute(
+      "content",
+      state.sidebarOpen ? SIDEBAR_THEME_COLOR : DEFAULT_THEME_COLOR,
+    );
+  }
+
   function setSidebarOpen(isOpen, options = {}) {
     state.sidebarOpen = Boolean(isOpen);
     document.body.classList.toggle("is-sidebar-open", state.sidebarOpen);
+    syncThemeColor();
 
     if (dom.filterRail) {
       dom.filterRail.classList.toggle("is-open", state.sidebarOpen);
@@ -2861,6 +2915,12 @@
         }
 
         const action = button.getAttribute("data-action");
+        if (action === "toggle-description") {
+          state.descriptionExpanded = !state.descriptionExpanded;
+          renderSelectionDescription(dom.selectionDescription ? dom.selectionDescription.dataset.fullText : "");
+          return;
+        }
+
         if (action === "all") {
           activateAllEndorsements();
           return;
@@ -2880,32 +2940,13 @@
           }
           return;
         }
+      });
+    }
 
-        if (action === "expand-all") {
-          state.expandedIds = new Set(getVisibleEndorsements().map((item) => item.id));
-          refresh();
-          return;
-        }
-
-        if (action === "collapse-all") {
-          resetExpandedCards();
-          refresh();
-          return;
-        }
-
-        if (action === "copy-visible-faa") {
-          copyTextToClipboard(buildScopeCopyText("faa"), button, "Scope copied");
-          return;
-        }
-
-        if (action === "copy-visible-packet") {
-          copyTextToClipboard(buildScopeCopyText("packet"), button, "Packet copied");
-          return;
-        }
-
-        if (action === "print-scope") {
-          printCurrentScope();
-        }
+    if (dom.filtersToggle) {
+      dom.filtersToggle.addEventListener("click", () => {
+        state.filterPopoverOpen = !state.filterPopoverOpen;
+        renderFiltersToggle();
       });
     }
 
@@ -2928,9 +2969,30 @@
       });
     }
 
+    if (dom.resultsToolbar) {
+      dom.resultsToolbar.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-action]");
+        if (!button) {
+          return;
+        }
+
+        const action = button.getAttribute("data-action");
+        if (action === "expand-all") {
+          state.expandedIds = new Set(getVisibleEndorsements().map((item) => item.id));
+          refresh();
+          return;
+        }
+
+        if (action === "collapse-all") {
+          resetExpandedCards();
+          refresh();
+        }
+      });
+    }
+
     if (dom.bundleBar) {
       dom.bundleBar.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-toggle-supplemental]");
+        const button = event.target.closest('[data-action="toggle-supplemental"]');
         if (!button) {
           return;
         }
@@ -3041,6 +3103,10 @@
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
+        if (state.filterPopoverOpen) {
+          closeFilterPopover();
+          return;
+        }
         closeSidebar();
         return;
       }
@@ -3076,6 +3142,7 @@
         closeSidebar();
       }
       syncSidebarAccessibility();
+      syncSelectionDescriptionToggle();
     });
 
     window.addEventListener("popstate", () => {
@@ -3092,6 +3159,7 @@
     syncSearchInput();
     refresh();
     syncSidebarAccessibility();
+    syncThemeColor();
     attachEvents();
     registerServiceWorker();
   }

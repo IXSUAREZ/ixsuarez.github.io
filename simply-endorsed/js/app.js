@@ -2276,14 +2276,14 @@
       ' role="button" tabindex="0" aria-expanded="' +
       String(expanded) +
       ">" +
-      '<div class="endorsement-head">' +
-      '<div class="card-badge-stack">' +
-      '<span class="endorsement-id-pill mono">' + escapeHtml(item.id) + "</span>" +
       statusBadges.map((badge) => (
         '<span class="card-status-badge" aria-label="' + escapeHtml(badge.fullLabel) + '" title="' + escapeHtml(badge.fullLabel) + '">' +
         escapeHtml(badge.shortLabel) +
         "</span>"
       )).join("") +
+      '<div class="endorsement-head">' +
+      '<div class="card-badge-stack">' +
+      '<span class="endorsement-id-pill mono">' + escapeHtml(item.id) + "</span>" +
       "</div>" +
       "<h2>" + escapeHtml(item.title) + "</h2>" +
       "</div>" +

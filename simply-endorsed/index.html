@@ -31,17 +31,22 @@
           <span class="topbar-brand-main">Simply Endorsed</span>
           <span class="topbar-brand-credit">by Diego Suarez</span>
         </div>
-        <button
-          id="sidebarToggleBtn"
-          class="icon-btn"
-          type="button"
-          aria-expanded="false"
-          aria-controls="filterRail"
-          aria-label="Open browse navigation"
-        >
-          <span class="icon-burger">&#9776;</span>
-          <span class="icon-close">&#10005;</span>
-        </button>
+        <div class="topbar-actions">
+          <button id="topbarGuidanceBtn" class="topbar-text-link" type="button">
+            Teaching &amp; Guidance
+          </button>
+          <button
+            id="sidebarToggleBtn"
+            class="icon-btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="filterRail"
+            aria-label="Open browse navigation"
+          >
+            <span class="icon-burger">&#9776;</span>
+            <span class="icon-close">&#10005;</span>
+          </button>
+        </div>
       </div>
 
       <div id="sidebarBackdrop" class="sidebar-backdrop" hidden></div>
@@ -101,6 +106,7 @@
               <div id="selectionMeta" class="selection-meta"></div>
               <div id="selectionActions" class="selection-actions"></div>
             </div>
+            <div id="activeFiltersBar" class="active-filters-bar"></div>
             <div id="scopeControls" class="scope-controls"></div>
             <div id="bundleBar" class="bundle-bar" hidden></div>
           </section>
@@ -131,6 +137,9 @@
 
     <footer class="app-footer">
       <p id="footerMeta">FAA model text source: loading...</p>
+      <button id="footerGuidanceBtn" class="footer-guidance-link" type="button">
+        Open Teaching &amp; Guidance
+      </button>
       <p class="footer-designer">Designed by Diego Suarez</p>
       <p class="footnote">
         This tool is a reference aid. Verify endorsement applicability against the pilot's context,

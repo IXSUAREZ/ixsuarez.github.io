@@ -46,8 +46,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.66),
     inset 0 -1px 0 rgba(255, 255, 255, 0.18);
   --panel-blur: 30px;
-  --sidebar-backdrop: rgba(17, 24, 39, 0.26);
-  --sidebar-chrome-fill: #c1c3c7;
   --max-width: 1440px;
 }
 
@@ -355,7 +353,7 @@ p {
   position: fixed;
   inset: 0;
   z-index: 85;
-  background: var(--sidebar-backdrop);
+  background: rgba(17, 24, 39, 0.26);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -2025,13 +2023,6 @@ p {
 }
 
 @media (max-width: 900px) {
-  .sidebar-backdrop {
-    background:
-      linear-gradient(var(--sidebar-chrome-fill), var(--sidebar-chrome-fill)) top / 100% calc(env(safe-area-inset-top, 0px) + 28px) no-repeat,
-      linear-gradient(var(--sidebar-chrome-fill), var(--sidebar-chrome-fill)) bottom / 100% calc(env(safe-area-inset-bottom, 0px) + 28px) no-repeat,
-      linear-gradient(var(--sidebar-backdrop), var(--sidebar-backdrop)) center / 100% 100% no-repeat;
-  }
-
   .topbar-sticky {
     top: 10px;
     width: calc(100% - 20px);

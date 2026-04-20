@@ -244,9 +244,6 @@
     },
   ];
 
-  const DEFAULT_THEME_COLOR = "#ffffff";
-  const SIDEBAR_THEME_COLOR = "#c1c3c7";
-
   const STORAGE_KEYS = {
     favorites: "simply-endorsed:favorites",
     recentEndorsements: "simply-endorsed:recent-endorsements",
@@ -376,7 +373,6 @@
     filterRail: document.getElementById("filterRail"),
     sidebarToggleBtn: document.getElementById("sidebarToggleBtn"),
     sidebarBackdrop: document.getElementById("sidebarBackdrop"),
-    themeColorMeta: document.getElementById("themeColorMeta"),
     railCloseBtn: document.getElementById("railCloseBtn"),
     topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     guidanceView: document.getElementById("guidanceView"),
@@ -2707,21 +2703,9 @@
     dom.filterRail.inert = false;
   }
 
-  function syncThemeColor() {
-    if (!dom.themeColorMeta) {
-      return;
-    }
-
-    dom.themeColorMeta.setAttribute(
-      "content",
-      state.sidebarOpen ? SIDEBAR_THEME_COLOR : DEFAULT_THEME_COLOR,
-    );
-  }
-
   function setSidebarOpen(isOpen, options = {}) {
     state.sidebarOpen = Boolean(isOpen);
     document.body.classList.toggle("is-sidebar-open", state.sidebarOpen);
-    syncThemeColor();
 
     if (dom.filterRail) {
       dom.filterRail.classList.toggle("is-open", state.sidebarOpen);
@@ -3159,7 +3143,6 @@
     syncSearchInput();
     refresh();
     syncSidebarAccessibility();
-    syncThemeColor();
     attachEvents();
     registerServiceWorker();
   }

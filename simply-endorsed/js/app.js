@@ -2277,19 +2277,16 @@
       String(expanded) +
       ">" +
       '<div class="endorsement-head">' +
-      '<div class="card-identity">' +
+      '<div class="card-badge-stack">' +
       '<span class="endorsement-id-pill mono">' + escapeHtml(item.id) + "</span>" +
-      "</div>" +
-      '<div class="card-status-rail">' +
       statusBadges.map((badge) => (
         '<span class="card-status-badge" aria-label="' + escapeHtml(badge.fullLabel) + '" title="' + escapeHtml(badge.fullLabel) + '">' +
         escapeHtml(badge.shortLabel) +
         "</span>"
       )).join("") +
-      '<span class="card-expand-caret" aria-hidden="true">' + (expanded ? "⌄" : "›") + "</span>" +
-      "</div>" +
       "</div>" +
       "<h2>" + escapeHtml(item.title) + "</h2>" +
+      "</div>" +
       (
         matchReasons.length
           ? '<div class="match-reason-row" aria-label="Search match reasons">' +
@@ -2300,6 +2297,15 @@
           : ""
       ) +
       details +
+      '<div class="card-viewmore-row" aria-hidden="true">' +
+      '<span class="card-viewmore">' +
+      '<span class="card-viewmore-label">' + (expanded ? "View Less" : "View More") + "</span>" +
+      '<svg class="card-viewmore-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M9 9l5 12 1.8-5.2L21 14 9 9z" fill="currentColor"/>' +
+      '<path d="M7.2 2.4l.7 2.6M4.8 7.1l-2.6-.7M14 4.2l-1.9 1.9M6 12l-1.9 1.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>' +
+      "</svg>" +
+      "</span>" +
+      "</div>" +
       "</article>"
     );
   }
@@ -2598,12 +2604,12 @@
       getCategoryThemeStyle("student-pilot") +
       ">" +
       '<div class="endorsement-head">' +
-      '<div class="card-identity">' +
+      '<div class="card-badge-stack">' +
       '<span class="endorsement-id-pill mono">' + h(item.id) + "</span>" +
       '<span class="pre-solo-badge">Prerequisite</span>' +
       "</div>" +
-      "</div>" +
       "<h2>" + h(item.title) + "</h2>" +
+      "</div>" +
       '<p class="prereq-description">' + h(item.description) + "</p>" +
       '<div class="meta-line">' +
       '<span class="meta-item">Student Pilot</span>' +

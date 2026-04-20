@@ -1413,11 +1413,11 @@ p {
   height: 56px;
   border-radius: 999px;
   background: #fef3c7;
-  border: 2.5px solid rgba(180, 83, 9, 0.18);
+  border: 2.5px solid rgba(220, 38, 38, 0.22);
   box-shadow:
-    0 4px 14px rgba(180, 83, 9, 0.14),
+    0 4px 14px rgba(220, 38, 38, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  color: #92400e;
+  color: #dc2626;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -1426,6 +1426,10 @@ p {
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+  text-shadow:
+    0 0 6px rgba(220, 38, 38, 0.7),
+    0 0 14px rgba(220, 38, 38, 0.45),
+    0 0 28px rgba(220, 38, 38, 0.25);
 }
 
 .card-expand-caret {

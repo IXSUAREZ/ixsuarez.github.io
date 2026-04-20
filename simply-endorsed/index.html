@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simply Endorsed</title>
+    <meta
+      name="description"
+      content="Browse and search every AC 61-65 endorsement with curated subcategories for common training and checkride use cases."
+    >
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Simply Endorsed">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    >
+    <link rel="manifest" href="site.webmanifest?v=2">
+    <link rel="shortcut icon" href="APP-ICONs/favicon-32.png?v=4">
+    <link rel="icon" type="image/png" sizes="32x32" href="APP-ICONs/favicon-32.png?v=4">
+    <link rel="icon" type="image/png" sizes="192x192" href="APP-ICONs/favicon-192.png?v=4">
+    <link rel="apple-touch-icon" sizes="180x180" href="APP-ICONs/apple-touch-icon.png?v=4">
+    <link rel="stylesheet" href="css/app.css?v=4">
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="topbar-sticky">
+        <div class="topbar-brand" aria-label="Simply Endorsed by Diego Suarez">
+          <span class="topbar-brand-main">Simply Endorsed</span>
+          <span class="topbar-brand-credit">by Diego Suarez</span>
+        </div>
+        <button
+          id="sidebarToggleBtn"
+          class="icon-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="filterRail"
+          aria-label="Open browse navigation"
+        >
+          <span class="icon-burger">&#9776;</span>
+          <span class="icon-close">&#10005;</span>
+        </button>
+      </div>
+
+      <div id="sidebarBackdrop" class="sidebar-backdrop" hidden></div>
+
+      <div class="layout">
+        <aside id="filterRail" class="filter-rail" aria-label="Endorsement filters">
+
+          <!-- Search lives inside the rail -->
+          <div class="rail-search">
+            <label class="sr-only" for="searchInput">Search endorsements</label>
+            <div class="search-field">
+              <input
+                id="searchInput"
+                class="search-input"
+                type="search"
+                placeholder="Search by task, ID, CFR, alias, or keyword..."
+                autocomplete="off"
+                aria-describedby="searchHelperText"
+              >
+              <button
+                id="clearSearchBtn"
+                class="search-clear"
+                type="button"
+                aria-label="Clear search"
+                hidden
+              >
+                Clear
+              </button>
+            </div>
+            <p id="searchHelperText" class="search-helper">Try `BFR`, `tailwheel`, `61.87`, or `first solo`.</p>
+            <div id="searchSuggestions" class="search-suggestions" aria-live="polite"></div>
+          </div>
+
+          <section class="rail-section">
+            <div class="rail-heading">
+              <h2>Browse</h2>
+            </div>
+
+            <nav id="categoryNav" class="category-nav" aria-label="Browse endorsements">
+              <article class="placeholder-card rail-placeholder">
+                <h3>Loading browse structure...</h3>
+                <p>Categories and subcategories will appear here once the data is ready.</p>
+              </article>
+            </nav>
+          </section>
+        </aside>
+
+        <main class="content-area">
+          <section id="selectionSummary" class="selection-summary" aria-live="polite" tabindex="-1">
+            <nav id="selectionBreadcrumbs" class="selection-breadcrumbs" aria-label="Current browse path">
+            </nav>
+            <h2 id="selectionTitle">All Endorsements</h2>
+            <p id="selectionDescription" class="selection-description">
+              Loading endorsement library...
+            </p>
+            <div class="selection-footer-row">
+              <div id="selectionMeta" class="selection-meta"></div>
+              <div id="selectionActions" class="selection-actions"></div>
+            </div>
+            <div id="scopeControls" class="scope-controls"></div>
+            <div id="bundleBar" class="bundle-bar" hidden></div>
+          </section>
+
+          <section class="status-row">
+            <p id="resultsSummary">Loading endorsements...</p>
+          </section>
+
+          <section id="featuredStrip" class="featured-strip" hidden aria-label="Instructor quick starts">
+          </section>
+
+          <section
+            id="endorsementList"
+            class="endorsement-list"
+            aria-live="polite"
+            aria-label="Endorsement results"
+          >
+            <article class="placeholder-card">
+              <h2>Preparing endorsement library...</h2>
+              <p>Endorsements will appear here with search, browse, and quick-copy support.</p>
+            </article>
+          </section>
+
+          <section id="guidanceView" class="guidance-view" hidden aria-label="Teaching and Guidance"></section>
+        </main>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <p id="footerMeta">FAA model text source: loading...</p>
+      <p class="footer-designer">Designed by Diego Suarez</p>
+      <p class="footnote">
+        This tool is a reference aid. Verify endorsement applicability against the pilot's context,
+        current FARs, and current FAA guidance.
+      </p>
+    </footer>
+
+    <script src="js/endorsements-data.js?v=3"></script>
+    <script src="js/browse-structure.js?v=3"></script>
+    <script src="js/guidance-content.js?v=1"></script>
+    <script src="js/app.js?v=3"></script>
+  </body>
+</html>

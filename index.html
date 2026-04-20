@@ -5,28 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#1C2142" />
 
-  <title>Diego Suarez, CFI | Flight Instructor at Bowman Field (KLOU), Louisville KY</title>
-  <meta name="description" content="FAA Certified Flight Instructor Diego Suarez teaches Private, Instrument, and Commercial pilots at Bowman Field (KLOU) in Louisville, KY — flying the Cessna 172 and Bristell NG5 LSA." />
+  <title>Diego Suarez | Certified Ground Instructor at Bowman Field (KLOU), Louisville KY</title>
+  <meta name="description" content="Diego Suarez is a Certified Ground Instructor working toward his Flight Instructor Certificate, training pilots at Bowman Field (KLOU) in Louisville, KY — flying the Bristell NG5 LSA and Cessna 172." />
   <meta name="author" content="Diego Suarez" />
   <meta name="keywords" content="flight instructor Louisville, CFI Bowman Field, KLOU flight training, private pilot Louisville KY, instrument rating Kentucky, commercial pilot training, Cessna 172 training, Bristell NG5 LSA, learn to fly Louisville, Diego Suarez CFI" />
   <link rel="canonical" href="https://suarezcfi.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://suarezcfi.com/" />
-  <meta property="og:title" content="Diego Suarez, CFI | Louisville Flight Instructor at Bowman Field (KLOU)" />
-  <meta property="og:description" content="Private, Instrument, and Commercial flight training in the Cessna 172 and Bristell NG5 at Bowman Field (KLOU), Louisville KY." />
+  <meta property="og:title" content="Diego Suarez | Certified Ground Instructor at Bowman Field (KLOU), Louisville KY" />
+  <meta property="og:description" content="Private, Instrument, and Commercial flight training in the Bristell NG5 LSA and Cessna 172 at Bowman Field (KLOU), Louisville KY." />
   <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Diego Suarez, CFI | Louisville Flight Instructor" />
+  <meta name="twitter:title" content="Diego Suarez | Certified Ground Instructor, Louisville KY" />
   <meta name="twitter:description" content="Private, Instrument, and Commercial flight training at Bowman Field (KLOU), Louisville KY." />
   <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
 
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="apple-touch-icon" href="/assets/diego-profile.jpg" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/diego-profile.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -105,24 +105,40 @@
 
     .nav-wrap {
       position: fixed;
-      top: 14px; left: 0; right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 50;
       display: flex; justify-content: center;
-      padding: 0 16px;
+      /* Extra height gives the gradient room to breathe */
+      padding-bottom: 80px;
       pointer-events: none;
+    }
+    /* The blur lives ONLY on the pseudo-element — the button and text sit above it unmasked */
+    .nav-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* Background matches the page colour and fades out */
+      background: linear-gradient(
+        to bottom,
+        rgba(238, 240, 243, 0.82) 0%,
+        rgba(238, 240, 243, 0.0) 100%
+      );
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      backdrop-filter: blur(22px) saturate(160%);
+      /* Starts fully opaque at the very top — no hard line — dissolves to nothing */
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);
+      z-index: 0;
     }
     .nav {
       pointer-events: auto;
+      position: relative;
+      z-index: 1; /* float above the blurred pseudo-element */
       width: 100%;
-      max-width: 1120px;
-      display: flex; align-items: center; gap: 20px;
-      padding: 10px 14px 10px 22px;
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: var(--radius-pill);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      backdrop-filter: blur(14px) saturate(140%);
-      box-shadow: var(--shadow-md);
+      max-width: var(--maxw);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 28px 0;
     }
     .wordmark {
       font-family: "Pinyon Script", cursive;
@@ -177,6 +193,7 @@
     .hero .sq {
       display: inline-block;
       width: clamp(52px, 7vw, 84px);
+      height: clamp(52px, 7vw, 84px);
       aspect-ratio: 1;
       border-radius: 22%;
       vertical-align: middle;
@@ -186,7 +203,7 @@
       transform: translateY(-6px);
       position: relative;
     }
-    .sq--photo { object-fit: cover; }
+    .sq--photo { object-fit: cover; border-radius: 0; }
     .sq--sky {
       background: linear-gradient(160deg, #7EC1FF 0%, #B9DCFF 55%, #EAF3FF 100%);
       display: inline-flex; align-items: flex-end; justify-content: center;
@@ -258,8 +275,22 @@
       font-size: 1.05rem;
     }
 
+    .profile-about-wrap {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .profile-about-wrap {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+    }
     .profile {
-      max-width: 340px; margin: 0 auto;
+      width: 100%;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-card);
@@ -285,7 +316,7 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 18px;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.12);
     }
     .profile-avail {
       display: inline-flex; align-items: center; gap: 10px;
@@ -294,10 +325,15 @@
       font-size: 14px;
       font-weight: 500;
     }
+    @keyframes pulse-dot {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
     .dot {
-      width: 10px; height: 10px; border-radius: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+      animation: pulse-dot 2s infinite;
     }
     .profile h3 {
       font-family: "Playfair Display", Georgia, serif;
@@ -368,30 +404,23 @@
     }
     .service-link:hover { gap: 10px; }
 
-    .about {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: clamp(36px, 5vw, 60px);
-      box-shadow: var(--shadow-md);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    .about-content {
+      padding-top: 10px;
     }
-    .about::before {
-      content: ""; position: absolute; inset: 0;
-      pointer-events: none; opacity: 0.4; mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n3'><feTurbulence type='fractalNoise' baseFrequency='1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n3)'/></svg>");
+    .about-text {
+      color: var(--ink-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin: 0;
     }
-    .about > * { position: relative; }
-    .about h2 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      margin: 12px 0 16px;
+    .dotted-divider {
+      border: none;
+      border-top: 1px dashed var(--border-strong);
+      margin: 28px 0;
     }
-    .about p { color: var(--ink-muted); max-width: 680px; margin: 0 auto; font-size: 1.05rem; }
-    .badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    .badges { 
+      display: flex; gap: 10px; flex-wrap: wrap; 
+    }
     .badge {
       padding: 10px 18px;
       background: var(--surface-2);
@@ -400,6 +429,44 @@
       font-size: 14px;
       font-weight: 500;
       color: var(--ink);
+    }
+    .certifications-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.98rem;
+      color: var(--ink);
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cert-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .cert-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-check svg {
+      width: 14px;
+      height: 14px;
     }
 
     .faq-wrap {
@@ -553,9 +620,9 @@
     <nav class="nav" aria-label="Primary">
       <a href="#top" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
       <div class="nav-links">
+        <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="/simply-endorsed/">Simply Endorsed</a>
-        <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
         <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
@@ -568,7 +635,7 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
         <h1 id="hero-heading">
-          <img src="/assets/diego-profile.jpg" alt="Portrait of Diego Suarez, Certified Flight Instructor" class="sq sq--photo" width="84" height="84" />
+          <img src="assets/diego-profile.jpg" alt="Portrait of Diego Suarez, Certified Ground Instructor" class="sq sq--photo" width="84" height="84" />
           I'm <span class="italic">Diego</span> —
           <span class="sq sq--sky" aria-hidden="true">
             <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -582,11 +649,11 @@
               <path d="M0 22h32v2H0zM4 26h24v1.4H4z" fill="#ffffff" opacity="0.85"/>
             </svg>
           </span>
-          <span class="italic">Flight Instructor</span>
+          <span class="italic">Ground Instructor</span>
         </h1>
         <p class="lede">
-          FAA Certified Flight Instructor at <strong>Bowman Field (KLOU)</strong>, Louisville, KY.
-          I train Private, Instrument, and Commercial pilots in the <strong>Cessna 172</strong> and <strong>Bristell NG5 LSA</strong> — patient, methodical, and built around your goals.
+          FAA Certified Ground Instructor working toward my Flight Instructor Certificate, based at <strong>Bowman Field (KLOU)</strong>, Louisville, KY.
+          I train Private, Instrument, and Commercial pilots in the <strong>Bristell NG5 LSA</strong> and <strong>Cessna 172</strong> — patient, methodical, and built around your goals.
         </p>
         <div class="hero-ctas">
           <a href="tel:+15025100508" class="btn btn--primary">
@@ -605,30 +672,76 @@
       </div>
     </section>
 
-    <section aria-labelledby="profile-heading" id="profile">
+    <section aria-labelledby="profile-heading" id="about">
       <div class="container">
-        <article class="profile">
-          <img src="/assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Certified Flight Instructor based in Louisville, Kentucky" class="profile-photo" width="640" height="640" />
-          <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
-          <h3 id="profile-heading">Diego Suarez</h3>
-          <p class="role">Certified Flight Instructor · Bowman Field (KLOU) · Louisville, KY</p>
-          <div class="socials" aria-label="Social media">
-            <!-- TODO: replace href="#" with real handles (Instagram, TikTok, YouTube) -->
-            <a href="#" aria-label="Instagram" rel="me noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        <div class="profile-about-wrap">
+          <article class="profile">
+            <img src="assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Certified Ground Instructor based in Louisville, Kentucky" class="profile-photo" width="640" height="640" />
+            <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
+            <h3 id="profile-heading">Diego Suarez</h3>
+            <p class="role">Certified Ground Instructor · Working Toward CFI · Bowman Field (KLOU) · Louisville, KY</p>
+            <div class="socials" aria-label="Social media">
+              <!-- TODO: replace href="#" with real handles (Instagram, TikTok, YouTube) -->
+              <a href="#" aria-label="Instagram" rel="me noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+              <a href="#" aria-label="TikTok" rel="me noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3h2.3a5.8 5.8 0 0 0 3.7 4.2v2.5a8.3 8.3 0 0 1-3.7-1v6.5a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v2.6a3.6 3.6 0 1 0 2.7 3.5V3z"/></svg>
+              </a>
+              <a href="#" aria-label="YouTube" rel="me noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+              </a>
+            </div>
+            <a href="#contact" class="btn btn--primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+              Contact Me
             </a>
-            <a href="#" aria-label="TikTok" rel="me noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3h2.3a5.8 5.8 0 0 0 3.7 4.2v2.5a8.3 8.3 0 0 1-3.7-1v6.5a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v2.6a3.6 3.6 0 1 0 2.7 3.5V3z"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube" rel="me noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
-            </a>
+          </article>
+          
+          <div class="about-content">
+            <p class="about-text">
+              I fly out of Bowman Field (KLOU) in Louisville, Kentucky — one of the oldest continuously-operating airports in the country and a fantastic place to learn. My training blends disciplined, standards-based instruction with the kind of patience and clear communication that turns nervous first-flights into confident pilot-in-command decisions. Whether you're starting from zero, adding an instrument rating, or pushing toward commercial, every lesson is built around your goals and your schedule.
+            </p>
+            
+            <hr class="dotted-divider" />
+            
+            <div class="badges">
+              <span class="badge">Working Toward CFI</span>
+              <span class="badge">Bowman Field (KLOU)</span>
+              <span class="badge">Bristell NG5 LSA</span>
+              <span class="badge">Cessna 172</span>
+            </div>
+            
+            <hr class="dotted-divider" />
+            
+            <div class="certifications-list">
+              <div class="cert-item">
+                <div class="cert-check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-name">Certified Ground Instructor (Advanced)</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-name">Commercial Pilot</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-name">Instrument Rating</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-name">Private Pilot</span>
+              </div>
+            </div>
           </div>
-          <a href="#contact" class="btn btn--primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            Contact Me
-          </a>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -648,7 +761,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7 7 1-5 5 1.5 7L12 18l-6.5 4L7 15 2 10l7-1 3-7z"/></svg>
             </span>
             <h3>Private Pilot (PPL)</h3>
-            <p>Earn your FAA Private Pilot certificate from the ground up. Discovery flight, ground school, solo, cross-country, and checkride prep — every step in the Cessna 172 at KLOU.</p>
+            <p>Earn your FAA Private Pilot certificate from the ground up. Discovery flight, ground school, solo, cross-country, and checkride prep — in the Bristell NG5 LSA or Cessna 172 at KLOU.</p>
             <a href="#contact" class="service-link">Start training <span aria-hidden="true">→</span></a>
           </article>
           <article class="service-card">
@@ -671,26 +784,7 @@
       </div>
     </section>
 
-    <section id="about" aria-labelledby="about-heading">
-      <div class="container">
-        <div class="about">
-          <span class="eyebrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            About
-          </span>
-          <h2 id="about-heading">Why train with Diego</h2>
-          <p>
-            I fly out of Bowman Field (KLOU) in Louisville, Kentucky — one of the oldest continuously-operating airports in the country and a fantastic place to learn. My training blends disciplined, standards-based instruction with the kind of patience and clear communication that turns nervous first-flights into confident pilot-in-command decisions. Whether you're starting from zero, adding an instrument rating, or pushing toward commercial, every lesson is built around your goals and your schedule.
-          </p>
-          <div class="badges">
-            <span class="badge">FAA Certified Flight Instructor</span>
-            <span class="badge">Bowman Field (KLOU)</span>
-            <span class="badge">Cessna 172 &amp; Bristell NG5 LSA</span>
-            <span class="badge">Louisville, Kentucky</span>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <section id="faq" aria-labelledby="faq-heading">
       <div class="container">
@@ -721,13 +815,13 @@
               <details class="faq-item" open>
                 <summary>How do I get started with flight training?</summary>
                 <div class="faq-body">
-                  The best first step is a discovery flight — about an hour in the Cessna 172 at Bowman Field where you'll get hands-on controls and see whether flying feels like a fit. From there we'll map a plan: FAA medical (or BasicMed), ground knowledge, and a lesson cadence that matches your schedule and budget.
+                  The best first step is a discovery flight — about an hour in the Bristell NG5 LSA at Bowman Field where you'll get hands-on controls and see whether flying feels like a fit. From there we'll map a plan: FAA medical (or BasicMed), ground knowledge, and a lesson cadence that matches your schedule and budget.
                 </div>
               </details>
               <details class="faq-item">
                 <summary>What aircraft will I train in?</summary>
                 <div class="faq-body">
-                  Primary training happens in a <strong>Cessna 172 Skyhawk</strong> — the most widely-flown trainer in the world — with the <strong>Bristell NG5 LSA</strong> available for Sport Pilot and efficient, lower-cost hour-building. Both are based at Bowman Field (KLOU) in Louisville.
+                  Primary training happens in the <strong>Bristell NG5 LSA</strong> — a modern, fuel-efficient light sport aircraft — with the <strong>Cessna 172 Skyhawk</strong> also available for students pursuing Private, Instrument, or Commercial certificates. Both are based at Bowman Field (KLOU) in Louisville.
                 </div>
               </details>
               <details class="faq-item">
@@ -795,13 +889,13 @@
     <div class="container">
       <a href="#top" class="wordmark">Diego Suarez</a>
       <nav aria-label="Footer">
+        <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="/simply-endorsed/">Simply Endorsed</a>
-        <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
-      <p class="fine">FAA Certified Flight Instructor · Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">FAA Certified Ground Instructor · Working Toward CFI · Bowman Field (KLOU), Louisville, Kentucky</p>
       <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
     </div>
   </footer>
@@ -815,7 +909,7 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Diego Suarez",
-    "jobTitle": "Certified Flight Instructor",
+    "jobTitle": "Certified Ground Instructor",
     "url": "https://suarezcfi.com/",
     "image": "https://suarezcfi.com/assets/og-image.jpg",
     "telephone": "+1-502-510-0508",
@@ -843,7 +937,7 @@
     "telephone": "+1-502-510-0508",
     "email": "Diegoasuarez02@gmail.com",
     "priceRange": "$$",
-    "description": "FAA Certified Flight Instructor in Louisville, KY offering Private, Instrument, and Commercial training in the Cessna 172 and Bristell NG5 LSA out of Bowman Field (KLOU).",
+    "description": "FAA Certified Ground Instructor in Louisville, KY working toward his Flight Instructor Certificate, offering training in the Bristell NG5 LSA and Cessna 172 out of Bowman Field (KLOU).",
     "areaServed": [
       { "@type": "City", "name": "Louisville, Kentucky" },
       { "@type": "AdministrativeArea", "name": "Kentucky" }
@@ -880,7 +974,7 @@
         "name": "How do I get started with flight training?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best first step is a discovery flight — about an hour in the Cessna 172 at Bowman Field (KLOU) where you get hands-on controls. From there we plan your FAA medical or BasicMed, ground knowledge, and a lesson cadence that fits your schedule."
+          "text": "The best first step is a discovery flight — about an hour in the Bristell NG5 LSA at Bowman Field (KLOU) where you get hands-on controls. From there we plan your FAA medical or BasicMed, ground knowledge, and a lesson cadence that fits your schedule."
         }
       },
       {
@@ -888,7 +982,7 @@
         "name": "What aircraft will I train in?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Primary training is in the Cessna 172 Skyhawk, with a Bristell NG5 LSA available for Sport Pilot students and efficient hour-building. Both are based at Bowman Field (KLOU) in Louisville, Kentucky."
+          "text": "Primary training is in the Bristell NG5 LSA, with the Cessna 172 Skyhawk also available for students pursuing Private, Instrument, or Commercial certificates. Both are based at Bowman Field (KLOU) in Louisville, Kentucky."
         }
       },
       {

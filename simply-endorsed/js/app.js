@@ -245,10 +245,10 @@
   ];
 
   const STORAGE_KEYS = {
-    favorites: "simply-endorsed:favorites",
     recentEndorsements: "simply-endorsed:recent-endorsements",
     recentSearches: "simply-endorsed:recent-searches",
   };
+  const LEGACY_FAVORITES_STORAGE_KEY = "simply-endorsed:favorites";
 
   const MAX_RECENTS = 8;
   const MAX_RECENT_SEARCHES = 8;
@@ -297,14 +297,6 @@
     "non-instructor": "Qualified non-instructor",
   };
 
-  const SIGNATURE_DISPLAY = {
-    "standard-cfi": "/s/ [date] J. J. Jones 987654321CFI RE 12-31-2026",
-    "examiner-only": "Issued by examiner at the practical test.",
-    "dpe-or-asi-only": "Issued by a DPE or FAA ASI only.",
-    "approved-institution": "Issued by an authorized academic institution only.",
-    "non-instructor": "May be issued by a qualified non-instructor when the rule allows it.",
-  };
-
   const EXPIRATION_LABELS = {
     "90-calendar-days": "90 days",
     "2-calendar-months": "2 months",
@@ -329,6 +321,14 @@
     }
   }
 
+  function clearStoredValue(key) {
+    try {
+      window.localStorage.removeItem(key);
+    } catch (error) {
+      // Ignore storage failures so the app still works in private mode.
+    }
+  }
+
   const state = {
     query: "",
     category: "all",
@@ -345,7 +345,6 @@
       issuer: "all",
       validity: "all",
     },
-    favorites: loadStoredArray(STORAGE_KEYS.favorites),
     recentEndorsements: loadStoredArray(STORAGE_KEYS.recentEndorsements),
     recentSearches: loadStoredArray(STORAGE_KEYS.recentSearches),
   };
@@ -437,16 +436,6 @@
       : APP_META.sourceUrl;
   }
 
-  function getSourceLinkLabel(pageNumber) {
-    const normalized = String(pageNumber || "").trim();
-    if (/^\d+$/.test(normalized)) {
-      return "Open FAA PDF to page " + normalized;
-    }
-    return normalized
-      ? "Open FAA PDF (source page " + normalized + ")"
-      : "Open FAA PDF";
-  }
-
   function getExpirationPlainText(expiration) {
     if (expiration === "90-calendar-days") {
       return "Valid for 90 calendar days from the date of the endorsement.";
@@ -480,10 +469,6 @@
     return ISSUER_LABELS[item.whoIssues] || "Special issuer";
   }
 
-  function updateFavorites(nextValues) {
-    state.favorites = setStoredArray(STORAGE_KEYS.favorites, nextValues, ENDORSEMENTS.length);
-  }
-
   function recordRecentEndorsement(endorsementId) {
     state.recentEndorsements = pushStoredValue(
       STORAGE_KEYS.recentEndorsements,
@@ -506,21 +491,44 @@
     );
   }
 
-  function toggleFavorite(endorsementId) {
+  function toggleExpandedCard(endorsementId) {
     if (!endorsementId) {
       return;
     }
 
-    if (state.favorites.includes(endorsementId)) {
-      updateFavorites(state.favorites.filter((id) => id !== endorsementId));
+    if (state.expandedIds.has(endorsementId)) {
+      state.expandedIds.delete(endorsementId);
       return;
     }
 
-    updateFavorites([endorsementId].concat(state.favorites));
+    state.expandedIds.add(endorsementId);
+    recordRecentEndorsement(endorsementId);
+  }
+
+  function shouldIgnoreCardToggleTarget(target) {
+    if (!target) {
+      return false;
+    }
+
+    return Boolean(target.closest("button, a, input, select, textarea"));
   }
 
   function getCategoryTheme(categoryId) {
     return CATEGORY_THEMES[categoryId] || CATEGORY_THEMES.all;
+  }
+
+  function getContrastTextColor(hexColor) {
+    const normalized = String(hexColor || "").trim().replace(/^#/, "");
+    if (!/^[0-9a-fA-F]{6}$/.test(normalized)) {
+      return "#ffffff";
+    }
+
+    const red = parseInt(normalized.slice(0, 2), 16);
+    const green = parseInt(normalized.slice(2, 4), 16);
+    const blue = parseInt(normalized.slice(4, 6), 16);
+    const luminance = ((0.299 * red) + (0.587 * green) + (0.114 * blue)) / 255;
+
+    return luminance > 0.62 ? "#172133" : "#ffffff";
   }
 
   function getCategoryThemeStyle(categoryId) {
@@ -529,7 +537,8 @@
       ' style="--category-accent: ' + theme.accent + "; " +
       "--category-soft: " + theme.soft + "; " +
       "--category-line: " + theme.line + "; " +
-      "--category-ink: " + theme.ink + ';"'
+      "--category-ink: " + theme.ink + "; " +
+      "--category-pill-text: " + getContrastTextColor(theme.accent) + ';"'
     );
   }
 
@@ -543,23 +552,7 @@
     element.style.setProperty("--category-soft", theme.soft);
     element.style.setProperty("--category-line", theme.line);
     element.style.setProperty("--category-ink", theme.ink);
-  }
-
-  function renderMetaItem(value, classNames) {
-    const classes = ["meta-item"];
-    if (classNames) {
-      classes.push(classNames);
-    }
-    return '<span class="' + classes.join(" ") + '">' + escapeHtml(value) + "</span>";
-  }
-
-  function renderWarnMetaItem(value) {
-    return (
-      '<span class="chip-warn">' +
-      '<span class="warn-icon" aria-hidden="true"></span>' +
-      '<span>' + escapeHtml(value) + "</span>" +
-      "</span>"
-    );
+    element.style.setProperty("--category-pill-text", getContrastTextColor(theme.accent));
   }
 
   function renderDetailMetaPill(label, value) {
@@ -2135,21 +2128,58 @@
     dom.resultsSummary.textContent = parts.join(" · ");
   }
 
+  function getCardStatusBadges(item) {
+    const badges = [];
+
+    if (EXPIRATION_LABELS[item.expiration]) {
+      badges.push({
+        shortLabel: item.expiration === "90-calendar-days"
+          ? "90d"
+          : item.expiration === "2-calendar-months"
+            ? "2 mo"
+            : EXPIRATION_LABELS[item.expiration],
+        fullLabel: "Time limit " + EXPIRATION_LABELS[item.expiration],
+      });
+    }
+
+    if (item.perFlight) {
+      badges.push({
+        shortLabel: "Per flight",
+        fullLabel: "Required for each individual flight",
+      });
+    }
+
+    return badges.slice(0, 2);
+  }
+
+  function formatMatchReasonLabel(label) {
+    if (label === "ID") {
+      return label;
+    }
+
+    const normalized = String(label || "");
+    return normalized ? normalized.charAt(0).toUpperCase() + normalized.slice(1) : "";
+  }
+
   function renderEndorsementCard(item) {
     const expanded = state.expandedIds.has(item.id);
-    const isFavorite = state.favorites.includes(item.id);
-    const metaItems = [];
     const cardExplanation = getCardExplanation(item);
-    const cardSummary = cardExplanation
-      ? '<p class="card-explanation">' + escapeHtml(cardExplanation) + "</p>"
-      : "";
     const detailTags = Array.isArray(item.tags) ? item.tags.filter(Boolean) : [];
-    const matchReasons = state.query ? getMatchReasons(item, state.query) : [];
+    const matchReasons = state.query ? getMatchReasons(item, state.query).slice(0, 3) : [];
+    const statusBadges = getCardStatusBadges(item);
     const caution = getUsageCaution(item);
     const relatedItems = getRelatedEndorsements(item);
     const sourcePageUrl = getPdfPageUrl(item.sourcePage);
     const referenceItems = [];
-    const expandedRelated = expanded && relatedItems.length
+    const detailsId = "endorsement-details-" + item.id.replace(/[^a-zA-Z0-9_-]+/g, "-");
+    const detailLede = cardExplanation
+      ? (
+        '<section class="detail-lede">' +
+        "<p>" + escapeHtml(cardExplanation) + "</p>" +
+        "</section>"
+      )
+      : "";
+    const expandedRelated = relatedItems.length
       ? (
         '<div class="expanded-related">' +
         '<span class="detail-inline-label">Related endorsements</span>' +
@@ -2164,20 +2194,6 @@
         "</div>"
       )
       : "";
-
-    if (EXPIRATION_LABELS[item.expiration]) {
-      metaItems.push(renderWarnMetaItem("Time limit " + EXPIRATION_LABELS[item.expiration]));
-    }
-    if (item.perFlight) {
-      metaItems.push(renderWarnMetaItem("Every XC flight"));
-    }
-    if (item.whoIssues !== "standard-cfi") {
-      metaItems.push(renderMetaItem(getSpecialIssuerLabel(item)));
-    }
-    if (Array.isArray(item.cfr) && item.cfr.length) {
-      metaItems.push(renderMetaItem(item.cfr.join(" | "), "mono"));
-    }
-    metaItems.push(renderMetaItem("Page " + item.sourcePage, "mono"));
 
     if (Array.isArray(item.cfr) && item.cfr.length) {
       referenceItems.push(
@@ -2204,7 +2220,8 @@
 
     const details = expanded
       ? (
-        '<div class="endorsement-details">' +
+        '<div class="endorsement-details" id="' + escapeHtml(detailsId) + '">' +
+        detailLede +
         '<div class="detail-meta-strip">' +
         renderDetailMetaPill("Signer", getSpecialIssuerLabel(item)) +
         renderDetailMetaPill("Validity", getValidityDisplayValue(item)) +
@@ -2242,39 +2259,44 @@
             : ""
         ) +
         '<section class="reference-strip" aria-label="Reference details">' + referenceItems.join("") + "</section>" +
+        expandedRelated +
         "</div>"
       )
       : "";
 
     return (
-      '<article class="endorsement-card" data-endorsement-id="' +
+      '<article class="endorsement-card' +
+      (expanded ? " is-expanded" : "") +
+      '" data-endorsement-id="' +
+      escapeHtml(item.id) +
+      '" data-card-id="' +
       escapeHtml(item.id) +
       '"' +
       getCategoryThemeStyle(item.category) +
+      ' role="button" tabindex="0" aria-expanded="' +
+      String(expanded) +
       ">" +
       '<div class="endorsement-head">' +
-      '<div class="endorsement-id-row">' +
-      '<span class="category-dot" aria-hidden="true"></span>' +
-      '<span class="endorsement-id mono">' + escapeHtml(item.id) + "</span>" +
+      '<div class="card-identity">' +
+      '<span class="endorsement-id-pill mono">' + escapeHtml(item.id) + "</span>" +
       "</div>" +
-      '<div class="card-head-actions">' +
-      '<button type="button" class="save-toggle' + (isFavorite ? " is-active" : "") + '" data-favorite-id="' + escapeHtml(item.id) + '" aria-pressed="' + String(isFavorite) + '" aria-label="' + escapeHtml(isFavorite ? "Remove from saved endorsements" : "Save endorsement") + '">' +
-      '<span aria-hidden="true">' + (isFavorite ? "★" : "☆") + "</span>" +
-      '<span class="save-toggle-label">' + (isFavorite ? "Saved" : "Save") + "</span>" +
-      "</button>" +
-      '<button type="button" class="detail-toggle" data-toggle-id="' + escapeHtml(item.id) + '" aria-expanded="' + String(expanded) + '">' +
-      '<span>' + (expanded ? "Hide details" : "View details") + "</span>" +
-      '<span class="detail-toggle-caret" aria-hidden="true">' + (expanded ? "−" : "›") + "</span>" +
-      "</button>" +
+      '<div class="card-status-rail">' +
+      statusBadges.map((badge) => (
+        '<span class="card-status-badge" aria-label="' + escapeHtml(badge.fullLabel) + '" title="' + escapeHtml(badge.fullLabel) + '">' +
+        escapeHtml(badge.shortLabel) +
+        "</span>"
+      )).join("") +
+      '<span class="card-expand-caret" aria-hidden="true">' + (expanded ? "⌄" : "›") + "</span>" +
       "</div>" +
       "</div>" +
       "<h2>" + escapeHtml(item.title) + "</h2>" +
-      cardSummary +
-      expandedRelated +
-      '<div class="meta-line">' + metaItems.join("") + "</div>" +
       (
         matchReasons.length
-          ? '<p class="match-reasons">Matched on ' + escapeHtml(matchReasons.join(" · ")) + "</p>"
+          ? '<div class="match-reason-row" aria-label="Search match reasons">' +
+            matchReasons.map((reason) => (
+              '<span class="match-reason-chip">' + escapeHtml(formatMatchReasonLabel(reason)) + "</span>"
+            )).join("") +
+            "</div>"
           : ""
       ) +
       details +
@@ -2303,10 +2325,6 @@
     }
 
     const strip = dom.featuredStrip;
-    const favoriteItems = state.favorites
-      .map((id) => ENDORSEMENT_MAP.get(id))
-      .filter(Boolean)
-      .slice(0, 4);
     const recentItems = state.recentEndorsements
       .map((id) => ENDORSEMENT_MAP.get(id))
       .filter(Boolean)
@@ -2317,7 +2335,7 @@
       return;
     }
 
-    if (!FEATURED_SUBCATEGORIES.length && !favoriteItems.length && !recentItems.length) {
+    if (!TASK_MODES.length && !FEATURED_SUBCATEGORIES.length && !recentItems.length) {
       strip.hidden = true;
       strip.innerHTML = "";
       return;
@@ -2329,6 +2347,8 @@
       '<p class="featured-strip-label">Instructor Quick Starts</p>' +
       "<h3>Common paths instructors reach for.</h3>" +
       "</div>" +
+      '<section class="featured-section">' +
+      '<div class="featured-section-heading">Quick starts</div>' +
       '<div class="task-mode-grid">' +
       TASK_MODES.map((mode) => {
         const category = CATEGORY_MAP.get(mode.categoryId) || {};
@@ -2347,6 +2367,7 @@
           ">" +
           '<span class="task-mode-swatch" aria-hidden="true"></span>' +
           '<span class="task-mode-title">' + escapeHtml(mode.label) + "</span>" +
+          '<span class="task-mode-helper">' + escapeHtml(mode.helper || categoryLabel) + "</span>" +
           '<span class="task-mode-meta">' +
           escapeHtml(categoryLabel + (subcategory ? " · " + getBundleCount(subcategory) + " endorsements" : "")) +
           "</span>" +
@@ -2354,6 +2375,9 @@
         );
       }).join("") +
       "</div>" +
+      "</section>" +
+      '<section class="featured-section">' +
+      '<div class="featured-section-heading">Featured bundles</div>' +
       '<div class="featured-grid">' +
       FEATURED_SUBCATEGORIES.map((item) => {
         const category = CATEGORY_MAP.get(item.categoryId) || {};
@@ -2373,25 +2397,11 @@
         );
       }).join("") +
       "</div>" +
-      (
-        favoriteItems.length
-          ? '<div class="quick-access-panel">' +
-            "<h4>Saved endorsements</h4>" +
-            '<div class="quick-access-row">' +
-            favoriteItems.map((item) => (
-              '<button type="button" class="quick-access-chip" data-open-id="' + escapeHtml(item.id) + '">' +
-              '<span class="mono">' + escapeHtml(item.id) + "</span>" +
-              '<span>' + escapeHtml(item.title) + "</span>" +
-              "</button>"
-            )).join("") +
-            "</div>" +
-            "</div>"
-          : ""
-      ) +
+      "</section>" +
       (
         recentItems.length
-          ? '<div class="quick-access-panel">' +
-            "<h4>Recent endorsements</h4>" +
+          ? '<section class="featured-section quick-access-panel">' +
+            '<div class="featured-section-heading">Continue where you left off</div>' +
             '<div class="quick-access-row">' +
             recentItems.map((item) => (
               '<button type="button" class="quick-access-chip" data-open-id="' + escapeHtml(item.id) + '">' +
@@ -2400,7 +2410,7 @@
               "</button>"
             )).join("") +
             "</div>" +
-            "</div>"
+            "</section>"
           : ""
       );
   }
@@ -2588,9 +2598,8 @@
       getCategoryThemeStyle("student-pilot") +
       ">" +
       '<div class="endorsement-head">' +
-      '<div class="endorsement-id-row">' +
-      '<span class="category-dot" aria-hidden="true"></span>' +
-      '<span class="endorsement-id mono">' + h(item.id) + "</span>" +
+      '<div class="card-identity">' +
+      '<span class="endorsement-id-pill mono">' + h(item.id) + "</span>" +
       '<span class="pre-solo-badge">Prerequisite</span>' +
       "</div>" +
       "</div>" +
@@ -2988,29 +2997,9 @@
 
     if (dom.endorsementList) {
       dom.endorsementList.addEventListener("click", (event) => {
-        const toggleButton = event.target.closest("[data-toggle-id]");
-        if (toggleButton) {
-          const id = toggleButton.getAttribute("data-toggle-id");
-          if (state.expandedIds.has(id)) {
-            state.expandedIds.delete(id);
-          } else {
-            state.expandedIds.add(id);
-            recordRecentEndorsement(id);
-          }
-          refresh();
-          return;
-        }
-
         const copyButton = event.target.closest("[data-copy-id]");
         if (copyButton) {
           handleCopy(copyButton.getAttribute("data-copy-id"), copyButton);
-          return;
-        }
-
-        const favoriteButton = event.target.closest("[data-favorite-id]");
-        if (favoriteButton) {
-          toggleFavorite(favoriteButton.getAttribute("data-favorite-id"));
-          refresh();
           return;
         }
 
@@ -3024,6 +3013,27 @@
         if (searchAllBtn) {
           activateAllEndorsements({ preserveQuery: true, closeSidebar: false });
           return;
+        }
+
+        const card = event.target.closest("[data-card-id]");
+        if (!card || shouldIgnoreCardToggleTarget(event.target)) {
+          return;
+        }
+
+        toggleExpandedCard(card.getAttribute("data-card-id"));
+        refresh();
+      });
+
+      dom.endorsementList.addEventListener("keydown", (event) => {
+        const card = event.target.closest("[data-card-id]");
+        if (!card || event.target !== card) {
+          return;
+        }
+
+        if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+          event.preventDefault();
+          toggleExpandedCard(card.getAttribute("data-card-id"));
+          refresh();
         }
       });
     }
@@ -3136,6 +3146,7 @@
   }
 
   function boot() {
+    clearStoredValue(LEGACY_FAVORITES_STORAGE_KEY);
     validateData();
     validateBrowseStructure();
     applyUrlState();

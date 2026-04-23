@@ -13,50 +13,62 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/first-solo-endorsement/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/solo-cross-country-endorsement/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/what-is-simply-endorsed/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/first-solo-endorsement/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/private-pilot-checkride-endorsements/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/solo-cross-country-endorsement/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/commercial-pilot-checkride-endorsements/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/private-pilot-checkride-endorsements/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/instrument-checkride-endorsements/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/commercial-pilot-checkride-endorsements/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/flight-review-endorsement/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/instrument-checkride-endorsements/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/flight-review-endorsement/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/simply-endorsed/tailwheel-endorsement/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/tailwheel-endorsement/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/blog/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -175,6 +175,33 @@ img { max-width: 100%; display: block; }
   padding: 0 0 80px;
 }
 
+.endorsement-guides {
+  padding-bottom: 12px;
+}
+
+.index-section-heading {
+  max-width: 760px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.index-section-heading h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 16px 0 12px;
+  color: var(--ink);
+}
+
+.index-section-heading p {
+  margin: 0 auto;
+  color: var(--ink-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
 .post-card {
   background: var(--surface);
   border: 1px solid var(--border);

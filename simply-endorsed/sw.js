@@ -1,10 +1,10 @@
-const CACHE_NAME = "simply-endorsed-v6";
+const CACHE_NAME = "simply-endorsed-v7";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./site.webmanifest?v=2",
-  "./css/app.css?v=11",
+  "./css/app.css?v=16",
   "./js/endorsements-data.js?v=3",
   "./js/browse-structure.js?v=3",
   "./js/guidance-content.js?v=1",

@@ -329,6 +329,8 @@
     }
   }
 
+  const FLASHCARD_READY_KEY = "se_flashcard_ready_v1";
+
   const state = {
     query: "",
     category: "all",
@@ -341,6 +343,11 @@
     openCategory: null,
     sidebarOpen: false,
     view: "browse",
+    guidanceMode: "journey",
+    guidanceOpenNodeId: null,
+    guidanceOpenScenarioId: null,
+    guidanceDpeCategoryFilter: "all",
+    flashcardReadyIds: new Set(loadStoredArray(FLASHCARD_READY_KEY)),
     filters: {
       issuer: "all",
       validity: "all",
@@ -1944,7 +1951,11 @@
       return;
     }
 
-    const alreadyVisible = getVisibleEndorsements().some((candidate) => candidate.id === endorsementId);
+    // When in guidance/teaching mode, always switch to browse view.
+    // In guidance mode state.category="all" and query="" so alreadyVisible
+    // would always be true — but we still need to leave guidance mode.
+    const comingFromGuidance = state.view === "guidance";
+    const alreadyVisible = !comingFromGuidance && getVisibleEndorsements().some((candidate) => candidate.id === endorsementId);
 
     if (!alreadyVisible) {
       state.view = "browse";
@@ -2543,20 +2554,413 @@
     return "";
   }
 
-  function renderGuidanceView() {
-    if (!dom.guidanceView) return;
+  var GUIDANCE_MODES = [
+    { id: "journey", label: "Student Journey", icon: "✈" },
+    { id: "scenarios", label: "Scenarios", icon: "?" },
+    { id: "quickref", label: "Quick Reference", icon: "⚡" },
+    { id: "cficareer", label: "CFI Career", icon: "★" },
+    { id: "dpeprep", label: "DPE Prep", icon: "◈" },
+    { id: "classic", label: "Lesson Plan", icon: "≡" },
+  ];
 
-    if (state.view !== "guidance") {
-      dom.guidanceView.hidden = true;
-      return;
-    }
+  function renderAcLink(acRef) {
+    return (
+      '<button type="button" class="guidance-ac-link" data-ac-ref="' + escapeHtml(acRef) + '" title="Open ' + escapeHtml(acRef) + ' in endorsement library">' +
+      escapeHtml(acRef) +
+      "</button>"
+    );
+  }
 
-    dom.guidanceView.hidden = false;
+  function renderGuidanceModeSwitcher() {
+    return (
+      '<div class="guidance-mode-switcher" role="tablist" aria-label="Teaching mode">' +
+      GUIDANCE_MODES.map(function (m) {
+        var active = state.guidanceMode === m.id;
+        return (
+          '<button type="button" class="guidance-mode-btn' + (active ? " is-active" : "") + '" data-guidance-mode="' + escapeHtml(m.id) + '" role="tab" aria-selected="' + (active ? "true" : "false") + '">' +
+          '<span class="guidance-mode-icon" aria-hidden="true">' + m.icon + "</span>" +
+          escapeHtml(m.label) +
+          "</button>"
+        );
+      }).join("") +
+      "</div>"
+    );
+  }
 
-    if (typeof GUIDANCE_SECTIONS === "undefined") {
-      dom.guidanceView.innerHTML = "<p>Guidance content unavailable.</p>";
-      return;
-    }
+  function renderJourneyMode() {
+    var stages = window.JOURNEY_STAGES;
+    if (!Array.isArray(stages) || !stages.length) return "<p>Journey content unavailable.</p>";
+
+    var phaseColors = { "pre-solo": "pre-solo", "solo": "solo", "cross-country": "cross-country", "checkride": "checkride" };
+
+    var html = '<p class="journey-intro">Walk through each milestone from a student\'s first day to checkride. Click any stage to see required endorsements, regulations, time limits, and common gotchas.</p>';
+    html += '<div class="journey-timeline">';
+
+    stages.forEach(function (stage) {
+      var isOpen = state.guidanceOpenNodeId === stage.id;
+      var phaseClass = "phase-dot-" + (phaseColors[stage.phase] || "pre-solo");
+
+      var metaText = stage.timeLimit ? "⏱ " + stage.timeLimit : "";
+
+      html +=
+        '<div class="journey-node' + (isOpen ? " is-open" : "") + '" id="jn-' + escapeHtml(stage.id) + '">' +
+        '<button type="button" class="journey-node-btn" data-journey-node="' + escapeHtml(stage.id) + '" aria-expanded="' + (isOpen ? "true" : "false") + '">' +
+        '<span class="journey-phase-dot ' + phaseClass + '" aria-hidden="true"></span>' +
+        '<span class="journey-node-label">' + escapeHtml(stage.label) + "</span>" +
+        (metaText ? '<span class="journey-node-meta">' + escapeHtml(metaText) + "</span>" : "") +
+        '<span class="journey-node-caret" aria-hidden="true">' + (isOpen ? "\u2013" : "+") + "</span>" +
+        "</button>";
+
+      html += '<div class="journey-panel"' + (isOpen ? "" : " hidden") + ">";
+
+      html += '<p class="journey-panel-section-label">Overview</p>';
+      html += '<p class="journey-description">' + escapeHtml(stage.description) + "</p>";
+
+      if (stage.regulation) {
+        html += '<p class="journey-regulation">' + escapeHtml(stage.regulation) + "</p>";
+      }
+
+      if (stage.timeLimit) {
+        html += '<div class="journey-time-limit">' + escapeHtml("⏱ Time limit: " + stage.timeLimit) + "</div>";
+      }
+
+      if (stage.endorsements && stage.endorsements.length) {
+        html += '<p class="journey-panel-section-label">Required Endorsements</p>';
+        html += '<div class="journey-endorsements">';
+        stage.endorsements.forEach(function (e) {
+          html +=
+            '<div class="journey-endorsement-chip">' +
+            renderAcLink(e.id) +
+            '<span class="journey-endorsement-label">' + escapeHtml(e.label) + "</span>" +
+            "</div>";
+        });
+        html += "</div>";
+      }
+
+      if (stage.notes && stage.notes.length) {
+        stage.notes.forEach(function (note) {
+          html +=
+            '<div class="journey-endorsement-chip" style="margin-bottom:10px;">' +
+            renderAcLink(note.id) +
+            '<span class="journey-endorsement-label">' + escapeHtml(note.note) + "</span>" +
+            "</div>";
+        });
+      }
+
+      if (stage.gotchas && stage.gotchas.length) {
+        html += '<p class="journey-panel-section-label">Watch Out For</p>';
+        html += '<ul class="journey-gotchas">';
+        stage.gotchas.forEach(function (g) {
+          html += '<li class="journey-gotcha-item">' + escapeHtml(g) + "</li>";
+        });
+        html += "</ul>";
+      }
+
+      html += "</div></div>";
+    });
+
+    html += "</div>";
+    return html;
+  }
+
+  function renderScenariosMode() {
+    var scenarios = window.SCENARIO_CARDS;
+    if (!Array.isArray(scenarios) || !scenarios.length) return "<p>Scenario content unavailable.</p>";
+
+    var tagClass = function (tag) {
+      var map = { "Retesting": "retesting", "Additional Ratings": "additional-ratings", "Time Limits": "time-limits", "Recurrent": "recurrent", "Special": "special" };
+      return "scenario-tag-" + (map[tag] || "retesting");
+    };
+
+    var html = "<p style=\"font-size:0.9rem;color:var(--text-muted);margin:0 0 20px;max-width:66ch;line-height:1.65;\">Select a scenario to walk through the regulations, required endorsements, and common pitfalls — the kinds of situations a DPE may ask about.</p>";
+    html += '<div class="scenarios-grid">';
+
+    scenarios.forEach(function (s) {
+      var isOpen = state.guidanceOpenScenarioId === s.id;
+
+      html +=
+        '<div class="scenario-card' + (isOpen ? " is-open" : "") + '" id="sc-' + escapeHtml(s.id) + '">' +
+        '<button type="button" class="scenario-card-btn" data-scenario-id="' + escapeHtml(s.id) + '" aria-expanded="' + (isOpen ? "true" : "false") + '">' +
+        '<div style="flex:1;">' +
+        '<div class="scenario-tag ' + tagClass(s.tag) + '" style="margin-bottom:6px;">' + escapeHtml(s.tag) + "</div>" +
+        '<div class="scenario-card-title">' + escapeHtml(s.title) + "</div>" +
+        "</div>" +
+        '<span class="scenario-card-caret" aria-hidden="true">' + (isOpen ? "\u2013" : "+") + "</span>" +
+        "</button>";
+
+      if (isOpen) {
+        html += '<div class="scenario-panel">';
+
+        html += '<div><p class="scenario-section-label">Regulation</p><p class="scenario-regulation">' + escapeHtml(s.regulation) + "</p></div>";
+
+        if (s.timeLimit) {
+          html += '<div class="scenario-time-limit-banner">⏱ ' + escapeHtml(s.timeLimit) + "</div>";
+        }
+
+        html += '<div><p class="scenario-section-label">Steps</p><ol class="scenario-steps-list">';
+        s.steps.forEach(function (step) {
+          html += "<li>" + escapeHtml(step) + "</li>";
+        });
+        html += "</ol></div>";
+
+        if (s.endorsements && s.endorsements.length) {
+          html += '<div><p class="scenario-section-label">Endorsements Needed</p><div class="scenario-endorsements-row">';
+          s.endorsements.forEach(function (e) {
+            html +=
+              '<div class="journey-endorsement-chip">' +
+              renderAcLink(e.id) +
+              '<span class="journey-endorsement-label">' + escapeHtml(e.label) + "</span>" +
+              "</div>";
+          });
+          html += "</div></div>";
+        }
+
+        if (s.pitfalls && s.pitfalls.length) {
+          html += '<div><p class="scenario-section-label">Common Pitfalls</p><ul class="scenario-pitfalls-list">';
+          s.pitfalls.forEach(function (p) {
+            html += "<li>" + escapeHtml(p) + "</li>";
+          });
+          html += "</ul></div>";
+        }
+
+        html += "</div>";
+      } else {
+        html += '<div class="scenario-panel" hidden></div>';
+      }
+
+      html += "</div>";
+    });
+
+    html += "</div>";
+    return html;
+  }
+
+  function renderQuickRefMode() {
+    var data = window.QUICK_REF_DATA;
+    if (!data) return "<p>Quick reference content unavailable.</p>";
+
+    var h = escapeHtml;
+    var html = "";
+
+    /* Time Limits Table */
+    html += '<div class="quickref-block">';
+    html += '<h3 class="quickref-heading">Time Limits — Side-by-Side</h3>';
+    html += '<div class="quickref-table-wrap"><table class="quickref-table">';
+    html += "<thead><tr><th>Time Limit</th><th>Applies To</th><th>Governing FAR</th><th>What Resets It</th></tr></thead><tbody>";
+    data.timeLimits.forEach(function (row) {
+      var theme = CATEGORY_THEMES[row.color] || CATEGORY_THEMES["all"];
+      html +=
+        "<tr>" +
+        '<td><span class="quickref-limit-badge" style="background:' + h(theme.soft) + ";color:" + h(theme.ink) + ';">' + h(row.limit) + "</span></td>" +
+        "<td>" + h(row.appliesTo) + "</td>" +
+        '<td style="font-family:var(--mono,monospace);font-size:0.78rem;white-space:nowrap;">' + h(row.governingFAR) + "</td>" +
+        "<td>" + h(row.resetsWhen) + "</td>" +
+        "</tr>";
+    });
+    html += "</tbody></table></div></div>";
+
+    /* Logbook Checklist */
+    html += '<div class="quickref-block">';
+    html += '<h3 class="quickref-heading">Logbook Entry Checklist — FAR 61.51</h3>';
+    html += '<ol class="quickref-checklist">';
+    data.logbookChecklist.forEach(function (item, i) {
+      html +=
+        "<li>" +
+        '<span class="quickref-checklist-num">' + (i + 1) + "</span>" +
+        h(item) +
+        "</li>";
+    });
+    html += "</ol></div>";
+
+    /* AC → FAR Cross-Reference */
+    html += '<div class="quickref-block">';
+    html += '<h3 class="quickref-heading">AC 61-65 → FAR Cross-Reference</h3>';
+    html += '<div class="quickref-table-wrap"><table class="quickref-table">';
+    html += "<thead><tr><th>Endorsement</th><th>FAR</th><th>Use Case</th><th>Expiration</th></tr></thead><tbody>";
+    data.acFarTable.forEach(function (row) {
+      html +=
+        "<tr>" +
+        "<td>" + renderAcLink(row.acRef) + "</td>" +
+        '<td style="font-family:var(--mono,monospace);font-size:0.78rem;white-space:nowrap;">' + h(row.far) + "</td>" +
+        "<td>" + h(row.use) + "</td>" +
+        "<td>" + h(row.expiration) + "</td>" +
+        "</tr>";
+    });
+    html += "</tbody></table></div></div>";
+
+    /* SFAR List */
+    html += '<div class="quickref-block">';
+    html += '<h3 class="quickref-heading">Special Federal Aviation Regulations (SFARs)</h3>';
+    html += '<div class="quickref-sfar-list">';
+    data.sfarList.forEach(function (sfar) {
+      html +=
+        '<div class="quickref-sfar-item">' +
+        '<p class="quickref-sfar-title"><span class="quickref-sfar-id">' + h(sfar.id) + "</span>" + h(sfar.title) + "</p>" +
+        '<p class="quickref-sfar-note">' + h(sfar.note) + "</p>" +
+        "</div>";
+    });
+    html += "</div></div>";
+
+    /* Official References */
+    html += '<div class="quickref-block">';
+    html += '<h3 class="quickref-heading">Official References</h3>';
+    html += '<ul class="quickref-refs-list">';
+    var refs = [
+      AC_VERSION_LABEL + " – Certification: Pilots and Flight and Ground Instructors",
+      "AC 61-98 – Currency Requirements and Guidance for the Flight Review and IPC",
+      "AC 61-83 – Flight Instructor Refresher Course",
+      "AC 61-91 – WINGS Pilot Proficiency Program",
+      "FAA Order 8900.1 (FSIMS)",
+    ];
+    refs.forEach(function (ref) {
+      html += "<li>" + h(ref) + "</li>";
+    });
+    html += "</ul></div>";
+
+    return html;
+  }
+
+  function renderCfiCareerMode() {
+    var data = window.CFI_CAREER_DATA;
+    if (!data) return "<p>CFI Career content unavailable.</p>";
+
+    var h = escapeHtml;
+    var html = "";
+
+    /* Pre/Post Dec 2024 */
+    html += '<p class="guidance-mode-section-heading">Certificate Duration</p>';
+    html +=
+      '<div class="cfi-career-split" style="margin-bottom:28px;">' +
+      '<div class="cfi-career-split-card">' +
+      '<p class="cfi-career-split-label">Before December 1, 2024</p>' +
+      '<p class="cfi-career-split-text">' + h(data.prePostDec2024.before) + "</p>" +
+      "</div>" +
+      '<div class="cfi-career-split-card is-new">' +
+      '<p class="cfi-career-split-label">On/After December 1, 2024 ✦ New</p>' +
+      '<p class="cfi-career-split-text">' + h(data.prePostDec2024.after) + "</p>" +
+      "</div>" +
+      "</div>";
+
+    /* Renewal Pathways */
+    html += '<p class="guidance-mode-section-heading">6 Recent Experience Pathways (satisfy any one within 24 months)</p>';
+    html += '<div class="cfi-renewal-grid">';
+    data.renewalPathways.forEach(function (p) {
+      var isShortWindow = p.id === "firc";
+      html +=
+        '<div class="cfi-pathway-card">' +
+        '<p class="cfi-pathway-title">' + h(p.title) + "</p>" +
+        '<span class="cfi-pathway-timeframe' + (isShortWindow ? " is-short" : "") + '">' + h(p.timeFrame) + "</span>" +
+        '<p class="cfi-pathway-description">' + h(p.description) + "</p>" +
+        '<p class="cfi-pathway-note">' + h(p.notes) + "</p>" +
+        "</div>";
+    });
+    html += "</div>";
+
+    /* Reinstatement */
+    html += '<p class="guidance-mode-section-heading">Reinstatement — FAR 61.199 (Effective December 1, 2024)</p>';
+    html +=
+      '<div class="cfi-reinstatement-tree">' +
+      '<div class="cfi-reinstatement-branch">' +
+      '<p class="cfi-reinstatement-heading">' + h(data.reinstatement.within3Months.heading) + "</p>" +
+      '<p class="cfi-reinstatement-path">' + h(data.reinstatement.within3Months.path) + "</p>" +
+      '<p class="cfi-reinstatement-note">' + h(data.reinstatement.within3Months.note) + "</p>" +
+      "</div>" +
+      '<div class="cfi-reinstatement-branch">' +
+      '<p class="cfi-reinstatement-heading">' + h(data.reinstatement.after3Months.heading) + "</p>" +
+      '<p class="cfi-reinstatement-path">' + h(data.reinstatement.after3Months.path) + "</p>" +
+      '<p class="cfi-reinstatement-note">' + h(data.reinstatement.after3Months.note) + "</p>" +
+      "</div>" +
+      "</div>";
+
+    html += '<div class="cfi-doc-banner">Documentation: Submit Form 8710-1 or 8710-11 to validate recent experience or reinstate privileges.</div>';
+
+    /* Training Initial CFI Applicants */
+    html += '<p class="guidance-mode-section-heading">Training Initial CFI Applicants (Effective ' + h(data.initialCfiTrainer.effectiveDate) + ")</p>";
+    html +=
+      '<div class="cfi-trainer-reqs">' +
+      '<div class="cfi-trainer-column">' +
+      '<p class="cfi-trainer-column-label">Ground Training — trainer must have:</p>' +
+      '<ul class="cfi-trainer-option-list">';
+    data.initialCfiTrainer.groundOptions.forEach(function (opt) {
+      html += "<li>" + h(opt) + "</li>";
+    });
+    html +=
+      "</ul></div>" +
+      '<div class="cfi-trainer-column">' +
+      '<p class="cfi-trainer-column-label">Flight Training — trainer must have:</p>' +
+      '<ul class="cfi-trainer-option-list">';
+    data.initialCfiTrainer.flightOptions.forEach(function (opt) {
+      html += "<li>" + h(opt) + "</li>";
+    });
+    html += "</ul></div></div>";
+
+    return html;
+  }
+
+  function renderDpePrepMode() {
+    var deck = window.FLASHCARD_DECK;
+    if (!Array.isArray(deck) || !deck.length) return "<p>Flashcard content unavailable.</p>";
+
+    var h = escapeHtml;
+    var readyCount = 0;
+    deck.forEach(function (card) { if (state.flashcardReadyIds.has(card.id)) readyCount++; });
+    var pct = Math.round((readyCount / deck.length) * 100);
+
+    /* Category filter */
+    var categories = ["all"];
+    deck.forEach(function (c) { if (categories.indexOf(c.category) === -1) categories.push(c.category); });
+    var activeFilter = state.guidanceDpeCategoryFilter || "all";
+
+    var filtered = activeFilter === "all" ? deck : deck.filter(function (c) { return c.category === activeFilter; });
+
+    var html = '<div class="dpe-prep-header">';
+    html +=
+      '<div class="dpe-prep-progress">' +
+      '<div class="dpe-progress-bar"><div class="dpe-progress-fill" style="width:' + pct + '%"></div></div>' +
+      '<span class="dpe-progress-text">' + readyCount + " of " + deck.length + " ready</span>" +
+      "</div>";
+    html += '<button type="button" class="dpe-shuffle-btn" data-action="shuffle-flashcards">⇌ Shuffle</button>';
+    html += "</div>";
+
+    html += '<div class="dpe-category-filter">';
+    categories.forEach(function (cat) {
+      html +=
+        '<button type="button" class="dpe-category-chip' + (activeFilter === cat ? " is-active" : "") + '" data-dpe-category="' + h(cat) + '">' +
+        h(cat === "all" ? "All Categories" : cat) +
+        "</button>";
+    });
+    html += "</div>";
+
+    html += '<div class="flashcard-grid">';
+    filtered.forEach(function (card) {
+      var isReady = state.flashcardReadyIds.has(card.id);
+      html +=
+        '<div class="flashcard' + (isReady ? " is-ready" : "") + '" data-flashcard-id="' + h(card.id) + '">' +
+        '<div class="flashcard-inner">' +
+        '<div class="flashcard-front">' +
+        '<span class="flashcard-category-label">' + h(card.category) + "</span>" +
+        '<p class="flashcard-q">' + h(card.question) + "</p>" +
+        '<span class="flashcard-hint">Tap to reveal answer</span>' +
+        "</div>" +
+        '<div class="flashcard-back">' +
+        '<span class="flashcard-category-label">' + h(card.category) + " — Answer</span>" +
+        '<p class="flashcard-a">' + h(card.answer) + "</p>" +
+        '<div class="flashcard-footer">' +
+        '<button type="button" class="flashcard-mark-btn" data-flashcard-mark="' + h(card.id) + '">' +
+        (isReady ? "✓ Ready" : "Mark Ready") +
+        "</button>" +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        "</div>";
+    });
+    html += "</div>";
+
+    return html;
+  }
+
+  function renderClassicMode() {
+    if (typeof GUIDANCE_SECTIONS === "undefined") return "<p>Guidance content unavailable.</p>";
 
     var tocItems = GUIDANCE_SECTIONS.map(function (section) {
       return (
@@ -2584,16 +2988,44 @@
       );
     }).join("");
 
+    return (
+      '<nav class="guidance-toc" aria-label="Section navigation"><ul>' + tocItems + "</ul></nav>" +
+      '<div class="guidance-cards">' + cards + "</div>"
+    );
+  }
+
+  function renderGuidanceView() {
+    if (!dom.guidanceView) return;
+
+    if (state.view !== "guidance") {
+      dom.guidanceView.hidden = true;
+      return;
+    }
+
+    dom.guidanceView.hidden = false;
+
+    var modeBodyHtml;
+    switch (state.guidanceMode) {
+      case "scenarios":  modeBodyHtml = renderScenariosMode(); break;
+      case "quickref":   modeBodyHtml = renderQuickRefMode(); break;
+      case "cficareer":  modeBodyHtml = renderCfiCareerMode(); break;
+      case "dpeprep":    modeBodyHtml = renderDpePrepMode(); break;
+      case "classic":    modeBodyHtml = renderClassicMode(); break;
+      default:           modeBodyHtml = renderJourneyMode();
+    }
+
+    var isClassic = state.guidanceMode === "classic";
+
     dom.guidanceView.innerHTML =
       '<div class="guidance-header">' +
       '<p class="guidance-eyebrow">Instructor Resource</p>' +
       "<h2>Teaching &amp; Guidance</h2>" +
-      '<p class="guidance-description">A structured reference for CFI lesson II.K &mdash; Endorsements &amp; Logbook Entries. Select a section to expand.</p>' +
+      '<p class="guidance-description">CFI Lesson II.K &mdash; Endorsements &amp; Logbook Entries</p>' +
       "</div>" +
-      '<nav class="guidance-toc" aria-label="Section navigation">' +
-      "<ul>" + tocItems + "</ul>" +
-      "</nav>" +
-      '<div class="guidance-cards">' + cards + "</div>";
+      renderGuidanceModeSwitcher() +
+      (isClassic
+        ? modeBodyHtml
+        : '<div class="guidance-mode-body">' + modeBodyHtml + "</div>");
   }
 
   function renderPreSoloPrerequisiteCard(item) {
@@ -3067,6 +3499,100 @@
 
     if (dom.guidanceView) {
       dom.guidanceView.addEventListener("click", (event) => {
+        /* ── Mode switcher ── */
+        const modeBtn = event.target.closest(".guidance-mode-btn");
+        if (modeBtn) {
+          const nextMode = modeBtn.getAttribute("data-guidance-mode");
+          if (nextMode && nextMode !== state.guidanceMode) {
+            state.guidanceMode = nextMode;
+            state.guidanceOpenNodeId = null;
+            state.guidanceOpenScenarioId = null;
+            renderGuidanceView();
+          }
+          return;
+        }
+
+        /* ── AC reference link → open in endorsement library ── */
+        const acLink = event.target.closest(".guidance-ac-link");
+        if (acLink) {
+          const acRef = acLink.getAttribute("data-ac-ref");
+          if (acRef) openEndorsementById(acRef);
+          return;
+        }
+
+        /* ── Journey node toggle ── */
+        const journeyBtn = event.target.closest(".journey-node-btn");
+        if (journeyBtn) {
+          const nodeId = journeyBtn.getAttribute("data-journey-node");
+          state.guidanceOpenNodeId = state.guidanceOpenNodeId === nodeId ? null : nodeId;
+          renderGuidanceView();
+          if (state.guidanceOpenNodeId) {
+            const node = dom.guidanceView.querySelector("#jn-" + CSS.escape(nodeId));
+            if (node) queueScrollToTarget(node);
+          }
+          return;
+        }
+
+        /* ── Scenario card toggle ── */
+        const scenarioBtn = event.target.closest(".scenario-card-btn");
+        if (scenarioBtn) {
+          const scenarioId = scenarioBtn.getAttribute("data-scenario-id");
+          state.guidanceOpenScenarioId = state.guidanceOpenScenarioId === scenarioId ? null : scenarioId;
+          renderGuidanceView();
+          if (state.guidanceOpenScenarioId) {
+            const card = dom.guidanceView.querySelector("#sc-" + CSS.escape(scenarioId));
+            if (card) queueScrollToTarget(card);
+          }
+          return;
+        }
+
+        /* ── Flashcard flip ── */
+        const flashcard = event.target.closest(".flashcard");
+        if (flashcard && !event.target.closest(".flashcard-mark-btn")) {
+          flashcard.classList.toggle("is-flipped");
+          return;
+        }
+
+        /* ── Flashcard mark ready ── */
+        const markBtn = event.target.closest(".flashcard-mark-btn");
+        if (markBtn) {
+          event.stopPropagation();
+          const cardId = markBtn.getAttribute("data-flashcard-mark");
+          if (cardId) {
+            if (state.flashcardReadyIds.has(cardId)) {
+              state.flashcardReadyIds.delete(cardId);
+            } else {
+              state.flashcardReadyIds.add(cardId);
+            }
+            saveStoredArray(FLASHCARD_READY_KEY, Array.from(state.flashcardReadyIds));
+            renderGuidanceView();
+          }
+          return;
+        }
+
+        /* ── DPE Prep category filter ── */
+        const dpeChip = event.target.closest(".dpe-category-chip");
+        if (dpeChip) {
+          state.guidanceDpeCategoryFilter = dpeChip.getAttribute("data-dpe-category") || "all";
+          renderGuidanceView();
+          return;
+        }
+
+        /* ── DPE Prep shuffle ── */
+        const shuffleBtn = event.target.closest('[data-action="shuffle-flashcards"]');
+        if (shuffleBtn) {
+          if (window.FLASHCARD_DECK) {
+            const deck = window.FLASHCARD_DECK;
+            for (let i = deck.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+          }
+          renderGuidanceView();
+          return;
+        }
+
+        /* ── Classic mode: accordion toggle ── */
         const toggle = event.target.closest(".guidance-toggle");
         if (toggle) {
           const expanded = toggle.getAttribute("aria-expanded") === "true";
@@ -3080,6 +3606,7 @@
           return;
         }
 
+        /* ── Classic mode: TOC anchor links ── */
         const tocLink = event.target.closest(".guidance-toc-link");
         if (tocLink) {
           event.preventDefault();

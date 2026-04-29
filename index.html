@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#1C2142" />
+  <meta name="theme-color" content="#08090B" />
 
-  <title>Diego Suarez | Certified Ground Instructor, Louisville KY</title>
-  <meta name="description" content="FAA Certified Ground Instructor at Bowman Field (KLOU), Louisville KY. Discovery flights and pilot guidance in the Bristell NG5 LSA and Cessna 172." />
+  <title>Diego Suarez | Creator of Simply Endorsed — Louisville Ground Instructor (KLOU)</title>
+  <meta name="description" content="FAA Ground Instructor at Bowman Field (KLOU), Louisville KY, and creator of Simply Endorsed — the free FAA AC 61-65 endorsement lookup tool for CFIs and student pilots." />
   <meta name="author" content="Diego Suarez" />
-  <meta name="keywords" content="flight instructor Louisville, CFI Bowman Field, KLOU flight training, private pilot Louisville KY, instrument rating Kentucky, commercial pilot training, Cessna 172 training, Bristell NG5 LSA, learn to fly Louisville, Diego Suarez CFI" />
+  <meta name="keywords" content="Simply Endorsed, simply endorsed cfi, FAA endorsement tool, AC 61-65 endorsements, CFI endorsement lookup, student pilot endorsements, flight instructor Louisville, CFI Bowman Field, KLOU flight training, private pilot Louisville KY, instrument rating Kentucky, Cessna 172 training, Bristell NG5 LSA, Diego Suarez CFI" />
   <link rel="canonical" href="https://suarezcfi.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://suarezcfi.com/" />
-  <meta property="og:title" content="Diego Suarez | Certified Ground Instructor, Louisville KY" />
-  <meta property="og:description" content="FAA Certified Ground Instructor at Bowman Field (KLOU), Louisville KY. Discovery flights and pilot guidance in the Bristell NG5 LSA and Cessna 172." />
+  <meta property="og:title" content="Diego Suarez | Creator of Simply Endorsed — Louisville Ground Instructor (KLOU)" />
+  <meta property="og:description" content="FAA Ground Instructor at Bowman Field (KLOU), Louisville KY, and creator of Simply Endorsed — the free FAA AC 61-65 endorsement lookup tool for CFIs and student pilots." />
   <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -22,8 +22,8 @@
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Diego Suarez | Certified Ground Instructor, Louisville KY" />
-  <meta name="twitter:description" content="FAA Certified Ground Instructor at Bowman Field (KLOU), Louisville KY. Discovery flights and pilot guidance in the Bristell NG5 LSA and Cessna 172." />
+  <meta name="twitter:title" content="Diego Suarez | Creator of Simply Endorsed — Louisville Ground Instructor (KLOU)" />
+  <meta name="twitter:description" content="FAA Ground Instructor at Bowman Field (KLOU), Louisville KY, and creator of Simply Endorsed — the free FAA AC 61-65 endorsement lookup tool for CFIs and student pilots." />
   <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -33,7 +33,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -350,21 +350,6 @@
       margin: 0 0 16px;
       font-size: 14px;
     }
-    .socials {
-      display: flex; gap: 12px; justify-content: center;
-      margin-bottom: 18px;
-    }
-    .socials a {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      display: inline-flex; align-items: center; justify-content: center;
-      color: var(--ink);
-      transition: transform .2s ease, background .2s ease, color .2s ease;
-    }
-    .socials a:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
-    .socials svg { width: 18px; height: 18px; }
     .profile .btn--primary { width: calc(100% - 8px); justify-content: center; margin: 0 4px; }
 
     .services-grid {
@@ -611,6 +596,758 @@
     footer nav a:hover { color: var(--navy); }
     footer .fine { font-size: 13px; color: var(--ink-muted); }
 
+    /* Premium homepage pass */
+    :root {
+      --bg: #F3F3F0;
+      --surface: #FBFAF6;
+      --surface-2: #E9E9E3;
+      --ink: #0B0C0E;
+      --ink-muted: #5D6268;
+      --navy: #10151D;
+      --navy-600: #08090B;
+      --navy-50: #ECEDE8;
+      --border: rgba(8, 9, 11, 0.10);
+      --border-strong: rgba(8, 9, 11, 0.18);
+      --accent: #7FA7A8;
+      --accent-soft: rgba(127, 167, 168, 0.18);
+      --green: #7BB681;
+      --shadow-sm: 0 1px 2px rgba(8, 9, 11, 0.05);
+      --shadow-md: 0 18px 45px rgba(8, 9, 11, 0.10);
+      --shadow-lg: 0 36px 100px rgba(8, 9, 11, 0.18);
+      --radius-card: 22px;
+      --radius-btn: 999px;
+      --maxw: 1220px;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 18% 9%, rgba(255,255,255,0.95), transparent 28rem),
+        radial-gradient(circle at 82% 2%, rgba(127,167,168,0.20), transparent 34rem),
+        linear-gradient(180deg, #F6F6F2 0%, #E8E8E2 46%, #F4F3EF 100%);
+    }
+    body::before {
+      opacity: 0.10;
+      mix-blend-mode: multiply;
+    }
+    body::after {
+      inset: 0;
+      height: 100vh;
+      background: radial-gradient(32% 28% at 22% 22%, rgba(255,255,255,0.64), transparent 72%);
+    }
+    .container { max-width: var(--maxw); padding: 0 clamp(18px, 4vw, 34px); }
+
+    .nav-wrap {
+      align-items: flex-start;
+      padding: 0 0 190px;
+    }
+    .nav-wrap::before,
+    .nav-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -1px 0 auto 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .nav-wrap::before {
+      height: clamp(190px, 20vw, 300px);
+      background: rgba(246, 246, 242, 0.06);
+      -webkit-backdrop-filter: blur(30px) saturate(150%);
+      backdrop-filter: blur(30px) saturate(150%);
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 24%,
+        rgba(0,0,0,0.76) 46%,
+        rgba(0,0,0,0.34) 68%,
+        rgba(0,0,0,0.10) 84%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 24%,
+        rgba(0,0,0,0.76) 46%,
+        rgba(0,0,0,0.34) 68%,
+        rgba(0,0,0,0.10) 84%,
+        transparent 100%
+      );
+    }
+    .nav-wrap::after {
+      height: clamp(230px, 25vw, 360px);
+      background: linear-gradient(
+        to bottom,
+        rgba(246,246,242,0.90) 0%,
+        rgba(246,246,242,0.76) 26%,
+        rgba(246,246,242,0.48) 48%,
+        rgba(246,246,242,0.24) 68%,
+        rgba(246,246,242,0.08) 84%,
+        rgba(246,246,242,0.00) 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        rgba(0,0,0,0.96) 36%,
+        rgba(0,0,0,0.62) 62%,
+        rgba(0,0,0,0.22) 82%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        rgba(0,0,0,0.96) 36%,
+        rgba(0,0,0,0.62) 62%,
+        rgba(0,0,0,0.22) 82%,
+        transparent 100%
+      );
+    }
+    .nav {
+      width: 100%;
+      max-width: none;
+      min-height: 64px;
+      padding: 24px clamp(22px, 4vw, 72px) 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .wordmark {
+      font-family: "Pinyon Script", cursive;
+      font-size: 29px;
+      letter-spacing: 0.2px;
+      color: var(--ink);
+    }
+    .nav-links { gap: 22px; font-size: 13px; color: rgba(11, 12, 14, 0.62); }
+    .nav-links a:not(.nav-cta) {
+      padding: 9px 0;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 11px 18px;
+      background: #08090B;
+      box-shadow: 0 12px 28px rgba(8, 9, 11, 0.20);
+    }
+    .nav-menu-toggle {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(8, 9, 11, 0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.44);
+      color: var(--ink);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 12px 34px rgba(8, 9, 11, 0.10), inset 0 1px 0 rgba(255,255,255,0.72);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      backdrop-filter: blur(18px) saturate(160%);
+    }
+    .nav-menu-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .premium-hero {
+      min-height: 100svh;
+      padding: clamp(128px, 15vw, 172px) 0 clamp(64px, 8vw, 96px);
+      text-align: left;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .premium-hero::before,
+    .premium-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(8px);
+    }
+    .premium-hero::before {
+      display: none;
+      width: min(46vw, 640px);
+      height: min(46vw, 640px);
+      right: -12vw;
+      top: 8vh;
+      background: radial-gradient(circle, rgba(8,9,11,0.16), transparent 66%);
+    }
+    .premium-hero::after {
+      width: min(42vw, 580px);
+      height: min(42vw, 580px);
+      left: -16vw;
+      top: 16vh;
+      background: radial-gradient(circle, rgba(127,167,168,0.23), transparent 68%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
+      gap: clamp(28px, 3.6vw, 56px);
+      align-items: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 660px;
+    }
+    .hero-kicker,
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border: 1px solid rgba(8, 9, 11, 0.10);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78), 0 14px 40px rgba(8,9,11,0.08);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      color: rgba(11,12,14,0.70);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-kicker .dot {
+      display: none;
+    }
+    .hero h1 {
+      max-width: 840px;
+      margin: 22px 0 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(4rem, 5.7vw, 6.15rem);
+      line-height: 0.87;
+      font-weight: 700;
+      letter-spacing: -0.058em;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+    .hero h1 .headline-line {
+      display: block;
+    }
+    .hero h1 .headline-line--secondary {
+      margin-top: 0.05em;
+      letter-spacing: -0.06em;
+    }
+    .hero h1 .headline-word--simple {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.1em;
+      line-height: 0.76;
+      letter-spacing: -0.045em;
+      color: #07111F;
+      display: inline-block;
+      transform: translateY(0.03em);
+    }
+    .hero p.lede {
+      margin: 24px 0 0;
+      max-width: 620px;
+      color: rgba(11,12,14,0.66);
+      font-size: clamp(1.04rem, 1.25vw, 1.18rem);
+      line-height: 1.75;
+    }
+    .hero p.lede--kicker {
+      margin-top: 14px;
+      font-size: 0.98rem;
+      color: rgba(11,12,14,0.56);
+    }
+    .lede a {
+      color: var(--ink);
+      border-bottom: 1px solid rgba(8,9,11,0.22);
+    }
+    .hero-ctas {
+      justify-content: flex-start;
+      margin-top: 34px;
+      gap: 12px;
+    }
+    .btn {
+      min-height: 50px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+    .btn--primary {
+      background: #08090B;
+      color: #fff;
+      box-shadow: 0 18px 44px rgba(8,9,11,0.23), inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+    .btn--primary:hover { background: #14171B; box-shadow: 0 22px 64px rgba(8,9,11,0.28); }
+    .btn--secondary {
+      background: rgba(255,255,255,0.62);
+      border-color: rgba(8,9,11,0.11);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.88), 0 14px 36px rgba(8,9,11,0.08);
+    }
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 560px;
+      margin-top: 34px;
+    }
+    .proof-chip {
+      padding: 13px 14px;
+      border: 1px solid rgba(8,9,11,0.09);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.48);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+    .proof-chip strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+    .proof-chip span {
+      display: block;
+      margin-top: 3px;
+      color: rgba(11,12,14,0.54);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero-visual {
+      position: relative;
+      min-height: clamp(530px, 58vw, 720px);
+      perspective: 1400px;
+      transform-style: preserve-3d;
+    }
+    .license-card-stack {
+      position: absolute;
+      inset: 1% -4% 5% -3%;
+      transform-style: preserve-3d;
+    }
+    .license-card {
+      position: absolute;
+      display: block;
+      overflow: visible;
+      border: 0;
+      border-radius: 26px;
+      background: transparent;
+      box-shadow: none;
+      transform-style: preserve-3d;
+    }
+    .license-card::before,
+    .license-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .license-card::before {
+      z-index: 2;
+      inset: 4% 3%;
+      border-radius: 22px;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,0.18), transparent 26%, transparent 74%, rgba(255,255,255,0.10)),
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,0.22), transparent 28%);
+      mix-blend-mode: screen;
+      opacity: 0.46;
+    }
+    .license-card::after {
+      display: none;
+    }
+    .license-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter:
+        saturate(0.92)
+        contrast(1.05)
+        drop-shadow(0 36px 58px rgba(8, 9, 11, 0.24))
+        drop-shadow(0 1px 0 rgba(255,255,255,0.45));
+    }
+    .license-card--front img {
+      filter:
+        saturate(0.96)
+        contrast(1.06)
+        drop-shadow(0 38px 64px rgba(8, 9, 11, 0.26))
+        drop-shadow(0 1px 0 rgba(255,255,255,0.48));
+    }
+    .license-card--back {
+      z-index: 1;
+      width: min(84%, 650px);
+      aspect-ratio: 1600 / 928;
+      right: -1%;
+      top: 4%;
+      transform: translateZ(10px) rotateX(8deg) rotateY(-18deg) rotateZ(7deg);
+      opacity: 0.86;
+      animation: premium-float 8s ease-in-out infinite reverse;
+    }
+    .license-card--front {
+      z-index: 3;
+      width: min(94%, 720px);
+      aspect-ratio: 1600 / 928;
+      left: -1%;
+      bottom: 8%;
+      transform: translateZ(112px) rotateX(6deg) rotateY(-10deg) rotateZ(-5deg);
+      animation: premium-float 7s ease-in-out infinite;
+    }
+    @media (min-width: 981px) {
+      .license-card--back {
+        width: min(92%, 700px);
+        right: -4%;
+        top: 12%;
+      }
+      .license-card--front {
+        width: min(104%, 790px);
+        left: -5%;
+        bottom: 15%;
+      }
+    }
+    section { padding: clamp(72px, 9vw, 118px) 0; }
+    @media (min-width: 781px) {
+      .premium-hero {
+        min-height: auto;
+        padding-bottom: clamp(26px, 3vw, 42px);
+      }
+      #about {
+        padding-top: clamp(34px, 4vw, 58px);
+      }
+    }
+    @media (min-width: 981px) {
+      .hero-visual {
+        min-height: clamp(500px, 48vw, 620px);
+      }
+    }
+    .eyebrow {
+      background: rgba(255,255,255,0.58);
+      border-color: rgba(8,9,11,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78), 0 12px 34px rgba(8,9,11,0.07);
+      color: rgba(11,12,14,0.68);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+    .section-header { margin-bottom: 38px; }
+    .section-header h2 {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(2.3rem, 4.8vw, 4.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+    }
+    .section-header p { color: rgba(11,12,14,0.58); }
+
+    .profile-about-wrap {
+      grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+      gap: clamp(32px, 6vw, 72px);
+      align-items: center;
+    }
+    .profile,
+    .service-card,
+    .faq-aside,
+    .faq-item {
+      background: rgba(251,250,246,0.68);
+      border-color: rgba(8,9,11,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 22px 65px rgba(8,9,11,0.08);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+    .profile {
+      padding: 12px 12px 18px;
+      transform: rotate(-1deg);
+    }
+    .profile::before { opacity: 0.10; }
+    .profile-photo {
+      border-radius: 18px;
+      filter: saturate(0.82) contrast(1.05);
+      box-shadow: 0 22px 50px rgba(8,9,11,0.20);
+    }
+    .profile h3,
+    .faq-aside h3 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+    .profile p.role { margin-bottom: 18px; }
+    .badges { gap: 9px; }
+    .badge {
+      background: rgba(8,9,11,0.05);
+      border-color: rgba(8,9,11,0.08);
+      color: rgba(11,12,14,0.78);
+    }
+    .cert-item {
+      border-radius: 16px;
+      background: rgba(255,255,255,0.58);
+      border-color: rgba(8,9,11,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.76);
+    }
+    .cert-check { background: rgba(127,167,168,0.17); color: #4F7F80; }
+
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .service-card {
+      min-height: 330px;
+      padding: 28px;
+      border-radius: 24px;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 28px 78px rgba(8,9,11,0.13);
+    }
+    .service-icon {
+      background: linear-gradient(145deg, #08090B, #2C3036);
+      border-radius: 18px;
+      box-shadow: 0 18px 44px rgba(8,9,11,0.18), inset 0 1px 0 rgba(255,255,255,0.14);
+    }
+    .service-card h3 {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .service-link { color: var(--ink); }
+
+    .faq-wrap {
+      background: linear-gradient(145deg, rgba(8,9,11,0.94), rgba(24,28,32,0.92));
+      border-color: rgba(255,255,255,0.10);
+      box-shadow: 0 34px 110px rgba(8,9,11,0.20);
+    }
+    .faq-wrap::before {
+      opacity: 0.18;
+      background:
+        radial-gradient(circle at 24% 12%, rgba(127,167,168,0.32), transparent 34%),
+        radial-gradient(circle at 80% 4%, rgba(255,255,255,0.14), transparent 28%);
+    }
+    .faq-wrap .section-header,
+    .faq-wrap .section-header h2 {
+      color: #fff;
+    }
+    .faq-aside {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+    .faq-aside h3 { color: #fff; }
+    .faq-aside p {
+      color: rgba(255,255,255,0.76);
+      line-height: 1.65;
+    }
+    .faq-body { color: rgba(11,12,14,0.62); }
+    .faq-aside .q-icon {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.14);
+      color: #fff;
+    }
+    .faq-list { gap: 10px; }
+    .faq-item { border-radius: 18px; }
+
+    .contact {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(127,167,168,0.30), transparent 44%),
+        linear-gradient(145deg, #08090B, #1A1D22);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 34px 110px rgba(8,9,11,0.22), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .contact h2 {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(2.35rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+    }
+    .contact-methods a {
+      border-radius: 999px;
+      background: rgba(255,255,255,0.09);
+    }
+
+    footer {
+      color: rgba(11,12,14,0.54);
+    }
+    footer .wordmark {
+      color: var(--ink);
+      font-size: 30px;
+    }
+
+    @keyframes premium-float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -12px; }
+    }
+    @keyframes reveal-up {
+      from { opacity: 0.001; transform: translateY(26px) scale(0.985); filter: blur(8px); }
+      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+    .hero-copy,
+    .hero-visual,
+    .profile,
+    .about-content,
+    .service-card,
+    .faq-wrap,
+    .contact {
+      animation: reveal-up 0.9s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .hero-visual { animation-delay: 0.08s; }
+    .service-card:nth-child(2) { animation-delay: 0.08s; }
+    .service-card:nth-child(3) { animation-delay: 0.16s; }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-copy { max-width: 760px; }
+      .hero-visual {
+        min-height: 620px;
+        max-width: 760px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-about-wrap {
+        grid-template-columns: 1fr;
+        max-width: 760px;
+      }
+      .profile {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+    }
+    @media (max-width: 780px) {
+      .nav {
+        min-height: 58px;
+        padding: 18px 14px 0 18px;
+      }
+      .wordmark { font-size: 25px; }
+      .nav-menu-toggle { display: inline-flex; }
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 14px;
+        right: 14px;
+        display: grid;
+        gap: 4px;
+        margin-left: 0;
+        padding: 10px;
+        border: 1px solid rgba(8, 9, 11, 0.08);
+        border-radius: 24px;
+        background: rgba(249, 248, 244, 0.74);
+        box-shadow: 0 26px 78px rgba(8, 9, 11, 0.16), inset 0 1px 0 rgba(255,255,255,0.78);
+        -webkit-backdrop-filter: blur(24px) saturate(165%);
+        backdrop-filter: blur(24px) saturate(165%);
+        opacity: 0;
+        transform: translateY(-8px);
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+      }
+      .nav.is-open .nav-links {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+      .nav-links a,
+      .nav-links a:not(.nav-cta) {
+        display: flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 10px 13px;
+        border-radius: 16px;
+      }
+      .nav-links a:hover {
+        background: rgba(8, 9, 11, 0.05);
+      }
+      .nav-links .nav-cta {
+        justify-content: center;
+        margin-top: 4px;
+      }
+      .premium-hero {
+        padding-top: 116px;
+      }
+      .hero h1 {
+        max-width: 660px;
+        font-size: clamp(3.05rem, 12.6vw, 4.8rem);
+        line-height: 0.9;
+      }
+      .hero h1 .headline-line--secondary { margin-top: 0.08em; }
+      .hero h1 .headline-word--simple { font-size: 1.08em; }
+      .hero-proof {
+        grid-template-columns: 1fr;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-visual {
+        min-height: 470px;
+      }
+      .license-card-stack {
+        inset: 4% 0 8% 0;
+      }
+      .license-card {
+        border-radius: 20px;
+      }
+      .license-card--back {
+        width: 78%;
+        right: 0;
+        top: 4%;
+        transform: translateZ(8px) rotateX(2deg) rotateY(-8deg) rotateZ(5deg);
+      }
+      .license-card--front {
+        width: 88%;
+        left: 0;
+        bottom: 12%;
+        transform: translateZ(70px) rotateX(2deg) rotateY(-4deg) rotateZ(-4deg);
+      }
+    }
+    @media (min-width: 561px) and (max-width: 980px) {
+      .hero-visual {
+        min-height: clamp(560px, 76vw, 640px);
+      }
+      .license-card-stack {
+        inset: 2% 0 5%;
+      }
+      .license-card--back {
+        width: 72%;
+        top: 0;
+        right: 6%;
+      }
+      .license-card--front {
+        width: 80%;
+        left: 8%;
+        bottom: 1%;
+      }
+    }
+    @media (max-width: 460px) {
+      .hero-visual { min-height: 420px; }
+      .license-card-stack { inset: 7% 0 10% 0; }
+      .license-card--back {
+        width: 76%;
+        top: 2%;
+        right: 3%;
+      }
+      .license-card--front {
+        width: 86%;
+        left: 2%;
+        bottom: 16%;
+      }
+      .faq-aside {
+        padding: 24px 20px;
+        text-align: left;
+      }
+      .faq-aside .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       html { scroll-behavior: auto; }
@@ -622,7 +1359,14 @@
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
       <a href="#top" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
-      <div class="nav-links">
+      <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+        Menu
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M5 8h14"></path>
+          <path d="M5 16h14"></path>
+        </svg>
+      </button>
+      <div class="nav-links" id="primary-nav-links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="/simply-endorsed/">Simply Endorsed</a>
@@ -635,42 +1379,49 @@
 
   <main id="top">
 
-    <section class="hero" aria-labelledby="hero-heading">
+    <section class="hero premium-hero" aria-labelledby="hero-heading">
       <div class="container">
-        <h1 id="hero-heading">
-          <img src="assets/diego-profile.jpg" alt="Portrait of Diego Suarez, Certified Ground Instructor" class="sq sq--photo" width="84" height="84" />
-          I'm <span class="italic">Diego</span> —
-          <span class="sq sq--sky" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 20l24-8-10 16-3-7-11-1z" fill="#ffffff" opacity="0.96"/>
-            </svg>
-          </span>
-          Your Louisville
-          <span class="sq sq--sunset" aria-hidden="true">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="16" cy="13" r="6" fill="#FFE29F"/>
-              <path d="M0 22h32v2H0zM4 26h24v1.4H4z" fill="#ffffff" opacity="0.85"/>
-            </svg>
-          </span>
-          <span class="italic">Ground Instructor</span>
-        </h1>
-        <p class="lede">
-          FAA Certified Ground Instructor working toward my Flight Instructor Certificate, based at <strong>Bowman Field (KLOU)</strong>, Louisville, KY.
-          I train Private, Instrument, and Commercial pilots in the <strong>Bristell NG5 LSA</strong> and <strong>Cessna 172</strong> — patient, methodical, and built around your goals.
-        </p>
-        <div class="hero-ctas">
-          <a href="tel:+15025100508" class="btn btn--primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            Book a Discovery Flight
-          </a>
-          <a href="/simply-endorsed/" class="btn btn--secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5"/><path d="M12 12L4 7.5"/><path d="M12 21v-9"/></svg>
-            Try Simply Endorsed
-          </a>
-          <a href="#services" class="btn btn--secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            See Services
-          </a>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="hero-kicker">Certified Ground Instructor · Bowman Field</span>
+            <h1 id="hero-heading">
+              <span class="headline-line headline-line--primary">Louisville flight training</span>
+              <span class="headline-line headline-line--secondary">made <span class="headline-word--simple">simple</span>.</span>
+            </h1>
+            <p class="lede">
+              I'm an FAA Certified Ground Instructor at <strong>Bowman Field (KLOU)</strong> in Louisville, working toward my Flight Instructor Certificate. I help students and pilots build confidence with clear ground instruction, practical flight prep, and patient coaching in the <strong>Bristell NG5 LSA</strong> and <strong>Cessna 172</strong> training environment.
+            </p>
+            <p class="lede lede--kicker">
+              Also creator of <a href="/simply-endorsed/"><strong>Simply Endorsed</strong></a>, a free FAA AC 61-65 endorsement lookup tool for CFIs and student pilots.
+            </p>
+            <div class="hero-ctas">
+              <a href="tel:+15025100508" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                Book an Admissions Flight
+              </a>
+              <a href="#services" class="btn btn--secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                View Training Paths
+              </a>
+            </div>
+            <div class="hero-proof" aria-label="Credentials and training context">
+              <div class="proof-chip"><strong>Advanced Ground Instructor</strong><span>FAA ground instruction</span></div>
+              <div class="proof-chip"><strong>Bowman Field KLOU</strong><span>Louisville, Kentucky</span></div>
+              <div class="proof-chip"><strong>Commercial Pilot</strong><span>Instrument rated</span></div>
+              <div class="proof-chip"><strong>Bristell NG5 + C172</strong><span>Training environment</span></div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="license-card-stack">
+              <figure class="license-card license-card--back">
+                <img src="assets/FAA LICENCE ASSETS/CPL-BACK-hero.webp" alt="" width="1600" height="928" fetchpriority="high" decoding="async" />
+              </figure>
+              <figure class="license-card license-card--front">
+                <img src="assets/FAA LICENCE ASSETS/CPL-FRONT-hero.webp" alt="" width="1600" height="928" fetchpriority="high" decoding="async" />
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -683,18 +1434,6 @@
             <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
             <h3 id="profile-heading">Diego Suarez</h3>
             <p class="role">Certified Ground Instructor · Working Toward CFI · Bowman Field (KLOU) · Louisville, KY</p>
-            <div class="socials" aria-label="Social media">
-              <!-- TODO: replace href="#" with real handles (Instagram, TikTok, YouTube) -->
-              <a href="#" aria-label="Instagram" rel="me noopener">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-              </a>
-              <a href="#" aria-label="TikTok" rel="me noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3h2.3a5.8 5.8 0 0 0 3.7 4.2v2.5a8.3 8.3 0 0 1-3.7-1v6.5a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v2.6a3.6 3.6 0 1 0 2.7 3.5V3z"/></svg>
-              </a>
-              <a href="#" aria-label="YouTube" rel="me noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
-              </a>
-            </div>
             <a href="#contact" class="btn btn--primary">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
               Contact Me
@@ -703,7 +1442,7 @@
           
           <div class="about-content">
             <p class="about-text">
-              I fly out of Bowman Field (KLOU) in Louisville, Kentucky — one of the oldest continuously-operating airports in the country and a fantastic place to learn. My training blends disciplined, standards-based instruction with the kind of patience and clear communication that turns nervous first-flights into confident pilot-in-command decisions. Whether you're starting from zero, adding an instrument rating, or pushing toward commercial, every lesson is built around your goals and your schedule.
+              I fly out of Bowman Field (KLOU) in Louisville, Kentucky, and I genuinely look forward to helping each student feel more comfortable around the airplane, the checklist, and the decisions that come with flying. Whether you're just getting started, adding an instrument rating, or working toward commercial, my goal is to make training clear, practical, and encouraging while still keeping every lesson built around safe, standards-based habits.
             </p>
             
             <hr class="dotted-divider" />
@@ -756,7 +1495,7 @@
             Training Programs
           </span>
           <h2 id="services-heading">Flight training, tailored to you</h2>
-          <p>Louisville-based instruction focused on safe, confident pilots — from discovery flight to checkride.</p>
+          <p>Louisville-based instruction focused on safe, confident pilots — from admissions flight to checkride.</p>
         </div>
         <div class="services-grid">
           <article class="service-card">
@@ -804,7 +1543,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
               </div>
               <h3>Still have a question?</h3>
-              <p>Text, call, or email — I read every message and usually reply same-day.</p>
+              <p>Text, call, or email and I'll help you figure out the next step. I usually reply the same day.</p>
               <a href="#contact" class="btn btn--primary">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
                 Ask Diego
@@ -815,7 +1554,7 @@
               <details class="faq-item" open>
                 <summary>How do I get started with flight training?</summary>
                 <div class="faq-body">
-                  The best first step is a discovery flight — about an hour in the Bristell NG5 LSA at Bowman Field where you'll get hands-on controls and see whether flying feels like a fit. From there we'll map a plan: FAA medical (or BasicMed), ground knowledge, and a lesson cadence that matches your schedule and budget.
+                  The best first step is an admissions flight: a hands-on introduction, not just sightseeing. You'll start with a preflight briefing on the aircraft and safety, walk through the airplane inspection with your instructor, then fly for about 30 minutes in the Bristell NG5 LSA at Bowman Field. When conditions allow, you'll take the controls and try basic maneuvers. Plan on 1-2 hours total. If the flight is logged and signed by an authorized instructor, that training time can count toward future Sport Pilot or Private Pilot certificate requirements.
                 </div>
               </details>
               <details class="faq-item">
@@ -837,7 +1576,7 @@
                 </div>
               </details>
               <details class="faq-item">
-                <summary>What does training cost?</summary>
+                <summary>What does flight training cost?</summary>
                 <div class="faq-body">
                   Every student's path is different — aircraft rental, instructor time, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan.
                 </div>
@@ -868,7 +1607,7 @@
             Contact
           </span>
           <h2 id="contact-heading">Let's get you in the left seat</h2>
-          <p>Ready for a discovery flight or have a quick question? Call, text, or email — I usually respond the same day.</p>
+          <p>Ready for an admissions flight or have a quick question? Call, text, or email — I usually respond the same day.</p>
           <div class="contact-methods">
             <a href="tel:+15025100508" aria-label="Call Diego Suarez at 502-510-0508">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
@@ -908,6 +1647,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://suarezcfi.com/#diego",
     "name": "Diego Suarez",
     "jobTitle": "Certified Ground Instructor",
     "url": "https://suarezcfi.com/",
@@ -924,6 +1664,47 @@
       "addressRegion": "KY",
       "addressCountry": "US"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://suarezcfi.com/#website",
+    "url": "https://suarezcfi.com/",
+    "name": "Diego Suarez — Louisville Ground Instructor & Simply Endorsed",
+    "publisher": { "@id": "https://suarezcfi.com/#diego" },
+    "inLanguage": "en-US"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://suarezcfi.com/simply-endorsed/#app",
+    "name": "Simply Endorsed",
+    "alternateName": ["Simply Endorsed CFI", "Simply Endorsed Endorsement Lookup"],
+    "url": "https://suarezcfi.com/simply-endorsed/",
+    "description": "Free FAA AC 61-65 endorsement lookup tool. Search every flight-training endorsement by task, FAR, alias, or checkride use case. Built for CFIs and student pilots.",
+    "applicationCategory": "EducationalApplication",
+    "applicationSubCategory": "Aviation Training",
+    "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": { "@id": "https://suarezcfi.com/#diego" },
+    "publisher": { "@id": "https://suarezcfi.com/#diego" },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Certified Flight Instructors and student pilots"
+    },
+    "keywords": "FAA endorsements, AC 61-65, AC 61-65K, CFI endorsements, student pilot endorsements, flight review endorsement, tailwheel endorsement, solo endorsement, checkride endorsements"
   }
   </script>
 
@@ -974,7 +1755,7 @@
         "name": "How do I get started with flight training?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best first step is a discovery flight — about an hour in the Bristell NG5 LSA at Bowman Field (KLOU) where you get hands-on controls. From there we plan your FAA medical or BasicMed, ground knowledge, and a lesson cadence that fits your schedule."
+          "text": "The best first step is an admissions flight: a hands-on introduction, not just sightseeing. You'll start with a preflight briefing on the aircraft and safety, walk through the airplane inspection with your instructor, then fly for about 30 minutes in the Bristell NG5 LSA at Bowman Field. When conditions allow, you'll take the controls and try basic maneuvers. Plan on 1-2 hours total. If the flight is logged and signed by an authorized instructor, that training time can count toward future Sport Pilot or Private Pilot certificate requirements."
         }
       },
       {
@@ -982,7 +1763,7 @@
         "name": "What aircraft will I train in?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Primary training is in the Bristell NG5 LSA, with the Cessna 172 Skyhawk also available for students pursuing Private, Instrument, or Commercial certificates. Both are based at Bowman Field (KLOU) in Louisville, Kentucky."
+          "text": "Primary training happens in the Bristell NG5 LSA — a modern, fuel-efficient light sport aircraft — with the Cessna 172 Skyhawk also available for students pursuing Private, Instrument, or Commercial certificates. Both are based at Bowman Field (KLOU) in Louisville."
         }
       },
       {
@@ -990,7 +1771,7 @@
         "name": "How long does it take to earn a Private Pilot certificate?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The FAA minimum is 40 flight hours, but most students finish the Private Pilot certificate around 60–70 hours and 6–12 months when flying twice a week."
+          "text": "The FAA minimum is 40 flight hours, but the national average is closer to 60–70 hours. Most students complete the Private in 6–12 months flying twice a week. Consistency matters more than intensity — two lessons a week beats one every other week every time."
         }
       },
       {
@@ -998,7 +1779,7 @@
         "name": "What medical certificate do I need?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Private Pilot requires an FAA Third-Class Medical or BasicMed. Sport Pilot can be flown with only a valid U.S. driver's license. I can recommend an Aviation Medical Examiner in the Louisville area and walk you through MedXPress."
+          "text": "For Private Pilot you'll need either an FAA Third-Class Medical or BasicMed (once you've held any class of FAA medical at least once since July 2006). Sport Pilot requires only a valid U.S. driver's license. I can recommend an AME in the Louisville area and walk you through the MedXPress form before your visit."
         }
       },
       {
@@ -1006,7 +1787,7 @@
         "name": "What does flight training cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Costs depend on aircraft rental, instructor time, examiner fees, and your pace. Contact Diego by phone or email for a clear, honest estimate built around your specific goals and timeline."
+          "text": "Every student's path is different — aircraft rental, instructor time, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan."
         }
       },
       {
@@ -1014,7 +1795,7 @@
         "name": "How often should I fly to make real progress?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Twice per week is the sweet spot — it keeps skills fresh, shortens total time to checkride, and ends up costing less than long gaps between lessons."
+          "text": "Twice a week is the sweet spot. It keeps skills fresh between lessons, shortens the total time to checkride, and ends up costing less overall than longer gaps where we end up re-reviewing material."
         }
       },
       {
@@ -1022,11 +1803,40 @@
         "name": "Do you offer flight reviews, IPCs, and checkride prep?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — 14 CFR 61.56 flight reviews, instrument proficiency checks, and checkride preparation for pilots training elsewhere in the Louisville area."
+          "text": "Yes — 14 CFR 61.56 flight reviews, instrument proficiency checks (IPCs), and stage/checkride prep for pilots training elsewhere. If you're getting ready for a DPE at KLOU or a nearby airport, we can focus the prep on exactly what your examiner is known to emphasize."
         }
       }
     ]
   }
+  </script>
+
+  <script>
+    const nav = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (nav && navToggle && navLinks) {
+      const setNavOpen = (isOpen) => {
+        nav.classList.toggle('is-open', isOpen);
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(!nav.classList.contains('is-open'));
+      });
+
+      navLinks.addEventListener('click', (event) => {
+        if (event.target.closest('a')) setNavOpen(false);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setNavOpen(false);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target)) setNavOpen(false);
+      });
+    }
   </script>
 
 </body>

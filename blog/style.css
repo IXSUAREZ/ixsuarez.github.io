@@ -103,8 +103,8 @@ img { max-width: 100%; display: block; }
   background: transparent;
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   backdrop-filter: blur(28px) saturate(180%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 100px, #000 calc(100px + (100% - 100px) * 0.24), rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.46), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.68), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.84), transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0, #000 100px, #000 calc(100px + (100% - 100px) * 0.24), rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.46), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.68), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.84), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 100px, rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 100px, rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79), transparent 100%);
   z-index: 0;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);

@@ -638,15 +638,18 @@
 
     .nav-wrap {
       align-items: flex-start;
-      padding: 0 0 190px;
+      padding: env(safe-area-inset-top, 0px) 0 190px;
     }
     .nav-wrap::before,
     .nav-wrap::after {
       content: "";
       position: absolute;
-      inset: -1px 0 auto 0;
+      inset: -60px 0 auto 0;
       pointer-events: none;
       z-index: 0;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
     }
     .nav-wrap::before {
       height: clamp(190px, 20vw, 300px);
@@ -942,14 +945,7 @@
       pointer-events: none;
     }
     .license-card::before {
-      z-index: 2;
-      inset: 4% 3%;
-      border-radius: 22px;
-      background:
-        linear-gradient(115deg, rgba(255,255,255,0.18), transparent 26%, transparent 74%, rgba(255,255,255,0.10)),
-        radial-gradient(circle at 18% 10%, rgba(255,255,255,0.22), transparent 28%);
-      mix-blend-mode: screen;
-      opacity: 0.46;
+      display: none;
     }
     .license-card::after {
       display: none;

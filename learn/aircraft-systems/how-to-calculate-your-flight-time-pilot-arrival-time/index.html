@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1C2142" />
+  <title>How to Calculate Flight Time and Arrival Time | SuarezCFI.com</title>
+  <meta name="description" content="Learn how pilots calculate flight time and arrival time using true airspeed, groundspeed, wind correction, distance, ETA, and simple time formulas." />
+  <meta name="author" content="Diego Suarez" />
+  <link rel="canonical" href="https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/" />
+  <meta property="og:title" content="How to Calculate Flight Time and Arrival Time | SuarezCFI.com" />
+  <meta property="og:description" content="Learn how pilots calculate flight time and arrival time using true airspeed, groundspeed, wind correction, distance, ETA, and simple time formulas." />
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Calculate Flight Time and Arrival Time | SuarezCFI.com" />
+  <meta name="twitter:description" content="Learn how pilots calculate flight time and arrival time using true airspeed, groundspeed, wind correction, distance, ETA, and simple time formulas." />
+  <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/learn/style.css" />
+  <meta property="article:author" content="Diego Suarez" />
+  <meta property="article:modified_time" content="2026-04-27" />
+</head>
+<body>
+  <header class="nav-wrap" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+        <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="article-wrap">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/">Learn</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/aircraft-systems/">Aircraft Systems</a>
+          <span aria-current="page">How to Calculate Flight Time and Arrival Time</span>
+        </nav>
+        <article>
+          <header class="article-header">
+            <span class="eyebrow">Aircraft Systems</span>
+            <h1>How to Calculate Flight Time and Arrival Time</h1>
+            <p class="dek">Learn how pilots calculate flight time and arrival time using true airspeed, groundspeed, wind correction, distance, ETA, and simple time formulas.</p>
+            <div class="article-meta">
+              <span>Diego Suarez</span>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <time datetime="2026-04-27">Updated 2026-04-27</time>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <span>4 min read</span>
+            </div>
+          </header>
+          <nav class="toc" aria-label="On this page">
+            <span>On this page</span>
+              <a href="#airspeed-is-not-groundspeed">Airspeed Is Not Groundspeed</a>
+              <a href="#start-with-indicated-airspeed">Start with Indicated Airspeed</a>
+              <a href="#true-airspeed">True Airspeed</a>
+              <a href="#add-the-wind">Add the Wind</a>
+          </nav>
+          <div class="prose">
+<p>To estimate flight time, you need distance and groundspeed. The formula is simple:</p>
+<p>``<code>text Time = Distance / Groundspeed </code>``</p>
+<p>The tricky part is getting a good groundspeed. Your airspeed indicator does not show how fast you are moving over the ground. It shows how fast the airplane is moving through the air.</p>
+<p>If you are looking for legal logbook entries instead of preflight ETA planning, use <a href="/learn/aircraft-systems/how-to-calculate-flight-time-pilot-logbooks/">how to calculate flight time for pilot logbooks</a>.</p>
+<h2 id="airspeed-is-not-groundspeed">Airspeed Is Not Groundspeed</h2>
+<p>Airspeed matters for flying the airplane. Groundspeed matters for time en route.</p>
+<p>If you have a tailwind, your groundspeed is higher than your true airspeed. If you have a headwind, your groundspeed is lower. If the wind is at an angle, only part of it helps or hurts your groundspeed, and the rest creates drift.</p>
+<p>That is why flight planning includes wind correction, not just cruise speed.</p>
+<h2 id="start-with-indicated-airspeed">Start with Indicated Airspeed</h2>
+<p>Indicated airspeed is what you read on the airspeed indicator. It is the number you use for many operating decisions: climbs, approaches, stalls, and limitations.</p>
+<p>But indicated airspeed is not the final number for flight time planning. It does not fully account for altitude, temperature, and installation errors.</p>
+<h2 id="true-airspeed">True Airspeed</h2>
+<p>True airspeed is the airplane&#x27;s actual speed through the air mass. At higher altitudes, true airspeed is usually higher than indicated airspeed because the air is thinner.</p>
+<p>You can calculate true airspeed with a flight computer or use aircraft equipment that computes it. For a rough mental estimate in many light-airplane situations, pilots often add about 2 percent of airspeed per 1,000 feet of altitude.</p>
+<p>Example: If you are indicating 100 knots around 5,000 feet, a rough true airspeed estimate is:</p>
+<p>``<code>text 100 + (2 knots x 5) = 110 knots </code>``</p>
+<p>This is only an estimate, but it is useful for quick planning.</p>
+<h2 id="add-the-wind">Add the Wind</h2>
+<p>Once you have true airspeed, adjust for wind to find groundspeed.</p>
+<p>A direct 20-knot tailwind adds about 20 knots to groundspeed. A direct 20-knot headwind subtracts about 20 knots. A crosswind requires a wind triangle because part of the wind affects drift and part affects groundspeed.</p>
+<p>An E6B, flight planning app, panel GPS, or glass cockpit can calculate this quickly. Still, it helps to understand what the tool is doing.</p>
+<h2 id="calculate-time-en-route">Calculate Time En Route</h2>
+<p>If your distance is 90 nautical miles and your groundspeed is 120 knots:</p>
+<p>``<code>text 90 / 120 = 0.75 hours </code>``</p>
+<p>Convert 0.75 hours to minutes:</p>
+<p>``<code>text 0.75 x 60 = 45 minutes </code>``</p>
+<p>If you depart at 1400 local time, the estimated arrival time is about 1445, before adding taxi, climb, descent, routing, or delay considerations.</p>
+<p>For longer trips, convert your ETA discipline into a descent plan with <a href="/learn/aircraft-systems/how-to-calculate-your-descent-profile-airplane-pilots/">how to calculate a descent profile</a> before the destination gets busy.</p>
+<h2 id="watch-your-units">Watch Your Units</h2>
+<p>Aviation normally uses nautical miles and knots. A knot is one nautical mile per hour.</p>
+<p>Do not mix statute miles, nautical miles, miles per hour, and knots without converting. A unit mistake can create a bad fuel or arrival estimate.</p>
+<p>Also be clear about clock format. If you are working across time zones or coordinating with weather products, <a href="/learn/aircraft-systems/what-is-zulu-time-aviation-time-explained/">Zulu time</a> prevents local-time confusion.</p>
+<h2 id="update-in-flight">Update in Flight</h2>
+<p>Your preflight estimate is only the first version. Once airborne, use checkpoints, GPS groundspeed, fuel burn, and actual winds to update your ETA.</p>
+<p>If your actual groundspeed is lower than planned, tell yourself early. That may affect fuel reserves, daylight, weather, passenger expectations, and diversion planning.</p>
+<h2 id="add-real-world-time">Add Real-World Time</h2>
+<p>The basic distance divided by groundspeed formula gives time in cruise. A real trip also includes climb, descent, pattern entry, routing changes, and sometimes taxi or hold time.</p>
+<p>For short flights, climb and descent can be a large part of the total. A 60-mile trip in a trainer may not spend very long at planned cruise speed. That is why student pilots should compare planned times against actual checkpoint times and learn how their airplane behaves.</p>
+<p>If you are planning fuel, be conservative. Use the aircraft&#x27;s fuel burn data, required reserves, and a personal reserve that makes sense for the conditions.</p>
+<h2 id="student-pilot-takeaway">Student Pilot Takeaway</h2>
+<p>Flight time planning is not magic. Find true airspeed, adjust for wind to get groundspeed, divide distance by groundspeed, then keep updating.</p>
+<p>The math is simple. The pilot skill is noticing when the real flight no longer matches the plan.</p>
+<h2 id="official-references">Official References</h2>
+<ul><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">FAA Pilot&#x27;s Handbook of Aeronautical Knowledge</a></li><li><a href="https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-11-aircraft-performance">FAA Reference</a></li><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html">FAA Reference</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook">FAA Airplane Flying Handbook</a></li></ul>
+          </div>
+          <section class="cta-box" aria-labelledby="article-cta-heading">
+            <span class="eyebrow">Ground instruction</span>
+            <h2 id="article-cta-heading">Need help applying this to your training?</h2>
+            <p>Use this guide as a starting point, then bring the confusing parts to a focused ground lesson. Diego works with Louisville-area and remote students on FAA knowledge, oral-prep, and practical training decisions.</p>
+            <div class="cta-btn-group">
+              <a class="cta-btn primary" href="/private-pilot-ground-school/">Learn aircraft systems</a>
+              <a class="cta-btn" href="/#contact">Contact Diego</a>
+            </div>
+          </section>
+          <section class="see-also" aria-labelledby="related-heading">
+            <h2 id="related-heading">Related reading</h2>
+            <ul>
+              <li><a href="/learn/aircraft-systems/how-to-calculate-flight-time-pilot-logbooks/">How to Calculate Flight Time for Pilot Logbooks</a></li>
+              <li><a href="/learn/aircraft-systems/aerobatic-flying-how-to-get-started/">Aerobatic Flying: How Pilots Can Get Started Safely</a></li>
+              <li><a href="/learn/aircraft-systems/aircraft-black-boxes-explained/">Aircraft Black Boxes Explained for Pilots</a></li>
+              <li><a href="/learn/aircraft-systems/airplane-stability-balanced-flight-easily-explained/">Airplane Stability: Balanced Flight Explained</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <a href="/" class="wordmark">Diego Suarez</a>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <p class="fine">FAA Certified Ground Instructor - Working Toward CFI - Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Calculate Flight Time and Arrival Time",
+  "description": "Learn how pilots calculate flight time and arrival time using true airspeed, groundspeed, wind correction, distance, ETA, and simple time formulas.",
+  "url": "https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/"
+  },
+  "datePublished": "2026-04-27",
+  "dateModified": "2026-04-27",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/",
+    "jobTitle": "Certified Ground Instructor"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/"
+  },
+  "image": "https://suarezcfi.com/assets/og-image.jpg",
+  "inLanguage": "en-US",
+  "keywords": [
+    "how to calculate flight time and arrival time",
+    "pilot ETA calculation",
+    "groundspeed calculation",
+    "true airspeed"
+  ],
+  "articleSection": "Aircraft Systems"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "How to Calculate Flight Time and Arrival Time",
+  "description": "Learn how pilots calculate flight time and arrival time using true airspeed, groundspeed, wind correction, distance, ETA, and simple time formulas.",
+  "url": "https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "SuarezCFI.com",
+    "url": "https://suarezcfi.com/"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Aircraft Systems"
+    }
+  ],
+  "breadcrumb": {
+    "@id": "https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/#breadcrumb"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://suarezcfi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Learn",
+      "item": "https://suarezcfi.com/learn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Aircraft Systems",
+      "item": "https://suarezcfi.com/learn/aircraft-systems/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "How to Calculate Flight Time and Arrival Time",
+      "item": "https://suarezcfi.com/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/"
+    }
+  ]
+}
+  </script>
+  <!-- Primary keyword: how to calculate flight time and arrival time; Secondary keywords: pilot ETA calculation, groundspeed calculation, true airspeed -->
+</body>
+</html>

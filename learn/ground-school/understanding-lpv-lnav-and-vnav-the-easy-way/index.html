@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1C2142" />
+  <title>LPV, LNAV, and VNAV Approaches Explained | SuarezCFI.com</title>
+  <meta name="description" content="Understand LPV, LNAV, LNAV/VNAV, and LP approaches in plain language, including guidance types, minimums, WAAS, and pilot technique." />
+  <meta name="author" content="Diego Suarez" />
+  <link rel="canonical" href="https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/" />
+  <meta property="og:title" content="LPV, LNAV, and VNAV Approaches Explained | SuarezCFI.com" />
+  <meta property="og:description" content="Understand LPV, LNAV, LNAV/VNAV, and LP approaches in plain language, including guidance types, minimums, WAAS, and pilot technique." />
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LPV, LNAV, and VNAV Approaches Explained | SuarezCFI.com" />
+  <meta name="twitter:description" content="Understand LPV, LNAV, LNAV/VNAV, and LP approaches in plain language, including guidance types, minimums, WAAS, and pilot technique." />
+  <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/learn/style.css" />
+  <meta property="article:author" content="Diego Suarez" />
+  <meta property="article:modified_time" content="2026-04-27" />
+</head>
+<body>
+  <header class="nav-wrap" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+        <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="article-wrap">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/">Learn</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/ground-school/">Ground School</a>
+          <span aria-current="page">LPV, LNAV, and VNAV Approaches Explained</span>
+        </nav>
+        <article>
+          <header class="article-header">
+            <span class="eyebrow">Ground School</span>
+            <h1>LPV, LNAV, and VNAV Approaches Explained</h1>
+            <p class="dek">Understand LPV, LNAV, LNAV/VNAV, and LP approaches in plain language, including guidance types, minimums, WAAS, and pilot technique.</p>
+            <div class="article-meta">
+              <span>Diego Suarez</span>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <time datetime="2026-04-27">Updated 2026-04-27</time>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <span>4 min read</span>
+            </div>
+          </header>
+          <nav class="toc" aria-label="On this page">
+            <span>On this page</span>
+              <a href="#rnav-approach-basics">RNAV Approach Basics</a>
+              <a href="#lpv-localizer-performance-with-vertical-guidance">LPV: Localizer Performance With Vertical Guidance</a>
+              <a href="#lnav-vnav-lateral-and-vertical-navigation">LNAV/VNAV: Lateral and Vertical Navigation</a>
+              <a href="#lnav-lateral-navigation-only">LNAV: Lateral Navigation Only</a>
+          </nav>
+          <div class="prose">
+<p>RNAV approach names can feel like alphabet soup when you start instrument training. LPV, LNAV, LNAV/VNAV, LP, LNAV+V - they sound similar, but they do not all give you the same guidance or the same minimums.</p>
+<p>The easy way to understand them is to ask two questions:</p>
+<ul><li>Do I get lateral guidance only, or lateral and vertical guidance?</li><li>Do I fly to a decision altitude or a minimum descent altitude?</li></ul>
+<p>Once you answer those questions, the approach starts to make sense.</p>
+<h2 id="rnav-approach-basics">RNAV Approach Basics</h2>
+<p>RNAV means area navigation. Instead of navigating only from one ground-based radio station to another, an RNAV-equipped aircraft can navigate along defined points in space. In general aviation, many RNAV approaches use GPS.</p>
+<p>An RNAV (GPS) approach may publish several lines of minimums. Your aircraft equipment, GPS integrity, WAAS capability, and procedure design determine which line you can use.</p>
+<p>Always brief the specific approach plate and verify your avionics mode. Do not assume that seeing a glidepath on the screen automatically means you are flying an officially vertically guided approach.</p>
+<h2 id="lpv-localizer-performance-with-vertical-guidance">LPV: Localizer Performance With Vertical Guidance</h2>
+<p>LPV is the most familiar RNAV approach type for many instrument pilots because it feels similar to an ILS from the cockpit. It provides precise lateral guidance and vertical guidance.</p>
+<p>LPV requires WAAS-capable equipment. WAAS improves GPS accuracy and integrity enough to support approach guidance that can bring you to lower minimums at many airports.</p>
+<p>On an LPV line, you normally see a DA, or decision altitude. You descend on the glidepath to DA. At DA, you either have the required visual references and can continue, or you execute the missed approach.</p>
+<p>Important point: LPV approaches are not classified the same as traditional precision approaches, even though they can feel very similar to a Category I ILS from a pilot workload standpoint.</p>
+<h2 id="lnav-vnav-lateral-and-vertical-navigation">LNAV/VNAV: Lateral and Vertical Navigation</h2>
+<p>LNAV/VNAV also gives lateral and vertical guidance, but the vertical guidance may come from WAAS or from barometric VNAV equipment, depending on the aircraft and procedure.</p>
+<p>Because barometric VNAV depends on altimeter data, temperature and altimeter-setting errors matter. Some procedures include temperature limits or restrictions. This is one reason LNAV/VNAV minimums are often higher than LPV minimums.</p>
+<p>Like LPV, LNAV/VNAV uses a DA. You fly a continuous descent path and make the continue-or-miss decision at the published altitude.</p>
+<p>For many light GA aircraft, WAAS GPS is the practical way pilots encounter LNAV/VNAV capability, but equipment details vary. Know the installed system.</p>
+<h2 id="lnav-lateral-navigation-only">LNAV: Lateral Navigation Only</h2>
+<p>LNAV is the basic RNAV approach minimum line. It provides lateral course guidance but no official vertical guidance.</p>
+<p>LNAV is flown like a non-precision approach. You descend according to the published altitudes and level at the MDA, or minimum descent altitude, until you have the required visual references and are in a position to land.</p>
+<p>If you reach the missed approach point without the required visual references, you go missed.</p>
+<p>Some avionics may display advisory vertical guidance on an LNAV approach. That can help you fly a smoother descent, but it does not change the published LNAV minimums or remove your responsibility to comply with step-down fixes and the MDA.</p>
+<h2 id="lp-localizer-performance">LP: Localizer Performance</h2>
+<p>LP stands for localizer performance. It is a WAAS-based RNAV minimum line with improved lateral accuracy, somewhat like a localizer approach, but without official vertical guidance.</p>
+<p>Because LP does not provide approved vertical guidance, it uses an MDA. Fly it as a non-precision approach.</p>
+<p>Why would an airport have LP instead of LPV? Sometimes obstacles, terrain, or procedure design prevent a vertically guided LPV line, but improved lateral accuracy can still support useful minimums.</p>
+<h2 id="lnav-v-and-lp-v">LNAV+V and LP+V</h2>
+<p>LNAV+V and LP+V are advisory glidepath features shown by some avionics. They are not separate FAA minimum lines on the chart.</p>
+<p>Think of them as situational awareness tools. They may help you fly a stable descent, but they do not guarantee obstacle clearance by themselves. The published altitude restrictions, MDA, and missed approach point still control the procedure.</p>
+<p>This distinction is checkride-important and safety-important.</p>
+<h2 id="waas-raim-and-equipment">WAAS, RAIM, and Equipment</h2>
+<p>WAAS stands for Wide Area Augmentation System. It improves GPS accuracy and includes integrity monitoring. LPV and LP require WAAS.</p>
+<p>LNAV can be flown with an approved IFR GPS that meets the required integrity requirements, which may involve RAIM depending on the equipment. LNAV/VNAV depends on the procedure and installed equipment.</p>
+<p>Your avionics should display the approach mode and level of service. During the approach briefing, confirm what you expect to see and what you will do if the system downgrades.</p>
+<h2 id="the-practical-memory-hook">The Practical Memory Hook</h2>
+<p>Use this:</p>
+<ul><li>LPV: vertical guidance, DA, usually the best RNAV minimums.</li><li>LNAV/VNAV: vertical guidance, DA, more equipment and temperature considerations.</li><li>LNAV: lateral only, MDA.</li><li>LP: better lateral guidance, no official vertical guidance, MDA.</li><li>+V: advisory only.</li></ul>
+<p>Instrument flying gets easier when you stop memorizing letters and start connecting each minimum line to how you actually fly it. Know the guidance, brief the altitude, verify the avionics, and be ready to miss if the approach no longer matches the plan.</p>
+<p>For related instrument study, see <a href="/learn/private-pilot/rnav-approaches-explained-for-student-pilots/">RNAV Approaches Simplified</a> and <a href="/learn/ground-school/mda-vs-da-made-simple-a-guide-to-ifr-minimums/">MDA vs. DA Made Simple</a>.</p>
+<h2 id="official-references">Official References</h2>
+<ul><li><a href="https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0504.html">FAA AIM 5-4-5, Instrument Approach Procedure Charts</a></li><li><a href="https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/instrument_procedures_handbook/FAA-H-8083-16B_Chapter_4.pdf">FAA Instrument Procedures Handbook, Chapter 4</a></li><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/">FAA Aeronautical Information Manual</a></li><li><a href="https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91">14 CFR Part 91 General Operating Rules</a></li><li><a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide">FAA Aeronautical Chart User&#x27;s Guide</a></li></ul>
+          </div>
+          <section class="cta-box" aria-labelledby="article-cta-heading">
+            <span class="eyebrow">Ground instruction</span>
+            <h2 id="article-cta-heading">Need help applying this to your training?</h2>
+            <p>Use this guide as a starting point, then bring the confusing parts to a focused ground lesson. Diego works with Louisville-area and remote students on FAA knowledge, oral-prep, and practical training decisions.</p>
+            <div class="cta-btn-group">
+              <a class="cta-btn primary" href="/faa-written-test-prep/">FAA written test prep</a>
+              <a class="cta-btn" href="/#contact">Contact Diego</a>
+            </div>
+          </section>
+          <section class="see-also" aria-labelledby="related-heading">
+            <h2 id="related-heading">Related reading</h2>
+            <ul>
+              <li><a href="/learn/ground-school/aiming-point-vs-touchdown-point-whats-the-difference/">Aiming Point vs. Touchdown Point: Landing Accuracy Explained</a></li>
+              <li><a href="/learn/ground-school/craft-explained-ifr-made-simple-for-pilots/">CRAFT Explained: IFR Made Simple for Pilots</a></li>
+              <li><a href="/learn/ground-school/instrument-currency-requirements-explained-ipc-safety-pilot-etc/">Instrument Currency: IPC and Safety Pilot</a></li>
+              <li><a href="/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/">RAIM vs WAAS Explained Simply: GPS Made Easy</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <a href="/" class="wordmark">Diego Suarez</a>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <p class="fine">FAA Certified Ground Instructor - Working Toward CFI - Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LPV, LNAV, and VNAV Approaches Explained",
+  "description": "Understand LPV, LNAV, LNAV/VNAV, and LP approaches in plain language, including guidance types, minimums, WAAS, and pilot technique.",
+  "url": "https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/"
+  },
+  "datePublished": "2026-04-27",
+  "dateModified": "2026-04-27",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/",
+    "jobTitle": "Certified Ground Instructor"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/"
+  },
+  "image": "https://suarezcfi.com/assets/og-image.jpg",
+  "inLanguage": "en-US",
+  "keywords": [
+    "LPV LNAV VNAV",
+    "RNAV GPS approach",
+    "LNAV/VNAV",
+    "LPV approach"
+  ],
+  "articleSection": "Ground School"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "LPV, LNAV, and VNAV Approaches Explained",
+  "description": "Understand LPV, LNAV, LNAV/VNAV, and LP approaches in plain language, including guidance types, minimums, WAAS, and pilot technique.",
+  "url": "https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "SuarezCFI.com",
+    "url": "https://suarezcfi.com/"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Ground School"
+    }
+  ],
+  "breadcrumb": {
+    "@id": "https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/#breadcrumb"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://suarezcfi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Learn",
+      "item": "https://suarezcfi.com/learn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ground School",
+      "item": "https://suarezcfi.com/learn/ground-school/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "LPV, LNAV, and VNAV Approaches Explained",
+      "item": "https://suarezcfi.com/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/"
+    }
+  ]
+}
+  </script>
+  <!-- Primary keyword: LPV LNAV VNAV; Secondary keywords: RNAV GPS approach, LNAV/VNAV, LPV approach -->
+</body>
+</html>

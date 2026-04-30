@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1C2142" />
+  <title>ACARS Explained: How Aircraft Send Digital Messages | SuarezCFI.com</title>
+  <meta name="description" content="A simple explanation of ACARS, the aircraft messaging system used for operational messages, clearances, weather, maintenance, and position reports." />
+  <meta name="author" content="Diego Suarez" />
+  <link rel="canonical" href="https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/" />
+  <meta property="og:title" content="ACARS Explained: How Aircraft Send Digital Messages | SuarezCFI.com" />
+  <meta property="og:description" content="A simple explanation of ACARS, the aircraft messaging system used for operational messages, clearances, weather, maintenance, and position reports." />
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ACARS Explained: How Aircraft Send Digital Messages | SuarezCFI.com" />
+  <meta name="twitter:description" content="A simple explanation of ACARS, the aircraft messaging system used for operational messages, clearances, weather, maintenance, and position reports." />
+  <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/learn/style.css" />
+  <meta property="article:author" content="Diego Suarez" />
+  <meta property="article:modified_time" content="2026-04-27" />
+</head>
+<body>
+  <header class="nav-wrap" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+        <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="article-wrap">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/">Learn</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/aircraft-systems/">Aircraft Systems</a>
+          <span aria-current="page">ACARS Explained: How Aircraft Send Digital Messages</span>
+        </nav>
+        <article>
+          <header class="article-header">
+            <span class="eyebrow">Aircraft Systems</span>
+            <h1>ACARS Explained: How Aircraft Send Digital Messages</h1>
+            <p class="dek">A simple explanation of ACARS, the aircraft messaging system used for operational messages, clearances, weather, maintenance, and position reports.</p>
+            <div class="article-meta">
+              <span>Diego Suarez</span>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <time datetime="2026-04-27">Updated 2026-04-27</time>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <span>5 min read</span>
+            </div>
+          </header>
+          <nav class="toc" aria-label="On this page">
+            <span>On this page</span>
+              <a href="#why-acars-exists">Why ACARS Exists</a>
+              <a href="#how-acars-sends-messages">How ACARS Sends Messages</a>
+              <a href="#what-pilots-use-acars-for">What Pilots Use ACARS For</a>
+              <a href="#maintenance-reporting">Maintenance Reporting</a>
+          </nav>
+          <div class="prose">
+<p>Pilots still use voice radios, but modern aircraft also send digital messages. One of the best-known systems for that job is ACARS, which stands for Aircraft Communications Addressing and Reporting System.</p>
+<p>The simple version: ACARS lets an aircraft exchange short text-style messages with ground systems. Those messages can go to airline operations, maintenance, dispatch, or air traffic services depending on the aircraft and operation.</p>
+<h2 id="why-acars-exists">Why ACARS Exists</h2>
+<p>Voice radio is fast and flexible, but it has limits. Frequencies get busy. Accents, static, blocked transmissions, and readback errors can create confusion. Many aviation messages are also routine and repetitive. If you are still working on the voice side first, start with these <a href="/learn/private-pilot/10-tips-for-talking-to-atc/">ATC communication tips</a>.</p>
+<p>ACARS was developed to reduce some of that workload. Instead of using voice for every update, an aircraft can send structured digital messages such as departure time, arrival time, position reports, maintenance information, or certain clearance-related messages.</p>
+<p>This does not replace pilot judgment or all radio communication. It gives crews and operators another tool.</p>
+<h2 id="how-acars-sends-messages">How ACARS Sends Messages</h2>
+<p>ACARS messages can travel through different communication paths depending on aircraft equipment, location, and service availability.</p>
+<p>VHF data link is common where the aircraft is within range of ground stations. It is useful over populated areas and many domestic routes.</p>
+<p>HF data link can reach much farther because high-frequency radio signals can travel long distances. It may be used in remote areas, though HF can be slower and more affected by atmospheric conditions.</p>
+<p>Satellite communication can provide coverage over oceanic and remote regions where ground stations are not available. It is valuable, but satellite airtime and equipment considerations affect how operators use it.</p>
+<p>The aircraft sends the message through the available link. A service provider routes it to the proper ground recipient, such as airline dispatch, maintenance control, or an air traffic unit.</p>
+<h2 id="what-pilots-use-acars-for">What Pilots Use ACARS For</h2>
+<p>ACARS can support many operational tasks. Exact capabilities vary by aircraft, operator, avionics, and region.</p>
+<p>One common use is sending and receiving operational messages. A crew may receive gate information, fuel-related updates, reroute information, or dispatch notes without tying up a radio frequency.</p>
+<p>Another use is digital weather information. Depending on the system, crews may request or receive reports such as METARs, terminal forecasts, or digital ATIS information.</p>
+<p>ACARS may also support pre-departure clearances or oceanic communication functions in equipped aircraft and approved environments. Written digital messages can reduce the chance of mishearing a long clearance, but pilots still need to understand what they are accepting.</p>
+<h2 id="maintenance-reporting">Maintenance Reporting</h2>
+<p>ACARS is also useful for maintenance coordination. Aircraft systems can send fault or status messages to maintenance personnel before the airplane arrives.</p>
+<p>That gives the maintenance team time to prepare tools, parts, and troubleshooting steps. For an airline, even small time savings can matter because delays affect passengers, crews, gates, and following flights.</p>
+<p>Maintenance messages do not mean every problem is automatically solved. They simply give the ground team earlier information.</p>
+<h2 id="position-reports-and-tracking">Position Reports and Tracking</h2>
+<p>Over remote or oceanic areas, aircraft may be outside traditional radar coverage. ACARS-related data link functions can help send position reports or support surveillance systems depending on equipment and procedures. That broader surveillance picture connects with technologies like <a href="/learn/airspace-and-atc/ads-b-airspace-requirements-explained/">ADS-B airspace requirements</a>.</p>
+<p>This kind of communication is especially important where voice communication is difficult or where aircraft are far from ground-based infrastructure.</p>
+<h2 id="acars-and-safety">ACARS and Safety</h2>
+<p>ACARS can improve safety by reducing radio congestion, lowering the risk of misheard routine messages, and creating a written record of certain communications.</p>
+<p>It can also help crews manage workload. Instead of copying a long message by hand from a scratchy radio transmission, pilots may be able to review it on a cockpit display or printout.</p>
+<p>That said, ACARS is not magic. Pilots still need to verify clearances, understand procedures, monitor the aircraft, and communicate by voice when required.</p>
+<h2 id="limitations-of-acars">Limitations of ACARS</h2>
+<p>ACARS was designed for short messages, not high-speed internet. Bandwidth is limited compared with modern consumer data services. Large data transfers are not its strength.</p>
+<p>Security is another important limitation. Traditional ACARS messages were not designed with modern cybersecurity expectations. Some messages can be received by people with specialized equipment, depending on the system and transmission. Sensitive operators may use additional protections, but the basic system has historical limitations.</p>
+<p>Coverage can also vary. VHF depends on line of sight and ground station availability. HF can be affected by atmospheric conditions. Satellite systems have their own cost and performance considerations.</p>
+<h2 id="acars-cpdlc-and-ads-c">ACARS, CPDLC, and ADS-C</h2>
+<p>Students often hear several acronyms together. ACARS is a messaging system and network concept. CPDLC stands for Controller Pilot Data Link Communications and allows certain ATC messages to be exchanged digitally. ADS-C stands for Automatic Dependent Surveillance-Contract and can send position information under defined conditions.</p>
+<p>These systems are related in the broader world of aircraft data link, but they are not all the same thing. The practical point is that modern aircraft communication uses both voice and data.</p>
+<h2 id="the-future-of-aircraft-connectivity">The Future of Aircraft Connectivity</h2>
+<p>Aircraft communication continues to move toward faster, more capable data systems. Newer aircraft may use internet-protocol-based networks behind the scenes while still supporting familiar operational message formats.</p>
+<p>For pilots, the interface may feel like a better version of what already exists: clearer messages, more automation, and improved connection between the airplane and ground systems.</p>
+<p>ACARS remains important because it helped aviation move from voice-only communication toward a more connected flight operation. Even if future systems become faster and more secure, the basic goal stays the same: get the right information to the right people at the right time.</p>
+<h2 id="official-references">Official References</h2>
+<ul><li><a href="https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentid/1030769">FAA AC 90-117 Data Link Communications</a></li><li><a href="https://www.faa.gov/air_traffic/technology/DataComm">FAA Data Communications Program</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">FAA Pilot&#x27;s Handbook of Aeronautical Knowledge</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook">FAA Airplane Flying Handbook</a></li></ul>
+          </div>
+          <section class="cta-box" aria-labelledby="article-cta-heading">
+            <span class="eyebrow">Ground instruction</span>
+            <h2 id="article-cta-heading">Need help applying this to your training?</h2>
+            <p>Use this guide as a starting point, then bring the confusing parts to a focused ground lesson. Diego works with Louisville-area and remote students on FAA knowledge, oral-prep, and practical training decisions.</p>
+            <div class="cta-btn-group">
+              <a class="cta-btn primary" href="/private-pilot-ground-school/">Learn aircraft systems</a>
+              <a class="cta-btn" href="/#contact">Contact Diego</a>
+            </div>
+          </section>
+          <section class="see-also" aria-labelledby="related-heading">
+            <h2 id="related-heading">Related reading</h2>
+            <ul>
+              <li><a href="/learn/aircraft-systems/fly-by-wire-explained-a-pilots-guide-to-digital-flight-control/">Fly-by-Wire Explained for Pilots</a></li>
+              <li><a href="/learn/aircraft-systems/arrow-acronym-explained/">ARROW Acronym Explained for Pilots</a></li>
+              <li><a href="/learn/aircraft-systems/aviates-acronym-explained/">AVIATES Acronym Explained for Pilots</a></li>
+              <li><a href="/learn/aircraft-systems/aircraft-black-boxes-explained/">Aircraft Black Boxes Explained for Pilots</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <a href="/" class="wordmark">Diego Suarez</a>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <p class="fine">FAA Certified Ground Instructor - Working Toward CFI - Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ACARS Explained: How Aircraft Send Digital Messages",
+  "description": "A simple explanation of ACARS, the aircraft messaging system used for operational messages, clearances, weather, maintenance, and position reports.",
+  "url": "https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/"
+  },
+  "datePublished": "2026-04-27",
+  "dateModified": "2026-04-27",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/",
+    "jobTitle": "Certified Ground Instructor"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/"
+  },
+  "image": "https://suarezcfi.com/assets/og-image.jpg",
+  "inLanguage": "en-US",
+  "keywords": [
+    "ACARS explained",
+    "aircraft communications addressing and reporting system",
+    "ACARS messages",
+    "aircraft datalink"
+  ],
+  "articleSection": "Aircraft Systems"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "ACARS Explained: How Aircraft Send Digital Messages",
+  "description": "A simple explanation of ACARS, the aircraft messaging system used for operational messages, clearances, weather, maintenance, and position reports.",
+  "url": "https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "SuarezCFI.com",
+    "url": "https://suarezcfi.com/"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Aircraft Systems"
+    }
+  ],
+  "breadcrumb": {
+    "@id": "https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/#breadcrumb"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://suarezcfi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Learn",
+      "item": "https://suarezcfi.com/learn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Aircraft Systems",
+      "item": "https://suarezcfi.com/learn/aircraft-systems/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "ACARS Explained: How Aircraft Send Digital Messages",
+      "item": "https://suarezcfi.com/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/"
+    }
+  ]
+}
+  </script>
+  <!-- Primary keyword: ACARS explained; Secondary keywords: aircraft communications addressing and reporting system, ACARS messages, aircraft datalink -->
+</body>
+</html>

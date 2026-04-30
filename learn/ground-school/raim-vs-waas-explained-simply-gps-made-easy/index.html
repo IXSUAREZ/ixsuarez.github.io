@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1C2142" />
+  <title>RAIM vs WAAS Explained Simply: GPS Made Easy | SuarezCFI.com</title>
+  <meta name="description" content="Learn the difference between RAIM and WAAS, how each supports aviation GPS, and what pilots should know before using GPS for IFR navigation." />
+  <meta name="author" content="Diego Suarez" />
+  <link rel="canonical" href="https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/" />
+  <meta property="og:title" content="RAIM vs WAAS Explained Simply: GPS Made Easy | SuarezCFI.com" />
+  <meta property="og:description" content="Learn the difference between RAIM and WAAS, how each supports aviation GPS, and what pilots should know before using GPS for IFR navigation." />
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="RAIM vs WAAS Explained Simply: GPS Made Easy | SuarezCFI.com" />
+  <meta name="twitter:description" content="Learn the difference between RAIM and WAAS, how each supports aviation GPS, and what pilots should know before using GPS for IFR navigation." />
+  <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/learn/style.css" />
+  <meta property="article:author" content="Diego Suarez" />
+  <meta property="article:modified_time" content="2026-04-28" />
+</head>
+<body>
+  <header class="nav-wrap" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+        <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="article-wrap">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/">Learn</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/ground-school/">Ground School</a>
+          <span aria-current="page">RAIM vs WAAS Explained Simply: GPS Made Easy</span>
+        </nav>
+        <article>
+          <header class="article-header">
+            <span class="eyebrow">Ground School</span>
+            <h1>RAIM vs WAAS Explained Simply: GPS Made Easy</h1>
+            <p class="dek">Learn the difference between RAIM and WAAS, how each supports aviation GPS, and what pilots should know before using GPS for IFR navigation.</p>
+            <div class="article-meta">
+              <span>Diego Suarez</span>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <time datetime="2026-04-28">Updated 2026-04-28</time>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <span>4 min read</span>
+            </div>
+          </header>
+          <nav class="toc" aria-label="On this page">
+            <span>On this page</span>
+              <a href="#what-raim-does">What RAIM Does</a>
+              <a href="#raim-limitations">RAIM Limitations</a>
+              <a href="#what-waas-does">What WAAS Does</a>
+              <a href="#the-practical-difference">The Practical Difference</a>
+          </nav>
+          <div class="prose">
+<p>GPS makes modern navigation feel simple, but pilots still need to understand whether the GPS information is reliable enough to use. That is where RAIM and WAAS come in.</p>
+<p>RAIM and WAAS both help protect pilots from bad GPS information, but they do it in different ways. RAIM checks satellite signals from inside the receiver. WAAS improves GPS accuracy and integrity through a larger correction system.</p>
+<p>If the broader IFR picture is still new, pair this with <a href="/learn/ground-school/what-do-you-need-to-fly-ifr/">what pilots need to fly IFR</a> and the practical guide to <a href="/learn/private-pilot/rnav-approaches-explained-for-student-pilots/">RNAV approaches</a>.</p>
+<h2 id="what-raim-does">What RAIM Does</h2>
+<p>RAIM stands for Receiver Autonomous Integrity Monitoring. In plain language, it is a GPS receiver&#x27;s way of checking whether the satellite signals agree with each other.</p>
+<p>If one signal does not fit with the others, the receiver may be able to detect that the navigation solution is unreliable. Depending on equipment and satellite availability, some systems can also exclude a bad satellite from the calculation.</p>
+<p>RAIM is important because GPS is not useful if the pilot cannot trust it. A wrong position in visual conditions is inconvenient. A wrong position in instrument conditions can become dangerous fast.</p>
+<h2 id="raim-limitations">RAIM Limitations</h2>
+<p>RAIM depends on having enough satellites in view and good satellite geometry. If there are not enough usable satellites, RAIM may not be available.</p>
+<p>That is why non-WAAS GPS IFR operations often require pilots to check RAIM availability for the route, destination, and approach window. The exact requirement depends on the equipment, operation, and current FAA guidance.</p>
+<p>The key limitation is simple: RAIM checks integrity, but it does not improve the GPS signal the way WAAS does.</p>
+<h2 id="what-waas-does">What WAAS Does</h2>
+<p>WAAS stands for Wide Area Augmentation System. It improves GPS by using ground stations and satellites to monitor GPS errors, calculate corrections, and broadcast improved information to WAAS-capable receivers.</p>
+<p>For pilots, WAAS can provide better accuracy, integrity, and availability than basic GPS. It also enables many RNAV approach capabilities that older GPS units cannot support.</p>
+<p>WAAS is why many general aviation aircraft can fly LPV approaches, which provide lateral and vertical guidance similar in pilot workload to an ILS-style descent path.</p>
+<h2 id="the-practical-difference">The Practical Difference</h2>
+<p>RAIM asks, &quot;Can I trust this GPS solution?&quot;</p>
+<p>WAAS asks more: &quot;Can I improve and monitor this GPS solution well enough for more capable navigation?&quot;</p>
+<p>A simple comparison:</p>
+<ul><li>RAIM is receiver-based integrity monitoring.</li><li>WAAS is a correction and integrity system.</li><li>RAIM does not require WAAS, but it needs sufficient satellite geometry.</li><li>WAAS-capable equipment often provides more approach options.</li><li>WAAS can support LPV approaches when the aircraft, database, and procedure allow it.</li></ul>
+<h2 id="do-you-need-raim-if-you-have-waas">Do You Need RAIM if You Have WAAS?</h2>
+<p>With WAAS-capable IFR equipment, traditional preflight RAIM checks may not apply the same way they do for older non-WAAS GPS operations. WAAS equipment has its own integrity monitoring.</p>
+<p>That said, pilots should not guess. The correct answer depends on the installed equipment, approved flight manual supplement, avionics manual, database status, and applicable FAA guidance.</p>
+<p>For training, learn both concepts. You may fly older aircraft with non-WAAS GPS, newer aircraft with WAAS, or rental aircraft with avionics you have not used before.</p>
+<h2 id="why-this-matters-on-approaches">Why This Matters on Approaches</h2>
+<p>The biggest practical difference shows up during instrument approaches. A non-WAAS GPS may be limited to lateral guidance and may require RAIM availability. A WAAS-capable GPS may support approaches with vertical guidance, such as LPV, when the procedure and equipment allow it.</p>
+<p>This changes cockpit workload. With vertical guidance, you can fly a stabilized descent path to a decision altitude. Without it, you may be managing step-down fixes, minimum descent altitude, and the missed approach point more manually.</p>
+<p>Neither setup is automatically unsafe. The unsafe part is not knowing which kind of guidance you have.</p>
+<p>For the minimums language behind that decision, review <a href="/learn/ground-school/mda-vs-da-made-simple-a-guide-to-ifr-minimums/">MDA vs DA</a> before treating every GPS approach the same way.</p>
+<h2 id="ifr-gps-habits">IFR GPS Habits</h2>
+<p>Before relying on GPS for IFR, verify:</p>
+<ul><li>The receiver is approved for the operation.</li><li>The navigation database is current for the procedure.</li><li>The correct approach is loaded.</li><li>The CDI source and sensitivity make sense.</li><li>Any required checks or annunciations are satisfied.</li><li>You understand what messages or flags mean.</li></ul>
+<p>Do not treat GPS as magic. A GPS navigator can be extremely capable, but it still needs a pilot who understands modes, limitations, and failure indications.</p>
+<h2 id="student-pilot-takeaway">Student-Pilot Takeaway</h2>
+<p>RAIM and WAAS are both about trust. RAIM checks the GPS solution. WAAS improves and monitors it through a larger system.</p>
+<p>If you are working toward instrument flying, do not memorize only the acronyms. Learn what your actual avionics can do, what it cannot do, and what indications tell you the system is no longer giving you usable guidance.</p>
+<h2 id="official-references">Official References</h2>
+<ul><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html">FAA AIM 1-1-17 Global Positioning System</a></li><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/">FAA Aeronautical Information Manual</a></li><li><a href="https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91">14 CFR Part 91 General Operating Rules</a></li><li><a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide">FAA Aeronautical Chart User&#x27;s Guide</a></li></ul>
+          </div>
+          <section class="cta-box" aria-labelledby="article-cta-heading">
+            <span class="eyebrow">Ground instruction</span>
+            <h2 id="article-cta-heading">Need help applying this to your training?</h2>
+            <p>Use this guide as a starting point, then bring the confusing parts to a focused ground lesson. Diego works with Louisville-area and remote students on FAA knowledge, oral-prep, and practical training decisions.</p>
+            <div class="cta-btn-group">
+              <a class="cta-btn primary" href="/faa-written-test-prep/">FAA written test prep</a>
+              <a class="cta-btn" href="/#contact">Contact Diego</a>
+            </div>
+          </section>
+          <section class="see-also" aria-labelledby="related-heading">
+            <h2 id="related-heading">Related reading</h2>
+            <ul>
+              <li><a href="/learn/ground-school/aiming-point-vs-touchdown-point-whats-the-difference/">Aiming Point vs. Touchdown Point: Landing Accuracy Explained</a></li>
+              <li><a href="/learn/ground-school/craft-explained-ifr-made-simple-for-pilots/">CRAFT Explained: IFR Made Simple for Pilots</a></li>
+              <li><a href="/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/">LPV, LNAV, and VNAV Approaches Explained</a></li>
+              <li><a href="/learn/ground-school/surface-analysis-charts-explained/">Surface Analysis Charts Explained</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <a href="/" class="wordmark">Diego Suarez</a>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <p class="fine">FAA Certified Ground Instructor - Working Toward CFI - Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAIM vs WAAS Explained Simply: GPS Made Easy",
+  "description": "Learn the difference between RAIM and WAAS, how each supports aviation GPS, and what pilots should know before using GPS for IFR navigation.",
+  "url": "https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/"
+  },
+  "datePublished": "2026-04-28",
+  "dateModified": "2026-04-28",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/",
+    "jobTitle": "Certified Ground Instructor"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/"
+  },
+  "image": "https://suarezcfi.com/assets/og-image.jpg",
+  "inLanguage": "en-US",
+  "keywords": [
+    "RAIM vs WAAS",
+    "RAIM",
+    "WAAS GPS",
+    "aviation GPS navigation"
+  ],
+  "articleSection": "Ground School"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "RAIM vs WAAS Explained Simply: GPS Made Easy",
+  "description": "Learn the difference between RAIM and WAAS, how each supports aviation GPS, and what pilots should know before using GPS for IFR navigation.",
+  "url": "https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "SuarezCFI.com",
+    "url": "https://suarezcfi.com/"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Ground School"
+    }
+  ],
+  "breadcrumb": {
+    "@id": "https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/#breadcrumb"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://suarezcfi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Learn",
+      "item": "https://suarezcfi.com/learn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ground School",
+      "item": "https://suarezcfi.com/learn/ground-school/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "RAIM vs WAAS Explained Simply: GPS Made Easy",
+      "item": "https://suarezcfi.com/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/"
+    }
+  ]
+}
+  </script>
+  <!-- Primary keyword: RAIM vs WAAS; Secondary keywords: RAIM, WAAS GPS, aviation GPS navigation -->
+</body>
+</html>

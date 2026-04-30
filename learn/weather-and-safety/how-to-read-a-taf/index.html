@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1C2142" />
+  <title>How to Read a TAF Aviation Forecast | SuarezCFI.com</title>
+  <meta name="description" content="Learn how to read a TAF forecast, including airport ID, issue time, validity period, wind, visibility, clouds, FM, TEMPO, and PROB groups." />
+  <meta name="author" content="Diego Suarez" />
+  <link rel="canonical" href="https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/" />
+  <meta property="og:title" content="How to Read a TAF Aviation Forecast | SuarezCFI.com" />
+  <meta property="og:description" content="Learn how to read a TAF forecast, including airport ID, issue time, validity period, wind, visibility, clouds, FM, TEMPO, and PROB groups." />
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Read a TAF Aviation Forecast | SuarezCFI.com" />
+  <meta name="twitter:description" content="Learn how to read a TAF forecast, including airport ID, issue time, validity period, wind, visibility, clouds, FM, TEMPO, and PROB groups." />
+  <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/learn/style.css" />
+  <meta property="article:author" content="Diego Suarez" />
+  <meta property="article:modified_time" content="2026-04-27" />
+</head>
+<body>
+  <header class="nav-wrap" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+        <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="article-wrap">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/">Learn</a>
+          <span aria-hidden="true">/</span>
+          <a href="/learn/weather-and-safety/">Weather and Safety</a>
+          <span aria-current="page">How to Read a TAF Aviation Forecast</span>
+        </nav>
+        <article>
+          <header class="article-header">
+            <span class="eyebrow">Weather and Safety</span>
+            <h1>How to Read a TAF Aviation Forecast</h1>
+            <p class="dek">Learn how to read a TAF forecast, including airport ID, issue time, validity period, wind, visibility, clouds, FM, TEMPO, and PROB groups.</p>
+            <div class="article-meta">
+              <span>Diego Suarez</span>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <time datetime="2026-04-27">Updated 2026-04-27</time>
+              <span class="meta-dot" aria-hidden="true">-</span>
+              <span>3 min read</span>
+            </div>
+          </header>
+          <nav class="toc" aria-label="On this page">
+            <span>On this page</span>
+              <a href="#report-type-and-airport">Report Type and Airport</a>
+              <a href="#issue-time">Issue Time</a>
+              <a href="#valid-period">Valid Period</a>
+              <a href="#wind">Wind</a>
+          </nav>
+          <div class="prose">
+<p>A TAF is an aviation forecast for the terminal area around an airport. METARs report what is happening now. TAFs help you understand what forecasters expect during a future period.</p>
+<p>TAFs look intimidating because they are compressed. Read them in chunks and they become much easier. If the current-observation side is still new, review <a href="/learn/weather-and-safety/how-to-read-a-metar/">how to read a METAR</a> first. For a side-by-side practice workflow, use <a href="/learn/weather-and-safety/how-to-read-metar-and-taf-reports/">how to read METAR and TAF reports</a>.</p>
+<p>Use this simplified example:</p>
+<p><code>TAF KPHX 190747Z 1908/2012 10004KT P6SM SKC FM192000 VRB03KT P6SM SKC</code></p>
+<h2 id="report-type-and-airport">Report Type and Airport</h2>
+<p><code>TAF</code> tells you the product is a Terminal Aerodrome Forecast. <code>KPHX</code> is the airport identifier.</p>
+<p>Always confirm the airport. Nearby airports can have very different ceilings, visibility, wind, and thunderstorm risk.</p>
+<h2 id="issue-time">Issue Time</h2>
+<p><code>190747Z</code> means the forecast was issued on the 19th day of the month at 0747 Zulu time.</p>
+<p>Zulu time is UTC. Aviation weather products use it so pilots and dispatchers are not constantly converting between local time zones.</p>
+<h2 id="valid-period">Valid Period</h2>
+<p><code>1908/2012</code> means the forecast is valid from the 19th at 0800Z until the 20th at 1200Z.</p>
+<p>Before using a TAF, make sure your planned departure and arrival times fall inside the valid period.</p>
+<h2 id="wind">Wind</h2>
+<p><code>10004KT</code> means wind from 100 degrees true at 4 knots. <code>VRB03KT</code> means variable wind at 3 knots.</p>
+<p>If gusts are expected, you may see a group like <code>22015G25KT</code>, meaning wind from 220 at 15 knots gusting 25.</p>
+<p>Wind affects runway selection, crosswind component, groundspeed, fuel planning, and comfort.</p>
+<h2 id="visibility">Visibility</h2>
+<p><code>P6SM</code> means visibility greater than six statute miles. Lower visibility may appear as a number and <code>SM</code>, such as <code>3SM</code>.</p>
+<p>Visibility is one of the first items VFR pilots should check. A forecast can be legal but still unwise for a low-time pilot if haze, mist, or precipitation reduces margin. Compare the forecast to your <a href="/learn/weather-and-safety/weather-minimums-for-pilots-rain-snow-clouds/">weather minimums</a>, not just the legal minimums.</p>
+<h2 id="clouds-and-weather">Clouds and Weather</h2>
+<p><code>SKC</code> means sky clear. Cloud groups work similarly to METARs:</p>
+<ul><li><code>FEW</code>: few.</li><li><code>SCT</code>: scattered.</li><li><code>BKN</code>: broken.</li><li><code>OVC</code>: overcast.</li></ul>
+<p>Cloud heights are reported in hundreds of feet. <code>BKN020</code> means broken clouds at 2,000 feet above the airport.</p>
+<p>Weather codes may include rain, snow, mist, fog, haze, thunderstorms, and freezing precipitation. Learn the common codes and look up uncommon ones.</p>
+<h2 id="fm-groups">FM Groups</h2>
+<p><code>FM</code> means “from.” It starts a new forecast period at a specific time.</p>
+<p>For example, <code>FM192000</code> means from the 19th day at 2000Z, the forecast changes to the conditions that follow. An FM group replaces the prior prevailing conditions.</p>
+<h2 id="tempo-groups">TEMPO Groups</h2>
+<p><code>TEMPO</code> means temporary conditions expected for a limited time during the stated period. This can matter a lot.</p>
+<p>If the prevailing forecast looks VFR but a TEMPO group shows low visibility, thunderstorms, or low ceilings during your arrival window, plan for that risk.</p>
+<h2 id="prob-groups">PROB Groups</h2>
+<p>Probability groups describe a lower-probability forecast event. In U.S. National Weather Service TAFs, <code>PROB30</code> is the probability group pilots most commonly need to recognize. Do not ignore it just because the event is not guaranteed.</p>
+<p>For example, a 30 percent chance of thunderstorms during your arrival window deserves respect. In aviation, low-probability events can still be high-consequence events.</p>
+<h2 id="how-to-use-a-taf">How to Use a TAF</h2>
+<p>Decode the TAF, then ask practical questions:</p>
+<ul><li>Will the weather be legal for my flight rules?</li><li>Will it be within my personal minimums?</li><li>Are conditions improving or worsening?</li><li>What is forecast at my alternate?</li><li>What if the TEMPO or PROB group happens?</li><li>Do winds affect runway choice or fuel?</li></ul>
+<p>TAFs are forecasts, not promises. Use them with METARs, radar, satellite, PIREPs, winds aloft, and a full weather briefing to build a safer plan. For route-level use, connect the forecast to your <a href="/learn/private-pilot/how-to-plan-a-cross-country-flight/">cross-country flight planning</a> process.</p>
+<h2 id="official-references">Official References</h2>
+<ul><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html">FAA AIM 7-1 METAR/TAF key</a></li><li><a href="https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/faa-h-8083-28-aviation-weather-handbook">FAA Aviation Weather Handbook</a></li><li><a href="https://www.faa.gov/sites/faa.gov/files/about/office_org/headquarters_offices/ato/METAR_KEY.pdf">FAA METAR/TAF key card</a></li><li><a href="https://aviationweather.gov/">Aviation Weather Center</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">FAA Pilot&#x27;s Handbook of Aeronautical Knowledge</a></li></ul>
+          </div>
+          <section class="cta-box" aria-labelledby="article-cta-heading">
+            <span class="eyebrow">Ground instruction</span>
+            <h2 id="article-cta-heading">Need help applying this to your training?</h2>
+            <p>Use this guide as a starting point, then bring the confusing parts to a focused ground lesson. Diego works with Louisville-area and remote students on FAA knowledge, oral-prep, and practical training decisions.</p>
+            <div class="cta-btn-group">
+              <a class="cta-btn primary" href="/remote-ground-instruction/">Book a safety-focused ground lesson</a>
+              <a class="cta-btn" href="/#contact">Contact Diego</a>
+            </div>
+          </section>
+          <section class="see-also" aria-labelledby="related-heading">
+            <h2 id="related-heading">Related reading</h2>
+            <ul>
+              <li><a href="/learn/weather-and-safety/how-to-read-metar-and-taf-reports/">How to Read METAR and TAF Reports</a></li>
+              <li><a href="/learn/weather-and-safety/airmets-vs-sigmets-whats-the-difference/">AIRMETs vs SIGMETs: What Pilots Should Know</a></li>
+              <li><a href="/learn/weather-and-safety/causes-of-plane-crashes-how-to-prevent-them/">Common Causes of Plane Crashes and How Pilots Reduce Risk</a></li>
+              <li><a href="/learn/weather-and-safety/cumulonimbus-clouds-what-you-as-a-pilot-need-to-know/">Cumulonimbus Clouds: What Pilots Need to Know</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <a href="/" class="wordmark">Diego Suarez</a>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <p class="fine">FAA Certified Ground Instructor - Working Toward CFI - Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Read a TAF Aviation Forecast",
+  "description": "Learn how to read a TAF forecast, including airport ID, issue time, validity period, wind, visibility, clouds, FM, TEMPO, and PROB groups.",
+  "url": "https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/"
+  },
+  "datePublished": "2026-04-27",
+  "dateModified": "2026-04-27",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/",
+    "jobTitle": "Certified Ground Instructor"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Diego Suarez",
+    "url": "https://suarezcfi.com/"
+  },
+  "image": "https://suarezcfi.com/assets/og-image.jpg",
+  "inLanguage": "en-US",
+  "keywords": [
+    "how to read a TAF",
+    "TAF decoding",
+    "terminal aerodrome forecast",
+    "aviation weather forecast"
+  ],
+  "articleSection": "Weather and Safety"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "How to Read a TAF Aviation Forecast",
+  "description": "Learn how to read a TAF forecast, including airport ID, issue time, validity period, wind, visibility, clouds, FM, TEMPO, and PROB groups.",
+  "url": "https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "SuarezCFI.com",
+    "url": "https://suarezcfi.com/"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Weather and Safety"
+    }
+  ],
+  "breadcrumb": {
+    "@id": "https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/#breadcrumb"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://suarezcfi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Learn",
+      "item": "https://suarezcfi.com/learn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Weather and Safety",
+      "item": "https://suarezcfi.com/learn/weather-and-safety/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "How to Read a TAF Aviation Forecast",
+      "item": "https://suarezcfi.com/learn/weather-and-safety/how-to-read-a-taf/"
+    }
+  ]
+}
+  </script>
+  <!-- Primary keyword: how to read a TAF; Secondary keywords: TAF decoding, terminal aerodrome forecast, aviation weather forecast -->
+</body>
+</html>

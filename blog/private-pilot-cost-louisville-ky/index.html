@@ -33,7 +33,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500;1,6..72,600;1,6..72,700&family=Pinyon+Script&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../style.css" />
 </head>
@@ -41,12 +41,20 @@
 
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
-      <a href="https://suarezcfi.com/" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
-      <div class="nav-links">
-        <a href="https://suarezcfi.com/">Home</a>
-        <a href="/simply-endorsed/">Simply Endorsed</a>
+      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+        Menu
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M5 8h14"></path>
+          <path d="M5 16h14"></path>
+        </svg>
+      </button>
+      <div class="nav-links" id="primary-nav-links">
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
         <a href="/blog/">Blog</a>
-        <a href="https://suarezcfi.com/#contact">Contact</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
         <a href="tel:+15025100508" class="nav-cta">Book a Lesson</a>
       </div>
     </nav>
@@ -296,17 +304,16 @@
   </main>
 
   <footer>
-    <div class="container">
-      <a href="https://suarezcfi.com/" class="wordmark">Diego Suarez</a>
+    <div class="container footer-inner">
+      <a href="/" class="wordmark">Diego Suarez</a>
       <nav aria-label="Footer">
-        <a href="https://suarezcfi.com/">Home</a>
-        <a href="https://suarezcfi.com/#about">About</a>
-        <a href="https://suarezcfi.com/#services">Services</a>
-        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/">Home</a>
+        <a href="/learn/">Learn</a>
         <a href="/blog/">Blog</a>
-        <a href="https://suarezcfi.com/#contact">Contact</a>
+        <a href="/simply-endorsed/">Simply Endorsed</a>
+        <a href="/#contact">Contact</a>
       </nav>
-      <p class="fine">FAA Certified Ground Instructor · Working Toward CFI · Bowman Field (KLOU), Louisville, Kentucky</p>
+      <p class="fine">FAA Certified Ground Instructor - Working Toward CFI - Bowman Field (KLOU), Louisville, Kentucky</p>
       <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
     </div>
   </footer>
@@ -376,5 +383,35 @@
   }
   </script>
 
+  <script>
+    (() => {
+      const nav = document.querySelector('.nav');
+      const navToggle = document.querySelector('.nav-menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (!nav || !navToggle || !navLinks) return;
+
+      const setNavOpen = (isOpen) => {
+        nav.classList.toggle('is-open', isOpen);
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(!nav.classList.contains('is-open'));
+      });
+
+      navLinks.addEventListener('click', (event) => {
+        if (event.target.closest('a')) setNavOpen(false);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setNavOpen(false);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target)) setNavOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>

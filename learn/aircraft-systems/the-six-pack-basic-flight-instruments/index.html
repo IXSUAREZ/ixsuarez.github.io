@@ -26,7 +26,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500;1,6..72,600;1,6..72,700&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/learn/style.css" />
   <meta property="article:author" content="Diego Suarez" />
   <meta property="article:modified_time" content="2026-04-27" />
@@ -35,7 +35,14 @@
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
       <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
-      <div class="nav-links">
+      <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+        Menu
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M5 8h14"></path>
+          <path d="M5 16h14"></path>
+        </svg>
+      </button>
+      <div class="nav-links" id="primary-nav-links">
         <a href="/">Home</a>
         <a href="/learn/">Learn</a>
         <a href="/blog/">Blog</a>
@@ -242,5 +249,35 @@
 }
   </script>
   <!-- Primary keyword: six pack flight instruments; Secondary keywords: basic flight instruments, pitot-static instruments, gyroscopic instruments -->
+  <script>
+    (() => {
+      const nav = document.querySelector('.nav');
+      const navToggle = document.querySelector('.nav-menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (!nav || !navToggle || !navLinks) return;
+
+      const setNavOpen = (isOpen) => {
+        nav.classList.toggle('is-open', isOpen);
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      navToggle.addEventListener('click', () => {
+        setNavOpen(!nav.classList.contains('is-open'));
+      });
+
+      navLinks.addEventListener('click', (event) => {
+        if (event.target.closest('a')) setNavOpen(false);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setNavOpen(false);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target)) setNavOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>

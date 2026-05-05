@@ -8,15 +8,21 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/simply-endorsed-cfi/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.76</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/what-is-simply-endorsed/</loc>
@@ -43,6 +49,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/cfi-initial-checkride-endorsements/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+  </url>
+  <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/commercial-pilot-checkride-endorsements/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -65,6 +77,12 @@
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/simply-endorsed/blog/logbook-audit-checklists/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/blog/</loc>

@@ -63,14 +63,15 @@ body::after {
 html::after {
   content: "";
   position: fixed;
-  left: 0; right: 0; bottom: 0;
-  height: 132px;
+  left: 0; right: 0; bottom: -100px;
+  height: 340px;
   pointer-events: none;
   z-index: 5;
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.25) 75%, transparent 100%);
-  mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.25) 75%, transparent 100%);
+  background: transparent;
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-mask-image: linear-gradient(to top, #000 0, #000 100px, rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79), transparent 100%);
+  mask-image: linear-gradient(to top, #000 0, #000 100px, rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79), transparent 100%);
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
@@ -580,7 +581,6 @@ footer .fine { font-size: 13px; color: var(--ink-muted); margin: 0 0 6px; }
 }
 
 @media (max-width: 780px) {
-  html::after { height: 108px; }
   .container { padding-inline: 18px; }
   .nav { min-height: 58px; padding: 18px 14px 0 18px; }
   .wordmark { font-size: 25px; }

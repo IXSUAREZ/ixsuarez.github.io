@@ -18,6 +18,12 @@
   --radius-pill: 999px;
   --maxw: 1180px;
   --prose: 760px;
+  --edge-blur-visible: 100px;
+  --edge-blur-buffer: 100px;
+  --edge-blur-height: calc(var(--edge-blur-visible) + var(--edge-blur-buffer));
+  --edge-blur-strength: 37px;
+  --edge-blur-top-mask: linear-gradient(to top, transparent 0, #000 var(--edge-blur-visible), #000 100%);
+  --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Newsreader", Georgia, serif;
   --font-signature: "Pinyon Script", cursive;
@@ -53,15 +59,15 @@ body::before {
 html::after {
   content: "";
   position: fixed;
-  left: 0; right: 0; bottom: -100px;
-  height: calc(clamp(90px, 12vw, 140px) + 100px);
+  left: 0; right: 0; bottom: calc(-1 * var(--edge-blur-buffer));
+  height: var(--edge-blur-height);
   pointer-events: none;
   z-index: 5;
   background: transparent;
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-mask-image: linear-gradient(to top, transparent 0, rgba(0,0,0,0.72) 100px, rgba(0,0,0,0.42) calc(100px + (100% - 100px) * 0.40), rgba(0,0,0,0.16) calc(100px + (100% - 100px) * 0.75), transparent 100%);
-  mask-image: linear-gradient(to top, transparent 0, rgba(0,0,0,0.72) 100px, rgba(0,0,0,0.42) calc(100px + (100% - 100px) * 0.40), rgba(0,0,0,0.16) calc(100px + (100% - 100px) * 0.75), transparent 100%);
+  -webkit-backdrop-filter: blur(var(--edge-blur-strength));
+  backdrop-filter: blur(var(--edge-blur-strength));
+  -webkit-mask-image: var(--edge-blur-bottom-mask);
+  mask-image: var(--edge-blur-bottom-mask);
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
@@ -88,14 +94,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav-wrap::before {
   content: "";
   position: absolute;
-  inset: -100px 0 auto 0;
-  height: 340px;
+  inset: calc(-1 * var(--edge-blur-buffer)) 0 auto 0;
+  height: var(--edge-blur-height);
   pointer-events: none;
   background: transparent;
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 100px, rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79), transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0, #000 100px, rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29), rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58), rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79), transparent 100%);
+  -webkit-backdrop-filter: blur(var(--edge-blur-strength));
+  backdrop-filter: blur(var(--edge-blur-strength));
+  -webkit-mask-image: var(--edge-blur-top-mask);
+  mask-image: var(--edge-blur-top-mask);
   z-index: 0;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);

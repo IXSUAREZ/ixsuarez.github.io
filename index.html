@@ -55,6 +55,12 @@
       --radius-btn: 14px;
       --radius-pill: 999px;
       --maxw: 1180px;
+      --edge-blur-visible: 100px;
+      --edge-blur-buffer: 100px;
+      --edge-blur-height: calc(var(--edge-blur-visible) + var(--edge-blur-buffer));
+      --edge-blur-strength: 37px;
+      --edge-blur-top-mask: linear-gradient(to top, transparent 0, #000 var(--edge-blur-visible), #000 100%);
+      --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
       --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-display: "Newsreader", Georgia, serif;
       --font-signature: "Pinyon Script", cursive;
@@ -97,6 +103,25 @@
         radial-gradient(50% 50% at 85% 15%, rgba(28,33,66,0.06), transparent 60%);
     }
 
+    html::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: calc(-1 * var(--edge-blur-buffer));
+      height: var(--edge-blur-height);
+      pointer-events: none;
+      z-index: 5;
+      background: transparent;
+      -webkit-backdrop-filter: blur(var(--edge-blur-strength));
+      backdrop-filter: blur(var(--edge-blur-strength));
+      -webkit-mask-image: var(--edge-blur-bottom-mask);
+      mask-image: var(--edge-blur-bottom-mask);
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
     main, header, footer { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
@@ -122,19 +147,14 @@
     .nav-wrap::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: calc(-1 * var(--edge-blur-buffer)) 0 auto 0;
+      height: var(--edge-blur-height);
       pointer-events: none;
-      /* Background matches the page colour and fades out */
-      background: linear-gradient(
-        to bottom,
-        rgba(238, 240, 243, 0.82) 0%,
-        rgba(238, 240, 243, 0.0) 100%
-      );
-      -webkit-backdrop-filter: blur(22px) saturate(160%);
-      backdrop-filter: blur(22px) saturate(160%);
-      /* Starts fully opaque at the very top — no hard line — dissolves to nothing */
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);
+      background: transparent;
+      -webkit-backdrop-filter: blur(var(--edge-blur-strength));
+      backdrop-filter: blur(var(--edge-blur-strength));
+      -webkit-mask-image: var(--edge-blur-top-mask);
+      mask-image: var(--edge-blur-top-mask);
       z-index: 0;
     }
     .nav {
@@ -652,7 +672,7 @@
     .nav-wrap::after {
       content: "";
       position: absolute;
-      inset: -100px 0 auto 0;
+      inset: calc(-1 * var(--edge-blur-buffer)) 0 auto 0;
       pointer-events: none;
       z-index: 0;
       -webkit-transform: translateZ(0);
@@ -660,28 +680,12 @@
       will-change: transform;
     }
     .nav-wrap::before {
-      height: clamp(190px, 20vw, 300px);
+      height: var(--edge-blur-height);
       background: transparent;
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        #000 0,
-        #000 100px,
-        rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29),
-        rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58),
-        rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79),
-        transparent 100%
-      );
-      mask-image: linear-gradient(
-        to bottom,
-        #000 0,
-        #000 100px,
-        rgba(0,0,0,0.76) calc(100px + (100% - 100px) * 0.29),
-        rgba(0,0,0,0.34) calc(100px + (100% - 100px) * 0.58),
-        rgba(0,0,0,0.10) calc(100px + (100% - 100px) * 0.79),
-        transparent 100%
-      );
+      -webkit-backdrop-filter: blur(var(--edge-blur-strength));
+      backdrop-filter: blur(var(--edge-blur-strength));
+      -webkit-mask-image: var(--edge-blur-top-mask);
+      mask-image: var(--edge-blur-top-mask);
     }
     .nav-wrap::after {
       display: none;
@@ -737,22 +741,6 @@
     .nav-menu-toggle svg {
       width: 16px;
       height: 16px;
-    }
-
-    .page-blur-bottom {
-      position: fixed;
-      left: 0; right: 0; bottom: -100px;
-      height: calc(clamp(90px, 12vw, 140px) + 100px);
-      pointer-events: none;
-      z-index: 5;
-      background: transparent;
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-mask-image: linear-gradient(to top, transparent 0, rgba(0,0,0,0.72) 100px, rgba(0,0,0,0.42) calc(100px + (100% - 100px) * 0.40), rgba(0,0,0,0.16) calc(100px + (100% - 100px) * 0.75), transparent 100%);
-      mask-image: linear-gradient(to top, transparent 0, rgba(0,0,0,0.72) 100px, rgba(0,0,0,0.42) calc(100px + (100% - 100px) * 0.40), rgba(0,0,0,0.16) calc(100px + (100% - 100px) * 0.75), transparent 100%);
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      will-change: transform;
     }
 
     .premium-hero {
@@ -2116,8 +2104,5 @@
       })();
     })();
   </script>
-
-  <div class="page-blur-bottom" aria-hidden="true"></div>
-
 </body>
 </html>

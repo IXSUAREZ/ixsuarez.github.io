@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simply Endorsed CFI | Free FAA Pilot Endorsement Lookup</title>
+    <title>Simply Endorsed | Free FAA AC 61-65K Endorsement Lookup</title>
     <meta
       name="description"
-      content="Free CFI endorsement lookup tool for FAA AC 61-65K pilot endorsements. Search by task, FAR, alias, endorsement ID, or checkride use case."
+      content="Simply Endorsed is a free FAA AC 61-65K endorsement lookup tool. Search pilot endorsements by ID, FAR citation, alias, task, or checkride workflow."
     >
     <meta
       name="keywords"
@@ -16,10 +16,10 @@
     <link rel="canonical" href="https://suarezcfi.com/simply-endorsed/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://suarezcfi.com/simply-endorsed/">
-    <meta property="og:title" content="Simply Endorsed CFI | Free FAA Pilot Endorsement Lookup">
+    <meta property="og:title" content="Simply Endorsed | Free FAA AC 61-65K Endorsement Lookup">
     <meta
       property="og:description"
-      content="Free CFI endorsement lookup tool for FAA AC 61-65K pilot endorsements. Search by task, FAR, alias, endorsement ID, or checkride use case."
+      content="Search FAA AC 61-65K pilot endorsements by ID, FAR citation, alias, task, or checkride workflow with the free Simply Endorsed lookup tool."
     >
     <meta property="og:image" content="https://suarezcfi.com/simply-endorsed/APP-ICONs/og-simply-endorsed.jpg">
     <meta property="og:image:width" content="1200">
@@ -27,10 +27,10 @@
     <meta property="og:image:alt" content="Simply Endorsed social preview card with a gold wings emblem on a navy background">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Simply Endorsed CFI | Free FAA Pilot Endorsement Lookup">
+    <meta name="twitter:title" content="Simply Endorsed | Free FAA AC 61-65K Endorsement Lookup">
     <meta
       name="twitter:description"
-      content="Free CFI endorsement lookup tool for FAA AC 61-65K pilot endorsements. Search by task, FAR, alias, endorsement ID, or checkride use case."
+      content="Free FAA AC 61-65K endorsement lookup by ID, FAR citation, alias, task, or checkride workflow."
     >
     <meta name="twitter:image" content="https://suarezcfi.com/simply-endorsed/APP-ICONs/og-simply-endorsed.jpg">
     <meta name="twitter:image:alt" content="Simply Endorsed CFI endorsement lookup tool preview">
@@ -52,12 +52,56 @@
     <style>
       .seo-content {
         max-width: 960px;
-        margin: 48px auto 0;
+        margin: 32px auto 0;
         padding: 48px 24px 80px;
         border-top: 1px solid rgba(15, 23, 42, 0.08);
         color: #1f2937;
         font-size: 15px;
         line-height: 1.65;
+      }
+      .seo-appendix {
+        margin-top: 32px;
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+      }
+      .seo-appendix > summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 58px;
+        padding: 16px 0;
+        color: #475569;
+        font-size: 0.98rem;
+        font-weight: 800;
+        cursor: pointer;
+        list-style: none;
+      }
+      .seo-appendix > summary::-webkit-details-marker {
+        display: none;
+      }
+      .seo-appendix > summary::after {
+        content: "+";
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        border-radius: 999px;
+        color: #0f172a;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 1rem;
+        line-height: 1;
+      }
+      .seo-appendix[open] > summary {
+        color: #0f172a;
+      }
+      .seo-appendix[open] > summary::after {
+        content: "-";
+      }
+      .seo-content-body {
+        padding-top: 28px;
       }
       .seo-content h2 {
         font-size: 1.5rem;
@@ -101,6 +145,20 @@
       .seo-endorsement code { font-family: "JetBrains Mono", ui-monospace, monospace; }
       .seo-faq h3 { margin-top: 24px; }
       .seo-closing { margin-top: 40px; color: #475569; }
+      @media (max-width: 640px) {
+        .seo-content {
+          margin-top: 24px;
+          padding: 40px 18px 56px;
+        }
+        .seo-appendix > summary {
+          align-items: flex-start;
+          font-size: 0.94rem;
+          line-height: 1.4;
+        }
+        .seo-content-body {
+          padding-top: 18px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -176,8 +234,8 @@
         <main class="content-area">
           <section id="selectionSummary" class="selection-summary" aria-live="polite" tabindex="-1">
             <nav id="selectionBreadcrumbs" class="selection-breadcrumbs" aria-label="Current browse path"></nav>
-            <h1 id="selectionTitle">Simply Endorsed CFI — Every FAA AC 61-65K Endorsement</h1>
-            <p id="selectionDescription" class="selection-description">Free, searchable reference for all 96 CFI endorsements in FAA Advisory Circular 61-65K. Search by ID, FAR citation, alias, or checkride use case.</p>
+            <h1 id="selectionTitle">Simply Endorsed — Free FAA AC 61-65K Endorsement Lookup</h1>
+            <p id="selectionDescription" class="selection-description">Free, searchable reference for all 96 pilot endorsements in FAA Advisory Circular 61-65K. Search by ID, FAR citation, alias, task, or checkride use case.</p>
             <div class="selection-meta-row">
               <div id="selectionMeta" class="selection-meta"></div>
               <button
@@ -223,8 +281,8 @@
       </div>
     </div>
 
-    <!-- SEO:START (generated by build-seo-content.js — do not edit by hand) -->
-<section id="seo-content" class="seo-content" aria-label="Full endorsement reference">
+    <!-- SEO:START (generated by build-seo-content.js - do not edit by hand) -->
+<section id="seo-content" class="seo-content" aria-label="Simply Endorsed FAA endorsement lookup overview">
   <section class="seo-intro">
   <h2>Every FAA AC 61-65K endorsement at a glance</h2>
   <p>
@@ -239,7 +297,106 @@
     below so search engines and screen readers can read everything without JavaScript.
   </p>
 </section>
-  <section class="seo-category">
+  <section class="seo-faq">
+  <h2>Popular AC 61-65K endorsement guides</h2>
+
+  <h3><a href="/blog/faa-endorsements-explained/">FAA endorsements list and AC 61-65K lookup guide</a></h3>
+  <p>Start here when you want a plain-English overview of student pilot
+  endorsements, knowledge-test signoffs, checkride recommendations, flight
+  reviews, IPCs, and aircraft endorsements before opening the lookup tool.</p>
+
+  <h3><a href="/simply-endorsed/blog/first-solo-endorsement/">Student pilot solo endorsement guide</a></h3>
+  <p>Review the pre-solo, first 90-day solo, solo cross-country, nearby-airport,
+  Class B, night solo, and TSA citizenship endorsement paths.</p>
+
+  <h3><a href="/simply-endorsed/blog/cfi-endorsements/">CFI endorsements hub</a></h3>
+  <p>Review the broad flight instructor endorsement path for FOI, instructor
+  knowledge tests, practical-test readiness, spin training, and supporting
+  A.1/A.2 practical-test context.</p>
+
+  <h3><a href="/simply-endorsed/blog/spin-endorsement/">Spin endorsement</a></h3>
+  <p>Use the spin endorsement guide when reviewing the AC 61-65K spin-training
+  entry for flight instructor airplane and glider applicants.</p>
+
+  <h3><a href="/simply-endorsed/blog/ipc-endorsement/">IPC endorsement</a></h3>
+  <p>Use the IPC endorsement guide when reviewing instrument proficiency check
+  completion and how it differs from instrument checkride endorsement paths.</p>
+
+  <h3><a href="/simply-endorsed/blog/retest-after-failure-endorsement/">Retest after failure endorsement</a></h3>
+  <p>Use the retest guide when reviewing A.77 and 14 CFR 61.49 after a failed
+  knowledge or practical test.</p>
+
+  <h3><a href="/simply-endorsed/blog/aircraft-endorsements/">Aircraft endorsements</a></h3>
+  <p>Compare the AC 61-65K complex, high-performance, high-altitude, and
+  tailwheel endorsement group in one workflow page.</p>
+
+  <h3><a href="/simply-endorsed/blog/sport-pilot-endorsements/">Sport pilot endorsements</a></h3>
+  <p>Review sport pilot knowledge, practical-test, category/class, airspace,
+  night, and aircraft privilege endorsement paths.</p>
+
+  <h3><a href="/simply-endorsed/blog/recreational-pilot-endorsements/">Recreational pilot endorsements</a></h3>
+  <p>Review recreational pilot knowledge, practical-test, 50 NM, towered
+  airspace, and additional-rating solo endorsement paths.</p>
+
+  <h3><a href="/simply-endorsed/blog/instrument-checkride-vs-ipc/">Instrument checkride vs IPC</a></h3>
+  <p>Use the comparison guide when deciding whether the instrument practical-test
+  endorsement path or the IPC completion path applies.</p>
+
+  <h3><a href="/simply-endorsed/blog/logbook-audit-checklists/">Pre-checkride logbook audit checklist</a></h3>
+  <p>Use the logbook audit guide to organize endorsements, knowledge-test
+  reports, recent preparation, required documents, and application data before
+  a practical test.</p>
+</section>
+  <section class="seo-faq">
+  <h2>Frequently asked questions about FAA endorsements</h2>
+
+  <h3>What is AC 61-65?</h3>
+  <p>FAA Advisory Circular 61-65 provides the model endorsement text that
+  certificated flight instructors (CFIs) and ground instructors use to document
+  training and authorize specific privileges in a pilot's logbook. The current
+  revision is AC 61-65K (issued 11/14/2025).</p>
+
+  <h3>Do CFIs have to copy the AC 61-65 endorsement text word-for-word?</h3>
+  <p>The exact wording is not mandatory, but it is strongly recommended. Using
+  the model text ensures all required elements are present and reduces the risk
+  of a rejected endorsement at a checkride or FAA ramp check. Simply Endorsed
+  shows the verbatim text for every endorsement alongside a plain-language
+  explanation.</p>
+
+  <h3>What makes Simply Endorsed useful as an endorsement lookup?</h3>
+  <p>Simply Endorsed is a free, search-first tool built specifically for AC
+  61-65K (the current 2025 revision). Every endorsement is searchable by ID,
+  FAR citation, alias, or checkride use case, and every endorsement links to
+  its source page in the FAA's PDF. There is no account, no paywall, and no ads.</p>
+
+  <h3>Which endorsement do I need for a first solo?</h3>
+  <p>First solo endorsements come from 14 CFR 61.87 and typically include A.3
+  (pre-solo aeronautical knowledge), A.4 (pre-solo flight training), and A.6
+  (solo flight in a specific make and model). Search "first solo" in the tool
+  above for the complete list with verbatim text.</p>
+
+  <h3>Is Simply Endorsed free?</h3>
+  <p>Yes. Simply Endorsed is a free reference tool for CFIs and student pilots,
+  built and maintained by Diego Suarez, a Certified Ground Instructor based at
+  Bowman Field (KLOU) in Louisville, Kentucky.</p>
+</section>
+  <section class="seo-closing">
+  <p>
+    Simply Endorsed was built by
+    <a href="/">Diego Suarez</a>, a Certified Ground Instructor working toward
+    his Flight Instructor Certificate at Bowman Field (KLOU) in Louisville,
+    Kentucky. Have feedback or spotted an error? Email
+    <a href="mailto:diegoasuarez02@gmail.com">diegoasuarez02@gmail.com</a>.
+    For the search-focused overview, see
+    <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.
+    For in-depth endorsement guides, see the
+    <a href="/simply-endorsed/blog/">Simply Endorsed blog</a>.
+  </p>
+</section>
+  <details class="seo-appendix">
+    <summary>Full FAA AC 61-65K endorsement reference</summary>
+    <div class="seo-content-body">
+      <section class="seo-category">
   <h3 class="seo-category-heading">Practical Test Prereqs endorsements</h3>
 
   <article class="seo-endorsement" id="seo-A.1">
@@ -975,140 +1132,9 @@
     <p class="seo-endorsement-tags"><strong>Tags:</strong> specialty operations</p>
   </article>
 </section>
-  <section class="seo-faq">
-  <h2>Frequently asked questions about FAA endorsements</h2>
-
-  <h3>What is AC 61-65?</h3>
-  <p>FAA Advisory Circular 61-65 provides the model endorsement text that
-  certificated flight instructors (CFIs) and ground instructors use to document
-  training and authorize specific privileges in a pilot's logbook. The current
-  revision is AC 61-65K (issued 11/14/2025).</p>
-
-  <h3>Do CFIs have to copy the AC 61-65 endorsement text word-for-word?</h3>
-  <p>The exact wording is not mandatory, but it is strongly recommended. Using
-  the model text ensures all required elements are present and reduces the risk
-  of a rejected endorsement at a checkride or FAA ramp check. Simply Endorsed
-  shows the verbatim text for every endorsement alongside a plain-language
-  explanation.</p>
-
-  <h3>How is Simply Endorsed different from wificfi?</h3>
-  <p>Simply Endorsed is a free, search-first tool built specifically for AC
-  61-65K (the current 2025 revision). Every endorsement is searchable by ID,
-  FAR citation, alias, or checkride use case, and every endorsement links to
-  its source page in the FAA's PDF. There is no account, no paywall, and no ads.</p>
-
-  <h3>Which endorsement do I need for a first solo?</h3>
-  <p>First solo endorsements come from 14 CFR 61.87 and typically include A.3
-  (pre-solo aeronautical knowledge), A.4 (pre-solo flight training), and A.6
-  (solo flight in a specific make and model). Search "first solo" in the tool
-  above for the complete list with verbatim text.</p>
-
-  <h3>Is Simply Endorsed free?</h3>
-  <p>Yes. Simply Endorsed is a free reference tool for CFIs and student pilots,
-  built and maintained by Diego Suarez, a Certified Ground Instructor based at
-  Bowman Field (KLOU) in Louisville, Kentucky.</p>
+    </div>
+  </details>
 </section>
-  <section class="seo-faq">
-  <h2>Popular AC 61-65K endorsement guides</h2>
-
-  <h3><a href="/simply-endorsed/blog/cfi-endorsements/">CFI endorsements hub</a></h3>
-  <p>Review the broad flight instructor endorsement path for FOI, instructor
-  knowledge tests, practical-test readiness, spin training, and supporting
-  A.1/A.2 practical-test context.</p>
-
-  <h3><a href="/simply-endorsed/blog/spin-endorsement/">Spin endorsement</a></h3>
-  <p>Use the spin endorsement guide when reviewing the AC 61-65K spin-training
-  entry for flight instructor airplane and glider applicants.</p>
-
-  <h3><a href="/simply-endorsed/blog/ipc-endorsement/">IPC endorsement</a></h3>
-  <p>Use the IPC endorsement guide when reviewing instrument proficiency check
-  completion and how it differs from instrument checkride endorsement paths.</p>
-
-  <h3><a href="/simply-endorsed/blog/retest-after-failure-endorsement/">Retest after failure endorsement</a></h3>
-  <p>Use the retest guide when reviewing A.77 and 14 CFR 61.49 after a failed
-  knowledge or practical test.</p>
-
-  <h3><a href="/simply-endorsed/blog/aircraft-endorsements/">Aircraft endorsements</a></h3>
-  <p>Compare the AC 61-65K complex, high-performance, high-altitude, and
-  tailwheel endorsement group in one workflow page.</p>
-
-  <h3><a href="/simply-endorsed/blog/sport-pilot-endorsements/">Sport pilot endorsements</a></h3>
-  <p>Review sport pilot knowledge, practical-test, category/class, airspace,
-  night, and aircraft privilege endorsement paths.</p>
-
-  <h3><a href="/simply-endorsed/blog/recreational-pilot-endorsements/">Recreational pilot endorsements</a></h3>
-  <p>Review recreational pilot knowledge, practical-test, 50 NM, towered
-  airspace, and additional-rating solo endorsement paths.</p>
-
-  <h3><a href="/simply-endorsed/blog/instrument-checkride-vs-ipc/">Instrument checkride vs IPC</a></h3>
-  <p>Use the comparison guide when deciding whether the instrument practical-test
-  endorsement path or the IPC completion path applies.</p>
-
-  <h3><a href="/simply-endorsed/blog/logbook-audit-checklists/">Pre-checkride logbook audit checklist</a></h3>
-  <p>Use the logbook audit guide to organize endorsements, knowledge-test
-  reports, recent preparation, required documents, and application data before
-  a practical test.</p>
-</section>
-  <section class="seo-closing">
-  <p>
-    Simply Endorsed was built by
-    <a href="/">Diego Suarez</a>, a Certified Ground Instructor working toward
-    his Flight Instructor Certificate at Bowman Field (KLOU) in Louisville,
-    Kentucky. Have feedback or spotted an error? Email
-    <a href="mailto:diegoasuarez02@gmail.com">diegoasuarez02@gmail.com</a>.
-    For the search-focused overview, see
-    <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.
-    For in-depth endorsement guides, see the
-    <a href="/simply-endorsed/blog/">Simply Endorsed blog</a>.
-  </p>
-</section>
-</section>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is AC 61-65?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "FAA Advisory Circular 61-65 provides the model endorsement text that CFIs and ground instructors use to document training and authorize specific privileges in a pilot's logbook. The current revision is AC 61-65K (issued 11/14/2025)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do CFIs have to copy the AC 61-65 endorsement text word-for-word?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The exact wording is not mandatory but strongly recommended. Using the model text ensures all required elements are present and reduces the risk of a rejected endorsement at a checkride or FAA ramp check."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is Simply Endorsed different from wificfi?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Simply Endorsed is a free, search-first tool built specifically for the current AC 61-65K revision. Every endorsement is searchable by ID, FAR citation, alias, or checkride use case, with no account, paywall, or ads."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which endorsement do I need for a first solo?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "First solo endorsements come from 14 CFR 61.87 and typically include A.3 (pre-solo aeronautical knowledge), A.4 (pre-solo flight training), and A.6 (solo flight in a specific make and model)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Simply Endorsed free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Simply Endorsed is a free reference tool for CFIs and student pilots, built and maintained by Diego Suarez, a Certified Ground Instructor based at Bowman Field (KLOU) in Louisville, Kentucky."
-      }
-    }
-  ]
-}</script>
 <!-- SEO:END -->
 
     <footer class="app-footer">
@@ -1126,16 +1152,19 @@
     <script src="js/endorsements-data.js?v=3"></script>
     <script src="js/browse-structure.js?v=3"></script>
     <script src="js/guidance-content.js?v=3"></script>
-    <script src="js/app.js?v=12"></script>
+    <script src="js/app.js?v=13"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
+        "@id": "https://suarezcfi.com/simply-endorsed/#app",
         "name": "Simply Endorsed",
-        "alternateName": ["Simply Endorsed CFI", "CFI endorsement lookup", "FAA pilot endorsement tool", "AC 61-65K endorsement lookup"],
+        "alternateName": ["Simply Endorsed CFI", "Simply Endorsed Endorsement Lookup", "CFI endorsement lookup", "FAA pilot endorsement tool", "AC 61-65K endorsement lookup"],
         "url": "https://suarezcfi.com/simply-endorsed/",
         "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "Aviation Training",
         "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript",
         "isAccessibleForFree": true,
         "offers": {
           "@type": "Offer",
@@ -1144,10 +1173,13 @@
         },
         "creator": {
           "@type": "Person",
+          "@id": "https://suarezcfi.com/#diego",
           "name": "Diego Suarez",
           "url": "https://suarezcfi.com/"
         },
-        "description": "Free searchable reference for FAA AC 61-65 endorsements used in flight training and checkrides."
+        "publisher": { "@id": "https://suarezcfi.com/#diego" },
+        "description": "Free FAA AC 61-65K endorsement lookup tool. Search pilot endorsements by ID, FAR citation, alias, task, or checkride workflow.",
+        "keywords": "FAA endorsements, AC 61-65K, CFI endorsements, student pilot endorsements, flight review endorsement, tailwheel endorsement, solo endorsement, checkride endorsements"
       }
     </script>
     <script type="application/ld+json">

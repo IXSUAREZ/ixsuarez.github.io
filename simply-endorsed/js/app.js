@@ -2485,7 +2485,9 @@
 
   function refresh() {
     const isGuidance = state.view === "guidance";
-    if (!isGuidance) document.title = "Simply Endorsed";
+    if (!isGuidance) {
+      document.title = "Simply Endorsed | Free FAA AC 61-65K Endorsement Lookup";
+    }
 
     if (isGuidance) {
       state.filterPopoverOpen = false;

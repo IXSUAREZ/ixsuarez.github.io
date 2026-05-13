@@ -1,4 +1,4 @@
-const CACHE_NAME = "simply-endorsed-v7";
+const CACHE_NAME = "simply-endorsed-v8";
 
 const CORE_ASSETS = [
   "./",
@@ -8,7 +8,7 @@ const CORE_ASSETS = [
   "./js/endorsements-data.js?v=3",
   "./js/browse-structure.js?v=3",
   "./js/guidance-content.js?v=1",
-  "./js/app.js?v=9",
+  "./js/app.js?v=13",
   "./APP-ICONs/favicon-192.png?v=4",
   "./APP-ICONs/favicon-512.png?v=4",
   "./APP-ICONs/apple-touch-icon.png?v=4",

@@ -2,43 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://suarezcfi.com/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed-cfi/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.76</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/what-is-simply-endorsed/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/cfi-endorsements/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.76</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/first-solo-endorsement/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.76</priority>
   </url>
@@ -86,7 +86,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/flight-review-endorsement/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -104,7 +104,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/simply-endorsed/blog/tailwheel-endorsement/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.74</priority>
   </url>
@@ -134,7 +134,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/blog/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -158,9 +158,15 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/blog/faa-private-pilot-written-test-study-guide/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/blog/faa-endorsements-explained/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
   </url>
   <url>
     <loc>https://suarezcfi.com/blog/basicmed-vs-third-class-medical/</loc>
@@ -1010,7 +1016,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/learn/aircraft-systems/returning-to-flying-after-a-break/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
@@ -1634,7 +1640,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/learn/career-and-cfi/how-to-become-a-flight-instructor/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
@@ -1706,7 +1712,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
@@ -1802,7 +1808,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/learn/ground-school/faa-written-test-procedures-and-ftn/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
@@ -1916,7 +1922,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/learn/ground-school/instrument-currency-requirements-explained-ipc-safety-pilot-etc/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
@@ -2522,7 +2528,7 @@
   </url>
   <url>
     <loc>https://suarezcfi.com/learn/private-pilot/private-pilot-flight-review-requirements/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>

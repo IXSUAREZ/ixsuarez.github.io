@@ -654,16 +654,13 @@ footer .fine { font-size: 13px; color: var(--ink-muted); margin: 0 0 6px; }
   .post-card--featured { grid-column: span 1; min-height: auto; }
 }
 
-@media (max-width: 780px) {
-  .container { padding-inline: 18px; }
-  .nav { min-height: 58px; padding: 18px 14px 0 18px; }
-  .wordmark { font-size: 25px; }
+@media (max-width: 1180px) {
   .nav-menu-toggle { display: inline-flex; }
   .nav-links {
     position: absolute;
     top: calc(100% + 12px);
-    left: 14px;
-    right: 14px;
+    left: clamp(18px, 4vw, 48px);
+    right: clamp(18px, 4vw, 48px);
     display: grid;
     gap: 4px;
     margin-left: 0;
@@ -729,6 +726,12 @@ footer .fine { font-size: 13px; color: var(--ink-muted); margin: 0 0 6px; }
     padding-inline: 11px;
     margin-top: 0;
   }
+}
+
+@media (max-width: 780px) {
+  .container { padding-inline: 18px; }
+  .nav { min-height: 58px; padding: 18px 14px 0 18px; }
+  .wordmark { font-size: 25px; }
   .page-hero { padding-top: 116px; }
   .article-wrap { padding-top: 112px; }
 }

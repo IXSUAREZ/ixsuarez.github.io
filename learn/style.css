@@ -24,7 +24,7 @@
   --edge-blur-visible: 100px;
   --edge-blur-buffer: 100px;
   --edge-blur-height: calc(var(--edge-blur-visible) + var(--edge-blur-buffer));
-  --edge-blur-strength: 37px;
+  --edge-blur-strength: 44px;
   --edge-blur-z: 5;
   --edge-blur-top-mask: linear-gradient(to top, transparent 0, #000 var(--edge-blur-visible), #000 100%);
   --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
@@ -110,15 +110,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
-}
-.nav-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 96px;
-  pointer-events: none;
-  z-index: 0;
-  background: linear-gradient(180deg, rgba(246,246,242,0.86) 0%, rgba(246,246,242,0.58) 48%, rgba(246,246,242,0) 100%);
 }
 .nav {
   pointer-events: auto;

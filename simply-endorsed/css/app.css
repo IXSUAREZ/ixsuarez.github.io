@@ -49,7 +49,7 @@
   --edge-blur-visible: 100px;
   --edge-blur-buffer: 100px;
   --edge-blur-height: calc(var(--edge-blur-visible) + var(--edge-blur-buffer));
-  --edge-blur-strength: 37px;
+  --edge-blur-strength: 44px;
   --edge-blur-z: 70;
   --edge-blur-top-mask: linear-gradient(to top, transparent 0, #000 var(--edge-blur-visible), #000 100%);
   --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);

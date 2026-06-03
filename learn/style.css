@@ -280,6 +280,38 @@ article { max-width: var(--prose); margin: 0 auto; }
 .cta-box, .see-also, .service-panel { padding: 28px; margin-top: 36px; }
 .cta-box h2, .see-also h2, .service-panel h2 { margin: 12px 0; font-family: var(--font-display); font-weight: 600; line-height: 1.2; letter-spacing: 0; }
 .see-also ul, .service-panel ul { margin-bottom: 0; }
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.44);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+.social-link:hover {
+  background: rgba(255,255,255,0.78);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.social-link svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
 .service-stack { display: grid; gap: 22px; padding-bottom: 72px; }
 .service-panel p { color: var(--ink-muted); line-height: 1.68; }
 .service-panel a { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(8, 9, 11, 0.22); }
@@ -336,6 +368,27 @@ article { max-width: var(--prose); margin: 0 auto; }
   background: rgba(251,250,246,0.74);
   color: var(--ink-muted);
 }
+.service-contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 24px;
+  align-items: center;
+}
+.service-contact-panel h2 {
+  margin-top: 10px;
+}
+.service-contact-actions {
+  display: grid;
+  gap: 10px;
+}
+.service-contact-actions .cta-btn {
+  width: 100%;
+}
+.service-contact-note {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
 .faq-panel .faq-list { display: grid; gap: 10px; margin-top: 18px; }
 .faq-panel .faq-item {
   border: 1px solid rgba(8, 9, 11, 0.09);
@@ -365,6 +418,7 @@ footer {
 .footer-inner { display: grid; gap: 16px; text-align: center; justify-items: center; }
 footer .wordmark { font-size: 32px; color: var(--ink); }
 footer nav { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+.footer-social { margin-top: 2px; }
 .fine { margin: 0; color: var(--ink-muted); font-size: 13px; }
 
 @media (max-width: 1000px) {
@@ -432,6 +486,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;
   }
   .hub-grid, .posts-grid { grid-template-columns: 1fr; }
   .service-panel--split { grid-template-columns: 1fr; }
+  .service-contact-panel { grid-template-columns: 1fr; }
   .service-card-grid { grid-template-columns: 1fr; }
 }
 

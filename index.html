@@ -378,6 +378,44 @@
       font-size: 14px;
     }
     .profile .btn--primary { width: calc(100% - 8px); justify-content: center; margin: 0 4px; }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .profile-social {
+      margin: 14px 4px 0;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 8px 12px;
+      border: 1px solid rgba(8,9,11,0.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.46);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78), var(--shadow-sm);
+      -webkit-backdrop-filter: blur(12px) saturate(145%);
+      backdrop-filter: blur(12px) saturate(145%);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .social-link:hover {
+      background: rgba(255,255,255,0.78);
+      border-color: rgba(8,9,11,0.18);
+      transform: translateY(-1px);
+    }
+    .social-link svg {
+      width: 15px;
+      height: 15px;
+      flex: 0 0 auto;
+    }
 
     .services-grid {
       display: grid;
@@ -621,6 +659,7 @@
     footer .wordmark { color: var(--navy); font-size: 32px; margin-bottom: 8px; display: inline-block; }
     footer nav { margin: 18px 0 14px; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
     footer nav a:hover { color: var(--navy); }
+    footer .footer-social { margin: 0 0 14px; }
     footer .fine { font-size: 13px; color: var(--ink-muted); }
 
     /* Premium homepage pass */
@@ -1522,6 +1561,10 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
                 Get Ground Help
               </a>
+              <a href="mailto:SuarezCFI@gmail.com?subject=Training%20question%20-%20SuarezCFI.com&amp;body=Hi%20Diego%2C%0A%0AGoal%3A%20%0ACurrent%20training%20status%3A%20%0AAirport%2Fschool%3A%20%0AMedical%20status%3A%20%0AWritten-test%20status%3A%20%0AAvailability%3A%20%0ABiggest%20question%3A%20%0APreferred%20contact%20method%3A%20%0AName%3A%20%0APhone%3A%20" class="btn btn--secondary" data-cta-id="home-hero-intake">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                Ask a Training Question
+              </a>
             </div>
             <p class="lede lede--kicker">
               Also creator of the <a href="/simply-endorsed-cfi/"><strong>Simply Endorsed CFI endorsement lookup tool</strong></a>, a free FAA AC 61-65K reference for CFIs and student pilots, with a plain-English <a href="/blog/faa-endorsements-explained/">FAA endorsements list</a> for understanding the endorsement path.
@@ -1567,6 +1610,28 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
               Contact Me
             </a>
+            <div class="social-links profile-social" aria-label="Follow Diego Suarez">
+              <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="home-social-instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="home-social-threads">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 9.2c-.5-3-2.5-4.7-5.4-4.7-3.5 0-6.1 2.6-6.1 7.4 0 4.7 2.6 7.6 6.5 7.6 3.2 0 5.4-1.7 5.4-4.2 0-2.3-1.7-3.6-5-3.6h-1.4"/><path d="M12 11.7c2.8 0 5.4.8 6.7 2.8"/></svg>
+                <span>Threads</span>
+              </a>
+              <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="home-social-youtube">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 7.1a3 3 0 0 0-2.1-2.1C17.5 4.5 12 4.5 12 4.5s-5.5 0-7.3.5a3 3 0 0 0-2.1 2.1A31.2 31.2 0 0 0 2.1 12c0 1.7.2 3.4.5 4.9a3 3 0 0 0 2.1 2.1c1.8.5 7.3.5 7.3.5s5.5 0 7.3-.5a3 3 0 0 0 2.1-2.1c.3-1.5.5-3.2.5-4.9s-.2-3.4-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+                <span>YouTube</span>
+              </a>
+              <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="home-social-tiktok">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a4.2 4.2 0 1 1-4.2-4.2"/><path d="M14 4c.7 2.7 2.4 4.4 5 5"/></svg>
+                <span>TikTok</span>
+              </a>
+              <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="home-social-facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.2 8.2V6.7c0-.7.5-1.1 1.2-1.1h1.4V3.1c-.7-.1-1.5-.1-2.3-.1-2.5 0-4.2 1.5-4.2 4.2v1H7.7V11h2.6v10h3.1V11h2.6l.4-2.8h-3.2Z"/></svg>
+                <span>Facebook</span>
+              </a>
+            </div>
           </article>
           
           <div class="about-content">
@@ -1786,9 +1851,9 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
               502-510-0508
             </a>
-            <a href="mailto:Diegoasuarez02@gmail.com" aria-label="Email Diego Suarez" data-cta-id="home-contact-email">
+            <a href="mailto:SuarezCFI@gmail.com?subject=Training%20question%20-%20SuarezCFI.com&amp;body=Hi%20Diego%2C%0A%0AGoal%3A%20%0ACurrent%20training%20status%3A%20%0AAirport%2Fschool%3A%20%0AMedical%20status%3A%20%0AWritten-test%20status%3A%20%0AAvailability%3A%20%0ABiggest%20question%3A%20%0APreferred%20contact%20method%3A%20%0AName%3A%20%0APhone%3A%20" aria-label="Email Diego Suarez with a structured training question" data-cta-id="home-contact-intake">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
-              Diegoasuarez02@gmail.com
+              Ask a training question
             </a>
           </div>
         </div>
@@ -1809,6 +1874,13 @@
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="social-links footer-social" aria-label="Follow Diego Suarez">
+        <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="footer-social-instagram">Instagram</a>
+        <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="footer-social-threads">Threads</a>
+        <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="footer-social-youtube">YouTube</a>
+        <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="footer-social-tiktok">TikTok</a>
+        <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="footer-social-facebook">Facebook</a>
+      </div>
       <p class="fine">FAA Certified Flight Instructor (CFI) and Advanced Ground Instructor · Bowman Field (KLOU), Louisville, Kentucky</p>
       <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
     </div>
@@ -1817,6 +1889,7 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
+  <script src="/assets/cta-tracking.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -1828,7 +1901,14 @@
     "url": "https://suarezcfi.com/",
     "image": "https://suarezcfi.com/assets/og-home-icon.png",
     "telephone": "+1-502-510-0508",
-    "email": "Diegoasuarez02@gmail.com",
+    "email": "SuarezCFI@gmail.com",
+    "sameAs": [
+      "https://www.instagram.com/suarez.cfi/",
+      "https://www.threads.net/@suarez.cfi",
+      "https://www.youtube.com/@SUAREZCFI",
+      "https://www.tiktok.com/@suarez.cfi",
+      "https://www.facebook.com/Suarez.CFI"
+    ],
     "worksFor": {
       "@type": "Organization",
       "name": "Diego Suarez Flight Instruction"
@@ -1892,7 +1972,7 @@
     "image": "https://suarezcfi.com/assets/og-home-icon.png",
     "url": "https://suarezcfi.com/",
     "telephone": "+1-502-510-0508",
-    "email": "Diegoasuarez02@gmail.com",
+    "email": "SuarezCFI@gmail.com",
     "priceRange": "$$",
     "description": "FAA Certified Flight Instructor (CFI) and Advanced Ground Instructor in Louisville, KY, offering primary flight instruction, ground instruction, and training-path planning for students around Bowman Field (KLOU).",
     "areaServed": [
@@ -1913,7 +1993,13 @@
       "longitude": -85.6636
     },
     "hasMap": "https://www.google.com/maps/place/Bowman+Field/@38.2281,-85.6636,15z",
-    "sameAs": [],
+    "sameAs": [
+      "https://www.instagram.com/suarez.cfi/",
+      "https://www.threads.net/@suarez.cfi",
+      "https://www.youtube.com/@SUAREZCFI",
+      "https://www.tiktok.com/@suarez.cfi",
+      "https://www.facebook.com/Suarez.CFI"
+    ],
     "founder": {
       "@type": "Person",
       "name": "Diego Suarez"

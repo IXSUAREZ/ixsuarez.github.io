@@ -198,7 +198,7 @@ const closing = `
     <a href="/">Diego Suarez</a>, an FAA Certified Flight Instructor (CFI) and
     Advanced Ground Instructor based at Bowman Field (KLOU) in Louisville,
     Kentucky. Have feedback or spotted an error? Email
-    <a href="mailto:diegoasuarez02@gmail.com">diegoasuarez02@gmail.com</a>.
+    <a href="mailto:SuarezCFI@gmail.com">SuarezCFI@gmail.com</a>.
     For the search-focused overview, see
     <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.
     For in-depth endorsement guides, see the

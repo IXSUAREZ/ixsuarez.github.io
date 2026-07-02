@@ -380,8 +380,11 @@
     sidebarToggleBtn: document.getElementById("sidebarToggleBtn"),
     sidebarBackdrop: document.getElementById("sidebarBackdrop"),
     railCloseBtn: document.getElementById("railCloseBtn"),
+    topbarBrowseBtn: document.getElementById("topbarBrowseBtn"),
     topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
+    topbarCalculatorBtn: document.getElementById("topbarCalculatorBtn"),
     guidanceView: document.getElementById("guidanceView"),
+    calculatorView: document.getElementById("part61CalculatorView"),
     statusRow: document.querySelector(".status-row"),
     resultsToolbar: document.getElementById("resultsToolbar"),
   };
@@ -632,10 +635,17 @@
     };
   }
 
+  function normalizeView(value) {
+    if (value === "guidance" || value === "calculator") {
+      return value;
+    }
+    return "browse";
+  }
+
   function applyUrlState() {
     const nextState = getUrlState();
 
-    state.view = nextState.view === "guidance" ? "guidance" : "browse";
+    state.view = normalizeView(nextState.view);
     state.category = CATEGORY_MAP.has(nextState.category) ? nextState.category : "all";
     state.subcategory = nextState.subcategory;
     state.query = nextState.query;
@@ -649,7 +659,7 @@
       : "all";
     state.expandedIds = new Set(nextState.expandedIds.filter((id) => ENDORSEMENT_MAP.has(id)));
 
-    if (state.view !== "guidance") {
+    if (state.view === "browse") {
       const entry = getCategoryEntry(state.category);
       if (state.category === "all") {
         state.subcategory = null;
@@ -672,8 +682,8 @@
   function syncUrlState() {
     const params = new URLSearchParams();
 
-    if (state.view === "guidance") {
-      params.set("view", "guidance");
+    if (state.view !== "browse") {
+      params.set("view", state.view);
     }
 
     if (state.category !== "all") {
@@ -1168,6 +1178,29 @@
     }
 
     document.title = "Teaching & Guidance \u2013 Simply Endorsed";
+    refresh();
+
+    if (options.scroll !== false) {
+      queueScrollToPageTop();
+    }
+  }
+
+  function activateCalculator(options = {}) {
+    if (!options.preserveQuery) {
+      clearSearch();
+    }
+
+    state.view = "calculator";
+    state.category = "all";
+    state.subcategory = null;
+    state.includeSupplemental = false;
+    resetExpandedCards();
+
+    if (options.closeSidebar !== false) {
+      closeSidebar({ returnFocus: false });
+    }
+
+    document.title = "Part 61 Calculator - Simply Endorsed";
     refresh();
 
     if (options.scroll !== false) {
@@ -1951,11 +1984,8 @@
       return;
     }
 
-    // When in guidance/teaching mode, always switch to browse view.
-    // In guidance mode state.category="all" and query="" so alreadyVisible
-    // would always be true — but we still need to leave guidance mode.
-    const comingFromGuidance = state.view === "guidance";
-    const alreadyVisible = !comingFromGuidance && getVisibleEndorsements().some((candidate) => candidate.id === endorsementId);
+    const comingFromNonBrowseView = state.view !== "browse";
+    const alreadyVisible = !comingFromNonBrowseView && getVisibleEndorsements().some((candidate) => candidate.id === endorsementId);
 
     if (!alreadyVisible) {
       state.view = "browse";
@@ -2485,11 +2515,18 @@
 
   function refresh() {
     const isGuidance = state.view === "guidance";
-    if (!isGuidance) {
+    const isCalculator = state.view === "calculator";
+    const isBrowse = state.view === "browse";
+
+    if (isBrowse) {
       document.title = "Simply Endorsed | Free FAA AC 61-65K Endorsement Lookup";
+    } else if (isGuidance) {
+      document.title = "Teaching & Guidance - Simply Endorsed";
+    } else if (isCalculator) {
+      document.title = "Part 61 Calculator - Simply Endorsed";
     }
 
-    if (isGuidance) {
+    if (!isBrowse) {
       state.filterPopoverOpen = false;
       state.descriptionExpanded = false;
       state.selectionUiKey = "";
@@ -2505,23 +2542,42 @@
       }
     }
 
-    if (dom.selectionSummary) dom.selectionSummary.hidden = isGuidance;
-    if (dom.statusRow) dom.statusRow.hidden = isGuidance;
-    if (dom.endorsementList) dom.endorsementList.hidden = isGuidance;
+    document.body.classList.toggle("is-calculator-view", isCalculator);
+    if (dom.filterRail) dom.filterRail.hidden = isCalculator;
+    if (dom.sidebarToggleBtn) dom.sidebarToggleBtn.hidden = isCalculator;
+    if (dom.sidebarBackdrop && isCalculator) dom.sidebarBackdrop.hidden = true;
+    if (dom.selectionSummary) dom.selectionSummary.hidden = !isBrowse;
+    if (dom.statusRow) dom.statusRow.hidden = !isBrowse;
+    if (dom.endorsementList) dom.endorsementList.hidden = !isBrowse;
     if (dom.featuredStrip) dom.featuredStrip.hidden = true;
+    if (dom.calculatorView) dom.calculatorView.hidden = !isCalculator;
 
     renderCategoryNav();
-    renderSearchSuggestions();
+    if (isBrowse) {
+      renderSearchSuggestions();
+    } else if (dom.searchSuggestions) {
+      dom.searchSuggestions.innerHTML = "";
+      dom.searchSuggestions.hidden = true;
+    }
 
-    if (!isGuidance) {
+    if (isBrowse) {
       renderFeaturedStrip();
       renderSelectionSummary();
       renderEndorsements();
       renderResultsToolbar();
     }
 
+    if (dom.topbarBrowseBtn) {
+      dom.topbarBrowseBtn.classList.toggle("is-active", isBrowse);
+      dom.topbarBrowseBtn.setAttribute("aria-current", isBrowse ? "page" : "false");
+    }
     if (dom.topbarGuidanceBtn) {
       dom.topbarGuidanceBtn.classList.toggle("is-active", isGuidance);
+      dom.topbarGuidanceBtn.setAttribute("aria-current", isGuidance ? "page" : "false");
+    }
+    if (dom.topbarCalculatorBtn) {
+      dom.topbarCalculatorBtn.classList.toggle("is-active", isCalculator);
+      dom.topbarCalculatorBtn.setAttribute("aria-current", isCalculator ? "page" : "false");
     }
     if (dom.footerGuidanceBtn) {
       dom.footerGuidanceBtn.classList.toggle("is-active", isGuidance);
@@ -3243,9 +3299,21 @@
       });
     }
 
+    if (dom.topbarBrowseBtn) {
+      dom.topbarBrowseBtn.addEventListener("click", () => {
+        activateAllEndorsements({ closeSidebar: false });
+      });
+    }
+
     if (dom.topbarGuidanceBtn) {
       dom.topbarGuidanceBtn.addEventListener("click", () => {
         activateGuidance({ closeSidebar: false });
+      });
+    }
+
+    if (dom.topbarCalculatorBtn) {
+      dom.topbarCalculatorBtn.addEventListener("click", () => {
+        activateCalculator({ closeSidebar: false });
       });
     }
 
@@ -3640,7 +3708,7 @@
         return;
       }
 
-      if (event.key === "/" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTypingField(event.target)) {
+      if (event.key === "/" && state.view === "browse" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTypingField(event.target)) {
         event.preventDefault();
         if (dom.searchInput) {
           dom.searchInput.focus();
@@ -3655,7 +3723,13 @@
         return;
       }
 
-      if (event.key.toLowerCase() === "e" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTypingField(event.target)) {
+      if (event.key.toLowerCase() === "c" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTypingField(event.target)) {
+        event.preventDefault();
+        activateCalculator({ closeSidebar: false });
+        return;
+      }
+
+      if (event.key.toLowerCase() === "e" && state.view === "browse" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTypingField(event.target)) {
         const visible = getVisibleEndorsements();
         if (visible.length > 1 && visible.length <= 12) {
           event.preventDefault();

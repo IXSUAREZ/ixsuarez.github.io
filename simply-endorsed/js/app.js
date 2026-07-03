@@ -340,6 +340,7 @@
     descriptionExpanded: false,
     selectionUiKey: "",
     expandedIds: new Set(),
+    selectedEndorsementId: null,
     openCategory: null,
     sidebarOpen: false,
     view: "browse",
@@ -363,6 +364,7 @@
     searchSuggestions: document.getElementById("searchSuggestions"),
     categoryNav: document.getElementById("categoryNav"),
     endorsementList: document.getElementById("endorsementList"),
+    endorsementDetail: document.getElementById("endorsementDetail"),
     resultsSummary: document.getElementById("resultsSummary"),
     selectionSummary: document.getElementById("selectionSummary"),
     selectionBreadcrumbs: document.getElementById("selectionBreadcrumbs"),
@@ -383,6 +385,8 @@
     topbarBrowseBtn: document.getElementById("topbarBrowseBtn"),
     topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     topbarCalculatorBtn: document.getElementById("topbarCalculatorBtn"),
+    topbarSearchInput: document.getElementById("topbarSearchInput"),
+    themeToggleBtn: document.getElementById("themeToggleBtn"),
     guidanceView: document.getElementById("guidanceView"),
     calculatorView: document.getElementById("part61CalculatorView"),
     statusRow: document.querySelector(".status-row"),
@@ -506,12 +510,16 @@
       return;
     }
 
+    state.selectedEndorsementId = endorsementId;
     if (state.expandedIds.has(endorsementId)) {
-      state.expandedIds.delete(endorsementId);
+      if (state.expandedIds.size > 1) {
+        state.expandedIds.delete(endorsementId);
+      }
       return;
     }
 
     state.expandedIds.add(endorsementId);
+    state.selectedEndorsementId = endorsementId;
     recordRecentEndorsement(endorsementId);
   }
 
@@ -600,6 +608,9 @@
     if (dom.searchInput) {
       dom.searchInput.value = state.query;
     }
+    if (dom.topbarSearchInput) {
+      dom.topbarSearchInput.value = state.query;
+    }
     if (dom.clearSearchBtn) {
       dom.clearSearchBtn.hidden = state.query === "";
     }
@@ -616,6 +627,7 @@
 
   function resetExpandedCards() {
     state.expandedIds = new Set();
+    state.selectedEndorsementId = null;
   }
 
   function getUrlState() {
@@ -658,6 +670,7 @@
       ? nextState.validityFilter
       : "all";
     state.expandedIds = new Set(nextState.expandedIds.filter((id) => ENDORSEMENT_MAP.has(id)));
+    state.selectedEndorsementId = state.expandedIds.size ? Array.from(state.expandedIds)[0] : null;
 
     if (state.view === "browse") {
       const entry = getCategoryEntry(state.category);
@@ -1443,6 +1456,30 @@
       return;
     }
 
+    if (state.view === "guidance") {
+      var modes = Array.isArray(GUIDANCE_MODES) && GUIDANCE_MODES.length ? GUIDANCE_MODES : [];
+      dom.categoryNav.innerHTML =
+        '<button type="button" class="all-button" data-action="all">' +
+        "<span>All Endorsements</span>" +
+        "</button>" +
+        '<div class="rail-divider" aria-hidden="true"></div>' +
+        '<p class="rail-kicker">Teaching</p>' +
+        modes.map(function (mode) {
+          var active = state.guidanceMode === mode.id;
+          return (
+            '<button type="button" class="all-button guidance-nav-btn' +
+            (active ? " is-active" : "") +
+            '" data-guidance-mode="' +
+            escapeHtml(mode.id) +
+            '">' +
+            '<span class="guidance-mode-icon" aria-hidden="true">' + mode.icon + "</span>" +
+            "<span>" + escapeHtml(mode.label) + "</span>" +
+            "</button>"
+          );
+        }).join("");
+      return;
+    }
+
     const counts = getVisibleCategoryCounts();
     const hasDynamicRailState = Boolean(state.query) || hasActiveFilters();
     const allActive = state.category === "all" && !state.subcategory && state.view !== "guidance";
@@ -2204,6 +2241,7 @@
 
   function renderEndorsementCard(item) {
     const expanded = state.expandedIds.has(item.id);
+    const selected = state.selectedEndorsementId === item.id;
     const cardExplanation = getCardExplanation(item);
     const detailTags = Array.isArray(item.tags) ? item.tags.filter(Boolean) : [];
     const matchReasons = state.query ? getMatchReasons(item, state.query).slice(0, 3) : [];
@@ -2308,6 +2346,7 @@
     return (
       '<article class="endorsement-card' +
       (expanded ? " is-expanded" : "") +
+      (selected ? " is-selected" : "") +
       '" data-endorsement-id="' +
       escapeHtml(item.id) +
       '" data-card-id="' +
@@ -2340,7 +2379,7 @@
       details +
       '<div class="card-viewmore-row" aria-hidden="true">' +
       '<span class="card-viewmore">' +
-      '<span class="card-viewmore-label">' + (expanded ? "View Less" : "View More") + "</span>" +
+      '<span class="card-viewmore-label">' + (expanded ? "Close" : "Open") + "</span>" +
       '<svg class="card-viewmore-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
       '<path d="M9 9l5 12 1.8-5.2L21 14 9 9z" fill="currentColor"/>' +
       '<path d="M7.2 2.4l.7 2.6M4.8 7.1l-2.6-.7M14 4.2l-1.9 1.9M6 12l-1.9 1.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>' +
@@ -2364,6 +2403,107 @@
       supplementalItems.map((item) => renderEndorsementCard(item)).join("");
       
     return sectionA + sectionB;
+  }
+
+  function getSelectedDetailItem(visibleItems) {
+    if (!Array.isArray(visibleItems) || !visibleItems.length) {
+      state.selectedEndorsementId = null;
+      return null;
+    }
+
+    if (state.selectedEndorsementId && visibleItems.some((item) => item.id === state.selectedEndorsementId)) {
+      return ENDORSEMENT_MAP.get(state.selectedEndorsementId);
+    }
+
+    const expanded = Array.from(state.expandedIds)
+      .map((id) => ENDORSEMENT_MAP.get(id))
+      .find((item) => item && visibleItems.some((visible) => visible.id === item.id));
+
+    const fallback = expanded || visibleItems[0];
+    state.selectedEndorsementId = fallback.id;
+    return fallback;
+  }
+
+  function renderEndorsementDetailPanel(visibleItems, options = {}) {
+    if (!dom.endorsementDetail) {
+      return;
+    }
+
+    const item = getSelectedDetailItem(visibleItems);
+    if (!item) {
+      dom.endorsementDetail.innerHTML =
+        '<article class="detail-workbench-card detail-empty-state">' +
+        '<p class="workbench-kicker">Selected endorsement</p>' +
+        '<h2>No endorsement selected</h2>' +
+        '<p>Choose an endorsement from the results list to review model text, source links, and copy actions.</p>' +
+        "</article>";
+      return;
+    }
+
+    const category = CATEGORY_MAP.get(item.category) || CATEGORY_MAP.get("all");
+    const categoryLabel = category ? category.label : "Endorsement";
+    const cfrText = Array.isArray(item.cfr) && item.cfr.length ? item.cfr.join(" | ") : "CFR basis not listed";
+    const sourcePageUrl = getPdfPageUrl(item.sourcePage);
+    const caution = getUsageCaution(item);
+    const relatedItems = getRelatedEndorsements(item);
+    const explanation = getCardExplanation(item) || item.explanation || "";
+
+    dom.endorsementDetail.setAttribute("data-selected-id", item.id);
+    dom.endorsementDetail.innerHTML =
+      '<article class="detail-workbench-card"' + getCategoryThemeStyle(item.category) + ">" +
+      '<div class="detail-panel-head">' +
+      '<div>' +
+      '<p class="workbench-kicker">Selected endorsement</p>' +
+      '<div class="detail-title-row">' +
+      '<span class="endorsement-id-pill mono">' + escapeHtml(item.id) + "</span>" +
+      '<h2>' + escapeHtml(item.title) + "</h2>" +
+      "</div>" +
+      "</div>" +
+      '<button type="button" class="workbench-copy-btn" data-copy-id="' + escapeHtml(item.id) + '">Copy</button>' +
+      "</div>" +
+      '<div class="detail-meta-strip detail-panel-meta">' +
+      renderDetailMetaPill("Category", categoryLabel) +
+      renderDetailMetaPill("CFR", cfrText) +
+      renderDetailMetaPill("Signer", getSpecialIssuerLabel(item)) +
+      renderDetailMetaPill("Validity", getValidityDisplayValue(item)) +
+      "</div>" +
+      (explanation ? '<p class="detail-panel-summary">' + escapeHtml(explanation) + "</p>" : "") +
+      (caution
+        ? '<section class="detail-callout" aria-label="Usage caution">' +
+          '<span class="detail-callout-label">Use caution</span>' +
+          "<p>" + escapeHtml(caution) + "</p>" +
+          "</section>"
+        : "") +
+      '<section class="detail-panel-section">' +
+      '<div class="section-title-action">' +
+      "<h3>FAA model text</h3>" +
+      '<button type="button" class="workbench-copy-btn" data-copy-id="' + escapeHtml(item.id) + '">Copy text</button>' +
+      "</div>" +
+      '<pre class="verbatim-block mono" data-verbatim-id="' + escapeHtml(item.id) + '">' + escapeHtml(item.verbatimText) + "</pre>" +
+      "</section>" +
+      '<section class="detail-panel-section">' +
+      "<h3>Official source links</h3>" +
+      '<div class="source-chip-row">' +
+      (sourcePageUrl
+        ? '<a class="source-chip" href="' + escapeHtml(sourcePageUrl) + '" target="_blank" rel="noopener noreferrer">Open FAA PDF page ' + escapeHtml(item.sourcePage) + "</a>"
+        : "") +
+      '<span class="source-chip">' + escapeHtml(getAcRef(item)) + "</span>" +
+      "</div>" +
+      "</section>" +
+      (relatedItems.length
+        ? '<section class="detail-panel-section">' +
+          "<h3>Related endorsements</h3>" +
+          '<div class="related-row">' +
+          relatedItems.map((related) => (
+            '<button type="button" class="related-chip" data-open-id="' + escapeHtml(related.id) + '">' +
+            '<span class="mono">' + escapeHtml(related.id) + "</span>" +
+            '<span>' + escapeHtml(related.title) + "</span>" +
+            "</button>"
+          )).join("") +
+          "</div>" +
+          "</section>"
+        : "") +
+      "</article>";
   }
 
   function renderFeaturedStrip() {
@@ -2473,8 +2613,10 @@
     if (renderer === "pre-solo") {
       const content = getPreSoloContent();
       const count = getPreSoloPrerequisiteCount();
+      const visible = getVisibleEndorsements();
       renderResultsSummary(count, count);
       dom.endorsementList.innerHTML = renderPreSoloContent(content);
+      renderEndorsementDetailPanel(visible);
       return;
     }
 
@@ -2501,6 +2643,7 @@
         "<p>" + escapeHtml(emptyHint) + "</p>" +
         additionalButton +
         "</article>";
+      renderEndorsementDetailPanel([]);
       return;
     }
 
@@ -2511,6 +2654,7 @@
     } else {
       dom.endorsementList.innerHTML = visible.map((item) => renderEndorsementCard(item)).join("");
     }
+    renderEndorsementDetailPanel(visible);
   }
 
   function refresh() {
@@ -2543,12 +2687,14 @@
     }
 
     document.body.classList.toggle("is-calculator-view", isCalculator);
+    document.body.classList.toggle("is-guidance-view", isGuidance);
     if (dom.filterRail) dom.filterRail.hidden = isCalculator;
     if (dom.sidebarToggleBtn) dom.sidebarToggleBtn.hidden = isCalculator;
     if (dom.sidebarBackdrop && isCalculator) dom.sidebarBackdrop.hidden = true;
     if (dom.selectionSummary) dom.selectionSummary.hidden = !isBrowse;
     if (dom.statusRow) dom.statusRow.hidden = !isBrowse;
     if (dom.endorsementList) dom.endorsementList.hidden = !isBrowse;
+    if (dom.endorsementDetail) dom.endorsementDetail.hidden = !isBrowse;
     if (dom.featuredStrip) dom.featuredStrip.hidden = true;
     if (dom.calculatorView) dom.calculatorView.hidden = !isCalculator;
 
@@ -3299,6 +3445,40 @@
       });
     }
 
+    if (dom.topbarSearchInput) {
+      dom.topbarSearchInput.addEventListener("input", debounce((event) => {
+        if (state.view !== "browse") {
+          state.view = "browse";
+          state.category = "all";
+          state.subcategory = null;
+          state.openCategory = null;
+        }
+        setSearchQuery(event.target.value || "");
+        resetExpandedCards();
+        refresh();
+      }, 120));
+
+      dom.topbarSearchInput.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") {
+          return;
+        }
+        event.preventDefault();
+        if (dom.searchInput) {
+          dom.searchInput.focus();
+        }
+      });
+    }
+
+    if (dom.themeToggleBtn) {
+      dom.themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("is-quiet-contrast");
+        dom.themeToggleBtn.setAttribute(
+          "aria-pressed",
+          document.body.classList.contains("is-quiet-contrast") ? "true" : "false",
+        );
+      });
+    }
+
     if (dom.topbarBrowseBtn) {
       dom.topbarBrowseBtn.addEventListener("click", () => {
         activateAllEndorsements({ closeSidebar: false });
@@ -3360,6 +3540,19 @@
 
     if (dom.categoryNav) {
       dom.categoryNav.addEventListener("click", (event) => {
+        const guidanceModeButton = event.target.closest("[data-guidance-mode]");
+        if (guidanceModeButton) {
+          const nextMode = guidanceModeButton.getAttribute("data-guidance-mode");
+          if (nextMode && nextMode !== state.guidanceMode) {
+            state.guidanceMode = nextMode;
+            state.guidanceOpenNodeId = null;
+            state.guidanceOpenScenarioId = null;
+            renderCategoryNav();
+            renderGuidanceView();
+          }
+          return;
+        }
+
         const button = event.target.closest("[data-action]");
         if (!button) {
           return;
@@ -3542,6 +3735,21 @@
           event.preventDefault();
           toggleExpandedCard(card.getAttribute("data-card-id"));
           refresh();
+        }
+      });
+    }
+
+    if (dom.endorsementDetail) {
+      dom.endorsementDetail.addEventListener("click", (event) => {
+        const copyButton = event.target.closest("[data-copy-id]");
+        if (copyButton) {
+          handleCopy(copyButton.getAttribute("data-copy-id"), copyButton);
+          return;
+        }
+
+        const openButton = event.target.closest("[data-open-id]");
+        if (openButton) {
+          openEndorsementById(openButton.getAttribute("data-open-id"));
         }
       });
     }

@@ -66,12 +66,6 @@
   --workbench-radius: 14px;
 }
 
-body.is-quiet-contrast {
-  --surface: rgba(255, 255, 255, 0.78);
-  --surface-soft: rgba(255, 255, 255, 0.62);
-  --text-muted: #536076;
-}
-
 .topbar-sticky {
   top: 0;
   width: 100%;

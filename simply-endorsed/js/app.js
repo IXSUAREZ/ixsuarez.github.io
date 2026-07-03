@@ -386,7 +386,6 @@
     topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     topbarCalculatorBtn: document.getElementById("topbarCalculatorBtn"),
     topbarSearchInput: document.getElementById("topbarSearchInput"),
-    themeToggleBtn: document.getElementById("themeToggleBtn"),
     guidanceView: document.getElementById("guidanceView"),
     calculatorView: document.getElementById("part61CalculatorView"),
     statusRow: document.querySelector(".status-row"),
@@ -3466,16 +3465,6 @@
         if (dom.searchInput) {
           dom.searchInput.focus();
         }
-      });
-    }
-
-    if (dom.themeToggleBtn) {
-      dom.themeToggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("is-quiet-contrast");
-        dom.themeToggleBtn.setAttribute(
-          "aria-pressed",
-          document.body.classList.contains("is-quiet-contrast") ? "true" : "false",
-        );
       });
     }
 

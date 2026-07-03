@@ -1802,11 +1802,6 @@ p {
   grid-template-columns: minmax(0, 1fr);
 }
 
-.is-calculator-view .topbar-sticky {
-  width: min(var(--max-width), calc(100% - 32px));
-  margin: 14px auto 0;
-}
-
 .is-calculator-view #sidebarToggleBtn {
   display: none !important;
 }
@@ -6894,5 +6889,40 @@ body.is-guidance-view .endorsement-detail-panel {
 @media (max-width: 640px) {
   .topbar-utility-group {
     display: none;
+  }
+}
+
+/* Uniform topbar final override: no view can restyle the global app navigation. */
+.topbar-sticky {
+  top: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 72px;
+  margin: 0 !important;
+  padding: 12px 24px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.035);
+}
+
+@media (min-width: 901px) {
+  .topbar-sticky {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(260px, 1fr);
+    align-items: center;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-sticky {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand tools"
+      "nav nav";
+    gap: 10px 12px;
   }
 }

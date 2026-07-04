@@ -6918,5 +6918,21 @@ body.is-guidance-view .endorsement-detail-panel {
       "brand tools"
       "nav nav";
     gap: 10px 12px;
+    z-index: 90;
+  }
+
+  .topbar-actions {
+    display: contents;
+  }
+
+  .topbar-utility-group {
+    display: none !important;
+  }
+
+  #sidebarToggleBtn {
+    display: inline-grid;
+    grid-area: tools;
+    justify-self: end;
+    align-self: center;
   }
 }

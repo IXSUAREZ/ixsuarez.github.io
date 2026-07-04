@@ -6936,3 +6936,11 @@ body.is-guidance-view .endorsement-detail-panel {
     align-self: center;
   }
 }
+
+@media (min-width: 901px) {
+  body.is-guidance-view .filter-rail {
+    top: 86px;
+    height: calc(100dvh - 100px);
+    margin-top: 0;
+  }
+}

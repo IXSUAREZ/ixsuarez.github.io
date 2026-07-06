@@ -401,6 +401,13 @@
       .replace(/'/g, "&#39;");
   }
 
+  function linkifyCfrText(value, options) {
+    if (window.CfrLinks && typeof window.CfrLinks.linkifyCfrText === "function") {
+      return window.CfrLinks.linkifyCfrText(value, options);
+    }
+    return escapeHtml(value ?? "");
+  }
+
   function normalizeText(value) {
     return String(value || "")
       .toLowerCase()
@@ -572,11 +579,11 @@
     element.style.setProperty("--category-pill-text", getContrastTextColor(theme.accent));
   }
 
-  function renderDetailMetaPill(label, value) {
+  function renderDetailMetaPill(label, value, options = {}) {
     return (
       '<span class="detail-meta-pill">' +
       '<span class="detail-meta-pill-label">' + escapeHtml(label) + "</span>" +
-      '<span class="detail-meta-pill-value">' + escapeHtml(value) + "</span>" +
+      '<span class="detail-meta-pill-value">' + (options.html ? value : escapeHtml(value)) + "</span>" +
       "</span>"
     );
   }
@@ -2277,7 +2284,7 @@
       referenceItems.push(
         '<span class="reference-item">' +
         '<span class="reference-label">CFR</span>' +
-        '<span class="mono">' + escapeHtml(item.cfr.join(" | ")) + "</span>" +
+        '<span class="mono cfr-link-list">' + linkifyCfrText(item.cfr.join(" | "), { linkBare: true }) + "</span>" +
         "</span>"
       );
     }
@@ -2462,7 +2469,7 @@
       "</div>" +
       '<div class="detail-meta-strip detail-panel-meta">' +
       renderDetailMetaPill("Category", categoryLabel) +
-      renderDetailMetaPill("CFR", cfrText) +
+      renderDetailMetaPill("CFR", linkifyCfrText(cfrText, { linkBare: true }), { html: true }) +
       renderDetailMetaPill("Signer", getSpecialIssuerLabel(item)) +
       renderDetailMetaPill("Validity", getValidityDisplayValue(item)) +
       "</div>" +
@@ -2601,6 +2608,80 @@
       );
   }
 
+  function getTrainingRequirementCard(subcategory) {
+    const cards = window.TRAINING_REQUIREMENT_CARDS || {};
+    if (state.category === "all") {
+      return null;
+    }
+
+    const subcategoryCards = cards.subcategoryCards || {};
+    const categoryCards = cards.categoryCards || {};
+    const subcategoryKey = subcategory ? state.category + "/" + subcategory.id : "";
+    return subcategoryCards[subcategoryKey] || categoryCards[state.category] || null;
+  }
+
+  function renderRequirementRef(ref) {
+    return '<span class="requirement-ref">' + linkifyCfrText(ref, { linkBare: true }) + "</span>";
+  }
+
+  function renderRequirementItem(item) {
+    const refs = Array.isArray(item.refs) ? item.refs : [];
+    return (
+      '<li class="training-requirement-item">' +
+      '<div class="training-requirement-copy">' +
+      '<span class="training-requirement-label">' + escapeHtml(item.label || "Requirement") + "</span>" +
+      '<p>' + linkifyCfrText(item.text || "") + "</p>" +
+      "</div>" +
+      (refs.length
+        ? '<div class="training-requirement-refs">' + refs.map(renderRequirementRef).join("") + "</div>"
+        : "") +
+      "</li>"
+    );
+  }
+
+  function renderTrainingRequirementCard(card) {
+    if (!card) {
+      return "";
+    }
+
+    const requirements = Array.isArray(card.requirements) ? card.requirements : [];
+    const related = Array.isArray(card.relatedEndorsements)
+      ? card.relatedEndorsements.map((id) => ENDORSEMENT_MAP.get(id)).filter(Boolean)
+      : [];
+
+    return (
+      '<aside class="training-requirements-card" aria-label="Training requirements summary">' +
+      '<div class="training-requirements-head">' +
+      '<div>' +
+      '<p class="workbench-kicker">Training Requirements</p>' +
+      '<h2>' + escapeHtml(card.title || "Requirement snapshot") + "</h2>" +
+      "</div>" +
+      (card.sourceReviewDate
+        ? '<span class="training-review-date">Reviewed ' + escapeHtml(card.sourceReviewDate) + "</span>"
+        : "") +
+      "</div>" +
+      (card.summary ? '<p class="training-requirements-summary">' + linkifyCfrText(card.summary) + "</p>" : "") +
+      (requirements.length
+        ? '<ul class="training-requirement-list">' + requirements.map(renderRequirementItem).join("") + "</ul>"
+        : "") +
+      (related.length
+        ? '<div class="training-related-row" aria-label="Related endorsements">' +
+          '<span class="training-related-label">Related</span>' +
+          related.map((item) => (
+            '<button type="button" class="related-chip training-related-chip" data-open-id="' + escapeHtml(item.id) + '">' +
+            '<span class="mono">' + escapeHtml(item.id) + "</span>" +
+            '<span>' + escapeHtml(item.title) + "</span>" +
+            "</button>"
+          )).join("") +
+          "</div>"
+        : "") +
+      (card.reviewNote
+        ? '<p class="training-requirements-note">' + linkifyCfrText(card.reviewNote) + "</p>"
+        : "") +
+      "</aside>"
+    );
+  }
+
   function renderEndorsements() {
     if (!dom.endorsementList) {
       return;
@@ -2608,13 +2689,14 @@
 
     const subcategory = getSelectedSubcategory();
     const renderer = getSubcategoryContentRenderer(subcategory);
+    const requirementCardHtml = renderTrainingRequirementCard(getTrainingRequirementCard(subcategory));
 
     if (renderer === "pre-solo") {
       const content = getPreSoloContent();
       const count = getPreSoloPrerequisiteCount();
       const visible = getVisibleEndorsements();
       renderResultsSummary(count, count);
-      dom.endorsementList.innerHTML = renderPreSoloContent(content);
+      dom.endorsementList.innerHTML = requirementCardHtml + renderPreSoloContent(content);
       renderEndorsementDetailPanel(visible);
       return;
     }
@@ -2637,6 +2719,7 @@
       }
 
       dom.endorsementList.innerHTML =
+        requirementCardHtml +
         '<article class="placeholder-card empty-state">' +
         "<h2>No endorsements match this view</h2>" +
         "<p>" + escapeHtml(emptyHint) + "</p>" +
@@ -2649,9 +2732,9 @@
     if (state.includeSupplemental && subcategory && Array.isArray(subcategory.supplementalIds) && subcategory.supplementalIds.length) {
       const primaryItems = visible.filter((item) => subcategory.primaryIds.includes(item.id));
       const supplementalItems = visible.filter((item) => subcategory.supplementalIds.includes(item.id) && !subcategory.primaryIds.includes(item.id));
-      dom.endorsementList.innerHTML = renderBundleSections(primaryItems, supplementalItems, subcategory.supplementalLabel || "");
+      dom.endorsementList.innerHTML = requirementCardHtml + renderBundleSections(primaryItems, supplementalItems, subcategory.supplementalLabel || "");
     } else {
-      dom.endorsementList.innerHTML = visible.map((item) => renderEndorsementCard(item)).join("");
+      dom.endorsementList.innerHTML = requirementCardHtml + visible.map((item) => renderEndorsementCard(item)).join("");
     }
     renderEndorsementDetailPanel(visible);
   }
@@ -2733,24 +2816,23 @@
   }
 
   function renderGuidanceContentBlock(block) {
-    var h = escapeHtml;
     if (block.type === "p") {
-      return "<p>" + h(block.value) + "</p>";
+      return "<p>" + linkifyCfrText(block.value) + "</p>";
     }
     if (block.type === "h3") {
-      return "<h3>" + h(block.value) + "</h3>";
+      return "<h3>" + linkifyCfrText(block.value) + "</h3>";
     }
     if (block.type === "ul") {
       return (
         "<ul>" +
-        block.value.map(function (item) { return "<li>" + h(item) + "</li>"; }).join("") +
+        block.value.map(function (item) { return "<li>" + linkifyCfrText(item) + "</li>"; }).join("") +
         "</ul>"
       );
     }
     if (block.type === "ol") {
       return (
         "<ol>" +
-        block.value.map(function (item) { return "<li>" + h(item) + "</li>"; }).join("") +
+        block.value.map(function (item) { return "<li>" + linkifyCfrText(item) + "</li>"; }).join("") +
         "</ol>"
       );
     }
@@ -2817,10 +2899,10 @@
       html += '<div class="journey-panel"' + (isOpen ? "" : " hidden") + ">";
 
       html += '<p class="journey-panel-section-label">Overview</p>';
-      html += '<p class="journey-description">' + escapeHtml(stage.description) + "</p>";
+      html += '<p class="journey-description">' + linkifyCfrText(stage.description) + "</p>";
 
       if (stage.regulation) {
-        html += '<p class="journey-regulation">' + escapeHtml(stage.regulation) + "</p>";
+        html += '<p class="journey-regulation">' + linkifyCfrText(stage.regulation, { linkBare: true }) + "</p>";
       }
 
       if (stage.timeLimit) {
@@ -2845,7 +2927,7 @@
           html +=
             '<div class="journey-endorsement-chip" style="margin-bottom:10px;">' +
             renderAcLink(note.id) +
-            '<span class="journey-endorsement-label">' + escapeHtml(note.note) + "</span>" +
+            '<span class="journey-endorsement-label">' + linkifyCfrText(note.note) + "</span>" +
             "</div>";
         });
       }
@@ -2854,7 +2936,7 @@
         html += '<p class="journey-panel-section-label">Watch Out For</p>';
         html += '<ul class="journey-gotchas">';
         stage.gotchas.forEach(function (g) {
-          html += '<li class="journey-gotcha-item">' + escapeHtml(g) + "</li>";
+          html += '<li class="journey-gotcha-item">' + linkifyCfrText(g) + "</li>";
         });
         html += "</ul>";
       }
@@ -2894,7 +2976,7 @@
       if (isOpen) {
         html += '<div class="scenario-panel">';
 
-        html += '<div><p class="scenario-section-label">Regulation</p><p class="scenario-regulation">' + escapeHtml(s.regulation) + "</p></div>";
+        html += '<div><p class="scenario-section-label">Regulation</p><p class="scenario-regulation">' + linkifyCfrText(s.regulation, { linkBare: true }) + "</p></div>";
 
         if (s.timeLimit) {
           html += '<div class="scenario-time-limit-banner">⏱ ' + escapeHtml(s.timeLimit) + "</div>";
@@ -2902,7 +2984,7 @@
 
         html += '<div><p class="scenario-section-label">Steps</p><ol class="scenario-steps-list">';
         s.steps.forEach(function (step) {
-          html += "<li>" + escapeHtml(step) + "</li>";
+          html += "<li>" + linkifyCfrText(step) + "</li>";
         });
         html += "</ol></div>";
 
@@ -2919,12 +3001,12 @@
         }
 
         if (s.pitfalls && s.pitfalls.length) {
-          html += '<div><p class="scenario-section-label">Common Pitfalls</p><ul class="scenario-pitfalls-list">';
-          s.pitfalls.forEach(function (p) {
-            html += "<li>" + escapeHtml(p) + "</li>";
-          });
-          html += "</ul></div>";
-        }
+        html += '<div><p class="scenario-section-label">Common Pitfalls</p><ul class="scenario-pitfalls-list">';
+        s.pitfalls.forEach(function (p) {
+          html += "<li>" + linkifyCfrText(p) + "</li>";
+        });
+        html += "</ul></div>";
+      }
 
         html += "</div>";
       } else {
@@ -2956,7 +3038,7 @@
         "<tr>" +
         '<td><span class="quickref-limit-badge" style="background:' + h(theme.soft) + ";color:" + h(theme.ink) + ';">' + h(row.limit) + "</span></td>" +
         "<td>" + h(row.appliesTo) + "</td>" +
-        '<td style="font-family:var(--mono,monospace);font-size:0.78rem;white-space:nowrap;">' + h(row.governingFAR) + "</td>" +
+        '<td style="font-family:var(--mono,monospace);font-size:0.78rem;white-space:nowrap;">' + linkifyCfrText(row.governingFAR, { linkBare: true }) + "</td>" +
         "<td>" + h(row.resetsWhen) + "</td>" +
         "</tr>";
     });
@@ -2984,7 +3066,7 @@
       html +=
         "<tr>" +
         "<td>" + renderAcLink(row.acRef) + "</td>" +
-        '<td style="font-family:var(--mono,monospace);font-size:0.78rem;white-space:nowrap;">' + h(row.far) + "</td>" +
+        '<td style="font-family:var(--mono,monospace);font-size:0.78rem;white-space:nowrap;">' + linkifyCfrText(row.far, { linkBare: true }) + "</td>" +
         "<td>" + h(row.use) + "</td>" +
         "<td>" + h(row.expiration) + "</td>" +
         "</tr>";
@@ -3016,7 +3098,7 @@
       "FAA Order 8900.1 (FSIMS)",
     ];
     refs.forEach(function (ref) {
-      html += "<li>" + h(ref) + "</li>";
+      html += "<li>" + linkifyCfrText(ref) + "</li>";
     });
     html += "</ul></div>";
 
@@ -3233,7 +3315,9 @@
 
   function renderPreSoloPrerequisiteCard(item) {
     var h = escapeHtml;
-    var refs = Array.isArray(item.refs) ? item.refs.join(" | ") : "";
+    var refs = Array.isArray(item.refs)
+      ? item.refs.map(function(ref) { return linkifyCfrText(ref, { linkBare: true }); }).join(" | ")
+      : "";
     return (
       '<article class="endorsement-card endorsement-card--prerequisite"' +
       getCategoryThemeStyle("student-pilot") +
@@ -3245,10 +3329,10 @@
       "</div>" +
       "<h2>" + h(item.title) + "</h2>" +
       "</div>" +
-      '<p class="prereq-description">' + h(item.description) + "</p>" +
+      '<p class="prereq-description">' + linkifyCfrText(item.description) + "</p>" +
       '<div class="meta-line">' +
       '<span class="meta-item">Student Pilot</span>' +
-      '<span class="meta-item mono">' + h(refs) + "</span>" +
+      '<span class="meta-item mono cfr-link-list">' + refs + "</span>" +
       "</div>" +
       "</article>"
     );
@@ -3288,7 +3372,7 @@
     var h = escapeHtml;
     return blocks.map(function(block) {
       if (block.type === "h4") {
-        return '<h4 class="prereq-accordion-h4">' + h(block.value) + '</h4>';
+        return '<h4 class="prereq-accordion-h4">' + linkifyCfrText(block.value) + '</h4>';
       }
       return renderGuidanceContentBlock(block);
     }).join("");
@@ -3306,7 +3390,7 @@
           );
         }).join("");
         var regsHtml = section.regs.map(function(reg) {
-          return '<li>' + h(reg) + '</li>';
+          return '<li>' + linkifyCfrText(reg, { linkBare: true }) + '</li>';
         }).join("");
         bodyHtml =
           '<ul class="pre-solo-link-list">' + linksHtml + '</ul>' +

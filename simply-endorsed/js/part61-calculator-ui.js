@@ -271,6 +271,13 @@
       .replace(/'/g, "&#039;");
   }
 
+  function linkifyCfrText(value, options) {
+    if (window.CfrLinks && typeof window.CfrLinks.linkifyCfrText === "function") {
+      return window.CfrLinks.linkifyCfrText(value, options);
+    }
+    return escapeHtml(value ?? "");
+  }
+
   function money(value) {
     if (typeof value === "number") {
       return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
@@ -808,6 +815,7 @@
 
   function formatCell(value, key, row) {
     const tags = key === "requirement" || key === "block" ? tagMarkup(row) : "";
+    const linkKeys = new Set(["cfr", "cfrBasis", "source", "cfrRows"]);
     if (typeof value === "number" && Number.isFinite(value)) {
       return `${escapeHtml(String(value))}${tags}`;
     }
@@ -816,6 +824,9 @@
     }
     if (value === "Complete" || value === 0 || value === "0") {
       return `<span class="status-good">${escapeHtml(value)}</span>${tags}`;
+    }
+    if (linkKeys.has(key)) {
+      return `${linkifyCfrText(value ?? "", { linkBare: true })}${tags}`;
     }
     return `${escapeHtml(value ?? "")}${tags}`;
   }
@@ -976,7 +987,7 @@
     ids.sourceReview.textContent = `Source review date: ${result.sourceReviewDate}`;
     updateInputCompleteness();
     renderAuditDashboard(result);
-    ids.verdict.innerHTML = audits.map((audit, index) => `<p><b>Stage ${index + 1}: ${escapeHtml(audit.title)}.</b> ${escapeHtml(audit.verdict)}</p>`).join("");
+    ids.verdict.innerHTML = audits.map((audit, index) => `<p><b>Stage ${index + 1}: ${escapeHtml(audit.title)}.</b> ${linkifyCfrText(audit.verdict, { linkBare: true })}</p>`).join("");
     renderSummary(audits);
     renderCombined(result);
     renderCounts(audits);

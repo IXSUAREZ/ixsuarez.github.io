@@ -1,17 +1,19 @@
-const CACHE_NAME = "simply-endorsed-v20";
+const CACHE_NAME = "simply-endorsed-v21";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./site.webmanifest?v=2",
-  "./css/app.css?v=28",
+  "./css/app.css?v=29",
+  "./js/cfr-links.js?v=1",
   "./js/endorsements-data.js?v=3",
   "./js/browse-structure.js?v=3",
   "./js/guidance-content.js?v=3",
+  "./js/training-requirements-data.js?v=1",
   "./js/part61-rules-data.js?v=1",
   "./js/part61-calculator-core.js?v=1",
-  "./js/part61-calculator-ui.js?v=1",
-  "./js/app.js?v=16",
+  "./js/part61-calculator-ui.js?v=2",
+  "./js/app.js?v=17",
   "./APP-ICONs/favicon-192.png?v=4",
   "./APP-ICONs/favicon-512.png?v=4",
   "./APP-ICONs/apple-touch-icon.png?v=4",

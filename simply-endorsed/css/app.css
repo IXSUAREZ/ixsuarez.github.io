@@ -4817,6 +4817,164 @@ p {
   text-transform: uppercase;
 }
 
+.cfr-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.cfr-link:hover {
+  text-decoration: underline;
+}
+
+.cfr-link-list {
+  line-height: 1.6;
+}
+
+.training-requirements-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--category-line) 70%, white);
+  border-left: 4px solid var(--category-accent);
+  border-radius: var(--workbench-radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--category-soft) 72%, white), rgba(255, 255, 255, 0.94));
+  box-shadow: var(--workbench-shadow);
+}
+
+.training-requirements-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.training-requirements-head h2 {
+  margin: 3px 0 0;
+  color: var(--text-strong);
+  font-size: 1.02rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.training-review-date {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border: 1px solid color-mix(in srgb, var(--category-line) 72%, white);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--category-ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.training-requirements-summary,
+.training-requirements-note {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.training-requirements-note {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.training-requirement-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.training-requirement-item {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(87, 99, 118, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.training-requirement-label {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.training-requirement-copy p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.84rem;
+  line-height: 1.58;
+}
+
+.training-requirement-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.requirement-ref {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border: 1px solid color-mix(in srgb, var(--category-line) 72%, white);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--category-ink);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.requirement-ref .cfr-link {
+  color: inherit;
+}
+
+.training-related-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.training-related-label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.training-related-chip {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 720px) {
+  .training-requirements-card {
+    padding: 14px;
+  }
+
+  .training-requirements-head {
+    display: grid;
+  }
+
+  .training-review-date {
+    width: fit-content;
+  }
+}
+
 /* ── Accordion Sections ── */
 .prereq-accordions {
   display: flex;

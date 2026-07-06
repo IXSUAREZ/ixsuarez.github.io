@@ -7095,6 +7095,28 @@ body.is-guidance-view .endorsement-detail-panel {
   }
 }
 
+@media (min-width: 901px) and (max-width: 1180px) {
+  .content-area {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .content-area .selection-summary,
+  .content-area .status-row,
+  .content-area .featured-strip,
+  .content-area .endorsement-list,
+  .content-area .endorsement-detail-panel {
+    grid-column: 1 / -1 !important;
+    min-width: 0;
+  }
+
+  .content-area .endorsement-detail-panel {
+    grid-row: auto !important;
+    position: relative;
+    top: auto;
+    max-height: none;
+  }
+}
+
 @media (min-width: 901px) {
   body.is-guidance-view .filter-rail {
     top: 86px;

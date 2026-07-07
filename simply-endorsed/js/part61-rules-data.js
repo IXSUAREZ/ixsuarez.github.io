@@ -51,7 +51,9 @@
     "commercial-rotor-helicopter": { category: "rotorcraft", klass: "helicopter", level: "commercial", powered: true },
     // Dedicated add-class targets earn an airplane class at the noted level.
     "commercial-asel-add-class": { category: "airplane", klass: "asel", level: "commercial", powered: true },
-    "private-asel-add-class": { category: "airplane", klass: "asel", level: "private", powered: true }
+    "private-asel-add-class": { category: "airplane", klass: "asel", level: "private", powered: true },
+    "commercial-amel-add-class": { category: "airplane", klass: "amel", level: "commercial", powered: true },
+    "private-amel-add-class": { category: "airplane", klass: "amel", level: "private", powered: true }
   };
 
   const LEVEL_ORDER = { student: 0, sport: 1, recreational: 2, private: 3, commercial: 4, atp: 5 };
@@ -78,9 +80,12 @@
     { id: "recreational-asel", label: "Recreational Pilot - ASEL" },
     { id: "private-asel", label: "Private Pilot - ASEL" },
     { id: "private-asel-add-class", label: "Private ASEL Added Class under 61.63(c)" },
+    { id: "private-amel-add-class", label: "Private AMEL Added Class under 61.63(c)" },
     { id: "instrument-airplane", label: "Instrument Rating - Airplane" },
     { id: "commercial-asel", label: "Commercial Pilot - ASEL" },
     { id: "commercial-asel-add-class", label: "Commercial ASEL Added Class under 61.63(c)" },
+    { id: "commercial-amel", label: "Commercial Pilot - AMEL" },
+    { id: "commercial-amel-add-class", label: "Commercial AMEL Added Class under 61.63(c)" },
     { id: "sport-add-category-class", label: "Sport Pilot Add Category/Class under 61.321" },
     { id: "sport-cfi", label: "Sport Pilot Flight Instructor under 61.411" }
   ];
@@ -122,7 +127,10 @@
         ["commercialTrainingAsel", "Commercial Training ASEL", "61.129(a)(3) commercial training received in ASEL."],
         ["soloPdpicAsel", "Solo/PDPIC ASEL", "61.129(a)(4) solo or performing-duties-of-PIC time in ASEL."],
         ["complexTaaTurbine", "Complex/TAA/Turbine", "Time in complex, TAA, or turbine-powered airplanes."],
-        ["prepRecent", "Recent Prep", "Checkride prep received within the 2 calendar months before the test."]
+        ["prepRecent", "Recent Prep", "Checkride prep received within the 2 calendar months before the test."],
+        // Appended at the end to preserve positional share-link encoding (flatFieldList order).
+        ["commercialTrainingAmel", "Commercial Training AMEL", "61.129(b)(3) commercial training received in a multiengine airplane."],
+        ["soloPdpicAmel", "Solo/PDPIC AMEL", "61.129(b)(4) solo or performing-duties-of-PIC time in a multiengine airplane."]
       ]
     }
   ];
@@ -130,7 +138,7 @@
   const EVENT_GROUPS = [
     { id: "private", label: "Private Pilot events", targets: ["sport-asel", "private-asel"] },
     { id: "instrument", label: "Instrument Rating events", targets: ["instrument-airplane"] },
-    { id: "commercial", label: "Commercial Pilot events", targets: ["commercial-asel", "commercial-asel-add-class"] }
+    { id: "commercial", label: "Commercial Pilot events", targets: ["commercial-asel", "commercial-asel-add-class", "commercial-amel", "commercial-amel-add-class"] }
   ];
 
   const EVENT_OPTIONS = [
@@ -215,7 +223,9 @@
         commercialTrainingAsel: 0,
         soloPdpicAsel: 0,
         complexTaaTurbine: 0,
-        prepRecent: 0
+        prepRecent: 0,
+        commercialTrainingAmel: 0,
+        soloPdpicAmel: 0
       },
       events: {}
     },
@@ -255,7 +265,9 @@
         commercialTrainingAsel: 0,
         soloPdpicAsel: 0,
         complexTaaTurbine: 15,
-        prepRecent: 0
+        prepRecent: 0,
+        commercialTrainingAmel: 0,
+        soloPdpicAmel: 0
       },
       events: {}
     },
@@ -295,7 +307,9 @@
         commercialTrainingAsel: 8,
         soloPdpicAsel: 3,
         complexTaaTurbine: 4,
-        prepRecent: 1
+        prepRecent: 1,
+        commercialTrainingAmel: 0,
+        soloPdpicAmel: 0
       },
       events: {
         commercialDayXc: true,
@@ -343,7 +357,9 @@
         commercialTrainingAsel: 0,
         soloPdpicAsel: 0,
         complexTaaTurbine: 0,
-        prepRecent: 0
+        prepRecent: 0,
+        commercialTrainingAmel: 0,
+        soloPdpicAmel: 0
       },
       events: {}
     }
@@ -413,6 +429,24 @@
       ["61.129(a)(4)", "10 hours solo/PDPIC ASEL", 10, "soloPdpicAsel", "parent", "Separate from dual/training unless PDPIC rule path applies."],
       ["61.129(a)(4)(i)", "300 NM XC, 3 points, one point 250 NM from departure", null, null, "event", "Can fit inside 10 solo/PDPIC."],
       ["61.129(a)(4)(ii)", "5 night VFR hours plus 10 towered takeoffs/landings", 5, null, "event", "Can fit inside 10 solo/PDPIC."]
+    ],
+    "commercial-amel": [
+      ["61.129(b)", "250 hours total flight time as pilot", 250, "totalTime", "parent", "Broad parent row."],
+      ["61.129(b)(1)", "100 hours powered aircraft", 100, "poweredTime", "parent", "Broad powered time if valid."],
+      ["61.129(b)(1)", "50 hours airplanes", 50, "airplaneTime", "parent", "Airplane-specific."],
+      ["61.129(b)(2)", "100 hours PIC", 100, "picTotal", "parent", "Broad PIC if valid."],
+      ["61.129(b)(2)(i)", "50 hours PIC in airplanes", 50, "picAirplane", "parent", "Airplane-specific."],
+      ["61.129(b)(2)(ii)", "50 hours PIC XC", 50, "xcPicTotal", "parent", "Broad XC PIC if valid."],
+      ["61.129(b)(2)(ii)", "10 hours PIC XC in airplanes", 10, "xcPicAirplane", "parent", "Airplane-specific."],
+      ["61.129(b)(3)", "20 hours commercial training in a multiengine airplane", 20, "commercialTrainingAmel", "parent", "Commercial training parent row (multiengine)."],
+      ["61.129(b)(3)(i)", "10 hours instrument training incl 5 in a multiengine airplane", 10, null, "event", "Can fit inside 20 training."],
+      ["61.129(b)(3)(ii)", "10 hours multiengine complex/TAA/turbine airplane", 10, "complexTaaTurbine", "event", "Must be a multiengine airplane. Can fit inside 20 training."],
+      ["61.129(b)(3)(iii)", "2-hour day XC over 100 NM in a multiengine airplane", 2, null, "event", "Can fit inside 20 training."],
+      ["61.129(b)(3)(iv)", "2-hour night XC over 100 NM in a multiengine airplane", 2, null, "event", "Can fit inside 20 training."],
+      ["61.129(b)(3)(v)", "3 hours prep in a multiengine airplane in preceding 2 calendar months", 3, null, "event", "Can fit inside 20 training."],
+      ["61.129(b)(4)", "10 hours solo/PDPIC in a multiengine airplane", 10, "soloPdpicAmel", "parent", "Solo or performing duties of PIC in a multiengine airplane."],
+      ["61.129(b)(4)(i)", "300 NM XC, 3 points, one point 250 NM from departure", null, null, "event", "Can fit inside 10 solo/PDPIC."],
+      ["61.129(b)(4)(ii)", "5 night VFR hours plus 10 towered takeoffs/landings", 5, null, "event", "Can fit inside 10 solo/PDPIC."]
     ]
   };
 

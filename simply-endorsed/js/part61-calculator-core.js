@@ -197,12 +197,22 @@
     base.ratedInTargetClass = ratedInTargetClass;
     base.holdsTargetCategory = holdsTargetCategory;
 
-    const forceClassAdd = targetId === "commercial-asel-add-class" || targetId === "private-asel-add-class";
+    // Is the target a higher certificate level than anything the pilot already
+    // holds in the target category? If so, a same-category class change is really
+    // a new-level path (full experience + knowledge test), not a 61.63(c) add.
+    const heldLevelsSameCat = held
+      .filter((h) => h.category === target.category)
+      .map((h) => (RULES.LEVEL_ORDER && RULES.LEVEL_ORDER[h.level]) || 0);
+    const highestSameCat = heldLevelsSameCat.length ? Math.max.apply(null, heldLevelsSameCat) : 0;
+    const targetLevelRank = (RULES.LEVEL_ORDER && RULES.LEVEL_ORDER[target.level]) || 0;
+    const isLevelUp = targetLevelRank > highestSameCat;
+
+    const forceClassAdd = ["commercial-asel-add-class", "private-asel-add-class", "commercial-amel-add-class", "private-amel-add-class"].indexOf(targetId) > -1;
     let pathType;
     if (forceClassAdd) pathType = "class-add";
     else if (!holdsAnyPilotCert) pathType = "initial";
     else if (ratedInTargetClass) pathType = "level-change";
-    else if (holdsTargetCategory) pathType = "class-add";
+    else if (holdsTargetCategory) pathType = isLevelUp ? "class-level-change" : "class-add";
     else pathType = "category-add";
     base.pathType = pathType;
 
@@ -224,6 +234,17 @@
       base.soloEndorsement = { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Only if the pilot will solo the new class before the practical test - you hold the category but not this class, so a 61.31(d)(2) authorization is required to act as PIC solo." };
       base.picLogging = { canLogDuringDual: false, note: "Not rated in the new class: PIC is not loggable during dual (61.51(e)). Log PIC only when soloing under a 61.31(d)(2) authorization." };
       base.summary = `Added airplane class under 61.63(c) - no knowledge test, no fixed FAA hour minimum; train to proficiency.`;
+    } else if (pathType === "class-level-change") {
+      // New class AND a higher certificate level (e.g., Private ASEL -> Commercial AMEL):
+      // full experience + knowledge test for the new level, but still unrated in the class.
+      base.knowledgeTest = { status: "Required", note: "A higher certificate level requires its own knowledge test (e.g., 61.125 commercial). The 61.63 power-to-power waiver applies to same-level rating adds, not to a new certificate level." };
+      base.soloEndorsement = { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Not rated in the new class - a 61.31(d)(2) authorization is required to solo the new class and build time toward the rating." };
+      base.picLogging = { canLogDuringDual: false, note: "Not rated in the new class: PIC is not loggable during dual (61.51(e)). Log PIC only when soloing under 61.31(d)(2); up to 10 hours performing duties of PIC with an instructor aboard counts toward 61.129(b)(4)." };
+      if (target.level === "commercial") {
+        base.postCertTiming = "Commercial aeronautical-experience events (61.129 solo/PDPIC and training) count only if flown after the prior pilot certificate was issued, not during student-pilot training (FAA interpretation).";
+        base.postCertBasis = "14 CFR 61.129 / FAA legal interpretation";
+      }
+      base.summary = `Level change to ${levelLabel} plus a new class - meet the full ${levelLabel} aeronautical experience in the new class; not rated in the class, so build time under 61.31(d)(2).`;
     } else {
       const kt = holdsAnyPowered
         ? { status: "Not required", note: "61.63(b)(4): no knowledge test when you already hold a powered-category rating (airplane, rotorcraft, powered-lift, etc.) at this certificate level - power-to-power." }
@@ -252,14 +273,15 @@
     if (path.soloEndorsement && path.soloEndorsement.needed) {
       extra.push({ gate: "Solo authorization to build time", source: path.soloEndorsement.basis + " / AC 61-65 A.76", required: "Yes, to log PIC before the rating", whenNeeded: "Before solo or time-building in the new category/class", whoHandles: "Authorized instructor", notes: path.soloEndorsement.note });
       extra.push({ gate: "PIC logging during training", source: "14 CFR 61.51(e)", required: "Informational", whenNeeded: "Throughout training", whoHandles: "Applicant / instructor", notes: path.picLogging.note });
-    } else if (path.postCertTiming) {
+    }
+    if (path.postCertTiming) {
       extra.push({ gate: "Post-certificate event timing", source: path.postCertBasis, required: "Informational", whenNeeded: "When crediting solo/PDPIC and training events", whoHandles: "Applicant / instructor", notes: path.postCertTiming });
     }
     return extra.concat(rewritten);
   }
 
   function reconcileEndorsements(list, path) {
-    const managed = ["initial", "level-change", "category-add", "class-add", "instrument-rating"];
+    const managed = ["initial", "level-change", "class-level-change", "category-add", "class-add", "instrument-rating"];
     if (managed.indexOf(path.pathType) === -1) return list;
     let out = list.slice();
     const hasItem = (code) => out.some((e) => e.item === code);
@@ -288,15 +310,15 @@
     if (targetId === "private-asel") links.unshift({ label: "14 CFR 61.109", url: RULES.LINKS.cfr61109 });
     if (targetId === "recreational-asel") links.unshift({ label: "14 CFR 61.99", url: RULES.LINKS.cfr6199 });
     if (targetId === "instrument-airplane") links.unshift({ label: "14 CFR 61.65", url: RULES.LINKS.cfr6165 });
-    if (targetId === "commercial-asel") links.unshift({ label: "14 CFR 61.129", url: RULES.LINKS.cfr61129 });
-    if (targetId === "commercial-asel-add-class" || targetId === "private-asel-add-class") {
+    if (targetId === "commercial-asel" || targetId === "commercial-amel") links.unshift({ label: "14 CFR 61.129", url: RULES.LINKS.cfr61129 });
+    if (["commercial-asel-add-class", "private-asel-add-class", "commercial-amel-add-class", "private-amel-add-class"].indexOf(targetId) > -1) {
       links.unshift({ label: "14 CFR 61.63", url: RULES.LINKS.cfr6163 });
       links.push({ label: "14 CFR 61.31(d)(2) solo authorization", url: RULES.LINKS.cfr6131 });
     }
     if (targetId === "sport-asel") links.unshift({ label: "14 CFR 61.313", url: RULES.LINKS.cfr61313 });
     if (targetId === "sport-add-category-class") links.unshift({ label: "14 CFR 61.321", url: RULES.LINKS.cfr61321 });
     if (targetId === "sport-cfi") links.unshift({ label: "14 CFR 61.411", url: RULES.LINKS.cfr61411 });
-    if (targetId === "commercial-asel" || targetId === "commercial-asel-add-class") links.push({ label: "14 CFR 61.51 logging", url: RULES.LINKS.cfr6151 });
+    if (["commercial-asel", "commercial-asel-add-class", "commercial-amel", "commercial-amel-add-class"].indexOf(targetId) > -1) links.push({ label: "14 CFR 61.51 logging", url: RULES.LINKS.cfr6151 });
     return links;
   }
 
@@ -727,6 +749,194 @@
     });
   }
 
+  function commercialAmel(profile) {
+    const rates = profile.rates;
+    const total = get(profile, "totalTime");
+    const powered = get(profile, "poweredTime");
+    const airplane = get(profile, "airplaneTime");
+    const pic = get(profile, "picTotal");
+    const picAirplane = get(profile, "picAirplane");
+    const xc = get(profile, "xcPicTotal");
+    const xcAirplane = get(profile, "xcPicAirplane");
+    const training = get(profile, "commercialTrainingAmel");
+    const complex = get(profile, "complexTaaTurbine");
+    const soloPdpic = get(profile, "soloPdpicAmel");
+    const totalRem = rem(250, total);
+    const poweredRem = rem(100, powered);
+    const airplaneRem = rem(50, airplane);
+    const picRem = rem(100, pic);
+    const picAirplaneRem = rem(50, picAirplane);
+    const xcRem = rem(50, xc);
+    const xcAirplaneRem = rem(10, xcAirplane);
+    const trainingRem = rem(20, training);
+    const complexRem = rem(10, complex);
+    const soloPdpicRem = rem(10, soloPdpic);
+    const trainingEventMin = Math.max(
+      eventDone(profile, "commercialInstrument") ? 0 : 10,
+      isKnown(complexRem) ? complexRem : 0,
+      eventDone(profile, "commercialDayXc") ? 0 : 2,
+      eventDone(profile, "commercialNightXc") ? 0 : 2,
+      eventDone(profile, "commercialPrep") ? 0 : 3
+    );
+    const soloEventMin = eventDone(profile, "commercialNightTowered") ? 0 : 5;
+    const rows = [
+      row("61.129(b)", "250 hours total flight time as pilot", 250, total, total, totalRem, "Broad parent row.", "New AMEL hours may also build total.", "parent"),
+      row("61.129(b)(1)", "100 hours powered aircraft", 100, powered, powered, poweredRem, "Broad powered row.", "New AMEL hours may also build powered.", "parent"),
+      row("61.129(b)(1)", "50 hours airplanes", 50, airplane, airplane, airplaneRem, "Airplane-specific row.", "New AMEL hours may build airplane time.", "parent"),
+      row("61.129(b)(2)", "100 hours PIC", 100, pic, pic, picRem, "Broad PIC row.", "Solo/PDPIC may help if loggable.", "parent"),
+      row("61.129(b)(2)(i)", "50 hours PIC in airplanes", 50, picAirplane, picAirplane, picAirplaneRem, "Airplane-specific PIC.", "Solo/PDPIC may help if loggable.", "parent"),
+      row("61.129(b)(2)(ii)", "50 hours PIC XC", 50, xc, xc, xcRem, "Broad XC PIC.", "Airplane XC PIC may sit inside this.", "parent"),
+      row("61.129(b)(2)(ii)", "10 hours PIC XC in airplanes", 10, xcAirplane, xcAirplane, xcAirplaneRem, "Airplane-specific XC PIC.", "Can sit inside 50 PIC XC.", "parent"),
+      row("61.129(b)(3)", "20 hours commercial training in a multiengine airplane", 20, training, training, trainingRem, "Commercial training parent row (multiengine).", "Training subevents fit inside.", "parent"),
+      eventRow("61.129(b)(3)(i)", "10 instrument training incl 5 in a multiengine airplane", 10, eventDone(profile, "commercialInstrument"), "Training event.", "Fits inside 20 training."),
+      row("61.129(b)(3)(ii)", "10 multiengine complex/TAA/turbine airplane", 10, complex, complex, complexRem, "Training event - must be a multiengine airplane.", "Can fit inside 20 training if planned.", "event"),
+      eventRow("61.129(b)(3)(iii)", "2-hour day XC over 100 NM in a multiengine airplane", 2, eventDone(profile, "commercialDayXc"), "Training event.", "Fits inside 20 training."),
+      eventRow("61.129(b)(3)(iv)", "2-hour night XC over 100 NM in a multiengine airplane", 2, eventDone(profile, "commercialNightXc"), "Training event.", "Fits inside 20 training."),
+      eventRow("61.129(b)(3)(v)", "3 hours prep in a multiengine airplane in preceding 2 calendar months", 3, eventDone(profile, "commercialPrep"), "Training event.", "Fits inside 20 training."),
+      row("61.129(b)(4)", "10 hours solo/PDPIC in a multiengine airplane", 10, soloPdpic, soloPdpic, soloPdpicRem, "Solo/PDPIC parent row (multiengine).", "Separate from dual/training unless PDPIC path supports it.", "parent"),
+      eventRow("61.129(b)(4)(i)", "300 NM XC, 3 points, one point 250 NM from departure", null, eventDone(profile, "commercialLongXc"), "Solo/PDPIC event.", "Fits inside 10 solo/PDPIC."),
+      eventRow("61.129(b)(4)(ii)", "5 night VFR hours and 10 towered takeoffs/landings", 5, eventDone(profile, "commercialNightTowered"), "Solo/PDPIC event.", "Fits inside 10 solo/PDPIC.")
+    ];
+    const raw = knownSum(summarizeRows(rows));
+    const trainingNeeded = isKnown(trainingRem) ? Math.max(trainingRem, trainingEventMin) : UNKNOWN;
+    const soloPdpicNeeded = isKnown(soloPdpicRem) ? Math.max(soloPdpicRem, soloEventMin) : UNKNOWN;
+    const optimizedInputs = [totalRem, poweredRem, airplaneRem, picRem, picAirplaneRem, xcRem, xcAirplaneRem, trainingNeeded, soloPdpicNeeded];
+    const optimized = hasUnknown(optimizedInputs) ? UNKNOWN : Math.max(totalRem, poweredRem, airplaneRem, picRem, picAirplaneRem, xcRem, xcAirplaneRem, trainingNeeded + soloPdpicNeeded);
+    const extraBuilding = isKnown(optimized) && isKnown(trainingNeeded) && isKnown(soloPdpicNeeded) ? Math.max(0, optimized - trainingNeeded - soloPdpicNeeded) : UNKNOWN;
+    const dualCost = isKnown(trainingNeeded) ? trainingNeeded * rates.dual : UNKNOWN;
+    const soloCost = isKnown(soloPdpicNeeded) && isKnown(extraBuilding) ? (soloPdpicNeeded + extraBuilding) * rates.solo : UNKNOWN;
+    const trainingPlan = isKnown(optimized)
+      ? [
+        planBlock("Commercial multiengine training", "Instrument/commercial/TAA in a multiengine as needed", trainingNeeded, "Dual", "61.129(b)(3)", "Instrument, multiengine TAA/complex, day/night XC, prep", rates.dual),
+        planBlock("Solo/PDPIC AMEL", "Long XC and night towered events in a multiengine", soloPdpicNeeded, "Solo/PDPIC", "61.129(b)(4)", "300 NM XC, night VFR towered", rates.solo),
+        planBlock("Airplane/PIC/XC hour building", "Airplane, PIC, or XC building as needed", extraBuilding, "Solo/PDPIC or rental PIC", "61.129(b)(1)-(2)", "Fills broad airplane, PIC, and XC gaps beyond required training blocks", rates.solo)
+      ].filter((block) => block.hours > 0)
+      : [];
+    return audit(profile, {
+      targetId: "commercial-amel",
+      title: "Commercial Pilot - AMEL",
+      verdict: "Commercial AMEL audit under 61.129(b). Broad buckets and airplane-specific buckets are separated; the 20-hour training and 10-hour solo/PDPIC buckets must be flown in a multiengine airplane. Optimized total preserves legal overlap only.",
+      raw,
+      optimized,
+      dualCost,
+      soloCost,
+      rows,
+      events: rows.filter((item) => item.kind === "event"),
+      trainingPlan,
+      endorsements: endorsements(["commercialKnowledge", "commercialPractical", "practical", "aktr", "complex"], "Commercial AMEL practical-test readiness."),
+      gates: baseGates("Commercial AMEL"),
+      unknowns: unknownsFor([
+        ["totalTime", total],
+        ["poweredTime", powered],
+        ["airplaneTime", airplane],
+        ["picTotal", pic],
+        ["picAirplane", picAirplane],
+        ["xcPicTotal", xc],
+        ["xcPicAirplane", xcAirplane],
+        ["commercialTrainingAmel", training],
+        ["soloPdpicAmel", soloPdpic]
+      ])
+    });
+  }
+
+  function commercialAmelAddClass(profile) {
+    const rates = profile.rates;
+    const holdsCommercialAsel = hasCredential(profile, "commercial-asel");
+    const militaryOnly = Boolean(profile.flags && profile.flags.militaryOnly);
+    const rows = [
+      {
+        cfr: militaryOnly ? "61.73" : "61.63(c)",
+        requirement: militaryOnly ? "Military competence / records review before civilian class credit" : "Additional airplane class rating (multiengine)",
+        required: "Train to proficiency",
+        has: holdsCommercialAsel ? "Commercial ASEL" : (militaryOnly ? "Military records" : "Not established"),
+        credit: holdsCommercialAsel ? "Class-add route" : UNKNOWN,
+        remaining: holdsCommercialAsel ? "No fixed FAA hour minimum" : UNKNOWN,
+        why: militaryOnly ? "Military-only scenarios route through 61.73 first." : "Same category (airplane), new multiengine class under 61.63(c); 61.129 aeronautical experience does not apply.",
+        overlapLogic: "Cost is formula-based until proficiency hours are supplied.",
+        kind: "parent"
+      },
+      {
+        cfr: "61.39 / ACS",
+        requirement: "Practical-test readiness and ACS task proficiency",
+        required: "Proficient",
+        has: UNKNOWN,
+        credit: UNKNOWN,
+        remaining: "Train to proficiency",
+        why: "The ACS ratings task table controls which tasks are tested for the added multiengine class.",
+        overlapLogic: "Training flights may cover multiple ACS tasks.",
+        kind: "event"
+      }
+    ];
+    const verdict = militaryOnly
+      ? "Military scenario: check 61.73 and official records first. Do not invent civilian AMEL credit from military status."
+      : "Commercial ASEL to Commercial AMEL is an added airplane class under 61.63(c): no knowledge test, no 61.129 aeronautical-experience minimum, train to proficiency in the multiengine airplane.";
+    return audit(profile, {
+      targetId: "commercial-amel-add-class",
+      title: "Commercial AMEL Added Class under 61.63(c)",
+      verdict,
+      raw: UNKNOWN,
+      optimized: "Train to proficiency",
+      dualCost: `Dual proficiency hours x $${money(rates.dual)}`,
+      soloCost: `Solo/PDPIC hours x $${money(rates.solo)} if used`,
+      rows,
+      events: rows.filter((item) => item.kind === "event"),
+      trainingPlan: [
+        { block: "AMEL proficiency", flightType: "Multiengine maneuvers, Vmc, single-engine ops, and ACS tasks", hours: "As needed", mode: "Dual", cfrRows: "61.63(c), 61.127(b)", events: "Class-add proficiency", cost: `hours x $${money(rates.dual)}`, notes: "No fixed FAA minimum." },
+        { block: "Solo/PDPIC if used", flightType: "Class-add solo/PDPIC practice in a multiengine", hours: "As needed", mode: "Solo/PDPIC", cfrRows: "61.31(d)(2) if soloing without the class", events: "Instructor-limited solo authorization", cost: `hours x $${money(rates.solo)}`, notes: "Use only if operationally needed." }
+      ],
+      endorsements: endorsements(["additionalRating", "practical", "aktr"], "Commercial AMEL added-class path."),
+      gates: baseGates("Commercial AMEL added class"),
+      unknowns: holdsCommercialAsel || militaryOnly ? [] : ["Confirm the pilot holds a Commercial Pilot certificate with an airplane class rating (for example ASEL) before using this 61.63(c) path."]
+    });
+  }
+
+  function privateAmelAddClass(profile) {
+    const rates = profile.rates;
+    const holdsPrivateAirplane = hasCredential(profile, "private-asel") || hasCredential(profile, "private-amel");
+    const rows = [
+      {
+        cfr: "61.63(c)",
+        requirement: "Additional airplane class rating (multiengine) at the private level",
+        required: "Train to proficiency",
+        has: hasCredential(profile, "private-asel") ? "Private ASEL" : (hasCredential(profile, "private-amel") ? "Private AMEL" : "Not established"),
+        credit: "Class-add route",
+        remaining: "No fixed FAA hour minimum",
+        why: "Same category (airplane), new multiengine class under 61.63(c); 61.109 aeronautical experience does not apply.",
+        overlapLogic: "Cost is formula-based until proficiency hours are supplied.",
+        kind: "parent"
+      },
+      {
+        cfr: "61.39 / ACS",
+        requirement: "Practical-test readiness and ACS task proficiency",
+        required: "Proficient",
+        has: UNKNOWN,
+        credit: UNKNOWN,
+        remaining: "Train to proficiency",
+        why: "The ACS ratings task table controls which tasks are tested for the added multiengine class.",
+        overlapLogic: "Training flights may cover multiple ACS tasks.",
+        kind: "event"
+      }
+    ];
+    return audit(profile, {
+      targetId: "private-amel-add-class",
+      title: "Private AMEL Added Class under 61.63(c)",
+      verdict: "Adding Airplane Multi-Engine Land at the private level is a 61.63(c) class add: no knowledge test, no 61.109 aeronautical-experience minimum, train to proficiency. Example scenario: a Private ASEL pilot adding AMEL.",
+      raw: UNKNOWN,
+      optimized: "Train to proficiency",
+      dualCost: `Dual proficiency hours x $${money(rates.dual)}`,
+      soloCost: `Solo hours x $${money(rates.solo)} if used`,
+      rows,
+      events: rows.filter((item) => item.kind === "event"),
+      trainingPlan: [
+        { block: "AMEL proficiency", flightType: "Multiengine maneuvers, Vmc, single-engine ops, and ACS tasks", hours: "As needed", mode: "Dual", cfrRows: "61.63(c), 61.107(b)", events: "Class-add proficiency", cost: `hours x $${money(rates.dual)}`, notes: "No fixed FAA minimum." },
+        { block: "Solo if used", flightType: "Class-add solo practice in a multiengine", hours: "As needed", mode: "Solo", cfrRows: "61.31(d)(2) to act as PIC solo in the new class", events: "Instructor-limited solo authorization", cost: `hours x $${money(rates.solo)}`, notes: "Use only if soloing the new class before the checkride." }
+      ],
+      endorsements: endorsements(["additionalRating", "practical", "aktr"], "Private AMEL added-class path."),
+      gates: baseGates("Private AMEL added class"),
+      unknowns: holdsPrivateAirplane ? [] : ["Confirm the pilot holds a Private Pilot certificate with an airplane class rating (for example ASEL) before using this 61.63(c) path."]
+    });
+  }
+
   function sportAddCategoryClass(profile) {
     const rates = profile.rates;
     const rows = [
@@ -896,6 +1106,9 @@
     if (targetId === "instrument-airplane") return instrumentAirplane(profile);
     if (targetId === "commercial-asel") return commercialAsel(profile);
     if (targetId === "commercial-asel-add-class") return commercialAselAddClass(profile);
+    if (targetId === "commercial-amel") return commercialAmel(profile);
+    if (targetId === "commercial-amel-add-class") return commercialAmelAddClass(profile);
+    if (targetId === "private-amel-add-class") return privateAmelAddClass(profile);
     if (targetId === "sport-add-category-class") return sportAddCategoryClass(profile);
     if (targetId === "sport-cfi") return sportCfi(profile);
     return unsupported(targetId);

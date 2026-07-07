@@ -1071,6 +1071,12 @@ p {
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.6) inset,
     0 0 0 1px var(--hairline);
+}
+
+/* Backdrop blur only where content actually scrolls beneath the element.
+   In-flow panels sit on the solid page background, so blurring it is
+   invisible but costs a compositing layer per element. */
+.topbar-sticky {
   backdrop-filter: blur(var(--panel-blur)) saturate(180%);
   -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(180%);
 }
@@ -1823,6 +1829,9 @@ p {
   color: var(--accent);
 }
 
+/* No backdrop-filter here: these are in-flow panels over the solid page
+   background, so the blur had no visible effect but forced a compositing
+   layer per panel (nested three deep in the results pane). */
 .part61-calculator-header,
 .part61-panel,
 .part61-results-pane,
@@ -1839,8 +1848,6 @@ p {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.68),
     0 12px 30px rgba(15, 23, 42, 0.04);
-  backdrop-filter: blur(var(--panel-blur)) saturate(170%);
-  -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(170%);
 }
 
 .part61-calculator-header {

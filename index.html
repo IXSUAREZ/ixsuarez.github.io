@@ -86,41 +86,18 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
-      opacity: 0.35;
-      mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      z-index: -2;
+      background: var(--bg);
     }
 
     body::after {
       content: "";
       position: fixed;
-      inset: -10% -10% auto -10%;
-      height: 70vh;
+      inset: 0;
       pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(60% 60% at 20% 20%, rgba(255,255,255,0.65), transparent 60%),
-        radial-gradient(50% 50% at 85% 15%, rgba(28,33,66,0.06), transparent 60%);
-    }
-
-    html::after {
-      content: "";
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: calc(-1 * var(--edge-blur-buffer));
-      height: var(--edge-blur-height);
-      pointer-events: none;
-      z-index: var(--edge-blur-z);
-      background: transparent;
-      -webkit-backdrop-filter: blur(var(--edge-blur-strength));
-      backdrop-filter: blur(var(--edge-blur-strength));
-      -webkit-mask-image: var(--edge-blur-bottom-mask);
-      mask-image: var(--edge-blur-bottom-mask);
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      will-change: transform;
+      z-index: -1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     }
 
     main, header, footer { position: relative; z-index: 1; }
@@ -140,35 +117,20 @@
       top: 0; left: 0; right: 0;
       z-index: 50;
       display: flex; justify-content: center;
-      /* Extra height gives the gradient room to breathe */
-      padding-bottom: 80px;
-      pointer-events: none;
-    }
-    /* The blur lives ONLY on the pseudo-element — the button and text sit above it unmasked */
-    .nav-wrap::before {
-      content: "";
-      position: absolute;
-      inset: calc(-1 * var(--edge-blur-buffer)) 0 auto 0;
-      height: var(--edge-blur-height);
-      pointer-events: none;
-      background: transparent;
-      -webkit-backdrop-filter: blur(var(--edge-blur-strength));
-      backdrop-filter: blur(var(--edge-blur-strength));
-      -webkit-mask-image: var(--edge-blur-top-mask);
-      mask-image: var(--edge-blur-top-mask);
-      z-index: 0;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      will-change: transform;
+      background: rgba(243, 243, 240, 0.72);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(8, 9, 11, 0.08);
+      pointer-events: auto;
     }
     .nav {
       pointer-events: auto;
       position: relative;
-      z-index: 1; /* float above the blurred pseudo-element */
+      z-index: 1;
       width: 100%;
       max-width: var(--maxw);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 28px 0;
+      padding: 16px 28px;
     }
     .wordmark {
       font-family: var(--font-signature);
@@ -690,50 +652,49 @@
     }
 
     body {
+      background: #F3F3F0;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
       background:
+        radial-gradient(32% 28% at 22% 22%, rgba(255,255,255,0.64), transparent 72%),
         radial-gradient(circle at 18% 9%, rgba(255,255,255,0.95), transparent 28rem),
         radial-gradient(circle at 82% 2%, rgba(127,167,168,0.20), transparent 34rem),
         radial-gradient(circle at 62% 94%, rgba(201,151,76,0.07), transparent 26rem),
         linear-gradient(180deg, #F6F6F2 0%, #E8E8E2 46%, #F4F3EF 100%);
     }
-    body::before {
-      opacity: 0.10;
-      mix-blend-mode: multiply;
-    }
     body::after {
+      content: "";
+      position: fixed;
       inset: 0;
-      height: 100vh;
-      background: radial-gradient(32% 28% at 22% 22%, rgba(255,255,255,0.64), transparent 72%);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     }
     .container { max-width: var(--maxw); padding: 0 clamp(18px, 4vw, 34px); }
 
     .nav-wrap {
-      align-items: flex-start;
-      padding: env(safe-area-inset-top, 0px) 0 190px;
+      align-items: center;
+      padding: env(safe-area-inset-top, 0px) 0 0;
+      background: rgba(251, 250, 246, 0.76);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(8, 9, 11, 0.08);
+      pointer-events: auto;
     }
     .nav-wrap::before {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-      z-index: 0;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      will-change: transform;
-    }
-    .nav-wrap::before {
-      inset: calc(-1 * var(--edge-blur-buffer)) 0 auto 0;
-      height: var(--edge-blur-height);
-      background: transparent;
-      -webkit-backdrop-filter: blur(var(--edge-blur-strength));
-      backdrop-filter: blur(var(--edge-blur-strength));
-      -webkit-mask-image: var(--edge-blur-top-mask);
-      mask-image: var(--edge-blur-top-mask);
+      display: none;
     }
     .nav {
       width: 100%;
       max-width: none;
       min-height: 64px;
-      padding: 24px clamp(22px, 4vw, 72px) 0;
+      padding: 14px clamp(22px, 4vw, 72px);
       border: 0;
       border-radius: 0;
       background: transparent;
@@ -2128,15 +2089,11 @@
         });
       };
 
-      strips.forEach(function (strip) {
-        var quote = strip.querySelector('.manifesto-quote');
-        if (!quote) return;
-        splitQuote(quote);
-        strip.classList.add('is-reveal-ready');
-      });
-
       if (reduceMotion) {
         strips.forEach(function (strip) {
+          var quote = strip.querySelector('.manifesto-quote');
+          if (!quote) return;
+          splitQuote(quote);
           strip.classList.add('is-reveal-complete');
           strip.style.setProperty('--quote-copy-opacity', '1');
           strip.style.setProperty('--quote-copy-y', '0px');
@@ -2149,48 +2106,52 @@
         return;
       }
 
-      var clamp = function (value, min, max) {
-        return Math.max(min, Math.min(max, value));
-      };
+      // Inject CSS transitions for high-performance GPU-bound reveal
+      var style = document.createElement('style');
+      style.textContent = `
+        .manifesto-strip > .container {
+          transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .manifesto-strip .quote-word,
+        .manifesto-strip .quote-punct {
+          transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .manifesto-strip.is-active {
+          --quote-copy-opacity: 1;
+          --quote-copy-y: 0px;
+        }
+        .manifesto-strip.is-active .quote-word,
+        .manifesto-strip.is-active .quote-punct {
+          --word-opacity: 1;
+          --word-y: 0px;
+          --word-blur: 0px;
+        }
+      `;
+      document.head.appendChild(style);
 
-      var updateQuotes = function () {
-        var viewport = window.innerHeight || document.documentElement.clientHeight;
-
-        strips.forEach(function (strip) {
-          var rect = strip.getBoundingClientRect();
-          var progress = clamp((viewport - rect.top) / (viewport * 0.72 + rect.height * 0.28), 0, 1);
-          var eased = 1 - Math.pow(1 - progress, 3);
-          var words = strip.querySelectorAll('.quote-word, .quote-punct');
-
-          strip.style.setProperty('--quote-copy-opacity', String(clamp(progress * 1.3, 0.001, 1)));
-          strip.style.setProperty('--quote-copy-y', ((1 - eased) * 22).toFixed(2) + 'px');
-          strip.classList.toggle('is-reveal-complete', progress > 0.985);
-
-          Array.prototype.forEach.call(words, function (word, index) {
-            var start = words.length <= 1 ? 0 : index / words.length * 0.38;
-            var wordProgress = clamp((progress - start) / 0.56, 0, 1);
-            var wordEased = 1 - Math.pow(1 - wordProgress, 3);
-
-            word.style.setProperty('--word-opacity', String(clamp(wordEased, 0.001, 1)));
-            word.style.setProperty('--word-y', ((1 - wordEased) * 10).toFixed(2) + 'px');
-            word.style.setProperty('--word-blur', ((1 - wordEased) * 10).toFixed(2) + 'px');
-          });
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+            observer.unobserve(entry.target);
+          }
         });
-      };
+      }, { threshold: 0.15 });
 
-      var ticking = false;
-      var requestUpdate = function () {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () {
-          updateQuotes();
-          ticking = false;
+      strips.forEach(function (strip) {
+        var quote = strip.querySelector('.manifesto-quote');
+        if (!quote) return;
+        splitQuote(quote);
+        
+        var words = strip.querySelectorAll('.quote-word, .quote-punct');
+        words.forEach(function (word, index) {
+          var delay = (index * 0.025).toFixed(3);
+          word.style.transitionDelay = delay + 's';
         });
-      };
 
-      updateQuotes();
-      window.addEventListener('scroll', requestUpdate, { passive: true });
-      window.addEventListener('resize', requestUpdate);
+        strip.classList.add('is-reveal-ready');
+        observer.observe(strip);
+      });
     })();
   </script>
 
@@ -2203,20 +2164,76 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       var tx = 0, ty = 0, cx = 0, cy = 0;
+      var isHovered = false;
+      var rect = null;
+      var rafId = null;
 
-      document.addEventListener('mousemove', function (e) {
-        var r = visual.getBoundingClientRect();
-        tx = Math.max(-0.8, Math.min(0.8, (e.clientX - (r.left + r.width  * 0.5)) / (r.width  * 0.5)));
-        ty = Math.max(-0.8, Math.min(0.8, (e.clientY - (r.top  + r.height * 0.5)) / (r.height * 0.5)));
+      function updateRect() {
+        rect = visual.getBoundingClientRect();
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            updateRect();
+            startLoop();
+          } else {
+            stopLoop();
+          }
+        });
+      }, { threshold: 0 });
+      observer.observe(hero);
+
+      window.addEventListener('resize', function () {
+        if (rect) updateRect();
       });
 
-      (function frame() {
+      visual.addEventListener('mouseenter', function () {
+        isHovered = true;
+        updateRect();
+      });
+
+      visual.addEventListener('mouseleave', function () {
+        isHovered = false;
+        tx = 0;
+        ty = 0;
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!isHovered || !rect) return;
+        tx = Math.max(-0.8, Math.min(0.8, (e.clientX - (rect.left + rect.width  * 0.5)) / (rect.width  * 0.5)));
+        ty = Math.max(-0.8, Math.min(0.8, (e.clientY - (rect.top  + rect.height * 0.5)) / (rect.height * 0.5)));
+      });
+
+      function frame() {
         cx += (tx - cx) * 0.07;
         cy += (ty - cy) * 0.07;
         visual.style.setProperty('--mx', cx.toFixed(4));
         visual.style.setProperty('--my', cy.toFixed(4));
-        requestAnimationFrame(frame);
-      })();
+        
+        if (!isHovered && Math.abs(cx) < 0.001 && Math.abs(cy) < 0.001) {
+          cx = 0;
+          cy = 0;
+          visual.style.setProperty('--mx', '0');
+          visual.style.setProperty('--my', '0');
+          rafId = null;
+          return;
+        }
+        rafId = requestAnimationFrame(frame);
+      }
+
+      function startLoop() {
+        if (!rafId) {
+          rafId = requestAnimationFrame(frame);
+        }
+      }
+
+      function stopLoop() {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      }
     })();
   </script>
 </body>

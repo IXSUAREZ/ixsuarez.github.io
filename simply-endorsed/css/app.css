@@ -1031,31 +1031,7 @@ p {
 
 .app-shell::before,
 .app-shell::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  height: var(--edge-blur-height);
-  z-index: var(--edge-blur-z);
-  pointer-events: none;
-  background: transparent;
-  -webkit-backdrop-filter: blur(var(--edge-blur-strength));
-  backdrop-filter: blur(var(--edge-blur-strength));
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-.app-shell::before {
-  top: calc(-1 * var(--edge-blur-buffer));
-  -webkit-mask-image: var(--edge-blur-top-mask);
-  mask-image: var(--edge-blur-top-mask);
-}
-
-.app-shell::after {
-  bottom: calc(-1 * var(--edge-blur-buffer));
-  -webkit-mask-image: var(--edge-blur-bottom-mask);
-  mask-image: var(--edge-blur-bottom-mask);
+  display: none;
 }
 
 .topbar-sticky,

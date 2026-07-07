@@ -142,8 +142,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   letter-spacing: 0;
   cursor: pointer;
   box-shadow: 0 12px 34px rgba(8, 9, 11, 0.10), inset 0 1px 0 rgba(255,255,255,0.72);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  backdrop-filter: blur(18px) saturate(160%);
 }
 .nav-menu-toggle svg { width: 16px; height: 16px; }
 
@@ -188,8 +186,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   color: var(--ink-muted);
   letter-spacing: 0;
   box-shadow: var(--shadow-sm);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  backdrop-filter: blur(12px) saturate(150%);
 }
 
 .section-intro {
@@ -220,8 +216,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border: 1px solid rgba(87, 99, 118, 0.12);
   border-radius: 22px;
   box-shadow: var(--shadow-md);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  backdrop-filter: blur(20px) saturate(160%);
 }
 .hub-card, .post-card { padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
 .hub-card:hover, .post-card:hover { transform: translateY(-3px); box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82); border-color: var(--category-accent, rgba(87, 99, 118, 0.22)); color: var(--ink); }

@@ -1099,7 +1099,7 @@
       closeSidebar({ returnFocus: false });
     }
 
-    document.title = "Teaching & Guidance \u2013 Simply Endorsed";
+    document.title = "Teaching & Guidance \u2013 Simply Endorsed CFI";
     refresh();
 
     if (options.scroll !== false) {
@@ -1122,7 +1122,7 @@
       closeSidebar({ returnFocus: false });
     }
 
-    document.title = "Part 61 Calculator - Simply Endorsed";
+    document.title = "Part 61 Calculator - Simply Endorsed CFI";
     refresh();
 
     if (options.scroll !== false) {
@@ -1256,10 +1256,10 @@
     });
 
     if (errors.length) {
-      console.error("[Simply Endorsed] Validation errors:", errors);
+      console.error("[Simply Endorsed CFI] Validation errors:", errors);
     }
     if (warnings.length) {
-      console.warn("[Simply Endorsed] Validation warnings:", warnings);
+      console.warn("[Simply Endorsed CFI] Validation warnings:", warnings);
     }
   }
 
@@ -1334,10 +1334,10 @@
     });
 
     if (errors.length) {
-      console.error("[Simply Endorsed] Browse validation errors:", errors);
+      console.error("[Simply Endorsed CFI] Browse validation errors:", errors);
     }
     if (warnings.length) {
-      console.warn("[Simply Endorsed] Browse validation warnings:", warnings);
+      console.warn("[Simply Endorsed CFI] Browse validation warnings:", warnings);
     }
   }
 
@@ -2530,11 +2530,11 @@
     const isBrowse = state.view === "browse";
 
     if (isBrowse) {
-      document.title = "Simply Endorsed | Free FAA AC 61-65K Endorsement Lookup";
+      document.title = "Simply Endorsed CFI | Free FAA AC 61-65K Endorsement Lookup";
     } else if (isGuidance) {
-      document.title = "Teaching & Guidance - Simply Endorsed";
+      document.title = "Teaching & Guidance - Simply Endorsed CFI";
     } else if (isCalculator) {
-      document.title = "Part 61 Calculator - Simply Endorsed";
+      document.title = "Part 61 Calculator - Simply Endorsed CFI";
     }
 
     if (!isBrowse) {

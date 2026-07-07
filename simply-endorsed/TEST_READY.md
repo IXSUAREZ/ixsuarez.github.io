@@ -1,6 +1,6 @@
 # Part 61 Wizard Test Suite
 
-The headless regression suite for the Simply Endorsed Part 61 wizard uses Node.js and JSDOM.
+The headless regression suite for the Simply Endorsed CFI Part 61 wizard uses Node.js and JSDOM.
 
 ## Test Infrastructure Summary
 - **Directory**: `simply-endorsed/tests/`

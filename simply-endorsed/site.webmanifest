@@ -1,6 +1,6 @@
 {
-  "name": "Simply Endorsed",
-  "short_name": "Simply Endorsed",
+  "name": "Simply Endorsed CFI",
+  "short_name": "Simply Endorsed CFI",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

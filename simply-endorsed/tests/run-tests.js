@@ -3,7 +3,7 @@ const { tests } = require('./wizard.test');
 
 async function runAllTests() {
   console.log('==================================================');
-  console.log('Running Simply Endorsed Part 61 Wizard E2E Tests');
+  console.log('Running Simply Endorsed CFI Part 61 Wizard E2E Tests');
   console.log(`Total test cases loaded: ${tests.length}`);
   console.log('==================================================\n');
 

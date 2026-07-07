@@ -1,24 +1,24 @@
 :root {
-  --bg: #F3F3F0;
-  --surface: #FBFAF6;
-  --surface-glass: rgba(251, 250, 246, 0.72);
-  --surface-2: #E9E9E3;
-  --ink: #0B0C0E;
-  --ink-muted: #5D6268;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.62);
+  --surface-2: #f5f5f5;
+  --ink: #172133;
+  --ink-muted: #69768c;
   --navy: #10151D;
   --navy-600: #08090B;
-  --accent: #7FA7A8;
-  --accent-soft: rgba(127, 167, 168, 0.18);
-  --accent-border: rgba(127, 167, 168, 0.32);
+  --accent: #1f5ed6;
+  --accent-soft: rgba(31, 94, 214, 0.08);
+  --accent-border: rgba(31, 94, 214, 0.16);
   --gold: #FFD000;
   --gold-soft: rgba(255, 208, 0, 0.18);
-  --border: rgba(8, 9, 11, 0.10);
-  --border-strong: rgba(8, 9, 11, 0.18);
-  --green: #7BB681;
-  --shadow-sm: 0 1px 2px rgba(8, 9, 11, 0.05);
-  --shadow-md: 0 18px 45px rgba(8, 9, 11, 0.10);
-  --shadow-lg: 0 32px 90px rgba(8, 9, 11, 0.16);
-  --radius-card: 24px;
+  --border: rgba(87, 99, 118, 0.12);
+  --border-strong: rgba(87, 99, 118, 0.22);
+  --green: #16a34a;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-md: 0 12px 36px rgba(15, 23, 42, 0.035), inset 0 1px 0 rgba(255,255,255,0.85);
+  --shadow-lg: 0 24px 72px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255,255,255,0.85);
+  --radius-card: 22px;
   --radius-pill: 999px;
   --maxw: 1180px;
   --prose-maxw: 760px;
@@ -32,6 +32,12 @@
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Newsreader", Georgia, serif;
   --font-signature: "Pinyon Script", cursive;
+
+  /* Categories default values */
+  --category-accent: var(--accent);
+  --category-soft: var(--accent-soft);
+  --category-line: var(--accent-border);
+  --category-ink: var(--accent);
 }
 
 * { box-sizing: border-box; }
@@ -40,7 +46,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
   color: var(--ink);
-  background: #F3F3F0;
+  background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
@@ -53,11 +59,10 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(32% 28% at 22% 22%, rgba(255,255,255,0.64), transparent 72%),
-    radial-gradient(circle at 18% 9%, rgba(255,255,255,0.95), transparent 28rem),
-    radial-gradient(circle at 82% 2%, rgba(127,167,168,0.20), transparent 34rem),
-    radial-gradient(circle at 62% 94%, rgba(255,208,0,0.06), transparent 26rem),
-    linear-gradient(180deg, #F6F6F2 0%, #E8E8E2 46%, #F4F3EF 100%);
+    radial-gradient(circle at 18% 9%, rgba(255,255,255,0.98), transparent 28rem),
+    radial-gradient(circle at 82% 2%, rgba(14,165,233,0.08), transparent 34rem),
+    radial-gradient(circle at 62% 94%, rgba(255,208,0,0.04), transparent 26rem),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 46%, #f5f5f5 100%);
 }
 body::after {
   content: "";
@@ -84,10 +89,11 @@ img { max-width: 100%; display: block; }
   top: 0; left: 0; right: 0;
   z-index: 50;
   display: flex; justify-content: center;
-  background: rgba(251, 250, 246, 0.76);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(8, 9, 11, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(87, 99, 118, 0.12);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
   pointer-events: auto;
   padding-top: env(safe-area-inset-top, 0px);
 }
@@ -223,12 +229,12 @@ img { max-width: 100%; display: block; }
 }
 
 .post-card, .see-also, .faq-item {
-  background: rgba(251, 250, 246, 0.68);
-  border: 1px solid rgba(8, 9, 11, 0.09);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(87, 99, 118, 0.12);
   border-radius: 22px;
-  box-shadow: 0 16px 46px rgba(8, 9, 11, 0.065), inset 0 1px 0 rgba(255,255,255,0.76);
-  -webkit-backdrop-filter: blur(16px) saturate(145%);
-  backdrop-filter: blur(16px) saturate(145%);
+  box-shadow: var(--shadow-md);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
 }
 .post-card {
   padding: 28px 26px;
@@ -241,15 +247,15 @@ img { max-width: 100%; display: block; }
 }
 .post-card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-border);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  border-color: var(--category-accent, rgba(87, 99, 118, 0.22));
 }
 .post-card--featured {
   grid-column: span 2;
   min-height: 360px;
   background:
-    radial-gradient(70% 90% at 4% 0%, rgba(127,167,168,0.20), transparent 58%),
-    linear-gradient(145deg, rgba(251,250,246,0.78), rgba(246,245,241,0.64));
+    radial-gradient(70% 90% at 4% 0%, rgba(14,165,233,0.08), transparent 58%),
+    linear-gradient(145deg, rgba(255,255,255,0.78), rgba(248,249,250,0.64));
 }
 .post-card--featured .post-tag {
   align-self: start;
@@ -413,11 +419,12 @@ img { max-width: 100%; display: block; }
   margin: 44px 0;
 }
 .prose blockquote {
-  border-left: 4px solid var(--accent);
+  border: 1px solid var(--category-line, rgba(87, 99, 118, 0.12));
+  border-left: 4px solid var(--category-accent, var(--accent));
   margin: 28px 0;
   padding: 18px 22px;
   color: rgba(11,12,14,0.66);
-  background: rgba(251,250,246,0.74);
+  background: var(--category-soft, rgba(255, 255, 255, 0.54));
   border-radius: 16px;
   font-style: italic;
   box-shadow: var(--shadow-sm);
@@ -427,8 +434,8 @@ img { max-width: 100%; display: block; }
   overflow-x: auto;
   margin: 12px 0 32px;
   border-radius: 18px;
-  border: 1px solid rgba(8, 9, 11, 0.10);
-  box-shadow: 0 16px 42px rgba(8, 9, 11, 0.06);
+  border: 1px solid rgba(87, 99, 118, 0.12);
+  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.03);
 }
 .prose table {
   width: 100%;
@@ -718,4 +725,129 @@ footer .fine { font-size: 13px; color: var(--ink-muted); margin: 0 0 6px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   Category-Specific Accent Color Definitions (Matching Simply-Endorsed)
+   ========================================================================== */
+
+.cat-private-pilot,
+body.cat-private-pilot {
+  --category-accent: #0ea5e9;
+  --category-soft: #ecf8fd;
+  --category-line: #c3e9fa;
+  --category-ink: #0476a9;
+}
+
+.cat-instrument-rating,
+body.cat-instrument-rating {
+  --category-accent: #64748b;
+  --category-soft: #f3f4f6;
+  --category-line: #d8dce2;
+  --category-ink: #455162;
+}
+
+.cat-commercial-pilot,
+body.cat-commercial-pilot {
+  --category-accent: #ca8a04;
+  --category-soft: #fbf6eb;
+  --category-line: #f2e2c0;
+  --category-ink: #906200;
+}
+
+.cat-cfi,
+body.cat-cfi {
+  --category-accent: #dc2626;
+  --category-soft: #fceeee;
+  --category-line: #f6c9c9;
+  --category-ink: #a11414;
+}
+
+.cat-student-pilot,
+body.cat-student-pilot {
+  --category-accent: #f59e0b;
+  --category-soft: #fef7eb;
+  --category-line: #fde7c2;
+  --category-ink: #b37000;
+}
+
+.cat-weather,
+body.cat-weather {
+  --category-accent: #0d9488;
+  --category-soft: #ecf6f5;
+  --category-line: #c3e4e1;
+  --category-ink: #056b62;
+}
+
+.cat-airspace,
+body.cat-airspace {
+  --category-accent: #7c3aed;
+  --category-soft: #f5effe;
+  --category-line: #decefb;
+  --category-ink: #4f0ac4;
+}
+
+.cat-landings,
+body.cat-landings {
+  --category-accent: #16a34a;
+  --category-soft: #ecf8f1;
+  --category-line: #c5e8d2;
+  --category-ink: #0b7633;
+}
+
+.cat-multi-engine,
+body.cat-multi-engine {
+  --category-accent: #ea580c;
+  --category-soft: #fdf2ec;
+  --category-line: #fad5c2;
+  --category-ink: #aa3c02;
+}
+
+.cat-written-prep,
+body.cat-written-prep {
+  --category-accent: #4f46e5;
+  --category-soft: #f1f0fd;
+  --category-line: #d3d1f9;
+  --category-ink: #1d13be;
+}
+
+/* ==========================================================================
+   Visual Card & Article Color-Coded Decorations
+   ========================================================================== */
+
+/* Left-accent vertical line on cards */
+.post-card[class*="cat-"],
+.hub-card[class*="cat-"] {
+  border-left: 4px solid var(--category-accent);
+}
+
+/* Category-matching colored eyebrows and badges */
+.post-card[class*="cat-"] .post-tag,
+.hub-card[class*="cat-"] .eyebrow,
+body[class*="cat-"] .page-hero .eyebrow {
+  background: var(--category-soft);
+  border-color: var(--category-line);
+  color: var(--category-ink);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02);
+}
+
+/* Transition to soft matched background for details block on active article page */
+body[class*="cat-"] .dek {
+  border-left-color: var(--category-accent);
+  background: var(--category-soft);
+  border-color: var(--category-line);
+}
+
+body[class*="cat-"] blockquote {
+  border-left-color: var(--category-accent);
+  background: var(--category-soft);
+  border-color: var(--category-line);
+}
+
+/* Card hover glow matches category accent */
+.post-card[class*="cat-"]:hover,
+.hub-card[class*="cat-"]:hover {
+  border-color: var(--category-accent);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }

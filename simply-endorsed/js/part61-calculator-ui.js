@@ -3,11 +3,27 @@
 
   const RULES = window.Part61RulesData;
   const CORE = window.Part61CalculatorCore;
+  const U = window.SimplyEndorsedUtils;
   const rootEl = document.getElementById("part61CalculatorView");
 
-  if (!RULES || !CORE || !rootEl) {
+  if (!RULES || !CORE || !U || !rootEl) {
     return;
   }
+
+  const escapeHtml = U.escapeHtml;
+
+  const LEDGER_FILTERS = {
+    ALL: "all",
+    REMAINING: "remaining",
+    EVENTS: "events",
+    ENDORSEMENTS: "endorsements",
+    PAPERWORK: "paperwork"
+  };
+
+  const RESULTS_TABS = ["plan", "endorsements", "ledger", "rules"];
+  const DRAFT_STORAGE_KEY = "simply-endorsed:part61-scenario";
+  const SHARE_PARAM = "s";
+  const FLAG_KEYS = ["militaryExperience", "militaryOnly", "faaCommercialAmel", "priorFaa"];
 
   function part61Id(id) {
     return "part61" + id.charAt(0).toUpperCase() + id.slice(1);
@@ -26,14 +42,17 @@
   }
 
   const state = {
-    credentials: ["commercial-rotor-helicopter"],
-    targets: ["private-asel", "commercial-asel"],
+    activeStep: 1,
+    credentials: [],
+    targets: [],
     rates: {
       aircraftWet: RULES.DEFAULT_RATES.aircraftWet,
       instructor: RULES.DEFAULT_RATES.instructor
     },
     validationAttempted: false,
-    activeFilter: "all",
+    activeFilter: LEDGER_FILTERS.ALL,
+    resultsTab: "plan",
+    dirty: false,
     lastSampleIndex: null,
     result: null
   };
@@ -55,220 +74,41 @@
     randomSampleBtn: byId("randomSampleBtn"),
     clearBtn: byId("clearBtn"),
     copyBtn: byId("copyBtn"),
+    shareBtn: byId("shareBtn"),
     printBtn: byId("printBtn"),
     copyCfiBtn: byId("copyCfiBtn"),
     copyChecklistBtn: byId("copyChecklistBtn"),
+    reviewShare: byId("reviewShare"),
     clearEventsBtn: byId("clearEventsBtn"),
     inputCompleteness: byId("inputCompleteness"),
+    heroBanner: byId("heroBanner"),
     auditDashboard: byId("auditDashboard"),
+    readoutDetails: byId("readoutDetails"),
     cfiReadout: byId("cfiReadout"),
     resultTitle: byId("resultTitle"),
     sourceReview: byId("sourceReview"),
+    staleBanner: byId("staleBanner"),
+    draftNotice: byId("draftNotice"),
+    mobileBar: byId("mobileBar"),
+    mobileCompleteness: byId("mobileCompleteness"),
+    mobileCalculateBtn: byId("mobileCalculateBtn"),
+    results: byId("results"),
     verdict: byId("verdict"),
     summary: byId("summary"),
     combinedSummary: byId("combinedSummary"),
     counts: byId("counts"),
     overlapMap: byId("overlapMap"),
     ledger: byId("ledger"),
-    events: byId("events"),
     training: byId("training"),
     gates: byId("gates"),
     endorsements: byId("endorsements"),
     unknowns: byId("unknowns"),
-    links: byId("links"),
-    ledgerDetails: byId("ledgerDetails")
+    links: byId("links")
   };
-
-  const ROTORCRAFT_EXAMPLE = {
-    name: "Rotorcraft commercial to Private ASEL then Commercial ASEL",
-    credentials: ["commercial-rotor-helicopter"],
-    targets: ["private-asel", "commercial-asel"],
-    flags: {
-      militaryExperience: false,
-      militaryOnly: false,
-      faaCommercialAmel: false,
-      priorFaa: true
-    },
-    rates: {
-      aircraftWet: RULES.DEFAULT_RATES.aircraftWet,
-      instructor: RULES.DEFAULT_RATES.instructor
-    },
-    experience: {
-      totalTime: 150,
-      poweredTime: 150,
-      airplaneTime: 0,
-      aselTime: 0,
-      amelTime: 0,
-      helicopterTime: 150,
-      picTotal: 100,
-      picAirplane: 0,
-      picAsel: 0,
-      picHelicopter: 100,
-      xcPicTotal: 50,
-      xcPicAirplane: 0,
-      instrumentTime: 40,
-      instrumentAirplane: 0,
-      cfiiAirplane: 0,
-      nightTime: 10,
-      dualAsel: 0,
-      soloAsel: 0,
-      commercialTrainingAsel: 0,
-      soloPdpicAsel: 0,
-      complexTaaTurbine: 0,
-      prepRecent: 0
-    },
-    events: {}
-  };
-
-  const SAMPLE_SCENARIOS = [
-    ROTORCRAFT_EXAMPLE,
-    {
-      name: "FAA Commercial AMEL to Commercial ASEL added class",
-      credentials: ["commercial-amel"],
-      targets: ["commercial-asel-add-class"],
-      flags: {
-        militaryExperience: false,
-        militaryOnly: false,
-        faaCommercialAmel: true,
-        priorFaa: true
-      },
-      rates: {
-        aircraftWet: 205,
-        instructor: 65
-      },
-      experience: {
-        totalTime: 310,
-        poweredTime: 310,
-        airplaneTime: 310,
-        aselTime: 40,
-        amelTime: 120,
-        helicopterTime: 0,
-        picTotal: 180,
-        picAirplane: 180,
-        picAsel: 30,
-        picHelicopter: 0,
-        xcPicTotal: 85,
-        xcPicAirplane: 85,
-        instrumentTime: 55,
-        instrumentAirplane: 55,
-        cfiiAirplane: 0,
-        nightTime: 22,
-        dualAsel: 8,
-        soloAsel: 12,
-        commercialTrainingAsel: 0,
-        soloPdpicAsel: 0,
-        complexTaaTurbine: 15,
-        prepRecent: 0
-      },
-      events: {}
-    },
-    {
-      name: "Private ASEL partial Commercial ASEL progress",
-      credentials: ["private-asel"],
-      targets: ["commercial-asel"],
-      flags: {
-        militaryExperience: false,
-        militaryOnly: false,
-        faaCommercialAmel: false,
-        priorFaa: true
-      },
-      rates: {
-        aircraftWet: 195,
-        instructor: 55
-      },
-      experience: {
-        totalTime: 185,
-        poweredTime: 185,
-        airplaneTime: 172,
-        aselTime: 172,
-        amelTime: 0,
-        helicopterTime: 0,
-        picTotal: 92,
-        picAirplane: 88,
-        picAsel: 88,
-        picHelicopter: 0,
-        xcPicTotal: 42,
-        xcPicAirplane: 36,
-        instrumentTime: 28,
-        instrumentAirplane: 22,
-        cfiiAirplane: 0,
-        nightTime: 14,
-        dualAsel: 48,
-        soloAsel: 54,
-        commercialTrainingAsel: 8,
-        soloPdpicAsel: 3,
-        complexTaaTurbine: 4,
-        prepRecent: 1
-      },
-      events: {
-        commercialDayXc: true,
-        commercialComplexTaa: false,
-        commercialInstrument: false,
-        commercialLongXc: false,
-        commercialNightTowered: false,
-        commercialNightXc: false,
-        commercialPrep: false
-      }
-    },
-    {
-      name: "Military-only B-52 style 61.73 gate",
-      credentials: ["military-pilot"],
-      targets: ["commercial-asel-add-class"],
-      flags: {
-        militaryExperience: true,
-        militaryOnly: true,
-        faaCommercialAmel: false,
-        priorFaa: false
-      },
-      rates: {
-        aircraftWet: 185,
-        instructor: 45
-      },
-      experience: {
-        totalTime: 1800,
-        poweredTime: 1800,
-        airplaneTime: 0,
-        aselTime: 0,
-        amelTime: 0,
-        helicopterTime: 0,
-        picTotal: 900,
-        picAirplane: 0,
-        picAsel: 0,
-        picHelicopter: 0,
-        xcPicTotal: 500,
-        xcPicAirplane: 0,
-        instrumentTime: 350,
-        instrumentAirplane: 0,
-        cfiiAirplane: 0,
-        nightTime: 220,
-        dualAsel: 0,
-        soloAsel: 0,
-        commercialTrainingAsel: 0,
-        soloPdpicAsel: 0,
-        complexTaaTurbine: 0,
-        prepRecent: 0
-      },
-      events: {}
-    }
-  ];
 
   function credentialLabel(id) {
     const found = RULES.CREDENTIAL_OPTIONS.find((item) => item.id === id);
     return found ? found.label : id;
-  }
-
-  function targetLabel(id) {
-    const found = RULES.TARGET_OPTIONS.find((item) => item.id === id);
-    return found ? found.label : id;
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
   }
 
   function linkifyCfrText(value, options) {
@@ -278,6 +118,12 @@
     return escapeHtml(value ?? "");
   }
 
+  function linkifyMultilineCfrText(value, options) {
+    return linkifyCfrText(value, options).replace(/\n/g, "<br>");
+  }
+
+  // Presentation formatter: passes "UNKNOWN" and other strings through.
+  // Distinct from the core's money(), which does numeric rounding - do not merge.
   function money(value) {
     if (typeof value === "number") {
       return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
@@ -306,12 +152,16 @@
 
   function updateRateSummary() {
     const rates = currentRates();
+    const zeroRate = parseRate(ids.aircraftWetRate.value) === 0 || parseRate(ids.instructorRate.value) === 0;
     ids.rateSummary.innerHTML = `
       <span>Dual rate: ${money(rates.dual)}/hr</span>
       <span>Solo/PDPIC/time-building: ${money(rates.solo)}/hr</span>
+      ${zeroRate ? `<span class="part61-rate-warning">Rate is $0/hr - cost estimates will be understated.</span>` : ""}
     `;
+    updateRailProgress();
   }
 
+  // Presentation formatter: passes "UNKNOWN" through. Do not merge with core fmtHours().
   function hours(value) {
     if (typeof value === "number") return `${value.toFixed(1)} hr`;
     return value || "UNKNOWN";
@@ -362,6 +212,8 @@
       badge.classList.toggle("incomplete", !complete);
       badge.setAttribute("aria-label", `${group.title}: ${group.filled} of ${group.total} fields complete`);
     });
+    updateRailProgress();
+    updateMobileBar(stats);
   }
 
   function numericValue(value) {
@@ -372,7 +224,7 @@
     return `
       <div class="dashboard-card dashboard-${tone || "slate"}">
         <span>${escapeHtml(label)}</span>
-        <b>${escapeHtml(value)}</b>
+        <b>${linkifyCfrText(value)}</b>
       </div>
     `;
   }
@@ -449,7 +301,7 @@
       .filter((item) => !query || item.label.toLowerCase().includes(query) || item.id.includes(query))
       .map((item) => {
         const selected = state.credentials.includes(item.id);
-        return `<button type="button" class="option-button ${selected ? "selected" : ""}" data-credential="${escapeHtml(item.id)}">${escapeHtml(item.label)}</button>`;
+        return `<button type="button" class="option-button ${selected ? "selected" : ""}" data-credential="${escapeHtml(item.id)}" aria-pressed="${selected ? "true" : "false"}">${escapeHtml(item.label)}</button>`;
       })
       .join("");
     ids.credentialOptions.innerHTML = options || `<div class="empty-state">No matching credential.</div>`;
@@ -467,31 +319,79 @@
   }
 
   function renderExperienceFields() {
-    ids.experienceFields.innerHTML = RULES.FIELD_GROUPS.map((group) => `
+    ids.experienceFields.innerHTML = RULES.FIELD_GROUPS.map((group) => {
+      const slug = groupSlug(group.title);
+      return `
       <div class="field-group">
         <div class="field-group-heading">
           <h3>${escapeHtml(group.title)}</h3>
-          <span class="group-completion" data-group-completion="${escapeHtml(groupSlug(group.title))}">0/${group.fields.length}</span>
+          <div class="field-group-actions">
+            <button type="button" class="part61-text-button" data-fill-zero-group="${escapeHtml(slug)}">Fill blanks with 0</button>
+            <span class="group-completion" data-group-completion="${escapeHtml(slug)}">0/${group.fields.length}</span>
+          </div>
         </div>
         <div class="field-grid">
-          ${group.fields.map(([key, label]) => `
+          ${group.fields.map(([key, label, hint]) => `
             <label class="number-field">
               <span>${escapeHtml(label)}</span>
-              <input type="number" min="0" step="0.1" inputmode="decimal" data-experience="${escapeHtml(key)}" placeholder="UNKNOWN">
+              <input type="number" min="0" step="0.1" inputmode="decimal" data-experience="${escapeHtml(key)}" data-group-slug="${escapeHtml(slug)}" placeholder="UNKNOWN"${hint ? ` aria-describedby="part61Hint-${escapeHtml(key)}"` : ""}>
+              ${hint ? `<small class="part61-field-hint" id="part61Hint-${escapeHtml(key)}">${escapeHtml(hint)}</small>` : ""}
             </label>
           `).join("")}
         </div>
       </div>
-    `).join("");
+    `;
+    }).join("");
+  }
+
+  function eventGroupIsRelevant(group) {
+    return group.targets.some((target) => state.targets.includes(target));
   }
 
   function renderEvents() {
-    ids.eventChecklist.innerHTML = RULES.EVENT_OPTIONS.map((event) => `
-      <label class="check-row">
-        <input type="checkbox" data-event="${escapeHtml(event.id)}">
-        <span>${escapeHtml(event.label)}</span>
-      </label>
-    `).join("");
+    const current = {};
+    qsa("[data-event]").forEach((input) => {
+      current[input.dataset.event] = input.checked;
+    });
+    const groups = RULES.EVENT_GROUPS
+      .map((group) => ({
+        ...group,
+        events: RULES.EVENT_OPTIONS.filter((event) => event.group === group.id)
+      }))
+      .sort((a, b) => Number(eventGroupIsRelevant(b)) - Number(eventGroupIsRelevant(a)));
+    ids.eventChecklist.innerHTML = groups.map((group) => {
+      const relevant = eventGroupIsRelevant(group);
+      const checked = group.events.filter((event) => current[event.id]).length;
+      return `
+        <details class="part61-event-group" data-event-group="${escapeHtml(group.id)}" ${relevant ? "open" : ""}>
+          <summary>
+            <span>${escapeHtml(group.label)}${relevant ? "" : " (not in target path)"}</span>
+            <span class="group-completion" data-event-group-count="${escapeHtml(group.id)}">${checked}/${group.events.length}</span>
+          </summary>
+          <div class="part61-event-grid">
+            ${group.events.map((event) => `
+              <label class="check-row">
+                <input type="checkbox" data-event="${escapeHtml(event.id)}" ${current[event.id] ? "checked" : ""}>
+                <span>${escapeHtml(event.label)}</span>
+              </label>
+            `).join("")}
+          </div>
+        </details>
+      `;
+    }).join("");
+  }
+
+  function updateEventGroupCounts() {
+    RULES.EVENT_GROUPS.forEach((group) => {
+      const badge = qs(`[data-event-group-count="${group.id}"]`);
+      if (!badge) return;
+      const events = RULES.EVENT_OPTIONS.filter((event) => event.group === group.id);
+      const checked = events.filter((event) => {
+        const input = qs(`[data-event="${event.id}"]`);
+        return input && input.checked;
+      }).length;
+      badge.textContent = `${checked}/${events.length}`;
+    });
   }
 
   function renderStages() {
@@ -518,10 +418,11 @@
     qsa("[data-event]").forEach((input) => {
       input.checked = Boolean(values[input.dataset.event]);
     });
+    updateEventGroupCounts();
   }
 
   function setFlags(values) {
-    ["militaryExperience", "militaryOnly", "faaCommercialAmel", "priorFaa"].forEach((key) => {
+    FLAG_KEYS.forEach((key) => {
       byId(key).checked = Boolean(values[key]);
     });
   }
@@ -546,48 +447,89 @@
   }
 
   function fieldIsVisible(input) {
-    return Boolean(input.offsetParent || input.getClientRects().length);
+    // Prefer layout-based check (real browser)
+    if (input.offsetParent !== null) return true;
+    if (input.getClientRects && input.getClientRects().length > 0) return true;
+    // Fallback for headless/jsdom: check if the field or any ancestor is hidden or display:none
+    let el = input;
+    while (el && el !== document) {
+      if (el.classList && el.classList.contains("part61-panel")) {
+        el = el.parentElement;
+        continue;
+      }
+      if (el.hidden || el.style.display === "none" || (el.classList && el.classList.contains("hidden"))) return false;
+      el = el.parentElement;
+    }
+    return true;
+  }
+
+  function fillBlanksWithZero(slug) {
+    qsa("[data-experience]").forEach((input) => {
+      if (slug && input.dataset.groupSlug !== slug) return;
+      if (input.value.trim() === "") {
+        input.value = "0";
+        setInvalid(input, false);
+      }
+    });
+    updateInputCompleteness();
+    if (state.validationAttempted) validateRequiredInputs(false);
+    markDirty();
+    queueDraftSave();
   }
 
   function validateRequiredInputs(focusFirst) {
     const missingExperience = [];
     const invalidRates = [];
     qsa("[data-experience]").forEach((input) => {
-      if (!fieldIsVisible(input)) return;
       const missing = input.value.trim() === "";
       setInvalid(input, missing);
       if (missing) missingExperience.push(input);
     });
     qsa("[data-rate]").forEach((input) => {
-      if (!fieldIsVisible(input)) return;
+      // Always validate rates regardless of panel visibility — rates are a prerequisite
       const invalid = parseRate(input.value) === null;
       setInvalid(input, invalid);
       if (invalid) invalidRates.push(input);
     });
 
-    const invalid = missingExperience.length || invalidRates.length;
+    const noTargets = !state.targets || state.targets.length === 0;
+    const invalid = missingExperience.length || invalidRates.length || noTargets;
     if (invalid) {
-      const messages = [];
+      const parts = [];
+      if (noTargets) {
+        parts.push(`<p>No target stages added. Go to Step 4 and add at least one training target.</p>`);
+      }
       if (missingExperience.length) {
-        const groups = missingFieldsByGroup(missingExperience)
-          .map((group) => `${group.title}: ${group.missing.join(", ")}`)
-          .join("; ");
-        messages.push(`Missing Flight Experience: ${groups}. Use 0 if not applicable or none logged.`);
+        const groups = missingFieldsByGroup(missingExperience);
+        parts.push(`
+          <p>Missing hour fields - enter 0 when a bucket does not apply:</p>
+          <ul>
+            ${groups.map((group) => `
+              <li>
+                <button type="button" class="part61-validation-jump" data-jump-group="${escapeHtml(groupSlug(group.title))}">${escapeHtml(group.title)}</button>
+                ${escapeHtml(group.missing.join(", "))}
+              </li>
+            `).join("")}
+          </ul>
+          <button type="button" class="part61-button part61-button-small" data-fill-zero-all>Fill all blanks with 0</button>
+        `);
       }
       if (invalidRates.length) {
-        messages.push("Missing Cost Assumptions: enter non-negative wet and instructor rates.");
+        parts.push(`<p>Missing Cost Assumptions: enter non-negative wet and instructor rates.</p>`);
       }
-      ids.validationMessage.textContent = messages.join(" ");
+      ids.validationMessage.innerHTML = parts.join("");
       ids.validationMessage.hidden = false;
       updateInputCompleteness();
-      if (focusFirst) {
+      if (focusFirst && !noTargets) {
         const first = missingExperience[0] || invalidRates[0];
-        first.scrollIntoView({ behavior: "smooth", block: "center" });
-        first.focus({ preventScroll: true });
+        if (first) {
+          first.scrollIntoView({ behavior: "smooth", block: "center" });
+          first.focus({ preventScroll: true });
+        }
       }
       return false;
     }
-    ids.validationMessage.textContent = "";
+    ids.validationMessage.innerHTML = "";
     ids.validationMessage.hidden = true;
     updateInputCompleteness();
     return true;
@@ -595,9 +537,17 @@
 
   function clearValidation() {
     qsa("[data-experience], [data-rate]").forEach((input) => setInvalid(input, false));
-    ids.validationMessage.textContent = "";
+    ids.validationMessage.innerHTML = "";
     ids.validationMessage.hidden = true;
     updateInputCompleteness();
+  }
+
+  function collectFlags() {
+    const flags = {};
+    FLAG_KEYS.forEach((key) => {
+      flags[key] = byId(key).checked;
+    });
+    return flags;
   }
 
   function collectInput() {
@@ -613,12 +563,7 @@
 
     return {
       credentials: state.credentials.slice(),
-      flags: {
-        militaryExperience: byId("militaryExperience").checked,
-        militaryOnly: byId("militaryOnly").checked,
-        faaCommercialAmel: byId("faaCommercialAmel").checked,
-        priorFaa: byId("priorFaa").checked
-      },
+      flags: collectFlags(),
       rates: currentRates(),
       experience,
       events,
@@ -626,10 +571,161 @@
     };
   }
 
+  /* ---------- Step rail ---------- */
+
+  let railSpySuppressedUntil = 0;
+
+  function setActiveRailItem(hash) {
+    qsa(".part61-rail-item").forEach((item) => {
+      item.classList.toggle("active", item.getAttribute("href") === hash);
+    });
+  }
+
+  function railStepStates() {
+    const completion = experienceCompletion();
+    const wet = parseRate(ids.aircraftWetRate.value);
+    const instructor = parseRate(ids.instructorRate.value);
+    return {
+      current: state.credentials.length > 0,
+      costs: wet !== null && instructor !== null && wet > 0 && instructor > 0,
+      experience: completion.filled === completion.total,
+      target: state.targets.length > 0,
+      results: Boolean(state.result)
+    };
+  }
+
+  function updateRailProgress() {
+    const states = railStepStates();
+    qsa("[data-rail-status]").forEach((dot) => {
+      const done = Boolean(states[dot.dataset.railStatus]);
+      dot.classList.toggle("done", done);
+      const item = dot.closest(".part61-rail-item");
+      if (item) item.classList.toggle("is-complete", done);
+    });
+  }
+
+  function updateMobileBar(stats) {
+    if (!ids.mobileBar) return;
+    const completion = stats || experienceCompletion();
+    ids.mobileCompleteness.textContent = `${completion.filled}/${completion.total} hour fields`;
+    ids.mobileBar.classList.toggle("is-alert", !ids.validationMessage.hidden);
+  }
+
+  function updateResponsiveLayout() {
+    const isMobile = window.innerWidth <= 900;
+    const resultsPane = ids.results;
+    if (!resultsPane) return;
+
+    if (isMobile) {
+      if (state.activeStep === 5) {
+        resultsPane.hidden = false;
+        resultsPane.style.display = "";
+        resultsPane.classList.remove("hidden");
+        resultsPane.classList.add("mobile-stacked");
+      } else {
+        resultsPane.hidden = true;
+        resultsPane.style.display = "none";
+        resultsPane.classList.add("hidden");
+        resultsPane.classList.remove("mobile-stacked");
+      }
+    } else {
+      resultsPane.hidden = false;
+      resultsPane.style.display = "";
+      resultsPane.classList.remove("hidden");
+      resultsPane.classList.remove("mobile-stacked");
+    }
+  }
+
+  function setStep(step) {
+    step = Math.max(1, Math.min(5, step));
+    state.activeStep = step;
+
+    const workbench = qs(".part61-workbench");
+    if (workbench && workbench.getAttribute("data-active-step") !== String(step)) {
+      workbench.setAttribute("data-active-step", String(step));
+    }
+
+    const panels = qsa(".part61-panel");
+    panels.forEach((panel) => {
+      const stepNum = parseInt(panel.getAttribute("data-step") || panel.dataset.step, 10);
+      if (stepNum === step) {
+        panel.hidden = false;
+        panel.style.display = "";
+        panel.classList.remove("hidden");
+      } else {
+        panel.hidden = true;
+        panel.style.display = "none";
+        panel.classList.add("hidden");
+      }
+    });
+
+    const backBtns = qsa("#part61BackBtn, .part61-back-btn");
+    const nextBtns = qsa("#part61NextBtn, .part61-next-btn");
+
+    backBtns.forEach((btn) => {
+      if (step === 1) {
+        btn.hidden = true;
+        btn.style.display = "none";
+        btn.classList.add("hidden");
+        btn.disabled = true;
+      } else {
+        btn.hidden = false;
+        btn.style.display = "";
+        btn.classList.remove("hidden");
+        btn.disabled = false;
+      }
+    });
+
+    nextBtns.forEach((btn) => {
+      if (step === 5) {
+        btn.hidden = true;
+        btn.style.display = "none";
+        btn.classList.add("hidden");
+        btn.disabled = true;
+      } else {
+        btn.hidden = false;
+        btn.style.display = "";
+        btn.classList.remove("hidden");
+        btn.disabled = false;
+      }
+    });
+
+    const railItems = qsa("nav.part61-step-rail .part61-rail-item");
+    railItems.forEach((item, index) => {
+      const isActive = (index + 1) === step;
+      item.classList.toggle("active", isActive);
+      item.classList.toggle("is-active", isActive);
+      if (isActive) {
+        item.setAttribute("aria-current", "step");
+      } else {
+        item.removeAttribute("aria-current");
+      }
+    });
+
+    if (workbench) {
+      workbench.scrollTop = 0;
+    }
+    window.scrollTo({ top: 0 });
+
+    updateResponsiveLayout();
+  }
+
+  function initStepRail() {
+    const items = qsa("nav.part61-step-rail .part61-rail-item");
+    items.forEach((item, index) => {
+      item.addEventListener("click", (event) => {
+        event.preventDefault();
+        setStep(index + 1);
+      });
+    });
+  }
+
+  /* ---------- Results rendering ---------- */
+
   function renderSummary(audits) {
     ids.summary.innerHTML = audits.map((audit) => `
       <div class="summary-block">
-        <h4>${escapeHtml(audit.title)}</h4>
+        <h4>${linkifyCfrText(audit.title)}</h4>
         <div class="summary-grid">
           <div class="metric metric-raw"><span>Raw Requirement Sum</span><b>${hours(audit.summary.rawRequirementSum)}</b></div>
           <div class="metric metric-optimized"><span>Optimized Combined Total</span><b>${hours(audit.summary.optimizedCombinedTotal)}</b></div>
@@ -644,13 +740,17 @@
   function renderCombined(result) {
     const rates = result.combined.rates || currentRates();
     const notes = result.combined.notes && result.combined.notes.length
-      ? `<ul class="list-box">${result.combined.notes.map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>`
+      ? `<ul class="list-box">${result.combined.notes.map((note) => `<li>${linkifyCfrText(note)}</li>`).join("")}</ul>`
       : "";
-    ids.combinedSummary.innerHTML = `
+    const combinedHtml = `
       <p><b>Rates used:</b> wet ${money(rates.aircraftWet)}/hr, instructor ${money(rates.instructor)}/hr, dual ${money(rates.dual)}/hr.</p>
       <p><b>Combined optimized planning total:</b> ${hours(result.combined.optimizedHours)}. <b>Combined estimated cost:</b> ${money(result.combined.estimatedCost)}.</p>
       ${notes}
     `;
+    ids.combinedSummary.innerHTML = combinedHtml;
+    // Mirror to alias element (for test compatibility / external access)
+    const aliasEl = document.getElementById("combinedSummary");
+    if (aliasEl && aliasEl !== ids.combinedSummary) aliasEl.innerHTML = combinedHtml;
   }
 
   function sumIfKnown(values) {
@@ -658,24 +758,35 @@
     return values.reduce((sum, value) => sum + value, 0);
   }
 
-  function renderAuditDashboard(result) {
+  function renderHero(result) {
     const blockers = blockerList(result);
     const rawTotal = sumIfKnown(result.audits.map((audit) => numericValue(audit.summary.rawRequirementSum)));
     const optimized = result.combined.optimizedHours;
     const cost = result.combined.estimatedCost;
-    const firstVerdict = result.audits[0] ? result.audits[0].verdict : "No route generated.";
-    const routeTone = blockers.length ? "red" : "green";
+    const savings = typeof rawTotal === "number" && typeof optimized === "number"
+      ? Math.max(0, rawTotal - optimized)
+      : null;
+    const ready = !blockers.length;
+    ids.heroBanner.hidden = false;
+    ids.heroBanner.className = `part61-hero-banner ${ready ? "is-ready" : "is-blocked"}`;
+    ids.heroBanner.innerHTML = ready
+      ? `<span class="part61-hero-icon" aria-hidden="true">&#10003;</span><div><b>Draft plan ready.</b> ${linkifyCfrText(firstNextAction(result))}</div>`
+      : `<span class="part61-hero-icon" aria-hidden="true">&#9650;</span><div><b>Needs ${blockers.length} input${blockers.length === 1 ? "" : "s"} resolved.</b> See Unknowns under the Rules &amp; Sources tab before relying on the math.</div>`;
     ids.auditDashboard.innerHTML = [
-      dashboardMetric("Verdict", blockers.length ? "Needs missing inputs" : "Draft ready", routeTone),
-      dashboardMetric("Legal Route", stageTitles(result) || "UNKNOWN", "slate"),
-      dashboardMetric("Raw Sum", hours(rawTotal), "amber"),
-      dashboardMetric("Optimized Total", hours(optimized), optimized === "UNKNOWN" ? "red" : "green"),
+      dashboardMetric("Optimized Hours", hours(optimized), optimized === "UNKNOWN" ? "red" : "green"),
       dashboardMetric("Estimated Cost", money(cost), cost === "UNKNOWN" ? "red" : "amber"),
-      dashboardMetric("Blockers", blockers.length ? `${blockers.length} item(s)` : "None", blockers.length ? "red" : "green"),
-      dashboardMetric("Next Action", firstNextAction(result), blockers.length ? "red" : "blue"),
-      dashboardMetric("Source Review", result.sourceReviewDate, "slate")
+      dashboardMetric("Savings vs Raw Sum", savings !== null ? `${savings.toFixed(1)} hr` : "Depends on missing inputs", savings !== null ? "blue" : "slate"),
+      dashboardMetric("Next Action", firstNextAction(result), blockers.length ? "red" : "blue")
     ].join("");
-    ids.cfiReadout.textContent = `${firstVerdict}\n\n${cfiReadoutText(result)}`;
+    const firstVerdict = result.audits[0] ? result.audits[0].verdict : "No route generated.";
+    ids.cfiReadout.innerHTML = linkifyMultilineCfrText(`${firstVerdict}\n\n${cfiReadoutText(result)}`);
+
+    const reviewCostEl = qs("#part61ReviewCost");
+    const reviewHoursEl = qs("#part61ReviewHours");
+    const reviewStatusEl = qs("#part61ReviewStatus");
+    if (reviewCostEl) reviewCostEl.textContent = money(cost);
+    if (reviewHoursEl) reviewHoursEl.textContent = hours(optimized);
+    if (reviewStatusEl) reviewStatusEl.textContent = ready ? "Ready" : `${blockers.length} Blocked`;
   }
 
   function renderCounts(audits) {
@@ -691,7 +802,7 @@
       }).slice(0, 4);
       return `
         <article class="counts-card">
-          <h4>${escapeHtml(audit.title)}</h4>
+          <h4>${linkifyCfrText(audit.title)}</h4>
           <div class="counts-stats">
             <span class="status-pill status-complete">${satisfied} satisfied</span>
             <span class="status-pill status-remaining">${remaining} remaining</span>
@@ -700,11 +811,11 @@
           <div class="counts-columns">
             <div>
               <b>What can count</b>
-              <ul>${(broad.length ? broad : rows.slice(0, 3)).map((row) => `<li>${escapeHtml(row.requirement)}: ${escapeHtml(row.why)}</li>`).join("")}</ul>
+              <ul>${(broad.length ? broad : rows.slice(0, 3)).map((row) => `<li>${linkifyCfrText(row.requirement)}: ${linkifyCfrText(row.why)}</li>`).join("")}</ul>
             </div>
             <div>
               <b>What does not / guardrails</b>
-              <ul>${(guardrails.length ? guardrails : rows.filter((row) => row.status !== "satisfied").slice(0, 3)).map((row) => `<li>${escapeHtml(row.requirement)}: ${escapeHtml(row.overlapLogic || row.why)}</li>`).join("")}</ul>
+              <ul>${(guardrails.length ? guardrails : rows.filter((row) => row.status !== "satisfied").slice(0, 3)).map((row) => `<li>${linkifyCfrText(row.requirement)}: ${linkifyCfrText(row.overlapLogic || row.why)}</li>`).join("")}</ul>
             </div>
           </div>
         </article>
@@ -714,12 +825,13 @@
   }
 
   function chipListFromText(text, tone) {
+    const safeTone = escapeHtml(tone || "broad");
     return String(text || "")
       .split(/,\s*|\s+-\s+|;/)
       .map((item) => item.trim())
       .filter(Boolean)
       .slice(0, 6)
-      .map((item) => `<span class="data-tag tag-${escapeHtml(tone || "broad")}">${escapeHtml(item)}</span>`)
+      .map((item) => `<span class="data-tag tag-${safeTone}">${linkifyCfrText(item, { linkBare: true })}</span>`)
       .join("");
   }
 
@@ -742,7 +854,7 @@
       return `
         <article class="overlap-card">
           <div class="overlap-head">
-            <h4>${escapeHtml(audit.title)}</h4>
+            <h4>${linkifyCfrText(audit.title)}</h4>
             <span>${raw !== null && optimized !== null ? `${saved.toFixed(1)} hr combined away from raw sum` : "Overlap depends on missing inputs or proficiency"}</span>
           </div>
           <div class="overlap-bars" aria-label="Raw versus optimized hours for ${escapeHtml(audit.title)}">
@@ -766,7 +878,7 @@
           <tbody>
             ${rows.map((row) => `
               <tr class="${rowClass(row, totalClass)}">
-                ${columns.map((column) => `<td class="${cellClass(row, column.key)}">${formatCell(row[column.key], column.key, row)}</td>`).join("")}
+                ${columns.map((column) => `<td class="${cellClass(row, column.key)}" data-label="${escapeHtml(column.label)}">${formatCell(row[column.key], column.key, row)}</td>`).join("")}
               </tr>
             `).join("")}
           </tbody>
@@ -828,7 +940,7 @@
     if (linkKeys.has(key)) {
       return `${linkifyCfrText(value ?? "", { linkBare: true })}${tags}`;
     }
-    return `${escapeHtml(value ?? "")}${tags}`;
+    return `${linkifyCfrText(value ?? "")}${tags}`;
   }
 
   function updateFilterButtons() {
@@ -840,16 +952,16 @@
   }
 
   function ledgerRowsForFilter(audit) {
-    if (state.activeFilter === "remaining") {
+    if (state.activeFilter === LEDGER_FILTERS.REMAINING) {
       return audit.rows.filter((row) => row.status === "remaining" || row.status === "missing" || row.kind === "total");
     }
-    if (state.activeFilter === "events") return audit.events;
+    if (state.activeFilter === LEDGER_FILTERS.EVENTS) return audit.events;
     return audit.rows;
   }
 
   function renderLedger(audits) {
     updateFilterButtons();
-    if (state.activeFilter === "endorsements") {
+    if (state.activeFilter === LEDGER_FILTERS.ENDORSEMENTS) {
       ids.ledger.innerHTML = table([
         { key: "stage", label: "Stage" },
         { key: "item", label: "AC Item" },
@@ -862,7 +974,7 @@
       ], endorsementRows(audits));
       return;
     }
-    if (state.activeFilter === "paperwork") {
+    if (state.activeFilter === LEDGER_FILTERS.PAPERWORK) {
       ids.ledger.innerHTML = table([
         { key: "stage", label: "Stage" },
         { key: "gate", label: "Gate" },
@@ -875,7 +987,7 @@
       return;
     }
     ids.ledger.innerHTML = audits.map((audit) => `
-      <h4>${escapeHtml(audit.title)}</h4>
+      <h4>${linkifyCfrText(audit.title)}</h4>
       ${table([
         { key: "cfr", label: "CFR" },
         { key: "requirement", label: "Requirement" },
@@ -887,17 +999,6 @@
         { key: "overlapLogic", label: "Overlap Logic" }
       ], ledgerRowsForFilter(audit), true)}
     `).join("");
-  }
-
-  function renderEventsTable(audits) {
-    const rows = audits.flatMap((audit) => audit.events.map((event) => ({ stage: audit.title, ...event })));
-    ids.events.innerHTML = table([
-      { key: "stage", label: "Stage" },
-      { key: "cfr", label: "CFR" },
-      { key: "requirement", label: "Required Event" },
-      { key: "remaining", label: "Remaining" },
-      { key: "overlapLogic", label: "Overlap Logic" }
-    ], rows);
   }
 
   function renderTraining(audits) {
@@ -963,7 +1064,7 @@
   function renderUnknowns(audits) {
     const unknowns = audits.flatMap((audit) => audit.unknowns.map((item) => `${audit.title}: ${item}`));
     ids.unknowns.innerHTML = unknowns.length
-      ? `<ul class="list-box">${unknowns.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+      ? `<ul class="list-box">${unknowns.map((item) => `<li>${linkifyCfrText(item)}</li>`).join("")}</ul>`
       : `<div class="empty-state status-good">No blocking unknowns for the generated math.</div>`;
   }
 
@@ -973,67 +1074,294 @@
     ids.links.innerHTML = `<ul class="list-box">${Array.from(map.values()).map((link) => `<li><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></li>`).join("")}</ul>`;
   }
 
+  /* ---------- Results tabs ---------- */
+
+  function setResultsTab(tab, focusTab) {
+    if (!RESULTS_TABS.includes(tab)) tab = "plan";
+    state.resultsTab = tab;
+    qsa("[data-results-tab]").forEach((button) => {
+      const active = button.dataset.resultsTab === tab;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-selected", active ? "true" : "false");
+      button.setAttribute("tabindex", active ? "0" : "-1");
+      if (active && focusTab) button.focus();
+    });
+    qsa(".part61-results-tabpanel").forEach((panel) => {
+      panel.hidden = panel.dataset.resultsPanel !== tab;
+    });
+  }
+
+  /* ---------- Stale-results banner ---------- */
+
+  function markDirty() {
+    if (!state.result || state.dirty) return;
+    state.dirty = true;
+    updateStaleBanner();
+  }
+
+  function updateStaleBanner() {
+    const show = Boolean(state.result && state.dirty);
+    ids.staleBanner.hidden = !show;
+    if (show) {
+      ids.staleBanner.innerHTML = `
+        <span>Inputs changed since this audit was generated.</span>
+        <button type="button" class="part61-button part61-button-primary part61-button-small" data-recalculate>Recalculate</button>
+      `;
+    } else {
+      ids.staleBanner.innerHTML = "";
+    }
+  }
+
+  /* ---------- Calculate ---------- */
+
+  function flashHero() {
+    const section = qs(".part61-dashboard-section");
+    if (!section) return;
+    section.classList.remove("is-fresh");
+    void section.offsetWidth;
+    section.classList.add("is-fresh");
+    window.setTimeout(() => section.classList.remove("is-fresh"), 1400);
+  }
+
+  function renderCalculationError() {
+    ids.heroBanner.hidden = false;
+    ids.heroBanner.className = "part61-hero-banner is-blocked";
+    ids.heroBanner.innerHTML = `<span class="part61-hero-icon" aria-hidden="true">&#10005;</span><div><b>Something went wrong generating this audit.</b> Your inputs are preserved - adjust them and try again.</div>`;
+    ids.resultTitle.textContent = "Audit failed";
+  }
+
   function calculateAndRender() {
     state.validationAttempted = true;
     if (!validateRequiredInputs(true)) return;
-    state.result = CORE.calculateAudit(collectInput());
-    state.activeFilter = "all";
+    let result;
+    try {
+      result = CORE.calculateAudit(collectInput());
+    } catch (error) {
+      console.error("Part 61 audit failed", error);
+      renderCalculationError();
+      return;
+    }
+    state.result = result;
+    state.dirty = false;
+    const mq = typeof window.matchMedia === "function";
+    state.activeFilter = (mq ? window.matchMedia("(max-width: 640px)").matches : window.innerWidth <= 640)
+      ? LEDGER_FILTERS.REMAINING
+      : LEDGER_FILTERS.ALL;
     renderResults(state.result);
+    updateStaleBanner();
+    updateRailProgress();
+    if (mq ? window.matchMedia("(max-width: 1100px)").matches : window.innerWidth <= 1100) {
+      U.queueScrollToTarget(ids.results);
+    }
+    flashHero();
+    setStep(5);
   }
 
   function renderResults(result) {
     const audits = result.audits;
-    ids.resultTitle.textContent = audits.map((audit) => audit.title).join(" -> ");
+    ids.resultTitle.innerHTML = audits.map((audit) => linkifyCfrText(audit.title)).join(" -> ");
     ids.sourceReview.textContent = `Source review date: ${result.sourceReviewDate}`;
     updateInputCompleteness();
-    renderAuditDashboard(result);
-    ids.verdict.innerHTML = audits.map((audit, index) => `<p><b>Stage ${index + 1}: ${escapeHtml(audit.title)}.</b> ${linkifyCfrText(audit.verdict, { linkBare: true })}</p>`).join("");
+    renderHero(result);
+    ids.verdict.innerHTML = audits.map((audit, index) => `<p><b>Stage ${index + 1}: ${linkifyCfrText(audit.title)}.</b> ${linkifyCfrText(audit.verdict, { linkBare: true })}</p>`).join("");
     renderSummary(audits);
     renderCombined(result);
-    renderCounts(audits);
     renderOverlapMap(result);
-    renderLedger(audits);
-    renderEventsTable(audits);
     renderTraining(audits);
-    renderGates(audits);
     renderEndorsements(audits);
+    renderGates(audits);
+    renderLedger(audits);
+    renderCounts(audits);
     renderUnknowns(audits);
     renderLinks(audits);
-    ids.ledgerDetails.open = false;
+    setResultsTab(state.resultsTab);
+    if (ids.readoutDetails) ids.readoutDetails.open = false;
   }
 
-  function applyScenario(scenario) {
-    state.credentials = scenario.credentials.slice();
-    state.targets = scenario.targets.slice();
+  /* ---------- Scenarios, drafts, and sharing ---------- */
+
+  function hydrateScenario(scenario) {
+    state.credentials = Array.isArray(scenario.credentials) ? scenario.credentials.slice() : [];
+    state.targets = Array.isArray(scenario.targets) && scenario.targets.length
+      ? scenario.targets.slice()
+      : ["private-asel"];
     ids.credentialSearch.value = "";
-    setFlags(scenario.flags);
-    setExperience(scenario.experience);
-    setRates(scenario.rates);
+    setFlags(scenario.flags || {});
+    setExperience(scenario.experience || {});
+    setRates(scenario.rates || {});
+    renderEvents();
     setEvents(scenario.events || {});
     clearValidation();
     rerenderStaticControls();
+  }
+
+  function applyScenario(scenario) {
+    hydrateScenario(scenario);
+    queueDraftSave();
     calculateAndRender();
   }
 
   function loadExample() {
-    applyScenario(ROTORCRAFT_EXAMPLE);
+    if (typeof RULES === "undefined" || !RULES || !RULES.SAMPLE_SCENARIOS) {
+      return;
+    }
+    applyScenario(RULES.SAMPLE_SCENARIOS[0]);
   }
 
   function loadRandomSample() {
-    let nextIndex = Math.floor(Math.random() * SAMPLE_SCENARIOS.length);
-    if (SAMPLE_SCENARIOS.length > 1 && nextIndex === state.lastSampleIndex) {
-      nextIndex = (nextIndex + 1) % SAMPLE_SCENARIOS.length;
+    if (typeof RULES === "undefined" || !RULES || !RULES.SAMPLE_SCENARIOS) {
+      return;
+    }
+    let nextIndex = Math.floor(Math.random() * RULES.SAMPLE_SCENARIOS.length);
+    if (RULES.SAMPLE_SCENARIOS.length > 1 && nextIndex === state.lastSampleIndex) {
+      nextIndex = (nextIndex + 1) % RULES.SAMPLE_SCENARIOS.length;
     }
     state.lastSampleIndex = nextIndex;
-    applyScenario(SAMPLE_SCENARIOS[nextIndex]);
+    applyScenario(RULES.SAMPLE_SCENARIOS[nextIndex]);
   }
+
+  function scenarioSnapshot() {
+    const experience = {};
+    qsa("[data-experience]").forEach((input) => {
+      experience[input.dataset.experience] = input.value;
+    });
+    const events = {};
+    qsa("[data-event]").forEach((input) => {
+      events[input.dataset.event] = input.checked;
+    });
+    return {
+      version: 1,
+      savedAt: new Date().toISOString(),
+      credentials: state.credentials.slice(),
+      targets: state.targets.slice(),
+      flags: collectFlags(),
+      rates: {
+        aircraftWet: ids.aircraftWetRate.value,
+        instructor: ids.instructorRate.value
+      },
+      experience,
+      events
+    };
+  }
+
+  function persistScenario() {
+    U.saveStoredJson(DRAFT_STORAGE_KEY, scenarioSnapshot());
+  }
+
+  const queueDraftSave = U.debounce(persistScenario, 400);
+
+  function showDraftNotice(savedAt) {
+    const when = savedAt ? new Date(savedAt) : null;
+    const label = when && !Number.isNaN(when.getTime()) ? when.toLocaleString() : "an earlier session";
+    ids.draftNotice.innerHTML = `
+      <span>Restored your draft from ${escapeHtml(label)}.</span>
+      <button type="button" class="part61-text-button" data-dismiss-draft>Start fresh</button>
+    `;
+    ids.draftNotice.hidden = false;
+  }
+
+  function restoreDraft() {
+    const draft = U.loadStoredJson(DRAFT_STORAGE_KEY);
+    if (!draft || draft.version !== 1) return false;
+    hydrateScenario(draft);
+    showDraftNotice(draft.savedAt);
+    return true;
+  }
+
+  function encodeScenario() {
+    const snap = scenarioSnapshot();
+    const flagBits = FLAG_KEYS.map((key) => (snap.flags[key] ? "1" : "0")).join("");
+    const fieldKeys = flatFieldList().map((field) => field.key);
+    const hoursCsv = fieldKeys.map((key) => snap.experience[key] ?? "").join(",");
+    const eventBits = RULES.EVENT_OPTIONS.map((event) => (snap.events[event.id] ? "1" : "0")).join("");
+    return [
+      "v1",
+      snap.credentials.join(","),
+      snap.targets.join(","),
+      flagBits,
+      `${snap.rates.aircraftWet},${snap.rates.instructor}`,
+      hoursCsv,
+      eventBits
+    ].join("~");
+  }
+
+  function decodeScenario(encoded) {
+    try {
+      const parts = String(encoded).split("~");
+      if (parts[0] !== "v1" || parts.length < 7) return null;
+      const [, credsCsv, targetsCsv, flagBits, ratesCsv, hoursCsv, eventBits] = parts;
+      const validCredentials = new Set(RULES.CREDENTIAL_OPTIONS.map((option) => option.id));
+      const validTargets = new Set(RULES.TARGET_OPTIONS.map((option) => option.id));
+      const credentials = credsCsv ? credsCsv.split(",").filter((id) => validCredentials.has(id)) : [];
+      const targets = targetsCsv ? targetsCsv.split(",").filter((id) => validTargets.has(id)) : [];
+      const flags = {};
+      FLAG_KEYS.forEach((key, index) => {
+        flags[key] = flagBits.charAt(index) === "1";
+      });
+      const [aircraftWet, instructor] = ratesCsv.split(",");
+      const fieldKeys = flatFieldList().map((field) => field.key);
+      const hoursValues = hoursCsv.split(",");
+      const experience = {};
+      fieldKeys.forEach((key, index) => {
+        experience[key] = hoursValues[index] ?? "";
+      });
+      const events = {};
+      RULES.EVENT_OPTIONS.forEach((event, index) => {
+        events[event.id] = eventBits.charAt(index) === "1";
+      });
+      return {
+        credentials,
+        targets: targets.length ? targets : ["private-asel"],
+        flags,
+        rates: { aircraftWet, instructor },
+        experience,
+        events
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function consumeShareParam() {
+    let params;
+    try {
+      params = new URLSearchParams(window.location.search);
+    } catch (error) {
+      return false;
+    }
+    const encoded = params.get(SHARE_PARAM);
+    if (!encoded) return false;
+    const scenario = decodeScenario(encoded);
+    if (!scenario) return false;
+    hydrateScenario(scenario);
+    params.delete(SHARE_PARAM);
+    const query = params.toString();
+    window.history.replaceState(null, "", `${window.location.pathname}${query ? "?" + query : ""}${window.location.hash}`);
+    // setTimeout, not requestAnimationFrame: rAF never fires in background tabs,
+    // and the timeout also guarantees app.js has unhidden the calculator view.
+    window.setTimeout(() => calculateAndRender(), 0);
+    return true;
+  }
+
+  function copyShareLink() {
+    const url = new URL(window.location.href);
+    url.search = "";
+    url.searchParams.set("view", "calculator");
+    url.searchParams.set(SHARE_PARAM, encodeScenario());
+    U.copyTextToClipboard(url.toString(), ids.shareBtn, "Link copied");
+  }
+
+  /* ---------- Clear and reports ---------- */
 
   function clearAll() {
     state.credentials = [];
     state.targets = ["private-asel"];
     state.validationAttempted = false;
     state.result = null;
+    state.dirty = false;
     state.lastSampleIndex = null;
+    state.activeFilter = LEDGER_FILTERS.ALL;
+    state.resultsTab = "plan";
     ids.credentialSearch.value = "";
     setFlags({});
     setExperience({});
@@ -1041,28 +1369,49 @@
       aircraftWet: RULES.DEFAULT_RATES.aircraftWet,
       instructor: RULES.DEFAULT_RATES.instructor
     });
+    renderEvents();
     setEvents({});
     clearValidation();
     rerenderStaticControls();
-    state.activeFilter = "all";
+    U.clearStoredValue(DRAFT_STORAGE_KEY);
+    ids.draftNotice.hidden = true;
+    ids.draftNotice.innerHTML = "";
+    updateStaleBanner();
     ids.resultTitle.textContent = "Ready for a scenario";
     ids.inputCompleteness.textContent = `Input completeness: 0/${flatFieldList().length} hour fields complete`;
+    ids.heroBanner.hidden = true;
+    ids.heroBanner.innerHTML = "";
     ids.auditDashboard.innerHTML = "";
     ids.cfiReadout.textContent = "Select the pilot's current credentials, enter known hours, choose the target path, then calculate.";
     ids.verdict.textContent = "Select the pilot's current credentials, enter known hours, choose the target path, then calculate.";
-    ["summary", "combinedSummary", "counts", "overlapMap", "ledger", "events", "training", "gates", "endorsements", "unknowns", "links"].forEach((key) => {
+    ["summary", "combinedSummary", "counts", "overlapMap", "ledger", "training", "gates", "endorsements", "unknowns", "links"].forEach((key) => {
       ids[key].innerHTML = "";
     });
-    ids.ledgerDetails.open = false;
+    setResultsTab("plan");
+    if (ids.readoutDetails) ids.readoutDetails.open = false;
+    updateRailProgress();
+
+    const reviewCostEl = qs("#part61ReviewCost");
+    const reviewHoursEl = qs("#part61ReviewHours");
+    const reviewStatusEl = qs("#part61ReviewStatus");
+    if (reviewCostEl) reviewCostEl.textContent = "$0.00";
+    if (reviewHoursEl) reviewHoursEl.textContent = "0.0 hrs";
+    if (reviewStatusEl) reviewStatusEl.textContent = "Ready";
+
+    setStep(1);
   }
 
   function reportText() {
     if (!state.result) return "No report generated yet.";
     const rates = state.result.combined.rates || currentRates();
-    const header = [
+    const headerLines = [
       `Rates used: wet ${money(rates.aircraftWet)}/hr; instructor ${money(rates.instructor)}/hr; dual ${money(rates.dual)}/hr; solo/PDPIC/time-building ${money(rates.solo)}/hr.`,
       "Validation assumption: zeros mean not applicable or none logged; blanks are not accepted in the browser UI."
-    ].join("\n");
+    ];
+    if (state.dirty) {
+      headerLines.push("NOTE: Inputs changed after this audit was generated; recalculate before relying on it.");
+    }
+    const header = headerLines.join("\n");
     return `${header}\n\nCFI READOUT\n${cfiReadoutText(state.result)}\n\nFULL AUDIT\n${state.result.audits.map((audit, index) => {
       const rows = audit.rows.map((row) => `${row.cfr} | ${row.requirement} | remaining ${row.remaining} | ${row.why}`).join("\n");
       const endorsements = audit.endorsements.map((item) => `${item.item} | ${item.endorsement} | ${item.cfrBasis}`).join("\n");
@@ -1080,40 +1429,26 @@
     }).join("\n\n")}`;
   }
 
-  async function copyTextToClipboard(text, button, resetLabel) {
-    try {
-      await navigator.clipboard.writeText(text);
-      button.textContent = "Copied";
-      setTimeout(() => { button.textContent = resetLabel; }, 1200);
-    } catch (error) {
-      const area = document.createElement("textarea");
-      area.value = text;
-      document.body.appendChild(area);
-      area.select();
-      document.execCommand("copy");
-      area.remove();
-      button.textContent = "Copied";
-      setTimeout(() => { button.textContent = resetLabel; }, 1200);
-    }
-  }
-
   function copyReport() {
-    copyTextToClipboard(reportText(), ids.copyBtn, "Copy Report");
+    U.copyTextToClipboard(reportText(), ids.copyBtn);
   }
 
   function copyCfiReadout() {
-    copyTextToClipboard(cfiReadoutText(state.result), ids.copyCfiBtn, "Copy CFI Readout");
+    U.copyTextToClipboard(cfiReadoutText(state.result), ids.copyCfiBtn);
   }
 
   function copyStudentChecklist() {
-    copyTextToClipboard(studentChecklistText(state.result), ids.copyChecklistBtn, "Copy Student Checklist");
+    U.copyTextToClipboard(studentChecklistText(state.result), ids.copyChecklistBtn);
   }
 
   function rerenderStaticControls() {
     renderCredentialOptions();
     renderSelectedCredentials();
     renderStages();
+    updateRailProgress();
   }
+
+  /* ---------- Events ---------- */
 
   function bindEvents() {
     ids.credentialSearch.addEventListener("input", renderCredentialOptions);
@@ -1127,6 +1462,8 @@
         state.credentials.push(value);
       }
       rerenderStaticControls();
+      markDirty();
+      queueDraftSave();
     });
 
     ids.selectedCredentials.addEventListener("click", (event) => {
@@ -1134,12 +1471,16 @@
       if (!button) return;
       state.credentials = state.credentials.filter((item) => item !== button.dataset.removeCredential);
       rerenderStaticControls();
+      markDirty();
+      queueDraftSave();
     });
 
     ids.targetStages.addEventListener("change", (event) => {
       const select = event.target.closest("[data-stage-index]");
       if (!select) return;
       state.targets[Number(select.dataset.stageIndex)] = select.value;
+      renderEvents();
+      updateRailProgress();
     });
 
     ids.targetStages.addEventListener("click", (event) => {
@@ -1148,35 +1489,187 @@
       state.targets.splice(Number(button.dataset.removeStage), 1);
       if (!state.targets.length) state.targets.push("private-asel");
       renderStages();
+      renderEvents();
+      updateRailProgress();
+      markDirty();
+      queueDraftSave();
     });
 
     ids.addStageBtn.addEventListener("click", () => {
       state.targets.push("commercial-asel");
       renderStages();
+      renderEvents();
+      updateRailProgress();
+      markDirty();
+      queueDraftSave();
     });
 
     ids.calculateBtn.addEventListener("click", calculateAndRender);
+    if (ids.mobileCalculateBtn) {
+      ids.mobileCalculateBtn.addEventListener("click", calculateAndRender);
+    }
+
+    const handleFieldInput = U.debounce((target) => {
+      if (target.matches("[data-rate]")) updateRateSummary();
+      if (target.matches("[data-experience]")) updateInputCompleteness();
+      if (state.validationAttempted) validateRequiredInputs(false);
+      updateMobileBar();
+    }, 150);
+
     rootEl.addEventListener("input", (event) => {
-      if (event.target.matches("[data-experience], [data-rate]")) {
-        if (event.target.matches("[data-rate]")) updateRateSummary();
-        if (event.target.matches("[data-experience]")) updateInputCompleteness();
-        if (state.validationAttempted) validateRequiredInputs(false);
+      if (!event.target.matches("[data-experience], [data-rate]")) return;
+      if (event.target.matches("[data-experience]") && event.target.value.trim() !== "") {
+        setInvalid(event.target, false);
       }
+      markDirty();
+      queueDraftSave();
+      handleFieldInput(event.target);
     });
+
+    // Inline "visited and left blank" validation, without waiting for Calculate.
+    ids.experienceFields.addEventListener("blur", (event) => {
+      const input = event.target;
+      if (!input.matches || !input.matches("[data-experience]")) return;
+      if (input.value.trim() === "") setInvalid(input, true);
+    }, true);
+
+    ids.experienceFields.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-fill-zero-group]");
+      if (!button) return;
+      fillBlanksWithZero(button.dataset.fillZeroGroup);
+    });
+
+    ids.validationMessage.addEventListener("click", (event) => {
+      if (event.target.closest("[data-fill-zero-all]")) {
+        fillBlanksWithZero(null);
+        return;
+      }
+      const jump = event.target.closest("[data-jump-group]");
+      if (!jump) return;
+      const slug = jump.dataset.jumpGroup;
+      const badge = qs(`[data-group-completion="${slug}"]`);
+      const groupEl = badge ? badge.closest(".field-group") : null;
+      if (groupEl) U.scrollToTarget(groupEl);
+      const firstBlank = qsa(`[data-experience][data-group-slug="${slug}"]`).find((input) => input.value.trim() === "");
+      if (firstBlank) firstBlank.focus({ preventScroll: true });
+    });
+
+    // Flags, event checkboxes, and stage selects mark the audit stale and autosave.
+    rootEl.addEventListener("change", (event) => {
+      if (!event.target.matches('input[type="checkbox"], select')) return;
+      if (event.target.matches("[data-event]")) updateEventGroupCounts();
+      markDirty();
+      queueDraftSave();
+    });
+
+    ids.staleBanner.addEventListener("click", (event) => {
+      if (!event.target.closest("[data-recalculate]")) return;
+      calculateAndRender();
+    });
+
+    ids.draftNotice.addEventListener("click", (event) => {
+      if (!event.target.closest("[data-dismiss-draft]")) return;
+      clearAll();
+    });
+
     ids.loadExampleBtn.addEventListener("click", loadExample);
     ids.randomSampleBtn.addEventListener("click", loadRandomSample);
     ids.clearBtn.addEventListener("click", clearAll);
     ids.copyBtn.addEventListener("click", copyReport);
-    ids.copyCfiBtn.addEventListener("click", copyCfiReadout);
+    if (ids.shareBtn) ids.shareBtn.addEventListener("click", copyShareLink);
+    ids.copyCfiBtn.addEventListener("click", (event) => {
+      // The button lives inside the readout <summary>; do not toggle it.
+      event.preventDefault();
+      event.stopPropagation();
+      copyCfiReadout();
+    });
     ids.copyChecklistBtn.addEventListener("click", copyStudentChecklist);
     ids.printBtn.addEventListener("click", () => window.print());
-    ids.clearEventsBtn.addEventListener("click", () => setEvents({}));
+    ids.clearEventsBtn.addEventListener("click", () => {
+      setEvents({});
+      markDirty();
+      queueDraftSave();
+    });
+
     qsa("[data-filter]").forEach((button) => {
       button.addEventListener("click", () => {
         state.activeFilter = button.dataset.filter;
         if (state.result) renderLedger(state.result.audits);
       });
     });
+
+    const tabRow = qs(".part61-results-tabs");
+    if (tabRow) {
+      tabRow.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-results-tab]");
+        if (button) setResultsTab(button.dataset.resultsTab);
+      });
+      tabRow.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        const index = RESULTS_TABS.indexOf(state.resultsTab);
+        const next = event.key === "ArrowRight"
+          ? (index + 1) % RESULTS_TABS.length
+          : (index - 1 + RESULTS_TABS.length) % RESULTS_TABS.length;
+        setResultsTab(RESULTS_TABS[next], true);
+      });
+    }
+
+    window.addEventListener("beforeprint", () => {
+      qsa(".part61-results-tabpanel").forEach((panel) => {
+        panel.hidden = false;
+      });
+      if (ids.readoutDetails) ids.readoutDetails.open = true;
+    });
+    window.addEventListener("afterprint", () => {
+      setResultsTab(state.resultsTab);
+    });
+
+    // Event delegation for Next/Back buttons
+    rootEl.addEventListener("click", (event) => {
+      const nextBtn = event.target.closest("#part61NextBtn, .part61-next-btn");
+      if (nextBtn) {
+        const workbench = qs(".part61-workbench");
+        const currentStep = workbench ? parseInt(workbench.getAttribute("data-active-step"), 10) || state.activeStep : state.activeStep;
+        setStep(currentStep + 1);
+        return;
+      }
+      const backBtn = event.target.closest("#part61BackBtn, .part61-back-btn");
+      if (backBtn) {
+        const workbench = qs(".part61-workbench");
+        const currentStep = workbench ? parseInt(workbench.getAttribute("data-active-step"), 10) || state.activeStep : state.activeStep;
+        setStep(currentStep - 1);
+        return;
+      }
+    });
+
+    // Window resize event hook
+    window.addEventListener("resize", updateResponsiveLayout);
+
+    // Also bind event listeners to the header and results panel copies if they exist in the DOM
+    const headerClearBtn = rootEl.querySelector("#part61HeaderClearBtn");
+    if (headerClearBtn) headerClearBtn.addEventListener("click", clearAll);
+
+    const headerCopyBtn = rootEl.querySelector("#part61HeaderCopyBtn");
+    if (headerCopyBtn) headerCopyBtn.addEventListener("click", copyReport);
+
+    const headerShareBtn = rootEl.querySelector("#part61HeaderShareBtn");
+    if (headerShareBtn) headerShareBtn.addEventListener("click", copyShareLink);
+
+    const headerPrintBtn = rootEl.querySelector("#part61HeaderPrintBtn");
+    if (headerPrintBtn) headerPrintBtn.addEventListener("click", () => window.print());
+
+    const copyChecklistResultsBtn = rootEl.querySelector("#part61CopyChecklistResultsBtn");
+    if (copyChecklistResultsBtn) copyChecklistResultsBtn.addEventListener("click", copyStudentChecklist);
+
+    const copyCfiResultsBtn = rootEl.querySelector("#part61CopyCfiResultsBtn");
+    if (copyCfiResultsBtn) {
+      copyCfiResultsBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        copyCfiReadout();
+      });
+    }
   }
 
   function init() {
@@ -1184,8 +1677,38 @@
     renderEvents();
     setRates(state.rates);
     rerenderStaticControls();
+    const restored = consumeShareParam() || restoreDraft();
+    if (!restored) {
+      updateEventGroupCounts();
+    }
     bindEvents();
+    initStepRail();
     updateInputCompleteness();
+    updateRailProgress();
+
+    // Intercept workbench setAttribute to trigger setStep synchronously
+    // This allows tests and external code to set data-active-step directly.
+    const workbench = qs(".part61-workbench");
+    if (workbench) {
+      const origSetAttr = workbench.setAttribute.bind(workbench);
+      workbench.setAttribute = function (name, value) {
+        if (name === "data-active-step") {
+          let step = parseInt(value, 10);
+          if (isNaN(step) || step < 1 || step > 5) {
+            step = state.activeStep;
+          }
+          origSetAttr(name, String(step));
+          if (step !== state.activeStep) {
+            setStep(step);
+          }
+        } else {
+          origSetAttr(name, value);
+        }
+      };
+    }
+
+    setStep(restored ? 5 : 1);
+
     ids.sourceReview.textContent = `Source review date: ${RULES.REVIEW_DATE}`;
   }
 

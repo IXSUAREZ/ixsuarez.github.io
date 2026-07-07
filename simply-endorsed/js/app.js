@@ -187,62 +187,6 @@
   const CATEGORY_MAP = new Map(CATEGORY_DEFS.map((item) => [item.id, item]));
   const BROWSE_MAP = new Map(BROWSE_STRUCTURE.map((item) => [item.categoryId, item]));
   const ENDORSEMENT_MAP = new Map(ENDORSEMENTS.map((item) => [item.id, item]));
-  const FEATURED_SUBCATEGORIES = BROWSE_STRUCTURE.flatMap((entry) => (
-    Array.isArray(entry.subcategories)
-      ? entry.subcategories
-        .filter((subcategory) => subcategory.featured === true)
-        .map((subcategory) => ({
-          categoryId: entry.categoryId,
-          subcategoryId: subcategory.id,
-          subcategory,
-        }))
-      : []
-  ));
-
-  const TASK_MODES = [
-    {
-      id: "first-solo-today",
-      label: "First solo today",
-      helper: "Student pilot solo package",
-      categoryId: "student-pilot",
-      subcategoryId: "first-solo",
-    },
-    {
-      id: "private-checkride",
-      label: "Private checkride",
-      helper: "Initial airplane checkride bundle",
-      categoryId: "private-pilot",
-      subcategoryId: "private-airplane-initial-checkride-bundle",
-    },
-    {
-      id: "instrument-checkride",
-      label: "Instrument checkride",
-      helper: "Instrument bundle plus practical-test prereqs",
-      categoryId: "instrument-rating",
-      subcategoryId: "instrument-checkride-bundle",
-    },
-    {
-      id: "flight-review",
-      label: "Flight review",
-      helper: "Flight review and WINGS signoffs",
-      categoryId: "additional-recurrent",
-      subcategoryId: "flight-review-and-wings",
-    },
-    {
-      id: "tailwheel",
-      label: "Tailwheel",
-      helper: "Jump straight to the aircraft endorsement group",
-      categoryId: "additional-recurrent",
-      subcategoryId: "aircraft-endorsements",
-    },
-    {
-      id: "retest-after-disapproval",
-      label: "Retest after disapproval",
-      helper: "Find the retraining signoff fast",
-      categoryId: "additional-recurrent",
-      subcategoryId: "retest-after-disapproval",
-    },
-  ];
 
   const STORAGE_KEYS = {
     recentEndorsements: "simply-endorsed:recent-endorsements",
@@ -304,29 +248,16 @@
   };
 
   function loadStoredArray(key) {
-    try {
-      const value = window.localStorage.getItem(key);
-      const parsed = value ? JSON.parse(value) : [];
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      return [];
-    }
+    const parsed = window.SimplyEndorsedUtils.loadStoredJson(key);
+    return Array.isArray(parsed) ? parsed : [];
   }
 
   function saveStoredArray(key, values) {
-    try {
-      window.localStorage.setItem(key, JSON.stringify(values));
-    } catch (error) {
-      // Ignore storage write failures so the app still works in private mode.
-    }
+    window.SimplyEndorsedUtils.saveStoredJson(key, values);
   }
 
   function clearStoredValue(key) {
-    try {
-      window.localStorage.removeItem(key);
-    } catch (error) {
-      // Ignore storage failures so the app still works in private mode.
-    }
+    window.SimplyEndorsedUtils.clearStoredValue(key);
   }
 
   const FLASHCARD_READY_KEY = "se_flashcard_ready_v1";
@@ -376,7 +307,7 @@
     filterPopover: document.getElementById("filterPopover"),
     scopeControls: document.getElementById("scopeControls"),
     bundleBar: document.getElementById("bundleBar"),
-    featuredStrip: document.getElementById("featuredStrip"),
+    browseLauncher: document.getElementById("browseLauncher"),
     footerMeta: document.getElementById("footerMeta"),
     filterRail: document.getElementById("filterRail"),
     sidebarToggleBtn: document.getElementById("sidebarToggleBtn"),
@@ -393,12 +324,7 @@
   };
 
   function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+    return window.SimplyEndorsedUtils.escapeHtml(value);
   }
 
   function linkifyCfrText(value, options) {
@@ -602,12 +528,7 @@
   }
 
   function debounce(fn, delay) {
-    let timeoutId = null;
-    return function debounced() {
-      const args = arguments;
-      clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(() => fn.apply(null, args), delay);
-    };
+    return window.SimplyEndorsedUtils.debounce(fn, delay);
   }
 
   function syncSearchInput() {
@@ -1054,33 +975,15 @@
   }
 
   function getStickyScrollOffset() {
-    const topbar = document.querySelector(".topbar-sticky");
-    const topbarHeight = topbar ? topbar.getBoundingClientRect().height : 0;
-    return Math.ceil(topbarHeight + 20);
+    return window.SimplyEndorsedUtils.getStickyScrollOffset();
   }
 
   function scrollToTarget(target) {
-    if (!target) {
-      return;
-    }
-
-    const top = Math.max(
-      0,
-      target.getBoundingClientRect().top + window.scrollY - getStickyScrollOffset(),
-    );
-    window.scrollTo({ top, behavior: "smooth" });
+    window.SimplyEndorsedUtils.scrollToTarget(target);
   }
 
   function queueScrollToTarget(target) {
-    if (!target) {
-      return;
-    }
-
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        scrollToTarget(target);
-      });
-    });
+    window.SimplyEndorsedUtils.queueScrollToTarget(target);
   }
 
   function scrollToPageTop() {
@@ -1983,42 +1886,7 @@
   }
 
   function copyTextToClipboard(text, button, successLabel) {
-    if (!text || !button) {
-      return;
-    }
-
-    const prior = button.textContent;
-    const showCopied = () => {
-      button.textContent = successLabel || "Copied";
-      button.setAttribute("aria-live", "polite");
-      window.setTimeout(() => {
-        button.textContent = prior;
-      }, 1200);
-    };
-
-    const fallbackCopy = () => {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      textarea.setAttribute("readonly", "readonly");
-      textarea.style.position = "absolute";
-      textarea.style.left = "-9999px";
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand("copy");
-        showCopied();
-      } catch (error) {
-        // Fallback selection still leaves the text available if execCommand is blocked.
-      }
-      document.body.removeChild(textarea);
-    };
-
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
-      navigator.clipboard.writeText(text).then(showCopied).catch(fallbackCopy);
-      return;
-    }
-
-    fallbackCopy();
+    window.SimplyEndorsedUtils.copyTextToClipboard(text, button, successLabel);
   }
 
   function openEndorsementById(endorsementId, options = {}) {
@@ -2361,7 +2229,7 @@
       getCategoryThemeStyle(item.category) +
       ' role="button" tabindex="0" aria-expanded="' +
       String(expanded) +
-      ">" +
+      '">' +
       statusBadges.map((badge) => (
         '<span class="card-status-badge" aria-label="' + escapeHtml(badge.fullLabel) + '" title="' + escapeHtml(badge.fullLabel) + '">' +
         escapeHtml(badge.shortLabel) +
@@ -2512,100 +2380,17 @@
       "</article>";
   }
 
-  function renderFeaturedStrip() {
-    if (!dom.featuredStrip) {
+  function renderBrowseLauncher() {
+    if (!dom.browseLauncher) {
       return;
     }
-
-    const strip = dom.featuredStrip;
-    const recentItems = state.recentEndorsements
-      .map((id) => ENDORSEMENT_MAP.get(id))
-      .filter(Boolean)
-      .slice(0, 4);
 
     if (state.category !== "all" || state.query !== "") {
-      strip.hidden = true;
+      dom.browseLauncher.hidden = true;
       return;
     }
 
-    if (!TASK_MODES.length && !FEATURED_SUBCATEGORIES.length && !recentItems.length) {
-      strip.hidden = true;
-      strip.innerHTML = "";
-      return;
-    }
-
-    strip.hidden = false;
-    strip.innerHTML =
-      '<div class="featured-intro">' +
-      '<p class="featured-strip-label">Instructor Quick Starts</p>' +
-      "<h3>Common paths instructors reach for.</h3>" +
-      "</div>" +
-      '<section class="featured-section">' +
-      '<div class="featured-section-heading">Quick starts</div>' +
-      '<div class="task-mode-grid">' +
-      TASK_MODES.map((mode) => {
-        const category = CATEGORY_MAP.get(mode.categoryId) || {};
-        const categoryLabel = category.label || mode.categoryId;
-        const entry = getCategoryEntry(mode.categoryId);
-        const subcategory = entry && Array.isArray(entry.subcategories)
-          ? entry.subcategories.find((item) => item.id === mode.subcategoryId)
-          : null;
-        return (
-          '<button type="button" class="task-mode-card" data-featured-category="' +
-          escapeHtml(mode.categoryId) +
-          '" data-featured-subcategory="' +
-          escapeHtml(mode.subcategoryId) +
-          '"' +
-          getCategoryThemeStyle(mode.categoryId) +
-          ">" +
-          '<span class="task-mode-swatch" aria-hidden="true"></span>' +
-          '<span class="task-mode-title">' + escapeHtml(mode.label) + "</span>" +
-          '<span class="task-mode-helper">' + escapeHtml(mode.helper || categoryLabel) + "</span>" +
-          '<span class="task-mode-meta">' +
-          escapeHtml(categoryLabel + (subcategory ? " · " + getBundleCount(subcategory) + " endorsements" : "")) +
-          "</span>" +
-          "</button>"
-        );
-      }).join("") +
-      "</div>" +
-      "</section>" +
-      '<section class="featured-section">' +
-      '<div class="featured-section-heading">Featured bundles</div>' +
-      '<div class="featured-grid">' +
-      FEATURED_SUBCATEGORIES.map((item) => {
-        const category = CATEGORY_MAP.get(item.categoryId) || {};
-        const categoryLabel = category.label || item.categoryId;
-        return (
-          '<button type="button" class="featured-card" data-featured-category="' +
-          escapeHtml(item.categoryId) +
-          '" data-featured-subcategory="' +
-          escapeHtml(item.subcategoryId) +
-          '"' +
-          getCategoryThemeStyle(item.categoryId) +
-          ">" +
-          '<span class="featured-card-swatch" aria-hidden="true"></span>' +
-          '<span class="featured-card-title">' + escapeHtml(item.subcategory.label) + "</span>" +
-          '<span class="featured-card-meta">' + escapeHtml(categoryLabel + " · " + getBundleCount(item.subcategory) + " endorsements") + "</span>" +
-          "</button>"
-        );
-      }).join("") +
-      "</div>" +
-      "</section>" +
-      (
-        recentItems.length
-          ? '<section class="featured-section quick-access-panel">' +
-            '<div class="featured-section-heading">Continue where you left off</div>' +
-            '<div class="quick-access-row">' +
-            recentItems.map((item) => (
-              '<button type="button" class="quick-access-chip" data-open-id="' + escapeHtml(item.id) + '">' +
-              '<span class="mono">' + escapeHtml(item.id) + "</span>" +
-              '<span>' + escapeHtml(item.title) + "</span>" +
-              "</button>"
-            )).join("") +
-            "</div>" +
-            "</section>"
-          : ""
-      );
+    dom.browseLauncher.hidden = false;
   }
 
   function getTrainingRequirementCard(subcategory) {
@@ -2777,7 +2562,7 @@
     if (dom.statusRow) dom.statusRow.hidden = !isBrowse;
     if (dom.endorsementList) dom.endorsementList.hidden = !isBrowse;
     if (dom.endorsementDetail) dom.endorsementDetail.hidden = !isBrowse;
-    if (dom.featuredStrip) dom.featuredStrip.hidden = true;
+    if (dom.browseLauncher) dom.browseLauncher.hidden = true;
     if (dom.calculatorView) dom.calculatorView.hidden = !isCalculator;
 
     renderCategoryNav();
@@ -2789,7 +2574,7 @@
     }
 
     if (isBrowse) {
-      renderFeaturedStrip();
+      renderBrowseLauncher();
       renderSelectionSummary();
       renderEndorsements();
       renderResultsToolbar();
@@ -3457,8 +3242,14 @@
 
     if (isOpen) {
       window.requestAnimationFrame(() => {
-        const closeBtn = dom.filterRail && dom.filterRail.querySelector('.rail-close');
-        if (closeBtn) closeBtn.focus();
+        const closeBtn = dom.filterRail && dom.filterRail.querySelector(".rail-close");
+        const railTitle = dom.filterRail && dom.filterRail.querySelector("#railTitle");
+        const focusTarget = options.initialFocus === "search"
+          ? dom.searchInput
+          : options.initialFocus === "categories"
+            ? railTitle || dom.categoryNav
+            : closeBtn;
+        if (focusTarget) focusTarget.focus({ preventScroll: true });
       });
     } else if (options.returnFocus !== false) {
       window.requestAnimationFrame(() => {
@@ -3471,6 +3262,13 @@
     if (state.sidebarOpen) {
       setSidebarOpen(false, options);
     }
+  }
+
+  function openBrowseDrawer(initialFocus) {
+    setSidebarOpen(true, {
+      initialFocus: initialFocus === "search" ? "search" : "categories",
+      returnFocus: false,
+    });
   }
 
   function isTypingField(target) {
@@ -3827,24 +3625,11 @@
       });
     }
 
-    if (dom.featuredStrip) {
-      dom.featuredStrip.addEventListener("click", (event) => {
-        const openButton = event.target.closest("[data-open-id]");
-        if (openButton) {
-          openEndorsementById(openButton.getAttribute("data-open-id"));
-          return;
-        }
-
-        const button = event.target.closest("[data-featured-subcategory]");
-        if (!button) {
-          return;
-        }
-
-        activateSubcategory(
-          button.getAttribute("data-featured-category"),
-          button.getAttribute("data-featured-subcategory"),
-          { closeSidebar: false },
-        );
+    if (dom.browseLauncher) {
+      dom.browseLauncher.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-browse-launcher-action]");
+        if (!button) return;
+        openBrowseDrawer(button.getAttribute("data-browse-launcher-action"));
       });
     }
 

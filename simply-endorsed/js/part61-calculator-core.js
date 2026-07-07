@@ -125,6 +125,159 @@
     });
   }
 
+  function credentialCatClass(id) {
+    return RULES.CATEGORY_CLASS && RULES.CATEGORY_CLASS[id] ? RULES.CATEGORY_CLASS[id] : null;
+  }
+
+  function isMilitaryOnly(profile) {
+    const flags = profile.flags || {};
+    const creds = Array.isArray(profile.credentials) ? profile.credentials : [];
+    if (flags.militaryOnly) return true;
+    return creds.includes("military-pilot") && !flags.priorFaa && !flags.faaCommercialAmel;
+  }
+
+  // Classifies the training path from what the pilot holds versus the target.
+  // Drives definitive knowledge-test, 61.31(d)(2) solo, and PIC-logging answers
+  // instead of the generic "confirm whether..." hedges.
+  function classifyPath(profile, targetId) {
+    const creds = Array.isArray(profile.credentials) ? profile.credentials : [];
+    const held = creds.map(credentialCatClass).filter(Boolean);
+    const target = RULES.CATEGORY_CLASS ? RULES.CATEGORY_CLASS[targetId] : null;
+    const holdsAnyPilotCert = held.length > 0;
+    const holdsAnyPowered = held.some((h) => h.powered);
+
+    const base = {
+      pathType: "initial",
+      ratedInTargetClass: false,
+      holdsTargetCategory: false,
+      knowledgeTest: { status: "As required", note: "Confirm the knowledge test for this path." },
+      soloEndorsement: { needed: false, basis: "14 CFR 61.31(d)(2)", note: "" },
+      picLogging: { canLogDuringDual: true, note: "" },
+      summary: ""
+    };
+
+    if (isMilitaryOnly(profile)) {
+      return Object.assign({}, base, {
+        pathType: "military",
+        knowledgeTest: { status: "As required", note: "Resolve 14 CFR 61.73 military-competence records before assuming any civilian knowledge-test credit." },
+        summary: "Military-only records route through 61.73 before civilian category/class credit."
+      });
+    }
+
+    if (targetId === "instrument-airplane") {
+      return Object.assign({}, base, {
+        pathType: "instrument-rating",
+        knowledgeTest: { status: "Required", note: "Instrument rating requires the instrument knowledge test (61.65(b)) before the practical test." },
+        picLogging: { canLogDuringDual: true, note: "Already airplane-rated: instrument dual is loggable PIC when sole manipulator (61.51(e))." },
+        summary: "Instrument-airplane rating under 61.65 - knowledge test required; no category/class solo endorsement."
+      });
+    }
+
+    if (targetId === "sport-add-category-class") {
+      return Object.assign({}, base, {
+        pathType: "sport-add",
+        knowledgeTest: { status: "Not required", note: "61.321 uses a proficiency check with a second instructor - no knowledge or practical test." },
+        soloEndorsement: { needed: false, basis: "14 CFR 61.321", note: "" },
+        summary: "Sport add category/class under 61.321 - proficiency check, no knowledge or practical test."
+      });
+    }
+
+    if (targetId === "sport-cfi") {
+      return Object.assign({}, base, {
+        pathType: "sport-cfi",
+        knowledgeTest: { status: "Required", note: "Sport CFI requires the FOI and sport-instructor knowledge tests (61.405(a))." },
+        summary: "Sport Pilot Flight Instructor under 61.411 - 150/50/25/10 hour minimums plus instructor endorsements."
+      });
+    }
+
+    if (!target) return base;
+
+    const ratedInTargetClass = held.some((h) => h.category === target.category && h.klass === target.klass);
+    const holdsTargetCategory = held.some((h) => h.category === target.category);
+    base.ratedInTargetClass = ratedInTargetClass;
+    base.holdsTargetCategory = holdsTargetCategory;
+
+    const forceClassAdd = targetId === "commercial-asel-add-class" || targetId === "private-asel-add-class";
+    let pathType;
+    if (forceClassAdd) pathType = "class-add";
+    else if (!holdsAnyPilotCert) pathType = "initial";
+    else if (ratedInTargetClass) pathType = "level-change";
+    else if (holdsTargetCategory) pathType = "class-add";
+    else pathType = "category-add";
+    base.pathType = pathType;
+
+    const levelLabel = target.level ? target.level.charAt(0).toUpperCase() + target.level.slice(1) : "target";
+
+    if (pathType === "initial") {
+      base.knowledgeTest = { status: "Required", note: `Pass the ${levelLabel.toLowerCase()} aeronautical knowledge test before the practical test.` };
+      base.summary = `Initial ${levelLabel} certificate - full aeronautical experience, knowledge test, and practical test.`;
+    } else if (pathType === "level-change") {
+      base.knowledgeTest = { status: "Required", note: "A higher certificate level requires its own knowledge test (e.g., 61.105 private, 61.125 commercial). The 61.63 power-to-power test waiver applies to rating adds, not level changes." };
+      base.picLogging = { canLogDuringDual: true, note: "Same category/class already held - training time is loggable PIC when sole manipulator (61.51(e)); no 61.31(d)(2) needed." };
+      if (target.level === "commercial") {
+        base.postCertTiming = "Commercial aeronautical-experience events (61.129 solo/PDPIC and training) count only if flown after the prior pilot certificate was issued, not during student-pilot training (FAA interpretation).";
+        base.postCertBasis = "14 CFR 61.129 / FAA legal interpretation";
+      }
+      base.summary = `Level change to ${levelLabel} within the same category/class - apply held time toward the new minimums.`;
+    } else if (pathType === "class-add") {
+      base.knowledgeTest = { status: "Not required", note: "61.63(c): adding a class in the same category needs no knowledge test; train to proficiency, no fixed aeronautical-experience minimum." };
+      base.soloEndorsement = { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Only if the pilot will solo the new class before the practical test - you hold the category but not this class, so a 61.31(d)(2) authorization is required to act as PIC solo." };
+      base.picLogging = { canLogDuringDual: false, note: "Not rated in the new class: PIC is not loggable during dual (61.51(e)). Log PIC only when soloing under a 61.31(d)(2) authorization." };
+      base.summary = `Added airplane class under 61.63(c) - no knowledge test, no fixed FAA hour minimum; train to proficiency.`;
+    } else {
+      const kt = holdsAnyPowered
+        ? { status: "Not required", note: "61.63(b)(4): no knowledge test when you already hold a powered-category rating (airplane, rotorcraft, powered-lift, etc.) at this certificate level - power-to-power." }
+        : { status: "Required", note: "No-power to power (glider or balloon to airplane) requires the airplane knowledge test per 61.63(b)(4)." };
+      base.knowledgeTest = kt;
+      base.soloEndorsement = { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Not rated in the target category - a 61.31(d)(2) authorization is required to solo the airplane and build category/class time." };
+      base.picLogging = { canLogDuringDual: false, note: "Not rated in the airplane: PIC is not loggable during dual (61.51(e)). Solo under 61.31(d)(2) to log PIC; for Commercial, up to 10 hours performing duties of PIC with an instructor aboard counts toward 61.129(a)(4)." };
+      base.summary = `Added category (${target.category}) under 61.63(b) - meet ${levelLabel} aeronautical experience; ${holdsAnyPowered ? "no knowledge test (power-to-power)" : "knowledge test required (no-power to power)"}.`;
+    }
+
+    return base;
+  }
+
+  function applyPathToGates(gates, path) {
+    const rewritten = gates.map((g) => {
+      if (g.gate === "Knowledge test") {
+        return Object.assign({}, g, {
+          required: path.knowledgeTest.status,
+          whenNeeded: "Before practical test",
+          notes: path.knowledgeTest.note
+        });
+      }
+      return g;
+    });
+    const extra = [];
+    if (path.soloEndorsement && path.soloEndorsement.needed) {
+      extra.push({ gate: "Solo authorization to build time", source: path.soloEndorsement.basis + " / AC 61-65 A.76", required: "Yes, to log PIC before the rating", whenNeeded: "Before solo or time-building in the new category/class", whoHandles: "Authorized instructor", notes: path.soloEndorsement.note });
+      extra.push({ gate: "PIC logging during training", source: "14 CFR 61.51(e)", required: "Informational", whenNeeded: "Throughout training", whoHandles: "Applicant / instructor", notes: path.picLogging.note });
+    } else if (path.postCertTiming) {
+      extra.push({ gate: "Post-certificate event timing", source: path.postCertBasis, required: "Informational", whenNeeded: "When crediting solo/PDPIC and training events", whoHandles: "Applicant / instructor", notes: path.postCertTiming });
+    }
+    return extra.concat(rewritten);
+  }
+
+  function reconcileEndorsements(list, path) {
+    const managed = ["initial", "level-change", "category-add", "class-add", "instrument-rating"];
+    if (managed.indexOf(path.pathType) === -1) return list;
+    let out = list.slice();
+    const hasItem = (code) => out.some((e) => e.item === code);
+    const dropItem = (code) => { out = out.filter((e) => e.item !== code); };
+
+    if (path.pathType === "category-add" || path.pathType === "class-add") {
+      if (!hasItem("A.78")) out = out.concat(endorsements(["additionalRating"], "Additional category/class rating under 61.63(b)/(c)."));
+    } else {
+      dropItem("A.78");
+    }
+    if (path.soloEndorsement && path.soloEndorsement.needed) {
+      if (!hasItem("A.76")) out = out.concat(endorsements(["soloNoClass"], path.soloEndorsement.note));
+    } else {
+      dropItem("A.76");
+    }
+    return out;
+  }
+
   function sourceLinks(targetId) {
     const links = [
       { label: "14 CFR Part 61", url: RULES.LINKS.part61 },
@@ -133,10 +286,17 @@
     ];
     if (targetId === "private-asel") links.push({ label: "Domingo 2018 Legal Interpretation", url: RULES.LINKS.domingo2018 });
     if (targetId === "private-asel") links.unshift({ label: "14 CFR 61.109", url: RULES.LINKS.cfr61109 });
+    if (targetId === "recreational-asel") links.unshift({ label: "14 CFR 61.99", url: RULES.LINKS.cfr6199 });
     if (targetId === "instrument-airplane") links.unshift({ label: "14 CFR 61.65", url: RULES.LINKS.cfr6165 });
     if (targetId === "commercial-asel") links.unshift({ label: "14 CFR 61.129", url: RULES.LINKS.cfr61129 });
-    if (targetId === "commercial-asel-add-class") links.unshift({ label: "14 CFR 61.63", url: RULES.LINKS.cfr6163 });
+    if (targetId === "commercial-asel-add-class" || targetId === "private-asel-add-class") {
+      links.unshift({ label: "14 CFR 61.63", url: RULES.LINKS.cfr6163 });
+      links.push({ label: "14 CFR 61.31(d)(2) solo authorization", url: RULES.LINKS.cfr6131 });
+    }
     if (targetId === "sport-asel") links.unshift({ label: "14 CFR 61.313", url: RULES.LINKS.cfr61313 });
+    if (targetId === "sport-add-category-class") links.unshift({ label: "14 CFR 61.321", url: RULES.LINKS.cfr61321 });
+    if (targetId === "sport-cfi") links.unshift({ label: "14 CFR 61.411", url: RULES.LINKS.cfr61411 });
+    if (targetId === "commercial-asel" || targetId === "commercial-asel-add-class") links.push({ label: "14 CFR 61.51 logging", url: RULES.LINKS.cfr6151 });
     return links;
   }
 
@@ -478,6 +638,179 @@
     });
   }
 
+  function recreationalAsel(profile) {
+    const rates = profile.rates;
+    const total = get(profile, "totalTime");
+    const dual = get(profile, "dualAsel");
+    const solo = get(profile, "soloAsel");
+    const totalRem = rem(30, total);
+    const dualRem = rem(15, dual);
+    const soloRem = rem(3, solo);
+    const rows = [
+      row("61.99(a)", "30 hours total flight time", 30, total, total, totalRem, "Recreational ASEL broad parent.", "Parent row.", "parent"),
+      row("61.99(a)(1)", "15 hours dual ASEL", 15, dual, dual, dualRem, "ASEL dual per 61.98(b).", "Parent dual row.", "parent"),
+      row("61.99(a)(2)", "3 hours solo ASEL", 3, solo, solo, soloRem, "ASEL solo bucket.", "Parent solo row.", "parent"),
+      eventRow("61.99(a)(1)", "2 hours dual en route to an airport over 25 NM", 2, false, "Dual XC event.", "Fits inside 15 dual if flown."),
+      eventRow("61.99(a)(1)", "3 hours prep within preceding 2 calendar months", 3, false, "Recent prep gate.", "Fits inside 15 dual."),
+      eventRow("61.99(a)(2)", "3 solo takeoffs/landings at a towered airport", null, false, "Towered solo event.", "Fits inside 3 solo if flown.")
+    ];
+    const raw = knownSum(summarizeRows(rows));
+    const optimized = hasUnknown([totalRem, dualRem, soloRem]) ? UNKNOWN : Math.max(totalRem, dualRem + soloRem);
+    const extraBuilding = isKnown(optimized) && isKnown(dualRem) && isKnown(soloRem) ? Math.max(0, optimized - dualRem - soloRem) : UNKNOWN;
+    const dualCost = isKnown(dualRem) ? dualRem * rates.dual : UNKNOWN;
+    const soloCost = isKnown(soloRem) && isKnown(extraBuilding) ? (soloRem + extraBuilding) * rates.solo : UNKNOWN;
+    return audit(profile, {
+      targetId: "recreational-asel",
+      title: "Recreational Pilot - ASEL",
+      verdict: "Recreational ASEL route under 61.99. Once issued, recreational privileges carry the 61.101 limitations (for example, 50 NM range, one passenger, and 180 hp or less) until further training and endorsements are added.",
+      raw,
+      optimized,
+      dualCost,
+      soloCost,
+      rows,
+      events: rows.filter((item) => item.kind === "event"),
+      trainingPlan: isKnown(optimized) ? [
+        planBlock("Recreational dual", "Dual ASEL training and prep", dualRem, "Dual", "61.99(a)(1)", "Dual XC over 25 NM and recent prep", rates.dual),
+        planBlock("Recreational solo", "Solo ASEL practice", soloRem, "Solo", "61.99(a)(2)", "Towered solo takeoffs/landings", rates.solo),
+        planBlock("Additional ASEL time", "Time building as needed", extraBuilding, "Solo or dual as authorized", "61.99(a)", "Fills any broad total-time gap", rates.solo)
+      ].filter((block) => block.hours > 0) : [],
+      endorsements: endorsements(["practical", "aktr", "recreationalKnowledge", "recreationalPractical"], "Recreational ASEL path."),
+      gates: baseGates("Recreational ASEL"),
+      unknowns: unknownsFor([["totalTime", total], ["dualAsel", dual], ["soloAsel", solo]])
+    });
+  }
+
+  function privateAselAddClass(profile) {
+    const rates = profile.rates;
+    const holdsPrivateAirplane = hasCredential(profile, "private-amel") || hasCredential(profile, "private-asel");
+    const rows = [
+      {
+        cfr: "61.63(c)",
+        requirement: "Additional airplane class rating at the private level",
+        required: "Train to proficiency",
+        has: hasCredential(profile, "private-amel") ? "Private AMEL" : (hasCredential(profile, "private-asel") ? "Private ASEL" : "Not established"),
+        credit: "Class-add route",
+        remaining: "No fixed FAA hour minimum",
+        why: "Same category (airplane), new class under 61.63(c); 61.109 aeronautical experience does not apply.",
+        overlapLogic: "Cost is formula-based until proficiency hours are supplied.",
+        kind: "parent"
+      },
+      {
+        cfr: "61.39 / ACS",
+        requirement: "Practical-test readiness and ACS task proficiency",
+        required: "Proficient",
+        has: UNKNOWN,
+        credit: UNKNOWN,
+        remaining: "Train to proficiency",
+        why: "The ACS ratings task table controls which tasks are tested for the added class.",
+        overlapLogic: "Training flights may cover multiple ACS tasks.",
+        kind: "event"
+      }
+    ];
+    return audit(profile, {
+      targetId: "private-asel-add-class",
+      title: "Private ASEL Added Class under 61.63(c)",
+      verdict: "Adding Airplane Single-Engine Land at the private level is a 61.63(c) class add: no knowledge test, no 61.109 aeronautical-experience minimum, train to proficiency. Example scenario: a Private AMEL/AMES pilot adding ASEL.",
+      raw: UNKNOWN,
+      optimized: "Train to proficiency",
+      dualCost: `Dual proficiency hours x $${money(rates.dual)}`,
+      soloCost: `Solo hours x $${money(rates.solo)} if used`,
+      rows,
+      events: rows.filter((item) => item.kind === "event"),
+      trainingPlan: [
+        { block: "ASEL proficiency", flightType: "Airplane single-engine land maneuvers and ACS tasks", hours: "As needed", mode: "Dual", cfrRows: "61.63(c), 61.107(b)", events: "Class-add proficiency", cost: `hours x $${money(rates.dual)}`, notes: "No fixed FAA minimum." },
+        { block: "Solo if used", flightType: "Class-add solo practice", hours: "As needed", mode: "Solo", cfrRows: "61.31(d)(2) to act as PIC solo in the new class", events: "Instructor-limited solo authorization", cost: `hours x $${money(rates.solo)}`, notes: "Use only if soloing the new class before the checkride." }
+      ],
+      endorsements: endorsements(["additionalRating", "practical", "aktr"], "Private ASEL added-class path."),
+      gates: baseGates("Private ASEL added class"),
+      unknowns: holdsPrivateAirplane ? [] : ["Confirm the pilot holds a Private Pilot certificate with an airplane class rating (for example AMEL/AMES) before using this 61.63(c) path."]
+    });
+  }
+
+  function sportAddCategoryClass(profile) {
+    const rates = profile.rates;
+    const rows = [
+      {
+        cfr: "61.321(a)",
+        requirement: "Training in aeronautical knowledge (61.309) and flight proficiency (61.311) for the new category/class",
+        required: "Train to proficiency",
+        has: UNKNOWN,
+        credit: UNKNOWN,
+        remaining: "Train to proficiency",
+        why: "61.321 specifies 61.309 and 61.311; it sets no aeronautical-experience hour minimum.",
+        overlapLogic: "No fixed hour bucket.",
+        kind: "parent"
+      },
+      {
+        cfr: "61.321(b)",
+        requirement: "Proficiency check with a different authorized instructor",
+        required: "Yes",
+        has: UNKNOWN,
+        credit: UNKNOWN,
+        remaining: "Event",
+        why: "A second instructor must conduct the proficiency check before the endorsement.",
+        overlapLogic: "Separate instructor required.",
+        kind: "event"
+      }
+    ];
+    return audit(profile, {
+      targetId: "sport-add-category-class",
+      title: "Sport Pilot Add Category/Class under 61.321",
+      verdict: "Adding a category/class to a sport pilot certificate under 61.321: train in 61.309 and 61.311, then pass a proficiency check with a different instructor who makes the logbook endorsement and completes the IACRA application. No knowledge test, no practical test, and no aeronautical-experience minimum.",
+      raw: UNKNOWN,
+      optimized: "Train to proficiency",
+      dualCost: `Dual proficiency hours x $${money(rates.dual)}`,
+      soloCost: `Solo hours x $${money(rates.solo)} if used`,
+      rows,
+      events: rows.filter((item) => item.kind === "event"),
+      trainingPlan: [
+        { block: "Category/class proficiency", flightType: "61.309 knowledge and 61.311 flight proficiency for the new category/class", hours: "As needed", mode: "Dual", cfrRows: "61.321(a), 61.309, 61.311", events: "Proficiency to standard", cost: `hours x $${money(rates.dual)}`, notes: "No fixed FAA minimum." },
+        { block: "Proficiency check", flightType: "Check with a different instructor", hours: "As needed", mode: "Dual", cfrRows: "61.321(b)", events: "Second-instructor proficiency check", cost: `hours x $${money(rates.dual)}`, notes: "Must be a different authorized instructor." }
+      ],
+      endorsements: endorsements(["sportProficiency"], "Sport add category/class under 61.321."),
+      gates: baseGates("Sport add category/class"),
+      unknowns: []
+    });
+  }
+
+  function sportCfi(profile) {
+    const rates = profile.rates;
+    const total = get(profile, "totalTime");
+    const sel = get(profile, "aselTime");
+    const xc = get(profile, "xcPicTotal");
+    const picSel = get(profile, "picAsel");
+    const totalRem = rem(150, total);
+    const selRem = rem(50, sel);
+    const xcRem = rem(25, xc);
+    const picSelRem = rem(10, picSel);
+    const rows = [
+      row("61.411(a)", "150 hours total flight time as pilot", 150, total, total, totalRem, "Sport CFI broad parent.", "Parent row.", "parent"),
+      row("61.411(a)(1)", "50 hours single-engine land airplane", 50, sel, sel, selRem, "Category/class specific.", "Sits inside total.", "parent"),
+      row("61.411(a)(2)", "25 hours cross-country", 25, xc, xc, xcRem, "Cross-country time.", "May overlap SEL time.", "parent"),
+      row("61.411(a)(3)", "10 hours PIC in single-engine land airplane", 10, picSel, picSel, picSelRem, "PIC in the SEL light-sport class.", "Sits inside the 50 SEL row.", "parent")
+    ];
+    const raw = knownSum(summarizeRows(rows));
+    const optimized = hasUnknown([totalRem, selRem, xcRem, picSelRem]) ? UNKNOWN : Math.max(totalRem, selRem, xcRem, picSelRem);
+    const buildCost = isKnown(optimized) ? optimized * rates.solo : UNKNOWN;
+    return audit(profile, {
+      targetId: "sport-cfi",
+      title: "Sport Pilot Flight Instructor under 61.411",
+      verdict: "Initial Sport Pilot Flight Instructor - Airplane under 61.411: 150 total, 50 single-engine land, 25 cross-country, and 10 PIC in the SEL class. Add the FOI and sport-instructor knowledge tests, spin-training proficiency (61.405(b)), and 61.409 flight proficiency. A sport pilot can become a sport CFI without a commercial certificate or instrument rating.",
+      raw,
+      optimized,
+      dualCost: "Instruction/proficiency hours as needed",
+      soloCost: buildCost,
+      rows,
+      events: [],
+      trainingPlan: isKnown(optimized) ? [
+        planBlock("Experience building", "SEL, cross-country, and PIC hours toward 61.411", optimized, "PIC / time building", "61.411(a)", "Reach 150/50/25/10", rates.solo)
+      ].filter((block) => block.hours > 0) : [],
+      endorsements: endorsements(["sportCfiKnowledge", "sportCfiSpin", "sportCfiProficiency", "practical", "aktr"], "Sport CFI initial certificate under 61.401-61.415."),
+      gates: baseGates("Sport CFI"),
+      unknowns: unknownsFor([["totalTime", total], ["aselTime", sel], ["xcPicTotal", xc], ["picAsel", picSel]])
+    });
+  }
+
   function planBlock(block, flightType, hours, mode, cfrRows, events, rate) {
     const numericHours = isKnown(hours) ? Number(hours.toFixed(1)) : hours;
     return {
@@ -497,6 +830,7 @@
   }
 
   function audit(profile, spec) {
+    const path = classifyPath(profile, spec.targetId);
     const dualCost = typeof spec.dualCost === "number" ? money(spec.dualCost) : spec.dualCost;
     const soloCost = typeof spec.soloCost === "number" ? money(spec.soloCost) : spec.soloCost;
     const totalCost = typeof dualCost === "number" && typeof soloCost === "number" ? dualCost + soloCost : UNKNOWN;
@@ -513,16 +847,18 @@
       estimatedTotalCost: totalCost,
       notes: "Raw is arithmetic visibility only; optimized drives cost."
     };
+    const verdict = path.summary ? `${spec.verdict} ${path.summary}` : spec.verdict;
     return {
       targetId: spec.targetId,
       title: spec.title,
-      verdict: spec.verdict,
+      verdict,
+      path,
       summary,
       rows,
       events: spec.events.map(withRowMetadata),
       trainingPlan: spec.trainingPlan.map(withTrainingMetadata),
-      gates: spec.gates,
-      endorsements: spec.endorsements,
+      gates: applyPathToGates(spec.gates, path),
+      endorsements: reconcileEndorsements(spec.endorsements, path),
       unknowns: spec.unknowns,
       links: sourceLinks(spec.targetId),
       sourceReviewDate: RULES.REVIEW_DATE
@@ -554,10 +890,14 @@
 
   function calculateStage(profile, targetId) {
     if (targetId === "sport-asel") return sportAsel(profile);
+    if (targetId === "recreational-asel") return recreationalAsel(profile);
     if (targetId === "private-asel") return privateAsel(profile);
+    if (targetId === "private-asel-add-class") return privateAselAddClass(profile);
     if (targetId === "instrument-airplane") return instrumentAirplane(profile);
     if (targetId === "commercial-asel") return commercialAsel(profile);
     if (targetId === "commercial-asel-add-class") return commercialAselAddClass(profile);
+    if (targetId === "sport-add-category-class") return sportAddCategoryClass(profile);
+    if (targetId === "sport-cfi") return sportCfi(profile);
     return unsupported(targetId);
   }
 
@@ -631,6 +971,7 @@
     isKnown,
     ratesFor,
     classifyAuditRow,
+    classifyPath,
     calculateAudit,
     calculateStage,
     calculateOverlapExample

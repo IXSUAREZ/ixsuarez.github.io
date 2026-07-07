@@ -1,0 +1,12 @@
+{
+  "name": "simply-endorsed-wizard-tests",
+  "version": "1.0.0",
+  "description": "E2E headless tests for Simply Endorsed Part 61 Wizard",
+  "main": "index.html",
+  "scripts": {
+    "test": "node tests/run-tests.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.0"
+  }
+}

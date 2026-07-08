@@ -116,12 +116,17 @@
       ]
     },
     {
-      title: "Training and event buckets",
+      title: "Instrument and night",
       fields: [
         ["instrumentTime", "Instrument All", "Actual or simulated instrument time in any aircraft."],
         ["instrumentAirplane", "Instrument Airplane", "Instrument time logged in airplanes."],
         ["cfiiAirplane", "CFII-Airplane Instrument", "Instrument training received from a CFII in an airplane."],
-        ["nightTime", "Night", "Night flight time."],
+        ["nightTime", "Night", "Night flight time."]
+      ]
+    },
+    {
+      title: "Training and checkride prep",
+      fields: [
         ["dualAsel", "Dual ASEL", "Dual instruction received in single-engine airplanes."],
         ["soloAsel", "Solo ASEL", "Solo time in single-engine airplanes."],
         ["commercialTrainingAsel", "Commercial Training ASEL", "61.129(a)(3) commercial training received in ASEL."],

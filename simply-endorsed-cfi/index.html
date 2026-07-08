@@ -48,7 +48,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/simply-endorsed/APP-ICONs/favicon-32.png?v=4">
     <link rel="icon" type="image/png" sizes="192x192" href="/simply-endorsed/APP-ICONs/favicon-192.png?v=4">
     <link rel="apple-touch-icon" sizes="180x180" href="/simply-endorsed/APP-ICONs/apple-touch-icon.png?v=4">
-    <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=41">
+    <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=42">
     <style>
       .seo-content {
         max-width: 960px;
@@ -424,7 +424,10 @@
                 <section class="part61-panel" id="part61Experience" data-step="3">
                   <div class="part61-panel-heading">
                     <p class="part61-kicker">Step 3</p>
-                    <h3>Flight Experience</h3>
+                    <div class="part61-heading-badge-row">
+                      <h3>Flight Experience</h3>
+                      <span class="group-completion incomplete" id="part61HoursCompleteness" aria-live="polite" aria-label="Hour fields: 0 of 24 complete">0/24</span>
+                    </div>
                   </div>
                   <p class="part61-helper">Fill every hour box before calculating. Enter 0 when a bucket is not applicable or none is logged.</p>
                   <div id="part61ExperienceFields"></div>
@@ -515,7 +518,7 @@
                     <h3 id="part61ResultTitle">Ready for a scenario</h3>
                   </div>
                   <div class="part61-result-header-meta">
-                    <p id="part61InputCompleteness">Input completeness: 0/22</p>
+                    <p id="part61InputCompleteness">Input completeness: 0/24</p>
                     <p id="part61SourceReview">Source review date: 2026-06-30</p>
                     <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61EditInputsBtn">Edit Inputs</button>
                   </div>
@@ -619,7 +622,7 @@
             </div>
 
             <div class="part61-mobile-bar" id="part61MobileBar">
-              <span id="part61MobileCompleteness">0/22 hour fields</span>
+              <span id="part61MobileCompleteness">0/24 hour fields</span>
               <button type="button" class="part61-button part61-button-primary" id="part61MobileCalculateBtn">Calculate</button>
             </div>
           </section>
@@ -1792,9 +1795,9 @@
     <script src="/simply-endorsed/js/guidance-content.js?v=3"></script>
     <script src="/simply-endorsed/js/training-requirements-data.js?v=1"></script>
     <script src="/simply-endorsed/js/privileges-limitations-data.js?v=2"></script>
-    <script src="/simply-endorsed/js/part61-rules-data.js?v=4"></script>
+    <script src="/simply-endorsed/js/part61-rules-data.js?v=5"></script>
     <script src="/simply-endorsed/js/part61-calculator-core.js?v=3"></script>
-    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=6"></script>
+    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=7"></script>
     <script src="/simply-endorsed/js/app.js?v=23"></script>
     <script type="application/ld+json">
       {

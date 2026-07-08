@@ -202,6 +202,14 @@
   function updateInputCompleteness() {
     const stats = experienceCompletion();
     ids.inputCompleteness.textContent = `Input completeness: ${stats.filled}/${stats.total} hour fields complete`;
+    const hoursBadge = qs("#part61HoursCompleteness");
+    if (hoursBadge) {
+      const allComplete = stats.filled === stats.total;
+      hoursBadge.textContent = `${stats.filled}/${stats.total}`;
+      hoursBadge.classList.toggle("complete", allComplete);
+      hoursBadge.classList.toggle("incomplete", !allComplete);
+      hoursBadge.setAttribute("aria-label", `Hour fields: ${stats.filled} of ${stats.total} complete`);
+    }
     stats.groups.forEach((group) => {
       const badge = qs(`[data-group-completion="${groupSlug(group.title)}"]`);
       if (!badge) return;
@@ -321,7 +329,7 @@
     ids.experienceFields.innerHTML = RULES.FIELD_GROUPS.map((group) => {
       const slug = groupSlug(group.title);
       return `
-      <div class="field-group">
+      <div class="field-group" data-group-slug="${escapeHtml(slug)}">
         <div class="field-group-heading">
           <h3>${escapeHtml(group.title)}</h3>
           <div class="field-group-actions">

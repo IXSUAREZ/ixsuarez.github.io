@@ -7883,6 +7883,24 @@ body.is-guidance-view .endorsement-detail-panel {
   .part61-workbench[data-active-step="5"].has-result #part61EditInputsBtn {
     display: inline-flex;
   }
+
+  /* Steps 1-4: hide the results pane and give the input pane the full width */
+  .part61-workbench[data-active-step]:not([data-active-step="5"]) .part61-results-pane {
+    display: none;
+  }
+
+  .part61-workbench[data-active-step]:not([data-active-step="5"]) .part61-input-pane {
+    grid-column: 2 / -1;
+  }
+
+  /* Step 5 before any audit exists: same full-width input treatment */
+  .part61-workbench[data-active-step="5"]:not(.has-result) .part61-results-pane {
+    display: none;
+  }
+
+  .part61-workbench[data-active-step="5"]:not(.has-result) .part61-input-pane {
+    grid-column: 2 / -1;
+  }
 }
 
 /* Mobile (width <= 900px) layout configurations */
@@ -8204,4 +8222,129 @@ body.is-guidance-view .endorsement-detail-panel {
 
 #part61EditInputsBtn {
   display: none;
+}
+
+/* ============================================================
+   Wizard full-width pass: wider inner grids on desktop
+   ============================================================ */
+@media screen and (min-width: 901px) {
+  .part61-calculator .field-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+
+  .part61-flag-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .part61-rate-grid {
+    grid-template-columns: repeat(2, minmax(0, 320px));
+  }
+}
+
+/* Layout for the Hours-panel heading completeness badge */
+.part61-heading-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ============================================================
+   Hours step: color family per field group
+   (slug stamped by renderExperienceFields via data-group-slug)
+   ============================================================ */
+.part61-calculator .field-group[data-group-slug="core-time"] {
+  --grp-accent: var(--accent);
+  --grp-soft: var(--accent-soft);
+  --grp-line: #bfd4ff;
+  --grp-ink: var(--accent-ink);
+}
+
+.part61-calculator .field-group[data-group-slug="pic-and-cross-country"] {
+  --grp-accent: #16a34a;
+  --grp-soft: #ecf8f1;
+  --grp-line: #c5e8d2;
+  --grp-ink: #0b7633;
+}
+
+.part61-calculator .field-group[data-group-slug="instrument-and-night"] {
+  --grp-accent: #7c3aed;
+  --grp-soft: #f4effe;
+  --grp-line: #e0d3fb;
+  --grp-ink: #6023c0;
+}
+
+.part61-calculator .field-group[data-group-slug="training-and-checkride-prep"] {
+  --grp-accent: #f59e0b;
+  --grp-soft: #fef7eb;
+  --grp-line: #fde7c2;
+  --grp-ink: #b37000;
+}
+
+.part61-calculator .field-group[data-group-slug] {
+  border-color: var(--grp-line);
+  position: relative;
+}
+
+.part61-calculator .field-group[data-group-slug]::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: var(--grp-accent);
+  opacity: 0.75;
+}
+
+.part61-calculator .field-group[data-group-slug] .field-group-heading {
+  padding: 8px 12px;
+  border: 1px solid var(--grp-line);
+  border-radius: 10px;
+  background: var(--grp-soft);
+}
+
+.part61-calculator .field-group[data-group-slug] .field-group-heading h3 {
+  color: var(--grp-ink);
+}
+
+.part61-calculator .field-group[data-group-slug] .field-group-actions .part61-text-button {
+  color: var(--grp-ink);
+}
+
+.part61-calculator .field-group[data-group-slug] .group-completion.incomplete {
+  border-color: var(--grp-line);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--grp-ink);
+}
+
+/* ============================================================
+   Logged Events: teal family
+   ============================================================ */
+.part61-panel[data-step="3"] .part61-subhead-row {
+  padding: 8px 12px;
+  border: 1px solid #c3e4e1;
+  border-radius: 10px;
+  background: #ecf6f5;
+}
+
+.part61-panel[data-step="3"] .part61-subhead-row h4 {
+  color: #056b62;
+}
+
+.part61-panel[data-step="3"] .part61-subhead-row .part61-text-button {
+  color: #056b62;
+}
+
+.part61-event-group {
+  border-color: #c3e4e1;
+  border-left: 3px solid #0d9488;
+}
+
+.part61-event-group summary {
+  color: #056b62;
+}
+
+.part61-event-group summary .group-completion {
+  border-color: #c3e4e1;
+  color: #056b62;
 }

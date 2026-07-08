@@ -688,7 +688,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -2;
+      z-index: -3;
       pointer-events: none;
       background:
         radial-gradient(circle at 18% 9%, rgba(255,255,255,0.98), transparent 28rem),
@@ -1064,23 +1064,13 @@
     }
     .section-header p { color: rgba(11,12,14,0.58); }
 
-    .profile-about-wrap {
-      grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
-      gap: clamp(32px, 6vw, 72px);
-      align-items: center;
-    }
-    .profile,
+    /* Profile + FAQ aside shared glassy style */
     .faq-aside,
     .faq-item {
       background: rgba(255, 255, 255, 0.72);
       border-color: rgba(15, 23, 42, 0.06);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 22px 65px rgba(15, 23, 42, 0.03);
     }
-    .profile {
-      padding: 12px 12px 18px;
-      transform: rotate(-1deg);
-    }
-    .profile::before { opacity: 0.10; }
     .profile-photo {
       border-radius: 18px;
       filter: saturate(0.82) contrast(1.05);
@@ -1093,19 +1083,6 @@
       letter-spacing: 0;
     }
     .profile p.role { margin-bottom: 18px; }
-    .badges { gap: 9px; }
-    .badge {
-      background: rgba(8,9,11,0.05);
-      border-color: rgba(8,9,11,0.08);
-      color: rgba(11,12,14,0.78);
-    }
-    .cert-item {
-      border-radius: 16px;
-      background: rgba(255,255,255,0.58);
-      border-color: rgba(8,9,11,0.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.76);
-    }
-    .cert-check { background: rgba(255, 208, 0, 0.18); color: #6B5400; }
     .profile-avail .dot { background: var(--availability-green); }
 
     .services-grid {
@@ -1204,80 +1181,6 @@
       font-size: 30px;
     }
 
-    .manifesto-strip {
-      background:
-        linear-gradient(rgba(8,9,11,0.76), rgba(8,9,11,0.78)),
-        radial-gradient(70% 110% at 50% -12%, rgba(127,167,168,0.26), transparent 62%),
-        radial-gradient(52% 80% at 50% 112%, rgba(255,208,0,0.09), transparent 68%),
-        linear-gradient(145deg, rgba(8,9,11,0.94), rgba(24,28,33,0.88));
-      border-top: 1px solid rgba(255,255,255,0.10);
-      border-bottom: 1px solid rgba(8,9,11,0.42);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        inset 0 -1px 0 rgba(255,255,255,0.04),
-        0 20px 70px rgba(8,9,11,0.14);
-      padding: clamp(52px, 7vw, 90px) 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .manifesto-strip::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, transparent, rgba(255,255,255,0.055), transparent),
-        linear-gradient(180deg, rgba(255,255,255,0.075), transparent 34%, transparent 66%, rgba(255,255,255,0.035)),
-        radial-gradient(60% 80% at 50% 50%, rgba(201,151,76,0.06), transparent 70%);
-      pointer-events: none;
-    }
-    .manifesto-strip > .container {
-      position: relative;
-      z-index: 1;
-    }
-    .manifesto-strip.is-reveal-ready > .container {
-      opacity: var(--quote-copy-opacity, 0.001);
-      transform: translateY(var(--quote-copy-y, 22px));
-      will-change: opacity, transform;
-    }
-    .manifesto-strip.is-reveal-complete > .container {
-      will-change: auto;
-    }
-    .manifesto-quote {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: clamp(2.55rem, 4.1vw, 3.1rem);
-      font-weight: 600;
-      color: #F3F3F0;
-      letter-spacing: 0;
-      line-height: 1.22;
-      max-width: 860px;
-      margin: 0 auto;
-      quotes: none;
-    }
-    .manifesto-quote .quote-word,
-    .manifesto-quote .quote-punct {
-      display: inline-block;
-    }
-    .manifesto-strip.is-reveal-ready .quote-word,
-    .manifesto-strip.is-reveal-ready .quote-punct {
-      opacity: var(--word-opacity, 0.001);
-      transform: translateY(var(--word-y, 10px));
-      filter: blur(var(--word-blur, 10px));
-      will-change: opacity, transform, filter;
-    }
-    .manifesto-strip.is-reveal-complete .quote-word,
-    .manifesto-strip.is-reveal-complete .quote-punct {
-      will-change: auto;
-    }
-    .manifesto-sig {
-      display: block;
-      margin-top: 24px;
-      font-family: var(--font-signature);
-      font-size: 2rem;
-      color: var(--gold);
-      letter-spacing: 0;
-    }
 
     @keyframes premium-float {
       0%, 100% { translate: 0 0; }
@@ -1289,14 +1192,15 @@
     }
     .hero-copy,
     .hero-visual,
-    .profile,
-    .about-content,
+    .about-profile-col,
+    .about-content-col,
     .service-card,
     .faq-wrap,
     .contact {
       animation: reveal-up 0.9s cubic-bezier(.2,.8,.2,1) both;
     }
     .hero-visual { animation-delay: 0.08s; }
+    .about-content-col { animation-delay: 0.06s; }
     .service-card:nth-child(2) { animation-delay: 0.08s; }
     .service-card:nth-child(3) { animation-delay: 0.16s; }
 
@@ -1315,9 +1219,6 @@
       .contact h2 {
         font-size: 3.45rem;
       }
-      .manifesto-quote {
-        font-size: 2.9rem;
-      }
       .hero-visual {
         min-height: 540px;
         max-width: 760px;
@@ -1326,14 +1227,6 @@
       }
       .services-grid {
         grid-template-columns: 1fr;
-      }
-      .profile-about-wrap {
-        grid-template-columns: 1fr;
-        max-width: 760px;
-      }
-      .profile {
-        max-width: 420px;
-        margin: 0 auto;
       }
     }
     @media (max-width: 1180px) {
@@ -1405,10 +1298,10 @@
         font-size: 3.1rem;
       }
       .manifesto-quote {
-        font-size: 2.3rem;
+        font-size: 2.1rem;
       }
       .manifesto-sig {
-        font-size: 1.75rem;
+        font-size: 1.80rem;
       }
       .hero-proof {
         grid-template-columns: 1fr;
@@ -1676,9 +1569,832 @@
         padding: 64px 0;
       }
     }
+
+    /* ==========================================================================
+       Aviation Chart Background, Glows, Coordinates, Premium Quotes & About
+       ========================================================================== */
+
+    /* Fixed ambient backdrop container */
+    .aviation-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Sectional chart-style coordinate grid — latitude/longitude lines + tick marks */
+    .aviation-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        /* Primary lat/lon lines every 100px */
+        linear-gradient(to right, rgba(28,55,120,0.038) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(28,55,120,0.038) 1px, transparent 1px),
+        /* Subdivisions every 20px (like minute ticks) */
+        linear-gradient(to right, rgba(28,55,120,0.018) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(28,55,120,0.018) 1px, transparent 1px);
+      background-size:
+        100px 100px,
+        100px 100px,
+        20px 20px,
+        20px 20px;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* Compass rose tick marks — decorative SVG overlay in corners */
+    .aviation-grid::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3C!-- Intersection cross-hairs --%3E%3Cpath d='M200 188 V212 M188 200 H212' stroke='rgba(28,55,120,0.07)' stroke-width='1' fill='none'/%3E%3C!-- Corner bracket marks --%3E%3Cpath d='M 8 0 L 0 0 L 0 8' stroke='rgba(28,55,120,0.09)' stroke-width='1' fill='none'/%3E%3Cpath d='M 392 0 L 400 0 L 400 8' stroke='rgba(28,55,120,0.09)' stroke-width='1' fill='none'/%3E%3Cpath d='M 8 400 L 0 400 L 0 392' stroke='rgba(28,55,120,0.09)' stroke-width='1' fill='none'/%3E%3Cpath d='M 392 400 L 400 400 L 400 392' stroke='rgba(28,55,120,0.09)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 400px 400px;
+      opacity: 1;
+    }
+
+    /* Atmospheric sky glows — sky-blue, sunset-amber, twilight-purple */
+    .aviation-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    /* Sky-blue glow — upper left */
+    .aviation-glow--1 {
+      width: clamp(420px, 54vw, 760px);
+      height: clamp(420px, 54vw, 760px);
+      left: -12vw;
+      top: 5vh;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.09) 0%, rgba(14, 165, 233, 0.04) 40%, transparent 70%);
+      filter: blur(120px);
+      opacity: 1;
+      animation: float-glow-1 30s ease-in-out infinite alternate;
+    }
+
+    /* Sunset-amber glow — right mid */
+    .aviation-glow--2 {
+      width: clamp(320px, 44vw, 620px);
+      height: clamp(320px, 44vw, 620px);
+      right: -8vw;
+      top: 38vh;
+      background: radial-gradient(circle, rgba(251, 146, 60, 0.06) 0%, rgba(245, 158, 11, 0.03) 45%, transparent 72%);
+      filter: blur(100px);
+      opacity: 1;
+      animation: float-glow-2 35s ease-in-out infinite alternate;
+    }
+
+    /* Twilight-purple glow — lower center */
+    .aviation-glow--3 {
+      width: clamp(440px, 56vw, 800px);
+      height: clamp(440px, 56vw, 800px);
+      left: 12vw;
+      bottom: -8vh;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.055) 0%, rgba(99, 102, 241, 0.025) 48%, transparent 72%);
+      filter: blur(130px);
+      opacity: 1;
+      animation: float-glow-3 40s ease-in-out infinite alternate;
+    }
+
+    @keyframes float-glow-1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      40%  { transform: translate(5vw, 10vh) scale(1.07); }
+      100% { transform: translate(-4vw, 18vh) scale(0.93); }
+    }
+    @keyframes float-glow-2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      45%  { transform: translate(-7vw, -6vh) scale(0.91); }
+      100% { transform: translate(5vw, 12vh) scale(1.05); }
+    }
+    @keyframes float-glow-3 {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(6vw, -10vh) scale(1.06); }
+      100% { transform: translate(-5vw, -4vh) scale(0.94); }
+    }
+
+    /* Fixed margin coordinate markers */
+    .aviation-coords {
+      position: fixed;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(28, 55, 120, 0.26);
+      pointer-events: none;
+      z-index: 10;
+      white-space: nowrap;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .aviation-coords::before,
+    .aviation-coords::after {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: rgba(28,55,120,0.18);
+      flex-shrink: 0;
+    }
+
+    .coordinates-left {
+      left: 18px;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      transform-origin: center;
+    }
+
+    .coordinates-right {
+      right: 18px;
+      top: 50%;
+      transform: translate(50%, -50%) rotate(90deg);
+      transform-origin: center;
+    }
+
+    @media (max-width: 1340px) {
+      .aviation-coords { display: none; }
+    }
+
+    /* ==========================================================================
+       Premium Full-Bleed Manifesto Blockquotes
+       ========================================================================== */
+
+    blockquote.manifesto-strip {
+      background:
+        radial-gradient(120% 100% at 50% -10%, rgba(56, 189, 248, 0.18) 0%, transparent 52%),
+        radial-gradient(80% 90% at 80% 110%, rgba(251, 146, 60, 0.12) 0%, transparent 52%),
+        radial-gradient(60% 70% at 10% 110%, rgba(139, 92, 246, 0.10) 0%, transparent 52%),
+        linear-gradient(180deg, #060C1C 0%, #0C1428 50%, #111A34 100%);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(8,9,11,0.70);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 28px 80px rgba(8,9,11,0.22);
+      padding: clamp(72px, 10vw, 120px) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    /* Aviation-chart grid overlay inside blockquote */
+    blockquote.manifesto-strip::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      /* Subtle lat/lon grid on dark bg */
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to right,  rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+      opacity: 0.9;
+    }
+
+    /* Streamline vectors overlay */
+    blockquote.manifesto-strip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 500' fill='none'%3E%3Cpath d='M-100,120 C250,95 550,145 900,100 C1100,75 1250,130 1500,90' stroke='rgba%28255,255,255,0.04%29' stroke-width='1.5' stroke-dasharray='12,7'/%3E%3Cpath d='M-100,250 C300,280 650,200 1000,260 C1150,290 1300,240 1500,270' stroke='rgba%28255,255,255,0.028%29' stroke-width='1.2'/%3E%3Cpath d='M-100,370 C400,340 750,400 1100,360 C1250,340 1350,390 1500,370' stroke='rgba%28255,255,255,0.038%29' stroke-width='1.5' stroke-dasharray='20,10'/%3E%3Cpath d='M-100,185 C350,170 700,195 1050,175 C1220,165 1360,185 1500,180' stroke='rgba%28255,255,255,0.022%29' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .manifesto-strip > .container {
+      position: relative;
+      z-index: 2;
+    }
+    .manifesto-strip.is-reveal-ready > .container {
+      opacity: var(--quote-copy-opacity, 0.001);
+      transform: translateY(var(--quote-copy-y, 22px));
+      will-change: opacity, transform;
+    }
+    .manifesto-strip.is-reveal-complete > .container {
+      will-change: auto;
+    }
+
+    /* Decorative coordinate label inside the quote block */
+    .manifesto-coord-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: rgba(255,255,255,0.28);
+      text-transform: uppercase;
+    }
+    .manifesto-coord-label::before,
+    .manifesto-coord-label::after {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .manifesto-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(2.5rem, 4.6vw, 3.8rem);
+      font-weight: 600;
+      color: #F8F6F0;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      max-width: 960px;
+      margin: 0 auto;
+      quotes: none;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+    }
+    .manifesto-quote .quote-word,
+    .manifesto-quote .quote-punct {
+      display: inline-block;
+    }
+    .manifesto-strip.is-reveal-ready .quote-word,
+    .manifesto-strip.is-reveal-ready .quote-punct {
+      opacity: var(--word-opacity, 0.001);
+      transform: translateY(var(--word-y, 10px));
+      filter: blur(var(--word-blur, 10px));
+      will-change: opacity, transform, filter;
+    }
+    .manifesto-strip.is-reveal-complete .quote-word,
+    .manifesto-strip.is-reveal-complete .quote-punct {
+      will-change: auto;
+    }
+    .manifesto-quote .quote-punct {
+      color: var(--gold);
+      opacity: 0.85;
+    }
+
+    .manifesto-sig-wrap {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .manifesto-sig {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      font-family: var(--font-signature);
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      color: var(--gold);
+      font-style: normal;
+      letter-spacing: 0.01em;
+      text-shadow: 0 4px 16px rgba(255,208,0,0.22), 0 2px 4px rgba(0,0,0,0.18);
+      transform: rotate(-1.2deg);
+      opacity: 0.96;
+    }
+    .manifesto-sig::before,
+    .manifesto-sig::after {
+      content: "";
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,208,0,0.38));
+      flex-shrink: 0;
+    }
+    .manifesto-sig::after {
+      background: linear-gradient(to left, transparent, rgba(255,208,0,0.38));
+    }
+    .manifesto-role {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.30);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 780px) {
+      .manifesto-quote { font-size: 2.2rem; line-height: 1.28; }
+      .manifesto-sig   { font-size: 2.0rem; }
+    }
+
+    /* ==========================================================================
+       Asymmetrical About Me — New layout with overlapping profile + cred cards
+       ========================================================================== */
+
+    /* Section-level override: full-width for the asymmetrical grid */
+    #about {
+      overflow: visible;
+    }
+
+    .about-asymmetric {
+      display: grid;
+      grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+      gap: clamp(0px, 3vw, 0px);
+      align-items: start;
+      position: relative;
+    }
+    @media (max-width: 960px) {
+      .about-asymmetric {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    /* Left column — profile card overlaps the right column */
+    .about-profile-col {
+      position: relative;
+      z-index: 2;
+      /* Nudge outward so the card overlaps the content area */
+      margin-right: -24px;
+    }
+    @media (max-width: 960px) {
+      .about-profile-col {
+        margin-right: 0;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .profile {
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.88), rgba(255,255,255,0.72));
+      border: 1px solid rgba(28,55,120,0.10);
+      border-radius: 28px;
+      padding: 14px 14px 22px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.70) inset,
+        0 32px 80px rgba(15,23,42,0.12),
+        0 8px 24px rgba(15,23,42,0.06);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transform: rotate(-1.2deg);
+      transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s cubic-bezier(.2,.8,.2,1);
+    }
+    .profile:hover {
+      transform: rotate(-0.3deg) translateY(-4px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.80) inset,
+        0 44px 100px rgba(15,23,42,0.16),
+        0 12px 32px rgba(15,23,42,0.08);
+    }
+
+    /* Logbook-texture overlay on profile card */
+    .profile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* Fine aviation paper grain */
+      background-image:
+        linear-gradient(to right, rgba(28,55,120,0.018) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(28,55,120,0.018) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.6;
+      border-radius: inherit;
+    }
+    .profile > * { position: relative; }
+
+    /* Right column — bio text + credentials cards */
+    .about-content-col {
+      background:
+        linear-gradient(145deg, rgba(248,250,252,0.95), rgba(241,245,249,0.85));
+      border: 1px solid rgba(28,55,120,0.08);
+      border-radius: 28px;
+      padding: clamp(32px, 5vw, 56px) clamp(28px, 4vw, 52px) clamp(32px, 5vw, 52px) clamp(36px, 5vw, 68px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.72) inset,
+        0 18px 60px rgba(15,23,42,0.05);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    /* Chart grid texture on about card */
+    .about-content-col::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(28,55,120,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(28,55,120,0.022) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.7;
+      border-radius: inherit;
+    }
+    .about-content-col > * { position: relative; }
+
+    @media (max-width: 960px) {
+      .about-content-col {
+        padding: 40px 28px 36px;
+        border-radius: 24px;
+      }
+    }
+
+    .about-section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: rgba(28,55,120,0.45);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .about-section-label::before {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: rgba(28,55,120,0.28);
+    }
+
+    .about-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.1rem, 3.4vw, 2.9rem);
+      line-height: 1.08;
+      color: var(--ink);
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .about-text {
+      color: var(--ink-muted);
+      font-size: 1.04rem;
+      line-height: 1.68;
+      margin: 0 0 28px;
+    }
+
+    /* Handwriting quote block inside the bio */
+    .about-handwriting-quote {
+      position: relative;
+      padding: 20px 24px 20px 32px;
+      margin: 0 0 28px;
+      border-left: 2px solid rgba(255, 208, 0, 0.55);
+      background:
+        linear-gradient(to right, rgba(255,208,0,0.045), rgba(255,208,0,0.01));
+      border-radius: 0 12px 12px 0;
+    }
+    .about-handwriting-quote p {
+      font-family: var(--font-signature);
+      font-size: clamp(1.55rem, 2.8vw, 1.95rem);
+      color: rgba(23,33,51,0.72);
+      line-height: 1.45;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    /* Divider */
+    .dotted-divider {
+      border: none;
+      border-top: 1px dashed rgba(28,55,120,0.14);
+      margin: 24px 0;
+    }
+
+    /* Credentials Cards grid */
+    .credentials-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: rgba(28,55,120,0.40);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .credentials-label::before {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: rgba(28,55,120,0.24);
+    }
+
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 640px) {
+      .credentials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cred-card {
+      position: relative;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.92), rgba(248,250,252,0.82));
+      border: 1px solid rgba(28,55,120,0.10);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.80) inset,
+        0 8px 24px rgba(15,23,42,0.05),
+        0 2px 6px rgba(15,23,42,0.03);
+      cursor: default;
+      transition:
+        transform .28s cubic-bezier(.2,.8,.2,1),
+        box-shadow .28s cubic-bezier(.2,.8,.2,1);
+      overflow: hidden;
+    }
+    /* Logbook-page ruled lines on cred card */
+    .cred-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 28px,
+        rgba(28,55,120,0.04) 29px
+      );
+      border-radius: inherit;
+      opacity: 0.8;
+    }
+    .cred-card > * { position: relative; }
+    .cred-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.90) inset,
+        0 18px 40px rgba(15,23,42,0.10),
+        0 4px 12px rgba(15,23,42,0.06);
+    }
+    .cred-card:hover .cred-stamp {
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    /* Stamp — upper right of each card */
+    .cred-stamp {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34,197,94,0.12);
+      border: 1.5px solid rgba(34,197,94,0.28);
+      color: #16a34a;
+      transition: transform .28s cubic-bezier(.2,.8,.2,1);
+      flex-shrink: 0;
+    }
+    .cred-stamp svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .cred-authority {
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      color: rgba(28,55,120,0.40);
+      text-transform: uppercase;
+      margin: 0 0 6px;
+      padding-right: 36px; /* avoid stamp overlap */
+    }
+    .cred-name {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.94rem;
+      color: var(--ink);
+      line-height: 1.25;
+      margin: 0 0 8px;
+      padding-right: 36px;
+    }
+    .cred-id {
+      font-family: 'Courier New', 'Courier', monospace;
+      font-size: 10px;
+      color: rgba(28,55,120,0.36);
+      letter-spacing: 0.14em;
+      margin: 0;
+      border-top: 1px dashed rgba(28,55,120,0.12);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+
+    /* ==========================================================================
+       Milestone 4: Asymmetrical Overlap & Credentials Card Grid
+       ========================================================================== */
+
+    /* 1. Asymmetrical Overlap (Desktop View) */
+    @media (min-width: 981px) {
+      .profile-about-wrap {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr) !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+      }
+      
+      .profile {
+        grid-column: 1 / 5 !important;
+        grid-row: 1 !important;
+        position: relative !important;
+        z-index: 10 !important;
+        transform: rotate(-1.5deg) translateY(-8px) !important;
+        align-self: center;
+        box-shadow: 0 32px 72px rgba(15, 23, 42, 0.12) !important;
+      }
+      
+      .about-content {
+        grid-column: 4 / 13 !important;
+        grid-row: 1 !important;
+        background: rgba(255, 255, 255, 0.88) !important;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(87, 99, 118, 0.14) !important;
+        border-radius: 32px !important;
+        padding: 56px 56px 56px 92px !important; /* Left padding offsets content from overlapping photo card */
+        box-shadow: 0 28px 78px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255,255,255,0.9) !important;
+        position: relative !important;
+        z-index: 5 !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    /* Tablet and Mobile adjustments for overlap */
+    @media (max-width: 980px) {
+      .profile-about-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 32px !important;
+      }
+      
+      .profile {
+        transform: none !important;
+        max-width: 440px;
+        margin: 0 auto !important;
+      }
+      
+      .about-content {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+    }
+
+    /* 2. Handwriting Signature Quote */
+    .bio-quote {
+      margin: 28px 0;
+      padding: 4px 0 4px 24px;
+      border-left: 3px solid var(--border-strong);
+      position: relative;
+    }
+    .bio-quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
+    .bio-quote-sig {
+      font-family: var(--font-signature);
+      font-size: clamp(2.0rem, 3.5vw, 2.5rem);
+      color: var(--navy);
+      font-style: normal;
+      display: block;
+      margin-top: 4px;
+      text-align: right;
+      transform: rotate(-1deg) translateY(-4px);
+    }
+
+    /* 3. Credentials Card Grid */
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (max-width: 600px) {
+      .credentials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Interactive Pilot Logbook-style Card */
+    .credential-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(87, 99, 118, 0.12);
+      border-radius: 20px;
+      padding: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.01);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* Credentials Card Micro-animations (Hover & Focus States) */
+    .credential-card:hover,
+    .credential-card:focus-visible {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--category-accent) !important;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+      outline: none;
+    }
+
+    .credential-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--category-soft);
+      color: var(--category-accent);
+      border: 1px solid var(--category-line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .credential-card:hover .credential-badge,
+    .credential-card:focus-visible .credential-badge {
+      transform: rotate(8deg) scale(1.08);
+    }
+    .credential-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .credential-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .credential-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--category-ink);
+      margin-bottom: 2px;
+    }
+    .credential-title {
+      font-family: var(--font-sans);
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 1px 0;
+      line-height: 1.35;
+    }
+    .credential-meta {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* 4. Themed Badges Dot Enhancement for Services Cards */
+    .category-badge::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--category-accent);
+      margin-right: 8px;
+      transition: transform 0.2s ease;
+    }
+    .service-card:hover .category-badge::before {
+      transform: scale(1.3);
+    }
   </style>
 </head>
 <body>
+  <!-- Aviation-themed backdrop and coordinate margins (Milestone 2) -->
+  <div class="aviation-backdrop" aria-hidden="true">
+    <div class="aviation-grid"></div>
+    <div class="aviation-glow aviation-glow--1"></div>
+    <div class="aviation-glow aviation-glow--2"></div>
+    <div class="aviation-glow aviation-glow--3"></div>
+  </div>
+  <div class="aviation-coords coordinates-left" aria-hidden="true">38.2251° N</div>
+  <div class="aviation-coords coordinates-right" aria-hidden="true">85.6983° W</div>
 
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
@@ -1757,100 +2473,129 @@
       </div>
     </section>
 
-    <div class="manifesto-strip">
+    <blockquote class="manifesto-strip">
       <div class="container">
+        <div class="manifesto-coord-label" aria-hidden="true">38.2251° N · 85.6983° W · KLOU</div>
         <p class="manifesto-quote" aria-label="Confidence in the cockpit starts on the ground.">&ldquo;Confidence in the cockpit<br>starts on the ground.&rdquo;</p>
-        <span class="manifesto-sig">— Diego Suarez</span>
+        <div class="manifesto-sig-wrap">
+          <cite class="manifesto-sig">Diego Suarez</cite>
+          <span class="manifesto-role">FAA Advanced Ground Instructor · Bowman Field</span>
+        </div>
       </div>
-    </div>
+    </blockquote>
 
     <section aria-labelledby="profile-heading" id="about">
       <div class="container">
-        <div class="profile-about-wrap">
-          <article class="profile">
-            <img src="assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Advanced Ground Instructor based in Louisville, Kentucky" class="profile-photo" width="640" height="640" />
-            <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
-            <h3 id="profile-heading">Diego Suarez</h3>
-            <p class="role">FAA Advanced Ground Instructor · Bowman Field (KLOU) · Louisville, KY</p>
-            <a href="#contact" class="btn btn--primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-              Contact Me
-            </a>
-            <div class="social-links profile-social" aria-label="Follow Diego Suarez">
-              <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="home-social-instagram">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
-                <span>Instagram</span>
+        <div class="about-asymmetric">
+
+          <!-- Left: Profile card (overlaps the right card) -->
+          <div class="about-profile-col">
+            <article class="profile">
+              <img src="assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Advanced Ground Instructor based in Louisville, Kentucky" class="profile-photo" width="640" height="640" />
+              <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
+              <h3 id="profile-heading">Diego Suarez</h3>
+              <p class="role">FAA Advanced Ground Instructor · Bowman Field (KLOU) · Louisville, KY</p>
+              <a href="#contact" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                Contact Me
               </a>
-              <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="home-social-threads">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 9.2c-.5-3-2.5-4.7-5.4-4.7-3.5 0-6.1 2.6-6.1 7.4 0 4.7 2.6 7.6 6.5 7.6 3.2 0 5.4-1.7 5.4-4.2 0-2.3-1.7-3.6-5-3.6h-1.4"/><path d="M12 11.7c2.8 0 5.4.8 6.7 2.8"/></svg>
-                <span>Threads</span>
-              </a>
-              <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="home-social-youtube">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 7.1a3 3 0 0 0-2.1-2.1C17.5 4.5 12 4.5 12 4.5s-5.5 0-7.3.5a3 3 0 0 0-2.1 2.1A31.2 31.2 0 0 0 2.1 12c0 1.7.2 3.4.5 4.9a3 3 0 0 0 2.1 2.1c1.8.5 7.3.5 7.3.5s5.5 0 7.3-.5a3 3 0 0 0 2.1-2.1c.3-1.5.5-3.2.5-4.9s-.2-3.4-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
-                <span>YouTube</span>
-              </a>
-              <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="home-social-tiktok">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a4.2 4.2 0 1 1-4.2-4.2"/><path d="M14 4c.7 2.7 2.4 4.4 5 5"/></svg>
-                <span>TikTok</span>
-              </a>
-              <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="home-social-facebook">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.2 8.2V6.7c0-.7.5-1.1 1.2-1.1h1.4V3.1c-.7-.1-1.5-.1-2.3-.1-2.5 0-4.2 1.5-4.2 4.2v1H7.7V11h2.6v10h3.1V11h2.6l.4-2.8h-3.2Z"/></svg>
-                <span>Facebook</span>
-              </a>
-            </div>
-          </article>
-          
-          <div class="about-content">
+              <div class="social-links profile-social" aria-label="Follow Diego Suarez">
+                <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="home-social-instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
+                  <span>Instagram</span>
+                </a>
+                <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="home-social-threads">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 9.2c-.5-3-2.5-4.7-5.4-4.7-3.5 0-6.1 2.6-6.1 7.4 0 4.7 2.6 7.6 6.5 7.6 3.2 0 5.4-1.7 5.4-4.2 0-2.3-1.7-3.6-5-3.6h-1.4"/><path d="M12 11.7c2.8 0 5.4.8 6.7 2.8"/></svg>
+                  <span>Threads</span>
+                </a>
+                <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="home-social-youtube">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 7.1a3 3 0 0 0-2.1-2.1C17.5 4.5 12 4.5 12 4.5s-5.5 0-7.3.5a3 3 0 0 0-2.1 2.1A31.2 31.2 0 0 0 2.1 12c0 1.7.2 3.4.5 4.9a3 3 0 0 0 2.1 2.1c1.8.5 7.3.5 7.3.5s5.5 0 7.3-.5a3 3 0 0 0 2.1-2.1c.3-1.5.5-3.2.5-4.9s-.2-3.4-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+                  <span>YouTube</span>
+                </a>
+                <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="home-social-tiktok">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a4.2 4.2 0 1 1-4.2-4.2"/><path d="M14 4c.7 2.7 2.4 4.4 5 5"/></svg>
+                  <span>TikTok</span>
+                </a>
+                <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="home-social-facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.2 8.2V6.7c0-.7.5-1.1 1.2-1.1h1.4V3.1c-.7-.1-1.5-.1-2.3-.1-2.5 0-4.2 1.5-4.2 4.2v1H7.7V11h2.6v10h3.1V11h2.6l.4-2.8h-3.2Z"/></svg>
+                  <span>Facebook</span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Right: Bio content card -->
+          <div class="about-content-col">
+            <span class="about-section-label">Bowman Field · KLOU · Louisville, KY</span>
+            <h2 class="about-heading">Flight training starts<br>with the right foundation.</h2>
+
             <p class="about-text">
               I fly out of Bowman Field (KLOU) in Louisville, Kentucky, and I genuinely look forward to helping each student feel more comfortable around the airplane, the checklist, and the decisions that come with flying. Whether you're just getting started or working toward commercial, my goal is to make training clear, practical, and encouraging while still keeping every lesson built around safe, standards-based habits.
             </p>
-            
-            <hr class="dotted-divider" />
-            
-            <div class="badges">
-              <span class="badge">FAA Advanced Ground Instructor</span>
-              <span class="badge">Bowman Field (KLOU)</span>
+
+            <!-- Handwriting-style personal quote -->
+            <div class="about-handwriting-quote">
+              <p>"Good pilots never stop being students—that's what makes them good pilots."</p>
             </div>
-            
+
             <hr class="dotted-divider" />
-            
-            <div class="certifications-list">
-              <div class="cert-item">
-                <div class="cert-check">
+
+            <!-- Credentials Cards -->
+            <div class="credentials-label">FAA Credentials &amp; Ratings</div>
+            <div class="credentials-grid" aria-label="Diego Suarez FAA credentials">
+
+              <div class="cred-card">
+                <span class="cred-stamp" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <span class="cert-name">Advanced Ground Instructor</span>
+                </span>
+                <p class="cred-authority">Federal Aviation Administration</p>
+                <p class="cred-name">Advanced Ground Instructor</p>
+                <p class="cred-id">AGI · FAA 14 CFR § 61.215</p>
               </div>
-              <div class="cert-item">
-                <div class="cert-check">
+
+              <div class="cred-card">
+                <span class="cred-stamp" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <span class="cert-name">Commercial Pilot</span>
+                </span>
+                <p class="cred-authority">Federal Aviation Administration</p>
+                <p class="cred-name">Commercial Pilot</p>
+                <p class="cred-id">CPL · ASEL · FAA 14 CFR § 61.123</p>
               </div>
-              <div class="cert-item">
-                <div class="cert-check">
+
+              <div class="cred-card">
+                <span class="cred-stamp" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <span class="cert-name">Instrument Rating</span>
+                </span>
+                <p class="cred-authority">Federal Aviation Administration</p>
+                <p class="cred-name">Instrument Rating</p>
+                <p class="cred-id">IR · ASEL · FAA 14 CFR § 61.65</p>
               </div>
-              <div class="cert-item">
-                <div class="cert-check">
+
+              <div class="cred-card">
+                <span class="cred-stamp" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <span class="cert-name">Private Pilot</span>
+                </span>
+                <p class="cred-authority">Federal Aviation Administration</p>
+                <p class="cred-name">Private Pilot</p>
+                <p class="cred-id">PPL · ASEL · FAA 14 CFR § 61.109</p>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="manifesto-strip">
+    <blockquote class="manifesto-strip">
       <div class="container">
+        <div class="manifesto-coord-label" aria-hidden="true">38.2251° N · 85.6983° W · KLOU</div>
         <p class="manifesto-quote" aria-label="The right first step makes the whole path feel possible.">&ldquo;The right first step makes<br>the whole path feel possible.&rdquo;</p>
-        <span class="manifesto-sig">— Diego Suarez</span>
+        <div class="manifesto-sig-wrap">
+          <cite class="manifesto-sig">Diego Suarez</cite>
+          <span class="manifesto-role">FAA Advanced Ground Instructor · Bowman Field</span>
+        </div>
       </div>
-    </div>
+    </blockquote>
 
     <section id="services" aria-labelledby="services-heading">
       <div class="container">
@@ -2014,12 +2759,16 @@
       </div>
     </section>
 
-    <div class="manifesto-strip">
+    <blockquote class="manifesto-strip">
       <div class="container">
+        <div class="manifesto-coord-label" aria-hidden="true">38.2251° N · 85.6983° W · KLOU</div>
         <p class="manifesto-quote" aria-label="Good pilots are built one thoughtful lesson at a time.">&ldquo;Good pilots are built<br>one thoughtful lesson at a time.&rdquo;</p>
-        <span class="manifesto-sig">— Diego Suarez</span>
+        <div class="manifesto-sig-wrap">
+          <cite class="manifesto-sig">Diego Suarez</cite>
+          <span class="manifesto-role">FAA Advanced Ground Instructor · Bowman Field</span>
+        </div>
       </div>
-    </div>
+    </blockquote>
 
     <section id="faq" aria-labelledby="faq-heading">
       <div class="container">

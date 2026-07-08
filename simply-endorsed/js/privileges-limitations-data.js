@@ -299,7 +299,7 @@
       "instrument-rating": card({
         title: "Instrument rating privileges & limitations",
         ruleRefs: ["14 CFR § 61.3(e)", "14 CFR § 61.57(c)"],
-        summary: "The instrument rating is required for IFR flight, weather below VFR minimums, and Class A airspace - and it unlocks the commercial pilot's night/50-NM passenger limitation. Keeping it usable is a currency game: 66-HIT.",
+        summary: "The instrument rating is required for IFR flight, weather below VFR minimums, and Class A airspace - and it unlocks the commercial pilot's night/50-NM passenger limitation. Keeping it usable is a currency game: 6HITS.",
         privileges: [
           {
             text: "Act as PIC under IFR and in weather conditions less than the minimums for VFR flight.",
@@ -320,7 +320,7 @@
         ],
         limitations: [
           {
-            text: "IFR currency requires the 66-HIT items within the preceding 6 calendar months, flown in the appropriate category of aircraft or an approved simulation device.",
+            text: "IFR currency requires the 6HITS items within the preceding 6 calendar months, flown in the appropriate category of aircraft or an approved simulation device.",
             refs: ["14 CFR § 61.57(c)"]
           },
           {
@@ -334,7 +334,7 @@
         ],
         mnemonics: [
           {
-            acronym: "66-HIT",
+            acronym: "6HITS",
             name: "IFR currency in the last 6 calendar months",
             intro: "Within the preceding 6 calendar months, perform and log:",
             items: [
@@ -351,9 +351,21 @@
                 refs: ["14 CFR § 61.57(c)(1)"]
               },
               {
-                letter: "IT",
-                label: "Intercepting & Tracking",
-                text: "Intercepting and tracking courses through the use of navigational electronic systems.",
+                letter: "I",
+                label: "Intercepting",
+                text: "Intercepting courses through the use of navigational electronic systems.",
+                refs: ["14 CFR § 61.57(c)(1)"]
+              },
+              {
+                letter: "T",
+                label: "Tracking",
+                text: "Tracking courses through the use of navigational electronic systems.",
+                refs: ["14 CFR § 61.57(c)(1)"]
+              },
+              {
+                letter: "S",
+                label: "Systems",
+                text: "Use of the navigational electronic systems required to intercept and track courses.",
                 refs: ["14 CFR § 61.57(c)(1)"]
               }
             ]

@@ -925,9 +925,48 @@
     return tags.length ? `<span class="tag-row">${tags.map((tag) => `<span class="data-tag tag-${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-")}">${escapeHtml(tag)}</span>`).join("")}</span>` : "";
   }
 
+  const CATEGORY_THEMES = {
+    all: { accent: "#475569", soft: "#f0f1f3", line: "#d1d5da", ink: "#313b4a" },
+    "practical-test-prereqs": { accent: "#4f46e5", soft: "#f1f0fd", line: "#d3d1f9", ink: "#1d13be" },
+    "student-pilot": { accent: "#f59e0b", soft: "#fef7eb", line: "#fde7c2", ink: "#b37000" },
+    "sport-pilot": { accent: "#16a34a", soft: "#ecf8f1", line: "#c5e8d2", ink: "#0b7633" },
+    "recreational-pilot": { accent: "#65a30d", soft: "#f3f8ec", line: "#d9e8c3", ink: "#477605" },
+    "private-pilot": { accent: "#0ea5e9", soft: "#ecf8fd", line: "#c3e9fa", ink: "#0476a9" },
+    "commercial-pilot": { accent: "#ca8a04", soft: "#fbf6eb", line: "#f2e2c0", ink: "#906200" },
+    atp: { accent: "#1f2937", soft: "#edeeef", line: "#c7cacd", ink: "#151d27" },
+    "instrument-rating": { accent: "#64748b", soft: "#f3f4f6", line: "#d8dce2", ink: "#455162" },
+    "flight-instructor": { accent: "#dc2626", soft: "#fceeee", line: "#f6c9c9", ink: "#a11414" },
+    "sport-pilot-instructor": { accent: "#ea580c", soft: "#fdf2ec", line: "#fad5c2", ink: "#aa3c02" },
+    "additional-recurrent": { accent: "#0d9488", soft: "#ecf6f5", line: "#c3e4e1", ink: "#056b62" },
+    "robinson-sfar73": { accent: "#db2777", soft: "#fceef4", line: "#f6c9dd", ink: "#a01553" },
+    "specialty-operations": { accent: "#7c3aed", soft: "#f5effe", line: "#decefb", ink: "#4f0ac4" }
+  };
+
+  function findCategoryIdForEndorsement(endorsementId) {
+    if (!window.BROWSE_STRUCTURE) return "all";
+    const lowerId = String(endorsementId).toLowerCase();
+    for (const cat of window.BROWSE_STRUCTURE) {
+      if (!cat.subcategories) continue;
+      for (const sub of cat.subcategories) {
+        const primary = Array.isArray(sub.primaryIds) ? sub.primaryIds : [];
+        const supp = Array.isArray(sub.supplementalIds) ? sub.supplementalIds : [];
+        if (primary.some(id => String(id).toLowerCase() === lowerId) || 
+            supp.some(id => String(id).toLowerCase() === lowerId)) {
+          return cat.categoryId;
+        }
+      }
+    }
+    return "all";
+  }
+
   function formatCell(value, key, row) {
     const tags = key === "requirement" || key === "block" ? tagMarkup(row) : "";
     const linkKeys = new Set(["cfr", "cfrBasis", "source", "cfrRows"]);
+    if (key === "item" && value) {
+      const catId = findCategoryIdForEndorsement(value);
+      const theme = CATEGORY_THEMES[catId] || CATEGORY_THEMES.all;
+      return `<span class="part61-endorsement-badge" style="background:${theme.soft}; color:${theme.ink}; border: 1px solid ${theme.line}; font-family:var(--mono); font-weight:700; font-size:0.82rem; padding:2px 8px; border-radius:6px; display:inline-block; letter-spacing:0.02em;">${escapeHtml(value)}</span>`;
+    }
     if (typeof value === "number" && Number.isFinite(value)) {
       return `${escapeHtml(String(value))}${tags}`;
     }

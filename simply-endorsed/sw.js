@@ -1,4 +1,4 @@
-const CACHE_NAME = "simply-endorsed-v37";
+const CACHE_NAME = "simply-endorsed-v38";
 
 const CORE_ASSETS = [
   "./",
@@ -11,7 +11,7 @@ const CORE_ASSETS = [
   "./js/browse-structure.js?v=3",
   "./js/guidance-content.js?v=3",
   "./js/training-requirements-data.js?v=1",
-  "./js/privileges-limitations-data.js?v=1",
+  "./js/privileges-limitations-data.js?v=2",
   "./js/part61-rules-data.js?v=4",
   "./js/part61-calculator-core.js?v=3",
   "./js/part61-calculator-ui.js?v=5",

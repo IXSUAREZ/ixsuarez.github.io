@@ -37,20 +37,20 @@
 
   <style>
     :root {
-      --bg: #EEF0F3;
-      --surface: #FAFAFC;
-      --surface-2: #F2F4F7;
+      --bg: #F8FAFC;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-2: #F1F5F9;
       --ink: #0F172A;
       --ink-muted: #475569;
       --navy: #1C2142;
       --navy-600: #141A35;
-      --navy-50: #E6E8EE;
-      --border: rgba(15, 23, 42, 0.08);
-      --border-strong: rgba(15, 23, 42, 0.14);
-      --green: #22C55E;
-      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
-      --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.10);
+      --navy-50: #F1F3F7;
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --green: #10B981;
+      --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.02), 0 1px 2px rgba(15, 23, 42, 0.01);
+      --shadow-md: 0 12px 36px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.02);
+      --shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.03);
       --radius-card: 28px;
       --radius-btn: 14px;
       --radius-pill: 999px;
@@ -383,37 +383,65 @@
     .service-card {
       background: var(--surface);
       border: 1px solid var(--border);
+      border-left: 4px solid var(--category-accent, var(--border-strong));
       border-radius: var(--radius-card);
       padding: 32px 28px;
       box-shadow: var(--shadow-sm);
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex; flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
-    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--category-accent, var(--border-strong));
+    }
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: var(--category-soft, var(--navy-50));
+      border: 1px solid var(--category-line, var(--border-strong));
+      border-radius: var(--radius-pill);
+      color: var(--category-ink, var(--navy));
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+      width: fit-content;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
     .service-icon {
       width: 52px; height: 52px;
       border-radius: 16px;
-      background: var(--navy);
-      color: #fff;
+      background: var(--category-soft, var(--navy-50));
+      color: var(--category-accent, var(--navy));
+      border: 1px solid var(--category-line, var(--border));
       display: inline-flex; align-items: center; justify-content: center;
       margin-bottom: 20px;
+      transition: transform .3s ease;
     }
-    .service-icon svg { width: 26px; height: 26px; }
+    .service-card:hover .service-icon {
+      transform: scale(1.05);
+    }
+    .service-icon svg { width: 24px; height: 24px; }
     .service-card h3 {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: 1.5rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1.35rem;
       margin: 0 0 10px;
+      color: var(--ink);
     }
-    .service-card p { color: var(--ink-muted); margin: 0 0 18px; font-size: 0.98rem; }
+    .service-card p { color: var(--ink-muted); margin: 0 0 18px; font-size: 0.98rem; line-height: 1.5; }
     .service-link {
       margin-top: auto;
-      font-weight: 500;
-      color: var(--navy);
+      font-weight: 600;
+      color: var(--category-ink, var(--navy));
       display: inline-flex; align-items: center; gap: 6px;
-      transition: gap .2s ease;
+      transition: gap .2s ease, color .2s ease;
     }
-    .service-link:hover { gap: 10px; }
+    .service-link:hover { gap: 10px; color: var(--category-accent, var(--navy-600)); }
 
     .about-content {
       padding-top: 10px;
@@ -1042,12 +1070,11 @@
       align-items: center;
     }
     .profile,
-    .service-card,
     .faq-aside,
     .faq-item {
-      background: rgba(251,250,246,0.68);
-      border-color: rgba(8,9,11,0.10);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 22px 65px rgba(8,9,11,0.08);
+      background: rgba(255, 255, 255, 0.72);
+      border-color: rgba(15, 23, 42, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 22px 65px rgba(15, 23, 42, 0.03);
     }
     .profile {
       padding: 12px 12px 18px;
@@ -1087,25 +1114,33 @@
     }
     .service-card {
       min-height: 330px;
-      padding: 28px;
+      padding: 32px 28px;
       border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      border-left: 4px solid var(--category-accent, var(--border-strong));
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02), 0 1px 3px rgba(15, 23, 42, 0.01);
     }
     .service-card:hover {
       transform: translateY(-6px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 28px 78px rgba(8,9,11,0.13);
+      box-shadow: 0 28px 78px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      border-color: var(--category-accent, var(--border-strong));
     }
     .service-icon {
-      background: linear-gradient(145deg, #08090B, #2C3036);
+      background: linear-gradient(145deg, var(--category-soft, var(--navy-50)), rgba(255, 255, 255, 0.6));
+      border: 1px solid var(--category-line, var(--border));
+      color: var(--category-accent, var(--navy));
       border-radius: 18px;
-      box-shadow: 0 18px 44px rgba(8,9,11,0.18), inset 0 1px 0 rgba(255,255,255,0.14);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.03), inset 0 1px 0 rgba(255,255,255,0.8);
     }
     .service-card h3 {
       font-family: var(--font-sans);
       font-size: 1.35rem;
       font-weight: 700;
       letter-spacing: 0;
+      color: var(--ink);
     }
-    .service-link { color: var(--ink); }
+    .service-link { color: var(--category-ink, var(--navy)); }
 
     .faq-wrap {
       background: linear-gradient(145deg, rgba(8,9,11,0.94), rgba(24,28,32,0.92));
@@ -1533,6 +1568,114 @@
       border-color: var(--category-accent) !important;
       box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
     }
+
+    /* ==========================================================================
+       Explore Topics & Categories Styles
+       ========================================================================== */
+    .topics-section {
+      background: var(--navy-50);
+      padding: 96px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .topic-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      border-left: 4px solid var(--category-accent, var(--border-strong));
+      border-radius: 22px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .topic-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--category-accent, var(--border-strong));
+    }
+    .topic-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .topic-card-header h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--ink);
+    }
+    .topic-card-header .category-badge {
+      margin-bottom: 0;
+    }
+    .topic-card p {
+      color: var(--ink-muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+      margin: 0 0 18px;
+    }
+    .topic-guides-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      border-top: 1px dashed var(--border-strong);
+      padding-top: 16px;
+    }
+    .topic-guides-list li {
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .topic-guides-list li::before {
+      content: "•";
+      color: var(--category-accent, var(--ink-muted));
+      font-weight: 700;
+    }
+    .topic-guides-list li a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(15, 23, 42, 0.12);
+      transition: text-decoration-color .2s ease, color .2s ease;
+      line-height: 1.4;
+    }
+    .topic-guides-list li a:hover {
+      color: var(--category-ink, var(--navy));
+      text-decoration-color: var(--category-accent, var(--navy));
+    }
+    .topic-card-link {
+      margin-top: auto;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--category-ink, var(--navy));
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap .2s ease;
+    }
+    .topic-card-link:hover {
+      gap: 8px;
+    }
+    
+    @media (max-width: 780px) {
+      .topics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .topics-section {
+        padding: 64px 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1720,7 +1863,8 @@
           <p>Use the right page for the problem in front of you: planning, ground instruction, written-test prep, oral prep, or Bowman Field context.</p>
         </div>
         <div class="services-grid">
-          <article class="service-card">
+          <article class="service-card cat-student-pilot">
+            <div class="category-badge">Student Pilot</div>
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7 7 1-5 5 1.5 7L12 18l-6.5 4L7 15 2 10l7-1 3-7z"/></svg>
             </span>
@@ -1728,7 +1872,8 @@
             <p>Not sure where to start? Map the certificate path, medical timing, written test, cost range, and questions to ask before booking aircraft time.</p>
             <a href="/flight-training-louisville-ky/" class="service-link" data-cta-id="home-services-planning">Start here <span aria-hidden="true">→</span></a>
           </article>
-          <article class="service-card">
+          <article class="service-card cat-private-pilot">
+            <div class="category-badge">Private Pilot</div>
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>
             </span>
@@ -1736,7 +1881,8 @@
             <p>Connect the books to the airplane: cost, timeline, student-pilot paperwork, medical choices, written-test prep, and checkride readiness.</p>
             <a href="/private-pilot-ground-school/" class="service-link" data-cta-id="home-services-private">Plan private pilot <span aria-hidden="true">→</span></a>
           </article>
-          <article class="service-card">
+          <article class="service-card cat-commercial-pilot">
+            <div class="category-badge">Commercial Pilot</div>
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l7-7 4 4 7-7"/><path d="M14 7h7v7"/></svg>
             </span>
@@ -1744,7 +1890,8 @@
             <p>Work one-on-one through airspace, weather, regulations, systems, navigation, and training questions that are slowing you down.</p>
             <a href="/ground-school-louisville-ky/" class="service-link" data-cta-id="home-services-ground">Book ground help <span aria-hidden="true">→</span></a>
           </article>
-          <article class="service-card">
+          <article class="service-card cat-written-prep">
+            <div class="category-badge">Written Prep</div>
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 1 4 16.5"/><path d="M8 7h8"/><path d="M8 11h8"/></svg>
             </span>
@@ -1752,7 +1899,8 @@
             <p>Turn practice-test misses into a focused FAA-source study plan before you sit for the Private, instrument, or commercial knowledge test.</p>
             <a href="/faa-written-test-prep/" class="service-link" data-cta-id="home-services-written">Build a study plan <span aria-hidden="true">→</span></a>
           </article>
-          <article class="service-card">
+          <article class="service-card cat-cfi">
+            <div class="category-badge">CFI / Checkride</div>
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg>
             </span>
@@ -1760,13 +1908,107 @@
             <p>Practice ACS organization, scenario questions, endorsement awareness, and plain explanations before the oral portion gets stressful.</p>
             <a href="/checkride-oral-prep/" class="service-link" data-cta-id="home-services-oral">Practice the oral <span aria-hidden="true">→</span></a>
           </article>
-          <article class="service-card">
+          <article class="service-card cat-airspace">
+            <div class="category-badge">Airspace / ATC</div>
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </span>
             <h3>Bowman Field KLOU Help</h3>
             <p>Make the local airport picture clearer: KLOU procedures, tower flow, Louisville airspace, weather habits, and route planning.</p>
             <a href="/bowman-field-klou/" class="service-link" data-cta-id="home-services-klou">Study KLOU context <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="topics" class="topics-section" aria-labelledby="topics-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 1 4 16.5"/><path d="M6 7h12"/><path d="M6 11h12"/><path d="M6 15h12"/></svg>
+            Learning Library
+          </span>
+          <h2 id="topics-heading">Explore aviation topics &amp; guides</h2>
+          <p>Dive deep into my FAA-grounded lesson library. Select a training category below to find structured guides, checklists, and references.</p>
+        </div>
+
+        <div class="topics-grid">
+          <article class="topic-card cat-private-pilot">
+            <div class="topic-card-header">
+              <h3>Private Pilot</h3>
+              <span class="category-badge">91 guides</span>
+            </div>
+            <p>FAA private pilot certification, student pilot procedures, solo flight preparation, and checkride preparation resources.</p>
+            <ul class="topic-guides-list">
+              <li><a href="/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/">10 Tips for Passing Your Private Pilot Checkride</a></li>
+              <li><a href="/learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/">10 Inspirational Flying Quotes for Student Pilots</a></li>
+            </ul>
+            <a href="/learn/private-pilot/" class="topic-card-link">View all private pilot guides <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="topic-card cat-instrument-rating">
+            <div class="topic-card-header">
+              <h3>Instrument Rating</h3>
+              <span class="category-badge">36 guides</span>
+            </div>
+            <p>Guides covering instrument flight rules (IFR), approach chart reading, clearances, holding patterns, and currency rules.</p>
+            <ul class="topic-guides-list">
+              <li><a href="/learn/ground-school/how-to-get-an-instrument-rating-step-by-step/">How to Get an Instrument Rating Step by Step</a></li>
+              <li><a href="/learn/ground-school/why-instrument-rating-ground-school-matters/">Why Instrument Rating Ground School Matters</a></li>
+            </ul>
+            <a href="/learn/instrument-rating/" class="topic-card-link">View all instrument rating guides <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="topic-card cat-commercial-pilot">
+            <div class="topic-card-header">
+              <h3>Commercial Pilot</h3>
+              <span class="category-badge">30 guides</span>
+            </div>
+            <p>Advanced commercial pilot certification training requirements, maneuvers, timelines, and aviation career pathways.</p>
+            <ul class="topic-guides-list">
+              <li><a href="/learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/">How to Get a Commercial Certificate Step by Step</a></li>
+              <li><a href="/learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/">Commercial Pilot Timeline: From Private to CPL</a></li>
+            </ul>
+            <a href="/learn/commercial-pilot/" class="topic-card-link">View all commercial pilot guides <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="topic-card cat-multi-engine">
+            <div class="topic-card-header">
+              <h3>Multi-Engine Rating</h3>
+              <span class="category-badge">24 guides</span>
+            </div>
+            <p>Essential multi-engine guides focusing on twins vs single engines Vx/Vy, Vmc speed limits, requirements, and carrier-path costs.</p>
+            <ul class="topic-guides-list">
+              <li><a href="/learn/aircraft-systems/multi-engine-rating-explained-cost-requirements-privileges/">Multi-Engine Rating: Cost &amp; Requirements</a></li>
+              <li><a href="/learn/aircraft-systems/single-engine-vs-multi-engine-which-is-better/">Single Engine vs. Multi Engine: Which is Better?</a></li>
+            </ul>
+            <a href="/learn/multi-engine-rating/" class="topic-card-link">View all multi-engine rating guides <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="topic-card cat-weather">
+            <div class="topic-card-header">
+              <h3>Aviation Weather</h3>
+              <span class="category-badge">30 guides</span>
+            </div>
+            <p>Student-pilot guides for METARs, TAFs, density altitude, turbulence, crosswinds, and making safe go/no-go decisions.</p>
+            <ul class="topic-guides-list">
+              <li><a href="/learn/weather-and-safety/how-to-read-metar-and-taf-reports/">How to Read METAR and TAF Reports</a></li>
+              <li><a href="/learn/weather-and-safety/carburetor-icing-causes-symptoms-and-prevention/">Carburetor Icing: Causes, Symptoms &amp; Prevention</a></li>
+            </ul>
+            <a href="/learn/weather-for-student-pilots/" class="topic-card-link">View all weather guides <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="topic-card cat-airspace">
+            <div class="topic-card-header">
+              <h3>Airspace &amp; ATC</h3>
+              <span class="category-badge">35 guides</span>
+            </div>
+            <p>Classes of airspace, radio communications, runway safety, squawk codes, and towered vs non-towered operations.</p>
+            <ul class="topic-guides-list">
+              <li><a href="/learn/airspace-and-atc/class-d-airspace-explained/">Class D Airspace Explained for Student Pilots</a></li>
+              <li><a href="/learn/airspace-and-atc/squawk-codes-list-and-3-ways-to-remember-them/">squawk codes list and 3 ways to remember them</a></li>
+            </ul>
+            <a href="/learn/airspace-radio-communications/" class="topic-card-link">View all airspace guides <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>

@@ -7445,6 +7445,16 @@ body.is-guidance-view .endorsement-detail-panel {
   }
 }
 
+@media (max-width: 1180px) {
+  .endorsement-card.is-expanded > .endorsement-details {
+    display: grid;
+  }
+
+  .endorsement-card.is-expanded .card-viewmore-label::after {
+    content: "Close";
+  }
+}
+
 /* --- Part 61 Wizard Refactoring Styles --- */
 
 /* Utility to ensure programmatically hidden elements are not rendered */

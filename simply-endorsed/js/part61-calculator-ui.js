@@ -852,11 +852,52 @@
             <tr>${columns.map((column) => `<th>${escapeHtml(column.label)}</th>`).join("")}</tr>
           </thead>
           <tbody>
-            ${rows.map((row) => `
-              <tr class="${rowClass(row, totalClass)}">
-                ${columns.map((column) => `<td class="${cellClass(row, column.key)}" data-label="${escapeHtml(column.label)}">${formatCell(row[column.key], column.key, row)}</td>`).join("")}
-              </tr>
-            `).join("")}
+            ${rows.map((row) => {
+              const mainRowAttrs = (totalClass && row.kind !== "total") ? 'role="button" aria-expanded="false" tabindex="0"' : '';
+              const detailRowHtml = (totalClass && row.kind !== "total") ? `
+                <tr class="detail-row">
+                  <td colspan="${columns.length}">
+                    <div class="detail-content">
+                      <div class="detail-field">
+                        <div class="detail-label">Why</div>
+                        <div class="detail-value">${linkifyMultilineCfrText(row.why || "No explanation provided.")}</div>
+                      </div>
+                      <div class="detail-field">
+                        <div class="detail-label">Overlap Logic</div>
+                        <div class="detail-value">${linkifyMultilineCfrText(row.overlapLogic || "Standard overlap rules apply.")}</div>
+                      </div>
+                      <div class="detail-field">
+                        <div class="detail-label">Numeric Breakdown</div>
+                        <div class="detail-numbers">
+                          <div class="detail-number-item">
+                            <span class="detail-label">Required</span>
+                            <span class="detail-value">${escapeHtml(String(row.required || "0"))}</span>
+                          </div>
+                          <div class="detail-number-item">
+                            <span class="detail-label">Pilot Has</span>
+                            <span class="detail-value">${escapeHtml(String(row.has || "0"))}</span>
+                          </div>
+                          <div class="detail-number-item">
+                            <span class="detail-label">Credit</span>
+                            <span class="detail-value">${escapeHtml(String(row.credit || "0"))}</span>
+                          </div>
+                          <div class="detail-number-item">
+                            <span class="detail-label">Remaining</span>
+                            <span class="detail-value">${escapeHtml(String(row.remaining || "0"))}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ` : "";
+              return `
+                <tr class="${rowClass(row, totalClass)}" ${mainRowAttrs}>
+                  ${columns.map((column) => `<td class="${cellClass(row, column.key)}" data-label="${escapeHtml(column.label)}">${formatCell(row[column.key], column.key, row)}</td>`).join("")}
+                </tr>
+                ${detailRowHtml}
+              `;
+            }).join("")}
           </tbody>
         </table>
       </div>
@@ -868,11 +909,18 @@
     if (row.kind) classes.push(`row-kind-${row.kind}`);
     if (row.bucketType) classes.push(`row-bucket-${row.bucketType}`);
     if (row.status) classes.push(`row-status-${row.status}`);
-    if (totalClass && row.kind === "total") classes.push("total-row");
+    if (totalClass) {
+      if (row.kind === "total") {
+        classes.push("total-row");
+      } else {
+        classes.push("ledger-row");
+      }
+    }
     return classes.join(" ");
   }
 
   function cellClass(row, key) {
+    if (key === "progress") return "progress-cell";
     if (key !== "remaining") return "";
     const value = row.remaining;
     if (value === "UNKNOWN" || value === "Not logged" || value === "Pending") return "status-cell status-missing";
@@ -947,7 +995,71 @@
     return luminance > 0.62 ? "#172133" : "#ffffff";
   }
 
+  function formatProgressCell(row) {
+    if (row.kind === "total") {
+      const remVal = parseFloat(row.remaining);
+      if (!isNaN(remVal)) {
+        return `<div class="progress-track"><span class="progress-text" style="font-weight: 800; font-size: 0.9rem;">${escapeHtml(String(row.remaining))} remaining</span></div>`;
+      }
+      return `<div class="progress-track"><span class="progress-text" style="font-weight: 800; font-size: 0.9rem;">${escapeHtml(String(row.remaining))}</span></div>`;
+    }
+
+    const reqVal = parseFloat(row.required);
+    const credVal = parseFloat(row.credit);
+    
+    if (!isNaN(reqVal) && !isNaN(credVal) && reqVal > 0) {
+      const percent = Math.min(100, Math.max(0, (credVal / reqVal) * 100));
+      
+      let fillClass = "fill-partial";
+      let remClass = "remaining-partial";
+      if (row.status === "satisfied") {
+        fillClass = "fill-complete";
+        remClass = "remaining-complete";
+      } else if (row.status === "missing") {
+        fillClass = "fill-missing";
+        remClass = "remaining-missing";
+      }
+
+      const remainingText = row.status === "satisfied" ? "Complete" : `${row.remaining} left`;
+
+      return `
+        <div class="progress-track">
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill ${fillClass}" style="width: ${percent}%"></div>
+          </div>
+          <span class="progress-text">${escapeHtml(String(row.credit))} / ${escapeHtml(String(row.required))} hrs</span>
+          <span class="progress-remaining ${remClass}">${escapeHtml(remainingText)}</span>
+        </div>
+      `;
+    }
+
+    let eventClass = "event-pending";
+    let eventLabel = row.credit === "Complete" ? "Complete" : (row.credit || "Pending");
+    if (row.status === "satisfied") {
+      eventClass = "event-complete";
+      eventLabel = "Complete";
+    } else if (row.status === "missing") {
+      eventClass = "event-missing";
+      eventLabel = "Missing";
+    }
+
+    return `
+      <div class="progress-track">
+        <span class="progress-event-badge ${eventClass}">${escapeHtml(String(eventLabel))}</span>
+      </div>
+    `;
+  }
+
   function formatCell(value, key, row) {
+    if (key === "progress") {
+      const chevron = row.kind !== "total" ? `<span class="ledger-chevron">›</span>` : "";
+      const progressContent = formatProgressCell(row);
+      if (row.kind !== "total" && progressContent.includes("</div>")) {
+        const lastIndex = progressContent.lastIndexOf("</div>");
+        return progressContent.substring(0, lastIndex) + chevron + progressContent.substring(lastIndex);
+      }
+      return progressContent;
+    }
     const tags = key === "requirement" || key === "block" ? tagMarkup(row) : "";
     const linkKeys = new Set(["cfr", "cfrBasis", "source", "cfrRows"]);
     if (key === "item" && value) {
@@ -1020,12 +1132,7 @@
       ${table([
         { key: "cfr", label: "CFR" },
         { key: "requirement", label: "Requirement" },
-        { key: "required", label: "Required" },
-        { key: "has", label: "Pilot Has" },
-        { key: "credit", label: "Credit" },
-        { key: "remaining", label: "Remaining" },
-        { key: "why", label: "Why" },
-        { key: "overlapLogic", label: "Overlap Logic" }
+        { key: "progress", label: "Progress" }
       ], ledgerRowsForFilter(audit), true)}
     `).join("");
   }
@@ -1623,6 +1730,30 @@
         if (state.result) renderLedger(state.result.audits);
       });
     });
+
+    if (ids.ledger) {
+      ids.ledger.addEventListener("click", (event) => {
+        const row = event.target.closest("tr.ledger-row");
+        if (!row) return;
+
+        const expanded = row.getAttribute("aria-expanded") === "true";
+        row.setAttribute("aria-expanded", !expanded ? "true" : "false");
+
+        const detailRow = row.nextElementSibling;
+        if (detailRow && detailRow.classList.contains("detail-row")) {
+          detailRow.classList.toggle("open", !expanded);
+        }
+      });
+
+      ids.ledger.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          const row = event.target.closest("tr.ledger-row");
+          if (!row) return;
+          event.preventDefault();
+          row.click();
+        }
+      });
+    }
 
     const tabRow = qs(".part61-results-tabs");
     if (tabRow) {

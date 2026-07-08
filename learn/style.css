@@ -164,7 +164,50 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav-cta:hover, .cta-btn.primary:hover { background: #FFDB33; color: #08090B; transform: translateY(-1px); }
 .cta-btn:hover { background: rgba(255,255,255,0.84); color: var(--ink); transform: translateY(-1px); }
 
-.page-hero { padding: 124px 0 48px; text-align: center; }
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 124px 0 48px;
+  text-align: center;
+}
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(28,55,120,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28,55,120,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.85;
+  z-index: 0;
+}
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, var(--category-accent, var(--accent)) 0%, transparent 70%);
+  opacity: 0.09;
+  z-index: 0;
+}
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+.page-hero .container::before {
+  content: "Bowman Field · KLOU";
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--category-ink, rgba(28, 55, 120, 0.45));
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
 .page-hero h1, .article-header h1 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -174,7 +217,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .page-hero h1 { max-width: 880px; margin: 16px auto 0; font-size: 3.85rem; }
 .page-hero p { max-width: 720px; margin: 18px auto 0; color: var(--ink-muted); font-size: 1.08rem; line-height: 1.7; }
-.hero-actions, .cta-btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.hero-actions, .cta-btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; position: relative; z-index: 2; }
 .eyebrow, .post-tag {
   display: inline-flex; align-items: center; width: fit-content; gap: 8px;
   border: 1px solid var(--border);
@@ -274,7 +317,30 @@ article { max-width: var(--prose); margin: 0 auto; }
 .prose li { margin: 7px 0; }
 .prose a { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(8, 9, 11, 0.22); }
 .prose a:hover { text-decoration-color: var(--ink); }
-.prose blockquote { margin: 26px 0; padding: 18px 22px; border: 1px solid var(--category-line, rgba(87, 99, 118, 0.12)); border-left: 4px solid var(--category-accent, var(--accent)); background: var(--category-soft, rgba(255, 255, 255, 0.54)); border-radius: 16px; color: rgba(11,12,14,0.66); box-shadow: var(--shadow-sm); }
+.prose blockquote {
+  margin: 32px 0;
+  padding: 24px 28px;
+  border: 1px dashed var(--category-line, rgba(87, 99, 118, 0.22));
+  border-left: 4px solid var(--category-accent, var(--accent));
+  background: var(--category-soft, rgba(255, 255, 255, 0.54));
+  border-radius: 18px;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+.prose blockquote cite {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-signature);
+  font-size: 1.65rem;
+  color: var(--category-ink, var(--navy));
+  font-style: normal;
+  text-align: right;
+  opacity: 0.85;
+}
 .cta-box, .see-also, .service-panel { padding: 28px; margin-top: 36px; }
 .cta-box h2, .see-also h2, .service-panel h2 { margin: 12px 0; font-family: var(--font-display); font-weight: 600; line-height: 1.2; letter-spacing: 0; }
 .see-also ul, .service-panel ul { margin-bottom: 0; }

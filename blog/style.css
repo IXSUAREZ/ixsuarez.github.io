@@ -172,8 +172,48 @@ img { max-width: 100%; display: block; }
 }
 
 .page-hero {
+  position: relative;
+  overflow: hidden;
   padding: 124px 0 48px;
   text-align: center;
+}
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(28,55,120,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28,55,120,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.85;
+  z-index: 0;
+}
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, var(--category-accent, var(--accent)) 0%, transparent 70%);
+  opacity: 0.09;
+  z-index: 0;
+}
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+.page-hero .container::before {
+  content: "Bowman Field · KLOU";
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--category-ink, rgba(28, 55, 120, 0.45));
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 .page-hero h1 {
   font-family: var(--font-display);
@@ -413,15 +453,28 @@ img { max-width: 100%; display: block; }
   margin: 44px 0;
 }
 .prose blockquote {
-  border: 1px solid var(--category-line, rgba(87, 99, 118, 0.12));
+  margin: 32px 0;
+  padding: 24px 28px;
+  border: 1px dashed var(--category-line, rgba(87, 99, 118, 0.22));
   border-left: 4px solid var(--category-accent, var(--accent));
-  margin: 28px 0;
-  padding: 18px 22px;
-  color: rgba(11,12,14,0.66);
   background: var(--category-soft, rgba(255, 255, 255, 0.54));
-  border-radius: 16px;
-  font-style: italic;
+  border-radius: 18px;
+  color: var(--ink);
   box-shadow: var(--shadow-sm);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+.prose blockquote cite {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-signature);
+  font-size: 1.65rem;
+  color: var(--category-ink, var(--navy));
+  font-style: normal;
+  text-align: right;
+  opacity: 0.85;
 }
 
 .table-wrap {

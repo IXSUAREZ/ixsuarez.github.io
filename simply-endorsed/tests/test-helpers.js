@@ -4,16 +4,22 @@ const { JSDOM } = require('jsdom');
 
 /**
  * Initializes JSDOM environment, mocks browser APIs, and loads application scripts.
+ * @param {object} [options]
+ * @param {object} [options.domOptions] Additional JSDOM options.
+ * @param {boolean} [options.loadFullApp] Load browse app scripts in page order.
  * @returns {object} { dom, window, document, getClipboardText, setClipboardText }
  */
-function initJSDOM() {
+function initJSDOM(options = {}) {
+  const { domOptions = {}, loadFullApp = false } = options;
   const htmlPath = path.resolve(__dirname, '../index.html');
   const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
   // Create JSDOM instance
   const dom = new JSDOM(htmlContent, {
     runScripts: 'outside-only',
-    url: 'http://localhost/'
+    url: 'http://localhost/',
+    pretendToBeVisual: loadFullApp,
+    ...domOptions
   });
 
   const { window } = dom;
@@ -31,6 +37,22 @@ function initJSDOM() {
     window.dispatchEvent(afterEvent);
   };
   window.alert = () => {};
+  window.matchMedia = window.matchMedia || ((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener() {},
+    removeListener() {},
+    addEventListener() {},
+    removeEventListener() {},
+    dispatchEvent() {
+      return false;
+    }
+  }));
+  window.requestAnimationFrame = window.requestAnimationFrame || ((callback) => window.setTimeout(() => callback(Date.now()), 0));
+  window.cancelAnimationFrame = window.cancelAnimationFrame || ((id) => window.clearTimeout(id));
+  window.CSS = window.CSS || {};
+  window.CSS.escape = window.CSS.escape || ((value) => String(value).replace(/[^a-zA-Z0-9_-]/g, '\\$&'));
 
   // Mock Element scrollIntoView
   if (!window.Element.prototype.scrollIntoView) {
@@ -49,6 +71,12 @@ function initJSDOM() {
   window.navigator.clipboard.readText = async () => {
     return Promise.resolve(clipboardText);
   };
+  Object.defineProperty(window.navigator, 'serviceWorker', {
+    configurable: true,
+    value: {
+      register: () => Promise.resolve()
+    }
+  });
 
   // Helper to load application scripts
   const loadScript = (relativePath) => {
@@ -58,15 +86,35 @@ function initJSDOM() {
   };
 
   // Sequence of scripts to load
-  const scripts = [
-    'js/shared-utils.js',
-    'js/cfr-links.js',
-    'js/part61-rules-data.js',
-    'js/endorsements-data.js',
-    'js/training-requirements-data.js',
-    'js/part61-calculator-core.js',
-    'js/part61-calculator-ui.js'
-  ];
+  const scripts = loadFullApp
+    ? [
+        'js/shared-utils.js',
+        'js/cfr-links.js',
+        'js/endorsements-data.js',
+        'js/browse-structure.js',
+        'js/guidance-content.js',
+        'js/training-requirements-data.js',
+        'js/part61-rules-data.js',
+        'js/part61-calculator-core.js',
+        'js/part61-calculator-ui.js',
+        'js/app.js'
+      ]
+    : [
+        'js/shared-utils.js',
+        'js/cfr-links.js',
+        'js/part61-rules-data.js',
+        'js/endorsements-data.js',
+        'js/training-requirements-data.js',
+        'js/part61-calculator-core.js',
+        'js/part61-calculator-ui.js'
+      ];
+
+  if (loadFullApp) {
+    Object.defineProperty(window.document, 'readyState', {
+      configurable: true,
+      value: 'complete'
+    });
+  }
 
   for (const script of scripts) {
     loadScript(script);

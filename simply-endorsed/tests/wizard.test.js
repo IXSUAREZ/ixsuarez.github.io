@@ -1469,8 +1469,143 @@ const tests = [
         throw new Error("Wizard advanced to step 5 even though experience inputs were fully blank (validation bypassed because fields are hidden)");
       }
     }
+  },
+
+  // ==========================================
+  // ENDORSEMENT BROWSE APP INTERACTIONS
+  // ==========================================
+  {
+    id: "T6_BROWSE_CARD_01",
+    name: "A.2 closes when it is the only expanded card from URL state",
+    tier: 6,
+    feature: 6,
+    fn: async () => {
+      const helpers = initFullApp('http://localhost/simply-endorsed/?expanded=A.2');
+      try {
+        let state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || !state.hasInlineDetails || state.expandedParam !== 'A.2') {
+          throw new Error(`Expected A.2 to start expanded from URL state, got ${JSON.stringify(state)}`);
+        }
+
+        clickCard(helpers, 'A.2');
+        state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'false') {
+          throw new Error(`Expected A.2 aria-expanded to be false after close click, got ${state.ariaExpanded}`);
+        }
+        if (state.labelText !== 'Open') {
+          throw new Error(`Expected A.2 label to return to Open, got ${state.labelText}`);
+        }
+        if (state.hasInlineDetails) {
+          throw new Error('Expected A.2 inline details to be removed after close click');
+        }
+        if (state.expandedParam !== null) {
+          throw new Error(`Expected expanded URL parameter to be removed, got ${state.expandedParam}`);
+        }
+      } finally {
+        helpers.window.close();
+      }
+    }
+  },
+  {
+    id: "T6_BROWSE_CARD_02",
+    name: "A.2 opens and closes by repeated click",
+    tier: 6,
+    feature: 6,
+    fn: async () => {
+      const helpers = initFullApp('http://localhost/simply-endorsed/');
+      try {
+        let state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'false' || state.hasInlineDetails || state.expandedParam !== null) {
+          throw new Error(`Expected A.2 to start closed, got ${JSON.stringify(state)}`);
+        }
+
+        clickCard(helpers, 'A.2');
+        state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || !state.hasInlineDetails || state.expandedParam !== 'A.2') {
+          throw new Error(`Expected A.2 to open on first click, got ${JSON.stringify(state)}`);
+        }
+
+        clickCard(helpers, 'A.2');
+        state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'false' || state.labelText !== 'Open' || state.hasInlineDetails || state.expandedParam !== null) {
+          throw new Error(`Expected A.2 to close on second click, got ${JSON.stringify(state)}`);
+        }
+      } finally {
+        helpers.window.close();
+      }
+    }
+  },
+  {
+    id: "T6_BROWSE_CARD_03",
+    name: "A.2 opens with Enter and closes with Space",
+    tier: 6,
+    feature: 6,
+    fn: async () => {
+      const helpers = initFullApp('http://localhost/simply-endorsed/');
+      try {
+        pressCardKey(helpers, 'A.2', 'Enter');
+        let state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || state.expandedParam !== 'A.2') {
+          throw new Error(`Expected Enter to open A.2, got ${JSON.stringify(state)}`);
+        }
+
+        pressCardKey(helpers, 'A.2', ' ');
+        state = getCardState(helpers, 'A.2');
+        if (state.ariaExpanded !== 'false' || state.labelText !== 'Open' || state.expandedParam !== null) {
+          throw new Error(`Expected Space to close A.2, got ${JSON.stringify(state)}`);
+        }
+      } finally {
+        helpers.window.close();
+      }
+    }
   }
 ];
+
+function initFullApp(url) {
+  return initJSDOM({
+    loadFullApp: true,
+    domOptions: {
+      pretendToBeVisual: true,
+      url
+    }
+  });
+}
+
+function getCard(helpers, endorsementId) {
+  const card = helpers.document.querySelector(`.endorsement-card[data-card-id="${endorsementId}"]`);
+  if (!card) {
+    throw new Error(`Endorsement card ${endorsementId} not found`);
+  }
+  return card;
+}
+
+function getCardState(helpers, endorsementId) {
+  const card = getCard(helpers, endorsementId);
+  const label = card.querySelector('.card-viewmore-label');
+  const params = new helpers.window.URL(helpers.window.location.href).searchParams;
+  return {
+    ariaExpanded: card.getAttribute('aria-expanded'),
+    expandedParam: params.get('expanded'),
+    hasInlineDetails: Boolean(card.querySelector('.endorsement-details')),
+    labelText: label ? label.textContent.trim() : null,
+    selectedDetailId: helpers.document.querySelector('#endorsementDetail')?.getAttribute('data-selected-id') || null
+  };
+}
+
+function clickCard(helpers, endorsementId) {
+  getCard(helpers, endorsementId).dispatchEvent(new helpers.window.MouseEvent('click', {
+    bubbles: true,
+    cancelable: true
+  }));
+}
+
+function pressCardKey(helpers, endorsementId, key) {
+  getCard(helpers, endorsementId).dispatchEvent(new helpers.window.KeyboardEvent('keydown', {
+    bubbles: true,
+    cancelable: true,
+    key
+  }));
+}
 
 module.exports = {
   tests

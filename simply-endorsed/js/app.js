@@ -444,9 +444,7 @@
 
     state.selectedEndorsementId = endorsementId;
     if (state.expandedIds.has(endorsementId)) {
-      if (state.expandedIds.size > 1) {
-        state.expandedIds.delete(endorsementId);
-      }
+      state.expandedIds.delete(endorsementId);
       return;
     }
 

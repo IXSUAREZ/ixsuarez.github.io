@@ -269,6 +269,7 @@
     includeSupplemental: false,
     filterPopoverOpen: false,
     descriptionExpanded: false,
+    privilegesCollapsed: null,
     selectionUiKey: "",
     expandedIds: new Set(),
     selectedEndorsementId: null,
@@ -1544,6 +1545,7 @@
     state.selectionUiKey = nextKey;
     state.filterPopoverOpen = false;
     state.descriptionExpanded = false;
+    state.privilegesCollapsed = null;
   }
 
   function getFilterGroup(groupId) {
@@ -2407,6 +2409,122 @@
     return '<span class="requirement-ref">' + linkifyCfrText(ref, { linkBare: true }) + "</span>";
   }
 
+  function getPrivilegesCard() {
+    const data = window.PRIVILEGES_LIMITATIONS || {};
+    const cards = data.cards || {};
+    if (state.category === "all") {
+      return null;
+    }
+    return cards[state.category] || null;
+  }
+
+  function isPrivilegesCardCollapsed() {
+    if (typeof state.privilegesCollapsed === "boolean") {
+      return state.privilegesCollapsed;
+    }
+    return Boolean(state.subcategory) || Boolean(state.query);
+  }
+
+  function renderPrivilegesItem(item, tone) {
+    const refs = Array.isArray(item.refs) ? item.refs : [];
+    return (
+      '<li class="pl-item pl-item-' + tone + '">' +
+      '<span class="pl-item-icon" aria-hidden="true">' + (tone === "privilege" ? "✓" : "✕") + "</span>" +
+      '<div class="pl-item-body">' +
+      "<p>" + linkifyCfrText(item.text || "") + "</p>" +
+      (refs.length
+        ? '<div class="training-requirement-refs">' + refs.map(renderRequirementRef).join("") + "</div>"
+        : "") +
+      "</div>" +
+      "</li>"
+    );
+  }
+
+  function renderPrivilegesMnemonic(mnemonic) {
+    const items = Array.isArray(mnemonic.items) ? mnemonic.items : [];
+    return (
+      '<section class="pl-mnemonic" aria-label="' + escapeHtml(mnemonic.acronym + " mnemonic") + '">' +
+      '<div class="pl-mnemonic-head">' +
+      '<span class="pl-mnemonic-acronym mono">' + escapeHtml(mnemonic.acronym) + "</span>" +
+      "<div>" +
+      "<h3>" + escapeHtml(mnemonic.name || "Memory aid") + "</h3>" +
+      (mnemonic.intro ? "<p>" + linkifyCfrText(mnemonic.intro) + "</p>" : "") +
+      "</div>" +
+      "</div>" +
+      '<ul class="pl-mnemonic-list">' +
+      items.map((item) => (
+        '<li class="pl-mnemonic-item">' +
+        '<span class="pl-mnemonic-letter mono" aria-hidden="true">' + escapeHtml(item.letter) + "</span>" +
+        '<div class="pl-item-body">' +
+        '<span class="pl-mnemonic-label">' + escapeHtml(item.label) + "</span>" +
+        "<p>" + linkifyCfrText(item.text || "") + "</p>" +
+        (Array.isArray(item.refs) && item.refs.length
+          ? '<div class="training-requirement-refs">' + item.refs.map(renderRequirementRef).join("") + "</div>"
+          : "") +
+        "</div>" +
+        "</li>"
+      )).join("") +
+      "</ul>" +
+      "</section>"
+    );
+  }
+
+  function renderPrivilegesCard(card) {
+    if (!card) {
+      return "";
+    }
+
+    const collapsed = isPrivilegesCardCollapsed();
+    const privileges = Array.isArray(card.privileges) ? card.privileges : [];
+    const limitations = Array.isArray(card.limitations) ? card.limitations : [];
+    const mnemonics = Array.isArray(card.mnemonics) ? card.mnemonics : [];
+    const ruleRefs = Array.isArray(card.ruleRefs) ? card.ruleRefs : [];
+    const panelId = "privileges-panel-" + state.category;
+    const headerChips =
+      mnemonics.map((mnemonic) => (
+        '<span class="pl-chip pl-chip-acronym mono">' + escapeHtml(mnemonic.acronym) + "</span>"
+      )).join("") +
+      ruleRefs.map((ref) => (
+        '<span class="pl-chip mono">' + escapeHtml(ref.replace(/^14 CFR\s*/, "")) + "</span>"
+      )).join("");
+
+    return (
+      '<aside class="privileges-card' + (collapsed ? " is-collapsed" : "") + '"' +
+      getCategoryThemeStyle(state.category) +
+      ' aria-label="Privileges and limitations">' +
+      '<button type="button" class="privileges-toggle" data-action="toggle-privileges" aria-expanded="' +
+      String(!collapsed) +
+      '" aria-controls="' + escapeHtml(panelId) + '">' +
+      '<span class="privileges-toggle-main">' +
+      '<span class="workbench-kicker">Privileges &amp; Limitations</span>' +
+      '<span class="privileges-title">' + escapeHtml(card.title || "Privileges & limitations") + "</span>" +
+      "</span>" +
+      '<span class="privileges-toggle-side">' +
+      headerChips +
+      '<span class="privileges-caret" aria-hidden="true">' + (collapsed ? "›" : "▾") + "</span>" +
+      "</span>" +
+      "</button>" +
+      '<div class="privileges-body" id="' + escapeHtml(panelId) + '"' + (collapsed ? " hidden" : "") + ">" +
+      (card.summary ? '<p class="training-requirements-summary">' + linkifyCfrText(card.summary) + "</p>" : "") +
+      '<div class="pl-columns">' +
+      '<section class="pl-section" aria-label="Privileges">' +
+      '<h3 class="pl-section-title pl-section-title-privilege">Privileges</h3>' +
+      '<ul class="pl-list">' + privileges.map((item) => renderPrivilegesItem(item, "privilege")).join("") + "</ul>" +
+      "</section>" +
+      '<section class="pl-section" aria-label="Limitations">' +
+      '<h3 class="pl-section-title pl-section-title-limitation">Limitations</h3>' +
+      '<ul class="pl-list">' + limitations.map((item) => renderPrivilegesItem(item, "limitation")).join("") + "</ul>" +
+      "</section>" +
+      "</div>" +
+      mnemonics.map(renderPrivilegesMnemonic).join("") +
+      (card.reviewNote
+        ? '<p class="training-requirements-note">' + linkifyCfrText(card.reviewNote) + "</p>"
+        : "") +
+      "</div>" +
+      "</aside>"
+    );
+  }
+
   function renderRequirementItem(item) {
     const refs = Array.isArray(item.refs) ? item.refs : [];
     return (
@@ -2472,7 +2590,8 @@
 
     const subcategory = getSelectedSubcategory();
     const renderer = getSubcategoryContentRenderer(subcategory);
-    const requirementCardHtml = renderTrainingRequirementCard(getTrainingRequirementCard(subcategory));
+    const privilegesCardHtml = renderPrivilegesCard(getPrivilegesCard());
+    const requirementCardHtml = privilegesCardHtml + renderTrainingRequirementCard(getTrainingRequirementCard(subcategory));
 
     if (renderer === "pre-solo") {
       const content = getPreSoloContent();
@@ -3567,6 +3686,13 @@
 
     if (dom.endorsementList) {
       dom.endorsementList.addEventListener("click", (event) => {
+        const privilegesToggle = event.target.closest('[data-action="toggle-privileges"]');
+        if (privilegesToggle) {
+          state.privilegesCollapsed = !isPrivilegesCardCollapsed();
+          refresh();
+          return;
+        }
+
         const copyButton = event.target.closest("[data-copy-id]");
         if (copyButton) {
           handleCopy(copyButton.getAttribute("data-copy-id"), copyButton);

@@ -5055,6 +5055,276 @@ p {
   }
 }
 
+/* ── Privileges & Limitations card ── */
+.privileges-card {
+  border: 1px solid color-mix(in srgb, var(--category-line) 70%, white);
+  border-left: 4px solid var(--category-accent);
+  border-radius: var(--workbench-radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--category-soft) 72%, white), rgba(255, 255, 255, 0.94));
+  box-shadow: var(--workbench-shadow);
+  overflow: hidden;
+}
+
+.privileges-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.privileges-toggle:hover {
+  background: color-mix(in srgb, var(--category-soft) 55%, white);
+}
+
+.privileges-toggle-main {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.privileges-title {
+  color: var(--text-strong);
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.privileges-toggle-side {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex: 0 1 auto;
+}
+
+.pl-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 9px;
+  border: 1px solid color-mix(in srgb, var(--category-line) 72%, white);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--category-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.pl-chip-acronym {
+  border-color: transparent;
+  background: var(--category-accent);
+  color: var(--category-pill-text);
+  letter-spacing: 0.04em;
+}
+
+.privileges-caret {
+  color: var(--category-ink);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.privileges-body {
+  display: grid;
+  gap: 16px;
+  padding: 0 18px 18px;
+}
+
+.pl-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pl-section {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(87, 99, 118, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.pl-section-title {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pl-section-title-privilege {
+  color: #15803d;
+}
+
+.pl-section-title-limitation {
+  color: #b91c1c;
+}
+
+.pl-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.pl-item-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  margin-top: 1px;
+  border-radius: 50%;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.pl-item-privilege .pl-item-icon {
+  background: rgba(22, 163, 74, 0.14);
+  color: #15803d;
+}
+
+.pl-item-limitation .pl-item-icon {
+  background: rgba(220, 38, 38, 0.12);
+  color: #b91c1c;
+}
+
+.pl-item-body {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.pl-item-body p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.84rem;
+  line-height: 1.58;
+}
+
+.pl-mnemonic {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--category-line) 72%, white);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.pl-mnemonic-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pl-mnemonic-acronym {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--category-accent);
+  color: var(--category-pill-text);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.pl-mnemonic-head h3 {
+  margin: 0 0 2px;
+  color: var(--text-strong);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.pl-mnemonic-head p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.pl-mnemonic-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pl-mnemonic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid rgba(87, 99, 118, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.pl-mnemonic-letter {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--category-accent) 16%, white);
+  color: var(--category-ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.pl-mnemonic-label {
+  display: block;
+  color: var(--text-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+@media (max-width: 860px) {
+  .pl-columns,
+  .pl-mnemonic-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .privileges-toggle {
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+
+  .privileges-body {
+    padding: 0 14px 14px;
+  }
+}
+
 /* ── Accordion Sections ── */
 .prereq-accordions {
   display: flex;
@@ -7882,4 +8152,49 @@ body.is-guidance-view .endorsement-detail-panel {
 
 .part61-review-metrics .part61-metric-card:nth-child(3) .part61-metric-title {
   color: #0476a9;
+}
+
+/* CFI Readout narrative callout card inside Plan tab */
+.part61-readout-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 8px;
+}
+
+.part61-readout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 8px;
+}
+
+.part61-readout-header h4 {
+  margin: 0 !important;
+  font-size: 0.95rem;
+  font-weight: 750;
+  color: var(--text-strong);
+}
+
+.part61-readout-header h4::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  border-radius: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, white);
+}
+
+.part61-cfi-readout {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre-wrap;
+  margin: 0;
 }

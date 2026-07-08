@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { initJSDOM } = require('./test-helpers');
 
 const tests = [
@@ -1480,7 +1482,7 @@ const tests = [
     tier: 6,
     feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed/?expanded=A.2');
+      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/?expanded=A.2');
       try {
         let state = getCardState(helpers, 'A.2');
         if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || !state.hasInlineDetails || state.expandedParam !== 'A.2') {
@@ -1512,7 +1514,7 @@ const tests = [
     tier: 6,
     feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed/');
+      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/');
       try {
         let state = getCardState(helpers, 'A.2');
         if (state.ariaExpanded !== 'false' || state.hasInlineDetails || state.expandedParam !== null) {
@@ -1541,7 +1543,7 @@ const tests = [
     tier: 6,
     feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed/');
+      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/');
       try {
         pressCardKey(helpers, 'A.2', 'Enter');
         let state = getCardState(helpers, 'A.2');
@@ -1556,6 +1558,66 @@ const tests = [
         }
       } finally {
         helpers.window.close();
+      }
+    }
+  },
+  {
+    id: "T6_ROUTE_01",
+    name: "Calculator URL loads under the simply-endorsed-cfi app route",
+    tier: 6,
+    feature: 6,
+    fn: async () => {
+      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/?view=calculator');
+      try {
+        const pathname = helpers.window.location.pathname;
+        const view = new helpers.window.URL(helpers.window.location.href).searchParams.get('view');
+        const isCalculator = helpers.document.body.classList.contains('is-calculator-view');
+        const calculator = helpers.document.getElementById('part61CalculatorView');
+        if (pathname !== '/simply-endorsed-cfi/') {
+          throw new Error(`Expected /simply-endorsed-cfi/ pathname, got ${pathname}`);
+        }
+        if (view !== 'calculator' || !isCalculator || !calculator || calculator.hidden) {
+          throw new Error('Expected calculator view to load from /simply-endorsed-cfi/?view=calculator');
+        }
+      } finally {
+        helpers.window.close();
+      }
+    }
+  },
+  {
+    id: "T6_ROUTE_02",
+    name: "App query-state updates stay under the simply-endorsed-cfi route",
+    tier: 6,
+    feature: 6,
+    fn: async () => {
+      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/');
+      try {
+        clickCard(helpers, 'A.2');
+        const nextUrl = new helpers.window.URL(helpers.window.location.href);
+        if (nextUrl.pathname !== '/simply-endorsed-cfi/') {
+          throw new Error(`Expected query-state update to stay on /simply-endorsed-cfi/, got ${nextUrl.pathname}`);
+        }
+        if (nextUrl.searchParams.get('expanded') !== 'A.2') {
+          throw new Error(`Expected expanded=A.2 after card click, got ${nextUrl.search}`);
+        }
+      } finally {
+        helpers.window.close();
+      }
+    }
+  },
+  {
+    id: "T6_ROUTE_03",
+    name: "Legacy simply-endorsed root redirect preserves query string and hash",
+    tier: 6,
+    feature: 6,
+    fn: async () => {
+      const redirectPath = path.resolve(__dirname, '../index.html');
+      const redirectHtml = fs.readFileSync(redirectPath, 'utf8');
+      if (!redirectHtml.includes('"/simply-endorsed-cfi/" + window.location.search + window.location.hash')) {
+        throw new Error('Redirect shell does not preserve search and hash when targeting /simply-endorsed-cfi/');
+      }
+      if (!redirectHtml.includes('window.location.replace(target)')) {
+        throw new Error('Redirect shell does not use location.replace(target)');
       }
     }
   }

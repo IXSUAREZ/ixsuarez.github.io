@@ -6,12 +6,15 @@ const { JSDOM } = require('jsdom');
  * Initializes JSDOM environment, mocks browser APIs, and loads application scripts.
  * @param {object} [options]
  * @param {object} [options.domOptions] Additional JSDOM options.
+ * @param {string} [options.htmlPath] HTML fixture path relative to this tests directory.
  * @param {boolean} [options.loadFullApp] Load browse app scripts in page order.
  * @returns {object} { dom, window, document, getClipboardText, setClipboardText }
  */
 function initJSDOM(options = {}) {
-  const { domOptions = {}, loadFullApp = false } = options;
-  const htmlPath = path.resolve(__dirname, '../index.html');
+  const { domOptions = {}, htmlPath: htmlPathOption, loadFullApp = false } = options;
+  const htmlPath = htmlPathOption
+    ? path.resolve(__dirname, htmlPathOption)
+    : path.resolve(__dirname, '../../simply-endorsed-cfi/index.html');
   const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
   // Create JSDOM instance
@@ -94,6 +97,7 @@ function initJSDOM(options = {}) {
         'js/browse-structure.js',
         'js/guidance-content.js',
         'js/training-requirements-data.js',
+        'js/privileges-limitations-data.js',
         'js/part61-rules-data.js',
         'js/part61-calculator-core.js',
         'js/part61-calculator-ui.js',
@@ -105,6 +109,7 @@ function initJSDOM(options = {}) {
         'js/part61-rules-data.js',
         'js/endorsements-data.js',
         'js/training-requirements-data.js',
+        'js/privileges-limitations-data.js',
         'js/part61-calculator-core.js',
         'js/part61-calculator-ui.js'
       ];

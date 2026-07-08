@@ -7,7 +7,7 @@
 //
 // The script reads endorsements-data.js, evaluates it in a minimal sandbox to
 // get window.ENDORSEMENTS and window.APP_META, then rewrites the block between
-// <!-- SEO:START --> and <!-- SEO:END --> in simply-endorsed/index.html.
+// <!-- SEO:START --> and <!-- SEO:END --> in simply-endorsed-cfi/index.html.
 
 const fs = require("fs");
 const path = require("path");
@@ -17,7 +17,7 @@ const cfrLinks = require("./js/cfr-links.js");
 const here = __dirname;
 const dataPath = path.join(here, "js", "endorsements-data.js");
 const trainingPath = path.join(here, "js", "training-requirements-data.js");
-const indexPath = path.join(here, "index.html");
+const indexPath = path.join(here, "..", "simply-endorsed-cfi", "index.html");
 
 const dataSource = fs.readFileSync(dataPath, "utf8");
 const sandbox = { window: {} };
@@ -279,11 +279,11 @@ const html = fs.readFileSync(indexPath, "utf8");
 const marker = /<!-- SEO:START[\s\S]*?<!-- SEO:END -->/;
 if (!marker.test(html)) {
   throw new Error(
-    "Could not find <!-- SEO:START --> / <!-- SEO:END --> markers in index.html",
+    "Could not find <!-- SEO:START --> / <!-- SEO:END --> markers in simply-endorsed-cfi/index.html",
   );
 }
 const next = html.replace(marker, replacement);
 fs.writeFileSync(indexPath, next);
 console.log(
-  `Injected ${endorsements.length} endorsements across ${sortedGroups.length} categories into index.html`,
+  `Injected ${endorsements.length} endorsements across ${sortedGroups.length} categories into simply-endorsed-cfi/index.html`,
 );

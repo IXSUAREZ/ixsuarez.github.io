@@ -32,6 +32,23 @@
     ["sport-cfi", 4],
     ["military", 2]
   ];
+  const SCENARIO_FOCUS_WEIGHTS = [
+    ["general", 55],
+    ["multi-engine", 28],
+    ["rotor-helicopter", 17]
+  ];
+  const ROTOR_HELICOPTER_TEMPLATES = [
+    { pathType: "category-add", credentials: ["private-rotor-helicopter"], targets: ["private-asel"] },
+    { pathType: "category-add", credentials: ["commercial-rotor-helicopter"], targets: ["commercial-asel"] },
+    { pathType: "category-add", credentials: ["commercial-rotor-helicopter"], targets: ["private-asel", "commercial-asel"] }
+  ];
+  const MULTI_ENGINE_TEMPLATES = [
+    { pathType: "class-add", credentials: ["private-asel"], targets: ["private-amel-add-class"] },
+    { pathType: "class-add", credentials: ["commercial-asel"], targets: ["commercial-amel-add-class"] },
+    { pathType: "level-change", credentials: ["private-amel"], targets: ["commercial-amel"] },
+    { pathType: "class-level-change", credentials: ["private-asel"], targets: ["commercial-amel"] },
+    { pathType: "class-add", credentials: ["commercial-amel"], targets: ["commercial-asel-add-class"], flags: { faaCommercialAmel: true } }
+  ];
   const TIER_WEIGHTS = [
     ["starting", 20],
     ["partial", 45],
@@ -204,6 +221,24 @@
     exp.prepRecent = minProgress(targetId === "commercial-asel" ? 3 : 2, tier, 0);
   }
 
+  function applyCommercialAmelProgress(exp, tier, minimumFloor) {
+    const floor = minimumFloor || 0;
+    exp.totalTime = Math.max(exp.totalTime, minProgress(250, tier, floor));
+    exp.poweredTime = Math.max(exp.poweredTime, minProgress(100, tier, Math.min(exp.totalTime, floor)));
+    exp.airplaneTime = Math.max(exp.airplaneTime, minProgress(50, tier, 10));
+    exp.amelTime = Math.max(exp.amelTime, minProgress(50, tier, 6));
+    exp.picTotal = Math.max(exp.picTotal, minProgress(100, tier, 20));
+    exp.picAirplane = Math.max(exp.picAirplane, minProgress(50, tier, 5));
+    exp.xcPicTotal = Math.max(exp.xcPicTotal, minProgress(50, tier, 8));
+    exp.xcPicAirplane = Math.max(exp.xcPicAirplane, minProgress(10, tier, 0));
+    exp.instrumentTime = Math.max(exp.instrumentTime, minProgress(40, tier, 5));
+    exp.instrumentAirplane = Math.max(exp.instrumentAirplane, minProgress(15, tier, 3));
+    exp.nightTime = Math.max(exp.nightTime, minProgress(20, tier, 3));
+    exp.commercialTrainingAmel = Math.max(exp.commercialTrainingAmel, minProgress(20, tier, 0));
+    exp.soloPdpicAmel = Math.max(exp.soloPdpicAmel, minProgress(10, tier, 0));
+    exp.complexTaaTurbine = Math.max(exp.complexTaaTurbine, minProgress(10, tier, 0));
+  }
+
   function applyHeldCredential(exp, credential, tier) {
     if (credential === "sport-asel") {
       applyAselProgress(exp, "sport-asel", "qualified", 20);
@@ -302,19 +337,27 @@
     if (pathType === "initial") {
       applyAselProgress(exp, firstTarget, tier, 0);
     } else if (pathType === "level-change") {
-      applyAselProgress(exp, firstTarget, tier, primaryCredential === "sport-asel" ? 20 : primaryCredential === "recreational-asel" ? 30 : 40);
+      if (firstTarget === "commercial-amel") {
+        applyCommercialAmelProgress(exp, tier, primaryCredential === "private-amel" ? 70 : 40);
+      } else {
+        applyAselProgress(exp, firstTarget, tier, primaryCredential === "sport-asel" ? 20 : primaryCredential === "recreational-asel" ? 30 : 40);
+      }
     } else if (pathType === "class-level-change") {
-      applyHeldCredential(exp, "private-amel", tier);
-      exp.aselTime = Math.max(exp.aselTime, minProgress(50, tier, 5));
-      exp.dualAsel = Math.max(exp.dualAsel, minProgress(20, tier, 2));
-      exp.commercialTrainingAsel = minProgress(20, tier, 0);
-      exp.soloPdpicAsel = minProgress(10, tier, 0);
-      exp.complexTaaTurbine = minProgress(10, tier, 0);
-      exp.picAsel = Math.max(exp.picAsel, minProgress(50, tier, 0));
-      exp.picAirplane = Math.max(exp.picAirplane, exp.picAsel);
-      exp.xcPicAirplane = Math.max(exp.xcPicAirplane, minProgress(10, tier, 0));
-      exp.xcPicTotal = Math.max(exp.xcPicTotal, minProgress(50, tier, 10));
-      exp.totalTime = Math.max(exp.totalTime, minProgress(250, tier, 80));
+      if (firstTarget === "commercial-amel") {
+        applyCommercialAmelProgress(exp, tier, 40);
+      } else {
+        applyHeldCredential(exp, "private-amel", tier);
+        exp.aselTime = Math.max(exp.aselTime, minProgress(50, tier, 5));
+        exp.dualAsel = Math.max(exp.dualAsel, minProgress(20, tier, 2));
+        exp.commercialTrainingAsel = minProgress(20, tier, 0);
+        exp.soloPdpicAsel = minProgress(10, tier, 0);
+        exp.complexTaaTurbine = minProgress(10, tier, 0);
+        exp.picAsel = Math.max(exp.picAsel, minProgress(50, tier, 0));
+        exp.picAirplane = Math.max(exp.picAirplane, exp.picAsel);
+        exp.xcPicAirplane = Math.max(exp.xcPicAirplane, minProgress(10, tier, 0));
+        exp.xcPicTotal = Math.max(exp.xcPicTotal, minProgress(50, tier, 10));
+        exp.totalTime = Math.max(exp.totalTime, minProgress(250, tier, 80));
+      }
     } else if (pathType === "category-add") {
       const target = firstTarget === "commercial-asel" ? "commercial-asel" : "private-asel";
       const airplaneSeed = tier === "starting" ? randInt(0, 12) : tier === "partial" ? randInt(15, 60) : randInt(70, 155);
@@ -479,11 +522,19 @@
     }));
   }
 
-  function buildScenario(pathType) {
+  function templatesForFocus(focus) {
+    if (focus === "rotor-helicopter") return ROTOR_HELICOPTER_TEMPLATES;
+    if (focus === "multi-engine") return MULTI_ENGINE_TEMPLATES;
+    return null;
+  }
+
+  function buildScenario(pathType, forcedTemplate) {
     const tier = weightedPick(TIER_WEIGHTS);
     const availableTargets = targetIds();
-    const candidates = templatesFor(pathType).filter((template) => template.targets.every((target) => availableTargets.has(target)));
+    const sourceTemplates = forcedTemplate ? [forcedTemplate] : templatesFor(pathType);
+    const candidates = sourceTemplates.filter((template) => template.targets.every((target) => availableTargets.has(target)));
     const template = clone(choose(candidates.length ? candidates : templatesFor("class-add")));
+    const intendedPathType = template.pathType || pathType;
     const flags = Object.assign(defaultFlags(), template.flags || {});
     if (template.credentials.includes("military-pilot")) {
       flags.militaryExperience = true;
@@ -496,12 +547,12 @@
       : maybeAddFlavor(template.credentials.slice());
     const scenarioTemplate = Object.assign({}, template, { credentials });
     return {
-      name: scenarioName(pathType, scenarioTemplate),
+      name: scenarioName(intendedPathType, scenarioTemplate),
       credentials,
       targets: template.targets.slice(),
       flags,
       rates: jitterRates(),
-      experience: experienceFor(template, pathType, tier),
+      experience: experienceFor(template, intendedPathType, tier),
       events: eventsFor(template.targets, tier)
     };
   }
@@ -568,8 +619,11 @@
     }
 
     for (let attempt = 0; attempt < 10; attempt += 1) {
-      const pathType = weightedPick(PATH_WEIGHTS);
-      const scenario = buildScenario(pathType);
+      const focus = weightedPick(SCENARIO_FOCUS_WEIGHTS);
+      const focusedTemplates = templatesForFocus(focus);
+      const focusedTemplate = focusedTemplates ? choose(focusedTemplates) : null;
+      const pathType = focusedTemplate ? focusedTemplate.pathType : weightedPick(PATH_WEIGHTS);
+      const scenario = buildScenario(pathType, focusedTemplate);
       if (validScenario(scenario, pathType)) return scenario;
     }
 

@@ -480,6 +480,9 @@ const tests = [
       const flagKeys = ['militaryExperience', 'militaryOnly', 'faaCommercialAmel', 'priorFaa'];
       const pathCounts = {};
       const combos = new Set();
+      let rotorCredentialCount = 0;
+      let multiEngineScenarioCount = 0;
+      let amelTargetPathCount = 0;
 
       for (let i = 0; i < 260; i++) {
         const scenario = generator.generateRandomScenario();
@@ -512,6 +515,13 @@ const tests = [
         const firstPath = core.classifyPath(scenario, scenario.targets[0]).pathType;
         pathCounts[firstPath] = (pathCounts[firstPath] || 0) + 1;
         combos.add(`${scenario.credentials.join(',')} -> ${scenario.targets.join(',')}`);
+        const hasRotorCredential = scenario.credentials.some((credential) => credential.includes('rotor') || credential.includes('helicopter'));
+        const hasMultiEngineCredential = scenario.credentials.some((credential) => credential.includes('amel'));
+        const hasMultiEngineTarget = scenario.targets.some((target) => target.includes('amel'));
+        const hasAmelTargetPath = scenario.targets.some((target) => target === 'commercial-amel' || target.endsWith('amel-add-class'));
+        if (hasRotorCredential) rotorCredentialCount += 1;
+        if (hasMultiEngineCredential || hasMultiEngineTarget) multiEngineScenarioCount += 1;
+        if (hasAmelTargetPath) amelTargetPathCount += 1;
 
         const audit = core.calculateAudit(scenario);
         const unsupported = audit.audits.some((item) => String(item.verdict || '').includes('not implemented'));
@@ -530,6 +540,15 @@ const tests = [
       }
       if (combos.size < 12) {
         throw new Error(`Expected generated scenario variety, got only ${combos.size} unique credential/target combos`);
+      }
+      if (rotorCredentialCount < 20) {
+        throw new Error(`Expected meaningful rotorcraft-helicopter coverage, got only ${rotorCredentialCount} scenarios`);
+      }
+      if (multiEngineScenarioCount < 25) {
+        throw new Error(`Expected meaningful AMEL/multiengine coverage, got only ${multiEngineScenarioCount} scenarios`);
+      }
+      if (amelTargetPathCount < 15) {
+        throw new Error(`Expected AMEL add-class or commercial AMEL target paths, got only ${amelTargetPathCount} scenarios`);
       }
     }
   },

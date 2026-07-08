@@ -345,13 +345,120 @@ const tests = [
   // Feature 5: Interactive State & Auto-Navigation
   {
     id: "T1_F5_01",
-    name: "Clicking Load Example button populates values and advances wizard to Step 5",
+    name: "Load Example button is removed and Random Scenario is the only scenario generator action",
     tier: 1,
     feature: 5,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (!loadExampleBtn) throw new Error("Load Example button not found");
-      loadExampleBtn.click();
+      if (helpers.document.getElementById('part61LoadExampleBtn')) {
+        throw new Error("Load Example button should not exist after button consolidation");
+      }
+      const actions = helpers.document.querySelector('.part61-header-actions');
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn');
+      if (!actions || !randomScenarioBtn) throw new Error("Random Scenario action not found");
+      if (randomScenarioBtn.textContent.trim() !== 'Random Scenario') {
+        throw new Error(`Expected Random Scenario label, got '${randomScenarioBtn.textContent.trim()}'`);
+      }
+    }
+  },
+  {
+    id: "T1_F5_01A",
+    name: "Each Step 3 hour input has one accessible per-field zero button",
+    tier: 1,
+    feature: 5,
+    fn: async (dom, helpers) => {
+      const inputs = Array.from(helpers.document.querySelectorAll('#part61ExperienceFields [data-experience]'));
+      const buttons = Array.from(helpers.document.querySelectorAll('#part61ExperienceFields [data-fill-zero-field]'));
+      if (!inputs.length) throw new Error("No Step 3 hour inputs found");
+      if (buttons.length !== inputs.length) {
+        throw new Error(`Expected ${inputs.length} per-field zero buttons, found ${buttons.length}`);
+      }
+      inputs.forEach((input) => {
+        const field = input.closest('.number-field');
+        const button = field && field.querySelector(`[data-fill-zero-field="${input.dataset.experience}"]`);
+        if (!button) throw new Error(`Missing zero button for ${input.dataset.experience}`);
+        if (button.textContent.trim() !== '0') {
+          throw new Error(`Expected zero button text to be 0 for ${input.dataset.experience}`);
+        }
+        const ariaLabel = button.getAttribute('aria-label') || '';
+        if (!ariaLabel.includes('0 hours')) {
+          throw new Error(`Zero button for ${input.dataset.experience} is missing an accessible 0-hours label`);
+        }
+      });
+    }
+  },
+  {
+    id: "T1_F5_01B",
+    name: "Clicking a per-field zero button fills only that hour field",
+    tier: 1,
+    feature: 5,
+    fn: async (dom, helpers) => {
+      const totalTime = helpers.document.querySelector('[data-experience="totalTime"]');
+      const airplaneTime = helpers.document.querySelector('[data-experience="airplaneTime"]');
+      const aselTime = helpers.document.querySelector('[data-experience="aselTime"]');
+      const airplaneButton = helpers.document.querySelector('[data-fill-zero-field="airplaneTime"]');
+      if (!totalTime || !airplaneTime || !aselTime || !airplaneButton) {
+        throw new Error("Expected core time inputs and airplane zero button to exist");
+      }
+      totalTime.value = '12.5';
+      airplaneTime.value = '';
+      aselTime.value = '';
+
+      airplaneButton.click();
+
+      if (airplaneTime.value !== '0') {
+        throw new Error(`Expected airplaneTime to be set to 0, got '${airplaneTime.value}'`);
+      }
+      if (totalTime.value !== '12.5') {
+        throw new Error("Per-field zero button changed a neighboring filled input");
+      }
+      if (aselTime.value !== '') {
+        throw new Error("Per-field zero button filled an unrelated blank input");
+      }
+      const completeness = helpers.document.getElementById('part61InputCompleteness');
+      if (!completeness || !completeness.textContent.includes('2/24')) {
+        throw new Error(`Expected completeness to update to 2/24, got '${completeness ? completeness.textContent : 'missing'}'`);
+      }
+      const mobileCompleteness = helpers.document.getElementById('part61MobileCompleteness');
+      if (!mobileCompleteness || !mobileCompleteness.textContent.includes('2/24')) {
+        throw new Error(`Expected mobile completeness to update to 2/24, got '${mobileCompleteness ? mobileCompleteness.textContent : 'missing'}'`);
+      }
+    }
+  },
+  {
+    id: "T1_F5_01C",
+    name: "Per-field zero button clears invalid blank-hour styling",
+    tier: 1,
+    feature: 5,
+    fn: async (dom, helpers) => {
+      const input = helpers.document.querySelector('[data-experience="helicopterTime"]');
+      const button = helpers.document.querySelector('[data-fill-zero-field="helicopterTime"]');
+      if (!input || !button) throw new Error("Helicopter hour input or zero button not found");
+      const field = input.closest('.number-field');
+      input.value = '';
+      input.dispatchEvent(new helpers.window.Event('blur', { bubbles: true }));
+      if (!field.classList.contains('field-invalid') || input.getAttribute('aria-invalid') !== 'true') {
+        throw new Error("Blank blurred hour input was not marked invalid before zero button click");
+      }
+
+      button.click();
+
+      if (input.value !== '0') {
+        throw new Error(`Expected helicopterTime to be set to 0, got '${input.value}'`);
+      }
+      if (field.classList.contains('field-invalid') || input.getAttribute('aria-invalid') !== 'false') {
+        throw new Error("Zero button did not clear invalid state");
+      }
+    }
+  },
+  {
+    id: "T1_F5_02",
+    name: "Clicking Random Scenario button populates values and advances wizard to Step 5",
+    tier: 1,
+    feature: 5,
+    fn: async (dom, helpers) => {
+      const randomSampleBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomSampleBtn');
+      if (!randomSampleBtn) throw new Error("Random Scenario button not found");
+      randomSampleBtn.click();
       const activeStep = helpers.document.querySelector('.part61-workbench').getAttribute('data-active-step');
       if (activeStep !== '5') {
         throw new Error(`Expected active step to auto-advance to 5, but got '${activeStep}'`);
@@ -359,17 +466,70 @@ const tests = [
     }
   },
   {
-    id: "T1_F5_02",
-    name: "Clicking Random Sample button populates values and advances wizard to Step 5",
+    id: "T1_F5_02A",
+    name: "Scenario generator returns valid varied calculator inputs and favors class-add paths",
     tier: 1,
     feature: 5,
-    fn: async (dom, helpers) => {
-      const randomSampleBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomSampleBtn');
-      if (!randomSampleBtn) throw new Error("Random Sample button not found");
-      randomSampleBtn.click();
-      const activeStep = helpers.document.querySelector('.part61-workbench').getAttribute('data-active-step');
-      if (activeStep !== '5') {
-        throw new Error(`Expected active step to auto-advance to 5, but got '${activeStep}'`);
+    fn: async () => {
+      const rules = require('../js/part61-rules-data');
+      const core = require('../js/part61-calculator-core');
+      const generator = require('../js/part61-scenario-generator');
+      const credentialIds = new Set(rules.CREDENTIAL_OPTIONS.map((option) => option.id));
+      const targetIds = new Set(rules.TARGET_OPTIONS.map((option) => option.id));
+      const fieldKeys = rules.FIELD_GROUPS.flatMap((group) => group.fields.map((field) => field[0]));
+      const flagKeys = ['militaryExperience', 'militaryOnly', 'faaCommercialAmel', 'priorFaa'];
+      const pathCounts = {};
+      const combos = new Set();
+
+      for (let i = 0; i < 260; i++) {
+        const scenario = generator.generateRandomScenario();
+        if (!scenario || typeof scenario.name !== 'string' || !scenario.name.trim()) {
+          throw new Error("Generated scenario is missing a readable name");
+        }
+        if (!Array.isArray(scenario.credentials) || !Array.isArray(scenario.targets) || !scenario.targets.length) {
+          throw new Error(`Generated scenario has invalid credential/target arrays: ${JSON.stringify(scenario)}`);
+        }
+        scenario.credentials.forEach((credential) => {
+          if (!credentialIds.has(credential)) throw new Error(`Unknown generated credential: ${credential}`);
+        });
+        scenario.targets.forEach((target) => {
+          if (!targetIds.has(target)) throw new Error(`Unknown generated target: ${target}`);
+        });
+        flagKeys.forEach((key) => {
+          if (typeof scenario.flags[key] !== 'boolean') throw new Error(`Generated scenario flag ${key} is not boolean`);
+        });
+        if (scenario.credentials.includes('military-pilot') && (!scenario.flags.militaryOnly || !scenario.flags.militaryExperience || scenario.flags.priorFaa)) {
+          throw new Error("Military scenario did not enforce military-only flag safety");
+        }
+        if (!scenario.rates || !(scenario.rates.aircraftWet > 0) || !(scenario.rates.instructor > 0)) {
+          throw new Error("Generated scenario has invalid rates");
+        }
+        fieldKeys.forEach((key) => {
+          if (typeof scenario.experience[key] !== 'number' || !Number.isFinite(scenario.experience[key])) {
+            throw new Error(`Generated scenario has invalid experience field ${key}`);
+          }
+        });
+        const firstPath = core.classifyPath(scenario, scenario.targets[0]).pathType;
+        pathCounts[firstPath] = (pathCounts[firstPath] || 0) + 1;
+        combos.add(`${scenario.credentials.join(',')} -> ${scenario.targets.join(',')}`);
+
+        const audit = core.calculateAudit(scenario);
+        const unsupported = audit.audits.some((item) => String(item.verdict || '').includes('not implemented'));
+        if (unsupported) throw new Error(`Generated scenario reached unsupported audit path: ${JSON.stringify(scenario)}`);
+      }
+
+      const classAdd = pathCounts['class-add'] || 0;
+      const highestOther = Object.entries(pathCounts)
+        .filter(([pathType]) => pathType !== 'class-add')
+        .reduce((max, [, count]) => Math.max(max, count), 0);
+      if (classAdd <= highestOther) {
+        throw new Error(`Expected class-add to be the most common path, got ${JSON.stringify(pathCounts)}`);
+      }
+      if (Object.keys(pathCounts).length < 6) {
+        throw new Error(`Expected broad path coverage, got ${JSON.stringify(pathCounts)}`);
+      }
+      if (combos.size < 12) {
+        throw new Error(`Expected generated scenario variety, got only ${combos.size} unique credential/target combos`);
       }
     }
   },
@@ -380,8 +540,8 @@ const tests = [
     feature: 5,
     fn: async (dom, helpers) => {
       // First populate sample valid credentials so validation passes
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click(); // loads valid example
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click(); // loads valid scenario
 
       const workbench = helpers.document.querySelector('.part61-workbench');
       workbench.setAttribute('data-active-step', '4');
@@ -570,9 +730,9 @@ const tests = [
       const railStatus = helpers.document.querySelector('nav.part61-step-rail .part61-rail-item[href*="Current"] i.part61-rail-status, nav.part61-step-rail .part61-rail-item i.part61-rail-status');
       if (!railStatus) throw new Error("Rail status indicator not found");
 
-      // Load valid example
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      // Load valid generated scenario
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       // Trigger update manually if event dispatch is needed, or check status
       const hasCompleteClass = railStatus.classList.contains('done') || railStatus.classList.contains('is-complete') || railStatus.getAttribute('data-rail-status') === 'complete';
@@ -845,21 +1005,19 @@ const tests = [
   // Feature 5 Boundaries
   {
     id: "T2_F5_06",
-    name: "Load Example with missing rule data handles it without throwing javascript exceptions",
+    name: "Random Scenario button handles repeated generated scenarios without throwing javascript exceptions",
     tier: 2,
     feature: 5,
     fn: async (dom, helpers) => {
-      // Temporarily remove RULES or relevant options
-      const oldRules = helpers.window.RULES;
-      helpers.window.RULES = undefined;
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (!randomScenarioBtn) throw new Error("Random Scenario button not found");
 
-      try {
-        if (loadExampleBtn) loadExampleBtn.click();
-      } catch (err) {
-        throw new Error(`Load Example crashed when RULES was missing: ${err.message}`);
-      } finally {
-        helpers.window.RULES = oldRules;
+      for (let i = 0; i < 5; i++) {
+        try {
+          randomScenarioBtn.click();
+        } catch (err) {
+          throw new Error(`Random Scenario crashed on click ${i + 1}: ${err.message}`);
+        }
       }
     }
   },
@@ -891,8 +1049,8 @@ const tests = [
     tier: 2,
     feature: 5,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       const clearBtn = helpers.document.getElementById('part61ClearBtn') || helpers.document.getElementById('clearBtn');
       if (clearBtn) clearBtn.click();
@@ -905,34 +1063,34 @@ const tests = [
   },
   {
     id: "T2_F5_09",
-    name: "Repeatedly clicking Load Example and Clear updates active step correctly every time",
+    name: "Repeatedly clicking Random Scenario and Clear updates active step correctly every time",
     tier: 2,
     feature: 5,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
       const clearBtn = helpers.document.getElementById('part61ClearBtn') || helpers.document.getElementById('clearBtn');
       const workbench = helpers.document.querySelector('.part61-workbench');
 
-      if (loadExampleBtn && clearBtn) {
-        loadExampleBtn.click();
-        if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Failed first loadExample");
+      if (randomScenarioBtn && clearBtn) {
+        randomScenarioBtn.click();
+        if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Failed first randomScenario");
 
         clearBtn.click();
         if (workbench.getAttribute('data-active-step') !== '1') throw new Error("Failed first clear");
 
-        loadExampleBtn.click();
-        if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Failed second loadExample");
+        randomScenarioBtn.click();
+        if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Failed second randomScenario");
       }
     }
   },
   {
     id: "T2_F5_10",
-    name: "Loading example and then manually going back preserves loaded values",
+    name: "Loading random scenario and then manually going back preserves loaded values",
     tier: 2,
     feature: 5,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       const workbench = helpers.document.querySelector('.part61-workbench');
       workbench.setAttribute('data-active-step', '4');
@@ -976,12 +1134,12 @@ const tests = [
   },
   {
     id: "T3_02",
-    name: "Load Example auto-advances to Step 5, showing summary panel and rendering results pane (both desktop/mobile)",
+    name: "Random Scenario auto-advances to Step 5, showing summary panel and rendering results pane (both desktop/mobile)",
     tier: 3,
     feature: 0,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       const workbench = helpers.document.querySelector('.part61-workbench');
       if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Not advanced to step 5");
@@ -1012,8 +1170,8 @@ const tests = [
     tier: 3,
     feature: 0,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       helpers.window.innerWidth = 800;
       helpers.window.dispatchEvent(new helpers.window.Event('resize'));
@@ -1194,15 +1352,15 @@ const tests = [
   },
   {
     id: "T4_02",
-    name: "Clear and Re-run: Load example -> Step 5 -> Click Clear -> Step 1 -> Input new values -> Click rail step 4 -> Calculate -> Step 5 displays new correct results",
+    name: "Clear and Re-run: Random scenario -> Step 5 -> Click Clear -> Step 1 -> Input new values -> Click rail step 4 -> Calculate -> Step 5 displays new correct results",
     tier: 4,
     feature: 0,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       const workbench = helpers.document.querySelector('.part61-workbench');
-      if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Load example failed to reach step 5");
+      if (workbench.getAttribute('data-active-step') !== '5') throw new Error("Random scenario failed to reach step 5");
 
       const clearBtn = helpers.document.getElementById('part61ClearBtn') || helpers.document.getElementById('clearBtn');
       if (clearBtn) clearBtn.click();
@@ -1264,15 +1422,15 @@ const tests = [
   },
   {
     id: "T4_04",
-    name: "Responsive Resize Audit Flow: Load example on mobile -> verify results visible -> resize to desktop -> verify results visible -> resize back to mobile -> verify results visible",
+    name: "Responsive Resize Audit Flow: Random scenario on mobile -> verify results visible -> resize to desktop -> verify results visible -> resize back to mobile -> verify results visible",
     tier: 4,
     feature: 0,
     fn: async (dom, helpers) => {
       helpers.window.innerWidth = 800; // Mobile
       helpers.window.dispatchEvent(new helpers.window.Event('resize'));
 
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       const resultsPane = helpers.document.getElementById('part61Results') || helpers.document.getElementById('results');
       if (resultsPane.hidden || resultsPane.style.display === 'none') {
@@ -1294,12 +1452,12 @@ const tests = [
   },
   {
     id: "T4_05",
-    name: "CFI Review & Checklist Generation: Load example -> Step 5 -> Click Copy CFI Readout -> Verify clipboard has CFI text -> Click Copy Checklist -> Verify checklist copied -> Click Print",
+    name: "CFI Review & Checklist Generation: Random scenario -> Step 5 -> Click Copy CFI Readout -> Verify clipboard has CFI text -> Click Copy Checklist -> Verify checklist copied -> Click Print",
     tier: 4,
     feature: 0,
     fn: async (dom, helpers) => {
-      const loadExampleBtn = helpers.document.getElementById('part61LoadExampleBtn') || helpers.document.getElementById('loadExampleBtn');
-      if (loadExampleBtn) loadExampleBtn.click();
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
 
       // Copy CFI Readout
       const copyCfiBtn = helpers.document.getElementById('part61CopyCfiBtn');

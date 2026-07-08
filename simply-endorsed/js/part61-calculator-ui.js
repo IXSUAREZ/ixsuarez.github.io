@@ -3,10 +3,11 @@
 
   const RULES = window.Part61RulesData;
   const CORE = window.Part61CalculatorCore;
+  const GEN = window.Part61ScenarioGenerator;
   const U = window.SimplyEndorsedUtils;
   const rootEl = document.getElementById("part61CalculatorView");
 
-  if (!RULES || !CORE || !U || !rootEl) {
+  if (!RULES || !CORE || !GEN || !U || !rootEl) {
     return;
   }
 
@@ -53,7 +54,6 @@
     activeFilter: LEDGER_FILTERS.ALL,
     resultsTab: "plan",
     dirty: false,
-    lastSampleIndex: null,
     result: null
   };
 
@@ -70,7 +70,6 @@
     validationMessage: byId("validationMessage"),
     addStageBtn: byId("addStageBtn"),
     calculateBtn: byId("calculateBtn"),
-    loadExampleBtn: byId("loadExampleBtn"),
     randomSampleBtn: byId("randomSampleBtn"),
     clearBtn: byId("clearBtn"),
     copyBtn: byId("copyBtn"),
@@ -339,11 +338,14 @@
         </div>
         <div class="field-grid">
           ${group.fields.map(([key, label, hint]) => `
-            <label class="number-field">
-              <span>${escapeHtml(label)}</span>
-              <input type="number" min="0" step="0.1" inputmode="decimal" data-experience="${escapeHtml(key)}" data-group-slug="${escapeHtml(slug)}" placeholder="UNKNOWN"${hint ? ` aria-describedby="part61Hint-${escapeHtml(key)}"` : ""}>
+            <div class="number-field">
+              <label for="part61Exp-${escapeHtml(key)}">${escapeHtml(label)}</label>
+              <div class="part61-zero-input-row">
+                <input id="part61Exp-${escapeHtml(key)}" type="number" min="0" step="0.1" inputmode="decimal" data-experience="${escapeHtml(key)}" data-group-slug="${escapeHtml(slug)}" placeholder="UNKNOWN"${hint ? ` aria-describedby="part61Hint-${escapeHtml(key)}"` : ""}>
+                <button type="button" class="part61-zero-field-button" data-fill-zero-field="${escapeHtml(key)}" aria-label="Set ${escapeHtml(label)} to 0 hours" title="Set to 0">0</button>
+              </div>
               ${hint ? `<small class="part61-field-hint" id="part61Hint-${escapeHtml(key)}">${escapeHtml(hint)}</small>` : ""}
-            </label>
+            </div>
           `).join("")}
         </div>
       </div>
@@ -480,6 +482,17 @@
     });
     updateInputCompleteness();
     if (state.validationAttempted) validateRequiredInputs(false);
+    markDirty();
+    queueDraftSave();
+  }
+
+  function fillFieldWithZero(input) {
+    if (!input) return;
+    input.value = "0";
+    setInvalid(input, false);
+    updateInputCompleteness();
+    if (state.validationAttempted) validateRequiredInputs(false);
+    updateMobileBar();
     markDirty();
     queueDraftSave();
   }
@@ -1222,23 +1235,9 @@
     calculateAndRender();
   }
 
-  function loadExample() {
-    if (typeof RULES === "undefined" || !RULES || !RULES.SAMPLE_SCENARIOS) {
-      return;
-    }
-    applyScenario(RULES.SAMPLE_SCENARIOS[0]);
-  }
-
   function loadRandomSample() {
-    if (typeof RULES === "undefined" || !RULES || !RULES.SAMPLE_SCENARIOS) {
-      return;
-    }
-    let nextIndex = Math.floor(Math.random() * RULES.SAMPLE_SCENARIOS.length);
-    if (RULES.SAMPLE_SCENARIOS.length > 1 && nextIndex === state.lastSampleIndex) {
-      nextIndex = (nextIndex + 1) % RULES.SAMPLE_SCENARIOS.length;
-    }
-    state.lastSampleIndex = nextIndex;
-    applyScenario(RULES.SAMPLE_SCENARIOS[nextIndex]);
+    if (!GEN || typeof GEN.generateRandomScenario !== "function") return;
+    applyScenario(GEN.generateRandomScenario());
   }
 
   function scenarioSnapshot() {
@@ -1381,7 +1380,6 @@
     state.result = null;
     state.dirty = false;
     updateResultPresence();
-    state.lastSampleIndex = null;
     state.activeFilter = LEDGER_FILTERS.ALL;
     state.resultsTab = "plan";
     ids.credentialSearch.value = "";
@@ -1556,6 +1554,13 @@
     }, true);
 
     ids.experienceFields.addEventListener("click", (event) => {
+      const fieldButton = event.target.closest("[data-fill-zero-field]");
+      if (fieldButton) {
+        const field = fieldButton.closest(".number-field");
+        const input = field ? field.querySelector("[data-experience]") : null;
+        fillFieldWithZero(input);
+        return;
+      }
       const button = event.target.closest("[data-fill-zero-group]");
       if (!button) return;
       fillBlanksWithZero(button.dataset.fillZeroGroup);
@@ -1594,7 +1599,6 @@
       clearAll();
     });
 
-    ids.loadExampleBtn.addEventListener("click", loadExample);
     ids.randomSampleBtn.addEventListener("click", loadRandomSample);
     ids.clearBtn.addEventListener("click", clearAll);
     ids.copyBtn.addEventListener("click", copyReport);

@@ -2204,6 +2204,59 @@ p {
   font-weight: 800;
 }
 
+.part61-zero-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 8px;
+}
+
+.part61-zero-field-button {
+  width: 42px;
+  min-height: 42px;
+  border: 1px solid rgba(180, 35, 24, 0.28);
+  border-radius: 12px;
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease,
+    transform 120ms ease;
+}
+
+.part61-zero-field-button:hover {
+  border-color: rgba(180, 35, 24, 0.52);
+  background: #ffe5e3;
+  box-shadow: 0 8px 18px rgba(180, 35, 24, 0.12);
+}
+
+.part61-zero-field-button:focus-visible {
+  outline: none;
+  border-color: rgba(180, 35, 24, 0.72);
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.14);
+}
+
+.part61-zero-field-button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .part61-zero-input-row {
+    grid-template-columns: minmax(0, 1fr) 46px;
+  }
+
+  .part61-zero-field-button {
+    width: 46px;
+    min-height: 46px;
+  }
+}
+
 .part61-number-field.field-invalid input,
 .part61-calculator .number-field.field-invalid input,
 .part61-calculator .is-invalid {

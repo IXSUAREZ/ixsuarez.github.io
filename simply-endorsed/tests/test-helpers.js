@@ -100,6 +100,7 @@ function initJSDOM(options = {}) {
         'js/privileges-limitations-data.js',
         'js/part61-rules-data.js',
         'js/part61-calculator-core.js',
+        'js/part61-scenario-generator.js',
         'js/part61-calculator-ui.js',
         'js/app.js'
       ]
@@ -111,6 +112,7 @@ function initJSDOM(options = {}) {
         'js/training-requirements-data.js',
         'js/privileges-limitations-data.js',
         'js/part61-calculator-core.js',
+        'js/part61-scenario-generator.js',
         'js/part61-calculator-ui.js'
       ];
 

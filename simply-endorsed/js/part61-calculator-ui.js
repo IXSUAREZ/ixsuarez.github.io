@@ -959,13 +959,27 @@
     return "all";
   }
 
+  function getContrastTextColor(hexColor) {
+    const normalized = String(hexColor || "").trim().replace(/^#/, "");
+    if (!/^[0-9a-fA-F]{6}$/.test(normalized)) {
+      return "#ffffff";
+    }
+    const red = parseInt(normalized.slice(0, 2), 16);
+    const green = parseInt(normalized.slice(2, 4), 16);
+    const blue = parseInt(normalized.slice(4, 6), 16);
+    const luminance = ((0.299 * red) + (0.587 * green) + (0.114 * blue)) / 255;
+    return luminance > 0.62 ? "#172133" : "#ffffff";
+  }
+
   function formatCell(value, key, row) {
     const tags = key === "requirement" || key === "block" ? tagMarkup(row) : "";
     const linkKeys = new Set(["cfr", "cfrBasis", "source", "cfrRows"]);
     if (key === "item" && value) {
       const catId = findCategoryIdForEndorsement(value);
       const theme = CATEGORY_THEMES[catId] || CATEGORY_THEMES.all;
-      return `<span class="part61-endorsement-badge" style="background:${theme.soft}; color:${theme.ink}; border: 1px solid ${theme.line}; font-family:var(--mono); font-weight:700; font-size:0.82rem; padding:2px 8px; border-radius:6px; display:inline-block; letter-spacing:0.02em;">${escapeHtml(value)}</span>`;
+      const bg = theme.accent;
+      const text = getContrastTextColor(bg);
+      return `<span class="part61-endorsement-badge" style="background:${bg}; color:${text}; font-family:var(--mono); font-weight:800; font-size:0.8rem; padding:3px 10px; border-radius:12px; display:inline-block; letter-spacing:0.02em; box-shadow:0 2px 4px rgba(15,23,42,0.06); text-align:center; min-width:50px;">${escapeHtml(value)}</span>`;
     }
     if (typeof value === "number" && Number.isFinite(value)) {
       return `${escapeHtml(String(value))}${tags}`;

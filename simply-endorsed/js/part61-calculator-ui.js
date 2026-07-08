@@ -97,7 +97,6 @@
     summary: byId("summary"),
     combinedSummary: byId("combinedSummary"),
     counts: byId("counts"),
-    overlapMap: byId("overlapMap"),
     ledger: byId("ledger"),
     training: byId("training"),
     gates: byId("gates"),
@@ -775,8 +774,7 @@
     ids.auditDashboard.innerHTML = [
       dashboardMetric("Optimized Hours", hours(optimized), optimized === "UNKNOWN" ? "red" : "green"),
       dashboardMetric("Estimated Cost", money(cost), cost === "UNKNOWN" ? "red" : "amber"),
-      dashboardMetric("Savings vs Raw Sum", savings !== null ? `${savings.toFixed(1)} hr` : "Depends on missing inputs", savings !== null ? "blue" : "slate"),
-      dashboardMetric("Next Action", firstNextAction(result), blockers.length ? "red" : "blue")
+      dashboardMetric("Savings vs Raw Sum", savings !== null ? `${savings.toFixed(1)} hr` : "Depends on missing inputs", savings !== null ? "blue" : "slate")
     ].join("");
     const firstVerdict = result.audits[0] ? result.audits[0].verdict : "No route generated.";
     ids.cfiReadout.innerHTML = linkifyMultilineCfrText(`${firstVerdict}\n\n${cfiReadoutText(result)}`);
@@ -822,49 +820,6 @@
       `;
     });
     ids.counts.innerHTML = countRows.join("");
-  }
-
-  function chipListFromText(text, tone) {
-    const safeTone = escapeHtml(tone || "broad");
-    return String(text || "")
-      .split(/,\s*|\s+-\s+|;/)
-      .map((item) => item.trim())
-      .filter(Boolean)
-      .slice(0, 6)
-      .map((item) => `<span class="data-tag tag-${safeTone}">${linkifyCfrText(item, { linkBare: true })}</span>`)
-      .join("");
-  }
-
-  function renderOverlapMap(result) {
-    ids.overlapMap.innerHTML = result.audits.map((audit) => {
-      const raw = numericValue(audit.summary.rawRequirementSum);
-      const optimized = numericValue(audit.summary.optimizedCombinedTotal);
-      const max = raw || optimized || 1;
-      const optimizedPct = optimized ? Math.max(8, Math.min(100, (optimized / max) * 100)) : 0;
-      const saved = raw !== null && optimized !== null ? Math.max(0, raw - optimized) : "UNKNOWN";
-      const blocks = audit.trainingPlan.length ? audit.trainingPlan.map((block) => `
-        <div class="overlap-block block-${escapeHtml(block.blockType || "broad")}">
-          <div>
-            <b>${escapeHtml(block.block)}</b>
-            <span>${escapeHtml(block.mode)} | ${hours(block.hours)} | ${money(block.cost)}</span>
-          </div>
-          <div class="chip-line">${chipListFromText(block.cfrRows, block.blockType || "broad")}</div>
-        </div>
-      `).join("") : `<div class="empty-state">No fixed flight-hour blocks. Use the proficiency formula and gates.</div>`;
-      return `
-        <article class="overlap-card">
-          <div class="overlap-head">
-            <h4>${linkifyCfrText(audit.title)}</h4>
-            <span>${raw !== null && optimized !== null ? `${saved.toFixed(1)} hr combined away from raw sum` : "Overlap depends on missing inputs or proficiency"}</span>
-          </div>
-          <div class="overlap-bars" aria-label="Raw versus optimized hours for ${escapeHtml(audit.title)}">
-            <div class="bar-row raw"><span>Raw</span><div><i style="width:100%"></i></div><b>${hours(audit.summary.rawRequirementSum)}</b></div>
-            <div class="bar-row optimized"><span>Optimized</span><div><i style="width:${optimizedPct}%"></i></div><b>${hours(audit.summary.optimizedCombinedTotal)}</b></div>
-          </div>
-          <div class="overlap-blocks">${blocks}</div>
-        </article>
-      `;
-    }).join("");
   }
 
   function table(columns, rows, totalClass) {
@@ -1176,6 +1131,11 @@
     window.setTimeout(() => section.classList.remove("is-fresh"), 1400);
   }
 
+  function updateResultPresence() {
+    const workbench = qs(".part61-workbench");
+    if (workbench) workbench.classList.toggle("has-result", Boolean(state.result));
+  }
+
   function renderCalculationError() {
     ids.heroBanner.hidden = false;
     ids.heroBanner.className = "part61-hero-banner is-blocked";
@@ -1196,6 +1156,7 @@
     }
     state.result = result;
     state.dirty = false;
+    updateResultPresence();
     const mq = typeof window.matchMedia === "function";
     state.activeFilter = (mq ? window.matchMedia("(max-width: 640px)").matches : window.innerWidth <= 640)
       ? LEDGER_FILTERS.REMAINING
@@ -1219,7 +1180,6 @@
     ids.verdict.innerHTML = audits.map((audit, index) => `<p><b>Stage ${index + 1}: ${linkifyCfrText(audit.title)}.</b> ${linkifyCfrText(audit.verdict, { linkBare: true })}</p>`).join("");
     renderSummary(audits);
     renderCombined(result);
-    renderOverlapMap(result);
     renderTraining(audits);
     renderEndorsements(audits);
     renderGates(audits);
@@ -1412,6 +1372,7 @@
     state.validationAttempted = false;
     state.result = null;
     state.dirty = false;
+    updateResultPresence();
     state.lastSampleIndex = null;
     state.activeFilter = LEDGER_FILTERS.ALL;
     state.resultsTab = "plan";
@@ -1437,7 +1398,7 @@
     ids.auditDashboard.innerHTML = "";
     ids.cfiReadout.textContent = "Select the pilot's current credentials, enter known hours, choose the target path, then calculate.";
     ids.verdict.textContent = "Select the pilot's current credentials, enter known hours, choose the target path, then calculate.";
-    ["summary", "combinedSummary", "counts", "overlapMap", "ledger", "training", "gates", "endorsements", "unknowns", "links"].forEach((key) => {
+    ["summary", "combinedSummary", "counts", "ledger", "training", "gates", "endorsements", "unknowns", "links"].forEach((key) => {
       ids[key].innerHTML = "";
     });
     setResultsTab("plan");
@@ -1723,6 +1684,9 @@
         copyCfiReadout();
       });
     }
+
+    const editInputsBtn = rootEl.querySelector("#part61EditInputsBtn");
+    if (editInputsBtn) editInputsBtn.addEventListener("click", () => setStep(4));
   }
 
   function init() {
@@ -1760,6 +1724,7 @@
       };
     }
 
+    updateResultPresence();
     setStep(restored ? 5 : 1);
 
     ids.sourceReview.textContent = `Source review date: ${RULES.REVIEW_DATE}`;

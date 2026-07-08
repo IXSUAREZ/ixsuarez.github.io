@@ -1,10 +1,10 @@
-const CACHE_NAME = "simply-endorsed-cfi-v1";
+const CACHE_NAME = "simply-endorsed-cfi-v2";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./site.webmanifest?v=1",
-  "/simply-endorsed/css/app.css?v=40",
+  "/simply-endorsed/css/app.css?v=41",
   "/simply-endorsed/js/shared-utils.js?v=1",
   "/simply-endorsed/js/cfr-links.js?v=3",
   "/simply-endorsed/js/endorsements-data.js?v=3",
@@ -14,7 +14,7 @@ const CORE_ASSETS = [
   "/simply-endorsed/js/privileges-limitations-data.js?v=2",
   "/simply-endorsed/js/part61-rules-data.js?v=4",
   "/simply-endorsed/js/part61-calculator-core.js?v=3",
-  "/simply-endorsed/js/part61-calculator-ui.js?v=5",
+  "/simply-endorsed/js/part61-calculator-ui.js?v=6",
   "/simply-endorsed/js/app.js?v=23",
   "/simply-endorsed/APP-ICONs/favicon-192.png?v=4",
   "/simply-endorsed/APP-ICONs/favicon-512.png?v=4",

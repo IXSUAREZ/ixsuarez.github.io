@@ -7054,7 +7054,7 @@ p {
 }
 
 .part61-dashboard-grid {
-  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
 }
 
 @media (max-width: 1180px) {
@@ -7859,18 +7859,29 @@ body.is-guidance-view .endorsement-detail-panel {
 }
 
 /* Desktop (width > 900px) layout configurations */
-@media (min-width: 901px) {
-  /* Step 5: Results Pane Focus and Highlight style */
+@media screen and (min-width: 901px) {
+  /* Step 5: after Calculate, hide the input column and let the audit take the full width
+     (the step rail stays visible so any step can be reopened with one click) */
+  .part61-workbench[data-active-step="5"].has-result .part61-input-pane {
+    display: none;
+  }
+
+  .part61-workbench[data-active-step="5"].has-result .part61-results-pane {
+    grid-column: 2 / -1;
+  }
+
   .part61-workbench[data-active-step="5"] .part61-results-pane {
     border-color: var(--accent);
     box-shadow:
       0 0 0 4px rgba(31, 94, 214, 0.12),
       var(--workbench-shadow);
-    transform: scale(1.005);
     transition:
       border-color 220ms ease,
-      box-shadow 220ms ease,
-      transform 220ms ease;
+      box-shadow 220ms ease;
+  }
+
+  .part61-workbench[data-active-step="5"].has-result #part61EditInputsBtn {
+    display: inline-flex;
   }
 }
 
@@ -8017,20 +8028,12 @@ body.is-guidance-view .endorsement-detail-panel {
 
 /* ---------- Results pane ---------- */
 
-/* Section accents: dashboard = brand blue, overlap map = teal,
-   then one color family per results tab */
+/* Section accents: dashboard = brand blue, then one color family per results tab */
 .part61-results-pane {
   --p61-section-accent: var(--accent);
   --p61-section-soft: var(--accent-soft);
   --p61-section-line: #bfd4ff;
   --p61-section-ink: var(--accent-ink);
-}
-
-.part61-result-section:has(> #part61OverlapMap) {
-  --p61-section-accent: var(--part61-teal);
-  --p61-section-soft: var(--part61-teal-soft);
-  --p61-section-line: #bfe6e1;
-  --p61-section-ink: #0c5f59;
 }
 
 .part61-results-tabpanel[data-results-panel="endorsements"] {
@@ -8197,4 +8200,8 @@ body.is-guidance-view .endorsement-detail-panel {
   color: var(--text);
   white-space: pre-wrap;
   margin: 0;
+}
+
+#part61EditInputsBtn {
+  display: none;
 }

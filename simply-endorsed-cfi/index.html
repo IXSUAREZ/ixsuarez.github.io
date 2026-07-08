@@ -48,7 +48,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/simply-endorsed/APP-ICONs/favicon-32.png?v=4">
     <link rel="icon" type="image/png" sizes="192x192" href="/simply-endorsed/APP-ICONs/favicon-192.png?v=4">
     <link rel="apple-touch-icon" sizes="180x180" href="/simply-endorsed/APP-ICONs/apple-touch-icon.png?v=4">
-    <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=40">
+    <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=41">
     <style>
       .seo-content {
         max-width: 960px;
@@ -517,6 +517,7 @@
                   <div class="part61-result-header-meta">
                     <p id="part61InputCompleteness">Input completeness: 0/22</p>
                     <p id="part61SourceReview">Source review date: 2026-06-30</p>
+                    <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61EditInputsBtn">Edit Inputs</button>
                   </div>
                 </section>
 
@@ -524,7 +525,7 @@
 
                 <section class="part61-result-section part61-dashboard-section">
                   <div class="part61-section-title-row">
-                    <h4>Audit Dashboard</h4>
+                    <h4>Audit Summary</h4>
                     <div class="part61-result-actions">
                       <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61CopyChecklistResultsBtn">Copy Student Checklist</button>
                     </div>
@@ -538,11 +539,6 @@
                     </summary>
                     <div id="part61CfiReadout" class="part61-cfi-readout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
                   </details>
-                </section>
-
-                <section class="part61-result-section">
-                  <h4>Overlap Map</h4>
-                  <div id="part61OverlapMap"></div>
                 </section>
 
                 <div class="part61-results-tabs" role="tablist" aria-label="Audit detail sections">
@@ -1798,7 +1794,7 @@
     <script src="/simply-endorsed/js/privileges-limitations-data.js?v=2"></script>
     <script src="/simply-endorsed/js/part61-rules-data.js?v=4"></script>
     <script src="/simply-endorsed/js/part61-calculator-core.js?v=3"></script>
-    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=5"></script>
+    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=6"></script>
     <script src="/simply-endorsed/js/app.js?v=23"></script>
     <script type="application/ld+json">
       {

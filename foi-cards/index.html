@@ -35,7 +35,7 @@
               <div class="card-face card-front">
                 <p class="card-label" id="cardSection"></p>
                 <h2 id="cardPrompt"></h2>
-                <p class="tap-hint">Tap to reveal</p>
+                <p class="tap-hint">Use Flip below, or tap the card</p>
               </div>
               <div class="card-face card-back">
                 <p class="card-label">Answer</p>
@@ -46,9 +46,12 @@
           </article>
         </div>
         <p class="swipe-status" id="swipeStatus">Flip the card, then rate it.</p>
-        <div class="actions" id="actions">
-          <button class="rate-button review" type="button" id="reviewButton"><span>←</span> Review again</button>
-          <button class="rate-button mastered" type="button" id="masteredButton">Memorized <span>→</span></button>
+        <div class="bottom-controls">
+          <button class="flip-button" type="button" id="flipButton">Flip card <span aria-hidden="true">↻</span></button>
+          <div class="actions" id="actions" aria-hidden="true">
+            <button class="rate-button review" type="button" id="reviewButton"><span>←</span> Review again</button>
+            <button class="rate-button mastered" type="button" id="masteredButton">Memorized <span>→</span></button>
+          </div>
         </div>
       </section>
       <section class="completion hidden" id="completionScreen">

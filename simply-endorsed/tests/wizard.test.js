@@ -415,12 +415,12 @@ const tests = [
         throw new Error("Per-field zero button filled an unrelated blank input");
       }
       const completeness = helpers.document.getElementById('part61InputCompleteness');
-      if (!completeness || !completeness.textContent.includes('2/24')) {
-        throw new Error(`Expected completeness to update to 2/24, got '${completeness ? completeness.textContent : 'missing'}'`);
+      if (!completeness || !completeness.textContent.includes('2/30')) {
+        throw new Error(`Expected completeness to update to 2/30, got '${completeness ? completeness.textContent : 'missing'}'`);
       }
       const mobileCompleteness = helpers.document.getElementById('part61MobileCompleteness');
-      if (!mobileCompleteness || !mobileCompleteness.textContent.includes('2/24')) {
-        throw new Error(`Expected mobile completeness to update to 2/24, got '${mobileCompleteness ? mobileCompleteness.textContent : 'missing'}'`);
+      if (!mobileCompleteness || !mobileCompleteness.textContent.includes('2/30')) {
+        throw new Error(`Expected mobile completeness to update to 2/30, got '${mobileCompleteness ? mobileCompleteness.textContent : 'missing'}'`);
       }
     }
   },

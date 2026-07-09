@@ -590,6 +590,7 @@
     if (!samples.length) return null;
     const scenario = clone(choose(samples));
     scenario.rates = jitterRates(scenario.rates);
+    scenario.experience = finalizeExperience(scenario.experience);
     return validScenario(scenario) ? scenario : null;
   }
 
@@ -598,6 +599,7 @@
     if (classAddSample) {
       const scenario = clone(classAddSample);
       scenario.rates = jitterRates(scenario.rates);
+      scenario.experience = finalizeExperience(scenario.experience);
       if (validScenario(scenario, "class-add")) return scenario;
     }
     const scenario = buildScenario("class-add");

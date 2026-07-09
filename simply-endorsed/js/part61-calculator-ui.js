@@ -46,6 +46,7 @@
     activeStep: 1,
     credentials: [],
     targets: [],
+    proficiencyEstimates: {},
     rates: {
       aircraftWet: RULES.DEFAULT_RATES.aircraftWet,
       instructor: RULES.DEFAULT_RATES.instructor
@@ -173,6 +174,68 @@
     return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   }
 
+  function isFieldRelevant(key, targets) {
+    // Always relevant core fields
+    const always = [
+      "totalTime", "poweredTime", "airplaneTime", "picTotal", "picAirplane", 
+      "xcPicTotal", "xcPicAirplane", "instrumentTime", "instrumentAirplane", 
+      "nightTime", "prepRecent"
+    ];
+    if (always.includes(key)) return true;
+
+    // ASEL-specific fields
+    if ([
+      "aselTime", "picAsel", "dualAsel", "soloAsel", 
+      "commercialTrainingAsel", "soloPdpicAsel"
+    ].includes(key)) {
+      return targets.some((t) => t.includes("asel"));
+    }
+
+    // AMEL-specific fields
+    if ([
+      "amelTime", "dualAmel", "soloAmel", 
+      "commercialTrainingAmel", "soloPdpicAmel"
+    ].includes(key)) {
+      return targets.some((t) => t.includes("amel"));
+    }
+
+    // Helicopter-specific fields
+    if ([
+      "helicopterTime", "picHelicopter", "dualHelicopter", "soloHelicopter", 
+      "commercialTrainingHelicopter", "soloPdpicHelicopter"
+    ].includes(key)) {
+      return targets.some((t) => t.includes("helicopter") || t.includes("rotor"));
+    }
+
+    // CFII Airplane
+    if (key === "cfiiAirplane") {
+      return targets.some((t) => t === "instrument-airplane" || t.includes("asel") || t.includes("amel"));
+    }
+
+    // Complex / TAA / Turbine
+    if (key === "complexTaaTurbine") {
+      return targets.some((t) => t.includes("commercial-asel") || t.includes("commercial-amel"));
+    }
+
+    return true;
+  }
+
+  function updateFieldVisibility() {
+    qsa("[data-experience]").forEach((input) => {
+      const key = input.dataset.experience;
+      const relevant = isFieldRelevant(key, state.targets);
+      const container = input.closest(".number-field");
+      if (container) {
+        container.style.display = relevant ? "" : "none";
+      }
+    });
+    qsa(".field-group").forEach((group) => {
+      const visibleFields = Array.from(group.querySelectorAll(".number-field")).filter((field) => field.style.display !== "none");
+      group.style.display = visibleFields.length > 0 ? "" : "none";
+    });
+    updateInputCompleteness();
+  }
+
   function experienceCompletion() {
     const fields = flatFieldList();
     const filled = fields.filter((field) => {
@@ -226,11 +289,13 @@
     return typeof value === "number" && Number.isFinite(value) ? value : null;
   }
 
-  function dashboardMetric(label, value, tone) {
+  function dashboardMetric(label, value, tone, proficiency) {
+    const cardClass = `dashboard-card dashboard-${tone || "slate"} ${proficiency ? "dashboard-proficiency" : ""}`;
+    const formattedValue = (proficiency && String(value) !== "UNKNOWN" && String(value) !== "Depends on missing inputs") ? `~${value}` : value;
     return `
-      <div class="dashboard-card dashboard-${tone || "slate"}">
+      <div class="${cardClass}">
         <span>${escapeHtml(label)}</span>
-        <b>${linkifyCfrText(value)}</b>
+        <b>${linkifyCfrText(formattedValue)}</b>
       </div>
     `;
   }
@@ -255,10 +320,12 @@
     if (!result) return "No audit generated yet.";
     return result.audits.map((audit, index) => {
       const endorsements = audit.endorsements.map((item) => item.item).join(", ");
+      const isProf = Boolean(audit.proficiencyBased);
+      const discl = isProf ? " Note: This estimate is proficiency-based (CFI discretion) — not a regulatory hour minimum." : "";
       return [
         `Stage ${index + 1}: ${audit.title}`,
         `Route: ${audit.verdict}`,
-        `Raw sum: ${audit.summary.rawRequirementSum}; optimized minimum: ${audit.summary.optimizedCombinedTotal}; estimated cost: ${money(audit.summary.estimatedTotalCost)}.`,
+        `Raw sum: ${hours(audit.summary.rawRequirementSum)}; optimized minimum: ${hours(audit.summary.optimizedCombinedTotal)}; estimated cost: ${money(audit.summary.estimatedTotalCost)}.${discl}`,
         `Key point: raw is not the flight plan; compatible requirements are combined into the optimized blocks.`,
         `Endorsement anchors: ${endorsements || "none listed"}.`
       ].join(" ")
@@ -270,10 +337,14 @@
     const lines = [];
     lines.push(`Path: ${stageTitles(result)}`);
     lines.push(`Optimized total: ${hours(result.combined.optimizedHours)}; estimated cost: ${money(result.combined.estimatedCost)}.`);
+    if (result.combined.hasProficiency) {
+      lines.push("⚡ Hours are estimated — your CFI will adjust based on your proficiency.");
+    }
     lines.push("");
     lines.push("Training blocks:");
     result.audits.flatMap((audit) => audit.trainingPlan.map((block) => ({ audit, block }))).forEach(({ audit, block }) => {
-      lines.push(`- ${audit.title}: ${block.block}, ${hours(block.hours)}, ${block.mode}, ${block.cfrRows}, ${money(block.cost)}.`);
+      const profMark = audit.proficiencyBased ? " (estimate)" : "";
+      lines.push(`- ${audit.title}: ${block.block}${profMark}, ${hours(block.hours)}, ${block.mode}, ${block.cfrRows}, ${money(block.cost)}.`);
     });
     lines.push("");
     lines.push("Endorsements:");
@@ -404,15 +475,32 @@
   }
 
   function renderStages() {
-    ids.targetStages.innerHTML = state.targets.map((target, index) => `
-      <div class="stage-row">
-        <span class="stage-number">${index + 1}</span>
-        <select data-stage-index="${index}" aria-label="Stage ${index + 1}">
-          ${RULES.TARGET_OPTIONS.map((option) => `<option value="${escapeHtml(option.id)}" ${option.id === target ? "selected" : ""}>${escapeHtml(option.label)}</option>`).join("")}
-        </select>
-        <button type="button" class="icon-button" data-remove-stage="${index}" aria-label="Remove stage ${index + 1}">x</button>
-      </div>
-    `).join("");
+    ids.targetStages.innerHTML = state.targets.map((target, index) => {
+      const isProf = RULES.isProficiencyTarget(target);
+      const estimate = state.proficiencyEstimates[target] ?? RULES.PROFICIENCY_DEFAULTS[target] ?? 0;
+      const estimateInputHtml = isProf ? `
+        <div class="part61-proficiency-estimate-container" style="margin-left: 42px; margin-top: 6px; margin-bottom: 6px;">
+          <label class="proficiency-estimate-label" style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted, #666);">
+            Proficiency estimate:
+            <input type="number" data-stage-estimate-index="${index}" data-target-id="${escapeHtml(target)}" value="${estimate}" min="1" max="100" step="0.5" style="width: 60px; padding: 4px; border: 1px solid var(--border, #ccc); border-radius: 4px; text-align: center;">
+            hrs <span class="proficiency-hint" style="font-size: 0.78rem; opacity: 0.8;">(adjust as needed)</span>
+          </label>
+        </div>
+      ` : "";
+      return `
+        <div class="part61-stage-card" style="display: flex; flex-direction: column;">
+          <div class="stage-row">
+            <span class="stage-number">${index + 1}</span>
+            <select data-stage-index="${index}" aria-label="Stage ${index + 1}">
+              ${RULES.TARGET_OPTIONS.map((option) => `<option value="${escapeHtml(option.id)}" ${option.id === target ? "selected" : ""}>${escapeHtml(option.label)}</option>`).join("")}
+            </select>
+            <button type="button" class="icon-button" data-remove-stage="${index}" aria-label="Remove stage ${index + 1}">x</button>
+          </div>
+          ${estimateInputHtml}
+        </div>
+      `;
+    }).join("");
+    updateFieldVisibility();
   }
 
   function setExperience(values) {
@@ -501,7 +589,8 @@
     const missingExperience = [];
     const invalidRates = [];
     qsa("[data-experience]").forEach((input) => {
-      const missing = input.value.trim() === "";
+      const isVisible = input.closest(".number-field") ? input.closest(".number-field").style.display !== "none" : true;
+      const missing = isVisible && input.value.trim() === "";
       setInvalid(input, missing);
       if (missing) missingExperience.push(input);
     });
@@ -573,7 +662,8 @@
   function collectInput() {
     const experience = {};
     qsa("[data-experience]").forEach((input) => {
-      experience[input.dataset.experience] = input.value;
+      const isVisible = input.closest(".number-field") ? input.closest(".number-field").style.display !== "none" : true;
+      experience[input.dataset.experience] = isVisible ? input.value : "0";
     });
 
     const events = {};
@@ -587,7 +677,8 @@
       rates: currentRates(),
       experience,
       events,
-      targets: state.targets.slice()
+      targets: state.targets.slice(),
+      proficiencyEstimates: JSON.parse(JSON.stringify(state.proficiencyEstimates || {}))
     };
   }
 
@@ -792,10 +883,13 @@
     ids.heroBanner.innerHTML = ready
       ? `<span class="part61-hero-icon" aria-hidden="true">&#10003;</span><div><b>Draft plan ready.</b> ${linkifyCfrText(firstNextAction(result))}</div>`
       : `<span class="part61-hero-icon" aria-hidden="true">&#9650;</span><div><b>Needs ${blockers.length} input${blockers.length === 1 ? "" : "s"} resolved.</b> See Unknowns under the Rules &amp; Sources tab before relying on the math.</div>`;
+    const hasProf = Boolean(result.combined.hasProficiency);
+    const footnoteHtml = hasProf ? `<div class="proficiency-footnote" style="grid-column: 1 / -1; font-size: 0.82rem; color: var(--text-muted, #666); margin-top: 8px; font-style: italic; text-align: left;">*Proficiency-based estimate — CFI discretion, not a regulatory minimum.</div>` : "";
     ids.auditDashboard.innerHTML = [
-      dashboardMetric("Optimized Hours", hours(optimized), optimized === "UNKNOWN" ? "red" : "green"),
-      dashboardMetric("Estimated Cost", money(cost), cost === "UNKNOWN" ? "red" : "amber"),
-      dashboardMetric("Savings vs Raw Sum", savings !== null ? `${savings.toFixed(1)} hr` : "Depends on missing inputs", savings !== null ? "blue" : "slate")
+      dashboardMetric("Optimized Hours", hours(optimized), optimized === "UNKNOWN" ? "red" : "green", hasProf),
+      dashboardMetric("Estimated Cost", money(cost), cost === "UNKNOWN" ? "red" : "amber", hasProf),
+      dashboardMetric("Savings vs Raw Sum", savings !== null ? `${savings.toFixed(1)} hr` : "Depends on missing inputs", savings !== null ? "blue" : "slate", false),
+      footnoteHtml
     ].join("");
     const firstVerdict = result.audits[0] ? result.audits[0].verdict : "No route generated.";
     ids.cfiReadout.innerHTML = linkifyMultilineCfrText(`${firstVerdict}\n\n${cfiReadoutText(result)}`);
@@ -819,10 +913,14 @@
         const text = `${row.why} ${row.overlapLogic}`.toLowerCase();
         return text.includes("does not") || text.includes("no fixed") || text.includes("domingo") || text.includes("not satisfy");
       }).slice(0, 4);
+      const isProf = Boolean(audit.proficiencyBased);
+      const cardClass = isProf ? "counts-card dashboard-proficiency" : "counts-card";
+      const profPill = isProf ? `<span class="status-pill status-missing" style="background: var(--amber-soft, #fef3c7); color: var(--amber-ink, #92400e); border: 1px solid var(--amber-border, #fcd34d);">⚡ Proficiency-based</span>` : "";
       return `
-        <article class="counts-card">
+        <article class="${cardClass}" style="${isProf ? "border: 2px dashed var(--amber-500, #f59e0b); border-radius: 8px; padding: 16px;" : ""}">
           <h4>${linkifyCfrText(audit.title)}</h4>
-          <div class="counts-stats">
+          <div class="counts-stats" style="display: flex; gap: 6px; flex-wrap: wrap;">
+            ${profPill}
             <span class="status-pill status-complete">${satisfied} satisfied</span>
             <span class="status-pill status-remaining">${remaining} remaining</span>
             <span class="status-pill status-missing">${missing} missing</span>
@@ -1326,6 +1424,7 @@
     state.targets = Array.isArray(scenario.targets) && scenario.targets.length
       ? scenario.targets.slice()
       : ["private-asel"];
+    state.proficiencyEstimates = scenario.proficiencyEstimates || {};
     ids.credentialSearch.value = "";
     setFlags(scenario.flags || {});
     setExperience(scenario.experience || {});
@@ -1361,6 +1460,7 @@
       savedAt: new Date().toISOString(),
       credentials: state.credentials.slice(),
       targets: state.targets.slice(),
+      proficiencyEstimates: JSON.parse(JSON.stringify(state.proficiencyEstimates || {})),
       flags: collectFlags(),
       rates: {
         aircraftWet: ids.aircraftWetRate.value,
@@ -1401,6 +1501,9 @@
     const fieldKeys = flatFieldList().map((field) => field.key);
     const hoursCsv = fieldKeys.map((key) => snap.experience[key] ?? "").join(",");
     const eventBits = RULES.EVENT_OPTIONS.map((event) => (snap.events[event.id] ? "1" : "0")).join("");
+    const profPairs = Object.entries(snap.proficiencyEstimates)
+      .map(([targetId, hours]) => `${targetId}:${hours}`)
+      .join(",");
     return [
       "v1",
       snap.credentials.join(","),
@@ -1408,7 +1511,8 @@
       flagBits,
       `${snap.rates.aircraftWet},${snap.rates.instructor}`,
       hoursCsv,
-      eventBits
+      eventBits,
+      profPairs
     ].join("~");
   }
 
@@ -1416,7 +1520,7 @@
     try {
       const parts = String(encoded).split("~");
       if (parts[0] !== "v1" || parts.length < 7) return null;
-      const [, credsCsv, targetsCsv, flagBits, ratesCsv, hoursCsv, eventBits] = parts;
+      const [, credsCsv, targetsCsv, flagBits, ratesCsv, hoursCsv, eventBits, profCsv] = parts;
       const validCredentials = new Set(RULES.CREDENTIAL_OPTIONS.map((option) => option.id));
       const validTargets = new Set(RULES.TARGET_OPTIONS.map((option) => option.id));
       const credentials = credsCsv ? credsCsv.split(",").filter((id) => validCredentials.has(id)) : [];
@@ -1436,13 +1540,24 @@
       RULES.EVENT_OPTIONS.forEach((event, index) => {
         events[event.id] = eventBits.charAt(index) === "1";
       });
+      const proficiencyEstimates = {};
+      if (profCsv) {
+        profCsv.split(",").forEach((pair) => {
+          const [id, val] = pair.split(":");
+          if (id && val) {
+            const parsed = parseFloat(val);
+            if (Number.isFinite(parsed)) proficiencyEstimates[id] = parsed;
+          }
+        });
+      }
       return {
         credentials,
         targets: targets.length ? targets : ["private-asel"],
         flags,
         rates: { aircraftWet, instructor },
         experience,
-        events
+        events,
+        proficiencyEstimates
       };
     } catch (error) {
       return null;
@@ -1606,8 +1721,23 @@
       const select = event.target.closest("[data-stage-index]");
       if (!select) return;
       state.targets[Number(select.dataset.stageIndex)] = select.value;
+      renderStages();
       renderEvents();
       updateRailProgress();
+      markDirty();
+      queueDraftSave();
+    });
+
+    ids.targetStages.addEventListener("input", (event) => {
+      const input = event.target.closest("[data-stage-estimate-index]");
+      if (!input) return;
+      const targetId = input.dataset.targetId;
+      const value = parseFloat(input.value);
+      if (Number.isFinite(value) && value >= 0) {
+        state.proficiencyEstimates[targetId] = value;
+        markDirty();
+        queueDraftSave();
+      }
     });
 
     ids.targetStages.addEventListener("click", (event) => {

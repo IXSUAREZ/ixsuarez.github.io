@@ -53,7 +53,9 @@
     "commercial-asel-add-class": { category: "airplane", klass: "asel", level: "commercial", powered: true },
     "private-asel-add-class": { category: "airplane", klass: "asel", level: "private", powered: true },
     "commercial-amel-add-class": { category: "airplane", klass: "amel", level: "commercial", powered: true },
-    "private-amel-add-class": { category: "airplane", klass: "amel", level: "private", powered: true }
+    "private-amel-add-class": { category: "airplane", klass: "amel", level: "private", powered: true },
+    "private-ases-add-class": { category: "airplane", klass: "ases", level: "private", powered: true },
+    "commercial-ases-add-class": { category: "airplane", klass: "ases", level: "commercial", powered: true }
   };
 
   const LEVEL_ORDER = { student: 0, sport: 1, recreational: 2, private: 3, commercial: 4, atp: 5 };
@@ -79,13 +81,18 @@
     { id: "sport-asel", label: "Sport Pilot - ASEL" },
     { id: "recreational-asel", label: "Recreational Pilot - ASEL" },
     { id: "private-asel", label: "Private Pilot - ASEL" },
+    { id: "private-amel", label: "Private Pilot - AMEL" },
     { id: "private-asel-add-class", label: "Private ASEL Added Class under 61.63(c)" },
     { id: "private-amel-add-class", label: "Private AMEL Added Class under 61.63(c)" },
+    { id: "private-ases-add-class", label: "Private ASES Added Class under 61.63(c)" },
+    { id: "private-rotor-helicopter", label: "Private Pilot - Rotorcraft Helicopter" },
     { id: "instrument-airplane", label: "Instrument Rating - Airplane" },
     { id: "commercial-asel", label: "Commercial Pilot - ASEL" },
-    { id: "commercial-asel-add-class", label: "Commercial ASEL Added Class under 61.63(c)" },
     { id: "commercial-amel", label: "Commercial Pilot - AMEL" },
+    { id: "commercial-asel-add-class", label: "Commercial ASEL Added Class under 61.63(c)" },
     { id: "commercial-amel-add-class", label: "Commercial AMEL Added Class under 61.63(c)" },
+    { id: "commercial-ases-add-class", label: "Commercial ASES Added Class under 61.63(c)" },
+    { id: "commercial-rotor-helicopter", label: "Commercial Pilot - Rotorcraft Helicopter" },
     { id: "sport-add-category-class", label: "Sport Pilot Add Category/Class under 61.321" },
     { id: "sport-cfi", label: "Sport Pilot Flight Instructor under 61.411" }
   ];
@@ -129,21 +136,27 @@
       fields: [
         ["dualAsel", "Dual ASEL", "Dual instruction received in single-engine airplanes."],
         ["soloAsel", "Solo ASEL", "Solo time in single-engine airplanes."],
+        ["dualAmel", "Dual AMEL", "Dual instruction received in multiengine airplanes."],
+        ["soloAmel", "Solo AMEL", "Solo time in multiengine airplanes."],
+        ["dualHelicopter", "Dual Helicopter", "Dual instruction received in helicopters."],
+        ["soloHelicopter", "Solo Helicopter", "Solo time in helicopters."],
         ["commercialTrainingAsel", "Commercial Training ASEL", "61.129(a)(3) commercial training received in ASEL."],
         ["soloPdpicAsel", "Solo/PDPIC ASEL", "61.129(a)(4) solo or performing-duties-of-PIC time in ASEL."],
         ["complexTaaTurbine", "Complex/TAA/Turbine", "Time in complex, TAA, or turbine-powered airplanes."],
         ["prepRecent", "Recent Prep", "Checkride prep received within the 2 calendar months before the test."],
         // Appended at the end to preserve positional share-link encoding (flatFieldList order).
         ["commercialTrainingAmel", "Commercial Training AMEL", "61.129(b)(3) commercial training received in a multiengine airplane."],
-        ["soloPdpicAmel", "Solo/PDPIC AMEL", "61.129(b)(4) solo or performing-duties-of-PIC time in a multiengine airplane."]
+        ["soloPdpicAmel", "Solo/PDPIC AMEL", "61.129(b)(4) solo or performing-duties-of-PIC time in a multiengine airplane."],
+        ["commercialTrainingHelicopter", "Commercial Training Helicopter", "61.129(c)(3) commercial training received in a helicopter."],
+        ["soloPdpicHelicopter", "Solo/PDPIC Helicopter", "61.129(c)(4) solo or performing-duties-of-PIC time in a helicopter."]
       ]
     }
   ];
 
   const EVENT_GROUPS = [
-    { id: "private", label: "Private Pilot events", targets: ["sport-asel", "private-asel"] },
+    { id: "private", label: "Private Pilot events", targets: ["sport-asel", "private-asel", "private-amel", "private-rotor-helicopter"] },
     { id: "instrument", label: "Instrument Rating events", targets: ["instrument-airplane"] },
-    { id: "commercial", label: "Commercial Pilot events", targets: ["commercial-asel", "commercial-asel-add-class", "commercial-amel", "commercial-amel-add-class"] }
+    { id: "commercial", label: "Commercial Pilot events", targets: ["commercial-asel", "commercial-asel-add-class", "commercial-amel", "commercial-amel-add-class", "commercial-rotor-helicopter"] }
   ];
 
   const EVENT_OPTIONS = [
@@ -455,6 +468,20 @@
     ]
   };
 
+  const PROFICIENCY_DEFAULTS = {
+    "private-asel-add-class": 5,
+    "private-amel-add-class": 10,
+    "private-ases-add-class": 5,
+    "commercial-asel-add-class": 5,
+    "commercial-amel-add-class": 10,
+    "commercial-ases-add-class": 5,
+    "sport-add-category-class": 5
+  };
+
+  function isProficiencyTarget(id) {
+    return id in PROFICIENCY_DEFAULTS;
+  }
+
   return {
     REVIEW_DATE,
     DEFAULT_RATES,
@@ -468,6 +495,8 @@
     EVENT_OPTIONS,
     ENDORSEMENTS,
     SAMPLE_SCENARIOS,
-    REQUIREMENTS
+    REQUIREMENTS,
+    PROFICIENCY_DEFAULTS,
+    isProficiencyTarget
   };
 });

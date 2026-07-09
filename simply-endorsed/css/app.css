@@ -2506,6 +2506,10 @@ p {
   color: var(--part61-amber);
 }
 
+.part61-calculator .dashboard-proficiency {
+  border: 2px dashed var(--part61-amber);
+}
+
 .part61-calculator .dashboard-blue,
 .part61-calculator .metric-dual,
 .part61-legend-blue,

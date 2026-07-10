@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0b1728">
     <title>FOI Cards | Suarez CFI</title>
     <meta name="description" content="A touch-first Fundamentals of Instructing flashcard deck for mobile study.">
-    <link rel="stylesheet" href="styles.css?v=20260710c">
+    <link rel="stylesheet" href="styles.css?v=20260710d">
   </head>
   <body>
     <main class="app-shell" id="app" aria-live="polite">
@@ -20,13 +20,19 @@
         <h1>FOI Cards</h1>
         <p class="intro">Tap to reveal. Swipe right when you know it. Swipe left when you want to see it again.</p>
         <div class="summary" id="welcomeSummary"></div>
-        <button class="primary-button" type="button" id="startButton">Start studying <span aria-hidden="true">→</span></button>
+        <button class="primary-button" type="button" id="startButton">Start remaining cards <span aria-hidden="true">→</span></button>
+        <p class="resume-hint" id="startHint"></p>
+        <button class="secondary-button hidden" type="button" id="startFreshButton">Start a new pass</button>
         <p class="source-note">Based on <em>FOI Quick Review</em>, v2.14 · Updated Apr. 05, 2026. Progress stays on this phone.</p>
       </section>
       <section class="study hidden" id="studyScreen" aria-label="Flashcards">
         <div class="study-meta">
           <button class="section-button" type="button" id="sectionButton" aria-label="Choose a section"></button>
           <span id="cardProgress">1 of 1</span>
+        </div>
+        <div class="pass-meta" aria-live="polite">
+          <span id="passProgress">This pass: 1 of 1</span>
+          <span id="remainingProgress">0 left to memorize · 0 review later</span>
         </div>
         <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
         <div class="card-stage" id="cardStage">
@@ -49,8 +55,9 @@
         <div class="bottom-controls">
           <button class="flip-button" type="button" id="flipButton">Flip card <span aria-hidden="true">↻</span></button>
           <div class="actions" id="actions" aria-hidden="true">
-            <button class="rate-button review" type="button" id="reviewButton"><span>←</span> Review again</button>
-            <button class="rate-button mastered" type="button" id="masteredButton">Memorized <span>→</span></button>
+            <button class="rate-button review" type="button" id="reviewButton" aria-label="Mark for review and move to the next card"><span aria-hidden="true">←</span> Review</button>
+            <button class="rate-button next" type="button" id="nextButton" aria-label="Move to the next card without changing its status">Next <span aria-hidden="true">→</span></button>
+            <button class="rate-button mastered" type="button" id="masteredButton" aria-label="Mark memorized and move to the next card">Memorized <span aria-hidden="true">→</span></button>
           </div>
         </div>
       </section>
@@ -58,8 +65,8 @@
         <p class="eyebrow">Session complete</p>
         <h1>Nice work.</h1>
         <p class="intro" id="completionText"></p>
-        <button class="primary-button" type="button" id="reviewWeakButton">Review weak cards</button>
-        <button class="secondary-button" type="button" id="studyAllButton">Study all cards</button>
+        <button class="primary-button" type="button" id="reviewWeakButton">Review later cards</button>
+        <button class="secondary-button" type="button" id="studyAllButton">Study remaining cards</button>
         <button class="text-button centered" type="button" id="homeButton">Back to deck</button>
       </section>
       <section class="section-sheet hidden" id="sectionSheet" aria-label="Choose a study section">
@@ -71,6 +78,6 @@
     </main>
     <div class="desktop-message"><div><p class="eyebrow">FOI Cards</p><h1>Open this study deck on your phone.</h1><p>It is built as a touch-first mobile experience.</p></div></div>
     <script src="cards.js?v=20260710c"></script>
-    <script src="app.js?v=20260710c"></script>
+    <script src="app.js?v=20260710d"></script>
   </body>
 </html>

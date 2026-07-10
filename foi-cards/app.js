@@ -1,14 +1,14 @@
 (function () {
   const cards = window.FOI_CARDS;
-  const key = 'suarez-cfi-foi-cards-v1';
+  const key = 'suarez-cfi-foi-cards-v2';
   const byId = id => document.getElementById(id);
   const state = { mode: 'all', deck: [], index: 0, touch: null };
   let progress = loadProgress();
 
   function loadProgress() { try { return JSON.parse(localStorage.getItem(key)) || {}; } catch { return {}; } }
   function saveProgress() { localStorage.setItem(key, JSON.stringify(progress)); }
-  function statusOf(card) { return progress[card.prompt] || 'new'; }
-  function setStatus(card, status) { progress[card.prompt] = status; saveProgress(); }
+  function statusOf(card) { return progress[card.id] || 'new'; }
+  function setStatus(card, status) { progress[card.id] = status; saveProgress(); }
   function visible(id) { byId(id).classList.remove('hidden'); }
   function hidden(id) { byId(id).classList.add('hidden'); }
   function show(screen) { ['welcomeScreen','studyScreen','completionScreen'].forEach(id => hidden(id)); visible(screen); }
@@ -25,13 +25,11 @@
     state.mode = mode; state.section = section;
     let selected = section ? cards.filter(c => c.section === section) : cards.slice();
     if (mode === 'weak') selected = selected.filter(c => statusOf(c) !== 'mastered');
-    // New and review cards are prioritized; within each state, atomic cards precede recap cards.
+    // New and review cards are prioritized; curated source order handles the rest.
     selected.sort((a,b) => {
       const stateOrder = ({new:0,review:1,mastered:2}[statusOf(a)] - {new:0,review:1,mastered:2}[statusOf(b)]);
       if (stateOrder) return stateOrder;
-      const sourceOrder = a.sourcePage - b.sourcePage;
-      if (sourceOrder) return sourceOrder;
-      return (a.kind === 'recap' ? 1 : 0) - (b.kind === 'recap' ? 1 : 0);
+      return a.sourcePage - b.sourcePage;
     });
     state.deck = selected; state.index = 0;
     if (!selected.length) return complete();
@@ -40,7 +38,7 @@
   function renderCard() {
     const card = state.deck[state.index]; if (!card) return complete();
     const el = byId('flashcard'); el.classList.remove('flipped','dismiss-left','dismiss-right');
-    byId('cardSection').textContent = card.kind === 'recap' ? `${card.section} · recap` : card.section;
+    byId('cardSection').textContent = card.section;
     byId('sectionButton').textContent = card.section;
     byId('cardPrompt').textContent = card.prompt;
     byId('cardAnswer').textContent = card.answer;

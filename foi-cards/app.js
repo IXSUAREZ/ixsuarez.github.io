@@ -47,7 +47,7 @@
     showUndo(status === 'mastered' ? 'Marked memorized.' : 'Added to the review queue.');
     setTimeout(() => { if (state.index >= state.deck.length || !state.deck.length) complete(); else renderCard(); }, 180);
   }
-  function showUndo(text) { clearTimeout(state.undoTimer); byId('undoText').textContent = text; visible('undoToast'); state.undoTimer = setTimeout(() => hidden('undoToast'), 4500); }
+  function showUndo(text) { clearTimeout(state.undoTimer); byId('undoText').textContent = text; visible('undoToast'); state.undoTimer = setTimeout(() => hidden('undoToast'), 2500); }
   function undo() {
     const last = state.history.pop(); if (!last) return;
     setStatus(last.card, last.prior);

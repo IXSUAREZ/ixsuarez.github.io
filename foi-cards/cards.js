@@ -3,7 +3,11 @@
  * Every card is traceable to a source page for auditability.
  */
 (function () {
-  const c = (section, prompt, answer, sourcePage, tags = []) => ({ section, prompt, answer, sourcePage, tags });
+  const combinedPrompt = /\b(and|or|vs\.?|versus|differ|compare|steps|stages|levels|types|methods|elements|characteristics|barriers|principles|guidelines|responsibilities|attitudes|antidotes|skills|objectives|process|practice|memory|assessment|instruction|development|reactions|obstacles)\b|,/i;
+  const c = (section, prompt, answer, sourcePage, tags = []) => {
+    const multiAnswer = /\n|;\s|[.!?]\s+(?=[A-Z“])/.test(answer);
+    return { section, prompt, answer, sourcePage, tags, kind: (tags.some(tag => ['list', 'mnemonic', 'procedure'].includes(tag)) || combinedPrompt.test(prompt) || multiAnswer) ? 'recap' : 'atomic' };
+  };
 
   window.FOI_CARDS = [
     c('Human behavior', 'What is human behavior?', 'The result of attempts to satisfy certain needs.', 1, ['definition']),
@@ -147,4 +151,96 @@
     c('ADM and safety', 'What is the “see and avoid” attention guideline?', 'At least 90% of a pilot’s attention should be devoted to outside visual references and traffic scanning.', 8),
     c('ADM and safety', 'What are the five hazardous attitudes and antidotes?', 'Anti-authority: “Follow the rules. They are usually right.”\nImpulsivity: “Not so fast, think first.”\nInvulnerability: “It could happen to me.”\nMacho: “Taking chances is foolish.”\nResignation: “I’m not helpless. I can make a difference.”', 8, ['list'])
   ];
+
+  const manualAtoms = {
+    'What are displacement and rationalization?': [
+      c('Human behavior', 'What is displacement?', 'Taking anger out on someone else.', 1),
+      c('Human behavior', 'What is rationalization?', 'Justifying unacceptable actions.', 1)
+    ],
+    'What are compensation, projection, reaction formation, and fantasy?': [
+      c('Human behavior', 'What is compensation?', 'Hiding weaknesses by emphasizing strengths elsewhere.', 1),
+      c('Human behavior', 'What is projection?', 'Blaming others.', 1),
+      c('Human behavior', 'What is reaction formation?', 'Faking a belief opposite to the actual belief.', 1),
+      c('Human behavior', 'What is fantasy?', 'Daydreaming.', 1)
+    ],
+    'How do classical and operant conditioning differ?': [
+      c('Learning', 'What is classical conditioning?', 'Learning that occurs when two stimuli are repeatedly paired, such as Pavlov’s dog.', 2),
+      c('Learning', 'What is operant conditioning?', 'Modifying behavior through reward or punishment (reinforcement).', 2)
+    ],
+    'What are perception and insight?': [
+      c('Learning', 'What is perception?', 'Giving meaning to information received through one or more bodily senses.', 2),
+      c('Learning', 'What is insight?', 'Grouping perceptions into meaningful wholes when something is understood.', 2)
+    ],
+    'How do slips and mistakes differ?': [
+      c('Learning', 'What is a slip?', 'An error of action.', 2),
+      c('Learning', 'What is a mistake?', 'An error of thought.', 2)
+    ],
+    'How do repression and suppression differ?': [
+      c('Learning', 'What is repression in forgetting?', 'Unconsciously pushing a bad memory out of reach.', 3),
+      c('Learning', 'What is suppression in forgetting?', 'Consciously pushing a bad memory out of reach.', 3)
+    ],
+    'What are positive and negative transfer of learning?': [
+      c('Learning', 'What is positive transfer of learning?', 'When one learned skill aids learning another skill.', 3),
+      c('Learning', 'What is negative transfer of learning?', 'When a previously learned skill interferes with learning a new skill.', 3)
+    ],
+    'What adverse responses can anxiety cause?': [
+      c('Human behavior', 'What anxiety response can leave a learner unable to act?', 'A hesitancy or inability to act.', 1),
+      c('Human behavior', 'What anxiety response can cause a learner to act too quickly?', 'An impulse to do something quickly.', 1)
+    ],
+    'How do performance-based and decision-based objectives differ?': [
+      c('Teaching', 'What is a performance-based training objective?', 'A precise description of what must be done and how it is done.', 4),
+      c('Teaching', 'What is a decision-based training objective?', 'An objective that promotes critical thinking, such as risk management.', 4)
+    ],
+    'How do norm-referenced and criterion-referenced assessment differ?': [
+      c('Assessment', 'What is a norm-referenced assessment?', 'An assessment comparing performance against other learners.', 5),
+      c('Assessment', 'What is a criterion-referenced assessment?', 'An assessment comparing performance to an established standard.', 5)
+    ],
+    'What are objective and open-ended oral questions?': [
+      c('Assessment', 'What is an objective oral question?', 'A question with one correct answer, such as who, what, when, or where.', 5),
+      c('Assessment', 'What is an open-ended oral question?', 'A statement that implicitly asks for completion, such as why or how.', 5)
+    ],
+    'How do analytical and automatic decision-making differ?': [
+      c('ADM and safety', 'What is analytical decision-making?', 'Decision-making that takes time to evaluate options; the DECIDE model is one method.', 7),
+      c('ADM and safety', 'What is automatic (naturalistic) decision-making?', 'Decision-making that requires a quick decision at the cost of accuracy and is typically used during emergencies.', 7)
+    ]
+  };
+  Object.values(manualAtoms).flat().forEach(card => { card.kind = 'atomic'; });
+
+  function fragmentsFor(card) {
+    const parts = card.answer
+      .split(/\n+/)
+      .flatMap(line => line.split(/;\s+/))
+      .flatMap(line => line.split(/(?<=\.)\s+(?=[A-Z“])/))
+      .map(line => line.replace(/^\d+\.\s*/, '').trim())
+      .filter(Boolean);
+    if (card.tags.includes('mnemonic') && parts.length === 1 && parts[0].includes(',')) {
+      return parts[0].split(/,\s*/).map(part => part.trim()).filter(Boolean);
+    }
+    return parts;
+  }
+
+  function atomize(card) {
+    if (manualAtoms[card.prompt]) return manualAtoms[card.prompt];
+    const fragments = fragmentsFor(card);
+    return fragments.map((answer, index) => {
+      const labeled = answer.match(/^([^:]{2,70}):\s*(.+)$/);
+      const label = labeled ? labeled[1].trim() : null;
+      const atomicAnswer = labeled ? labeled[2].trim() : answer;
+      const prompt = label
+        ? `What is ${label}?`
+        : `In “${card.prompt.replace(/\?$/, '')},” what is item ${index + 1}?`;
+      return { section: card.section, prompt, answer: atomicAnswer, sourcePage: card.sourcePage, tags: ['atomic'], kind: 'atomic', parentPrompt: card.prompt };
+    });
+  }
+
+  const originalCards = window.FOI_CARDS;
+  const recaps = originalCards.filter(card => card.kind === 'recap').map(card => ({ ...card, tags: [...card.tags, 'recap'] }));
+  const existingAtomics = originalCards.filter(card => card.kind === 'atomic');
+  const generatedAtomics = recaps.flatMap(atomize);
+  const knownPrompts = new Set();
+  window.FOI_CARDS = [...existingAtomics, ...generatedAtomics, ...recaps].filter(card => {
+    if (knownPrompts.has(card.prompt)) return false;
+    knownPrompts.add(card.prompt);
+    return true;
+  });
 })();

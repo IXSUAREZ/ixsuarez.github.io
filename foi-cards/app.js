@@ -20,8 +20,14 @@
     state.mode = mode; state.section = section;
     let selected = section ? cards.filter(c => c.section === section) : cards.slice();
     if (mode === 'weak') selected = selected.filter(c => statusOf(c) !== 'mastered');
-    // New and review cards are prioritized; known cards remain available in all-cards study.
-    selected.sort((a,b) => ({new:0,review:1,mastered:2}[statusOf(a)] - {new:0,review:1,mastered:2}[statusOf(b)]));
+    // New and review cards are prioritized; within each state, atomic cards precede recap cards.
+    selected.sort((a,b) => {
+      const stateOrder = ({new:0,review:1,mastered:2}[statusOf(a)] - {new:0,review:1,mastered:2}[statusOf(b)]);
+      if (stateOrder) return stateOrder;
+      const sourceOrder = a.sourcePage - b.sourcePage;
+      if (sourceOrder) return sourceOrder;
+      return (a.kind === 'recap' ? 1 : 0) - (b.kind === 'recap' ? 1 : 0);
+    });
     state.deck = selected; state.index = 0; state.history = [];
     if (!selected.length) return complete();
     show('studyScreen'); renderCard();
@@ -29,7 +35,7 @@
   function renderCard() {
     const card = state.deck[state.index]; if (!card) return complete();
     const el = byId('flashcard'); el.classList.remove('flipped','dismiss-left','dismiss-right');
-    byId('cardSection').textContent = card.section;
+    byId('cardSection').textContent = card.kind === 'recap' ? `${card.section} · recap` : card.section;
     byId('sectionButton').textContent = card.section;
     byId('cardPrompt').textContent = card.prompt;
     byId('cardAnswer').textContent = card.answer;

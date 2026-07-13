@@ -6,6 +6,14 @@
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#2563eb",
+  "shortcuts": [
+    {
+      "name": "Regulatory Definitions",
+      "short_name": "Definitions",
+      "description": "Open 14 CFR definitions and instructor decision guides.",
+      "url": "./?view=definitions"
+    }
+  ],
   "icons": [
     {
       "src": "/simply-endorsed/APP-ICONs/favicon-192.png?v=4",

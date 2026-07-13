@@ -1,5 +1,7 @@
 const { initJSDOM } = require('./test-helpers');
-const { tests } = require('./wizard.test');
+const { tests: wizardTests } = require('./wizard.test');
+const { tests: definitionTests } = require('./definitions.test');
+const tests = wizardTests.concat(definitionTests);
 
 async function runAllTests() {
   console.log('==================================================');

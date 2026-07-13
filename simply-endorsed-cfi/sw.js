@@ -1,12 +1,15 @@
-const CACHE_NAME = "simply-endorsed-cfi-v3";
+const CACHE_NAME = "simply-endorsed-cfi-v6";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
-  "./site.webmanifest?v=1",
-  "/simply-endorsed/css/app.css?v=42",
+  "./site.webmanifest?v=2",
+  "/simply-endorsed/css/app.css?v=45",
   "/simply-endorsed/js/shared-utils.js?v=1",
   "/simply-endorsed/js/cfr-links.js?v=3",
+  "/simply-endorsed/js/regulatory-definitions-data.js?v=1",
+  "/simply-endorsed/js/regulatory-definitions-curation.js?v=2",
+  "/simply-endorsed/js/regulatory-definitions-ui.js?v=2",
   "/simply-endorsed/js/endorsements-data.js?v=3",
   "/simply-endorsed/js/browse-structure.js?v=3",
   "/simply-endorsed/js/guidance-content.js?v=3",
@@ -14,8 +17,10 @@ const CORE_ASSETS = [
   "/simply-endorsed/js/privileges-limitations-data.js?v=2",
   "/simply-endorsed/js/part61-rules-data.js?v=5",
   "/simply-endorsed/js/part61-calculator-core.js?v=3",
-  "/simply-endorsed/js/part61-calculator-ui.js?v=7",
-  "/simply-endorsed/js/app.js?v=23",
+  "/simply-endorsed/js/part61-scenario-generator.js?v=2",
+  "/simply-endorsed/js/part61-calculator-ui.js?v=10",
+  "/simply-endorsed/js/app.js?v=24",
+  "/assets/cfr-autolink.js?v=3",
   "/simply-endorsed/APP-ICONs/favicon-192.png?v=4",
   "/simply-endorsed/APP-ICONs/favicon-512.png?v=4",
   "/simply-endorsed/APP-ICONs/apple-touch-icon.png?v=4",

@@ -139,7 +139,9 @@
     const flags = profile.flags || {};
     const creds = Array.isArray(profile.credentials) ? profile.credentials : [];
     if (flags.militaryOnly) return true;
-    return creds.includes("military-pilot") && !flags.priorFaa && !flags.faaCommercialAmel;
+    const hasMilitaryCredential = ["military-pilot", "military-multiengine-airplane", "military-helicopter"]
+      .some((credential) => creds.includes(credential));
+    return hasMilitaryCredential && !flags.priorFaa && !flags.faaCommercialAmel;
   }
 
   // Classifies the training path from what the pilot holds versus the target.
@@ -150,7 +152,6 @@
     const held = creds.map(credentialCatClass).filter(Boolean);
     const target = RULES.CATEGORY_CLASS ? RULES.CATEGORY_CLASS[targetId] : null;
     const holdsAnyPilotCert = held.length > 0;
-    const holdsAnyPowered = held.some((h) => h.powered);
 
     const base = {
       pathType: "initial",
@@ -203,22 +204,30 @@
     base.ratedInTargetClass = ratedInTargetClass;
     base.holdsTargetCategory = holdsTargetCategory;
 
-    // Is the target a higher certificate level than anything the pilot already
-    // holds in the target category? If so, a same-category class change is really
-    // a new-level path (full experience + knowledge test), not a 61.63(c) add.
+    // A pilot may already hold the requested certificate level in another
+    // category. In that case, adding airplane at that same overall level is a
+    // 61.63(b) rating add, not a new certificate-level test.
     const heldLevelsSameCat = held
       .filter((h) => h.category === target.category)
       .map((h) => (RULES.LEVEL_ORDER && RULES.LEVEL_ORDER[h.level]) || 0);
     const highestSameCat = heldLevelsSameCat.length ? Math.max.apply(null, heldLevelsSameCat) : 0;
+    const heldLevelsOverall = held.map((h) => (RULES.LEVEL_ORDER && RULES.LEVEL_ORDER[h.level]) || 0);
+    const highestOverall = heldLevelsOverall.length ? Math.max.apply(null, heldLevelsOverall) : 0;
     const targetLevelRank = (RULES.LEVEL_ORDER && RULES.LEVEL_ORDER[target.level]) || 0;
-    const isLevelUp = targetLevelRank > highestSameCat;
+    const isSameCategoryLevelUp = targetLevelRank > highestSameCat;
+    const isOverallLevelUp = targetLevelRank > highestOverall;
+    const holdsPoweredAtOrAboveTargetLevel = held.some((rating) => {
+      const ratingLevel = (RULES.LEVEL_ORDER && RULES.LEVEL_ORDER[rating.level]) || 0;
+      return rating.powered && ratingLevel >= targetLevelRank;
+    });
+    base.overallLevelUp = isOverallLevelUp;
 
     const forceClassAdd = ["commercial-asel-add-class", "private-asel-add-class", "commercial-amel-add-class", "private-amel-add-class"].indexOf(targetId) > -1;
     let pathType;
     if (forceClassAdd) pathType = "class-add";
     else if (!holdsAnyPilotCert) pathType = "initial";
-    else if (ratedInTargetClass) pathType = "level-change";
-    else if (holdsTargetCategory) pathType = isLevelUp ? "class-level-change" : "class-add";
+    else if (ratedInTargetClass) pathType = isOverallLevelUp ? "level-change" : (isSameCategoryLevelUp ? "category-add" : "level-change");
+    else if (holdsTargetCategory) pathType = isOverallLevelUp ? "class-level-change" : "class-add";
     else pathType = "category-add";
     base.pathType = pathType;
 
@@ -237,7 +246,7 @@
       base.summary = `Level change to ${levelLabel} within the same category/class - apply held time toward the new minimums.`;
     } else if (pathType === "class-add") {
       base.knowledgeTest = { status: "Not required", note: "61.63(c): adding a class in the same category needs no knowledge test; train to proficiency, no fixed aeronautical-experience minimum." };
-      base.soloEndorsement = { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Only if the pilot will solo the new class before the practical test - you hold the category but not this class, so a 61.31(d)(2) authorization is required to act as PIC solo." };
+      base.soloEndorsement = { needed: false, basis: "14 CFR 61.31(d)(2)", note: "A.76 is needed only if the pilot elects to solo the new class before the rating; dual proficiency training does not require it." };
       base.picLogging = { canLogDuringDual: false, note: "Not rated in the new class: PIC is not loggable during dual (61.51(e)). Log PIC only when soloing under a 61.31(d)(2) authorization." };
       base.summary = `Added airplane class under 61.63(c) - no knowledge test, no fixed FAA hour minimum; train to proficiency.`;
     } else if (pathType === "class-level-change") {
@@ -252,13 +261,17 @@
       }
       base.summary = `Level change to ${levelLabel} plus a new class - meet the full ${levelLabel} aeronautical experience in the new class; not rated in the class, so build time under 61.31(d)(2).`;
     } else {
-      const kt = holdsAnyPowered
-        ? { status: "Not required", note: "61.63(b)(4): no knowledge test when you already hold a powered-category rating (airplane, rotorcraft, powered-lift, etc.) at this certificate level - power-to-power." }
-        : { status: "Required", note: "No-power to power (glider or balloon to airplane) requires the airplane knowledge test per 61.63(b)(4)." };
+      const kt = holdsPoweredAtOrAboveTargetLevel
+        ? { status: "Not required", note: "61.63(b)(4): no knowledge test when you already hold a powered-category rating at or above the target certificate level." }
+        : { status: "Required", note: "61.63(b)(4): the knowledge-test exception requires a powered-category rating at or above the target certificate level." };
       base.knowledgeTest = kt;
-      base.soloEndorsement = { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Not rated in the target category - a 61.31(d)(2) authorization is required to solo the airplane and build category/class time." };
-      base.picLogging = { canLogDuringDual: false, note: "Not rated in the airplane: PIC is not loggable during dual (61.51(e)). Solo under 61.31(d)(2) to log PIC; for Commercial, up to 10 hours performing duties of PIC with an instructor aboard counts toward 61.129(a)(4)." };
-      base.summary = `Added category (${target.category}) under 61.63(b) - meet ${levelLabel} aeronautical experience; ${holdsAnyPowered ? "no knowledge test (power-to-power)" : "knowledge test required (no-power to power)"}.`;
+      base.soloEndorsement = ratedInTargetClass
+        ? { needed: false, basis: "14 CFR 61.31(d)(2)", note: "Already rated in ASEL; no 61.31(d)(2) solo authorization is needed." }
+        : { needed: true, basis: "14 CFR 61.31(d)(2)", note: "Not rated in the target category/class - a 61.31(d)(2) authorization is required to solo the airplane and build category/class time." };
+      base.picLogging = ratedInTargetClass
+        ? { canLogDuringDual: true, note: "Already ASEL-rated: training time is loggable PIC when otherwise permitted by 61.51(e)." }
+        : { canLogDuringDual: false, note: "Not rated in the airplane: PIC is not loggable during dual (61.51(e)). Solo under 61.31(d)(2) to log PIC; for Commercial, up to 10 hours performing duties of PIC with an instructor aboard counts toward 61.129(a)(4)." };
+      base.summary = `Added category (${target.category}) under 61.63(b) - meet ${levelLabel} aeronautical experience; ${holdsPoweredAtOrAboveTargetLevel ? "no knowledge test (qualifying powered rating at or above the target level)" : "knowledge test required (no qualifying powered rating at or above the target level)"}.`;
     }
 
     return base;
@@ -293,7 +306,16 @@
     const hasItem = (code) => out.some((e) => e.item === code);
     const dropItem = (code) => { out = out.filter((e) => e.item !== code); };
 
-    if (path.pathType === "category-add" || path.pathType === "class-add") {
+    const isRatingAdd = path.pathType === "category-add" || path.pathType === "class-add";
+    const isSameOrLowerRatingAdd = isRatingAdd && !path.overallLevelUp;
+    if (isSameOrLowerRatingAdd) {
+      // Same/lower overall certificate-level rating adds use the additional-rating
+      // practical-test endorsement, not initial-certificate endorsements.
+      out = out.filter((endorsement) => ["A.1", "A.2", "A.76", "A.78"].includes(endorsement.item));
+      if (path.knowledgeTest.status !== "Required") dropItem("A.2");
+      if (!hasItem("A.1")) out = out.concat(endorsements(["practical"], "Practical-test prerequisites under 61.39."));
+      if (!hasItem("A.78")) out = out.concat(endorsements(["additionalRating"], "Additional category/class rating under 61.63(b)/(c)."));
+    } else if (isRatingAdd) {
       if (!hasItem("A.78")) out = out.concat(endorsements(["additionalRating"], "Additional category/class rating under 61.63(b)/(c)."));
     } else {
       dropItem("A.78");
@@ -412,13 +434,15 @@
     const extraBuilding = isKnown(optimized) && isKnown(dualNeeded) && isKnown(soloNeeded) ? Math.max(0, optimized - dualNeeded - soloNeeded) : UNKNOWN;
     const dualCost = isKnown(dualNeeded) ? dualNeeded * rates.dual : UNKNOWN;
     const soloCost = isKnown(soloNeeded) && isKnown(extraBuilding) ? (soloNeeded + extraBuilding) * rates.solo : UNKNOWN;
+    const soloXcPlanned = isKnown(soloNeeded) && !eventDone(profile, "privateSoloXc") ? Math.min(5, soloNeeded) : 0;
+    const localSoloPlanned = isKnown(soloNeeded) ? Math.max(0, soloNeeded - soloXcPlanned) : UNKNOWN;
     const trainingPlan = isKnown(optimized)
       ? [
         planBlock("Dual ASEL foundation", "Maneuvers, landings, instrument intro", Math.max(0, Math.min(10, dualNeeded)), "Dual", "61.109(a), 61.109(a)(3)", "Basic ASEL proficiency and instrument event", rates.dual),
         planBlock("Dual XC / night", "Cross-country, night, night landings", Math.max(0, Math.min(7, dualNeeded)), "Dual", "61.109(a)(1), 61.109(a)(2)", "Dual XC, night XC, night full-stop landings", rates.dual),
         planBlock("Dual checkride prep", "Practical-test prep", Math.max(0, dualNeeded - Math.min(17, dualNeeded)), "Dual", "61.109(a)(4)", "Recent prep", rates.dual),
-        planBlock("Solo local / towered", "Local solo and towered landings", Math.max(0, Math.min(5, soloNeeded)), "Solo", "61.109(a)(5), 61.109(a)(5)(iii)", "Towered full-stop landings", rates.solo),
-        planBlock("Solo cross-country", "150 NM solo XC", Math.max(0, soloNeeded - Math.min(5, soloNeeded)), "Solo", "61.109(a)(5)(i)-(ii)", "Solo XC events", rates.solo),
+        planBlock("Solo local / towered", "Local solo and towered landings", localSoloPlanned, "Solo", "61.109(a)(5), 61.109(a)(5)(iii)", "Towered full-stop landings", rates.solo),
+        planBlock("Solo cross-country", "150 NM solo XC", soloXcPlanned, "Solo", "61.109(a)(5)(i)-(ii)", "Solo XC events", rates.solo),
         planBlock("Additional ASEL time building", "Local/XC practice as needed", extraBuilding, "Solo or dual as authorized", "61.109(a)", "Fills any broad total-time gap beyond required dual and solo", rates.solo)
       ].filter((block) => block.hours > 0)
       : [];
@@ -1115,6 +1139,27 @@
         if (isKnown(current)) next.experience[key] = current + optimized;
       });
     }
+    if (auditResult.targetId === "private-asel") {
+      const plannedHours = (predicate) => (auditResult.trainingPlan || [])
+        .filter(predicate)
+        .reduce((sum, block) => sum + (isKnown(block.hours) ? block.hours : 0), 0);
+      const addExperience = (key, hours) => {
+        const current = asNumber(next.experience[key]);
+        if (isKnown(current) && isKnown(hours) && hours > 0) next.experience[key] = current + hours;
+      };
+      const dualEarned = plannedHours((block) => block.mode === "Dual" && String(block.cfrRows || "").includes("61.109(a)"));
+      const soloEarned = plannedHours((block) => block.mode === "Solo" && String(block.cfrRows || "").includes("61.109(a)(5)"));
+      const soloXcEarned = plannedHours((block) => block.mode === "Solo" && String(block.cfrRows || "").includes("61.109(a)(5)(i)"));
+      addExperience("dualAsel", dualEarned);
+      addExperience("soloAsel", soloEarned);
+      ["picAsel", "picAirplane", "picTotal"].forEach((key) => addExperience(key, soloEarned));
+      if (!eventDone(profile, "privateSoloXc") && soloXcEarned > 0) {
+        ["xcPicAirplane", "xcPicTotal"].forEach((key) => addExperience(key, Math.min(5, soloXcEarned)));
+        next.events = next.events || {};
+        next.events.privateSoloXc = true;
+        next.events.privateSoloLongXc = true;
+      }
+    }
     const dualCost = auditResult.summary.dualCost;
     const soloCost = auditResult.summary.soloCost;
     if (auditResult.targetId === "private-asel" && !next.credentials.includes("private-asel")) {
@@ -1483,6 +1528,177 @@
     };
   }
 
+  function militaryConversionDefinition(profile) {
+    if (!isMilitaryOnly(profile)) return null;
+    if (hasCredential(profile, "military-multiengine-airplane")) {
+      return {
+        targetId: "military-commercial-amel-conversion",
+        title: "61.73 Military Conversion - Commercial AMEL",
+        outcome: "FAA Commercial Pilot certificate with Airplane Multiengine Land rating",
+        civilianCredential: "commercial-amel",
+        kind: "multiengine airplane",
+        faaCommercialAmel: true
+      };
+    }
+    if (hasCredential(profile, "military-helicopter")) {
+      return {
+        targetId: "military-commercial-rotor-helicopter-conversion",
+        title: "61.73 Military Conversion - Commercial Rotorcraft-Helicopter",
+        outcome: "FAA Commercial Pilot certificate with Rotorcraft-Helicopter rating",
+        civilianCredential: "commercial-rotor-helicopter",
+        kind: "helicopter",
+        faaCommercialAmel: false
+      };
+    }
+    return null;
+  }
+
+  function militaryConversionAudit(definition) {
+    const recordsRequirement = `Official records establishing eligibility for the ${definition.outcome}`;
+    const statusRecord = "Official record showing status as a current or former military pilot in the U.S. Armed Forces";
+    const trainingRecord = "Official record showing graduation from U.S. Armed Forces undergraduate pilot training and qualification for a military pilot rating";
+    const proficiencyRecord = "Official record showing a pilot proficiency check and instrument proficiency check in an aircraft as a military pilot";
+    const experienceRequirement = `Separate 61.73(b)(3) qualification: before application, either the qualifying pilot and instrument proficiency check in a ${definition.kind} under (b)(3)(i), or at least 10 hours as a military pilot in that kind of aircraft under (b)(3)(ii)`;
+    const rows = [
+      {
+        cfr: "61.73(b)(1)",
+        requirement: recordsRequirement,
+        required: "Official records",
+        has: "Review required",
+        credit: "Pending FAA review",
+        remaining: "Records",
+        why: "Military status and the requested civilian commercial category/class outcome must be established from official records.",
+        overlapLogic: "Document gate; not a flight-hour estimate.",
+        kind: "gate"
+      },
+      {
+        cfr: "61.73(h)(1)",
+        requirement: statusRecord,
+        required: "Official record",
+        has: "Review required",
+        credit: "Pending FAA review",
+        remaining: "Record",
+        why: "This status record is part of the mandatory application evidence under 61.73(h).",
+        overlapLogic: "Required application record; separate from the 61.73(b)(3) qualification alternatives.",
+        kind: "gate"
+      },
+      {
+        cfr: "61.73(h)(2)",
+        requirement: trainingRecord,
+        required: "Official record",
+        has: "Review required",
+        credit: "Pending FAA review",
+        remaining: "Record",
+        why: "Undergraduate pilot-training graduation and military pilot-rating qualification must both be documented.",
+        overlapLogic: "Required application record; separate from the 61.73(b)(3) qualification alternatives.",
+        kind: "gate"
+      },
+      {
+        cfr: "61.73(h)(3)",
+        requirement: proficiencyRecord,
+        required: "Official record",
+        has: "Review required",
+        credit: "Pending FAA review",
+        remaining: "Record",
+        why: "The application must include the pilot and instrument proficiency-check record.",
+        overlapLogic: "Still required even when the applicant uses the separate 61.73(b)(3)(ii) 10-hours-in-kind qualification route.",
+        kind: "gate"
+      },
+      {
+        cfr: "61.73(b)(2)",
+        requirement: "Military competency aeronautical knowledge test",
+        required: "Pass",
+        has: "Not verified",
+        credit: "Pending",
+        remaining: "Knowledge test",
+        why: "The military competency knowledge test is required for the 61.73 conversion.",
+        overlapLogic: "No instructor endorsement is required to take this initial military competency test under AC 61-65K paragraph 9.2.",
+        kind: "gate"
+      },
+      {
+        cfr: "61.73(b)(3)(i)/(ii)",
+        requirement: experienceRequirement,
+        required: "Qualifying check or 10 hours in kind",
+        has: "Review required",
+        credit: "Pending FAA review",
+        remaining: "Records",
+        why: "The category and class placed on the civilian certificate depend on the qualifying military records.",
+        overlapLogic: "Use either qualifying route; the (b)(3)(ii) 10-hours route does not replace the mandatory 61.73(h)(3) application record.",
+        kind: "gate"
+      }
+    ].map(withRowMetadata);
+    return {
+      targetId: definition.targetId,
+      title: definition.title,
+      verdict: `${definition.outcome} under 61.73, subject to the required military competency test and FAA review of official military records.`,
+      path: {
+        pathType: "military-conversion",
+        knowledgeTest: {
+          status: "Required",
+          note: "Pass the military competency aeronautical knowledge test under 61.73(b)(2)."
+        },
+        soloEndorsement: { needed: false, basis: "14 CFR 61.31(d)(2)", note: "Not part of the 61.73 conversion stage." },
+        picLogging: { canLogDuringDual: false, note: "Not applicable to the records-based conversion stage." },
+        summary: `${definition.outcome} through the military-competence provisions of 61.73.`
+      },
+      summary: {
+        target: definition.title,
+        rawRequirementSum: 0,
+        optimizedCombinedTotal: 0,
+        dualCost: 0,
+        soloCost: 0,
+        estimatedTotalCost: 0,
+        notes: "Records and testing prelude; no flight-hour estimate is added."
+      },
+      rows,
+      events: [],
+      trainingPlan: [],
+      gates: [
+        { gate: "Military conversion records package", source: "61.73(b)(1)", required: "Yes", whenNeeded: "With the application", whoHandles: "Applicant / FAA", notes: recordsRequirement },
+        { gate: "Military-pilot status record", source: "61.73(h)(1)", required: "Yes", whenNeeded: "With the application", whoHandles: "Applicant / military records custodian / FAA", notes: statusRecord },
+        { gate: "Undergraduate pilot-training and military pilot-rating record", source: "61.73(h)(2)", required: "Yes", whenNeeded: "With the application", whoHandles: "Applicant / military records custodian / FAA", notes: trainingRecord },
+        { gate: "Military pilot and instrument proficiency-check record", source: "61.73(h)(3)", required: "Yes", whenNeeded: "With the application", whoHandles: "Applicant / military records custodian / FAA", notes: `${proficiencyRecord}. This remains required even when 61.73(b)(3)(ii) is used.` },
+        { gate: "Military competency knowledge test", source: "61.73(b)(2)", required: "Yes", whenNeeded: "Before certificate issuance", whoHandles: "Applicant / FAA testing provider", notes: "No instructor endorsement is required for the initial military competency knowledge test under AC 61-65K paragraph 9.2." },
+        { gate: "Alternative qualification under 61.73(b)(3)", source: "61.73(b)(3)(i)/(ii)", required: "Yes", whenNeeded: "Before certificate issuance", whoHandles: "Applicant / military records custodian / FAA", notes: `${experienceRequirement}. The (b)(3)(ii) route does not replace the mandatory (h)(3) record.` }
+      ],
+      endorsements: [
+        {
+          item: "No instructor endorsement",
+          endorsement: "Initial military competency knowledge test",
+          useWhen: "Taking the initial military competency aeronautical knowledge test",
+          cfrBasis: "AC 61-65K, Knowledge Tests - Evidence of Completion",
+          required: "No",
+          whoSigns: "No instructor signature required.",
+          notes: "Do not use A.78 or another instructor endorsement for the 61.73 conversion test."
+        }
+      ],
+      unknowns: ["FAA review of the official military records determines the category/class issued under 61.73."],
+      links: [
+        { label: "14 CFR 61.73", url: RULES.LINKS.cfr6173 },
+        { label: "AC 61-65K", url: RULES.LINKS.ac6165k }
+      ],
+      sourceReviewDate: RULES.REVIEW_DATE,
+      proficiencyBased: false,
+      proficiencyDisclaimer: null
+    };
+  }
+
+  function applyMilitaryConversion(profile, definition) {
+    const next = JSON.parse(JSON.stringify(profile));
+    if (!next.credentials.includes(definition.civilianCredential)) {
+      next.credentials.push(definition.civilianCredential);
+    }
+    next.flags = Object.assign({}, next.flags, {
+      militaryExperience: true,
+      militaryOnly: false,
+      priorFaa: true,
+      faaCommercialAmel: definition.faaCommercialAmel
+    });
+    next._carryForwardNotes = next._carryForwardNotes || [];
+    next._carryForwardNotes.push(`${definition.title}: civilian credential established before the requested airplane-rating stages.`);
+    return next;
+  }
+
   function calculateAudit(input) {
     const profile = {
       credentials: Array.isArray(input.credentials) ? input.credentials.slice() : [],
@@ -1494,10 +1710,16 @@
     };
     const stages = Array.isArray(input.targets) && input.targets.length ? input.targets : ["private-asel"];
     let workingProfile = profile;
-    const audits = stages.map((stage) => {
+    const audits = [];
+    const conversion = militaryConversionDefinition(workingProfile);
+    if (conversion) {
+      audits.push(militaryConversionAudit(conversion));
+      workingProfile = applyMilitaryConversion(workingProfile, conversion);
+    }
+    stages.forEach((stage) => {
       const result = calculateStage(workingProfile, stage);
       workingProfile = applyAuditCarryForward(workingProfile, result);
-      return result;
+      audits.push(result);
     });
     const combinedKnown = audits.every((item) => isKnown(item.summary.optimizedCombinedTotal));
     const combinedHours = combinedKnown ? audits.reduce((sum, item) => sum + item.summary.optimizedCombinedTotal, 0) : UNKNOWN;

@@ -1,4 +1,4 @@
-const CACHE_NAME = "simply-endorsed-cfi-v6";
+const CACHE_NAME = "simply-endorsed-cfi-v7";
 
 const CORE_ASSETS = [
   "./",
@@ -16,8 +16,8 @@ const CORE_ASSETS = [
   "/simply-endorsed/js/training-requirements-data.js?v=1",
   "/simply-endorsed/js/privileges-limitations-data.js?v=2",
   "/simply-endorsed/js/part61-rules-data.js?v=5",
-  "/simply-endorsed/js/part61-calculator-core.js?v=3",
-  "/simply-endorsed/js/part61-scenario-generator.js?v=2",
+  "/simply-endorsed/js/part61-calculator-core.js?v=4",
+  "/simply-endorsed/js/part61-scenario-generator.js?v=3",
   "/simply-endorsed/js/part61-calculator-ui.js?v=10",
   "/simply-endorsed/js/app.js?v=24",
   "/assets/cfr-autolink.js?v=3",

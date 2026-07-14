@@ -8,7 +8,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  const REVIEW_DATE = "2026-06-30";
+  const REVIEW_DATE = "2026-07-14";
   const DEFAULT_RATES = {
     aircraftWet: 185,
     instructor: 45,
@@ -38,7 +38,8 @@
   // Category/class/level taxonomy for the path classifier. Keyed by credential
   // and target id. "powered" drives the 61.63(b)(4) power-to-power knowledge-test
   // exception. Ids intentionally absent (student, instrument-airplane, cfi-airplane,
-  // cfii-airplane, military-pilot) do not contribute a category/class rating.
+  // cfii-airplane, military-pilot, military-multiengine-airplane, and
+  // military-helicopter) do not contribute an FAA category/class rating.
   const CATEGORY_CLASS = {
     "sport-asel": { category: "airplane", klass: "asel", level: "sport", powered: true },
     "sport-ppc": { category: "powered-parachute", klass: "land", level: "sport", powered: true },
@@ -73,6 +74,8 @@
     { id: "commercial-amel", label: "Commercial Pilot - AMEL" },
     { id: "commercial-rotor-helicopter", label: "Commercial Pilot - Rotorcraft Helicopter" },
     { id: "military-pilot", label: "Military Pilot" },
+    { id: "military-multiengine-airplane", label: "Military Pilot - Multiengine Airplane" },
+    { id: "military-helicopter", label: "Military Pilot - Helicopter" },
     { id: "cfi-airplane", label: "Flight Instructor - Airplane" },
     { id: "cfii-airplane", label: "Instrument Instructor - Airplane" }
   ];
@@ -204,184 +207,141 @@
     sportCfiProficiency: { item: "61.409", title: "Sport flight instructor flight proficiency", cfr: "61.409" }
   };
 
-  const SAMPLE_SCENARIOS = [
+  const EMPTY_STUDY_EXPERIENCE = {
+    totalTime: 0,
+    poweredTime: 0,
+    airplaneTime: 0,
+    aselTime: 0,
+    amelTime: 0,
+    helicopterTime: 0,
+    picTotal: 0,
+    picAirplane: 0,
+    picAsel: 0,
+    picHelicopter: 0,
+    xcPicTotal: 0,
+    xcPicAirplane: 0,
+    instrumentTime: 0,
+    instrumentAirplane: 0,
+    cfiiAirplane: 0,
+    nightTime: 0,
+    dualAsel: 0,
+    soloAsel: 0,
+    dualAmel: 0,
+    soloAmel: 0,
+    dualHelicopter: 0,
+    soloHelicopter: 0,
+    commercialTrainingAsel: 0,
+    soloPdpicAsel: 0,
+    complexTaaTurbine: 0,
+    prepRecent: 0,
+    commercialTrainingAmel: 0,
+    soloPdpicAmel: 0,
+    commercialTrainingHelicopter: 0,
+    soloPdpicHelicopter: 0
+  };
+
+  function studyExperience(values) {
+    return Object.assign({}, EMPTY_STUDY_EXPERIENCE, values || {});
+  }
+
+  function studyEvents(completed) {
+    const selected = new Set(completed || []);
+    return EVENT_OPTIONS.reduce((events, option) => {
+      events[option.id] = selected.has(option.id);
+      return events;
+    }, {});
+  }
+
+  function deepFreeze(value) {
+    if (!value || typeof value !== "object" || Object.isFrozen(value)) return value;
+    Object.keys(value).forEach((key) => deepFreeze(value[key]));
+    return Object.freeze(value);
+  }
+
+  const STUDY_SCENARIOS = deepFreeze([
     {
-      name: "Rotorcraft commercial to Private ASEL then Commercial ASEL",
+      id: "military-multiengine-to-commercial-asel",
+      name: "Military multiengine airplane to FAA Commercial AMEL, then Commercial ASEL",
+      credentials: ["military-multiengine-airplane"],
+      targets: ["commercial-asel-add-class"],
+      flags: { militaryExperience: true, militaryOnly: true, faaCommercialAmel: false, priorFaa: false },
+      rates: { aircraftWet: 205, instructor: 65 },
+      experience: studyExperience({
+        totalTime: 1200,
+        poweredTime: 1200,
+        airplaneTime: 1200,
+        amelTime: 1100,
+        picTotal: 750,
+        picAirplane: 750,
+        xcPicTotal: 420,
+        xcPicAirplane: 420,
+        instrumentTime: 220,
+        instrumentAirplane: 220,
+        nightTime: 140
+      }),
+      events: studyEvents([])
+    },
+    {
+      id: "military-helicopter-to-private-then-commercial-asel",
+      name: "Military helicopter to FAA Commercial Rotorcraft-Helicopter, then Private and Commercial ASEL",
+      credentials: ["military-helicopter"],
+      targets: ["private-asel", "commercial-asel"],
+      flags: { militaryExperience: true, militaryOnly: true, faaCommercialAmel: false, priorFaa: false },
+      rates: { aircraftWet: 195, instructor: 60 },
+      experience: studyExperience({
+        totalTime: 900,
+        poweredTime: 900,
+        helicopterTime: 900,
+        picTotal: 600,
+        picHelicopter: 600,
+        xcPicTotal: 280,
+        instrumentTime: 120,
+        nightTime: 90
+      }),
+      events: studyEvents([])
+    },
+    {
+      id: "faa-commercial-helicopter-to-private-asel",
+      name: "FAA Commercial Rotorcraft-Helicopter to Private ASEL",
+      credentials: ["commercial-rotor-helicopter"],
+      targets: ["private-asel"],
+      flags: { militaryExperience: false, militaryOnly: false, faaCommercialAmel: false, priorFaa: true },
+      rates: { aircraftWet: 185, instructor: 55 },
+      experience: studyExperience({
+        totalTime: 300,
+        poweredTime: 300,
+        helicopterTime: 300,
+        picTotal: 210,
+        picHelicopter: 210,
+        xcPicTotal: 85,
+        instrumentTime: 35,
+        nightTime: 28
+      }),
+      events: studyEvents([])
+    },
+    {
+      id: "faa-commercial-helicopter-to-private-then-commercial-asel",
+      name: "FAA Commercial Rotorcraft-Helicopter to Private ASEL, then Commercial ASEL",
       credentials: ["commercial-rotor-helicopter"],
       targets: ["private-asel", "commercial-asel"],
-      flags: {
-        militaryExperience: false,
-        militaryOnly: false,
-        faaCommercialAmel: false,
-        priorFaa: true
-      },
-      rates: {
-        aircraftWet: DEFAULT_RATES.aircraftWet,
-        instructor: DEFAULT_RATES.instructor
-      },
-      experience: {
-        totalTime: 150,
-        poweredTime: 150,
-        airplaneTime: 0,
-        aselTime: 0,
-        amelTime: 0,
-        helicopterTime: 150,
-        picTotal: 100,
-        picAirplane: 0,
-        picAsel: 0,
-        picHelicopter: 100,
-        xcPicTotal: 50,
-        xcPicAirplane: 0,
-        instrumentTime: 40,
-        instrumentAirplane: 0,
-        cfiiAirplane: 0,
-        nightTime: 10,
-        dualAsel: 0,
-        soloAsel: 0,
-        commercialTrainingAsel: 0,
-        soloPdpicAsel: 0,
-        complexTaaTurbine: 0,
-        prepRecent: 0,
-        commercialTrainingAmel: 0,
-        soloPdpicAmel: 0
-      },
-      events: {}
-    },
-    {
-      name: "FAA Commercial AMEL to Commercial ASEL added class",
-      credentials: ["commercial-amel"],
-      targets: ["commercial-asel-add-class"],
-      flags: {
-        militaryExperience: false,
-        militaryOnly: false,
-        faaCommercialAmel: true,
-        priorFaa: true
-      },
-      rates: {
-        aircraftWet: 205,
-        instructor: 65
-      },
-      experience: {
-        totalTime: 310,
-        poweredTime: 310,
-        airplaneTime: 310,
-        aselTime: 40,
-        amelTime: 120,
-        helicopterTime: 0,
-        picTotal: 180,
-        picAirplane: 180,
-        picAsel: 30,
-        picHelicopter: 0,
-        xcPicTotal: 85,
-        xcPicAirplane: 85,
-        instrumentTime: 55,
-        instrumentAirplane: 55,
-        cfiiAirplane: 0,
-        nightTime: 22,
-        dualAsel: 8,
-        soloAsel: 12,
-        commercialTrainingAsel: 0,
-        soloPdpicAsel: 0,
-        complexTaaTurbine: 15,
-        prepRecent: 0,
-        commercialTrainingAmel: 0,
-        soloPdpicAmel: 0
-      },
-      events: {}
-    },
-    {
-      name: "Private ASEL partial Commercial ASEL progress",
-      credentials: ["private-asel"],
-      targets: ["commercial-asel"],
-      flags: {
-        militaryExperience: false,
-        militaryOnly: false,
-        faaCommercialAmel: false,
-        priorFaa: true
-      },
-      rates: {
-        aircraftWet: 195,
-        instructor: 55
-      },
-      experience: {
-        totalTime: 185,
-        poweredTime: 185,
-        airplaneTime: 172,
-        aselTime: 172,
-        amelTime: 0,
-        helicopterTime: 0,
-        picTotal: 92,
-        picAirplane: 88,
-        picAsel: 88,
-        picHelicopter: 0,
-        xcPicTotal: 42,
-        xcPicAirplane: 36,
-        instrumentTime: 28,
-        instrumentAirplane: 22,
-        cfiiAirplane: 0,
-        nightTime: 14,
-        dualAsel: 48,
-        soloAsel: 54,
-        commercialTrainingAsel: 8,
-        soloPdpicAsel: 3,
-        complexTaaTurbine: 4,
-        prepRecent: 1,
-        commercialTrainingAmel: 0,
-        soloPdpicAmel: 0
-      },
-      events: {
-        commercialDayXc: true,
-        commercialComplexTaa: false,
-        commercialInstrument: false,
-        commercialLongXc: false,
-        commercialNightTowered: false,
-        commercialNightXc: false,
-        commercialPrep: false
-      }
-    },
-    {
-      name: "Military-only B-52 style 61.73 gate",
-      credentials: ["military-pilot"],
-      targets: ["commercial-asel-add-class"],
-      flags: {
-        militaryExperience: true,
-        militaryOnly: true,
-        faaCommercialAmel: false,
-        priorFaa: false
-      },
-      rates: {
-        aircraftWet: 185,
-        instructor: 45
-      },
-      experience: {
-        totalTime: 1800,
-        poweredTime: 1800,
-        airplaneTime: 0,
-        aselTime: 0,
-        amelTime: 0,
-        helicopterTime: 0,
-        picTotal: 900,
-        picAirplane: 0,
-        picAsel: 0,
-        picHelicopter: 0,
-        xcPicTotal: 500,
-        xcPicAirplane: 0,
-        instrumentTime: 350,
-        instrumentAirplane: 0,
-        cfiiAirplane: 0,
-        nightTime: 220,
-        dualAsel: 0,
-        soloAsel: 0,
-        commercialTrainingAsel: 0,
-        soloPdpicAsel: 0,
-        complexTaaTurbine: 0,
-        prepRecent: 0,
-        commercialTrainingAmel: 0,
-        soloPdpicAmel: 0
-      },
-      events: {}
+      flags: { militaryExperience: false, militaryOnly: false, faaCommercialAmel: false, priorFaa: true },
+      rates: { aircraftWet: 190, instructor: 60 },
+      experience: studyExperience({
+        totalTime: 425,
+        poweredTime: 425,
+        helicopterTime: 425,
+        picTotal: 310,
+        picHelicopter: 310,
+        xcPicTotal: 135,
+        instrumentTime: 48,
+        nightTime: 42
+      }),
+      events: studyEvents([])
     }
-  ];
+  ]);
+
+  // Retained as a compatibility alias for older callers.
+  const SAMPLE_SCENARIOS = STUDY_SCENARIOS;
 
   const REQUIREMENTS = {
     "sport-asel": [
@@ -494,6 +454,7 @@
     EVENT_GROUPS,
     EVENT_OPTIONS,
     ENDORSEMENTS,
+    STUDY_SCENARIOS,
     SAMPLE_SCENARIOS,
     REQUIREMENTS,
     PROFICIENCY_DEFAULTS,

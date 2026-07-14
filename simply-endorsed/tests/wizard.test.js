@@ -467,88 +467,149 @@ const tests = [
   },
   {
     id: "T1_F5_02A",
-    name: "Scenario generator returns valid varied calculator inputs and favors class-add paths",
+    name: "Study generator exposes exactly four fixed military and rotorcraft-to-airplane profiles with correct audits",
     tier: 1,
     feature: 5,
     fn: async () => {
       const rules = require('../js/part61-rules-data');
       const core = require('../js/part61-calculator-core');
       const generator = require('../js/part61-scenario-generator');
-      const credentialIds = new Set(rules.CREDENTIAL_OPTIONS.map((option) => option.id));
-      const targetIds = new Set(rules.TARGET_OPTIONS.map((option) => option.id));
+      const catalog = generator.STUDY_SCENARIOS;
       const fieldKeys = rules.FIELD_GROUPS.flatMap((group) => group.fields.map((field) => field[0]));
-      const flagKeys = ['militaryExperience', 'militaryOnly', 'faaCommercialAmel', 'priorFaa'];
-      const pathCounts = {};
-      const combos = new Set();
-      let rotorCredentialCount = 0;
-      let multiEngineScenarioCount = 0;
-      let amelTargetPathCount = 0;
-
-      for (let i = 0; i < 260; i++) {
-        const scenario = generator.generateRandomScenario();
-        if (!scenario || typeof scenario.name !== 'string' || !scenario.name.trim()) {
-          throw new Error("Generated scenario is missing a readable name");
-        }
-        if (!Array.isArray(scenario.credentials) || !Array.isArray(scenario.targets) || !scenario.targets.length) {
-          throw new Error(`Generated scenario has invalid credential/target arrays: ${JSON.stringify(scenario)}`);
-        }
-        scenario.credentials.forEach((credential) => {
-          if (!credentialIds.has(credential)) throw new Error(`Unknown generated credential: ${credential}`);
-        });
-        scenario.targets.forEach((target) => {
-          if (!targetIds.has(target)) throw new Error(`Unknown generated target: ${target}`);
-        });
-        flagKeys.forEach((key) => {
-          if (typeof scenario.flags[key] !== 'boolean') throw new Error(`Generated scenario flag ${key} is not boolean`);
-        });
-        if (scenario.credentials.includes('military-pilot') && (!scenario.flags.militaryOnly || !scenario.flags.militaryExperience || scenario.flags.priorFaa)) {
-          throw new Error("Military scenario did not enforce military-only flag safety");
-        }
-        if (!scenario.rates || !(scenario.rates.aircraftWet > 0) || !(scenario.rates.instructor > 0)) {
-          throw new Error("Generated scenario has invalid rates");
+      const expectedProfiles = [
+        ['military-multiengine-to-commercial-asel', ['military-multiengine-airplane'], ['commercial-asel-add-class']],
+        ['military-helicopter-to-private-then-commercial-asel', ['military-helicopter'], ['private-asel', 'commercial-asel']],
+        ['faa-commercial-helicopter-to-private-asel', ['commercial-rotor-helicopter'], ['private-asel']],
+        ['faa-commercial-helicopter-to-private-then-commercial-asel', ['commercial-rotor-helicopter'], ['private-asel', 'commercial-asel']]
+      ];
+      if (!Array.isArray(catalog) || catalog.length !== 4 || rules.STUDY_SCENARIOS !== catalog) {
+        throw new Error(`Expected one exported four-scenario catalog, got ${catalog && catalog.length}`);
+      }
+      if (!Object.isFrozen(catalog) || catalog.some((scenario) => !Object.isFrozen(scenario) || !Object.isFrozen(scenario.experience))) {
+        throw new Error("Study scenario catalog and profiles must be immutable");
+      }
+      expectedProfiles.forEach(([id, credentials, targets], index) => {
+        const scenario = catalog[index];
+        if (scenario.id !== id || JSON.stringify(scenario.credentials) !== JSON.stringify(credentials) || JSON.stringify(scenario.targets) !== JSON.stringify(targets)) {
+          throw new Error(`Unexpected study profile at index ${index}: ${JSON.stringify(scenario)}`);
         }
         fieldKeys.forEach((key) => {
           if (typeof scenario.experience[key] !== 'number' || !Number.isFinite(scenario.experience[key])) {
-            throw new Error(`Generated scenario has invalid experience field ${key}`);
+            throw new Error(`Study profile ${id} has invalid experience field ${key}`);
           }
         });
-        const firstPath = core.classifyPath(scenario, scenario.targets[0]).pathType;
-        pathCounts[firstPath] = (pathCounts[firstPath] || 0) + 1;
-        combos.add(`${scenario.credentials.join(',')} -> ${scenario.targets.join(',')}`);
-        const hasRotorCredential = scenario.credentials.some((credential) => credential.includes('rotor') || credential.includes('helicopter'));
-        const hasMultiEngineCredential = scenario.credentials.some((credential) => credential.includes('amel'));
-        const hasMultiEngineTarget = scenario.targets.some((target) => target.includes('amel'));
-        const hasAmelTargetPath = scenario.targets.some((target) => target === 'commercial-amel' || target.endsWith('amel-add-class'));
-        if (hasRotorCredential) rotorCredentialCount += 1;
-        if (hasMultiEngineCredential || hasMultiEngineTarget) multiEngineScenarioCount += 1;
-        if (hasAmelTargetPath) amelTargetPathCount += 1;
+      });
 
-        const audit = core.calculateAudit(scenario);
-        const unsupported = audit.audits.some((item) => String(item.verdict || '').includes('not implemented'));
-        if (unsupported) throw new Error(`Generated scenario reached unsupported audit path: ${JSON.stringify(scenario)}`);
+      const originalRandom = Math.random;
+      try {
+        [0, 0.26, 0.51, 0.76].forEach((value, index) => {
+          Math.random = () => value;
+          const generated = generator.generateRandomScenario();
+          if (generated.id !== expectedProfiles[index][0] || generated === catalog[index]) {
+            throw new Error(`Generator did not clone fixed profile ${expectedProfiles[index][0]}`);
+          }
+        });
+      } finally {
+        Math.random = originalRandom;
       }
 
-      const classAdd = pathCounts['class-add'] || 0;
-      const highestOther = Object.entries(pathCounts)
-        .filter(([pathType]) => pathType !== 'class-add')
-        .reduce((max, [, count]) => Math.max(max, count), 0);
-      if (classAdd <= highestOther) {
-        throw new Error(`Expected class-add to be the most common path, got ${JSON.stringify(pathCounts)}`);
+      const expectedAudits = {
+        'military-multiengine-to-commercial-asel': {
+          titles: ['61.73 Military Conversion - Commercial AMEL', 'Commercial ASEL Added Class under 61.63(c)'],
+          paths: ['military-conversion', 'class-add'],
+          knowledge: ['Required', 'Not required'],
+          endorsements: [['No instructor endorsement'], ['A.1', 'A.78']],
+          optimized: [0, 5],
+          combined: 5
+        },
+        'military-helicopter-to-private-then-commercial-asel': {
+          titles: ['61.73 Military Conversion - Commercial Rotorcraft-Helicopter', 'Private Pilot - ASEL', 'Commercial Pilot - ASEL'],
+          paths: ['military-conversion', 'category-add', 'category-add'],
+          knowledge: ['Required', 'Not required', 'Not required'],
+          endorsements: [['No instructor endorsement'], ['A.1', 'A.76', 'A.78'], ['A.1', 'A.78']],
+          optimized: [0, 30, 40],
+          combined: 70
+        },
+        'faa-commercial-helicopter-to-private-asel': {
+          titles: ['Private Pilot - ASEL'],
+          paths: ['category-add'],
+          knowledge: ['Not required'],
+          endorsements: [['A.1', 'A.76', 'A.78']],
+          optimized: [30],
+          combined: 30
+        },
+        'faa-commercial-helicopter-to-private-then-commercial-asel': {
+          titles: ['Private Pilot - ASEL', 'Commercial Pilot - ASEL'],
+          paths: ['category-add', 'category-add'],
+          knowledge: ['Not required', 'Not required'],
+          endorsements: [['A.1', 'A.76', 'A.78'], ['A.1', 'A.78']],
+          optimized: [30, 40],
+          combined: 70
+        }
+      };
+      catalog.forEach((scenario) => {
+        const result = core.calculateAudit(scenario);
+        const expected = expectedAudits[scenario.id];
+        const actualTitles = result.audits.map((audit) => audit.title);
+        const actualPaths = result.audits.map((audit) => audit.path.pathType);
+        const actualKnowledge = result.audits.map((audit) => audit.path.knowledgeTest.status);
+        const actualEndorsements = result.audits.map((audit) => audit.endorsements.map((item) => item.item).sort());
+        const actualOptimized = result.audits.map((audit) => audit.summary.optimizedCombinedTotal);
+        if (JSON.stringify(actualTitles) !== JSON.stringify(expected.titles)) throw new Error(`${scenario.id} titles: ${JSON.stringify(actualTitles)}`);
+        if (JSON.stringify(actualPaths) !== JSON.stringify(expected.paths)) throw new Error(`${scenario.id} paths: ${JSON.stringify(actualPaths)}`);
+        if (JSON.stringify(actualKnowledge) !== JSON.stringify(expected.knowledge)) throw new Error(`${scenario.id} knowledge: ${JSON.stringify(actualKnowledge)}`);
+        if (JSON.stringify(actualEndorsements) !== JSON.stringify(expected.endorsements)) throw new Error(`${scenario.id} endorsements: ${JSON.stringify(actualEndorsements)}`);
+        if (JSON.stringify(actualOptimized) !== JSON.stringify(expected.optimized) || result.combined.optimizedHours !== expected.combined) {
+          throw new Error(`${scenario.id} carry-forward totals: stages ${JSON.stringify(actualOptimized)}, combined ${result.combined.optimizedHours}`);
+        }
+        result.audits.filter((audit) => audit.path.pathType === 'military-conversion').forEach((audit) => {
+          const rowText = JSON.stringify(audit.rows);
+          const rowByCfr = new Map(audit.rows.map((row) => [row.cfr, row]));
+          if (!rowByCfr.has('61.73(b)(1)') || !rowByCfr.has('61.73(h)(1)') || !rowByCfr.has('61.73(h)(2)') || !rowByCfr.has('61.73(h)(3)') || !rowText.includes('61.73(b)(2)') || !rowText.includes('61.73(b)(3)(i)/(ii)')) {
+            throw new Error(`${scenario.id} conversion audit is missing required 61.73 rows`);
+          }
+          if (!rowByCfr.get('61.73(h)(1)').requirement.includes('military pilot') ||
+              !rowByCfr.get('61.73(h)(2)').requirement.includes('undergraduate pilot training') ||
+              !rowByCfr.get('61.73(h)(2)').requirement.includes('military pilot rating') ||
+              !rowByCfr.get('61.73(h)(3)').requirement.includes('pilot proficiency check and instrument proficiency check in an aircraft as a military pilot')) {
+            throw new Error(`${scenario.id} conversion audit does not separately state every mandatory 61.73(h) record`);
+          }
+          if (/multiengine airplane|helicopter/i.test(rowByCfr.get('61.73(h)(3)').requirement)) {
+            throw new Error(`${scenario.id} incorrectly makes the generic 61.73(h)(3) application record category/class specific`);
+          }
+          if (!rowByCfr.get('61.73(h)(3)').overlapLogic.includes('Still required even when') || !rowByCfr.get('61.73(h)(3)').overlapLogic.includes('61.73(b)(3)(ii)')) {
+            throw new Error(`${scenario.id} conversion audit incorrectly lets the 10-hours route replace the mandatory 61.73(h)(3) record`);
+          }
+          if (!rowText.includes('pilot and instrument proficiency check') || rowText.includes('pilot or instrument proficiency check')) {
+            throw new Error(`${scenario.id} conversion audit misstated the conjunctive 61.73(b)(3)(i) proficiency checks`);
+          }
+          if (audit.gates.some((gate) => /recent time in kind/i.test(gate.gate))) {
+            throw new Error(`${scenario.id} conversion audit invented a recency window in the 61.73(b)(3) gate title`);
+          }
+          if (!audit.links.some((link) => link.url === rules.LINKS.cfr6173) || audit.endorsements.some((item) => item.item === 'A.78')) {
+            throw new Error(`${scenario.id} conversion sources/endorsements are incorrect`);
+          }
+          if (audit.endorsements.some((item) => item.cfrBasis.includes('9.2'))) {
+            throw new Error(`${scenario.id} uses a bare AC paragraph number that the CFR linker can misidentify as 14 CFR 9.2`);
+          }
+        });
+      });
+
+      const privateAdd = core.classifyPath({ credentials: ['commercial-rotor-helicopter'], flags: { priorFaa: true } }, 'private-asel');
+      const commercialAdd = core.classifyPath({ credentials: ['commercial-rotor-helicopter', 'private-asel'], flags: { priorFaa: true } }, 'commercial-asel');
+      const commercialClassAdd = core.classifyPath({ credentials: ['commercial-amel'], flags: { priorFaa: true, faaCommercialAmel: true } }, 'commercial-asel-add-class');
+      const genuineLevelUp = core.classifyPath({ credentials: ['private-asel'], flags: { priorFaa: true } }, 'commercial-asel');
+      if (privateAdd.pathType !== 'category-add' || privateAdd.knowledgeTest.status !== 'Not required' || !privateAdd.soloEndorsement.needed) {
+        throw new Error(`Commercial helicopter to Private ASEL classification is wrong: ${JSON.stringify(privateAdd)}`);
       }
-      if (Object.keys(pathCounts).length < 6) {
-        throw new Error(`Expected broad path coverage, got ${JSON.stringify(pathCounts)}`);
+      if (commercialAdd.pathType !== 'category-add' || commercialAdd.knowledgeTest.status !== 'Not required' || commercialAdd.soloEndorsement.needed) {
+        throw new Error(`Commercial helicopter plus Private ASEL to Commercial ASEL classification is wrong: ${JSON.stringify(commercialAdd)}`);
       }
-      if (combos.size < 12) {
-        throw new Error(`Expected generated scenario variety, got only ${combos.size} unique credential/target combos`);
+      if (commercialClassAdd.pathType !== 'class-add' || commercialClassAdd.soloEndorsement.needed || !commercialClassAdd.soloEndorsement.note.includes('only if the pilot elects to solo')) {
+        throw new Error(`Commercial AMEL to Commercial ASEL class-add solo handling is wrong: ${JSON.stringify(commercialClassAdd)}`);
       }
-      if (rotorCredentialCount < 20) {
-        throw new Error(`Expected meaningful rotorcraft-helicopter coverage, got only ${rotorCredentialCount} scenarios`);
-      }
-      if (multiEngineScenarioCount < 25) {
-        throw new Error(`Expected meaningful AMEL/multiengine coverage, got only ${multiEngineScenarioCount} scenarios`);
-      }
-      if (amelTargetPathCount < 15) {
-        throw new Error(`Expected AMEL add-class or commercial AMEL target paths, got only ${amelTargetPathCount} scenarios`);
+      if (genuineLevelUp.pathType !== 'level-change' || genuineLevelUp.knowledgeTest.status !== 'Required') {
+        throw new Error(`Genuine certificate-level increase lost knowledge-test handling: ${JSON.stringify(genuineLevelUp)}`);
       }
     }
   },

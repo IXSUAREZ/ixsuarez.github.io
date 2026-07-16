@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d2a52">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Flight Risk Assessment Tool (FRAT) | Suarez CFI</title>
+  <meta name="description" content="A free, student-friendly flight risk assessment tool for VFR and IFR preflight hazard identification, personal-minimum comparisons, mitigations, and instructor discussion.">
+  <link rel="canonical" href="https://suarezcfi.com/flight-risk-assessment/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Flight Risk Assessment Tool | Suarez CFI">
+  <meta property="og:description" content="Identify VFR or IFR preflight hazards, compare the plan with written personal minimums, and review practical mitigations.">
+  <meta property="og:url" content="https://suarezcfi.com/flight-risk-assessment/">
+  <meta property="og:site_name" content="Suarez CFI">
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/risk-panel-chart-texture.png" as="image">
+  <link rel="stylesheet" href="styles.css?v=20260715n">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Suarez CFI Flight Risk Assessment Tool",
+      "alternateName": "Suarez CFI FRAT",
+      "url": "https://suarezcfi.com/flight-risk-assessment/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "description": "An educational VFR and IFR preflight hazard-identification aid using PAVE, IMSAFE, personal minimums, and a likelihood-severity risk matrix.",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Suarez",
+        "url": "https://suarezcfi.com/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#assessmentMain">Skip to assessment</a>
+
+  <div class="app-shell" id="appShell">
+    <header class="app-header">
+      <a class="brand" href="/" aria-label="Suarez CFI home">
+        <span class="brand-primary">SUAREZ</span>
+        <span class="brand-accent">CFI</span>
+      </a>
+      <span class="header-divider" aria-hidden="true"></span>
+      <p class="product-name">Flight Risk Assessment</p>
+      <p class="training-label"><span class="material-symbols-rounded" aria-hidden="true">school</span> Training aid</p>
+      <div class="header-actions" aria-label="Assessment actions">
+        <span class="draft-status" id="draftStatus" role="status">Draft stays on this device</span>
+        <button class="icon-button" type="button" id="resetButton" aria-label="Start a new assessment" title="Start a new assessment">
+          <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="stepper" id="stepper" aria-label="Assessment progress"></nav>
+
+    <section class="context-bar" aria-label="Flight and pilot context">
+      <fieldset class="rules-switch" aria-label="Flight rules">
+        <legend class="sr-only">Flight rules</legend>
+        <label class="rule-option">
+          <input type="radio" name="flightRules" value="vfr" checked>
+          <span class="material-symbols-rounded" aria-hidden="true">light_mode</span>
+          <span>VFR</span>
+        </label>
+        <label class="rule-option">
+          <input type="radio" name="flightRules" value="ifr">
+          <span class="material-symbols-rounded" aria-hidden="true">cloud</span>
+          <span>IFR</span>
+        </label>
+      </fieldset>
+
+      <span class="context-divider" aria-hidden="true"></span>
+
+      <label class="context-select" for="certificateLevel">
+        <span class="material-symbols-rounded context-icon" aria-hidden="true">person</span>
+        <span class="context-field-copy">
+          <span class="context-kicker">Pilot certificate</span>
+          <select id="certificateLevel" name="certificateLevel">
+            <option value="student">Student Pilot</option>
+            <option value="private">Private Pilot</option>
+            <option value="commercial">Commercial Pilot</option>
+            <option value="atp">ATP</option>
+          </select>
+        </span>
+      </label>
+
+      <label class="rating-select" for="ratingStatus">
+        <span class="context-kicker">Rating / role</span>
+        <select id="ratingStatus" name="ratingStatus">
+          <option value="none">None</option>
+          <option value="instrument">Instrument rated</option>
+          <option value="cfi">CFI</option>
+          <option value="cfi_instrument">CFI + Instrument</option>
+          <option value="cfii">CFII</option>
+        </select>
+      </label>
+
+      <span class="context-divider" aria-hidden="true"></span>
+
+      <label class="context-stat" for="totalPicHours">
+        <span class="material-symbols-rounded" aria-hidden="true">timer</span>
+        <span>
+          <span class="context-value"><input id="totalPicHours" name="totalPicHours" type="number" min="0" step="1" inputmode="numeric" value="0"> hrs</span>
+          <span class="context-kicker">Total PIC</span>
+        </span>
+      </label>
+
+      <label class="context-stat" for="recentHours">
+        <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+        <span>
+          <span class="context-value"><input id="recentHours" name="recentHours" type="number" min="0" step="1" inputmode="numeric" value="0"> hrs</span>
+          <span class="context-kicker">Last 90 days</span>
+        </span>
+      </label>
+    </section>
+
+    <div class="assessment-layout">
+      <main class="assessment-main" id="assessmentMain" tabindex="-1">
+        <header class="step-heading">
+          <p class="step-eyebrow" id="stepEyebrow">Step 1 of 6</p>
+          <h1 id="stepTitle">Build your flight profile</h1>
+          <p id="stepDescription">Start with the operation, pilot context, and experience that apply to this flight.</p>
+        </header>
+
+        <form id="assessmentForm" novalidate>
+          <div class="form-errors" id="formErrors" role="alert" tabindex="-1" hidden></div>
+          <div class="step-fields" id="stepFields"></div>
+        </form>
+
+        <aside class="credential-note" id="credentialNote">
+          <span class="material-symbols-rounded" aria-hidden="true">info</span>
+          <div>
+            <strong>Credential level provides context, not permission.</strong>
+            <p>Your certificate, ratings, and instructor role determine which questions apply. They do not automatically raise your written personal minimums or aircraft limits.</p>
+          </div>
+        </aside>
+
+        <div class="step-actions">
+          <button class="button button-secondary" type="button" id="backButton">
+            <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+            Back
+          </button>
+          <button class="button button-primary" type="button" id="nextButton">
+            Continue
+            <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+          </button>
+        </div>
+
+        <section class="source-note" aria-labelledby="sourceNoteTitle">
+          <span class="material-symbols-rounded" aria-hidden="true">verified_user</span>
+          <div>
+            <h2 id="sourceNoteTitle">Educational hazard-identification aid</h2>
+            <p>This tool does not replace an official weather briefing, current NOTAMs, applicable regulations, the AFM/POH, aircraft performance calculations, instructor or operator procedures, or pilot-in-command judgment. A Low result never means a flight is safe.</p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="risk-panel" id="riskPanel" aria-labelledby="riskPanelTitle">
+        <header class="risk-panel-heading">
+          <h2 id="riskPanelTitle">Current risk picture</h2>
+          <button class="plain-icon-button" type="button" id="riskHelpButton" aria-label="How the risk matrix works">
+            <span class="material-symbols-rounded" aria-hidden="true">info</span>
+          </button>
+        </header>
+
+        <div class="overall-risk" id="overallRisk" data-level="incomplete" aria-live="polite">
+          <span class="material-symbols-rounded overall-risk-icon" id="overallRiskIcon" aria-hidden="true">pending</span>
+          <div>
+            <p class="overall-risk-label" id="overallRiskLabel">Incomplete</p>
+            <p class="overall-risk-guidance" id="overallRiskGuidance">Answer the safety-critical questions before relying on the result.</p>
+          </div>
+        </div>
+
+        <p class="risk-vector" id="riskVector" aria-label="Risk factor counts">
+          <span data-vector="stop">0 stop</span><i aria-hidden="true">•</i>
+          <span data-vector="high">0 high</span><i aria-hidden="true">•</i>
+          <span data-vector="moderate">0 moderate</span><i aria-hidden="true">•</i>
+          <span data-vector="low">0 low</span>
+        </p>
+
+        <section class="matrix-section" aria-labelledby="matrixTitle">
+          <h3 id="matrixTitle">Risk matrix <small>(Likelihood × Severity)</small></h3>
+          <div class="matrix" id="riskMatrix" role="img" aria-label="Likelihood by severity risk matrix"></div>
+        </section>
+
+        <section class="risk-progress" aria-labelledby="progressTitle">
+          <div class="progress-heading">
+            <h3 id="progressTitle">Progress</h3>
+            <span id="progressLabel">0 of 0 answered</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="progressTitle" id="progressTrack">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </section>
+
+        <section class="drivers-section" aria-labelledby="driversTitle">
+          <h3 id="driversTitle">Top risk drivers</h3>
+          <ol class="driver-list" id="driverList">
+            <li class="driver-empty">Answer questions to identify the factors driving this flight's risk.</li>
+          </ol>
+        </section>
+
+        <p class="highest-rule">
+          <span class="material-symbols-rounded" aria-hidden="true">shield</span>
+          <span>The highest unresolved hazard sets the result—low answers never cancel a high one.</span>
+        </p>
+
+        <button class="button button-primary button-full" type="button" id="mitigationsButton" disabled>
+          Review mitigations
+          <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+        </button>
+        <button class="button button-secondary button-full" type="button" id="saveButton">
+          <span class="material-symbols-rounded" aria-hidden="true">download</span>
+          Save draft on this device
+        </button>
+      </aside>
+    </div>
+  </div>
+
+  <button class="mobile-risk-bar" type="button" id="mobileRiskBar" aria-controls="riskPanel">
+    <span class="mobile-risk-state"><span class="material-symbols-rounded" aria-hidden="true">pending</span><strong>Incomplete</strong></span>
+    <span class="mobile-risk-progress">0 of 0</span>
+    <span class="material-symbols-rounded" aria-hidden="true">expand_less</span>
+  </button>
+
+  <dialog class="app-dialog" id="mitigationDialog" aria-labelledby="mitigationTitle">
+    <div class="dialog-header">
+      <div>
+        <p class="step-eyebrow">Change the plan, then rescore</p>
+        <h2 id="mitigationTitle">Review mitigations</h2>
+      </div>
+      <button class="icon-button" type="button" data-close-dialog="mitigationDialog" aria-label="Close mitigations">
+        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <p class="dialog-intro">A mitigation only reduces the hazard it actually changes. Notes alone do not earn risk credit.</p>
+    <div class="mitigation-list" id="mitigationList"></div>
+    <div class="dialog-actions">
+      <button class="button button-secondary" type="button" data-close-dialog="mitigationDialog">Close</button>
+      <button class="button button-primary" type="button" id="reassessButton">Apply changes &amp; reassess</button>
+    </div>
+  </dialog>
+
+  <dialog class="app-dialog app-dialog-small" id="riskHelpDialog" aria-labelledby="riskHelpTitle">
+    <div class="dialog-header">
+      <h2 id="riskHelpTitle">How this matrix works</h2>
+      <button class="icon-button" type="button" data-close-dialog="riskHelpDialog" aria-label="Close explanation">
+        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <p>The assessment combines each hazard's likelihood and severity using the FAA risk matrix. The highest unresolved result becomes the overall result. Low-risk answers never subtract from a High or Stop hazard.</p>
+    <ul class="help-list">
+      <li><strong>Low:</strong> Continue full planning and recheck changing conditions.</li>
+      <li><strong>Moderate:</strong> Mitigate where practical and recheck before departure.</li>
+      <li><strong>High:</strong> Do not depart on the current assessment; change the plan and rescore.</li>
+      <li><strong>Stop:</strong> The current plan is a no-go until the underlying condition is removed.</li>
+    </ul>
+    <button class="button button-primary button-full" type="button" data-close-dialog="riskHelpDialog">Got it</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <noscript>
+    <p class="noscript-message">This interactive assessment requires JavaScript. Use the FAA PAVE and IMSAFE checklists or discuss the flight with your instructor if JavaScript is unavailable.</p>
+  </noscript>
+
+  <script src="questions.js?v=20260715n"></script>
+  <script src="risk-model.js?v=20260715n"></script>
+  <script src="app.js?v=20260715n"></script>
+</body>
+</html>

@@ -1,204 +1,110 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createRequire } from "node:module";
+import { readFile } from "node:fs/promises";
 
 const require = createRequire(import.meta.url);
 const BANK = require("../questions.js");
-const { applicableQuestions } = require("../risk-model.js");
+const RISK = require("../risk-model.js");
 
-const { STEPS, PROFILE_PRESETS, QUESTIONS, MITIGATIONS, createDefaultAssessment } = BANK;
+const {
+  SECTIONS,
+  CONTEXT_OPTIONS,
+  FACTORS,
+  PERSONAL_MINIMUM_FIELDS,
+  createDefaultContext,
+  normalizeContext,
+  createBlankMinimums,
+  createBlankFlight
+} = BANK;
 
-function idsFor(state) {
-  return new Set(applicableQuestions(state, QUESTIONS).map((question) => question.id));
-}
-
-test("question bank is large, unique, structured, and spans all PAVE areas", () => {
-  assert.ok(QUESTIONS.length >= 28);
-  assert.equal(new Set(QUESTIONS.map((question) => question.id)).size, QUESTIONS.length);
-  assert.deepEqual(STEPS.map((step) => step.id), [
-    "profile", "pilot", "aircraft", "environment", "external", "review"
+test("quick FRAT has exactly 12 core PAVE factors and three conditionals", () => {
+  assert.equal(FACTORS.length, 15);
+  assert.equal(FACTORS.filter((factor) => factor.core).length, 12);
+  assert.equal(FACTORS.filter((factor) => !factor.core).length, 3);
+  assert.deepEqual(SECTIONS.map((section) => section.id), [
+    "pilot", "aircraft", "environment", "external"
   ]);
 
-  const paveAreas = new Set(QUESTIONS.map((question) => question.pave));
-  for (const area of ["PILOT", "AIRCRAFT", "ENVIRONMENT", "EXTERNAL"]) {
-    assert.ok(paveAreas.has(area), `missing ${area}`);
-  }
-
-  for (const question of QUESTIONS) {
-    assert.match(question.id, /^[a-z0-9_]+$/);
-    assert.equal(typeof question.label, "string");
-    assert.ok(question.label.length > 5);
-    assert.ok(["profile", "pilot", "aircraft", "environment", "external"].includes(question.step));
-    assert.ok(["select", "boolean", "number"].includes(question.type));
-    if (question.type === "select") {
-      assert.ok(Array.isArray(question.options) && question.options.length >= 2);
-    }
+  const ids = new Set(FACTORS.map((factor) => factor.id));
+  assert.equal(ids.size, FACTORS.length);
+  for (const factor of FACTORS) {
+    assert.ok(SECTIONS.some((section) => section.id === factor.section));
+    assert.ok(factor.label.length > 5);
+    assert.ok(factor.prompt.length > 10);
   }
 });
 
-test("certificate presets keep instrument rating and CFI role separate", () => {
-  assert.deepEqual(PROFILE_PRESETS.map((preset) => preset.id), [
-    "student", "private", "instrument-rated", "commercial", "cfi", "atp"
-  ]);
+test("default VFR path has 12 factors and the reachable maximum has 14", () => {
+  const defaultContext = createDefaultContext();
+  assert.equal(defaultContext.role, "with_instructor");
+  assert.equal(RISK.applicableFactors(defaultContext, FACTORS).length, 12);
 
-  const validCertificateGrades = new Set(["student", "private", "commercial", "atp"]);
-  for (const preset of PROFILE_PRESETS) {
-    assert.ok(validCertificateGrades.has(preset.patch.certificate));
-    assert.equal(typeof preset.patch.instrument, "boolean");
-    assert.equal(typeof preset.patch.cfi, "boolean");
-  }
-
-  const instrument = PROFILE_PRESETS.find((preset) => preset.id === "instrument-rated");
-  assert.equal(instrument.patch.certificate, "private");
-  assert.equal(instrument.patch.instrument, true);
-  assert.equal(instrument.patch.cfi, false);
-
-  const cfi = PROFILE_PRESETS.find((preset) => preset.id === "cfi");
-  assert.equal(cfi.patch.certificate, "commercial");
-  assert.equal(cfi.patch.instrument, true);
-  assert.equal(cfi.patch.cfi, true);
+  const worstCase = {
+    certificate: "student",
+    role: "student_solo",
+    rules: "ifr",
+    dayNight: "night"
+  };
+  const applicable = RISK.applicableFactors(worstCase, FACTORS);
+  assert.equal(applicable.length, 14);
+  assert.deepEqual(
+    applicable.filter((factor) => !factor.core).map((factor) => factor.id).sort(),
+    ["night_readiness", "student_solo_readiness"]
+  );
 });
 
-test("default assessment preserves certificate, rating, role, and operation separation", () => {
-  const blank = createDefaultAssessment();
-  assert.equal(blank.profile.certificate, null);
-  assert.equal(blank.profile.ratings.instrument, null);
-  assert.equal(blank.profile.roles.cfi, null);
-  assert.equal(blank.operation.rules, null);
-  assert.deepEqual(blank.answers, {});
-
-  const cfi = createDefaultAssessment("cfi");
-  assert.equal(cfi.profile.certificate, "commercial");
-  assert.equal(cfi.profile.ratings.instrument, true);
-  assert.equal(cfi.profile.roles.cfi, true);
-
-  const atp = createDefaultAssessment("atp");
-  assert.equal(atp.profile.certificate, "atp");
-  assert.equal(atp.profile.ratings.instrument, true);
-  assert.equal(atp.profile.roles.cfi, false);
-});
-
-test("VFR and IFR applicability branches are deterministic", () => {
-  const vfr = createDefaultAssessment("private");
-  vfr.operation.intendedPIC = true;
-  vfr.operation.rules = "VFR";
-  vfr.operation.dayNight = "day";
-  let ids = idsFor(vfr);
-
-  assert.ok(ids.has("vfr_conditions_legal"));
-  assert.ok(ids.has("personal_vfr_ceiling_min_ft"));
-  assert.ok(ids.has("vfr_escape_plan"));
-  assert.ok(!ids.has("ifr_pic_eligibility"));
-  assert.ok(!ids.has("ifr_plan_legal"));
-  assert.ok(!ids.has("approach_minima_legal"));
-  assert.ok(ids.size >= 28, "a normal VFR assessment should cover at least 28 questions");
-
-  const ifr = createDefaultAssessment("instrument-rated");
-  ifr.operation.intendedPIC = true;
-  ifr.operation.rules = "IFR";
-  ifr.operation.dayNight = "day";
-  ifr.operation.approachPlanned = false;
-  ids = idsFor(ifr);
-
-  assert.ok(ids.has("ifr_pic_eligibility"));
-  assert.ok(ids.has("ifr_aircraft_suitable"));
-  assert.ok(ids.has("ifr_plan_legal"));
-  assert.ok(!ids.has("vfr_conditions_legal"));
-  assert.ok(!ids.has("personal_vfr_ceiling_min_ft"));
-  assert.ok(!ids.has("approach_minima_legal"));
-
-  ifr.operation.approachPlanned = true;
-  ids = idsFor(ifr);
-  assert.ok(ids.has("approach_minima_legal"));
-  assert.ok(ids.has("personal_ifr_ceiling_margin_ft"));
-  assert.ok(ids.has("forecast_ifr_visibility_margin_sm"));
-  assert.ok(ids.has("missed_approach_diversion_plan"));
-  assert.ok(ids.size >= 28, "a normal IFR approach assessment should cover at least 28 questions");
-});
-
-test("night, student-solo, passenger, training, and CFI questions branch independently", () => {
-  const student = createDefaultAssessment("student");
-  student.operation.intendedPIC = true;
-  student.operation.rules = "VFR";
-  student.operation.dayNight = "night";
-  student.operation.studentSolo = true;
-  let ids = idsFor(student);
-
-  assert.ok(ids.has("student_solo"));
-  assert.ok(ids.has("student_solo_within_limits"));
-  assert.ok(ids.has("recent_night_proficiency"));
-  assert.ok(ids.has("night_visual_environment"));
-  assert.ok(!ids.has("cfi_qualified_for_flight"));
-
-  const cfi = createDefaultAssessment("cfi");
-  cfi.operation.intendedPIC = true;
-  cfi.operation.rules = "VFR";
-  cfi.operation.dayNight = "day";
-  cfi.operation.trainingFlight = true;
-  ids = idsFor(cfi);
-
-  assert.ok(ids.has("cfi_qualified_for_flight"));
-  assert.ok(ids.has("crew_roles_clear"));
-  assert.ok(!ids.has("student_solo_within_limits"));
-
-  const privatePassenger = createDefaultAssessment("private");
-  privatePassenger.operation.intendedPIC = true;
-  privatePassenger.operation.rules = "VFR";
-  privatePassenger.operation.dayNight = "day";
-  privatePassenger.operation.passengers = true;
-  ids = idsFor(privatePassenger);
-  assert.ok(ids.has("crew_roles_clear"));
-  assert.ok(ids.has("passenger_pressure"));
-
-  privatePassenger.operation.passengers = false;
-  ids = idsFor(privatePassenger);
-  assert.ok(!ids.has("crew_roles_clear"));
-  assert.ok(!ids.has("passenger_pressure"));
-});
-
-test("question bank uses concrete inputs and user/CFI/AFM/POH comparisons instead of universal thresholds", () => {
-  const comparisons = QUESTIONS.filter((question) => question.comparison);
-  assert.ok(comparisons.length >= 8);
-
-  for (const question of comparisons) {
-    assert.equal(question.type, "number");
-    assert.ok(question.comparison.limitQuestionId);
-    assert.ok(["minimum", "maximum"].includes(question.comparison.mode));
-    const limit = QUESTIONS.find((candidate) => candidate.id === question.comparison.limitQuestionId);
-    assert.ok(limit, `missing limit question for ${question.id}`);
-    assert.equal(limit.type, "number");
-    assert.equal(Object.prototype.hasOwnProperty.call(limit, "defaultValue"), false);
-  }
-
-  const crosswind = QUESTIONS.find((question) => question.id === "forecast_crosswind_max_kt");
-  assert.equal(crosswind.comparison.limitQuestionId, "personal_crosswind_max_kt");
-
-  const imsafe = QUESTIONS.filter((question) => question.id.startsWith("imsafe_"));
-  assert.equal(imsafe.length, 6);
-  assert.ok(imsafe.every((question) => question.type === "select"));
-  assert.ok(imsafe.every((question) => !question.options.some((item) => typeof item.value === "string" && item.value.length > 20)));
-});
-
-test("mitigation definitions update only allow-listed real fields", () => {
-  assert.ok(MITIGATIONS.length >= 6);
-  const state = createDefaultAssessment("private");
-  state.answers.forecast_crosswind_max_kt = 15;
-  state.notes = "original note";
-
-  const weather = MITIGATIONS.find((item) => item.id === "delay_for_weather");
-  const next = weather.apply(state, {
-    forecast_crosswind_max_kt: 8,
-    personal_crosswind_max_kt: 20,
-    notes: "free text should be ignored"
+test("context normalization prevents ambiguous or impossible student-solo combinations", () => {
+  assert.deepEqual(normalizeContext({ certificate: "student", role: "acting_pic", rules: "vfr", dayNight: "day" }), {
+    certificate: "student", role: "with_instructor", rules: "vfr", dayNight: "day"
   });
+  assert.deepEqual(normalizeContext({ certificate: "student", role: "student_solo", rules: "ifr", dayNight: "night" }), {
+    certificate: "student", role: "student_solo", rules: "vfr", dayNight: "night"
+  });
+  assert.equal(normalizeContext({ certificate: "private", role: "student_solo" }).role, "acting_pic");
+});
 
-  assert.equal(next.answers.forecast_crosswind_max_kt, 8);
-  assert.equal(next.answers.personal_crosswind_max_kt, undefined);
-  assert.equal(next.notes, "original note");
-  assert.deepEqual(next.mitigationHistory[0].fields, ["forecast_crosswind_max_kt"]);
-  assert.equal(state.answers.forecast_crosswind_max_kt, 15, "mitigation returns a new state");
+test("certificate changes context only and never changes risk-factor count", () => {
+  const base = { role: "acting_pic", rules: "vfr", dayNight: "day" };
+  for (const certificate of CONTEXT_OPTIONS.certificate) {
+    const factors = RISK.applicableFactors({ ...base, certificate: certificate.value }, FACTORS);
+    assert.equal(factors.length, 12);
+  }
+});
 
-  const reduceLoad = MITIGATIONS.find((item) => item.id === "reduce_load_recalculate");
-  assert.ok(!reduceLoad.allowedFields.includes("available_runway_length_ft"),
-    "reducing load cannot increase the usable runway length");
+test("personal minimums are blank and student-solo visibility floors are explicit", () => {
+  const minimums = createBlankMinimums();
+  assert.equal(Object.keys(minimums).length, PERSONAL_MINIMUM_FIELDS.length);
+  assert.ok(Object.values(minimums).every((value) => value === ""));
+  assert.ok(PERSONAL_MINIMUM_FIELDS.every((field) => !("defaultValue" in field)));
+
+  const dayVisibility = PERSONAL_MINIMUM_FIELDS.find((field) => field.id === "vfr_day_visibility_sm");
+  const nightVisibility = PERSONAL_MINIMUM_FIELDS.find((field) => field.id === "vfr_night_visibility_sm");
+  assert.equal(dayVisibility.studentSoloFloor, 3);
+  assert.equal(nightVisibility.studentSoloFloor, 5);
+});
+
+test("per-flight answers begin blank and are separate from context and minimums", () => {
+  const flight = createBlankFlight();
+  assert.deepEqual(flight.answers, {});
+  assert.equal(Object.prototype.hasOwnProperty.call(flight, "context"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(flight, "minimums"), false);
+});
+
+test("required primary-source links and no-preset language are present", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
+  const combined = `${html}\n${app}`;
+  const requiredUrls = [
+    "https://www.faa.gov/general/flight-risk-assessment-tool-frat-faa-safety-team",
+    "https://www.faa.gov/sites/faa.gov/files/training_testing/training/fits/guidance/personal%20minimums%20checklist.pdf",
+    "https://www.faa.gov/sites/faa.gov/files/2022-01/Personal%20Minimums.pdf",
+    "https://www.faa.gov/sites/faa.gov/files/2022-06/risk_management_handbook_2A.pdf",
+    "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-C/section-61.87",
+    "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-C/section-61.89"
+  ];
+  for (const url of requiredUrls) {
+    assert.ok(combined.includes(url), `missing ${url}`);
+  }
+  assert.match(combined, /framework, not universal certificate-tier numeric recommendations/i);
 });

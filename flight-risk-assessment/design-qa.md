@@ -1,37 +1,42 @@
-# Design QA — Flight Risk Assessment
+# Design QA — Quick Flight Risk Assessment
 
-## Comparison input
+## Evidence
 
-- Approved hybrid target: /Users/diegosuarez/.codex/generated_images/019f6861-571d-7fa1-9f55-99483ae87a7a/exec-f4f3c7c5-1b3a-4a09-9c00-d9d1421ad086.png
-- Final desktop capture: /Users/diegosuarez/.codex/visualizations/2026/07/16/019f6861-571d-7fa1-9f55-99483ae87a7a/frat-implementation-qa/desktop-high-viewport.png
-- Same-input side-by-side comparison: /Users/diegosuarez/.codex/visualizations/2026/07/16/019f6861-571d-7fa1-9f55-99483ae87a7a/frat-implementation-qa/reference-vs-implementation.png
-- Responsive captures: /Users/diegosuarez/.codex/visualizations/2026/07/16/019f6861-571d-7fa1-9f55-99483ae87a7a/frat-implementation-qa/tablet-high.png, /Users/diegosuarez/.codex/visualizations/2026/07/16/019f6861-571d-7fa1-9f55-99483ae87a7a/frat-implementation-qa/mobile-high.png, and /Users/diegosuarez/.codex/visualizations/2026/07/16/019f6861-571d-7fa1-9f55-99483ae87a7a/frat-implementation-qa/mobile-risk-picture.png
+- Desktop capture: `/Users/diegosuarez/.codex/visualizations/2026/07/16/019f6a02-70a4-7552-b643-1e237c1085cd/frat-quick-redesign-qa/frat-desktop-1440x1000.png`
+- Mobile capture: `/Users/diegosuarez/.codex/visualizations/2026/07/16/019f6a02-70a4-7552-b643-1e237c1085cd/frat-quick-redesign-qa/frat-mobile-390x844-second.png`
+- Real-browser checks used the local `/flight-risk-assessment/` route and the `/frat/` alias.
+- Automated checks: `npm test` (15 passing tests) and `git diff --check`.
 
-## Mandatory comparison passes
+## Every-flight workflow
 
-### Core design and functionality
+- A routine VFR assessment presents exactly 12 one-tap PAVE factors.
+- Student solo, IFR, and night each add only their applicable factor. The bank contains 12 core plus three conditional factors, while both the UI and direct model normalize student solo to VFR and therefore expose no more than 14 factors.
+- Changing certificate, role, rules, or day/night clears per-flight answers. Saved minimums remain available for the next flight.
+- A known unacceptable answer immediately produces **Stop — no-go on current plan**, even while other factors are unanswered.
+- A fully answered assessment with one concern produces **Review required**. Confirmed answers never offset that concern.
+- An all-confirmed assessment produces **Low — continue planning**, alongside the warning that Low never means safe or make the PIC decision.
+- Legacy or malformed saved answers are discarded by the app and remain Incomplete at the risk-model boundary; they cannot be mistaken for a completed Low result.
 
-- **Typography:** Newsreader supplies the editorial aviation display style; Inter supplies compact form and status copy. Desktop hierarchy, weights, and wrapping match the approved direction. Mobile uses a shorter Environment title to preserve hierarchy without crowding.
-- **Spacing and layout:** Desktop uses the approved two-pane structure: stepper, profile controls, and assessment at left; persistent risk picture at right beginning below the primary header. Tablet and mobile stack the complete risk picture and keep a compact live risk bar in view. No horizontal overflow was detected at 1440, 834, or 390 CSS pixels.
-- **Colors and surfaces:** Navy, warm white, safety yellow, green, amber, red, and Stop tokens map to the target. The right panel uses a generated raster chart texture beneath a light surface wash. Cards, dividers, borders, radii, and focus rings are consistent.
-- **Images and icons:** The risk-panel texture is a real optimized raster asset. Interface icons use Google Material Symbols Rounded; there are no inline SVG or CSS-art asset substitutes.
-- **Copy and content:** Certificate, instrument rating, CFI role, and experience are visibly separated. The credential note explicitly states that credentials provide context rather than automatic risk credit. Safety and privacy language remains readable at every viewport.
-- **States and interactions:** Verified in the in-app browser: incomplete state, required-answer error state, VFR/IFR branching, student/private/rating changes, High and Moderate results, matrix highlighting, live progress, mitigation dialog, verified input changes, rescoring, local draft restore, reset confirmation, review summary, and copy-blocked fallback. Browser console warnings/errors: none.
-- **AI shortcut artifacts:** No placeholder art, fake illustration, custom SVG, emoji iconography, or decorative blob substitutes are present.
+## Personal minimums
 
-### Accessibility and resilience
+- Minimums begin blank and are saved separately from the per-flight assessment.
+- The dialog states that FAA guidance supplies an individualized framework, not certificate-tier numeric recommendations.
+- Student-solo fields are labeled as instructor limits. Day/night visibility cannot be saved below the § 61.89 floors of 3/5 SM, and IFR-only fields are hidden for the student-solo context.
+- The current flight displays only the applicable saved limits: VFR ceiling/visibility for VFR, IFR margins for IFR, and the applicable day/night fuel reserve.
 
-- Semantic headings, landmarks, fieldsets, labels, dialogs, progressbar state, live regions, and button names were confirmed in browser snapshots.
-- Skip-link, visible focus rings, reduced-motion support, native inputs, and dialog close controls are implemented.
-- Mobile primary controls and the reset control meet practical touch sizing; the full-width sticky navigation and risk bar are 64px tall.
-- Long question copy wraps without clipping; desktop, tablet, and mobile captures show no overlap or horizontal overflow.
-- Inactive matrix cells remain visually quiet while retaining full likelihood, severity, and risk labels for assistive technology.
+## Responsive and accessibility QA
 
-## Findings
+- At 1440 CSS pixels, the factor list and sticky decision picture form a readable two-column layout with no horizontal overflow.
+- At 390 × 844 CSS pixels, context controls stack, answer choices become a two-by-two grid, the decision picture moves ahead of the factors, and document width remains 390 pixels with no horizontal overflow.
+- A mobile QA pass identified and corrected a selector collision affecting VFR/IFR and Day/Night alignment. The repeated capture confirmed centered, full-height choices.
+- Browser snapshots confirmed semantic headings, landmarks, labeled fieldsets, grouped answer buttons, progressbar state, live status text, a modal dialog, and regulatory/advisory source separation.
+- Browser console result: 0 errors and 0 warnings.
+- The short `/frat/?qa=1` path preserved the query string and resolved to `/flight-risk-assessment/?qa=1`.
+
+## Result
 
 - P0: none.
 - P1: none.
 - P2: none.
-- P3 accepted product differences: the implementation uses official FAA likelihood/severity terminology and begins Environment with current-information dropdowns before personal-limit comparisons. These differences preserve the approved visual system while supporting the expanded safety model.
 
-final result: passed
+Final result: passed.

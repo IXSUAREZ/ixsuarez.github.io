@@ -458,11 +458,11 @@
     });
   }
 
-  function render() {
+  function render(scrollActiveStepIntoView) {
     ensureState();
     result = RISK.assessAssessment(state, QUESTION_BANK.QUESTIONS);
     syncHeaderControls();
-    renderStepper();
+    renderStepper(scrollActiveStepIntoView);
     renderCurrentStep();
     renderRiskPicture();
   }
@@ -586,7 +586,7 @@
     state.profile.qualificationSelection = normalizedSelection;
   }
 
-  function renderStepper() {
+  function renderStepper(scrollActiveStepIntoView) {
     els.stepper.innerHTML = QUESTION_BANK.STEPS.map(function (step, index) {
       var copy = STEP_COPY[step.id];
       var complete = stepIsComplete(step.id);
@@ -608,7 +608,7 @@
 
     window.requestAnimationFrame(function () {
       var active = els.stepper.querySelector("[aria-current=\"step\"]");
-      if (active && window.innerWidth <= 760) {
+      if (scrollActiveStepIntoView && active && window.innerWidth <= 760) {
         active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
       }
     });
@@ -1340,7 +1340,7 @@
     state.ui.currentStep = currentStep;
     clearErrors();
     scheduleSave();
-    render();
+    render(true);
     els.assessmentMain.scrollIntoView({ behavior: "smooth", block: "start" });
     els.assessmentMain.focus({ preventScroll: true });
   }

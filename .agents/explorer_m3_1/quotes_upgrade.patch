@@ -1,0 +1,129 @@
+diff --git a/index.html b/index.html
+index 1000000..2000000
+--- a/index.html
++++ b/index.html
+@@ -1243,6 +1243,11 @@
+     .manifesto-strip.is-reveal-complete > .container {
+       will-change: auto;
+     }
++    .manifesto-blockquote {
++      margin: 0;
++      padding: 0;
++      border: none;
++    }
+     .manifesto-quote {
+       font-family: var(--font-display);
+       font-style: italic;
+-      font-size: clamp(2.55rem, 4.1vw, 3.1rem);
+-      font-weight: 600;
+-      color: #F3F3F0;
+-      letter-spacing: 0;
+-      line-height: 1.22;
+-      max-width: 860px;
++      font-size: clamp(1.85rem, 3.6vw, 3.25rem);
++      font-weight: 500;
++      color: #F8F8F6;
++      letter-spacing: -0.01em;
++      line-height: 1.3;
++      max-width: 920px;
+       margin: 0 auto;
+       quotes: none;
+     }
+@@ -1273,9 +1278,35 @@
+     .manifesto-sig {
+       display: block;
+-      margin-top: 24px;
++      margin-top: 28px;
+       font-family: var(--font-signature);
+-      font-size: 2rem;
++      font-size: clamp(2.0rem, 2.5vw, 2.6rem);
+       color: var(--gold);
+-      letter-spacing: 0;
++      font-style: normal;
++      letter-spacing: 0.03em;
++    }
++
++    /* Premium Manifesto Quote Block Overlays */
++    .manifesto-strip::after {
++      content: "";
++      position: absolute;
++      inset: 0;
++      pointer-events: none;
++      z-index: 0;
++      transition: opacity 1.5s ease;
++    }
++    .manifesto-strip--one::after {
++      background: 
++        radial-gradient(circle at 12% 25%, rgba(127, 167, 168, 0.16) 0%, transparent 45%),
++        radial-gradient(circle at 88% 75%, rgba(201, 151, 76, 0.12) 0%, transparent 55%);
++      opacity: 0.9;
++    }
++    .manifesto-strip--two::after {
++      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' fill='none'%3E%3Cpath d='M-100,100 C300,50 500,250 1300,120' stroke='rgba(127,167,168,0.035)' stroke-width='1.5' stroke-dasharray='4,4'/%3E%3Cpath d='M-100,150 C350,80 550,220 1300,100' stroke='rgba(255,255,255,0.025)' stroke-width='2'/%3E%3Cpath d='M-100,200 C400,110 600,190 1300,80' stroke='rgba(201,151,76,0.02)' stroke-width='1.5'/%3E%3Cpath d='M-100,250 C450,140 650,160 1300,60' stroke='rgba(127,167,168,0.015)' stroke-dasharray='8,8' stroke-width='1'/%3E%3C/svg%3E");
++      background-size: cover;
++      background-position: center;
++      opacity: 0.85;
++    }
++    .manifesto-strip--three::after {
++      background: 
++        radial-gradient(circle at 50% 125%, rgba(201, 151, 76, 0.16) 0%, rgba(127, 167, 168, 0.05) 50%, transparent 80%),
++        radial-gradient(circle at 85% 15%, rgba(127, 167, 168, 0.08) 0%, transparent 40%);
++      opacity: 0.95;
+     }
+ 
+     @keyframes premium-float {
+@@ -1318,3 +1349,4 @@
+       .manifesto-quote {
+-        font-size: 2.9rem;
++        font-size: clamp(1.75rem, 4.5vw, 2.35rem);
++        line-height: 1.25;
+       }
+@@ -1407,6 +1439,8 @@
+       .manifesto-quote {
+-        font-size: 2.3rem;
++        font-size: clamp(1.6rem, 5.2vw, 2.05rem);
++        line-height: 1.22;
+       }
+       .manifesto-sig {
+-        font-size: 1.75rem;
++        font-size: clamp(1.65rem, 3.8vw, 1.95rem);
++        margin-top: 22px;
+       }
+@@ -1882,6 +1916,8 @@
+-    <div class="manifesto-strip">
++    <div class="manifesto-strip manifesto-strip--one">
+       <div class="container">
+-        <p class="manifesto-quote" aria-label="Confidence in the cockpit starts on the ground.">&ldquo;Confidence in the cockpit<br>starts on the ground.&rdquo;</p>
+-        <span class="manifesto-sig">— Diego Suarez</span>
++        <blockquote class="manifesto-blockquote">
++          <p class="manifesto-quote" aria-label="Confidence in the cockpit starts on the ground.">&ldquo;Confidence in the cockpit<br>starts on the ground.&rdquo;</p>
++          <cite class="manifesto-sig">— Diego Suarez</cite>
++        </blockquote>
+       </div>
+     </div>
+ 
+@@ -1970,6 +2006,8 @@
+-    <div class="manifesto-strip">
++    <div class="manifesto-strip manifesto-strip--two">
+       <div class="container">
+-        <p class="manifesto-quote" aria-label="The right first step makes the whole path feel possible.">&ldquo;The right first step makes<br>the whole path feel possible.&rdquo;</p>
+-        <span class="manifesto-sig">— Diego Suarez</span>
++        <blockquote class="manifesto-blockquote">
++          <p class="manifesto-quote" aria-label="The right first step makes the whole path feel possible.">&ldquo;The right first step makes<br>the whole path feel possible.&rdquo;</p>
++          <cite class="manifesto-sig">— Diego Suarez</cite>
++        </blockquote>
+       </div>
+     </div>
+ 
+@@ -2139,6 +2177,8 @@
+-    <div class="manifesto-strip">
++    <div class="manifesto-strip manifesto-strip--three">
+       <div class="container">
+-        <p class="manifesto-quote" aria-label="Good pilots are built one thoughtful lesson at a time.">&ldquo;Good pilots are built<br>one thoughtful lesson at a time.&rdquo;</p>
+-        <span class="manifesto-sig">— Diego Suarez</span>
++        <blockquote class="manifesto-blockquote">
++          <p class="manifesto-quote" aria-label="Good pilots are built one thoughtful lesson at a time.">&ldquo;Good pilots are built<br>one thoughtful lesson at a time.&rdquo;</p>
++          <cite class="manifesto-sig">— Diego Suarez</cite>
++        </blockquote>
+       </div>
+     </div>

@@ -1,31 +1,31 @@
 :root {
-  --bg: #ffffff;
+  --bg: #F4F6FB;
   --bg-soft: #fafafa;
   --bg-elevated: #f5f5f5;
-  --surface: rgba(255, 255, 255, 0.55);
+  --surface: var(--glass-bg);
   --surface-soft: rgba(255, 255, 255, 0.42);
-  --surface-raised: rgba(255, 255, 255, 0.92);
-  --surface-strong: rgba(255, 255, 255, 0.96);
+  --surface-raised: rgba(255, 255, 255, 0.85);
+  --surface-strong: rgba(255, 255, 255, 0.94);
   --surface-tint: rgba(245, 245, 245, 0.92);
-  --line: rgba(87, 99, 118, 0.16);
-  --line-strong: rgba(87, 99, 118, 0.26);
+  --line: var(--glass-edge);
+  --line-strong: rgba(13, 19, 48, 0.15);
   --line-bright: rgba(255, 255, 255, 0.78);
-  --hairline: rgba(23, 32, 51, 0.06);
-  --text: #172133;
-  --text-strong: #0f1828;
-  --text-muted: #69768c;
+  --hairline: rgba(13, 19, 48, 0.05);
+  --text: var(--ink);
+  --text-strong: var(--navy);
+  --text-muted: var(--ink-muted);
   --text-muted-2: #8a94a8;
-  --accent: #1f5ed6;
-  --accent-strong: #173f9e;
-  --accent-soft: #e8f0ff;
-  --accent-ink: #163b84;
+  --accent: var(--yellow-deep);
+  --accent-strong: var(--yellow-ink);
+  --accent-soft: var(--yellow-soft);
+  --accent-ink: var(--yellow-ink);
   --category-accent: var(--accent);
   --category-soft: var(--accent-soft);
-  --category-line: #bfd4ff;
+  --category-line: var(--yellow-line);
   --category-ink: var(--accent-ink);
   --warn: #e60000;
   --warn-soft: #ffeaeb;
-  --display: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --display: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --sans: "Inter", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", monospace;
   --radius-xs: 10px;
@@ -33,19 +33,13 @@
   --radius: 22px;
   --radius-lg: 30px;
   --radius-xl: 36px;
-  --shadow-sm:
-    0 10px 26px rgba(15, 23, 42, 0.036),
-    0 3px 10px rgba(15, 23, 42, 0.024);
-  --shadow-md:
-    0 18px 46px rgba(15, 23, 42, 0.048),
-    0 6px 18px rgba(15, 23, 42, 0.03);
-  --shadow-lg:
-    0 26px 72px rgba(15, 23, 42, 0.072),
-    0 10px 22px rgba(15, 23, 42, 0.036);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
   --shadow-inset:
     inset 0 1px 0 rgba(255, 255, 255, 0.66),
     inset 0 -1px 0 rgba(255, 255, 255, 0.18);
-  --panel-blur: 30px;
+  --panel-blur: 16px;
   --edge-blur-visible: 100px;
   --edge-blur-buffer: 100px;
   --edge-blur-height: calc(var(--edge-blur-visible) + var(--edge-blur-buffer));
@@ -58,11 +52,11 @@
 
 /* Unified workbench redesign */
 :root {
-  --workbench-panel: rgba(255, 255, 255, 0.78);
-  --workbench-panel-strong: rgba(255, 255, 255, 0.94);
-  --workbench-border: rgba(87, 99, 118, 0.18);
-  --workbench-border-strong: rgba(87, 99, 118, 0.28);
-  --workbench-shadow: 0 12px 28px rgba(15, 23, 42, 0.045);
+  --workbench-panel: var(--glass-bg);
+  --workbench-panel-strong: var(--glass-bg-strong);
+  --workbench-border: var(--glass-edge);
+  --workbench-border-strong: rgba(13, 19, 48, 0.14);
+  --workbench-shadow: var(--shadow-md);
   --workbench-radius: 14px;
 }
 
@@ -72,10 +66,12 @@
   max-width: none;
   margin: 0;
   padding: 14px 24px;
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--glass-edge);
   border-radius: 0;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.035);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
 }
 
 .topbar-brand {

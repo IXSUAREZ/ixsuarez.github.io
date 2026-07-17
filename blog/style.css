@@ -856,6 +856,54 @@ body.cat-written-prep {
   --category-ink: #1d13be;
 }
 
+.cat-systems,
+body.cat-systems {
+  --category-accent: #1f2937;
+  --category-soft: #edeeef;
+  --category-line: #c7cacd;
+  --category-ink: #151d27;
+}
+
+.cat-medical,
+body.cat-medical {
+  --category-accent: #db2777;
+  --category-soft: #fceef4;
+  --category-line: #f6c9dd;
+  --category-ink: #a01553;
+}
+
+.cat-ground-school,
+body.cat-ground-school {
+  --category-accent: #65a30d;
+  --category-soft: #f3f8ec;
+  --category-line: #d9e8c3;
+  --category-ink: #477605;
+}
+
+.cat-currency,
+body.cat-currency {
+  --category-accent: #0d9488;
+  --category-soft: #ecf6f5;
+  --category-line: #c3e4e1;
+  --category-ink: #056b62;
+}
+
+.cat-sport-pilot,
+body.cat-sport-pilot {
+  --category-accent: #16a34a;
+  --category-soft: #ecf8f1;
+  --category-line: #c5e8d2;
+  --category-ink: #0b7633;
+}
+
+.cat-recreational-pilot,
+body.cat-recreational-pilot {
+  --category-accent: #65a30d;
+  --category-soft: #f3f8ec;
+  --category-line: #d9e8c3;
+  --category-ink: #477605;
+}
+
 /* ==========================================================================
    Visual Card & Article Color-Coded Decorations
    ========================================================================== */
@@ -895,4 +943,46 @@ body[class*="cat-"] blockquote {
 .hub-card[class*="cat-"]:hover {
   border-color: var(--category-accent);
   box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+/* === Design Upgrade 2026-07: shared motif & category retrofits === */
+body[class*="cat-"] .article-header .eyebrow {
+  background: var(--category-soft);
+  border-color: var(--category-line);
+  color: var(--category-ink);
+  font-weight: 600;
+}
+.hub-card[class*="cat-"] > span { color: var(--category-ink); }
+
+.waypoint-list { list-style:none; margin:0; padding:0; }
+.waypoint-list li { position:relative; padding:0 0 13px 26px; }
+.waypoint-list li::before { content:""; position:absolute; left:3px; top:7px; width:9px; height:9px; border-radius:50%;
+  background:var(--category-accent,var(--accent)); box-shadow:0 0 0 3px var(--category-soft,var(--accent-soft)); }
+.waypoint-list li::after { content:""; position:absolute; left:7px; top:21px; bottom:-1px; border-left:2px dashed var(--category-line,var(--border-strong,rgba(15,23,42,.12))); }
+.waypoint-list li:last-child { padding-bottom:0; }
+.waypoint-list li:last-child::after { display:none; }
+.route-rule { display:flex; align-items:center; gap:10px; }
+.route-rule::before, .route-rule::after { content:""; flex:1; border-top:2px dashed var(--category-line,var(--border-strong,rgba(15,23,42,.12))); }
+
+.see-also ul { list-style: none; padding-left: 4px; margin: 0; }
+.see-also li { position: relative; padding: 0 0 12px 26px; margin: 0; }
+.see-also li::before { content:""; position:absolute; left:3px; top:7px; width:9px; height:9px; border-radius:50%;
+  background:var(--category-accent,var(--accent)); box-shadow:0 0 0 3px var(--category-soft,var(--accent-soft)); }
+.see-also li::after { content:""; position:absolute; left:7px; top:21px; bottom:-1px; border-left:2px dashed var(--category-line,var(--border-strong,rgba(15,23,42,.12))); }
+.see-also li:last-child { padding-bottom:0; }
+.see-also li:last-child::after { display:none; }
+
+.toc a { position: relative; padding-left: 18px; }
+.toc a::before {
+  content: ""; position: absolute; left: 2px; top: 50%; margin-top: -4px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--category-line, var(--border-strong, rgba(15,23,42,.12)));
+}
+.toc a:hover::before { background: var(--category-accent, var(--accent)); }
+
+.breadcrumb [aria-current="page"]::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 7px;
+  border-radius: 50%; vertical-align: 1px;
+  background: var(--category-accent, var(--accent));
+  box-shadow: 0 0 0 3px var(--category-soft, var(--accent-soft));
 }

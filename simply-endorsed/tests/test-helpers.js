@@ -12,9 +12,15 @@ const { JSDOM } = require('jsdom');
  */
 function initJSDOM(options = {}) {
   const { domOptions = {}, htmlPath: htmlPathOption, loadFullApp = false } = options;
+  // The Part 61 wizard now lives on its own page (/part-61-calculator/).
+  // Wizard tests load that page; full-app (browse) tests load the
+  // Simply Endorsed CFI page, which no longer hosts the calculator.
+  const defaultFixture = loadFullApp
+    ? '../../simply-endorsed-cfi/index.html'
+    : '../../part-61-calculator/index.html';
   const htmlPath = htmlPathOption
     ? path.resolve(__dirname, htmlPathOption)
-    : path.resolve(__dirname, '../../simply-endorsed-cfi/index.html');
+    : path.resolve(__dirname, defaultFixture);
   const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
   // Create JSDOM instance

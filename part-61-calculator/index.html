@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Part 61 Calculator | Free FAA Training Time &amp; Cost Wizard</title>
+    <meta
+      name="description"
+      content="The Part 61 Calculator is a free CFI planning aid. Audit a pilot's current credentials and hours against FAA Part 61 requirements, then get optimized training blocks, endorsements, gates, costs, and official source links."
+    >
+    <meta name="author" content="Diego Suarez">
+    <link rel="canonical" href="https://suarezcfi.com/part-61-calculator/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suarezcfi.com/part-61-calculator/">
+    <meta property="og:title" content="Part 61 Calculator | Free FAA Training Time &amp; Cost Wizard">
+    <meta
+      property="og:description"
+      content="Free CFI planning aid: audit current credentials and hours against FAA Part 61 requirements with optimized training blocks, endorsements, gates, and cost estimates."
+    >
+    <meta property="og:site_name" content="SuarezCFI">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Part 61 Calculator | Free FAA Training Time &amp; Cost Wizard">
+    <meta
+      name="twitter:description"
+      content="Audit credentials and hours against FAA Part 61 requirements. Optimized training blocks, endorsements, gates, and costs."
+    >
+    <meta name="theme-color" content="#EA580C">
+    <link rel="icon" type="image/svg+xml" href="/part-61-calculator/logo.svg">
+    <link rel="apple-touch-icon" href="/part-61-calculator/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@500;700&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    >
+    <link rel="stylesheet" href="/assets/design-system.css">
+    <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=47">
+    <style>
+      /* Page-scoped chrome for the standalone calculator (orange family). */
+      .calc-footer {
+        max-width: 1180px;
+        margin: 12px auto 0;
+        padding: 26px 24px 44px;
+        text-align: center;
+        color: #4d5670;
+        font-size: 0.86rem;
+        line-height: 1.6;
+      }
+      .calc-footer a {
+        color: var(--tool-accent-deep, #C2410C);
+        font-weight: 650;
+        text-decoration: none;
+      }
+      .calc-footer a:hover { text-decoration: underline; }
+      .calc-footer .footer-designer {
+        margin-top: 10px;
+        font-family: var(--font-signature, "Pinyon Script", cursive);
+        font-size: 1.25rem;
+        color: #1C2142;
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "@id": "https://suarezcfi.com/part-61-calculator/#app",
+        "name": "Part 61 Calculator",
+        "alternateName": ["SuarezCFI Part 61 Calculator", "Part 61 training time calculator", "FAA Part 61 wizard"],
+        "url": "https://suarezcfi.com/part-61-calculator/",
+        "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "Aviation Training",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator": {
+          "@type": "Person",
+          "@id": "https://suarezcfi.com/#diego",
+          "name": "Diego Suarez",
+          "url": "https://suarezcfi.com/"
+        },
+        "publisher": { "@id": "https://suarezcfi.com/#diego" },
+        "description": "Free CFI planning aid that audits a pilot's current credentials and hours against FAA Part 61 requirements: transfer route, minimum hours, optimized training blocks, gates, endorsements, cost estimates, and official source links."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://suarezcfi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Part 61 Calculator", "item": "https://suarezcfi.com/part-61-calculator/" }
+        ]
+      }
+    </script>
+  </head>
+  <body class="theme-orange is-calculator-view">
+    <!-- Aviation-themed backdrop and coordinate margins -->
+    <div class="aviation-backdrop" aria-hidden="true">
+      <div class="aviation-grid"></div>
+      <div class="aviation-ambience"></div>
+    </div>
+
+    <header class="nav-wrap" role="banner">
+      <nav class="nav nav--tool" aria-label="Primary">
+        <div class="nav-brand">
+          <a href="/" class="wordmark" aria-label="Diego Suarez — SuarezCFI.com home">Diego Suarez</a>
+          <span class="nav-brand-divider" aria-hidden="true"></span>
+          <a href="/part-61-calculator/" class="nav-tool-mark" aria-label="Part 61 Calculator home">
+            <svg class="nav-tool-logo" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+              <circle cx="256" cy="256" r="256" fill="#EA580C"/>
+              <g stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" opacity="0.92">
+                <line x1="256" y1="78" x2="256" y2="126"/>
+                <line x1="434" y1="256" x2="386" y2="256"/>
+                <line x1="256" y1="434" x2="256" y2="386"/>
+                <line x1="78" y1="256" x2="126" y2="256"/>
+              </g>
+              <g stroke="#FFFFFF" stroke-linecap="round">
+                <line x1="256" y1="256" x2="348" y2="154" stroke-width="30"/>
+                <line x1="256" y1="256" x2="188" y2="206" stroke-width="26"/>
+              </g>
+              <circle cx="256" cy="256" r="24" fill="#7C2D12"/>
+            </svg>
+            <span class="nav-tool-name">Part 61 Calculator</span>
+          </a>
+        </div>
+        <div class="nav-links" id="primary-nav-links">
+          <a href="/part-61-calculator/" aria-current="page">Calculator</a>
+          <a href="/simply-endorsed-cfi/">Endorsements</a>
+          <a href="/simply-endorsed-cfi/?view=guidance">Guidance</a>
+          <a href="/flight-risk-assessment/">FlightRisk</a>
+          <a href="/" class="nav-cta" data-cta-id="part61-nav-return">SuarezCFI.com</a>
+        </div>
+        <div class="nav-tools">
+          <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+            <span class="nav-toggle-label">Menu</span>
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="app-shell">
+      <div class="layout">
+        <main class="content-area">
+          <section id="part61CalculatorView" class="part61-calculator" aria-label="Part 61 Endorsement Calculator">
+            <header class="part61-calculator-header">
+              <div>
+                <p class="part61-kicker">CFI planning aid</p>
+                <h2>Part 61 Calculator</h2>
+                <p>Transfer route, minimum hours, optimized training blocks, gates, endorsements, and official source links.</p>
+              </div>
+              <div class="part61-header-actions" aria-label="Calculator actions">
+                <button type="button" class="part61-button part61-button-secondary" id="part61RandomSampleBtn">Random Scenario</button>
+                <button type="button" class="part61-button part61-button-secondary" id="part61HeaderClearBtn">Clear</button>
+                <button type="button" class="part61-button part61-button-secondary" id="part61HeaderCopyBtn">Copy Report</button>
+                <button type="button" class="part61-button part61-button-secondary" id="part61HeaderShareBtn">Copy Link</button>
+                <button type="button" class="part61-button part61-button-primary" id="part61HeaderPrintBtn">Print</button>
+              </div>
+            </header>
+
+            <div class="part61-draft-notice" id="part61DraftNotice" hidden></div>
+
+            <div class="part61-workbench" data-active-step="1">
+              <nav class="part61-step-rail" aria-label="Calculator sections">
+                <a href="#part61Current" class="part61-rail-item active"><span>1</span><b>Current</b><i class="part61-rail-status" data-rail-status="current" aria-hidden="true"></i></a>
+                <a href="#part61Costs" class="part61-rail-item"><span>2</span><b>Costs</b><i class="part61-rail-status" data-rail-status="costs" aria-hidden="true"></i></a>
+                <a href="#part61Experience" class="part61-rail-item"><span>3</span><b>Hours</b><i class="part61-rail-status" data-rail-status="experience" aria-hidden="true"></i></a>
+                <a href="#part61Target" class="part61-rail-item"><span>4</span><b>Target</b><i class="part61-rail-status" data-rail-status="target" aria-hidden="true"></i></a>
+                <a href="#part61ReviewShare" class="part61-rail-item"><span>5</span><b>Audit</b><i class="part61-rail-status" data-rail-status="results" aria-hidden="true"></i></a>
+              </nav>
+
+              <section class="part61-input-pane" aria-label="Scenario inputs">
+                <section class="part61-panel" id="part61Current" data-step="1">
+                  <div class="part61-panel-heading">
+                    <p class="part61-kicker">Step 1</p>
+                    <h3>Current Credentials</h3>
+                  </div>
+
+                  <label class="part61-field-label" for="part61CredentialSearch">Search and add credentials or ratings</label>
+                  <input id="part61CredentialSearch" class="part61-text-input" type="search" placeholder="Type commercial, AMEL, rotorcraft, military...">
+                  <div class="part61-option-list" id="part61CredentialOptions"></div>
+                  <div class="part61-chip-list" id="part61SelectedCredentials" aria-live="polite"></div>
+
+                  <div class="part61-flag-grid">
+                    <label class="part61-check-row">
+                      <input type="checkbox" id="part61MilitaryExperience">
+                      <span>Military pilot experience involved</span>
+                    </label>
+                    <label class="part61-check-row">
+                      <input type="checkbox" id="part61MilitaryOnly">
+                      <span>Military records only, no FAA certificate yet</span>
+                    </label>
+                    <label class="part61-check-row">
+                      <input type="checkbox" id="part61FaaCommercialAmel">
+                      <span>FAA Commercial AMEL already held</span>
+                    </label>
+                    <label class="part61-check-row">
+                      <input type="checkbox" id="part61PriorFaa">
+                      <span>FAA certificate/rating records available</span>
+                    </label>
+                  </div>
+
+                  <!-- Navigation Buttons for Step 1 -->
+                  <div class="part61-nav-group single-btn part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Next: Cost Assumptions</button>
+                  </div>
+                </section>
+
+                <section class="part61-panel" id="part61Costs" data-step="2">
+                  <div class="part61-panel-heading">
+                    <p class="part61-kicker">Step 2</p>
+                    <h3>Cost Assumptions</h3>
+                  </div>
+                  <p class="part61-helper">Adjust these for the airplane and instructor used in the scenario. Dual cost is wet rate plus instructor.</p>
+                  <div class="part61-rate-grid">
+                    <label class="part61-number-field">
+                      <span>Aircraft wet rate</span>
+                      <input id="part61AircraftWetRate" type="number" min="0" step="1" inputmode="decimal" value="185" data-rate="aircraftWet" aria-label="Aircraft wet rate">
+                    </label>
+                    <label class="part61-number-field">
+                      <span>Instructor hourly rate</span>
+                      <input id="part61InstructorRate" type="number" min="0" step="1" inputmode="decimal" value="45" data-rate="instructor" aria-label="Instructor hourly rate">
+                    </label>
+                  </div>
+                  <div class="part61-rate-summary" id="part61RateSummary" aria-live="polite">
+                    <span>Dual rate: $230/hr</span>
+                    <span>Solo/PDPIC/time-building: $185/hr</span>
+                  </div>
+
+                  <!-- Navigation Buttons for Step 2 -->
+                  <div class="part61-nav-group part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Credentials</button>
+                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Next: Flight Experience</button>
+                  </div>
+                </section>
+
+                <section class="part61-panel" id="part61Experience" data-step="3">
+                  <div class="part61-panel-heading">
+                    <p class="part61-kicker">Step 3</p>
+                    <div class="part61-heading-badge-row">
+                      <h3>Flight Experience</h3>
+                      <span class="group-completion incomplete" id="part61HoursCompleteness" aria-live="polite" aria-label="Hour fields: 0 of 24 complete">0/24</span>
+                    </div>
+                  </div>
+                  <p class="part61-helper">Fill every hour box before calculating. Enter 0 when a bucket is not applicable or none is logged.</p>
+                  <div id="part61ExperienceFields"></div>
+
+                  <div class="part61-subhead-row">
+                    <h4>Logged Events</h4>
+                    <button type="button" class="part61-text-button" id="part61ClearEventsBtn">Clear events</button>
+                  </div>
+                  <div class="part61-event-groups" id="part61EventChecklist"></div>
+
+                  <!-- Navigation Buttons for Step 3 -->
+                  <div class="part61-nav-group part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Costs</button>
+                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Next: Target Path</button>
+                  </div>
+                </section>
+
+                <section class="part61-panel" id="part61Target" data-step="4">
+                  <div class="part61-panel-heading">
+                    <p class="part61-kicker">Step 4</p>
+                    <h3>Target Path</h3>
+                  </div>
+                  <p class="part61-helper">Add stages in the order the applicant wants to pursue them. The calculator carries optimized hours forward between stages for planning only.</p>
+                  <div class="part61-stage-list" id="part61TargetStages"></div>
+                  <button type="button" class="part61-button part61-button-secondary part61-button-full" id="part61AddStageBtn">Add Stage</button>
+                  <div class="part61-validation-alert" id="part61ValidationMessage" role="alert" aria-live="polite" hidden></div>
+
+                  <!-- Navigation Buttons for Step 4 -->
+                  <div class="part61-nav-group part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Hours</button>
+                    <button type="button" class="part61-button part61-button-primary part61-calculate-button" id="part61CalculateBtn">Calculate Audit</button>
+                  </div>
+                </section>
+
+                <!-- Step 5 (Review & Share Summary Panel) -->
+                <section class="part61-panel" id="part61ReviewShare" data-step="5">
+                  <div class="part61-panel-heading">
+                    <p class="part61-kicker">Step 5</p>
+                    <h3>Review &amp; Share</h3>
+                  </div>
+
+                  <!-- Success/Completion Header -->
+                  <div class="part61-success-header" role="status">
+                    <div class="part61-success-badge" aria-hidden="true">✓</div>
+                    <div>
+                      <h4>Audit Generated Successfully!</h4>
+                      <p>All target training stages have been cross-checked with FAA CFR Part 61 requirements.</p>
+                    </div>
+                  </div>
+
+                  <!-- Key Metrics Summary Block -->
+                  <div class="part61-review-metrics">
+                    <div class="part61-metric-card">
+                      <span class="part61-metric-title">Estimated Cost</span>
+                      <span class="part61-metric-value" id="part61ReviewCost">$0.00</span>
+                    </div>
+                    <div class="part61-metric-card">
+                      <span class="part61-metric-title">Remaining Hours</span>
+                      <span class="part61-metric-value" id="part61ReviewHours">0.0 hrs</span>
+                    </div>
+                    <div class="part61-metric-card">
+                      <span class="part61-metric-title">Checklist Progress</span>
+                      <span class="part61-metric-value" id="part61ReviewStatus">Ready</span>
+                    </div>
+                  </div>
+
+                  <!-- Action Grid containing required elements -->
+                  <div class="part61-action-grid">
+                    <button type="button" class="part61-button part61-button-primary part61-button-full" id="part61CopyBtn">Copy Report</button>
+                    <button type="button" class="part61-button part61-button-secondary" id="part61ShareBtn">Copy Link</button>
+                    <button type="button" class="part61-button part61-button-secondary" id="part61PrintBtn">Print</button>
+                    <button type="button" class="part61-button part61-button-secondary" id="part61CopyCfiBtn">Copy CFI Readout</button>
+                    <button type="button" class="part61-button part61-button-secondary" id="part61CopyChecklistBtn">Copy Student Checklist</button>
+                  </div>
+
+                  <!-- Sequential Step Navigation & Clear -->
+                  <div class="part61-nav-group part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Target</button>
+                    <button type="button" class="part61-button part61-button-danger" id="part61ClearBtn">Start Over</button>
+                  </div>
+                </section>
+              </section>
+
+              <section class="part61-results-pane" id="part61Results">
+                <section class="part61-result-header">
+                  <div>
+                    <p class="part61-kicker">Generated audit</p>
+                    <h3 id="part61ResultTitle">Ready for a scenario</h3>
+                  </div>
+                  <div class="part61-result-header-meta">
+                    <p id="part61InputCompleteness">Input completeness: 0/24</p>
+                    <p id="part61SourceReview">Source review date: 2026-06-30</p>
+                    <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61EditInputsBtn">Edit Inputs</button>
+                  </div>
+                </section>
+
+                <div class="part61-stale-banner" id="part61StaleBanner" hidden></div>
+
+                <section class="part61-result-section part61-dashboard-section">
+                  <div class="part61-section-title-row">
+                    <h4>Audit Summary</h4>
+                    <div class="part61-result-actions">
+                      <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61CopyChecklistResultsBtn">Copy Student Checklist</button>
+                    </div>
+                  </div>
+                  <div id="part61HeroBanner" class="part61-hero-banner" role="status" hidden></div>
+                  <div id="part61AuditDashboard" class="part61-dashboard-grid part61-hero-grid"></div>
+                  <details class="part61-readout-details" id="part61ReadoutDetails">
+                    <summary>
+                      <span>CFI Readout - plain-language narrative</span>
+                      <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61CopyCfiResultsBtn">Copy CFI Readout</button>
+                    </summary>
+                    <div id="part61CfiReadout" class="part61-cfi-readout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
+                  </details>
+                </section>
+
+                <div class="part61-results-tabs" role="tablist" aria-label="Audit detail sections">
+                  <button type="button" role="tab" id="part61TabPlan" aria-controls="part61PanelPlan" aria-selected="true" tabindex="0" class="active" data-results-tab="plan">Plan</button>
+                  <button type="button" role="tab" id="part61TabEndorsements" aria-controls="part61PanelEndorsements" aria-selected="false" tabindex="-1" data-results-tab="endorsements">Endorsements &amp; Gates</button>
+                  <button type="button" role="tab" id="part61TabLedger" aria-controls="part61PanelLedger" aria-selected="false" tabindex="-1" data-results-tab="ledger">CFR Ledger</button>
+                  <button type="button" role="tab" id="part61TabRules" aria-controls="part61PanelRules" aria-selected="false" tabindex="-1" data-results-tab="rules">Rules &amp; Sources</button>
+                </div>
+
+                <div class="part61-results-tabpanel" id="part61PanelPlan" role="tabpanel" aria-labelledby="part61TabPlan" data-results-panel="plan">
+                  <section class="part61-result-section">
+                    <h4>At a Glance</h4>
+                    <div id="part61Verdict" class="part61-callout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
+                    <div id="part61Summary"></div>
+                    <div id="part61CombinedSummary" class="part61-combined-strip"></div>
+                    <div id="combinedSummary" hidden aria-hidden="true"></div>
+                  </section>
+
+                  <section class="part61-result-section">
+                    <h4>Optimized Training Blocks</h4>
+                    <div id="part61Training"></div>
+                  </section>
+                </div>
+
+                <div class="part61-results-tabpanel" id="part61PanelEndorsements" role="tabpanel" aria-labelledby="part61TabEndorsements" data-results-panel="endorsements" hidden>
+                  <section class="part61-result-section">
+                    <h4>Required Endorsements</h4>
+                    <div id="part61Endorsements"></div>
+                  </section>
+
+                  <section class="part61-result-section">
+                    <h4>Documents / Exams / Gates</h4>
+                    <div id="part61Gates"></div>
+                  </section>
+                </div>
+
+                <div class="part61-results-tabpanel" id="part61PanelLedger" role="tabpanel" aria-labelledby="part61TabLedger" data-results-panel="ledger" hidden>
+                  <section class="part61-result-section">
+                    <h4>Full CFR Ledger</h4>
+                    <div class="part61-filter-controls" aria-label="Table filters">
+                      <button type="button" class="part61-filter-button active" data-filter="all">All Rows</button>
+                      <button type="button" class="part61-filter-button" data-filter="remaining">Remaining Only</button>
+                      <button type="button" class="part61-filter-button" data-filter="events">Events Only</button>
+                      <button type="button" class="part61-filter-button" data-filter="endorsements">Endorsements</button>
+                      <button type="button" class="part61-filter-button" data-filter="paperwork">Paperwork</button>
+                    </div>
+                    <div class="part61-color-legend" aria-label="Color legend">
+                      <span class="part61-legend-item part61-legend-green">Satisfied</span>
+                      <span class="part61-legend-item part61-legend-amber">Remaining</span>
+                      <span class="part61-legend-item part61-legend-red">Missing / blocker</span>
+                      <span class="part61-legend-item part61-legend-blue">Dual</span>
+                      <span class="part61-legend-item part61-legend-purple">Solo/PDPIC</span>
+                      <span class="part61-legend-item part61-legend-teal">Broad credit</span>
+                      <span class="part61-legend-item part61-legend-slate">Paperwork</span>
+                    </div>
+                    <div id="part61Ledger"></div>
+                  </section>
+                </div>
+
+                <div class="part61-results-tabpanel" id="part61PanelRules" role="tabpanel" aria-labelledby="part61TabRules" data-results-panel="rules" hidden>
+                  <section class="part61-result-section">
+                    <h4>What Counts / What Does Not</h4>
+                    <div id="part61Counts"></div>
+                  </section>
+
+                  <section class="part61-result-section part61-two-col-results">
+                    <div>
+                      <h4>Unknowns</h4>
+                      <div id="part61Unknowns"></div>
+                    </div>
+                    <div>
+                      <h4>Official Source Links</h4>
+                      <div id="part61Links"></div>
+                      <p class="part61-definitions-resource"><a href="/simply-endorsed-cfi/?view=guidance">Open Teaching &amp; Guidance on Simply Endorsed CFI</a></p>
+                    </div>
+                  </section>
+                </div>
+              </section>
+            </div>
+
+            <div class="part61-mobile-bar" id="part61MobileBar">
+              <span id="part61MobileCompleteness">0/24 hour fields</span>
+              <button type="button" class="part61-button part61-button-primary" id="part61MobileCalculateBtn">Calculate</button>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="calc-footer">
+        <p>
+          This calculator is a planning aid, not legal advice. Verify every requirement against the current eCFR text
+          and your examiner's expectations. Looking for endorsements? Open
+          <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.
+        </p>
+        <p class="footer-designer">Designed by Diego Suarez</p>
+      </footer>
+    </div>
+
+    <script src="/simply-endorsed/js/shared-utils.js?v=1"></script>
+    <script src="/simply-endorsed/js/cfr-links.js?v=3"></script>
+    <script src="/simply-endorsed/js/part61-rules-data.js?v=5"></script>
+    <script src="/simply-endorsed/js/endorsements-data.js?v=3"></script>
+    <script src="/simply-endorsed/js/training-requirements-data.js?v=1"></script>
+    <script src="/simply-endorsed/js/privileges-limitations-data.js?v=2"></script>
+    <script src="/simply-endorsed/js/part61-calculator-core.js?v=4"></script>
+    <script src="/simply-endorsed/js/part61-scenario-generator.js?v=3"></script>
+    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=11"></script>
+    <script src="/assets/site-nav.js" defer></script>
+    <script src="/assets/cfr-autolink.js?v=3" defer></script>
+  </body>
+</html>

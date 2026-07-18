@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Part 61 Calculator mark: flight-hours dial, bold orange family -->
+  <circle cx="256" cy="256" r="200" fill="#EA580C"/>
+  <circle cx="256" cy="256" r="200" stroke="#7C2D12" stroke-opacity="0.22" stroke-width="8"/>
+  <!-- Cardinal tick marks -->
+  <g stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" opacity="0.92">
+    <line x1="256" y1="98" x2="256" y2="138"/>
+    <line x1="414" y1="256" x2="374" y2="256"/>
+    <line x1="256" y1="414" x2="256" y2="374"/>
+    <line x1="98" y1="256" x2="138" y2="256"/>
+  </g>
+  <!-- Dial hands -->
+  <g stroke="#FFFFFF" stroke-linecap="round">
+    <line x1="256" y1="256" x2="336" y2="166" stroke-width="26"/>
+    <line x1="256" y1="256" x2="196" y2="212" stroke-width="22"/>
+  </g>
+  <circle cx="256" cy="256" r="20" fill="#7C2D12"/>
+</svg>

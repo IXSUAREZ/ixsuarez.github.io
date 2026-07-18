@@ -1588,7 +1588,6 @@
   function copyShareLink() {
     const url = new URL(window.location.href);
     url.search = "";
-    url.searchParams.set("view", "calculator");
     url.searchParams.set(SHARE_PARAM, encodeScenario());
     U.copyTextToClipboard(url.toString(), ids.shareBtn, "Link copied");
   }

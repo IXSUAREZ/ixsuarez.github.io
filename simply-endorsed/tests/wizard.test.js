@@ -1801,24 +1801,35 @@ const tests = [
   },
   {
     id: "T6_ROUTE_01",
-    name: "Calculator URL loads under the simply-endorsed-cfi app route",
+    name: "Legacy ?view=calculator URL redirects to the standalone /part-61-calculator/ page",
     tier: 6,
     feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/?view=calculator');
-      try {
-        const pathname = helpers.window.location.pathname;
-        const view = new helpers.window.URL(helpers.window.location.href).searchParams.get('view');
-        const isCalculator = helpers.document.body.classList.contains('is-calculator-view');
-        const calculator = helpers.document.getElementById('part61CalculatorView');
-        if (pathname !== '/simply-endorsed-cfi/') {
-          throw new Error(`Expected /simply-endorsed-cfi/ pathname, got ${pathname}`);
-        }
-        if (view !== 'calculator' || !isCalculator || !calculator || calculator.hidden) {
-          throw new Error('Expected calculator view to load from /simply-endorsed-cfi/?view=calculator');
-        }
-      } finally {
-        helpers.window.close();
+      // The calculator moved to /part-61-calculator/. The Simply Endorsed CFI
+      // page must carry an early head redirect that preserves remaining query
+      // params (share links use ?s=...) and the hash.
+      const appPath = path.resolve(__dirname, '../../simply-endorsed-cfi/index.html');
+      const appHtml = fs.readFileSync(appPath, 'utf8');
+      if (!appHtml.includes('params.get("view") === "calculator"')) {
+        throw new Error('Simply Endorsed CFI page is missing the legacy calculator-view redirect check');
+      }
+      if (!appHtml.includes('window.location.replace("/part-61-calculator/"')) {
+        throw new Error('Legacy calculator redirect does not target /part-61-calculator/ via location.replace');
+      }
+      if (!appHtml.includes('(query ? "?" + query : "") + window.location.hash')) {
+        throw new Error('Legacy calculator redirect does not preserve remaining query params and hash');
+      }
+      if (appHtml.includes('id="part61CalculatorView"')) {
+        throw new Error('Simply Endorsed CFI page still hosts the calculator view markup');
+      }
+
+      const calcPath = path.resolve(__dirname, '../../part-61-calculator/index.html');
+      const calcHtml = fs.readFileSync(calcPath, 'utf8');
+      if (!calcHtml.includes('id="part61CalculatorView"')) {
+        throw new Error('Standalone /part-61-calculator/ page does not host the calculator view markup');
+      }
+      if (/id="part61CalculatorView"[^>]*\shidden/.test(calcHtml)) {
+        throw new Error('Standalone calculator view must not be hidden');
       }
     }
   },

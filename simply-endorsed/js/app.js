@@ -318,7 +318,6 @@
     sidebarBackdrop: document.getElementById("sidebarBackdrop"),
     railCloseBtn: document.getElementById("railCloseBtn"),
     topbarBrowseBtn: document.getElementById("topbarBrowseBtn"),
-    topbarCalculatorBtn: document.getElementById("topbarCalculatorBtn"),
     topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     topbarSearchInput: document.getElementById("topbarSearchInput"),
     guidanceView: document.getElementById("guidanceView"),
@@ -578,7 +577,9 @@
   }
 
   function normalizeView(value) {
-    if (value === "guidance" || value === "calculator") {
+    // "calculator" now lives on its own page (/part-61-calculator/);
+    // a head script redirects legacy ?view=calculator URLs before we run.
+    if (value === "guidance") {
       return value;
     }
     return "browse";
@@ -1115,29 +1116,6 @@
 
   function returnToEndorsements() {
     activateAllEndorsements({ closeSidebar: false });
-  }
-
-  function activateCalculator(options = {}) {
-    if (!options.preserveQuery) {
-      clearSearch();
-    }
-
-    state.view = "calculator";
-    state.category = "all";
-    state.subcategory = null;
-    state.includeSupplemental = false;
-    resetExpandedCards();
-
-    if (options.closeSidebar !== false) {
-      closeSidebar({ returnFocus: false });
-    }
-
-    document.title = "Part 61 Calculator - Simply Endorsed CFI";
-    refresh();
-
-    if (options.scroll !== false) {
-      queueScrollToPageTop();
-    }
   }
 
   function getBundleIds(subcategory) {
@@ -2713,10 +2691,6 @@
       dom.topbarBrowseBtn.classList.toggle("is-active", isBrowse);
       dom.topbarBrowseBtn.setAttribute("aria-current", isBrowse ? "page" : "false");
     }
-    if (dom.topbarCalculatorBtn) {
-      dom.topbarCalculatorBtn.classList.toggle("is-active", isCalculator);
-      dom.topbarCalculatorBtn.setAttribute("aria-current", isCalculator ? "page" : "false");
-    }
     if (dom.topbarGuidanceBtn) {
       dom.topbarGuidanceBtn.classList.toggle("is-active", isGuidance);
       dom.topbarGuidanceBtn.setAttribute("aria-current", isGuidance ? "page" : "false");
@@ -3470,19 +3444,16 @@
     }
 
     if (dom.topbarBrowseBtn) {
-      dom.topbarBrowseBtn.addEventListener("click", () => {
+      dom.topbarBrowseBtn.addEventListener("click", (event) => {
+        // Nav links keep real hrefs for no-JS fallback; switch views in place.
+        event.preventDefault();
         returnToEndorsements();
       });
     }
 
-    if (dom.topbarCalculatorBtn) {
-      dom.topbarCalculatorBtn.addEventListener("click", () => {
-        activateCalculator({ closeSidebar: false });
-      });
-    }
-
     if (dom.topbarGuidanceBtn) {
-      dom.topbarGuidanceBtn.addEventListener("click", () => {
+      dom.topbarGuidanceBtn.addEventListener("click", (event) => {
+        event.preventDefault();
         activateGuidance({ closeSidebar: false });
       });
     }
@@ -3917,7 +3888,7 @@
 
       if (event.key.toLowerCase() === "c" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTypingField(event.target)) {
         event.preventDefault();
-        activateCalculator({ closeSidebar: false });
+        window.location.href = "/part-61-calculator/";
         return;
       }
 

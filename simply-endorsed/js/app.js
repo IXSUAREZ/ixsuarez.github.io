@@ -7,12 +7,7 @@
   const BROWSE_STRUCTURE = Array.isArray(window.BROWSE_STRUCTURE)
     ? window.BROWSE_STRUCTURE.slice()
     : [];
-  const REGULATORY_DEFINITIONS = window.RegulatoryDefinitionsData || null;
-  const REGULATORY_DEFINITION_IDS = new Set(
-    REGULATORY_DEFINITIONS && Array.isArray(REGULATORY_DEFINITIONS.definitions)
-      ? REGULATORY_DEFINITIONS.definitions.map((item) => item.id)
-      : [],
-  );
+
 
   const CATEGORY_DEFS = [
     {
@@ -323,18 +318,14 @@
     sidebarBackdrop: document.getElementById("sidebarBackdrop"),
     railCloseBtn: document.getElementById("railCloseBtn"),
     topbarBrowseBtn: document.getElementById("topbarBrowseBtn"),
-    topbarDefinitionsBtn: document.getElementById("topbarDefinitionsBtn"),
-    topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     topbarCalculatorBtn: document.getElementById("topbarCalculatorBtn"),
+    topbarGuidanceBtn: document.getElementById("topbarGuidanceBtn"),
     topbarSearchInput: document.getElementById("topbarSearchInput"),
     guidanceView: document.getElementById("guidanceView"),
-    definitionsView: document.getElementById("regulatoryDefinitionsView"),
     calculatorView: document.getElementById("part61CalculatorView"),
     statusRow: document.querySelector(".status-row"),
     resultsToolbar: document.getElementById("resultsToolbar"),
   };
-
-  let definitionsController = null;
 
   function escapeHtml(value) {
     return window.SimplyEndorsedUtils.escapeHtml(value);
@@ -547,9 +538,8 @@
       dom.searchInput.value = state.query;
     }
     if (dom.topbarSearchInput) {
-      const definitionsSearch = state.view === "definitions";
-      dom.topbarSearchInput.value = definitionsSearch ? state.definitionQuery : state.query;
-      dom.topbarSearchInput.placeholder = definitionsSearch ? "Search Definitions" : "Quick Search";
+      dom.topbarSearchInput.value = state.query;
+      dom.topbarSearchInput.placeholder = "Quick Search";
     }
     if (dom.clearSearchBtn) {
       dom.clearSearchBtn.hidden = state.query === "";
@@ -584,13 +574,11 @@
         .filter(Boolean),
       issuerFilter: params.get("issuer") || "all",
       validityFilter: params.get("validity") || "all",
-      definitionQuery: params.get("dq") || "",
-      definitionTerm: params.get("term") || "",
     };
   }
 
   function normalizeView(value) {
-    if (value === "guidance" || value === "calculator" || value === "definitions") {
+    if (value === "guidance" || value === "calculator") {
       return value;
     }
     return "browse";
@@ -600,15 +588,6 @@
     const nextState = getUrlState();
 
     state.view = normalizeView(nextState.view);
-    state.definitionQuery = nextState.definitionQuery;
-    state.definitionTerm = REGULATORY_DEFINITION_IDS.has(nextState.definitionTerm)
-      ? nextState.definitionTerm
-      : "";
-
-    if (state.view === "definitions") {
-      syncSearchInput();
-      return;
-    }
 
     state.category = CATEGORY_MAP.has(nextState.category) ? nextState.category : "all";
     state.subcategory = nextState.subcategory;
@@ -647,49 +626,41 @@
   function syncUrlState() {
     const params = new URLSearchParams();
 
-    if (state.view === "definitions") {
-      params.set("view", "definitions");
-      if (state.definitionQuery) params.set("dq", state.definitionQuery);
-      if (state.definitionTerm) params.set("term", state.definitionTerm);
-    } else if (state.view !== "browse") {
+    if (state.view !== "browse") {
       params.set("view", state.view);
     }
 
-    if (state.view !== "definitions") {
-      if (state.category !== "all") {
-        params.set("category", state.category);
-      }
+    if (state.category !== "all") {
+      params.set("category", state.category);
+    }
 
-      if (state.subcategory) {
-        params.set("subcategory", state.subcategory);
-      }
+    if (state.subcategory) {
+      params.set("subcategory", state.subcategory);
+    }
 
-      if (state.query) {
-        params.set("q", state.query);
-      }
+    if (state.query) {
+      params.set("q", state.query);
+    }
 
-      if (state.includeSupplemental) {
-        params.set("bundle", "full");
-      }
+    if (state.includeSupplemental) {
+      params.set("bundle", "full");
+    }
 
-      if (state.filters.issuer !== "all") {
-        params.set("issuer", state.filters.issuer);
-      }
+    if (state.filters.issuer !== "all") {
+      params.set("issuer", state.filters.issuer);
+    }
 
-      if (state.filters.validity !== "all") {
-        params.set("validity", state.filters.validity);
-      }
+    if (state.filters.validity !== "all") {
+      params.set("validity", state.filters.validity);
+    }
 
-      if (state.expandedIds.size) {
-        params.set("expanded", Array.from(state.expandedIds).join(","));
-      }
+    if (state.expandedIds.size) {
+      params.set("expanded", Array.from(state.expandedIds).join(","));
     }
 
     const queryString = params.toString();
     const currentHash = window.location.hash;
-    const nextHash = state.view === "definitions"
-      ? (state.definitionTerm ? "#definition-" + encodeURIComponent(state.definitionTerm) : "")
-      : (currentHash.startsWith("#definition-") ? "" : currentHash);
+    const nextHash = currentHash.startsWith("#definition-") ? "" : currentHash;
     const nextUrl = window.location.pathname + (queryString ? "?" + queryString : "") + nextHash;
     window.history.replaceState(null, "", nextUrl);
   }
@@ -1142,30 +1113,8 @@
     }
   }
 
-  function activateDefinitions(options = {}) {
-    state.view = "definitions";
-
-    if (options.closeSidebar !== false) {
-      closeSidebar({ returnFocus: false });
-    }
-
-    document.title = "Regulatory Definitions & Instructor Decisions - Simply Endorsed CFI";
-    refresh();
-
-    if (options.focusSearch && definitionsController) {
-      definitionsController.focusSearch();
-    }
-    if (options.scroll !== false) queueScrollToPageTop();
-  }
-
   function returnToEndorsements() {
-    if (state.view !== "definitions") {
-      activateAllEndorsements({ closeSidebar: false });
-      return;
-    }
-    state.view = "browse";
-    refresh();
-    queueScrollToPageTop();
+    activateAllEndorsements({ closeSidebar: false });
   }
 
   function activateCalculator(options = {}) {
@@ -2706,7 +2655,6 @@
   function refresh() {
     const isGuidance = state.view === "guidance";
     const isCalculator = state.view === "calculator";
-    const isDefinitions = state.view === "definitions";
     const isBrowse = state.view === "browse";
     syncSearchInput();
 
@@ -2716,8 +2664,6 @@
       document.title = "Teaching & Guidance - Simply Endorsed CFI";
     } else if (isCalculator) {
       document.title = "Part 61 Calculator - Simply Endorsed CFI";
-    } else if (isDefinitions) {
-      document.title = "Regulatory Definitions & Instructor Decisions - Simply Endorsed CFI";
     }
 
     if (!isBrowse) {
@@ -2738,20 +2684,15 @@
 
     document.body.classList.toggle("is-calculator-view", isCalculator);
     document.body.classList.toggle("is-guidance-view", isGuidance);
-    document.body.classList.toggle("is-definitions-view", isDefinitions);
-    if (dom.filterRail) dom.filterRail.hidden = isCalculator || isDefinitions;
-    if (dom.sidebarToggleBtn) dom.sidebarToggleBtn.hidden = isCalculator || isDefinitions;
-    if (dom.sidebarBackdrop && (isCalculator || isDefinitions)) dom.sidebarBackdrop.hidden = true;
+    if (dom.filterRail) dom.filterRail.hidden = isCalculator;
+    if (dom.sidebarToggleBtn) dom.sidebarToggleBtn.hidden = isCalculator;
+    if (dom.sidebarBackdrop && isCalculator) dom.sidebarBackdrop.hidden = true;
     if (dom.selectionSummary) dom.selectionSummary.hidden = !isBrowse;
     if (dom.statusRow) dom.statusRow.hidden = !isBrowse;
     if (dom.endorsementList) dom.endorsementList.hidden = !isBrowse;
     if (dom.endorsementDetail) dom.endorsementDetail.hidden = !isBrowse;
     if (dom.browseLauncher) dom.browseLauncher.hidden = true;
     if (dom.calculatorView) dom.calculatorView.hidden = !isCalculator;
-    if (dom.definitionsView) dom.definitionsView.hidden = !isDefinitions;
-    if (isDefinitions && definitionsController) {
-      definitionsController.update({ query: state.definitionQuery, term: state.definitionTerm });
-    }
 
     renderCategoryNav();
     if (isBrowse) {
@@ -2772,17 +2713,13 @@
       dom.topbarBrowseBtn.classList.toggle("is-active", isBrowse);
       dom.topbarBrowseBtn.setAttribute("aria-current", isBrowse ? "page" : "false");
     }
-    if (dom.topbarGuidanceBtn) {
-      dom.topbarGuidanceBtn.classList.toggle("is-active", isGuidance);
-      dom.topbarGuidanceBtn.setAttribute("aria-current", isGuidance ? "page" : "false");
-    }
-    if (dom.topbarDefinitionsBtn) {
-      dom.topbarDefinitionsBtn.classList.toggle("is-active", isDefinitions);
-      dom.topbarDefinitionsBtn.setAttribute("aria-current", isDefinitions ? "page" : "false");
-    }
     if (dom.topbarCalculatorBtn) {
       dom.topbarCalculatorBtn.classList.toggle("is-active", isCalculator);
       dom.topbarCalculatorBtn.setAttribute("aria-current", isCalculator ? "page" : "false");
+    }
+    if (dom.topbarGuidanceBtn) {
+      dom.topbarGuidanceBtn.classList.toggle("is-active", isGuidance);
+      dom.topbarGuidanceBtn.setAttribute("aria-current", isGuidance ? "page" : "false");
     }
     if (dom.footerGuidanceBtn) {
       dom.footerGuidanceBtn.classList.toggle("is-active", isGuidance);
@@ -3472,33 +3409,6 @@
     return tagName === "input" || tagName === "textarea" || target.isContentEditable;
   }
 
-  function registerServiceWorker() {
-    if (!("serviceWorker" in navigator) || window.location.protocol === "file:") {
-      return;
-    }
-
-    navigator.serviceWorker.register("./sw.js").catch(() => {
-      // Ignore registration failures in local or constrained environments.
-    });
-  }
-
-  function initDefinitionsController() {
-    if (!dom.definitionsView || !window.RegulatoryDefinitionsUI || !REGULATORY_DEFINITIONS || !window.RegulatoryDefinitionsCuration) {
-      return;
-    }
-    definitionsController = window.RegulatoryDefinitionsUI.create({
-      root: dom.definitionsView,
-      data: REGULATORY_DEFINITIONS,
-      curation: window.RegulatoryDefinitionsCuration,
-      onStateChange(next) {
-        state.definitionQuery = String(next.query || "");
-        state.definitionTerm = REGULATORY_DEFINITION_IDS.has(next.term) ? next.term : "";
-        syncSearchInput();
-        syncUrlState();
-      },
-    });
-  }
-
   function attachEvents() {
     if (dom.searchInput) {
       dom.searchInput.addEventListener("input", debounce((event) => {
@@ -3537,10 +3447,6 @@
 
     if (dom.topbarSearchInput) {
       dom.topbarSearchInput.addEventListener("input", debounce((event) => {
-        if (state.view === "definitions" && definitionsController) {
-          definitionsController.setState({ query: event.target.value || "", term: "" });
-          return;
-        }
         if (state.view !== "browse") {
           state.view = "browse";
           state.category = "all";
@@ -3557,10 +3463,6 @@
           return;
         }
         event.preventDefault();
-        if (state.view === "definitions" && definitionsController) {
-          definitionsController.focusSearch();
-          return;
-        }
         if (dom.searchInput) {
           dom.searchInput.focus();
         }
@@ -3573,21 +3475,15 @@
       });
     }
 
-    if (dom.topbarDefinitionsBtn) {
-      dom.topbarDefinitionsBtn.addEventListener("click", () => {
-        activateDefinitions({ closeSidebar: false });
+    if (dom.topbarCalculatorBtn) {
+      dom.topbarCalculatorBtn.addEventListener("click", () => {
+        activateCalculator({ closeSidebar: false });
       });
     }
 
     if (dom.topbarGuidanceBtn) {
       dom.topbarGuidanceBtn.addEventListener("click", () => {
         activateGuidance({ closeSidebar: false });
-      });
-    }
-
-    if (dom.topbarCalculatorBtn) {
-      dom.topbarCalculatorBtn.addEventListener("click", () => {
-        activateCalculator({ closeSidebar: false });
       });
     }
 
@@ -4056,12 +3952,10 @@
     validateBrowseStructure();
     applyUrlState();
     renderMeta();
-    initDefinitionsController();
     syncSearchInput();
     refresh();
     syncSidebarAccessibility();
     attachEvents();
-    registerServiceWorker();
   }
 
   if (document.readyState === "loading") {

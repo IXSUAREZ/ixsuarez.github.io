@@ -93,9 +93,6 @@ function initJSDOM(options = {}) {
     ? [
         'js/shared-utils.js',
         'js/cfr-links.js',
-        'js/regulatory-definitions-data.js',
-        'js/regulatory-definitions-curation.js',
-        'js/regulatory-definitions-ui.js',
         'js/endorsements-data.js',
         'js/browse-structure.js',
         'js/guidance-content.js',
@@ -110,9 +107,6 @@ function initJSDOM(options = {}) {
     : [
         'js/shared-utils.js',
         'js/cfr-links.js',
-        'js/regulatory-definitions-data.js',
-        'js/regulatory-definitions-curation.js',
-        'js/regulatory-definitions-ui.js',
         'js/part61-rules-data.js',
         'js/endorsements-data.js',
         'js/training-requirements-data.js',

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" fill="none">
+  <!-- Tileable instrument-panel grid: 1px lines at 24px spacing, 35% opacity, 4px dots at intersections -->
+  <defs>
+    <pattern id="gridcell" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#C9CFC8" stroke-width="1" opacity="0.35"/>
+      <circle cx="0" cy="0" r="2" fill="#C9CFC8" opacity="0.28"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="480" fill="url(#gridcell)"/>
+</svg>

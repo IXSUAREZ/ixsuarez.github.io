@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#FFD000" />
+  <meta name="theme-color" content="#F4F6FB" />
   <title>How to Choose a Flight School for Pilot Training | SuarezCFI.com</title>
   <meta name="description" content="Learn how to choose a flight school by comparing instructors, aircraft, location, scheduling, costs, training style, and student support." />
   <meta name="author" content="Diego Suarez" />
@@ -43,21 +43,29 @@
   </div>
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
-      <a href="/" class="wordmark" aria-label="Diego Suarez - home">Diego Suarez</a>
+      <a href="/" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
       <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
-        Menu
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M5 8h14"></path>
-          <path d="M5 16h14"></path>
-        </svg>
+        <span class="nav-toggle-label">Menu</span>
+        <span class="nav-toggle-icon" aria-hidden="true"></span>
       </button>
       <div class="nav-links" id="primary-nav-links">
         <a href="/">Home</a>
-        <a href="/learn/">Learn</a>
+        <a href="/learn/" aria-current="page">Learn</a>
         <a href="/blog/">Blog</a>
+        <div class="nav-dropdown">
+          <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+            Tools
+            <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-drop-panel" role="menu">
+            <a href="/simply-endorsed-cfi/?view=calculator" role="menuitem"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
+            <a href="/flight-risk-assessment/" role="menuitem"><strong>Flight Risk Assessment</strong><span>PAVE risk checklist</span></a>
+            <a href="/foi-cards/" role="menuitem"><strong>FOI Study Cards</strong><span>CFI flashcards</span></a>
+          </div>
+        </div>
         <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
         <a href="/#contact">Contact</a>
-        <a href="tel:+15025100508" class="nav-cta">Book Ground Help</a>
+        <a href="/flight-training-louisville-ky/" class="nav-cta" data-cta-id="nav-plan-training">Plan Training</a>
       </div>
     </nav>
   </header>
@@ -294,35 +302,6 @@
 }
   </script>
   <!-- Primary keyword: how to choose a flight school; Secondary keywords: choose a flight school, flight training school, best flight school -->
-  <script>
-    (() => {
-      const nav = document.querySelector('.nav');
-      const navToggle = document.querySelector('.nav-menu-toggle');
-      const navLinks = document.querySelector('.nav-links');
-
-      if (!nav || !navToggle || !navLinks) return;
-
-      const setNavOpen = (isOpen) => {
-        nav.classList.toggle('is-open', isOpen);
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-      };
-
-      navToggle.addEventListener('click', () => {
-        setNavOpen(!nav.classList.contains('is-open'));
-      });
-
-      navLinks.addEventListener('click', (event) => {
-        if (event.target.closest('a')) setNavOpen(false);
-      });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setNavOpen(false);
-      });
-
-      document.addEventListener('click', (event) => {
-        if (!nav.contains(event.target)) setNavOpen(false);
-      });
-    })();
-  </script>
-</body>
+  <script src="/assets/site-nav.js" defer></script>
+  </body>
 </html>

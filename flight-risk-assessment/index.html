@@ -1,162 +1,49 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0d2a52">
-  <meta name="color-scheme" content="light">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>Quick Flight Risk Assessment (FRAT) | Suarez CFI</title>
-  <meta name="description" content="A quick, student-friendly PAVE flight risk assessment with personal-minimum reminders, stop conditions, and instructor-review guidance.">
-  <link rel="canonical" href="https://suarezcfi.com/flight-risk-assessment/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Quick Flight Risk Assessment | Suarez CFI">
-  <meta property="og:description" content="Complete a focused PAVE assessment before every flight and review the highest unresolved concern.">
-  <meta property="og:url" content="https://suarezcfi.com/flight-risk-assessment/">
-  <meta property="og:site_name" content="Suarez CFI">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,600;6..72,700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260716q">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Suarez CFI Quick Flight Risk Assessment",
-      "url": "https://suarezcfi.com/flight-risk-assessment/",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Any",
-      "isAccessibleForFree": true,
-      "description": "A single-page educational PAVE flight risk assessment and personal-minimum reminder."
-    }
-  </script>
-</head>
-<body>
-  <a class="skip-link" href="#assessmentMain">Skip to assessment</a>
-
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Suarez CFI home"><span>SUAREZ</span> <em>CFI</em></a>
-    <p class="product-name">Quick Flight Risk Assessment</p>
-    <div class="header-actions">
-      <span class="privacy-status" id="saveStatus" role="status">Stays only on this device</span>
-      <button class="button button-secondary button-small" type="button" id="minimumsButton">Personal minimums</button>
-      <button class="button button-quiet button-small" type="button" id="newFlightButton">New flight</button>
-    </div>
-  </header>
-
-  <section class="context-shell" aria-labelledby="contextTitle">
-    <div class="context-heading">
-      <div>
-        <p class="eyebrow">Flight context</p>
-        <h1 id="contextTitle">Set the flight, then answer PAVE</h1>
-      </div>
-      <p>Certificate changes which factors apply. It never earns risk credit or raises a limit.</p>
-    </div>
-    <div class="context-grid">
-      <label><span>Certificate</span><select id="certificateSelect"></select></label>
-      <label><span>Flight role</span><select id="roleSelect"></select></label>
-      <fieldset><legend>Rules</legend><div class="segmented" id="rulesControl"></div></fieldset>
-      <fieldset><legend>Time</legend><div class="segmented" id="dayNightControl"></div></fieldset>
-    </div>
-  </section>
-
-  <div class="page-layout">
-    <main id="assessmentMain" class="assessment-main" tabindex="-1">
-      <section class="assessment-intro" aria-labelledby="assessmentTitle">
-        <div>
-          <p class="eyebrow">Quick preflight check</p>
-          <h2 id="assessmentTitle">One tap per factor</h2>
-          <p>Confirm the current flight—not what is usually true. “Verify” stays incomplete; a known unacceptable condition is a no-go until the plan changes.</p>
-        </div>
-        <div class="progress-copy"><strong id="progressCount">0 of 12</strong><span>factors resolved</span></div>
-      </section>
-      <div class="progress-track" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack"><span id="progressFill"></span></div>
-      <div id="factorSections"></div>
-
-      <section class="training-note" aria-labelledby="trainingTitle">
-        <h2 id="trainingTitle">Training aid—not a release or a decision-maker</h2>
-        <p>This tool does not replace an official briefing, current NOTAMs, regulations, the AFM/POH, performance calculations, instructor/operator procedures, or pilot-in-command judgment. A Low result never means safe.</p>
-      </section>
-    </main>
-
-    <aside class="decision-panel" aria-labelledby="decisionTitle">
-      <p class="eyebrow">Current decision picture</p>
-      <div class="decision-state" id="decisionState" data-level="incomplete" aria-live="polite">
-        <span class="decision-dot" aria-hidden="true"></span>
-        <div><h2 id="decisionTitle">Incomplete</h2><p id="decisionGuidance">Verify every applicable factor before relying on the result.</p></div>
-      </div>
-      <div class="decision-counts" aria-label="Assessment counts">
-        <span><strong id="stopCount">0</strong> stop</span>
-        <span><strong id="reviewCount">0</strong> review</span>
-        <span><strong id="verifyCount">12</strong> verify</span>
-      </div>
-      <section class="concerns" aria-labelledby="concernsTitle">
-        <h3 id="concernsTitle">Top concerns</h3>
-        <ol id="concernList"><li>Answer the factors to identify what needs attention.</li></ol>
-      </section>
-      <p class="highest-rule">The highest unresolved hazard controls. Confirmed factors never cancel an elevated one.</p>
-      <div class="decision-actions">
-        <button class="button button-primary" type="button" id="copyButton">Copy summary</button>
-        <button class="button button-secondary" type="button" id="printButton">Print</button>
-      </div>
-      <p class="mitigation-rule"><strong>Mitigation must change the flight.</strong> Delay, reroute, add fuel, change aircraft/crew, or cancel—then confirm the underlying condition and reassess.</p>
-    </aside>
-  </div>
-
-  <footer class="sources" aria-labelledby="sourcesTitle">
-    <div>
-      <p class="eyebrow">Primary sources</p>
-      <h2 id="sourcesTitle">Regulation and planning guidance are different</h2>
-    </div>
-    <section class="source-column source-regulation" aria-labelledby="regulationSourcesTitle">
-      <h3 id="regulationSourcesTitle">Regulatory constraints</h3>
-      <p>Current legal requirements and student-solo limitations:</p>
-      <ul>
-        <li><a href="https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-C/section-61.87" target="_blank" rel="noopener">14 CFR § 61.87 — student solo requirements</a></li>
-        <li><a href="https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-C/section-61.89" target="_blank" rel="noopener">14 CFR § 61.89 — student pilot limitations</a></li>
-      </ul>
-    </section>
-    <section class="source-column source-guidance" aria-labelledby="guidanceSourcesTitle">
-      <h3 id="guidanceSourcesTitle">FAA planning guidance</h3>
-      <p>Advisory tools for identifying hazards and setting personal limits:</p>
-      <ul>
-        <li><a href="https://www.faa.gov/general/flight-risk-assessment-tool-frat-faa-safety-team" target="_blank" rel="noopener">FAA Safety Team FRAT</a></li>
-        <li><a href="https://www.faa.gov/sites/faa.gov/files/training_testing/training/fits/guidance/personal%20minimums%20checklist.pdf" target="_blank" rel="noopener">FAA Personal Minimums Checklist</a></li>
-        <li><a href="https://www.faa.gov/sites/faa.gov/files/2022-01/Personal%20Minimums.pdf" target="_blank" rel="noopener">FAA Personal Minimums fact sheet</a></li>
-        <li><a href="https://www.faa.gov/sites/faa.gov/files/2022-06/risk_management_handbook_2A.pdf" target="_blank" rel="noopener">FAA Risk Management Handbook (FAA-H-8083-2A)</a></li>
-      </ul>
-    </section>
-  </footer>
-
-  <dialog id="minimumsDialog" aria-labelledby="minimumsTitle">
-    <form method="dialog" class="dialog-shell" id="minimumsForm">
-      <header class="dialog-header">
-        <div><p class="eyebrow">Saved setup</p><h2 id="minimumsTitle">Personal minimums</h2></div>
-        <button class="icon-button" type="button" id="closeMinimumsButton" aria-label="Close personal minimums">×</button>
-      </header>
-      <p class="dialog-lede"><strong>FAA supplies a framework, not universal certificate-tier numeric recommendations.</strong> Keep these values blank until you set limits tailored to recent experience, proficiency, the aircraft, and the operation; review them with a CFI.</p>
-      <div class="student-solo-note" id="studentSoloNote" hidden>
-        <strong>Student solo: these are instructor limits.</strong>
-        <p>Under § 61.89, 3 SM by day and 5 SM at night are legal visibility floors, and the flight must remain within logbook limitations. Those are constraints—not recommended personal minimums.</p>
-      </div>
-      <div class="minimum-grid" id="minimumFields"></div>
-      <p class="form-error" id="minimumsError" role="alert" hidden></p>
-      <div class="guidance-split">
-        <section><h3>Regulatory constraints</h3><p>Check the current regulation, endorsements, aircraft limits, and instructor/operator restrictions for the actual flight.</p></section>
-        <section><h3>Planning guidance</h3><p>Set conservative values away from the pressure of a specific flight. Do not lower them to make today’s plan fit.</p></section>
-      </div>
-      <footer class="dialog-actions">
-        <button class="button button-quiet" type="button" id="clearMinimumsButton">Clear values</button>
-        <button class="button button-primary" type="submit" value="save">Save on this device</button>
-      </footer>
-    </form>
-  </dialog>
-
-  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <noscript><p class="noscript">JavaScript is required to use this assessment.</p></noscript>
-  <script src="questions.js?v=20260716q"></script>
-  <script src="risk-model.js?v=20260716q"></script>
-  <script src="app.js?v=20260716q"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/flight-risk-assessment/logo.svg" />
+    <link rel="canonical" href="https://suarezcfi.com/flight-risk-assessment/" />
+    <meta name="description" content="SuarezCFI FlightRisk is a private, on-device Flight Risk Assessment Tool with complete PAVE coverage, explicit completion checks, saved pilot and aircraft setup, and transparent scoring." />
+    <meta property="og:title" content="FlightRisk — SuarezCFI Flight Risk Assessment" />
+    <meta property="og:description" content="Know before you go. A trust-first, full-PAVE VFR and IFR risk assessment with local-only profiles and transparent scoring." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://suarezcfi.com/flight-risk-assessment/" />
+    <meta property="og:site_name" content="SuarezCFI" />
+    <meta property="og:image" content="https://suarezcfi.com/flight-risk-assessment/og-cover-v2.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FlightRisk — SuarezCFI Flight Risk Assessment" />
+    <meta name="twitter:image" content="https://suarezcfi.com/flight-risk-assessment/og-cover-v2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>FlightRisk — SuarezCFI Flight Risk Assessment</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "FlightRisk — SuarezCFI Flight Risk Assessment",
+        "alternateName": ["FlightRisk", "Suarez CFI FRAT", "Flight Risk Assessment Tool"],
+        "url": "https://suarezcfi.com/flight-risk-assessment/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "description": "A private, on-device flight risk assessment tool (FRAT) with complete PAVE coverage, explicit completion checks, saved pilot and aircraft setup, and transparent scoring.",
+        "author": {
+          "@type": "Person",
+          "name": "Diego Suarez",
+          "url": "https://suarezcfi.com/"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-Do31On6m.js"></script>
+    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-BRNX_w5q.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

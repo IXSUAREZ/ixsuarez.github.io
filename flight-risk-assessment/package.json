@@ -1,9 +1,0 @@
-{
-  "name": "suarezcfi-flight-risk-assessment",
-  "version": "1.0.0",
-  "private": true,
-  "description": "FAA-aligned, non-compensating flight risk assessment model",
-  "scripts": {
-    "test": "node --test"
-  }
-}

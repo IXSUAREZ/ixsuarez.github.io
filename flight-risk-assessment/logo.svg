@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Attitude indicator mark: circle split horizontally, sky teal / ground slate -->
+  <defs>
+    <clipPath id="disc">
+      <circle cx="256" cy="256" r="200"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#disc)">
+    <rect x="0" y="0" width="512" height="256" fill="#1E6E66"/>
+    <rect x="0" y="256" width="512" height="256" fill="#17262C"/>
+  </g>
+  <circle cx="256" cy="256" r="200" stroke="#17262C" stroke-opacity="0.12" stroke-width="4"/>
+  <!-- Wing line -->
+  <g stroke="#FFFFFF" stroke-width="20" stroke-linecap="round">
+    <line x1="116" y1="248" x2="216" y2="256"/>
+    <line x1="296" y1="256" x2="396" y2="248"/>
+  </g>
+  <!-- Center dot -->
+  <circle cx="256" cy="256" r="16" fill="#FFFFFF"/>
+</svg>

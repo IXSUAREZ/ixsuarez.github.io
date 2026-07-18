@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <!-- Step 4-5: semicircular gauge, needle in green zone, three zone segments, mono score -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Card -->
+    <rect x="170" y="90" width="460" height="420" rx="16" fill="#F6F6F3" stroke="#C9CFC8" stroke-width="2"/>
+    <!-- Gauge zones: semicircle radius 150 centered (400, 380) -->
+    <!-- Green zone: 180deg to 108deg -->
+    <path d="M 250 380 A 150 150 0 0 1 353.6 237.3" stroke="#2F8F5B" stroke-width="26" fill="none"/>
+    <!-- Amber zone: 108deg to 54deg -->
+    <path d="M 353.6 237.3 A 150 150 0 0 1 488.2 258.6" stroke="#C08A10" stroke-width="26" fill="none"/>
+    <!-- Red zone: 54deg to 0deg -->
+    <path d="M 488.2 258.6 A 150 150 0 0 1 550 380" stroke="#C0463B" stroke-width="26" fill="none"/>
+    <!-- Zone divider ticks -->
+    <line x1="353.6" y1="237.3" x2="362.7" y2="221.5" stroke="#FFFFFF" stroke-width="4"/>
+    <line x1="488.2" y1="258.6" x2="502.5" y2="247.4" stroke="#FFFFFF" stroke-width="4"/>
+    <!-- Scale ticks -->
+    <g stroke="#7C8A90" stroke-width="2">
+      <line x1="250" y1="380" x2="232" y2="380"/>
+      <line x1="550" y1="380" x2="568" y2="380"/>
+      <line x1="400" y1="230" x2="400" y2="212"/>
+    </g>
+    <!-- Needle pointing into green zone (approx 140deg) -->
+    <line x1="400" y1="380" x2="312" y2="292" stroke="#17262C" stroke-width="5"/>
+    <circle cx="400" cy="380" r="14" fill="#17262C"/>
+    <circle cx="400" cy="380" r="5" fill="#FFFFFF"/>
+    <!-- Score -->
+    <text x="400" y="470" font-family="monospace" font-size="52" font-weight="600" fill="#216B44" text-anchor="middle">06</text>
+    <rect x="352" y="484" width="96" height="30" rx="15" fill="#E2F1E7"/>
+    <text x="400" y="505" font-family="monospace" font-size="16" font-weight="600" fill="#216B44" text-anchor="middle" letter-spacing="2">LOW</text>
+  </g>
+</svg>

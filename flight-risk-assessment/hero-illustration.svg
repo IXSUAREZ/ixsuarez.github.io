@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" fill="none">
+  <!-- Light blueprint line-art: runway horizon, climbing high-wing trainer, dotted arc, wind arrows, sun -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Horizon / runway line -->
+    <line x1="80" y1="600" x2="1520" y2="600" stroke="#54666E" stroke-width="2"/>
+    <!-- Runway centerline dashes (perspective) -->
+    <g stroke="#54666E" stroke-width="2" opacity="0.55">
+      <line x1="160" y1="636" x2="240" y2="636"/>
+      <line x1="330" y1="648" x2="440" y2="648"/>
+      <line x1="560" y1="658" x2="700" y2="658"/>
+      <line x1="850" y1="666" x2="1030" y2="666"/>
+      <line x1="1190" y1="672" x2="1400" y2="672"/>
+    </g>
+    <!-- Runway edge ticks -->
+    <g stroke="#54666E" stroke-width="1.5" opacity="0.4">
+      <line x1="200" y1="600" x2="170" y2="628"/>
+      <line x1="420" y1="600" x2="380" y2="640"/>
+      <line x1="680" y1="600" x2="620" y2="652"/>
+      <line x1="980" y1="600" x2="900" y2="662"/>
+      <line x1="1300" y1="600" x2="1210" y2="668"/>
+    </g>
+
+    <!-- Soft sun circle -->
+    <circle cx="1260" cy="180" r="64" stroke="#C9CFC8" stroke-width="2"/>
+    <circle cx="1260" cy="180" r="88" stroke="#C9CFC8" stroke-width="1.5" opacity="0.5" stroke-dasharray="2 10"/>
+
+    <!-- Dotted flight path arc -->
+    <path d="M 180 600 C 480 560, 780 420, 1080 300 C 1200 254, 1300 224, 1400 208"
+          stroke="#1E6E66" stroke-width="2" stroke-dasharray="1 14" opacity="0.8"/>
+
+    <!-- Wind arrows -->
+    <g stroke="#54666E" stroke-width="1.5" opacity="0.7">
+      <line x1="240" y1="180" x2="360" y2="180"/>
+      <path d="M 344 170 L 362 180 L 344 190"/>
+      <line x1="300" y1="240" x2="400" y2="240"/>
+      <path d="M 385 231 L 402 240 L 385 249"/>
+      <line x1="210" y1="300" x2="290" y2="300"/>
+      <path d="M 276 292 L 292 300 L 276 308"/>
+    </g>
+
+    <!-- High-wing training aircraft, climbing at shallow angle, teal silhouette -->
+    <g transform="translate(1080 288) rotate(-14)">
+      <!-- Fuselage -->
+      <path d="M -88 6 C -60 -6, 30 -10, 74 -2 C 88 0, 92 4, 88 8 C 60 14, -40 16, -78 12 C -90 10, -94 8, -88 6 Z" fill="#1E6E66"/>
+      <!-- High wing -->
+      <path d="M -40 -8 L 30 -14 L 66 -12 L -12 -4 Z" fill="#1E6E66"/>
+      <!-- Wing struts -->
+      <line x1="-22" y1="-5" x2="-30" y2="10" stroke="#1E6E66" stroke-width="2.5"/>
+      <line x1="34" y1="-11" x2="24" y2="9" stroke="#1E6E66" stroke-width="2.5"/>
+      <!-- Tail -->
+      <path d="M -88 6 L -110 -16 L -96 -16 L -74 0 Z" fill="#1E6E66"/>
+      <path d="M -86 10 L -104 18 L -86 16 Z" fill="#1E6E66"/>
+      <!-- Propeller disc -->
+      <ellipse cx="92" cy="3" rx="5" ry="22" stroke="#1E6E66" stroke-width="2" opacity="0.55"/>
+      <!-- Landing gear -->
+      <line x1="-20" y1="15" x2="-24" y2="28" stroke="#1E6E66" stroke-width="2.5"/>
+      <line x1="34" y1="14" x2="38" y2="28" stroke="#1E6E66" stroke-width="2.5"/>
+      <circle cx="-24" cy="31" r="5" stroke="#1E6E66" stroke-width="2.5"/>
+      <circle cx="38" cy="31" r="5" stroke="#1E6E66" stroke-width="2.5"/>
+    </g>
+
+    <!-- Sparse altitude tick markers (instrument feel) -->
+    <g stroke="#54666E" stroke-width="1.5" opacity="0.45">
+      <line x1="1480" y1="420" x2="1496" y2="420"/>
+      <line x1="1480" y1="480" x2="1496" y2="480"/>
+      <line x1="1480" y1="540" x2="1496" y2="540"/>
+      <line x1="1480" y1="360" x2="1490" y2="360"/>
+    </g>
+  </g>
+</svg>

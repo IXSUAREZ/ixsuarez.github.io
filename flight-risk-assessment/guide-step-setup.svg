@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <!-- Step 1: pilot certificate ID card + VFR/IFR toggle pill, flat line style -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- ID badge card -->
+    <rect x="120" y="130" width="380" height="260" rx="16" fill="#F6F6F3" stroke="#C9CFC8" stroke-width="2"/>
+    <!-- Card header stripe -->
+    <rect x="120" y="130" width="380" height="52" rx="16" fill="#DCEBE8"/>
+    <rect x="120" y="166" width="380" height="16" fill="#DCEBE8"/>
+    <text x="146" y="164" font-family="monospace" font-size="20" font-weight="600" fill="#155A52" letter-spacing="2">PILOT CERTIFICATE</text>
+    <!-- Photo frame -->
+    <rect x="148" y="212" width="92" height="112" rx="12" fill="#FFFFFF" stroke="#C9CFC8" stroke-width="2"/>
+    <circle cx="194" cy="256" r="22" stroke="#54666E" stroke-width="2"/>
+    <path d="M 162 310 C 168 286, 220 286, 226 310" stroke="#54666E" stroke-width="2"/>
+    <!-- Text lines -->
+    <g stroke="#A8B2B6" stroke-width="8">
+      <line x1="264" y1="226" x2="452" y2="226"/>
+      <line x1="264" y1="252" x2="416" y2="252"/>
+      <line x1="264" y1="278" x2="440" y2="278"/>
+    </g>
+    <g stroke="#C9CFC8" stroke-width="6">
+      <line x1="264" y1="306" x2="380" y2="306"/>
+      <line x1="264" y1="330" x2="352" y2="330"/>
+    </g>
+    <!-- Clip -->
+    <rect x="286" y="112" width="48" height="36" rx="8" fill="#FFFFFF" stroke="#C9CFC8" stroke-width="2"/>
+    <circle cx="310" cy="130" r="7" stroke="#54666E" stroke-width="2"/>
+
+    <!-- VFR/IFR toggle pill -->
+    <rect x="540" y="220" width="180" height="64" rx="32" fill="#EFEFEC" stroke="#C9CFC8" stroke-width="2"/>
+    <rect x="548" y="228" width="80" height="48" rx="24" fill="#1E6E66"/>
+    <text x="588" y="259" font-family="monospace" font-size="20" font-weight="600" fill="#FFFFFF" text-anchor="middle">VFR</text>
+    <text x="674" y="259" font-family="monospace" font-size="20" font-weight="500" fill="#7C8A90" text-anchor="middle">IFR</text>
+
+    <!-- Checkmark badge -->
+    <circle cx="630" cy="380" r="34" fill="#E2F1E7" stroke="#2F8F5B" stroke-width="2.5"/>
+    <path d="M 614 380 L 625 391 L 647 368" stroke="#216B44" stroke-width="5"/>
+  </g>
+</svg>

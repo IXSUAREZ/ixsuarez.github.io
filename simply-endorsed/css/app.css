@@ -8975,3 +8975,503 @@ body.theme-orange .app-shell {
 @media (max-width: 640px) {
   .nav--tool .nav-brand { gap: 10px; }
 }
+
+/* ===== Part 61 wizard steps 1-4 visual refresh — final cascade, keep last ===== */
+
+/* --------------------------------------------------------------------------
+   1. Theme coherence: collapse the rainbow per-step accents into the single
+      orange brand family. Panels keep their --p61-step-* tokens so the
+      existing kicker pill, focus-within ring, and left accent bar rules
+      re-resolve in orange automatically. Rail items are all orange so the
+      stepper reads as one cohesive control.
+   -------------------------------------------------------------------------- */
+.part61-panel[data-step="1"],
+.part61-panel[data-step="2"],
+.part61-panel[data-step="3"],
+.part61-panel[data-step="4"],
+.part61-step-rail .part61-rail-item:nth-child(1),
+.part61-step-rail .part61-rail-item:nth-child(2),
+.part61-step-rail .part61-rail-item:nth-child(3),
+.part61-step-rail .part61-rail-item:nth-child(4),
+.part61-step-rail .part61-rail-item:nth-child(5) {
+  --p61-step-accent: var(--accent);
+  --p61-step-soft: rgba(234, 88, 12, 0.10);
+  --p61-step-line: rgba(234, 88, 12, 0.35);
+  --p61-step-ink: #7C2D12;
+}
+
+/* Orange focus rings for every text-like control in the calculator
+   (replaces the hardcoded blue ring rgba(31, 94, 214, 0.12)). */
+.part61-calculator .part61-text-input:focus,
+.part61-calculator .part61-number-field input:focus,
+.part61-calculator select:focus,
+.part61-calculator input[type="search"]:focus,
+.part61-calculator input[type="number"]:focus,
+.part61-calculator input[type="text"]:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.14);
+}
+
+/* Invalid fields keep the red ring even while focused. */
+.part61-calculator .is-invalid:focus,
+.part61-calculator .field-invalid input:focus {
+  border-color: rgba(180, 35, 24, 0.72);
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.10);
+}
+
+/* Orange-tinted primary button shadow (was blue rgba(31, 94, 214, 0.16)). */
+.part61-calculator .part61-button-primary {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 12px 24px -6px rgba(234, 88, 12, 0.32);
+}
+
+/* Re-declared last so the "fresh result" pulse animates in orange. */
+@keyframes part61FreshPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 18px rgba(234, 88, 12, 0);
+  }
+}
+
+/* Header accent bar: single orange gradient instead of the rainbow strip. */
+.part61-calculator-header::before {
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+}
+
+/* --------------------------------------------------------------------------
+   2. Step rail → real stepper: circle + label rows, orange active state,
+      green completed state with a CSS-only check glyph, and a subtle
+      vertical connector between circles on the desktop (vertical) rail.
+   -------------------------------------------------------------------------- */
+.part61-step-rail {
+  gap: 8px;
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.part61-rail-item {
+  min-height: 64px;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  color: var(--text-muted);
+}
+
+.part61-rail-item span {
+  border-color: var(--part61-line-strong);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-muted);
+}
+
+.part61-rail-item b {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.part61-rail-item.active b,
+.part61-rail-item.is-active b,
+.part61-rail-item[aria-current="step"] b {
+  font-weight: 800;
+}
+
+/* Completed step: green circle with a check glyph (number visually swapped,
+   text content untouched for JS/AT). */
+.part61-rail-item.is-complete span {
+  border-color: #15803D;
+  background: #15803D;
+  color: #ffffff;
+  font-size: 0;
+}
+
+.part61-rail-item.is-complete span::after {
+  content: "✓";
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Vertical connector between circles — desktop (vertical) rail only. */
+@media (min-width: 901px) {
+  .part61-step-rail .part61-rail-item::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 2px;
+    height: 42px;
+    transform: translateX(-50%);
+    background: var(--part61-line);
+  }
+
+  .part61-step-rail .part61-rail-item:first-child::before {
+    content: none;
+  }
+
+  .part61-step-rail .part61-rail-item span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .part61-step-rail .part61-rail-item.is-complete::before,
+  .part61-step-rail .part61-rail-item.is-complete + .part61-rail-item::before {
+    background: #15803D;
+  }
+}
+
+@media (max-width: 900px) {
+  .part61-rail-item {
+    min-height: 56px;
+    padding: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Panels (steps 1-4): near-white cards, 16px radius, soft shadow,
+      generous padding. Step 5 panel chrome is intentionally untouched.
+   -------------------------------------------------------------------------- */
+.part61-panel[data-step="1"],
+.part61-panel[data-step="2"],
+.part61-panel[data-step="3"],
+.part61-panel[data-step="4"] {
+  padding: 24px;
+  border: 1px solid var(--part61-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.90);
+  box-shadow: var(--shadow-md);
+}
+
+.part61-panel[data-step="1"] .part61-panel-heading h3,
+.part61-panel[data-step="2"] .part61-panel-heading h3,
+.part61-panel[data-step="3"] .part61-panel-heading h3,
+.part61-panel[data-step="4"] .part61-panel-heading h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.part61-panel[data-step="1"] .part61-helper,
+.part61-panel[data-step="2"] .part61-helper,
+.part61-panel[data-step="3"] .part61-helper,
+.part61-panel[data-step="4"] .part61-helper {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   4. Panel navigation: tall primary Next with a CSS-only trailing arrow,
+      quiet ghost Back buttons, hairline divider retained.
+   -------------------------------------------------------------------------- */
+.part61-panel[data-step="1"] .part61-nav-group,
+.part61-panel[data-step="2"] .part61-nav-group,
+.part61-panel[data-step="3"] .part61-nav-group,
+.part61-panel[data-step="4"] .part61-nav-group {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--part61-line);
+}
+
+.part61-panel[data-step="1"] .part61-nav-group .part61-button,
+.part61-panel[data-step="2"] .part61-nav-group .part61-button,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button {
+  min-height: 46px;
+}
+
+.part61-panel[data-step="1"] .part61-nav-group .part61-button-primary,
+.part61-panel[data-step="2"] .part61-nav-group .part61-button-primary,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button-primary,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button-primary {
+  padding: 0 20px;
+}
+
+.part61-nav-group .part61-next-btn::after {
+  content: "→";
+  margin-left: 8px;
+}
+
+.part61-panel[data-step="2"] .part61-nav-group .part61-button-secondary,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button-secondary,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button-secondary {
+  border-color: var(--part61-line-strong);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.part61-panel[data-step="2"] .part61-nav-group .part61-button-secondary:hover,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button-secondary:hover,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button-secondary:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.06);
+  color: var(--accent-ink);
+}
+
+/* The Calculate button carries a legacy margin-top that misaligns the row. */
+.part61-nav-group .part61-calculate-button {
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Step 1 — Current credentials: taller search input, pill toggles,
+      orange chips, selectable flag cards.
+   -------------------------------------------------------------------------- */
+.part61-calculator .part61-text-input {
+  min-height: 46px;
+  border-radius: 12px;
+}
+
+.part61-calculator .option-button {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+}
+
+.part61-calculator .option-button:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.06);
+}
+
+.part61-calculator .option-button.selected {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.10);
+  color: #7C2D12;
+  font-weight: 800;
+}
+
+.part61-calculator .chip button:hover {
+  background: rgba(234, 88, 12, 0.16);
+}
+
+.part61-calculator .part61-check-row {
+  padding: 10px 12px;
+  border-radius: 12px;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.part61-calculator .part61-check-row:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.05);
+}
+
+.part61-calculator .part61-check-row:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.10);
+}
+
+/* --------------------------------------------------------------------------
+   6. Step 2 — Cost assumptions: CSS-only "$" prefix inside the rate inputs
+      (label wraps span + input; the glyph is anchored to the input row),
+      and the dual-rate summary becomes an orange hero pill.
+   -------------------------------------------------------------------------- */
+.part61-calculator label.part61-number-field {
+  position: relative;
+}
+
+.part61-calculator label.part61-number-field::before {
+  content: "$";
+  position: absolute;
+  bottom: 14px;
+  left: 12px;
+  z-index: 1;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.part61-calculator label.part61-number-field input {
+  min-height: 46px;
+  padding-left: 26px;
+}
+
+.part61-rate-summary span:first-child:not(.part61-rate-warning) {
+  min-height: 34px;
+  padding: 0 14px;
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.10);
+  color: #7C2D12;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* --------------------------------------------------------------------------
+   7. Step 3 — Flight experience: field groups as sub-cards (per-group
+      --grp-* heading accents retained), logged-event accordions with a
+      rotating chevron, compact hoverable check rows.
+   -------------------------------------------------------------------------- */
+.part61-calculator .field-group {
+  padding: 16px;
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: none;
+}
+
+/* "Logged Events" subhead: warm orange instead of the legacy teal. */
+.part61-panel[data-step="3"] .part61-subhead-row {
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.08);
+}
+
+.part61-panel[data-step="3"] .part61-subhead-row h4,
+.part61-panel[data-step="3"] .part61-subhead-row .part61-text-button {
+  color: var(--accent-ink);
+}
+
+.part61-event-group {
+  padding: 0;
+  border: 1px solid var(--part61-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.66);
+  overflow: hidden;
+}
+
+.part61-event-group summary {
+  justify-content: flex-start;
+  padding: 12px 14px;
+  color: var(--text-strong);
+  transition: background 160ms ease;
+}
+
+.part61-event-group summary:hover {
+  background: rgba(234, 88, 12, 0.05);
+}
+
+.part61-event-group summary::after {
+  content: "▸";
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: transform 160ms ease;
+}
+
+.part61-event-group[open] > summary {
+  margin-bottom: 0;
+}
+
+.part61-event-group[open] > summary::after {
+  transform: rotate(90deg);
+}
+
+.part61-event-group summary .group-completion {
+  margin-left: auto;
+  border-color: var(--part61-line);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-muted);
+}
+
+.part61-event-group .part61-event-grid {
+  margin-top: 0;
+  padding: 2px 14px 12px;
+}
+
+.part61-event-grid .check-row {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.part61-event-grid .check-row:hover {
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   8. Step 4 — Target path: stage cards own their layout now that the JS no
+      longer injects inline styles, indented proficiency sub-rows with a
+      guide border, and a dashed "Add Stage" affordance.
+   -------------------------------------------------------------------------- */
+.part61-calculator .part61-stage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.part61-stage-card select {
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+.part61-proficiency-estimate-container {
+  margin: 6px 0 6px 42px;
+  padding-left: 12px;
+  border-left: 2px solid var(--part61-line);
+}
+
+.proficiency-estimate-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.proficiency-estimate-input {
+  width: 70px;
+  min-height: 34px;
+  padding: 4px 6px;
+  border: 1px solid var(--part61-line);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.proficiency-hint {
+  color: var(--text-muted-2);
+  font-size: 0.78rem;
+}
+
+#part61AddStageBtn {
+  min-height: 46px;
+  border: 1.5px dashed var(--part61-line-strong);
+  border-radius: 12px;
+  background: transparent;
+  color: #7C2D12;
+}
+
+#part61AddStageBtn:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.08);
+  color: var(--accent-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive: tighter panel padding on small screens. The rail connector
+   is desktop-only (see the min-width: 901px block above); the existing
+   horizontal mobile rail keeps working with the compact padding above.
+   -------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .part61-panel[data-step="1"],
+  .part61-panel[data-step="2"],
+  .part61-panel[data-step="3"],
+  .part61-panel[data-step="4"] {
+    padding: 18px;
+  }
+}
+
+/* Narrow phones (<=420px): shrink the horizontal rail so all five steps fit
+   without scrolling (5 x 60px items + 4 x 6px gaps + padding < 366px content
+   width at 390px viewport). Active/complete treatments are untouched. */
+@media (max-width: 420px) {
+  .part61-step-rail {
+    gap: 6px;
+    padding: 8px 6px;
+  }
+
+  .part61-step-rail .part61-rail-item {
+    min-width: 60px;
+    padding: 8px 4px;
+  }
+
+  .part61-step-rail .part61-rail-item b {
+    font-size: 0.66rem;
+  }
+}

@@ -479,16 +479,16 @@
       const isProf = RULES.isProficiencyTarget(target);
       const estimate = state.proficiencyEstimates[target] ?? RULES.PROFICIENCY_DEFAULTS[target] ?? 0;
       const estimateInputHtml = isProf ? `
-        <div class="part61-proficiency-estimate-container" style="margin-left: 42px; margin-top: 6px; margin-bottom: 6px;">
-          <label class="proficiency-estimate-label" style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted, #666);">
+        <div class="part61-proficiency-estimate-container">
+          <label class="proficiency-estimate-label">
             Proficiency estimate:
-            <input type="number" data-stage-estimate-index="${index}" data-target-id="${escapeHtml(target)}" value="${estimate}" min="1" max="100" step="0.5" style="width: 60px; padding: 4px; border: 1px solid var(--border, #ccc); border-radius: 4px; text-align: center;">
-            hrs <span class="proficiency-hint" style="font-size: 0.78rem; opacity: 0.8;">(adjust as needed)</span>
+            <input type="number" class="proficiency-estimate-input" data-stage-estimate-index="${index}" data-target-id="${escapeHtml(target)}" value="${estimate}" min="1" max="100" step="0.5">
+            hrs <span class="proficiency-hint">(adjust as needed)</span>
           </label>
         </div>
       ` : "";
       return `
-        <div class="part61-stage-card" style="display: flex; flex-direction: column;">
+        <div class="part61-stage-card">
           <div class="stage-row">
             <span class="stage-number">${index + 1}</span>
             <select data-stage-index="${index}" aria-label="Stage ${index + 1}">

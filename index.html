@@ -209,10 +209,9 @@
     .tool-btn strong { display: block; font-size: 0.86rem; font-weight: 750; color: var(--ink); line-height: 1.18; }
     .tool-btn em { display: block; font-style: normal; font-size: 0.72rem; color: var(--ink-muted); line-height: 1.22; }
     .tool-btn--endorse .tool-icon {
-      background: linear-gradient(160deg, var(--yellow-bright) 0%, var(--yellow) 55%, var(--yellow-deep) 100%);
-      color: var(--ink);
-      box-shadow: 0 8px 18px -8px rgba(245, 196, 0, 0.9);
+      box-shadow: 0 8px 18px -8px rgba(37, 99, 235, 0.85);
     }
+    .tool-btn--endorse:focus-visible { outline-color: #2563EB; }
     .tool-btn--frat .tool-icon { box-shadow: 0 8px 18px -8px rgba(30, 110, 102, 0.85); }
     .tool-btn--frat:focus-visible { outline-color: #1E6E66; }
     .tool-btn--calc .tool-icon { box-shadow: 0 8px 18px -8px rgba(234, 88, 12, 0.85); }
@@ -1166,7 +1165,19 @@
               <span class="hero-tools-label">Free tools</span>
               <a href="/simply-endorsed-cfi/" class="tool-btn tool-btn--endorse" data-cta-id="home-hero-simply-endorsed">
                 <span class="tool-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  <svg viewBox="0 0 512 512" width="30" height="30" fill="none">
+                    <defs>
+                      <linearGradient id="seHomeDisc" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#3B82F6"/>
+                        <stop offset="0.55" stop-color="#2563EB"/>
+                        <stop offset="1" stop-color="#1D4ED8"/>
+                      </linearGradient>
+                    </defs>
+                    <circle cx="256" cy="256" r="256" fill="url(#seHomeDisc)"/>
+                    <circle cx="256" cy="256" r="212" fill="none" stroke="#1E3A8A" stroke-opacity="0.35" stroke-width="10"/>
+                    <path d="M140 252 L212 326 L376 158" fill="none" stroke="#FFFFFF" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M122 388 C 172 352, 214 356, 245 383 C 276 410, 315 412, 344 387 C 362 372, 380 367, 394 373" fill="none" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" stroke-opacity="0.95"/>
+                  </svg>
                 </span>
                 <span><strong>Simply Endorsed CFI</strong> <em>FAA endorsement lookup</em></span>
               </a>

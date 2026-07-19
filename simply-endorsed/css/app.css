@@ -9475,3 +9475,115 @@ body.theme-orange .app-shell {
     font-size: 0.66rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   9. Rail & header-action fixes: solid circles to mask the connector, hide
+      the redundant status dots, and turn the 5 top buttons into a compact
+      connected toolbar so the header feels less cluttered.
+   -------------------------------------------------------------------------- */
+
+/* Number circles must be opaque so the connector line stops showing through. */
+.part61-step-rail .part61-rail-item span {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85);
+}
+
+/* The floating status dot is redundant now — the circle itself shows state. */
+.part61-step-rail .part61-rail-status {
+  display: none;
+}
+
+/* Make the connector slightly subtler and ensure it sits behind the circles. */
+@media (min-width: 901px) {
+  .part61-step-rail .part61-rail-item::before {
+    width: 2px;
+    height: 40px;
+    top: -28px;
+    background: var(--part61-line);
+  }
+
+  .part61-step-rail .part61-rail-item.is-complete::before,
+  .part61-step-rail .part61-rail-item.is-complete + .part61-rail-item::before {
+    width: 2px;
+  }
+}
+
+/* Compact header-actions toolbar */
+.part61-calculator .part61-header-actions {
+  gap: 10px;
+}
+
+.part61-calculator .part61-header-actions .part61-button {
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transform: none;
+}
+
+/* Connect the secondary actions into a single pill-like group. */
+.part61-calculator .part61-header-actions .part61-button-secondary {
+  border-color: var(--part61-line);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary:hover {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.95);
+  transform: none;
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary + .part61-button-secondary {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary:first-of-type {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary:last-of-type {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Print stands alone as the primary action. */
+.part61-calculator .part61-header-actions .part61-button-primary {
+  padding: 0 16px;
+  box-shadow: 0 8px 18px -6px rgba(234, 88, 12, 0.28);
+}
+
+.part61-calculator .part61-header-actions .part61-button-primary:hover {
+  box-shadow: 0 10px 22px -6px rgba(234, 88, 12, 0.36);
+}
+
+/* Mobile: don't try to connect buttons when they wrap onto multiple lines. */
+@media (max-width: 640px) {
+  .part61-calculator .part61-header-actions .part61-button-secondary,
+  .part61-calculator .part61-header-actions .part61-button-secondary + .part61-button-secondary,
+  .part61-calculator .part61-header-actions .part61-button-secondary:first-of-type,
+  .part61-calculator .part61-header-actions .part61-button-secondary:last-of-type {
+    margin-left: 0;
+    border-radius: 10px;
+  }
+
+  .part61-calculator .part61-header-actions .part61-button {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.74rem;
+  }
+}
+
+/* Mobile: toolbar wraps naturally and stays left-aligned. */
+@media (max-width: 900px) {
+  .part61-calculator .part61-header-actions .part61-button {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.74rem;
+  }
+}

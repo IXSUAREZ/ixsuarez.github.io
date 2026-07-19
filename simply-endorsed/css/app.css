@@ -8768,6 +8768,17 @@ body.theme-blue {
   --tool-line: rgba(37, 99, 235, 0.42);
   --tool-ink: #1E3A8A;
   --tool-glow: rgba(37, 99, 235, 0.55);
+
+  /* Interior accents: bold blue app chrome. Per-category endorsement
+     colors keep their own palette overrides and are untouched. */
+  --accent: #2563EB;
+  --accent-strong: #1D4ED8;
+  --accent-soft: rgba(37, 99, 235, 0.13);
+  --accent-ink: #1E3A8A;
+  --category-accent: #2563EB;
+  --category-soft: rgba(37, 99, 235, 0.13);
+  --category-line: rgba(37, 99, 235, 0.42);
+  --category-ink: #1E3A8A;
 }
 
 body.theme-orange {
@@ -8778,6 +8789,17 @@ body.theme-orange {
   --tool-line: rgba(234, 88, 12, 0.42);
   --tool-ink: #7C2D12;
   --tool-glow: rgba(234, 88, 12, 0.5);
+
+  /* Interior accents: bold orange app chrome. Per-step calculator
+     colors keep their own palette overrides and are untouched. */
+  --accent: #EA580C;
+  --accent-strong: #C2410C;
+  --accent-soft: rgba(234, 88, 12, 0.12);
+  --accent-ink: #7C2D12;
+  --category-accent: #EA580C;
+  --category-soft: rgba(234, 88, 12, 0.12);
+  --category-line: rgba(234, 88, 12, 0.42);
+  --category-ink: #7C2D12;
 }
 
 /* The pill nav is fixed (design-system.css); push the app shell below it. */
@@ -8799,6 +8821,17 @@ body.theme-orange .app-shell {
   height: 26px;
   background: rgba(13, 19, 48, 0.16);
   flex: none;
+}
+
+.theme-blue .nav-brand-divider,
+.theme-orange .nav-brand-divider {
+  background: var(--tool-line);
+}
+
+/* Wordmark carries the theme ink, like FlightRisk's green "Diego Suarez" */
+.theme-blue .wordmark,
+.theme-orange .wordmark {
+  color: var(--tool-ink);
 }
 
 .nav-tool-mark {
@@ -8823,10 +8856,10 @@ body.theme-orange .app-shell {
   font-weight: 800;
   font-size: 16.5px;
   letter-spacing: -0.01em;
-  color: var(--tool-ink);
+  color: var(--tool-accent-deep);
   line-height: 1.05;
 }
-.nav-tool-mark:hover .nav-tool-name { color: var(--tool-accent-deep); }
+.nav-tool-mark:hover .nav-tool-name { color: var(--tool-accent); }
 
 /* Right-side controls (quick search, category burger, mobile menu) */
 .nav--tool .nav-tools {

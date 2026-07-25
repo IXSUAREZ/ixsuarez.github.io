@@ -36,7 +36,7 @@
     >
     <link rel="stylesheet" href="/assets/design-system.css?v=20260719">
     <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=50">
-    <link rel="stylesheet" href="/certificate-generator/css/app.css">
+    <link rel="stylesheet" href="/certificate-generator/css/app.css?v=2">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -206,19 +206,32 @@
             <section class="cg-panel" data-panel="2" aria-labelledby="cgStep2Heading" hidden>
               <p class="cg-panel-kicker">Step 3</p>
               <h2 id="cgStep2Heading" class="cg-panel-heading">Add the photo</h2>
-              <p class="cg-panel-copy">Upload from your camera roll or take a new photo — you'll be able to zoom and position it inside the frame. This step is optional.</p>
+              <p class="cg-panel-copy">Upload, paste, or drag in a photo — you'll be able to zoom and position it inside the frame. This step is optional.</p>
 
               <div id="cgPhotoEmpty" class="cg-photo-drop">
-                <button type="button" class="cg-photo-drop-btn" id="cgUploadBtn">
-                  <span class="cg-photo-drop-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                  </span>
-                  <span class="cg-photo-drop-text">
-                    <strong>Upload photo</strong>
-                    <span>Opens your camera roll or camera — crop tool launches automatically</span>
-                  </span>
-                </button>
+                <div class="cg-photo-drop-actions">
+                  <button type="button" class="cg-photo-drop-btn" id="cgUploadBtn">
+                    <span class="cg-photo-drop-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    </span>
+                    <span class="cg-photo-drop-text">
+                      <strong>Upload photo</strong>
+                      <span>Opens your camera roll or camera</span>
+                    </span>
+                  </button>
+                  <button type="button" class="cg-photo-drop-btn" id="cgPasteBtn">
+                    <span class="cg-photo-drop-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+                    </span>
+                    <span class="cg-photo-drop-text">
+                      <strong>Paste image</strong>
+                      <span>Use an image you've copied — or just press &#8984;V / Ctrl+V</span>
+                    </span>
+                  </button>
+                </div>
               </div>
+
+              <p class="cg-paste-hint" id="cgPasteHint" hidden></p>
 
               <div id="cgPhotoReady" class="cg-card cg-photo-ready" hidden>
                 <div class="cg-photo-thumb-wrap">
@@ -229,6 +242,7 @@
                   <div class="cg-photo-ready-actions">
                     <button type="button" class="cg-btn cg-btn-secondary" id="cgAdjustCropBtn">Adjust crop</button>
                     <button type="button" class="cg-btn cg-btn-secondary" id="cgReplacePhotoBtn">Replace photo</button>
+                    <button type="button" class="cg-btn cg-btn-secondary" id="cgPasteReplaceBtn">Paste image</button>
                   </div>
                 </div>
               </div>
@@ -260,6 +274,21 @@
                 <button type="button" class="cg-btn cg-btn-secondary cg-btn-block" id="cgShareBtn" hidden>Share / Save to Photos</button>
                 <p class="cg-preview-caption" id="cgPreviewCaption">Select a certificate to begin</p>
               </div>
+              <section class="cg-caption" id="cgCaption" hidden aria-labelledby="cgCaptionHeading">
+                <div class="cg-caption-head">
+                  <h3 class="cg-caption-heading" id="cgCaptionHeading">Social caption</h3>
+                  <button type="button" class="cg-caption-edit" id="cgCaptionEditBtn">Edit</button>
+                </div>
+                <button type="button" class="cg-caption-card" id="cgCaptionCard">
+                  <span class="cg-caption-text" id="cgCaptionText"></span>
+                  <span class="cg-caption-hint" id="cgCaptionHint">Tap to copy</span>
+                </button>
+                <textarea class="cg-caption-input" id="cgCaptionInput" rows="8" hidden aria-label="Edit caption"></textarea>
+                <div class="cg-caption-edit-actions" id="cgCaptionEditActions" hidden>
+                  <button type="button" class="cg-btn cg-btn-secondary" id="cgCaptionResetBtn">Reset</button>
+                  <button type="button" class="cg-btn cg-btn-primary" id="cgCaptionDoneBtn">Done</button>
+                </div>
+              </section>
               <div class="cg-saveimg-wrap" id="cgSaveImgWrap" hidden>
                 <p class="cg-saveimg-note">If the download didn't start, press and hold the image below and choose "Save to Photos" (or right-click &rarr; Save Image on desktop).</p>
                 <img id="cgSaveImg" class="cg-saveimg" alt="Your finished certificate — press and hold to save">
@@ -308,6 +337,7 @@
     </div>
 
     <input type="file" id="cgFileInput" accept="image/*" class="cg-visually-hidden">
+    <div id="cgPasteCatcher" class="cg-visually-hidden" contenteditable="true" role="textbox" aria-label="Paste target" tabindex="-1"></div>
 
     <footer class="calc-footer">
       <p>
@@ -319,6 +349,7 @@
     </footer>
 
     <script src="/assets/site-nav.js" defer></script>
-    <script src="/certificate-generator/js/certificate-generator.js" defer></script>
+    <script src="/simply-endorsed/js/shared-utils.js" defer></script>
+    <script src="/certificate-generator/js/certificate-generator.js?v=2" defer></script>
   </body>
 </html>

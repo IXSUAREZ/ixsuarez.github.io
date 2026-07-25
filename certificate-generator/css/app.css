@@ -234,13 +234,13 @@ body.certgen-view {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Template grid                                                          */
+/* Certificate picker                                                     */
 /* ---------------------------------------------------------------------- */
 
 .cg-template-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 @media (min-width: 560px) {
@@ -251,64 +251,95 @@ body.certgen-view {
   .cg-template-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-.cg-template-card {
+.cg-cert-btn {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 2px solid var(--border, rgba(13, 19, 48, 0.10));
-  border-radius: 16px;
+  align-items: center;
+  gap: 10px;
+  min-height: 62px;
+  padding: 10px 12px 10px 14px;
+  border: 1.5px solid var(--border, rgba(13, 19, 48, 0.10));
+  border-radius: 14px;
   background: #fff;
   text-align: left;
   cursor: pointer;
-  padding: 0;
+  position: relative;
+  overflow: hidden;
   font: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.cg-template-card:hover {
-  border-color: var(--tool-line);
-  transform: translateY(-2px);
+.cg-cert-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cert-accent);
+  opacity: 0.28;
+  transition: opacity 0.2s ease;
 }
 
-.cg-template-card:focus-visible {
-  outline: 2px solid var(--tool-accent);
+.cg-cert-btn:hover {
+  border-color: var(--cert-line);
+  background: var(--cert-soft);
+  transform: translateY(-1px);
+}
+
+.cg-cert-btn:focus-visible {
+  outline: 2px solid var(--cert-accent);
   outline-offset: 2px;
 }
 
-.cg-template-card.is-selected {
-  border-color: var(--tool-accent);
-  box-shadow: 0 0 0 3px var(--tool-soft);
+.cg-cert-btn.is-selected {
+  background: var(--cert-soft);
+  border-color: var(--cert-accent);
+  box-shadow: 0 0 0 3px rgba(13, 19, 48, 0.12);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cert-accent) 22%, white);
 }
 
-.cg-template-thumb {
-  aspect-ratio: 9 / 16;
-  width: 100%;
-  overflow: hidden;
-  background: #eef1f8;
+.cg-cert-btn.is-selected::before {
+  opacity: 1;
 }
 
-.cg-template-thumb img {
+.cg-cert-btn.is-selected .cg-cert-title {
+  color: var(--cert-ink);
+}
+
+.cg-cert-swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--cert-accent);
+}
+
+.cg-cert-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cg-cert-title {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.cg-template-meta {
-  padding: 9px 10px 11px;
-}
-
-.cg-template-title {
+  overflow: hidden;
   font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
+  line-height: 1.25;
   color: var(--ink, #0D1330);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.cg-template-subtitle {
-  margin-top: 2px;
-  font-size: 0.72rem;
+.cg-cert-sub {
+  display: block;
+  overflow: hidden;
+  font-size: 0.7rem;
+  line-height: 1.25;
   color: var(--ink-muted, #4D5670);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -425,21 +456,41 @@ body.certgen-view {
   border: 2px dashed var(--tool-line);
   border-radius: 20px;
   background: var(--tool-soft);
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
+
+.cg-photo-drop.is-dragging {
+  border-style: solid;
+  border-color: var(--tool-accent);
+  background: var(--tool-line);
+}
+
+.cg-photo-drop-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  background: var(--tool-line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Narrow-screen overrides for this block live after the base rules below,
+   so they win at equal specificity. */
 
 .cg-photo-drop-btn {
   display: flex;
   width: 100%;
+  flex: 1 1 0;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 48px 24px;
+  gap: 10px;
+  padding: 32px 20px;
   border: none;
-  background: none;
+  background: var(--tool-soft);
   font: inherit;
   cursor: pointer;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 0;
 }
 
 .cg-photo-drop-btn:hover .cg-photo-drop-icon {
@@ -478,6 +529,47 @@ body.certgen-view {
 .cg-photo-drop-text span {
   font-size: 0.85rem;
   color: var(--ink-muted, #4D5670);
+}
+
+/* On narrow screens the two actions stack, so lay each one out as a compact
+   icon-beside-text row — two stacked column blocks eat most of the screen. */
+@media (max-width: 480px) {
+  .cg-photo-drop-actions {
+    flex-direction: column;
+  }
+
+  .cg-photo-drop-btn {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    text-align: left;
+  }
+
+  .cg-photo-drop-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .cg-photo-drop-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cg-photo-drop-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .cg-photo-drop-text strong {
+    margin-bottom: 2px;
+    font-size: 0.95rem;
+  }
+
+  .cg-photo-drop-text span {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
 }
 
 .cg-photo-ready {
@@ -523,6 +615,17 @@ body.certgen-view {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.cg-paste-hint {
+  display: table;
+  margin: 12px auto 0;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--tool-soft);
+  color: var(--tool-ink);
+  font-size: 0.82rem;
+  text-align: center;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -746,6 +849,135 @@ body.certgen-view {
   height: auto;
   border-radius: 14px;
   box-shadow: var(--shadow-md, 0 14px 40px -12px rgba(13, 19, 48, 0.14));
+}
+
+/* ---------------------------------------------------------------------- */
+/* Social caption                                                          */
+/* ---------------------------------------------------------------------- */
+
+.cg-caption {
+  max-width: 420px;
+  margin: 18px auto 0;
+}
+
+.cg-caption-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cg-caption-heading {
+  margin: 0;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tool-accent-deep);
+}
+
+.cg-caption-edit {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--ink-muted, #4D5670);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cg-caption-edit:hover {
+  color: var(--tool-accent-deep);
+}
+
+.cg-caption-edit:focus-visible {
+  outline: 2px solid var(--tool-accent);
+  outline-offset: 2px;
+}
+
+.cg-caption-card {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border-strong, rgba(13, 19, 48, 0.18));
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px 14px 12px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.cg-caption-card:hover {
+  border-color: var(--tool-line);
+  background: var(--tool-soft);
+}
+
+.cg-caption-card:focus-visible {
+  outline: 2px solid var(--tool-accent);
+  outline-offset: 2px;
+}
+
+.cg-caption-card.is-copied {
+  border-color: var(--tool-accent);
+  background: var(--tool-soft);
+}
+
+.cg-caption-text {
+  display: block;
+  white-space: pre-wrap;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink, #0D1330);
+}
+
+.cg-caption-hint {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tool-accent-deep);
+}
+
+.cg-caption-input {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  border: 1px solid var(--border-strong, rgba(13, 19, 48, 0.18));
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px 14px 12px;
+  font: inherit;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink, #0D1330);
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cg-caption-input:focus-visible {
+  outline: none;
+  border-color: var(--tool-accent);
+  box-shadow: 0 0 0 3px var(--tool-soft);
+}
+
+.cg-caption-edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cg-caption-edit-actions .cg-btn {
+  flex: 1 1 0;
+  min-height: 42px;
 }
 
 /* ---------------------------------------------------------------------- */

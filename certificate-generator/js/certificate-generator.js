@@ -25,15 +25,28 @@
     instructorMaxWidth: 824,
   };
 
+  /* Home base used in the generated caption's SEO line. Change these two
+     values to retarget every caption; the Edit toggle covers one-offs. */
+  var CAPTION_LOCALE = { city: "Louisville, KY", airport: "Bowman Field (KLOU)" };
+
+  /** Substitutes {city}/{airport} placeholders in a per-certificate SEO
+      line pattern so CAPTION_LOCALE is the only place the home base lives. */
+  function buildCaptionSeo(pattern) {
+    return pattern.replace("{city}", CAPTION_LOCALE.city).replace("{airport}", CAPTION_LOCALE.airport);
+  }
+
+  // Theme colors (accent/soft/line/ink) are copied from the Simply Endorsed
+  // CATEGORY_THEMES palette (simply-endorsed/js/app.js) so the certificate
+  // picker reads as part of the same color system as the endorsement categories.
   var CERT_TEMPLATES = [
-    { id: "first-solo", title: "First Solo", subtitle: "Milestone Flight", image: "templates/first-solo.jpg", defaultRating: "CFI" },
-    { id: "private", title: "Private Pilot", subtitle: "Certificate Earned", image: "templates/private.jpg", defaultRating: "CFI" },
-    { id: "sport", title: "Sport Pilot", subtitle: "Certificate Earned", image: "templates/sport.jpg", defaultRating: "CFI" },
-    { id: "instrument", title: "Instrument", subtitle: "IMC Qualified", image: "templates/instrument.jpg", defaultRating: "CFII" },
-    { id: "commercial", title: "Commercial", subtitle: "Pilot Certificate", image: "templates/commercial.jpg", defaultRating: "CFI" },
-    { id: "multi-engine", title: "Multi-Engine", subtitle: "Twin Proficiency", image: "templates/multi-engine.jpg", defaultRating: "MEI" },
-    { id: "cfi", title: "Instructor — CFI", subtitle: "CFI Rating", image: "templates/cfi.jpg", defaultRating: "CFI" },
-    { id: "cfii", title: "Instructor — CFII", subtitle: "CFII Rating", image: "templates/cfii.jpg", defaultRating: "CFII" },
+    { id: "first-solo", title: "First Solo", subtitle: "Milestone flight", image: "templates/first-solo.jpg", defaultRating: "CFI", theme: { accent: "#f59e0b", soft: "#fef7eb", line: "#fde7c2", ink: "#b37000" }, captionEvent: "on your first solo flight", captionSeo: buildCaptionSeo("First solo flight training in {city} — student pilot milestones at {airport}."), hashtags: ["#FirstSolo", "#StudentPilot", "#FlightTraining"] }, // student-pilot
+    { id: "private", title: "Private Pilot", subtitle: "Certificate", image: "templates/private.jpg", defaultRating: "CFI", theme: { accent: "#0ea5e9", soft: "#ecf8fd", line: "#c3e9fa", ink: "#0476a9" }, captionEvent: "for passing your private pilot checkride", captionSeo: buildCaptionSeo("Private pilot license training in {city} — private pilot checkride prep at {airport}."), hashtags: ["#PrivatePilot", "#Checkride", "#FlightTraining"] }, // private-pilot
+    { id: "sport", title: "Sport Pilot", subtitle: "Certificate", image: "templates/sport.jpg", defaultRating: "CFI", theme: { accent: "#16a34a", soft: "#ecf8f1", line: "#c5e8d2", ink: "#0b7633" }, captionEvent: "for passing your sport pilot checkride", captionSeo: buildCaptionSeo("Sport pilot certificate training in {city} — light sport checkride prep at {airport}."), hashtags: ["#SportPilot", "#Checkride", "#LightSport"] }, // sport-pilot
+    { id: "instrument", title: "Instrument", subtitle: "Rating", image: "templates/instrument.jpg", defaultRating: "CFII", theme: { accent: "#64748b", soft: "#f3f4f6", line: "#d8dce2", ink: "#455162" }, captionEvent: "for passing your instrument rating checkride", captionSeo: buildCaptionSeo("Instrument rating training in {city} — IFR checkride prep at {airport}."), hashtags: ["#InstrumentRating", "#IFR", "#Checkride"] }, // instrument-rating
+    { id: "commercial", title: "Commercial", subtitle: "Certificate", image: "templates/commercial.jpg", defaultRating: "CFI", theme: { accent: "#ca8a04", soft: "#fbf6eb", line: "#f2e2c0", ink: "#906200" }, captionEvent: "for passing your commercial pilot checkride", captionSeo: buildCaptionSeo("Commercial pilot training in {city} — commercial checkride prep at {airport}."), hashtags: ["#CommercialPilot", "#Checkride", "#FlightTraining"] }, // commercial-pilot
+    { id: "multi-engine", title: "Multi-Engine", subtitle: "Add-on rating", image: "templates/multi-engine.jpg", defaultRating: "MEI", theme: { accent: "#1f2937", soft: "#edeeef", line: "#c7cacd", ink: "#151d27" }, captionEvent: "for passing your multi-engine checkride", captionSeo: buildCaptionSeo("Multi-engine training in {city} — twin-engine add-on checkride prep at {airport}."), hashtags: ["#MultiEngine", "#TwinEngine", "#Checkride"] }, // atp
+    { id: "cfi", title: "CFI", subtitle: "Instructor rating", image: "templates/cfi.jpg", defaultRating: "CFI", theme: { accent: "#dc2626", soft: "#fceeee", line: "#f6c9c9", ink: "#a11414" }, captionEvent: "for passing your CFI checkride", captionSeo: buildCaptionSeo("CFI training in {city} — flight instructor checkride prep at {airport}."), hashtags: ["#CFI", "#FlightInstructor", "#Checkride"] }, // flight-instructor
+    { id: "cfii", title: "CFII", subtitle: "Instrument instructor", image: "templates/cfii.jpg", defaultRating: "CFII", theme: { accent: "#7c3aed", soft: "#f5effe", line: "#decefb", ink: "#4f0ac4" }, captionEvent: "for passing your CFII checkride", captionSeo: buildCaptionSeo("CFII training in {city} — instrument instructor checkride prep at {airport}."), hashtags: ["#CFII", "#FlightInstructor", "#InstrumentRating"] }, // specialty-operations
   ];
 
   var RATINGS = ["CFI", "CFII", "MEI"];
@@ -243,6 +256,10 @@
     dom.adjustCropBtn = document.getElementById("cgAdjustCropBtn");
     dom.replacePhotoBtn = document.getElementById("cgReplacePhotoBtn");
     dom.fileInput = document.getElementById("cgFileInput");
+    dom.pasteBtn = document.getElementById("cgPasteBtn");
+    dom.pasteReplaceBtn = document.getElementById("cgPasteReplaceBtn");
+    dom.pasteCatcher = document.getElementById("cgPasteCatcher");
+    dom.pasteHint = document.getElementById("cgPasteHint");
 
     dom.summary = document.getElementById("cgSummary");
     dom.startOverBtn = document.getElementById("cgStartOverBtn");
@@ -253,6 +270,16 @@
     dom.previewCaption = document.getElementById("cgPreviewCaption");
     dom.saveImgWrap = document.getElementById("cgSaveImgWrap");
     dom.saveImg = document.getElementById("cgSaveImg");
+
+    dom.caption = document.getElementById("cgCaption");
+    dom.captionEditBtn = document.getElementById("cgCaptionEditBtn");
+    dom.captionCard = document.getElementById("cgCaptionCard");
+    dom.captionText = document.getElementById("cgCaptionText");
+    dom.captionHint = document.getElementById("cgCaptionHint");
+    dom.captionInput = document.getElementById("cgCaptionInput");
+    dom.captionEditActions = document.getElementById("cgCaptionEditActions");
+    dom.captionResetBtn = document.getElementById("cgCaptionResetBtn");
+    dom.captionDoneBtn = document.getElementById("cgCaptionDoneBtn");
 
     dom.cropper = document.getElementById("cgCropper");
     dom.cropBox = document.getElementById("cgCropBox");
@@ -282,10 +309,15 @@
     crop: null,
     templateImg: null,
     fontsReady: false,
+    captionEdited: false,
+    captionText: "",
   };
 
   var templateCache = new Map();
   var lastDownloadUrl = null;
+  /* Tracks whether the caption textarea is currently the visible editor —
+     kept outside `state` since it's transient view state, not app data. */
+  var captionEditing = false;
 
   function currentTemplate() {
     for (var i = 0; i < CERT_TEMPLATES.length; i++) {
@@ -312,12 +344,36 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* Social caption                                                       */
+  /* ------------------------------------------------------------------ */
+
+  /** Builds the ready-to-post caption for the current template/names/rating.
+      Returns "" when no template is selected. Names keep the casing the
+      user typed — only the certificate canvas itself uppercases them. */
+  function buildCaption() {
+    var t = currentTemplate();
+    if (!t) return "";
+
+    var student = studentName();
+    var instructor = instructorName();
+
+    var sentence = "Congratulations";
+    if (student) sentence += " " + student;
+    sentence += " " + t.captionEvent;
+    if (instructor) sentence += ", instructed by " + state.rating + " " + instructor;
+    sentence += ". ✈️";
+
+    return [sentence, "", t.captionSeo, "", t.hashtags.join(" ")].join("\n");
+  }
+
+  /* ------------------------------------------------------------------ */
   /* Template loading                                                     */
   /* ------------------------------------------------------------------ */
 
   function selectTemplate(t) {
     state.templateId = t.id;
     state.rating = t.defaultRating;
+    state.captionEdited = false;
     startLoadingTemplateImage(t);
   }
 
@@ -364,23 +420,23 @@
     CERT_TEMPLATES.forEach(function (t) {
       var card = document.createElement("button");
       card.type = "button";
-      card.className = "cg-template-card";
+      card.className = "cg-cert-btn";
       card.dataset.templateId = t.id;
       card.setAttribute("role", "radio");
       card.setAttribute("aria-checked", "false");
+      card.style.setProperty("--cert-accent", t.theme.accent);
+      card.style.setProperty("--cert-soft", t.theme.soft);
+      card.style.setProperty("--cert-line", t.theme.line);
+      card.style.setProperty("--cert-ink", t.theme.ink);
 
-      var thumb = el("span", "cg-template-thumb");
-      var img = document.createElement("img");
-      img.src = t.image;
-      img.alt = t.title + " certificate template";
-      img.loading = "lazy";
-      thumb.appendChild(img);
+      var swatch = el("span", "cg-cert-swatch");
+      swatch.setAttribute("aria-hidden", "true");
 
-      var meta = el("span", "cg-template-meta");
-      meta.appendChild(el("span", "cg-template-title", t.title));
-      meta.appendChild(el("span", "cg-template-subtitle", t.subtitle));
+      var meta = el("span", "cg-cert-meta");
+      meta.appendChild(el("span", "cg-cert-title", t.title));
+      meta.appendChild(el("span", "cg-cert-sub", t.subtitle));
 
-      card.appendChild(thumb);
+      card.appendChild(swatch);
       card.appendChild(meta);
 
       card.addEventListener("click", function () {
@@ -393,7 +449,7 @@
   }
 
   function syncTemplateSelection() {
-    var cards = dom.templateGrid.querySelectorAll(".cg-template-card");
+    var cards = dom.templateGrid.querySelectorAll(".cg-cert-btn");
     cards.forEach(function (card) {
       var selected = card.dataset.templateId === state.templateId;
       card.classList.toggle("is-selected", selected);
@@ -524,8 +580,93 @@
     }
   }
 
+  /** Shows the caption section only on the review step once a template is
+      picked. When the caption hasn't been hand-edited, it's regenerated
+      from the current template/names/rating on every render. */
+  function renderCaption() {
+    var t = currentTemplate();
+    if (state.step !== 3 || !t) {
+      dom.caption.hidden = true;
+      return;
+    }
+    dom.caption.hidden = false;
+    if (!state.captionEdited) {
+      state.captionText = buildCaption();
+    }
+    dom.captionText.textContent = state.captionText;
+    if (!captionEditing) {
+      dom.captionInput.value = state.captionText;
+    }
+  }
+
+  function enterCaptionEdit() {
+    captionEditing = true;
+    dom.captionInput.value = state.captionText;
+    dom.captionCard.hidden = true;
+    dom.captionInput.hidden = false;
+    dom.captionEditActions.hidden = false;
+    dom.captionInput.focus();
+  }
+
+  function exitCaptionEdit() {
+    captionEditing = false;
+    dom.captionInput.hidden = true;
+    dom.captionEditActions.hidden = true;
+    dom.captionCard.hidden = false;
+  }
+
+  function handleCaptionDone() {
+    state.captionText = dom.captionInput.value;
+    state.captionEdited = true;
+    dom.captionText.textContent = state.captionText;
+    exitCaptionEdit();
+  }
+
+  function handleCaptionReset() {
+    state.captionEdited = false;
+    state.captionText = buildCaption();
+    dom.captionText.textContent = state.captionText;
+    exitCaptionEdit();
+  }
+
+  /** Wraps the site's shared clipboard utility so a load failure of
+      shared-utils.js degrades to a direct clipboard call instead of
+      throwing. Always targets the small hint span, never the caption
+      card itself — the utility swaps the passed element's textContent,
+      and swapping the card would wipe the caption text out of the DOM. */
+  function copyCaptionToClipboard() {
+    var text = state.captionText;
+    if (!text) return;
+
+    dom.captionCard.classList.add("is-copied");
+    setTimeout(function () {
+      dom.captionCard.classList.remove("is-copied");
+    }, 1200);
+
+    if (window.SimplyEndorsedUtils && typeof window.SimplyEndorsedUtils.copyTextToClipboard === "function") {
+      window.SimplyEndorsedUtils.copyTextToClipboard(text, dom.captionHint, "Copied!");
+      return;
+    }
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      var priorHint = dom.captionHint.textContent;
+      navigator.clipboard.writeText(text).then(function () {
+        dom.captionHint.textContent = "Copied!";
+        setTimeout(function () {
+          dom.captionHint.textContent = priorHint;
+        }, 1200);
+      });
+    }
+  }
+
   function redrawCanvas() {
-    if (!state.templateImg || !state.fontsReady) return;
+    /* No template (first load, or after Start over) — wipe the canvas rather
+       than leaving the previous student's certificate and photo on screen. */
+    if (!state.templateImg) {
+      dom.canvas.getContext("2d").clearRect(0, 0, dom.canvas.width, dom.canvas.height);
+      return;
+    }
+    if (!state.fontsReady) return;
     drawCertificate(dom.canvas, state.templateImg, {
       studentName: studentName(),
       instructorName: instructorName(),
@@ -545,6 +686,7 @@
     renderPhotoStep();
     if (state.step === 3) renderSummary();
     renderPreview();
+    renderCaption();
     redrawCanvas();
   }
 
@@ -568,6 +710,8 @@
     state.photo = null;
     state.crop = null;
     state.templateImg = null;
+    state.captionEdited = false;
+    state.captionText = "";
 
     dom.studentFirst.value = "";
     dom.studentLast.value = "";
@@ -580,6 +724,12 @@
     }
     dom.saveImgWrap.hidden = true;
     dom.saveImg.removeAttribute("src");
+
+    exitCaptionEdit();
+    dom.caption.hidden = true;
+
+    dismissPasteHint();
+    dom.pasteCatcher.innerHTML = "";
 
     render();
   }
@@ -858,6 +1008,176 @@
   })();
 
   /* ------------------------------------------------------------------ */
+  /* Photo input — shared entry point for file picker, paste, and drop   */
+  /* ------------------------------------------------------------------ */
+
+  /** Every path that can produce a candidate photo file funnels through
+      here: the <input type=file> change handler, the clipboard-read
+      paste button, the document-level Cmd/Ctrl+V listener, and drag&drop. */
+  function handlePhotoFile(file) {
+    if (!file || !/^image\//.test(file.type)) {
+      setStatus("That doesn't look like an image — please choose a photo file.");
+      return;
+    }
+    setStatus("Preparing photo…");
+    normalizePhoto(file)
+      .then(function (img) {
+        Cropper.open(img, null, function (confirmedImg, crop) {
+          state.photo = confirmedImg;
+          state.crop = crop;
+          render();
+        }, function () {
+          render();
+        });
+      })
+      .catch(function () {
+        setStatus("Could not load that photo — please try a different file.");
+      });
+  }
+
+  function extFromType(type) {
+    if (type === "image/png") return "png";
+    if (type === "image/jpeg" || type === "image/jpg") return "jpg";
+    if (type === "image/gif") return "gif";
+    if (type === "image/webp") return "webp";
+    return "png";
+  }
+
+  var pasteHintTimer = null;
+
+  function dismissPasteHint() {
+    dom.pasteHint.hidden = true;
+    if (pasteHintTimer) {
+      clearTimeout(pasteHintTimer);
+      pasteHintTimer = null;
+    }
+  }
+
+  function promptManualPaste() {
+    if (pasteHintTimer) clearTimeout(pasteHintTimer);
+    dom.pasteHint.textContent = "Press ⌘V to paste — on a phone, long-press here and choose Paste.";
+    dom.pasteHint.hidden = false;
+    dom.pasteCatcher.focus();
+    pasteHintTimer = setTimeout(dismissPasteHint, 15000);
+  }
+
+  /* Clears the paste-capture element on the next tick — the browser's
+     default paste action inserts content into whatever is focused *after*
+     event handlers finish running, so clearing synchronously would race it. */
+  function clearPasteCatcher() {
+    setTimeout(function () {
+      dom.pasteCatcher.innerHTML = "";
+    }, 0);
+  }
+
+  /** navigator.clipboard.read() must be called synchronously inside the
+      click handler — wrapping it in a timeout or another promise first
+      breaks the user-gesture requirement Safari/iOS enforce, and losing
+      that is what stops iOS's native Paste confirmation from appearing. */
+  function handlePasteClick() {
+    if (!navigator.clipboard || typeof navigator.clipboard.read !== "function") {
+      promptManualPaste();
+      return;
+    }
+    navigator.clipboard
+      .read()
+      .then(function (items) {
+        for (var i = 0; i < items.length; i++) {
+          var types = items[i].types;
+          for (var j = 0; j < types.length; j++) {
+            if (/^image\//.test(types[j])) {
+              var item = items[i];
+              var type = types[j];
+              item
+                .getType(type)
+                .then(function (blob) {
+                  handlePhotoFile(new File([blob], "pasted-photo." + extFromType(type), { type: type }));
+                })
+                .catch(function () {
+                  setStatus("Could not read that image from your clipboard — try copying it again.");
+                });
+              return;
+            }
+          }
+        }
+        setStatus("No image on your clipboard — copy an image first, then tap Paste.");
+      })
+      .catch(function () {
+        promptManualPaste();
+      });
+  }
+
+  function findImageFileInClipboardData(clipboardData) {
+    var i;
+    if (clipboardData.items) {
+      for (i = 0; i < clipboardData.items.length; i++) {
+        var item = clipboardData.items[i];
+        if (item.kind === "file" && /^image\//.test(item.type)) {
+          return item.getAsFile();
+        }
+      }
+    }
+    if (clipboardData.files) {
+      for (i = 0; i < clipboardData.files.length; i++) {
+        if (/^image\//.test(clipboardData.files[i].type)) {
+          return clipboardData.files[i];
+        }
+      }
+    }
+    return null;
+  }
+
+  /** Document-level Cmd/Ctrl+V — needs no permission prompt and works on
+      every browser. Only intercepts the event when an image is actually
+      found, so pasting text into the name fields keeps working normally. */
+  function handleDocumentPaste(e) {
+    if (dom.cropper.classList.contains("is-open")) return;
+    var clipboardData = e.clipboardData;
+    if (!clipboardData) return;
+
+    var file = findImageFileInClipboardData(clipboardData);
+    clearPasteCatcher();
+    if (!file) return;
+
+    e.preventDefault();
+    dismissPasteHint();
+    if (state.step !== 2) goToStep(2);
+    handlePhotoFile(file);
+  }
+
+  function wirePhotoDropZone() {
+    dom.photoEmpty.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      dom.photoEmpty.classList.add("is-dragging");
+    });
+    dom.photoEmpty.addEventListener("dragleave", function () {
+      dom.photoEmpty.classList.remove("is-dragging");
+    });
+    dom.photoEmpty.addEventListener("dragend", function () {
+      dom.photoEmpty.classList.remove("is-dragging");
+    });
+    dom.photoEmpty.addEventListener("drop", function (e) {
+      e.preventDefault();
+      dom.photoEmpty.classList.remove("is-dragging");
+      var files = e.dataTransfer && e.dataTransfer.files;
+      var file = null;
+      if (files) {
+        for (var i = 0; i < files.length; i++) {
+          if (/^image\//.test(files[i].type)) {
+            file = files[i];
+            break;
+          }
+        }
+      }
+      handlePhotoFile(file);
+    });
+
+    // Guard the rest of the document so a miss doesn't navigate away.
+    document.addEventListener("dragover", function (e) { e.preventDefault(); });
+    document.addEventListener("drop", function (e) { e.preventDefault(); });
+  }
+
+  /* ------------------------------------------------------------------ */
   /* URL prefill                                                          */
   /* ------------------------------------------------------------------ */
 
@@ -955,6 +1275,7 @@
         state.studentLast = dom.studentLast.value;
         state.instructorFirst = dom.instructorFirst.value;
         state.instructorLast = dom.instructorLast.value;
+        state.captionEdited = false;
         render();
       });
     });
@@ -962,6 +1283,7 @@
     dom.ratingButtons.forEach(function (btn) {
       btn.addEventListener("click", function () {
         state.rating = btn.dataset.rating;
+        state.captionEdited = false;
         render();
       });
     });
@@ -980,24 +1302,24 @@
     dom.fileInput.addEventListener("change", function (e) {
       var file = e.target.files && e.target.files[0];
       e.target.value = "";
-      if (!file) return;
-      setStatus("Preparing photo…");
-      normalizePhoto(file)
-        .then(function (img) {
-          Cropper.open(img, null, function (confirmedImg, crop) {
-            state.photo = confirmedImg;
-            state.crop = crop;
-            render();
-          }, function () {
-            render();
-          });
-        })
-        .catch(function () {
-          setStatus("Could not load that photo — please try a different file.");
-        });
+      handlePhotoFile(file);
     });
 
+    dom.pasteBtn.addEventListener("click", handlePasteClick);
+    dom.pasteReplaceBtn.addEventListener("click", handlePasteClick);
+    document.addEventListener("paste", handleDocumentPaste);
+    dom.pasteCatcher.addEventListener("blur", dismissPasteHint);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !dom.pasteHint.hidden) dismissPasteHint();
+    });
+    wirePhotoDropZone();
+
     dom.startOverBtn.addEventListener("click", resetAll);
+
+    dom.captionCard.addEventListener("click", copyCaptionToClipboard);
+    dom.captionEditBtn.addEventListener("click", enterCaptionEdit);
+    dom.captionResetBtn.addEventListener("click", handleCaptionReset);
+    dom.captionDoneBtn.addEventListener("click", handleCaptionDone);
 
     dom.downloadBtn.addEventListener("click", handleDownload);
     if (canShareFiles()) {

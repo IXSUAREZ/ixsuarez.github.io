@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Certificate Generator mark: award ribbon medallion, teal family -->
+  <circle cx="256" cy="256" r="256" fill="#0D9488"/>
+  <!-- Ribbon tails -->
+  <g fill="#FFFFFF" opacity="0.92">
+    <path d="M196 300 L150 420 L206 402 L232 448 L266 320 Z"/>
+    <path d="M316 300 L362 420 L306 402 L280 448 L246 320 Z"/>
+  </g>
+  <!-- Medallion disc -->
+  <circle cx="256" cy="216" r="108" fill="#FFFFFF"/>
+  <circle cx="256" cy="216" r="108" stroke="#0F766E" stroke-opacity="0.25" stroke-width="8"/>
+  <!-- Certificate ribbon seal accents -->
+  <g stroke="#0D9488" stroke-width="14" stroke-linecap="round" opacity="0.9">
+    <line x1="256" y1="130" x2="256" y2="150"/>
+    <line x1="342" y1="216" x2="322" y2="216"/>
+    <line x1="256" y1="302" x2="256" y2="282"/>
+    <line x1="170" y1="216" x2="190" y2="216"/>
+  </g>
+  <!-- Star / check core -->
+  <path d="M256 176 L268 204 L298 208 L276 229 L282 259 L256 244 L230 259 L236 229 L214 208 L244 204 Z" fill="#0D9488"/>
+</svg>

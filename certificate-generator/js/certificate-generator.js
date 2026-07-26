@@ -25,28 +25,40 @@
     instructorMaxWidth: 824,
   };
 
-  /* Home base used in the generated caption's SEO line. Change these two
-     values to retarget every caption; the Edit toggle covers one-offs. */
-  var CAPTION_LOCALE = { city: "Louisville, KY", airport: "Bowman Field (KLOU)" };
+  /* Home base used in the generated caption's credit line. This tool is a
+     private one for Diego + Kentucky Flight Training Center's social pages,
+     not a general CFI tool, so these stay hardcoded rather than becoming
+     per-user settings; the Edit toggle covers any one-off. */
+  var CAPTION_LOCALE = {
+    school: "Kentucky Flight Training Center",
+    airport: "Bowman Field (KLOU)",
+    city: "Louisville KY",
+  };
 
-  /** Substitutes {city}/{airport} placeholders in a per-certificate SEO
-      line pattern so CAPTION_LOCALE is the only place the home base lives. */
-  function buildCaptionSeo(pattern) {
-    return pattern.replace("{city}", CAPTION_LOCALE.city).replace("{airport}", CAPTION_LOCALE.airport);
+  /** Same credit line appended to every certificate's caption. */
+  var CAPTION_CREDIT = "Trained at {school}, {airport}, {city}.";
+
+  /** Substitutes {school}/{city}/{airport} placeholders so CAPTION_LOCALE
+      is the only place the home base lives. */
+  function fillLocale(pattern) {
+    return pattern
+      .replace(/\{school\}/g, CAPTION_LOCALE.school)
+      .replace(/\{airport\}/g, CAPTION_LOCALE.airport)
+      .replace(/\{city\}/g, CAPTION_LOCALE.city);
   }
 
   // Theme colors (accent/soft/line/ink) are copied from the Simply Endorsed
   // CATEGORY_THEMES palette (simply-endorsed/js/app.js) so the certificate
   // picker reads as part of the same color system as the endorsement categories.
   var CERT_TEMPLATES = [
-    { id: "first-solo", title: "First Solo", subtitle: "Milestone flight", image: "templates/first-solo.jpg", defaultRating: "CFI", theme: { accent: "#f59e0b", soft: "#fef7eb", line: "#fde7c2", ink: "#b37000" }, captionEvent: "on your first solo flight", captionSeo: buildCaptionSeo("First solo flight training in {city} — student pilot milestones at {airport}."), hashtags: ["#FirstSolo", "#StudentPilot", "#FlightTraining"] }, // student-pilot
-    { id: "private", title: "Private Pilot", subtitle: "Certificate", image: "templates/private.jpg", defaultRating: "CFI", theme: { accent: "#0ea5e9", soft: "#ecf8fd", line: "#c3e9fa", ink: "#0476a9" }, captionEvent: "for passing your private pilot checkride", captionSeo: buildCaptionSeo("Private pilot license training in {city} — private pilot checkride prep at {airport}."), hashtags: ["#PrivatePilot", "#Checkride", "#FlightTraining"] }, // private-pilot
-    { id: "sport", title: "Sport Pilot", subtitle: "Certificate", image: "templates/sport.jpg", defaultRating: "CFI", theme: { accent: "#16a34a", soft: "#ecf8f1", line: "#c5e8d2", ink: "#0b7633" }, captionEvent: "for passing your sport pilot checkride", captionSeo: buildCaptionSeo("Sport pilot certificate training in {city} — light sport checkride prep at {airport}."), hashtags: ["#SportPilot", "#Checkride", "#LightSport"] }, // sport-pilot
-    { id: "instrument", title: "Instrument", subtitle: "Rating", image: "templates/instrument.jpg", defaultRating: "CFII", theme: { accent: "#64748b", soft: "#f3f4f6", line: "#d8dce2", ink: "#455162" }, captionEvent: "for passing your instrument rating checkride", captionSeo: buildCaptionSeo("Instrument rating training in {city} — IFR checkride prep at {airport}."), hashtags: ["#InstrumentRating", "#IFR", "#Checkride"] }, // instrument-rating
-    { id: "commercial", title: "Commercial", subtitle: "Certificate", image: "templates/commercial.jpg", defaultRating: "CFI", theme: { accent: "#ca8a04", soft: "#fbf6eb", line: "#f2e2c0", ink: "#906200" }, captionEvent: "for passing your commercial pilot checkride", captionSeo: buildCaptionSeo("Commercial pilot training in {city} — commercial checkride prep at {airport}."), hashtags: ["#CommercialPilot", "#Checkride", "#FlightTraining"] }, // commercial-pilot
-    { id: "multi-engine", title: "Multi-Engine", subtitle: "Add-on rating", image: "templates/multi-engine.jpg", defaultRating: "MEI", theme: { accent: "#1f2937", soft: "#edeeef", line: "#c7cacd", ink: "#151d27" }, captionEvent: "for passing your multi-engine checkride", captionSeo: buildCaptionSeo("Multi-engine training in {city} — twin-engine add-on checkride prep at {airport}."), hashtags: ["#MultiEngine", "#TwinEngine", "#Checkride"] }, // atp
-    { id: "cfi", title: "CFI", subtitle: "Instructor rating", image: "templates/cfi.jpg", defaultRating: "CFI", theme: { accent: "#dc2626", soft: "#fceeee", line: "#f6c9c9", ink: "#a11414" }, captionEvent: "for passing your CFI checkride", captionSeo: buildCaptionSeo("CFI training in {city} — flight instructor checkride prep at {airport}."), hashtags: ["#CFI", "#FlightInstructor", "#Checkride"] }, // flight-instructor
-    { id: "cfii", title: "CFII", subtitle: "Instrument instructor", image: "templates/cfii.jpg", defaultRating: "CFII", theme: { accent: "#7c3aed", soft: "#f5effe", line: "#decefb", ink: "#4f0ac4" }, captionEvent: "for passing your CFII checkride", captionSeo: buildCaptionSeo("CFII training in {city} — instrument instructor checkride prep at {airport}."), hashtags: ["#CFII", "#FlightInstructor", "#InstrumentRating"] }, // specialty-operations
+    { id: "first-solo", title: "First Solo", subtitle: "Milestone flight", image: "templates/first-solo.jpg", defaultRating: "CFI", theme: { accent: "#f59e0b", soft: "#fef7eb", line: "#fde7c2", ink: "#b37000" }, captionEvent: "on your first solo flight", captionBody: "The first solo is the one you never forget — three trips around the pattern, an empty right seat, and an airplane that suddenly climbs a whole lot better.", hashtags: ["#FirstSolo", "#StudentPilot", "#BowmanField"] }, // student-pilot
+    { id: "private", title: "Private Pilot", subtitle: "Certificate", image: "templates/private.jpg", defaultRating: "CFI", theme: { accent: "#0ea5e9", soft: "#ecf8fd", line: "#c3e9fa", ink: "#0476a9" }, captionEvent: "for passing your private pilot checkride", captionBody: "The private certificate is the big one — the license to learn. Cross-countries, night flying, time under the hood, and an oral that covers everything from airspace to aeromedical before you ever preflight.", hashtags: ["#PrivatePilot", "#CheckridePassed", "#BowmanField"] }, // private-pilot
+    { id: "sport", title: "Sport Pilot", subtitle: "Certificate", image: "templates/sport.jpg", defaultRating: "CFI", theme: { accent: "#16a34a", soft: "#ecf8f1", line: "#c5e8d2", ink: "#0b7633" }, captionEvent: "for passing your sport pilot checkride", captionBody: "Sport pilot is the quickest way into the left seat — light sport airplanes, real stick-and-rudder flying, and a checkride that proves you can handle the airplane.", hashtags: ["#SportPilot", "#LightSport", "#BowmanField"] }, // sport-pilot
+    { id: "instrument", title: "Instrument", subtitle: "Rating", image: "templates/instrument.jpg", defaultRating: "CFII", theme: { accent: "#64748b", soft: "#f3f4f6", line: "#d8dce2", ink: "#455162" }, captionEvent: "for passing your instrument rating checkride", captionBody: "The instrument rating is where flying stops being fair-weather. Approaches, holds, partial panel, and the discipline to trust the instruments when the horizon disappears.", hashtags: ["#InstrumentRating", "#IFR", "#BowmanField"] }, // instrument-rating
+    { id: "commercial", title: "Commercial", subtitle: "Certificate", image: "templates/commercial.jpg", defaultRating: "CFI", theme: { accent: "#ca8a04", soft: "#fbf6eb", line: "#f2e2c0", ink: "#906200" }, captionEvent: "for passing your commercial pilot checkride", captionBody: "Commercial is where precision stops being optional — chandelles, lazy eights, and eights-on-pylons, all flown to a standard where the DPE wants them to look easy.", hashtags: ["#CommercialPilot", "#CheckridePassed", "#BowmanField"] }, // commercial-pilot
+    { id: "multi-engine", title: "Multi-Engine", subtitle: "Add-on rating", image: "templates/multi-engine.jpg", defaultRating: "MEI", theme: { accent: "#1f2937", soft: "#edeeef", line: "#c7cacd", ink: "#151d27" }, captionEvent: "for passing your multi-engine checkride", captionBody: "Multi-engine is about the day one of them quits. Vmc demos, single-engine work, and knowing which foot goes to the floor before you have time to think about it.", hashtags: ["#MultiEngine", "#TwinEngine", "#BowmanField"] }, // atp
+    { id: "cfi", title: "CFI", subtitle: "Instructor rating", image: "templates/cfi.jpg", defaultRating: "CFI", theme: { accent: "#dc2626", soft: "#fceeee", line: "#f6c9c9", ink: "#a11414" }, captionEvent: "for passing your CFI checkride", captionBody: "The CFI is the hardest checkride in general aviation — you fly it from the right seat and teach it out loud at the same time. Passing means you don't just know it, you can explain it.", hashtags: ["#CFI", "#FlightInstructor", "#BowmanField"] }, // flight-instructor
+    { id: "cfii", title: "CFII", subtitle: "Instrument instructor", image: "templates/cfii.jpg", defaultRating: "CFII", theme: { accent: "#7c3aed", soft: "#f5effe", line: "#decefb", ink: "#4f0ac4" }, captionEvent: "for passing your CFII checkride", captionBody: "CFII is teaching the instrument rating — running approaches from the right seat while explaining what the needles are doing to the person actually flying them.", hashtags: ["#CFII", "#FlightInstructor", "#BowmanField"] }, // specialty-operations
   ];
 
   var RATINGS = ["CFI", "CFII", "MEI"];
@@ -363,7 +375,9 @@
     if (instructor) sentence += ", instructed by " + state.rating + " " + instructor;
     sentence += ". ✈️";
 
-    return [sentence, "", t.captionSeo, "", t.hashtags.join(" ")].join("\n");
+    var body = t.captionBody + " " + fillLocale(CAPTION_CREDIT);
+
+    return [sentence, "", body, "", t.hashtags.join(" ")].join("\n");
   }
 
   /* ------------------------------------------------------------------ */

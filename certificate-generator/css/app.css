@@ -109,6 +109,13 @@ body.certgen-view {
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
+/* The stepper is freely clickable in either direction once a step's
+   prerequisites are met (JS enables/disables the <button>), so the cursor
+   should follow :disabled rather than the .is-done class. */
+.cg-step-btn:not(:disabled) {
+  cursor: pointer;
+}
+
 .cg-step-num {
   display: flex;
   flex: none;
@@ -142,7 +149,6 @@ body.certgen-view {
 }
 
 .cg-step.is-done .cg-step-btn {
-  cursor: pointer;
   color: var(--ink, #0D1330);
 }
 
@@ -160,8 +166,23 @@ body.certgen-view {
   outline-offset: 2px;
 }
 
+/* Below 560px the label is hidden for every step except the active one —
+   four bare circles don't tell you which step you're on until you tap it. */
+.cg-step.is-active .cg-step-label { display: block; }
+
 @media (min-width: 560px) {
   .cg-step-label { display: block; }
+}
+
+/* Give the visible active label room to breathe: let it flex to fill the
+   row while the other (label-less) steps shrink back to their circle. */
+@media (max-width: 559px) {
+  .cg-step { flex: 0 0 auto; }
+
+  .cg-step.is-active {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 }
 
 .cg-status {
@@ -360,6 +381,23 @@ body.certgen-view {
   text-transform: uppercase;
 }
 
+/* .cg-field-group is a <fieldset> (for correct grouping semantics) and
+   .cg-field-group-label its <legend> — reset the UA defaults for both so
+   the pill label above keeps its look instead of browser fieldset/legend
+   chrome (border box, inset margin, legend's special inline position). */
+.cg-field-group {
+  min-width: 0;   /* fieldsets default to min-content sizing and would break the grid */
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.cg-field-group-label {
+  float: none;
+  width: auto;
+  padding: 3px 10px;   /* legend UA styles reset padding — keep the pill */
+}
+
 .cg-field-row {
   display: grid;
   grid-template-columns: 1fr;
@@ -398,6 +436,21 @@ body.certgen-view {
 .cg-field input[type="text"]:focus-visible {
   outline: none;
   border-color: var(--tool-accent);
+  box-shadow: 0 0 0 3px var(--tool-soft);
+}
+
+/* JS marks empty required fields .is-invalid + aria-invalid and focuses
+   them on a failed Continue, instead of just leaving the button disabled. */
+.cg-field input[type="text"].is-invalid {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14);
+}
+
+/* Keep the focus ring visible on an invalid field: red border stays (the
+   error is still true), teal ring layers on top to show it's focused. */
+.cg-field input[type="text"].is-invalid:focus-visible {
+  outline: none;
+  border-color: #dc2626;
   box-shadow: 0 0 0 3px var(--tool-soft);
 }
 
@@ -755,6 +808,29 @@ body.certgen-view {
   }
 }
 
+/* Below 1024px the whole preview canvas sits above the nav row (see the
+   Layout and Preview column comments), so pin Back/Continue to the bottom
+   of the viewport instead of making the user scroll past it every step.
+   .cg-nav-row is the last child of .cg-container, and the <footer> lives
+   outside .cg-container, so `sticky` pins the bar until the container's
+   end scrolls into view, then it settles naturally above the footer. */
+@media (max-width: 1023px) {
+  .cg-nav-row {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    margin: 28px -20px 0;                 /* bleed through .cg-container's 20px padding */
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border, rgba(13, 19, 48, 0.10));
+  }
+
+  /* Clear the pinned bar so it never sits on top of the last content. */
+  .cg-layout { padding-bottom: 84px; }
+}
+
 .cg-icon-btn {
   display: inline-flex;
   align-items: center;
@@ -810,6 +886,27 @@ body.certgen-view {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* The canvas bitmap is 1080x1920. Below 1024px .cg-layout collapses to a
+   single column and the preview lands between the panel and the nav row —
+   unconstrained, a 420px-wide wrap renders ~690px tall on a phone and
+   pushes the Back/Continue buttons (and everything else) off-screen. Cap
+   by height instead of width, with a matching aspect-ratio so nothing
+   distorts. */
+@media (max-width: 1023px) {
+  .cg-canvas-wrap {
+    height: 46vh;   /* fallback for browsers without svh support */
+    height: 46svh;
+    aspect-ratio: 9 / 16;   /* exactly 1080/1920 — matches the bitmap, no distortion */
+    width: auto;
+    max-width: 100%;
+  }
+
+  .cg-canvas {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .cg-preview-actions {

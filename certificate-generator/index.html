@@ -36,7 +36,7 @@
     >
     <link rel="stylesheet" href="/assets/design-system.css?v=20260719">
     <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=50">
-    <link rel="stylesheet" href="/certificate-generator/css/app.css?v=3">
+    <link rel="stylesheet" href="/certificate-generator/css/app.css?v=4">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -159,32 +159,32 @@
               <p class="cg-panel-copy">Enter the names exactly as they should appear on the certificate.</p>
 
               <div class="cg-card">
-                <div class="cg-field-group">
-                  <span class="cg-field-group-label">Student</span>
+                <fieldset class="cg-field-group">
+                  <legend class="cg-field-group-label">Student</legend>
                   <div class="cg-field-row">
                     <div class="cg-field">
                       <label for="cgStudentFirst">First name</label>
-                      <input type="text" id="cgStudentFirst" name="studentFirst" placeholder="First name" autocomplete="given-name">
+                      <input type="text" id="cgStudentFirst" name="studentFirst" placeholder="First name" autocomplete="given-name" enterkeyhint="next" aria-label="Student first name">
                     </div>
                     <div class="cg-field">
                       <label for="cgStudentLast">Last name</label>
-                      <input type="text" id="cgStudentLast" name="studentLast" placeholder="Last name" autocomplete="family-name">
+                      <input type="text" id="cgStudentLast" name="studentLast" placeholder="Last name" autocomplete="family-name" enterkeyhint="next" aria-label="Student last name">
                     </div>
                   </div>
-                </div>
+                </fieldset>
 
                 <div class="cg-divider"></div>
 
-                <div class="cg-field-group">
-                  <span class="cg-field-group-label">Instructor</span>
+                <fieldset class="cg-field-group">
+                  <legend class="cg-field-group-label">Instructor</legend>
                   <div class="cg-field-row">
                     <div class="cg-field">
                       <label for="cgInstructorFirst">First name</label>
-                      <input type="text" id="cgInstructorFirst" name="instructorFirst" placeholder="First name" autocomplete="given-name">
+                      <input type="text" id="cgInstructorFirst" name="instructorFirst" placeholder="First name" autocomplete="given-name" enterkeyhint="next" aria-label="Instructor first name">
                     </div>
                     <div class="cg-field">
                       <label for="cgInstructorLast">Last name</label>
-                      <input type="text" id="cgInstructorLast" name="instructorLast" placeholder="Last name" autocomplete="family-name">
+                      <input type="text" id="cgInstructorLast" name="instructorLast" placeholder="Last name" autocomplete="family-name" enterkeyhint="go" aria-label="Instructor last name">
                     </div>
                   </div>
 
@@ -197,7 +197,7 @@
                     </div>
                     <p class="cg-rating-helper" id="cgRatingHelper">Appears on the certificate as "CFI FIRST LAST".</p>
                   </div>
-                </div>
+                </fieldset>
               </div>
             </section>
 
@@ -349,6 +349,6 @@
 
     <script src="/assets/site-nav.js" defer></script>
     <script src="/simply-endorsed/js/shared-utils.js" defer></script>
-    <script src="/certificate-generator/js/certificate-generator.js?v=3" defer></script>
+    <script src="/certificate-generator/js/certificate-generator.js?v=4" defer></script>
   </body>
 </html>

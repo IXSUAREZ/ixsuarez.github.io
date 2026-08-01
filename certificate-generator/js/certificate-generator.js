@@ -319,6 +319,7 @@
     instructorFirst: "",
     instructorLast: "",
     rating: "CFI",
+    ratingTouched: false,
     photo: null,
     crop: null,
     templateImg: null,
@@ -332,6 +333,18 @@
   /* Tracks whether the caption textarea is currently the visible editor —
      kept outside `state` since it's transient view state, not app data. */
   var captionEditing = false;
+
+  /* Arms the "tap again to confirm" window on the Start over button —
+     transient view state, not app data, same reasoning as captionEditing. */
+  var startOverConfirmTimer = null;
+  var startOverOriginalLabel = null;
+
+  /* How many wizard entries we've pushed onto the history stack, mirrored in
+     each entry's own state so a popstate restores the right depth. The
+     in-page Back button delegates to history.back() whenever there's an
+     entry of ours behind us — otherwise Back would *push* a new entry and
+     the phone's back gesture would then walk the user forward again. */
+  var historyDepth = 0;
 
   function currentTemplate() {
     for (var i = 0; i < CERT_TEMPLATES.length; i++) {
@@ -349,12 +362,62 @@
     );
   }
 
+  /** Highest step the current state actually supports. Jumping is allowed
+      anywhere at or below this, in either direction — going back to fix a name
+      shouldn't re-lock steps that are already filled in. */
+  function maxReachableStep() {
+    if (!state.templateId) return 0;
+    if (!namesValid()) return 1;
+    return 3;
+  }
+
+  function canDownload() {
+    return !!(state.templateImg && namesValid());
+  }
+
   function studentName() {
     return (state.studentFirst + " " + state.studentLast).trim();
   }
 
   function instructorName() {
     return (state.instructorFirst + " " + state.instructorLast).trim();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Instructor persistence                                              */
+  /* ------------------------------------------------------------------ */
+
+  /* The instructor is the same person on every certificate this tool makes,
+     so it's the one field worth remembering across sessions. Guarded for
+     window.SimplyEndorsedUtils being absent exactly like
+     copyCaptionToClipboard() already does for the clipboard helper. */
+  var INSTRUCTOR_STORE_KEY = "certgen:instructor";
+
+  function utils() {
+    return window.SimplyEndorsedUtils || null;
+  }
+
+  function saveInstructor() {
+    var u = utils();
+    if (!u || typeof u.saveStoredJson !== "function") return;
+    u.saveStoredJson(INSTRUCTOR_STORE_KEY, {
+      first: state.instructorFirst,
+      last: state.instructorLast,
+      rating: state.rating,
+    });
+  }
+
+  function loadInstructor() {
+    var u = utils();
+    if (!u || typeof u.loadStoredJson !== "function") return;
+    var saved = u.loadStoredJson(INSTRUCTOR_STORE_KEY);
+    if (!saved) return;
+    if (typeof saved.first === "string") state.instructorFirst = saved.first;
+    if (typeof saved.last === "string") state.instructorLast = saved.last;
+    if (RATINGS.indexOf(saved.rating) !== -1) {
+      state.rating = saved.rating;
+      state.ratingTouched = true;
+    }
   }
 
   /* ------------------------------------------------------------------ */
@@ -390,7 +453,10 @@
 
   function selectTemplate(t) {
     state.templateId = t.id;
-    state.rating = t.defaultRating;
+    /* A returning instructor's own rating (restored from storage, or set by
+       hand this session) is more accurate than the template's guess — only
+       fall back to the template default when nothing has overridden it yet. */
+    if (!state.ratingTouched) state.rating = t.defaultRating;
     state.captionEdited = false;
     startLoadingTemplateImage(t);
   }
@@ -423,6 +489,10 @@
   /* ------------------------------------------------------------------ */
 
   function setStatus(text) {
+    /* #cgStatus is role="status" aria-live="polite" and render() runs on
+       every keystroke — re-announcing an unchanged string spams screen
+       readers, so only touch the DOM when the text actually changes. */
+    if (dom.status.textContent === text) return;
     dom.status.textContent = text;
   }
 
@@ -466,19 +536,25 @@
     });
   }
 
+  /* Roving tabindex: exactly one member of a radiogroup is Tab-reachable at
+     a time (the selected one, or the first when nothing is selected yet) —
+     the rest drop out of the tab order so arrow keys do the moving instead. */
   function syncTemplateSelection() {
     var cards = dom.templateGrid.querySelectorAll(".cg-cert-btn");
-    cards.forEach(function (card) {
+    var hasSelection = !!state.templateId;
+    cards.forEach(function (card, i) {
       var selected = card.dataset.templateId === state.templateId;
       card.classList.toggle("is-selected", selected);
       card.setAttribute("aria-checked", selected ? "true" : "false");
+      card.setAttribute("tabindex", (hasSelection ? selected : i === 0) ? "0" : "-1");
     });
   }
 
   function syncRatingButtons() {
-    dom.ratingButtons.forEach(function (btn) {
+    dom.ratingButtons.forEach(function (btn, i) {
       var active = btn.dataset.rating === state.rating;
       btn.setAttribute("aria-checked", active ? "true" : "false");
+      btn.setAttribute("tabindex", (state.rating ? active : i === 0) ? "0" : "-1");
     });
     dom.ratingHelper.textContent =
       'Appears on the certificate as "' +
@@ -541,7 +617,7 @@
       var done = i < state.step;
       li.classList.toggle("is-active", active);
       li.classList.toggle("is-done", done);
-      btn.disabled = !done;
+      btn.disabled = i > maxReachableStep();
       if (active) btn.setAttribute("aria-current", "step");
       else btn.removeAttribute("aria-current");
     });
@@ -555,21 +631,16 @@
 
   function renderNavRow() {
     dom.backBtn.disabled = state.step === 0;
-
+    dom.nextBtn.hidden = false;
     if (state.step === 3) {
-      dom.nextBtn.hidden = true;
+      dom.nextBtn.textContent = "Download JPEG";
+      dom.nextBtn.disabled = !canDownload();
     } else {
-      dom.nextBtn.hidden = false;
+      /* Steps 0-2 keep Continue enabled — a disabled button with no attached
+         reason is a dead end on a phone, where the status line is off-screen.
+         The click handler validates and focuses what's missing instead. */
+      dom.nextBtn.textContent = "Continue";
       dom.nextBtn.disabled = false;
-      if (state.step === 0) {
-        dom.nextBtn.textContent = "Continue";
-        dom.nextBtn.disabled = !state.templateId;
-      } else if (state.step === 1) {
-        dom.nextBtn.textContent = "Continue";
-        dom.nextBtn.disabled = !namesValid();
-      } else if (state.step === 2) {
-        dom.nextBtn.textContent = state.photo ? "Preview certificate" : "Skip photo";
-      }
     }
   }
 
@@ -588,11 +659,14 @@
 
   function renderPreview() {
     var t = currentTemplate();
-    dom.downloadBtn.disabled = !state.templateImg;
-    dom.shareBtn.disabled = !state.templateImg;
+    /* Download was live from step 1 onward before this gate — review didn't
+       actually block anything until canDownload() covered names too. */
+    dom.downloadBtn.disabled = !canDownload();
+    dom.shareBtn.disabled = !canDownload();
     if (t) {
-      dom.previewCaption.textContent =
-        t.title + " · " + (studentName() || "Student") + " · " + state.rating + " " + instructorName();
+      var parts = [t.title, studentName() || "Student"];
+      if (instructorName()) parts.push(state.rating + " " + instructorName());
+      dom.previewCaption.textContent = parts.join(" · ");
     } else {
       dom.previewCaption.textContent = "Select a certificate to begin";
     }
@@ -712,19 +786,59 @@
   /* Step navigation                                                      */
   /* ------------------------------------------------------------------ */
 
-  function goToStep(i) {
-    state.step = Math.max(0, Math.min(3, i));
+  /** Scrolls the active panel clear of the fixed nav pill. Deliberately not
+      SimplyEndorsedUtils.scrollToTarget — its offset helper measures
+      .topbar-sticky, which this page doesn't have (the nav here is .nav-wrap),
+      so it would leave the heading tucked under the pill. Double-rAF lets the
+      just-unhidden panel lay out before we measure it. */
+  function scrollToPanel() {
+    var panel = null;
+    for (var i = 0; i < dom.panels.length; i++) {
+      if (Number(dom.panels[i].dataset.panel) === state.step) {
+        panel = dom.panels[i];
+        break;
+      }
+    }
+    if (!panel) return;
+    var nav = document.querySelector(".nav-wrap");
+    var offset = (nav ? nav.getBoundingClientRect().height : 84) + 16;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var raf = window.requestAnimationFrame
+      ? window.requestAnimationFrame.bind(window)
+      : function (fn) { setTimeout(fn, 0); };
+    raf(function () {
+      raf(function () {
+        var top = Math.max(0, panel.getBoundingClientRect().top + window.scrollY - offset);
+        window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+  }
+
+  function goToStep(i, opts) {
+    var limit = opts && opts.force ? 3 : maxReachableStep();
+    var next = Math.max(0, Math.min(limit, i));
+    if (next === state.step) return;
+    state.step = next;
+    if (!(opts && opts.fromPopState)) {
+      try {
+        history.pushState({ cgStep: next, cgDepth: historyDepth + 1 }, "", "#step-" + (next + 1));
+        historyDepth += 1;
+      } catch (err) {
+        /* history blocked (file://, sandboxed frame) — navigation still works */
+      }
+    }
     render();
+    scrollToPanel();
   }
 
   function resetAll() {
+    /* Student-specific state only — the instructor (name + rating) is the
+       same person on every certificate this tool makes, so "Start over"
+       leaves it in place instead of making the next certificate retype it. */
     state.step = 0;
     state.templateId = null;
     state.studentFirst = "";
     state.studentLast = "";
-    state.instructorFirst = "";
-    state.instructorLast = "";
-    state.rating = "CFI";
     state.photo = null;
     state.crop = null;
     state.templateImg = null;
@@ -733,8 +847,7 @@
 
     dom.studentFirst.value = "";
     dom.studentLast.value = "";
-    dom.instructorFirst.value = "";
-    dom.instructorLast.value = "";
+    nameInputs().forEach(clearNameInvalid);
 
     if (lastDownloadUrl) {
       URL.revokeObjectURL(lastDownloadUrl);
@@ -749,7 +862,33 @@
     dismissPasteHint();
     dom.pasteCatcher.innerHTML = "";
 
+    if (startOverConfirmTimer) {
+      clearTimeout(startOverConfirmTimer);
+      startOverConfirmTimer = null;
+    }
+    if (startOverOriginalLabel !== null) {
+      dom.startOverBtn.textContent = startOverOriginalLabel;
+      startOverOriginalLabel = null;
+    }
+
     render();
+  }
+
+  /* One mis-tap on "Start over" would otherwise wipe the student, photo, and
+     crop with no way back. First tap arms a short confirmation window;
+     a second tap inside it commits the reset, a timeout backs out of it. */
+  function handleStartOverClick() {
+    if (startOverConfirmTimer) {
+      resetAll();
+      return;
+    }
+    startOverOriginalLabel = dom.startOverBtn.textContent;
+    dom.startOverBtn.textContent = "Tap again to confirm";
+    startOverConfirmTimer = setTimeout(function () {
+      dom.startOverBtn.textContent = startOverOriginalLabel;
+      startOverOriginalLabel = null;
+      startOverConfirmTimer = null;
+    }, 4000);
   }
 
   /* ------------------------------------------------------------------ */
@@ -836,6 +975,11 @@
     var pointers = new Map();
     var pinch = null;
     var drag = null;
+
+    /* Element focused right before the dialog opened, so we can hand focus
+       back to it on close — without this, closing the modal drops focus to
+       <body> and a keyboard user loses their place on the page. */
+    var lastFocused = null;
 
     function measure() {
       var vw = Math.min(window.innerWidth * 0.9, 520);
@@ -962,8 +1106,10 @@
       measure();
       updateVisual();
       updateSlider();
+      lastFocused = document.activeElement;
       dom.cropper.classList.add("is-open");
       document.body.style.overflow = "hidden";
+      dom.cropConfirmBtn.focus();
     }
 
     function close() {
@@ -974,6 +1120,8 @@
       pointers.clear();
       pinch = null;
       drag = null;
+      if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
+      lastFocused = null;
     }
 
     function confirm() {
@@ -1019,6 +1167,25 @@
       window.addEventListener("resize", onResize);
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && dom.cropper.classList.contains("is-open")) cancel();
+      });
+
+      // Traps Tab inside the modal — role="dialog" aria-modal="true" says
+      // this is modal, but the browser does nothing to enforce that itself.
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Tab" || !dom.cropper.classList.contains("is-open")) return;
+        var focusable = Array.prototype.slice.call(
+          dom.cropper.querySelectorAll('button, input, [tabindex]:not([tabindex="-1"])')
+        );
+        if (!focusable.length) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       });
     }
 
@@ -1159,7 +1326,10 @@
 
     e.preventDefault();
     dismissPasteHint();
-    if (state.step !== 2) goToStep(2);
+    /* A pasted photo is accepted from any step, even before names are
+       filled in — the normal reachability clamp would otherwise bounce
+       this back to step 1 and silently drop the paste. */
+    if (state.step !== 2) goToStep(2, { force: true });
     handlePhotoFile(file);
   }
 
@@ -1254,7 +1424,10 @@
     }
 
     if (matchedTemplate) selectTemplate(matchedTemplate);
-    if (RATINGS.indexOf(ratingParam) !== -1) state.rating = ratingParam;
+    if (RATINGS.indexOf(ratingParam) !== -1) {
+      state.rating = ratingParam;
+      state.ratingTouched = true;
+    }
 
     if (matchedTemplate && namesValid()) {
       state.step = 2;
@@ -1265,27 +1438,114 @@
   /* Wiring                                                               */
   /* ------------------------------------------------------------------ */
 
+  function nameInputs() {
+    return [dom.studentFirst, dom.studentLast, dom.instructorFirst, dom.instructorLast];
+  }
+
+  function clearNameInvalid(input) {
+    input.classList.remove("is-invalid");
+    input.removeAttribute("aria-invalid");
+  }
+
+  function focusFirstEmptyName() {
+    var inputs = nameInputs();
+    for (var i = 0; i < inputs.length; i++) {
+      if (!inputs[i].value.trim()) {
+        inputs[i].classList.add("is-invalid");
+        inputs[i].setAttribute("aria-invalid", "true");
+        inputs[i].focus();
+        setStatus("Add the missing name to continue.");
+        return;
+      }
+    }
+  }
+
+  /** Shared arrow-key model for the two role="radiogroup" widgets (the
+      certificate grid and the rating group): Right/Down moves to the next
+      option, Left/Up to the previous (both wrap), Home/End jump to the
+      ends. Returns null for any other key so the caller leaves it alone. */
+  function rovingNextIndex(e, currentIndex, length) {
+    if (currentIndex === -1) currentIndex = 0;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") return (currentIndex + 1) % length;
+    if (e.key === "ArrowLeft" || e.key === "ArrowUp") return (currentIndex - 1 + length) % length;
+    if (e.key === "Home") return 0;
+    if (e.key === "End") return length - 1;
+    return null;
+  }
+
   function wireEvents() {
-    dom.backBtn.addEventListener("click", function () { goToStep(state.step - 1); });
+    dom.backBtn.addEventListener("click", function () {
+      /* Delegate to the real history stack when we put something on it, so
+         the Back button and the phone's back gesture stay on one trail. */
+      if (historyDepth > 0) {
+        history.back();
+        return;
+      }
+      goToStep(state.step - 1);
+    });
     dom.nextBtn.addEventListener("click", function () {
       if (state.step === 0) {
-        if (!state.templateId) return;
+        if (!state.templateId) {
+          setStatus("Pick a certificate first.");
+          var firstCard = dom.templateGrid.querySelector(".cg-cert-btn");
+          if (firstCard) firstCard.focus();
+          return;
+        }
         goToStep(1);
       } else if (state.step === 1) {
-        if (!namesValid()) return;
+        if (!namesValid()) { focusFirstEmptyName(); return; }
         goToStep(2);
       } else if (state.step === 2) {
         goToStep(3);
+      } else if (state.step === 3) {
+        handleDownload();
       }
+    });
+
+    window.addEventListener("popstate", function (e) {
+      var s = e.state && typeof e.state.cgStep === "number" ? e.state.cgStep : 0;
+      historyDepth = e.state && typeof e.state.cgDepth === "number" ? e.state.cgDepth : 0;
+      goToStep(s, { fromPopState: true });
     });
 
     dom.stepperItems.forEach(function (li) {
       var btn = li.querySelector(".cg-step-btn");
       btn.addEventListener("click", function () {
         var i = Number(li.dataset.stepIndex);
-        if (i < state.step) goToStep(i);
+        if (i <= maxReachableStep()) goToStep(i);
       });
     });
+
+    // Arrow-key navigation for the two role="radiogroup" widgets — moving
+    // focus also selects, per the standard radiogroup keyboard pattern.
+    dom.templateGrid.addEventListener("keydown", function (e) {
+      var cards = Array.prototype.slice.call(dom.templateGrid.querySelectorAll(".cg-cert-btn"));
+      var nextIndex = rovingNextIndex(e, cards.indexOf(document.activeElement), cards.length);
+      if (nextIndex === null) return;
+      e.preventDefault();
+      selectTemplate(CERT_TEMPLATES[nextIndex]);
+      cards[nextIndex].focus();
+      render();
+    });
+
+    dom.ratingGroup.addEventListener("keydown", function (e) {
+      var nextIndex = rovingNextIndex(e, dom.ratingButtons.indexOf(document.activeElement), dom.ratingButtons.length);
+      if (nextIndex === null) return;
+      e.preventDefault();
+      var btn = dom.ratingButtons[nextIndex];
+      state.rating = btn.dataset.rating;
+      state.ratingTouched = true;
+      state.captionEdited = false;
+      saveInstructor();
+      btn.focus();
+      render();
+    });
+
+    /* Debounced so a name typed key-by-key doesn't hit storage on every
+       keystroke; falls back to calling it straight through when the shared
+       utils script (and its debounce helper) hasn't loaded. */
+    var u = utils();
+    var debouncedSaveInstructor = u && typeof u.debounce === "function" ? u.debounce(saveInstructor, 400) : saveInstructor;
 
     [dom.studentFirst, dom.studentLast, dom.instructorFirst, dom.instructorLast].forEach(function (input) {
       input.addEventListener("input", function () {
@@ -1294,14 +1554,25 @@
         state.instructorFirst = dom.instructorFirst.value;
         state.instructorLast = dom.instructorLast.value;
         state.captionEdited = false;
+        if (input.value.trim()) clearNameInvalid(input);
+        debouncedSaveInstructor();
         render();
+      });
+      input.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        if (state.step !== 1) return;
+        if (namesValid()) goToStep(2);
+        else focusFirstEmptyName();
       });
     });
 
     dom.ratingButtons.forEach(function (btn) {
       btn.addEventListener("click", function () {
         state.rating = btn.dataset.rating;
+        state.ratingTouched = true;
         state.captionEdited = false;
+        saveInstructor();
         render();
       });
     });
@@ -1332,7 +1603,7 @@
     });
     wirePhotoDropZone();
 
-    dom.startOverBtn.addEventListener("click", resetAll);
+    dom.startOverBtn.addEventListener("click", handleStartOverClick);
 
     dom.captionCard.addEventListener("click", copyCaptionToClipboard);
     dom.captionEditBtn.addEventListener("click", enterCaptionEdit);
@@ -1356,7 +1627,20 @@
     Cropper.init();
     wireEvents();
 
+    /* Restore the remembered instructor first so a URL param (link shared by
+       someone else, or a bookmark for a different instructor) still wins. */
+    loadInstructor();
     applyPrefill();
+
+    /* Seed the history stack so the very first Back press has a same-app
+       entry to land on instead of leaving the site. */
+    try {
+      /* Always write the step we actually landed on — a stale #step-4 left
+         over from a shared link would otherwise sit on top of step 1. */
+      history.replaceState({ cgStep: state.step, cgDepth: 0 }, "", "#step-" + (state.step + 1));
+    } catch (err) {
+      /* history blocked — ignore */
+    }
 
     dom.studentFirst.value = state.studentFirst;
     dom.studentLast.value = state.studentLast;

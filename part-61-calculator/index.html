@@ -61,6 +61,46 @@
         font-size: 1.25rem;
         color: #1C2142;
       }
+      .calc-footer .footer-contact {
+        margin-top: 12px;
+      }
+
+      /* Page-scoped conversion CTA banner (site liquid-glass brand). */
+      .tool-cta {
+        max-width: 1180px;
+        margin: 40px auto 0;
+        padding: 0 24px;
+      }
+      .tool-cta-card {
+        border-radius: var(--r-card, 30px);
+        padding: clamp(28px, 5vw, 48px);
+        text-align: center;
+      }
+      .tool-cta-heading {
+        margin: 0 0 10px;
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        letter-spacing: -0.02em;
+        color: var(--navy);
+      }
+      .tool-cta-copy {
+        margin: 0 auto 22px;
+        max-width: 56ch;
+        color: var(--ink-muted);
+        line-height: 1.55;
+      }
+      .tool-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      @media (max-width: 640px) {
+        .tool-cta-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
     </style>
     <script type="application/ld+json">
       {
@@ -96,6 +136,7 @@
         ]
       }
     </script>
+  <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
   </head>
   <body class="theme-orange is-calculator-view">
     <!-- Aviation-themed backdrop and coordinate margins -->
@@ -443,11 +484,29 @@
         </main>
       </div>
 
+      <section class="tool-cta" aria-labelledby="toolCtaHeading">
+        <div class="tool-cta-card glass-material">
+          <h2 class="tool-cta-heading" id="toolCtaHeading">These are FAA minimums — get a real plan and an honest quote.</h2>
+          <p class="tool-cta-copy">
+            Diego is a FAA CFI at Bowman Field (KLOU) in Louisville. Bring your audit and leave with a
+            week-by-week training plan and transparent pricing.
+          </p>
+          <div class="tool-cta-actions cta-stack">
+            <a class="btn btn--primary" href="/flight-training-louisville-ky/" data-cta-id="p61-cta-plan">Get a training plan</a>
+            <a class="btn btn--secondary" href="tel:+15025100508" data-cta-id="p61-cta-phone">Call Diego · 502-510-0508</a>
+          </div>
+        </div>
+      </section>
+
       <footer class="calc-footer">
         <p>
           This calculator is a planning aid, not legal advice. Verify every requirement against the current eCFR text
           and your examiner's expectations. Looking for endorsements? Open
           <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.
+        </p>
+        <p class="footer-contact">
+          Questions? Call <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
+          or email <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">SuarezCFI@gmail.com</a>.
         </p>
         <p class="footer-designer">Designed by Diego Suarez</p>
       </footer>
@@ -464,5 +523,6 @@
     <script src="/simply-endorsed/js/part61-calculator-ui.js?v=12"></script>
     <script src="/assets/site-nav.js" defer></script>
     <script src="/assets/cfr-autolink.js?v=3" defer></script>
+    <script src="/assets/cta-tracking.js" defer></script>
   </body>
 </html>

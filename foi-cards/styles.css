@@ -237,3 +237,47 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Conversion CTA banner — path back to Diego's instruction business */
+.foi-cta {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  padding: 0 22px max(28px, env(safe-area-inset-bottom));
+}
+.foi-cta-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 26px 22px;
+  text-align: center;
+}
+.foi-cta-card h2 { font-size: clamp(26px, 7vw, 32px); }
+.foi-cta-copy { margin: 14px 0 20px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.foi-cta-actions { display: flex; flex-direction: column; gap: 11px; }
+.foi-cta-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+}
+.foi-cta-primary {
+  background: var(--blue);
+  color: #06111e;
+  box-shadow: 0 12px 28px #0005;
+}
+.foi-cta-secondary {
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+}
+.foi-cta-contact { margin: 18px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.foi-cta-contact a { color: var(--blue); font-weight: 700; text-decoration: none; }
+.foi-cta-contact a:hover { text-decoration: underline; }
+
+@media (min-width: 760px) {
+  .foi-cta { padding-bottom: 48px; }
+}

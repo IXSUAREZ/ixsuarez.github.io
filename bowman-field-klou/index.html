@@ -31,7 +31,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500;1,6..72,600;1,6..72,700&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/design-system.css" />
   <link rel="stylesheet" href="/learn/style.css" />
+  <link rel="stylesheet" href="/assets/contact-form.css" />
 
+<script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -74,7 +76,7 @@
         <h1>Bowman Field training support for Louisville pilots</h1>
         <p>If you are training around KLOU, local procedures, tower communication, nearby airspace, weather decisions, and route planning all matter. Use ground lessons to make those topics feel less abstract before you apply them in the airplane.</p>
         <div class="hero-actions">
-          <a class="cta-btn primary" href="mailto:SuarezCFI@gmail.com?subject=Bowman%20Field%20KLOU%20training%20question%20-%20SuarezCFI.com&amp;body=Hi%20Diego%2C%0A%0AGoal%3A%20%0ACurrent%20training%20status%3A%20%0AAirport%2Fschool%3A%20%0AMedical%20status%3A%20%0AWritten-test%20status%3A%20%0AAvailability%3A%20%0ABiggest%20question%3A%20%0APreferred%20contact%20method%3A%20%0AName%3A%20%0APhone%3A%20" data-cta-id="klou-hero-contact">Talk through KLOU training</a>
+          <a class="cta-btn primary" href="#quick-contact" data-cta-id="klou-hero-contact">Talk through KLOU training</a>
           <a class="cta-btn" href="/blog/flying-klou-bowman-field-guide/" data-cta-id="klou-hero-guide">Read KLOU guide</a>
         </div>
       </div>
@@ -119,13 +121,16 @@
         </div>
       </div>
 
-      <div class="service-panel service-contact-panel">
+      <div id="quick-contact" class="service-panel service-contact-panel">
         <div>
           <span class="eyebrow">KLOU intake</span>
           <h2>Ask about Bowman Field training context</h2>
           <p>Use the structured email if you are trying to understand KLOU procedures, local airspace, towered-field flow, or how Bowman Field fits into your next training step.</p>
         </div>
         <div class="service-contact-actions">
+          <div class="contact-form-mount" data-form-context="bowman-field-klou">
+            <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="bowman-field-klou-email">Email Diego</a> or call <a href="tel:+15025100508" data-cta-id="bowman-field-klou-phone">502-510-0508</a>.</p>
+          </div>
           <a class="cta-btn primary" href="tel:+15025100508" data-cta-id="klou-contact-phone">Call or text 502-510-0508</a>
           <a class="cta-btn" href="mailto:SuarezCFI@gmail.com?subject=Bowman%20Field%20KLOU%20training%20question%20-%20SuarezCFI.com&amp;body=Hi%20Diego%2C%0A%0AGoal%3A%20%0ACurrent%20training%20status%3A%20%0AAirport%2Fschool%3A%20%0AMedical%20status%3A%20%0AWritten-test%20status%3A%20%0AAvailability%3A%20%0ABiggest%20question%3A%20%0APreferred%20contact%20method%3A%20%0AName%3A%20%0APhone%3A%20" data-cta-id="klou-contact-intake">Ask about KLOU training</a>
         </div>
@@ -146,6 +151,10 @@
             <summary>Does this replace instruction from my CFI?</summary>
             <div class="faq-body">No. Local ground support helps you prepare questions and understand concepts before you get in the airplane. Your CFI — Diego, if you train with him, or your own instructor if you train elsewhere — remains responsible for aircraft-specific training and signoffs.</div>
           </details>
+          <details class="faq-item">
+            <summary>What does this cost?</summary>
+            <div class="faq-body">Local ground support is billed at the same hourly rate as other ground instruction: <span class="price" data-price="cfi-hourly">$45</span> per hour. Most sessions run one to two hours, and you'll get an exact quote before we start — no surprises.</div>
+          </details>
         </div>
       </div>
     </section>
@@ -160,6 +169,8 @@
         <a href="/blog/">Blog</a>
         <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
         <a href="/#contact">Contact</a>
+        <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
+        <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
       </nav>
       <div class="social-links footer-social" aria-label="Follow Diego Suarez">
         <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" data-cta-id="footer-social-instagram">Instagram</a>
@@ -175,6 +186,7 @@
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
   <script src="/assets/cfr-autolink.js" defer></script>
   <script src="/assets/cta-tracking.js" defer></script>
+  <script src="/assets/contact-form.js" defer></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -213,6 +225,11 @@
       "@type": "Question",
       "name": "Does Bowman Field ground support replace instruction from my CFI?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. Local ground support helps students prepare questions and understand concepts before they get in the airplane. The CFI — Diego, for students who train with him, or another instructor for students training elsewhere — remains responsible for aircraft-specific training and signoffs." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Bowman Field ground support cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Local ground support is billed at the same hourly rate as other ground instruction: $45 per hour (CFI hourly rate, confirmed before starting). Most sessions run one to two hours, and you'll get an exact quote before we start — no surprises." }
     }
   ]
 }

@@ -6,15 +6,14 @@
   <meta name="theme-color" content="#F4F6FB" />
 
   <title>SuarezCFI.com | Louisville Flight &amp; Ground Instructor</title>
-  <meta name="description" content="Diego Suarez, FAA Certificated Flight Instructor at Bowman Field (KLOU), Louisville. Flight training, ground instruction, test prep, plus Simply Endorsed CFI." />
+  <meta name="description" content="Diego Suarez, FAA Certificated Flight Instructor at Bowman Field (KLOU), Louisville. Flight training, ground instruction, written &amp; oral test prep." />
   <meta name="author" content="Diego Suarez" />
-  <meta name="keywords" content="Simply Endorsed CFI, simply endorsed cfi, FAA endorsement tool, AC 61-65 endorsements, CFI endorsement lookup, student pilot endorsements, CFI Louisville KY, flight instructor Bowman Field, flight lessons Louisville, ground instructor Louisville, AGI Bowman Field, KLOU flight training planning, private pilot Louisville KY, ground instruction Louisville, Diego Suarez flight instructor, Diego Suarez ground instructor" />
   <link rel="canonical" href="https://suarezcfi.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://suarezcfi.com/" />
   <meta property="og:title" content="SuarezCFI.com | Louisville Flight &amp; Ground Instructor" />
-  <meta property="og:description" content="Diego Suarez, FAA Certificated Flight Instructor at Bowman Field (KLOU), Louisville. Flight training, ground instruction, test prep, plus Simply Endorsed CFI." />
+  <meta property="og:description" content="Diego Suarez, FAA Certificated Flight Instructor at Bowman Field (KLOU), Louisville. Flight training, ground instruction, written &amp; oral test prep." />
   <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -23,7 +22,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SuarezCFI.com | Louisville Flight &amp; Ground Instructor" />
-  <meta name="twitter:description" content="Diego Suarez, FAA Certificated Flight Instructor at Bowman Field (KLOU), Louisville. Flight training, ground instruction, test prep, plus Simply Endorsed CFI." />
+  <meta name="twitter:description" content="Diego Suarez, FAA Certificated Flight Instructor at Bowman Field (KLOU), Louisville. Flight training, ground instruction, written &amp; oral test prep." />
   <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -35,6 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500;1,6..72,600&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/design-system.css" />
+  <link rel="stylesheet" href="/assets/contact-form.css" />
 
   <style>
     /* ==========================================================================
@@ -216,6 +216,8 @@
     .tool-btn--frat:focus-visible { outline-color: #1E6E66; }
     .tool-btn--calc .tool-icon { box-shadow: 0 8px 18px -8px rgba(234, 88, 12, 0.85); }
     .tool-btn--calc:focus-visible { outline-color: #EA580C; }
+    .tool-btn--cert .tool-icon { box-shadow: 0 8px 18px -8px rgba(180, 83, 9, 0.85); }
+    .tool-btn--cert:focus-visible { outline-color: #B45309; }
 
     .hero-proof { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
     .proof-chip {
@@ -1096,6 +1098,7 @@
       .manifesto-quote br { display: none; }
     }
   </style>
+<script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -1124,6 +1127,7 @@
             <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
             <a href="/part-61-calculator/" role="menuitem"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
             <a href="/flight-risk-assessment/" role="menuitem"><strong>Flight Risk Assessment</strong><span>PAVE risk checklist</span></a>
+            <a href="/certificate-generator/" role="menuitem"><strong>Certificate Generator</strong><span>Milestone certificates</span></a>
             <a href="/foi-cards/" role="menuitem"><strong>FOI Study Cards</strong><span>CFI flashcards</span></a>
           </div>
         </div>
@@ -1148,8 +1152,11 @@
               I'm an FAA Certificated Flight Instructor at <strong>Bowman Field (KLOU)</strong> in Louisville. I teach in the airplane and on the ground — flight training, solo and cross-country endorsements, flight reviews, and checkride recommendations — plus training-path planning, written-test prep, and practical oral-prep support for private pilot and commercial pilot students.
             </p>
             <div class="hero-ctas">
-              <a href="/flight-training-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-plan">
+              <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                Book a Discovery Flight
+              </a>
+              <a href="/flight-training-louisville-ky/" class="btn btn--secondary" data-cta-id="home-hero-plan">
                 Plan Your First Step
               </a>
               <a href="/ground-school-louisville-ky/" class="btn btn--secondary" data-cta-id="home-hero-ground">
@@ -1192,6 +1199,12 @@
                   <svg viewBox="0 0 512 512" width="30" height="30" fill="none"><circle cx="256" cy="256" r="256" fill="#EA580C"/><g stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" opacity="0.92"><line x1="256" y1="78" x2="256" y2="126"/><line x1="434" y1="256" x2="386" y2="256"/><line x1="256" y1="434" x2="256" y2="386"/><line x1="78" y1="256" x2="126" y2="256"/></g><g stroke="#FFFFFF" stroke-linecap="round"><line x1="256" y1="256" x2="348" y2="154" stroke-width="30"/><line x1="256" y1="256" x2="188" y2="206" stroke-width="26"/></g><circle cx="256" cy="256" r="24" fill="#7C2D12"/></svg>
                 </span>
                 <span><strong>Part 61 Calculator</strong> <em>Training-time wizard</em></span>
+              </a>
+              <a href="/certificate-generator/" class="tool-btn tool-btn--cert" data-cta-id="home-hero-certificate-generator">
+                <span class="tool-icon" aria-hidden="true">
+                  <svg viewBox="0 0 512 512" width="30" height="30" fill="none"><circle cx="256" cy="256" r="256" fill="#B45309"/><rect x="106" y="146" width="300" height="220" rx="18" fill="none" stroke="#FFFFFF" stroke-width="22"/><path d="M146 200h220M146 248h160" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" opacity="0.92"/><circle cx="330" cy="316" r="34" fill="none" stroke="#FFFFFF" stroke-width="16"/><path d="M312 344l-14 40 32-18 32 18-14-40" fill="#FFFFFF" opacity="0.92"/></svg>
+                </span>
+                <span><strong>Certificate Generator</strong> <em>Milestone certificates</em></span>
               </a>
             </div>
             <div class="hero-proof" aria-label="Credentials and training context">
@@ -1364,6 +1377,7 @@
       </div>
     </section>
 
+
     <blockquote class="manifesto-strip">
       <div class="container">
         <div class="manifesto-coord-label" aria-hidden="true">Bowman Field · KLOU</div>
@@ -1390,6 +1404,15 @@
             <h3>Flight Training Planning</h3>
             <p>Not sure where to start? Map the certificate path, medical timing, written test, cost range, and what your first lessons in the airplane will look like.</p>
             <a href="/flight-training-louisville-ky/" class="service-link" data-cta-id="home-services-planning">Start here <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-card cat-student-pilot">
+            <div class="category-badge">First Flight</div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
+            </span>
+            <h3>Discovery Flight</h3>
+            <p>One hour in the airplane at Bowman Field with you on the controls. The honest way to find out if flying is for you — no commitment, headset provided.</p>
+            <a href="/discovery-flight-louisville-ky/" class="service-link" data-cta-id="home-services-discovery">Book a discovery flight <span aria-hidden="true">→</span></a>
           </article>
           <article class="service-card cat-private-pilot">
             <div class="category-badge">Private Pilot</div>
@@ -1435,6 +1458,15 @@
             <h3>Bowman Field KLOU Help</h3>
             <p>Make the local airport picture clearer: KLOU procedures, tower flow, Louisville airspace, weather habits, and route planning.</p>
             <a href="/bowman-field-klou/" class="service-link" data-cta-id="home-services-klou">Study KLOU context <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-card cat-commercial-pilot">
+            <div class="category-badge">Remote</div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M9.5 9.5a3.5 3.5 0 0 1 5 0"/><path d="M7 7a7 7 0 0 1 10 0"/></svg>
+            </span>
+            <h3>Remote Ground Instruction</h3>
+            <p>One-on-one ground school over video — airspace, weather, regulations, written-test weak areas — wherever you are, on your schedule.</p>
+            <a href="/remote-ground-instruction/" class="service-link" data-cta-id="home-services-remote">Set up remote ground <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -1723,7 +1755,7 @@
               <details class="faq-item">
                 <summary>What does flight training cost?</summary>
                 <div class="faq-body">
-                  Every student's path is different — aircraft rental, instructor time, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan.
+                  The two anchor numbers: flight and ground instruction with me runs <span class="price" data-price="cfi-hourly">$45</span> per hour, and a <a href="/discovery-flight-louisville-ky/" data-cta-id="home-faq-discovery">discovery flight</a> is instructor time at that same rate plus the aircraft — I'll quote you the exact total before you book. Beyond that, every student's path is different — aircraft rental, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan.
                 </div>
               </details>
               <details class="faq-item">
@@ -1752,7 +1784,10 @@
             Contact
           </span>
           <h2 id="contact-heading">Let's map your next training step</h2>
-          <p>Have a question about cost, medical timing, written-test prep, ground school, or Bowman Field training context? Call, text, or email. I usually reply the same day.</p>
+          <p>Have a question about cost, medical timing, written-test prep, ground school, or Bowman Field training context? Use the short form below, call, text, or email. I usually reply the same day.</p>
+          <div class="contact-form-mount" data-form-context="home">
+            <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email">Email Diego</a> or call <a href="tel:+15025100508" data-cta-id="home-phone">502-510-0508</a>.</p>
+          </div>
           <div class="contact-methods">
             <a href="tel:+15025100508" aria-label="Call Diego Suarez at 502-510-0508" data-cta-id="home-contact-phone">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
@@ -1781,6 +1816,8 @@
         <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
+        <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
+        <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
       </nav>
       <div class="social-links footer-social" aria-label="Follow Diego Suarez">
         <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="footer-social-instagram">Instagram</a>
@@ -1799,6 +1836,7 @@
   </script>
   <script src="/assets/cfr-autolink.js" defer></script>
   <script src="/assets/cta-tracking.js" defer></script>
+  <script src="/assets/contact-form.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -1887,6 +1925,16 @@
     "description": "FAA Certificated Flight Instructor in Louisville, KY, offering flight training, ground instruction, written-test prep, oral-prep support, and training-path planning for students around Bowman Field (KLOU).",
     "areaServed": [
       { "@type": "City", "name": "Louisville, Kentucky" },
+      { "@type": "City", "name": "St. Matthews, Kentucky" },
+      { "@type": "City", "name": "Prospect, Kentucky" },
+      { "@type": "City", "name": "Middletown, Kentucky" },
+      { "@type": "City", "name": "Jeffersontown, Kentucky" },
+      { "@type": "City", "name": "Anchorage, Kentucky" },
+      { "@type": "City", "name": "New Albany, Indiana" },
+      { "@type": "City", "name": "Jeffersonville, Indiana" },
+      { "@type": "City", "name": "Clarksville, Indiana" },
+      { "@type": "City", "name": "Sellersburg, Indiana" },
+      { "@type": "City", "name": "Floyds Knobs, Indiana" },
       { "@type": "AdministrativeArea", "name": "Kentucky" }
     ],
     "address": {
@@ -1959,7 +2007,7 @@
         "name": "What does flight training cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Every student's path is different — aircraft rental, instructor time, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan."
+          "text": "The two anchor numbers: flight and ground instruction runs $45 per hour, and a discovery flight is instructor time at that same rate plus the aircraft — exact total quoted before booking. Beyond that, every student's path is different — aircraft rental, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan."
         }
       },
       {

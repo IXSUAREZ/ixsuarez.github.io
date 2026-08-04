@@ -180,8 +180,8 @@ const faq = `
 
   <h3>Is Simply Endorsed CFI free?</h3>
   <p>Yes. Simply Endorsed CFI is a free reference tool for CFIs, ground instructors,
-  and student pilots, built and maintained by Diego Suarez, an FAA Advanced
-  Ground Instructor based at Bowman Field (KLOU) in Louisville, Kentucky.</p>
+  and student pilots, built and maintained by Diego Suarez, an FAA Certificated
+  Flight Instructor based at Bowman Field (KLOU) in Louisville, Kentucky.</p>
 </section>
 `;
 
@@ -242,7 +242,7 @@ const closing = `
 <section class="seo-closing">
   <p>
     Simply Endorsed CFI was built by
-    <a href="/">Diego Suarez</a>, an FAA Advanced Ground Instructor based at
+    <a href="/">Diego Suarez</a>, an FAA Certificated Flight Instructor based at
     Bowman Field (KLOU) in Louisville, Kentucky. Have feedback or spotted an
     error? Email
     <a href="mailto:SuarezCFI@gmail.com">SuarezCFI@gmail.com</a>.

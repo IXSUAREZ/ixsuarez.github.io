@@ -41,43 +41,12 @@ body {
 main, footer { position: relative; z-index: 1; }
 a { color: inherit; text-decoration: none; }
 a:hover { color: var(--ink); }
-a:focus-visible, button:focus-visible, summary:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 3px;
-  border-radius: 8px;
-}
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
 /* Site nav styles live in /assets/design-system.css (canonical pill). */
 
-.cta-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  border-radius: var(--r-pill);
-  border: 1px solid var(--glass-edge);
-  padding: 11px 18px;
-  font-weight: 600;
-  background: var(--glass-bg);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease;
-}
-.cta-btn.primary {
-  background: linear-gradient(160deg, var(--yellow-bright), var(--yellow-deep));
-  color: var(--navy) !important;
-  border-color: transparent;
-  box-shadow: 0 8px 22px -8px rgba(245, 196, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.55);
-}
-.cta-btn.primary:hover {
-  background: linear-gradient(160deg, var(--yellow-bright), var(--yellow-deep)) !important;
-  color: var(--navy) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px -8px rgba(245, 196, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.55) !important;
-}
-.cta-btn:hover {
-  transform: translateY(-2px);
-  background: var(--glass-bg-strong);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg);
-  color: var(--ink);
-}
+/* Buttons (.btn, .btn--primary, .btn--secondary, .btn--tertiary)
+   live in /assets/design-system.css. */
 
 .page-hero {
   position: relative;
@@ -325,7 +294,7 @@ article { max-width: var(--prose); margin: 0 auto; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 34px;
+  min-height: 44px;
   padding: 8px 12px;
   border: 1px solid var(--glass-edge);
   border-radius: var(--radius-pill);
@@ -417,7 +386,7 @@ article { max-width: var(--prose); margin: 0 auto; }
   display: grid;
   gap: 10px;
 }
-.service-contact-actions .cta-btn {
+.service-contact-actions .btn {
   width: 100%;
 }
 .service-contact-note {

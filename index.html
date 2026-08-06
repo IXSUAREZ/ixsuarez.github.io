@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500;1,6..72,600&family=Pinyon+Script&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/design-system.css" />
+  <link rel="stylesheet" href="/assets/design-system.css?v=20260719" />
   <link rel="stylesheet" href="/assets/contact-form.css" />
 
   <style>
@@ -60,11 +60,6 @@
     main, header, footer { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
-    a:focus-visible, button:focus-visible, summary:focus-visible {
-      outline: 2px solid var(--navy);
-      outline-offset: 3px;
-      border-radius: 6px;
-    }
     img { max-width: 100%; display: block; }
 
     .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
@@ -196,7 +191,6 @@
       transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
     .tool-btn:hover { transform: translateY(-2px); box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg); }
-    .tool-btn:focus-visible { outline: 2px solid var(--yellow-deep); outline-offset: 2px; }
     .tool-btn .tool-icon {
       width: 30px;
       height: 30px;
@@ -211,13 +205,8 @@
     .tool-btn--endorse .tool-icon {
       box-shadow: 0 8px 18px -8px rgba(37, 99, 235, 0.85);
     }
-    .tool-btn--endorse:focus-visible { outline-color: #2563EB; }
     .tool-btn--frat .tool-icon { box-shadow: 0 8px 18px -8px rgba(30, 110, 102, 0.85); }
-    .tool-btn--frat:focus-visible { outline-color: #1E6E66; }
     .tool-btn--calc .tool-icon { box-shadow: 0 8px 18px -8px rgba(234, 88, 12, 0.85); }
-    .tool-btn--calc:focus-visible { outline-color: #EA580C; }
-    .tool-btn--cert .tool-icon { box-shadow: 0 8px 18px -8px rgba(180, 83, 9, 0.85); }
-    .tool-btn--cert:focus-visible { outline-color: #B45309; }
 
     .hero-proof { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
     .proof-chip {
@@ -388,16 +377,6 @@
       color: var(--ink);
       margin: 22px 0 14px;
     }
-    .section-header h2::after {
-      content: "";
-      display: block;
-      width: 72px;
-      height: 5px;
-      border-radius: 3px;
-      margin: 22px auto 0;
-      background: linear-gradient(90deg, var(--yellow-bright), var(--yellow-deep));
-      box-shadow: 0 4px 14px rgba(245, 196, 0, 0.45);
-    }
     .section-header p {
       color: var(--ink-muted);
       max-width: 640px;
@@ -494,7 +473,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 34px;
+      min-height: 44px;
       padding: 8px 14px;
       border-radius: var(--r-pill);
       font-size: 13px;
@@ -661,7 +640,7 @@
       box-shadow: 0 12px 26px -8px rgba(245, 196, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.5);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .service-card:hover .service-icon { transform: scale(1.06) rotate(-3deg); }
+    .service-card:hover .service-icon { transform: scale(1.06); }
     .service-icon svg { width: 24px; height: 24px; }
     .service-card h3 {
       font-family: var(--font-display);
@@ -988,6 +967,13 @@
         radial-gradient(45% 65% at 90% 100%, rgba(255, 255, 255, 0.22), transparent 65%);
     }
     .contact > * { position: relative; }
+    /* Eyebrow chip sitting on the vivid yellow contact panel */
+    .eyebrow--on-yellow {
+      background: rgba(255, 255, 255, 0.35);
+      color: var(--navy);
+      border-color: rgba(255, 255, 255, 0.55);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
     .contact h2 {
       font-family: var(--font-display);
       font-weight: 800;
@@ -1125,9 +1111,9 @@
           </button>
           <div class="nav-drop-panel" role="menu">
             <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
+            <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
             <a href="/part-61-calculator/" role="menuitem"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
-            <a href="/flight-risk-assessment/" role="menuitem"><strong>Flight Risk Assessment</strong><span>PAVE risk checklist</span></a>
-            <a href="/foi-cards/" role="menuitem"><strong>FOI Study Cards</strong><span>CFI flashcards</span></a>
+            <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
           </div>
         </div>
         <a href="/#contact">Contact</a>
@@ -1369,14 +1355,6 @@
         </div>
       </div>
     </section>
-
-
-    <blockquote class="manifesto-strip">
-      <div class="container">
-        <div class="manifesto-coord-label" aria-hidden="true">Bowman Field · KLOU</div>
-        <p class="manifesto-quote" aria-label="I remember how overwhelming the books felt at the start. My whole job is making it simple.">&ldquo;I remember how overwhelming the books felt at the start. <br>My whole job is making it simple.&rdquo;</p>
-      </div>
-    </blockquote>
 
     <section id="services" aria-labelledby="services-heading">
       <div class="container">
@@ -1772,7 +1750,7 @@
     <section id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact">
-          <span class="eyebrow" style="background: rgba(255,255,255,0.35); color: #1C2142; border-color: rgba(255,255,255,0.55); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);">
+          <span class="eyebrow eyebrow--on-yellow">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
             Contact
           </span>
@@ -1799,16 +1777,16 @@
 
   <footer>
     <div class="container">
-      <a href="#top" class="wordmark">Diego Suarez</a>
+      <a href="/" class="wordmark">Diego Suarez</a>
       <nav aria-label="Footer">
-        <a href="#about">About</a>
+        <a href="/#about">About</a>
         <a href="/flight-training-louisville-ky/">Start Here</a>
-        <a href="#services">Services</a>
+        <a href="/#services">Services</a>
         <a href="/learn/">Learn</a>
         <a href="/blog/">Blog</a>
         <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#contact">Contact</a>
         <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
         <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
       </nav>

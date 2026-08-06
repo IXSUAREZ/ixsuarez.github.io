@@ -73,6 +73,19 @@ body::after {
   color: var(--ink);
 }
 
+/* One focus ring domain-wide: 2px solid yellow-deep, 3px offset.
+   Class-scoped focus styles inside tool apps (app.css) win on specificity,
+   so accent-colored focus may survive on in-app surfaces only. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--yellow-deep);
+  outline-offset: 3px;
+}
+
 /* Aviation backdrop styling */
 .aviation-backdrop {
   position: fixed;
@@ -330,6 +343,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: 44px;
   padding: 9px 12px;
   border-radius: var(--r-pill);
   color: var(--ink);
@@ -353,13 +367,6 @@ body::after {
   background: var(--yellow-soft);
   color: var(--navy);
   font-weight: 600;
-}
-
-.nav-links > a:focus-visible,
-.nav-drop-toggle:focus-visible,
-.nav-menu-toggle:focus-visible {
-  outline: 2px solid var(--yellow-deep);
-  outline-offset: 2px;
 }
 
 /* Tools dropdown */
@@ -587,4 +594,106 @@ body::after {
   .nav-links > * { transition: none; opacity: 1; transform: none; }
   .nav-toggle-icon::before,
   .nav-toggle-icon::after { transition: none; }
+}
+
+/* ==========================================================================
+   Social links — base pill styles (44px touch target).
+   Pages may layer their own .social-link rules on top of these.
+   ========================================================================== */
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--r-pill);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.social-link:hover {
+  background: var(--glass-bg-strong);
+  color: var(--navy);
+  transform: translateY(-1px);
+}
+.social-link svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+/* ==========================================================================
+   Canonical site footer — one footer for the whole domain.
+   Light pages carry equivalent per-page footer rules; .site-footer gives the
+   tool pages (which have no page footer CSS) the identical treatment.
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: 70px 0 46px;
+  color: var(--ink-muted);
+  font-size: 14px;
+  text-align: center;
+}
+.site-footer .wordmark {
+  font-size: 34px;
+  color: var(--navy);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.site-footer nav {
+  margin: 20px 0 16px;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-weight: 500;
+}
+.site-footer nav a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-footer nav a:hover { color: var(--navy); }
+.site-footer .footer-social { margin: 0 0 18px; }
+.site-footer .fine { font-size: 13px; margin: 6px 0; }
+.site-footer .fine a {
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+}
+.site-footer .fine a:hover { text-decoration: underline; }
+.site-footer .footer-designer {
+  font-family: var(--font-signature);
+  font-size: 1.25rem;
+  color: var(--navy);
+}
+.site-footer .footer-guidance-link {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--navy);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

@@ -1942,7 +1942,7 @@ p {
 .part61-calculator .option-button,
 .part61-calculator .icon-button {
   appearance: none;
-  min-height: 38px;
+  min-height: 44px;
   border: 1px solid var(--part61-line-strong);
   border-radius: 12px;
   padding: 0 14px;
@@ -8816,22 +8816,28 @@ body.theme-orange .app-shell {
   flex: none;
 }
 
+/* Quiet text back-link at the leading edge of the tool nav */
+.link-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 4px;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+.link-back:hover { color: var(--navy); }
+
 .nav-brand-divider {
   width: 1px;
   height: 26px;
   background: rgba(13, 19, 48, 0.16);
   flex: none;
-}
-
-.theme-blue .nav-brand-divider,
-.theme-orange .nav-brand-divider {
-  background: var(--tool-line);
-}
-
-/* Wordmark carries the theme ink, like FlightRisk's green "Diego Suarez" */
-.theme-blue .wordmark,
-.theme-orange .wordmark {
-  color: var(--tool-ink);
 }
 
 .nav-tool-mark {
@@ -8861,26 +8867,12 @@ body.theme-orange .app-shell {
 }
 .nav-tool-mark:hover .nav-tool-name { color: var(--tool-accent); }
 
-/* Right-side controls (quick search, category burger, mobile menu) */
+/* Right-side controls (category burger, mobile menu) */
 .nav--tool .nav-tools {
   display: flex;
   align-items: center;
   gap: 8px;
   flex: none;
-}
-
-/* Quick search restyled to sit inside the pill */
-.nav--tool .topbar-search {
-  height: 40px;
-  width: min(210px, 20vw);
-  border-radius: var(--r-pill, 999px);
-  border: 1px solid rgba(13, 19, 48, 0.10);
-  background: rgba(255, 255, 255, 0.62);
-  box-shadow: none;
-}
-.nav--tool .topbar-search:focus-within {
-  border-color: var(--tool-line);
-  box-shadow: 0 0 0 3px var(--tool-soft);
 }
 
 /* Category burger squeezed to pill scale (visible ≤900px only) */
@@ -8896,44 +8888,14 @@ body.theme-orange .app-shell {
   box-shadow: 0 12px 24px -10px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-/* Theme the canonical pill: hover, active view, focus, CTA */
-.theme-blue .nav-links > a:hover,
-.theme-orange .nav-links > a:hover {
-  background: var(--tool-soft);
-  color: var(--tool-ink);
-}
-
-.theme-blue .nav-links > a[aria-current="page"],
-.theme-orange .nav-links > a[aria-current="page"] {
-  background: var(--tool-soft);
-  color: var(--tool-ink);
-  font-weight: 600;
-}
-
-.theme-blue .nav-links > a:focus-visible,
-.theme-orange .nav-links > a:focus-visible,
-.theme-blue .nav-menu-toggle:focus-visible,
-.theme-orange .nav-menu-toggle:focus-visible,
+/* The canonical pill keeps its yellow+navy chrome on tool pages; the tool
+   accent survives only on in-app controls and the tool icon. */
 .theme-blue .icon-btn:focus-visible,
 .theme-orange .icon-btn:focus-visible,
 .theme-blue .nav-tool-mark:focus-visible,
-.theme-orange .nav-tool-mark:focus-visible,
-.theme-blue .wordmark:focus-visible,
-.theme-orange .wordmark:focus-visible {
+.theme-orange .nav-tool-mark:focus-visible {
   outline: 2px solid var(--tool-accent);
   outline-offset: 2px;
-}
-
-.theme-blue .nav-cta,
-.theme-orange .nav-cta {
-  background: linear-gradient(160deg, var(--tool-accent-bright), var(--tool-accent) 55%, var(--tool-accent-deep)) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  box-shadow: 0 8px 22px -8px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-}
-.theme-blue .nav-cta:hover,
-.theme-orange .nav-cta:hover {
-  box-shadow: 0 12px 28px -8px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
 }
 
 .theme-blue ::selection,
@@ -8943,10 +8905,6 @@ body.theme-orange .app-shell {
 }
 
 /* Progressive trims so the pill never overflows */
-@media (max-width: 1420px) {
-  .nav--tool .topbar-search { width: min(170px, 14vw); }
-}
-
 @media (max-width: 1140px) {
   .nav-tool-name { display: none; }
   .nav--tool .nav-brand { gap: 11px; }
@@ -8959,12 +8917,9 @@ body.theme-orange .app-shell {
   .nav--tool .nav-links > a {
     padding: 8px 9px;
   }
-  .nav--tool .topbar-search { width: min(140px, 12vw); }
 }
 
 @media (max-width: 980px) {
-  /* search lives in the category rail on mobile */
-  .nav--tool .topbar-search { display: none; }
   /* sheet links restore comfortable tap targets */
   .nav--tool .nav-links { font-size: 16px; }
   .nav--tool .nav-links > a {
@@ -8974,6 +8929,7 @@ body.theme-orange .app-shell {
 
 @media (max-width: 640px) {
   .nav--tool .nav-brand { gap: 10px; }
+  .nav--tool .link-back { display: none; }
 }
 
 /* ===== Part 61 wizard steps 1-4 visual refresh — final cascade, keep last ===== */

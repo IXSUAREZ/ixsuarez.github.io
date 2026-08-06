@@ -38,70 +38,6 @@
     >
     <link rel="stylesheet" href="/assets/design-system.css?v=20260719">
     <link rel="stylesheet" href="/simply-endorsed/css/app.css?v=50">
-    <style>
-      /* Page-scoped chrome for the standalone calculator (orange family). */
-      .calc-footer {
-        max-width: 1180px;
-        margin: 12px auto 0;
-        padding: 26px 24px 44px;
-        text-align: center;
-        color: #4d5670;
-        font-size: 0.86rem;
-        line-height: 1.6;
-      }
-      .calc-footer a {
-        color: var(--tool-accent-deep, #C2410C);
-        font-weight: 650;
-        text-decoration: none;
-      }
-      .calc-footer a:hover { text-decoration: underline; }
-      .calc-footer .footer-designer {
-        margin-top: 10px;
-        font-family: var(--font-signature, "Pinyon Script", cursive);
-        font-size: 1.25rem;
-        color: #1C2142;
-      }
-      .calc-footer .footer-contact {
-        margin-top: 12px;
-      }
-
-      /* Page-scoped conversion CTA banner (site liquid-glass brand). */
-      .tool-cta {
-        max-width: 1180px;
-        margin: 40px auto 0;
-        padding: 0 24px;
-      }
-      .tool-cta-card {
-        border-radius: var(--r-card, 30px);
-        padding: clamp(28px, 5vw, 48px);
-        text-align: center;
-      }
-      .tool-cta-heading {
-        margin: 0 0 10px;
-        font-family: var(--font-display);
-        font-size: clamp(1.6rem, 3vw, 2.2rem);
-        letter-spacing: -0.02em;
-        color: var(--navy);
-      }
-      .tool-cta-copy {
-        margin: 0 auto 22px;
-        max-width: 56ch;
-        color: var(--ink-muted);
-        line-height: 1.55;
-      }
-      .tool-cta-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-      }
-      @media (max-width: 640px) {
-        .tool-cta-actions .btn {
-          width: 100%;
-          justify-content: center;
-        }
-      }
-    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -148,6 +84,7 @@
     <header class="nav-wrap" role="banner">
       <nav class="nav nav--tool" aria-label="Primary">
         <div class="nav-brand">
+          <a href="/" class="link-back">&larr; SuarezCFI.com</a>
           <a href="/" class="wordmark" aria-label="Diego Suarez — SuarezCFI.com home">Diego Suarez</a>
           <span class="nav-brand-divider" aria-hidden="true"></span>
           <a href="/part-61-calculator/" class="nav-tool-mark" aria-label="Part 61 Calculator home">
@@ -169,7 +106,23 @@
           </a>
         </div>
         <div class="nav-links" id="primary-nav-links">
-          <a href="/" class="nav-cta" data-cta-id="part61-nav-return">SuarezCFI.com</a>
+          <a href="/">Home</a>
+          <a href="/learn/">Learn</a>
+          <a href="/blog/">Blog</a>
+          <div class="nav-dropdown">
+            <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+              Tools
+              <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="nav-drop-panel" role="menu">
+              <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
+              <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
+              <a href="/part-61-calculator/" role="menuitem" aria-current="page"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
+              <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
+            </div>
+          </div>
+          <a href="/#contact">Contact</a>
+          <a href="/flight-training-louisville-ky/" class="nav-cta" data-cta-id="part61-nav-plan">Plan Training</a>
         </div>
         <div class="nav-tools">
           <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
@@ -484,33 +437,37 @@
         </main>
       </div>
 
-      <section class="tool-cta" aria-labelledby="toolCtaHeading">
-        <div class="tool-cta-card glass-material">
-          <h2 class="tool-cta-heading" id="toolCtaHeading">These are FAA minimums — get a real plan and an honest quote.</h2>
-          <p class="tool-cta-copy">
-            Diego is a FAA CFI at Bowman Field (KLOU) in Louisville. Bring your audit and leave with a
-            week-by-week training plan and transparent pricing.
-          </p>
-          <div class="tool-cta-actions cta-stack">
-            <a class="btn btn--primary" href="/flight-training-louisville-ky/" data-cta-id="p61-cta-plan">Get a training plan</a>
-            <a class="btn btn--secondary" href="tel:+15025100508" data-cta-id="p61-cta-phone">Call Diego · 502-510-0508</a>
+      <footer class="site-footer">
+        <div class="container">
+          <a href="/" class="wordmark">Diego Suarez</a>
+          <nav aria-label="Footer">
+            <a href="/#about">About</a>
+            <a href="/flight-training-louisville-ky/">Start Here</a>
+            <a href="/#services">Services</a>
+            <a href="/learn/">Learn</a>
+            <a href="/blog/">Blog</a>
+            <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
+            <a href="/#faq">FAQ</a>
+            <a href="/#contact">Contact</a>
+            <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
+            <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
+          </nav>
+          <div class="social-links footer-social" aria-label="Follow Diego Suarez">
+            <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="footer-social-instagram">Instagram</a>
+            <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="footer-social-threads">Threads</a>
+            <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="footer-social-youtube">YouTube</a>
+            <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="footer-social-tiktok">TikTok</a>
+            <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="footer-social-facebook">Facebook</a>
           </div>
+          <p class="fine">This calculator is a planning aid, not legal advice. Verify every requirement against the current eCFR text and your examiner's expectations. Looking for endorsements? Open <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.</p>
+          <p class="fine footer-designer">Designed by Diego Suarez</p>
+          <p class="fine">FAA Certificated Flight Instructor (CFI) &amp; Advanced Ground Instructor · Bowman Field (KLOU), Louisville, Kentucky</p>
+          <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
         </div>
-      </section>
-
-      <footer class="calc-footer">
-        <p>
-          This calculator is a planning aid, not legal advice. Verify every requirement against the current eCFR text
-          and your examiner's expectations. Looking for endorsements? Open
-          <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>.
-        </p>
-        <p class="footer-contact">
-          Questions? Call <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
-          or email <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">SuarezCFI@gmail.com</a>.
-        </p>
-        <p class="footer-designer">Designed by Diego Suarez</p>
       </footer>
     </div>
+
+    <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 
     <script src="/simply-endorsed/js/shared-utils.js?v=1"></script>
     <script src="/simply-endorsed/js/cfr-links.js?v=3"></script>

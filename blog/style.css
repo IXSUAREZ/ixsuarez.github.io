@@ -41,11 +41,6 @@ body {
 
 main, footer { position: relative; z-index: 1; }
 a { color: inherit; text-decoration: none; }
-a:focus-visible, button:focus-visible, summary:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 3px;
-  border-radius: 8px;
-}
 img { max-width: 100%; display: block; }
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
@@ -521,22 +516,6 @@ img { max-width: 100%; display: block; }
   max-width: 460px;
 }
 .cta-btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.cta-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 14px 22px;
-  border-radius: var(--radius-pill);
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.22);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  transition: background .2s, transform .2s, box-shadow .2s;
-  text-decoration: none;
-}
-.cta-btn:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
-.cta-btn.primary { background: #F7F3E6; color: #08090B; border-color: transparent; box-shadow: 0 12px 28px rgba(255,255,255,0.12); }
-.cta-btn.primary:hover { background: #fff; }
-.cta-btn svg { width: 16px; height: 16px; }
 
 .see-also {
   max-width: var(--prose-maxw);

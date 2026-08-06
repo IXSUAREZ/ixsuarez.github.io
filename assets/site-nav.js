@@ -73,6 +73,21 @@
       setMenu(false);
       document.body.classList.remove("nav-open");
     });
+
+    // Compress the pill once the page scrolls past ~40px (CSS transitions
+    // live in design-system.css; stripped automatically under reduced motion)
+    var compactTicking = false;
+    function syncCompact() {
+      nav.classList.toggle("nav--compact", window.scrollY > 40);
+      compactTicking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!compactTicking) {
+        compactTicking = true;
+        window.requestAnimationFrame(syncCompact);
+      }
+    }, { passive: true });
+    syncCompact();
   }
 
   function initAll() {

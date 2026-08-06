@@ -329,6 +329,23 @@ textarea:focus-visible {
 }
 .wordmark:hover { color: var(--ink); }
 
+/* Compress-on-scroll — site-nav.js toggles .nav--compact past ~40px.
+   Reduced-motion: the global reduced-motion block above already strips
+   these transitions, so the state change is instant for those users. */
+.nav {
+  transition: padding 0.3s var(--ease-premium);
+}
+.wordmark {
+  transition: font-size 0.3s var(--ease-premium), color 0.2s ease;
+}
+.nav--compact {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.nav--compact .wordmark {
+  font-size: 22px;
+}
+
 .nav-links {
   display: flex;
   gap: 2px;

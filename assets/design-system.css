@@ -454,17 +454,17 @@ textarea:focus-visible {
 .nav-drop-panel a strong { font-size: 14.5px; font-weight: 600; color: var(--navy); }
 .nav-drop-panel a span { font-size: 12.5px; color: var(--ink-muted); }
 
-/* Primary CTA */
-.nav-cta {
-  background: linear-gradient(160deg, var(--yellow-bright), var(--yellow-deep)) !important;
-  color: var(--navy) !important;
-  font-weight: 700 !important;
+/* Primary CTA — specificity beats .nav-links > a without !important */
+.nav-links > a.nav-cta {
+  background: linear-gradient(160deg, var(--yellow-bright), var(--yellow-deep));
+  color: var(--navy);
+  font-weight: 700;
   box-shadow: 0 8px 22px -8px rgba(245, 196, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.55);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.nav-cta:hover {
+.nav-links > a.nav-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 28px -8px rgba(245, 196, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.55) !important;
+  box-shadow: 0 12px 28px -8px rgba(245, 196, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.55);
 }
 
 /* Hamburger — morphs to X via aria-expanded */

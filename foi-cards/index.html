@@ -9,15 +9,36 @@
     <meta name="description" content="A touch-first Fundamentals of Instructing flashcard deck for mobile study.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260804a">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@700;800&family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260806a">
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
   </head>
   <body>
     <main class="app-shell" id="app" aria-live="polite">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="Diego Suarez — home">Diego Suarez</a>
-        <button class="text-button" type="button" id="resetButton">Reset</button>
+      <header class="chipnav-wrap">
+        <nav class="chipnav" aria-label="Site">
+          <a class="chipnav-back" href="/">&larr; SuarezCFI.com</a>
+          <a class="chipnav-wordmark" href="/" aria-label="Diego Suarez — home">Diego Suarez</a>
+          <div class="chipnav-actions">
+            <button class="chipnav-reset" type="button" id="resetButton">Reset</button>
+            <button class="chipnav-menu" type="button" id="chipnavMenuToggle" aria-expanded="false" aria-controls="chipnavSheet">
+              Menu
+              <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+          </div>
+        </nav>
+        <div class="chipnav-sheet" id="chipnavSheet" hidden>
+          <a href="/">Home</a>
+          <a href="/learn/">Learn</a>
+          <a href="/blog/">Blog</a>
+          <p class="chipnav-sheet-label">Tools</p>
+          <a href="/simply-endorsed-cfi/"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
+          <a href="/flight-risk-assessment/"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
+          <a href="/part-61-calculator/"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
+          <a href="/foi-cards/" aria-current="page"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
+          <a href="/#contact">Contact</a>
+          <a class="chipnav-cta" href="/flight-training-louisville-ky/" data-cta-id="foi-nav-plan">Plan Training</a>
+        </div>
       </header>
       <section class="welcome" id="welcomeScreen">
         <p class="eyebrow">Mobile FOI study deck</p>
@@ -98,9 +119,33 @@
         </p>
       </div>
     </section>
-    <div class="desktop-message"><div><p class="eyebrow">FOI Cards</p><h1>Open this study deck on your phone.</h1><p>It is built as a touch-first mobile experience.</p><a class="gate-home" href="/">← Back to SuarezCFI.com</a></div></div>
     <script src="cards.js?v=20260710c"></script>
     <script src="app.js?v=20260710d"></script>
+    <script>
+      /* Compact site-nav sheet toggle (independent of flashcard logic) */
+      (function () {
+        var toggle = document.getElementById('chipnavMenuToggle');
+        var sheet = document.getElementById('chipnavSheet');
+        if (!toggle || !sheet) return;
+        function setOpen(open) {
+          sheet.hidden = !open;
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        toggle.addEventListener('click', function (event) {
+          event.stopPropagation();
+          setOpen(sheet.hidden);
+        });
+        sheet.addEventListener('click', function (event) {
+          if (event.target.closest('a')) setOpen(false);
+        });
+        document.addEventListener('click', function (event) {
+          if (!sheet.hidden && !event.target.closest('.chipnav-wrap')) setOpen(false);
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape' && !sheet.hidden) { setOpen(false); toggle.focus(); }
+        });
+      })();
+    </script>
     <script src="/assets/cta-tracking.js" defer></script>
   </body>
 </html>

@@ -122,7 +122,7 @@
     ctx.textBaseline = "alphabetic";
     var supportsLetterSpacing = "letterSpacing" in ctx;
     while (size > opts.minSize) {
-      ctx.font = opts.weight + " " + size + "px Oswald, 'Arial Narrow', sans-serif";
+      ctx.font = opts.weight + " " + size + "px 'Inter Tight', Inter, sans-serif";
       if (supportsLetterSpacing) ctx.letterSpacing = opts.letterSpacing + "px";
       if (ctx.measureText(text).width <= opts.maxWidth) break;
       size -= 4;
@@ -1654,9 +1654,9 @@
     Promise.all([
       // One per size/weight the compositor actually draws with — the shrink
       // loop measures text, so a fallback face here would mis-size the name.
-      document.fonts.load("600 148px Oswald"),
-      document.fonts.load("500 76px Oswald"),
-      document.fonts.load("500 72px Oswald"),
+      document.fonts.load("600 148px 'Inter Tight'"),
+      document.fonts.load("500 76px 'Inter Tight'"),
+      document.fonts.load("500 72px 'Inter Tight'"),
       document.fonts.ready,
     ])
       .then(function () {

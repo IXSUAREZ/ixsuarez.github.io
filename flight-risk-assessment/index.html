@@ -18,9 +18,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Pinyon+Script&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/assets/design-system.css" />
     <title>FlightRisk — SuarezCFI Flight Risk Assessment</title>
     <script type="application/ld+json">
       {
@@ -42,10 +43,81 @@
     </script>
     <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
     <script defer src="/assets/cta-tracking.js"></script>
-    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-Dcf1erjL.js"></script>
-    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-BaWA5YRH.css">
+    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-Dibr7gyI.js"></script>
+    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-DbHPXNd0.css">
   </head>
   <body>
+    <!-- Aviation-themed backdrop (site design system) -->
+    <div class="aviation-backdrop" aria-hidden="true">
+      <div class="aviation-grid"></div>
+      <div class="aviation-ambience"></div>
+    </div>
+
+    <!-- Canonical SuarezCFI pill nav (assets/design-system.css + assets/site-nav.js) -->
+    <header class="nav-wrap" role="banner">
+      <nav class="nav" aria-label="Primary">
+        <a href="/" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
+        <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+          <span class="nav-toggle-label">Menu</span>
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <div class="nav-links" id="primary-nav-links">
+          <a href="/">Home</a>
+          <a href="/learn/">Learn</a>
+          <a href="/blog/">Blog</a>
+          <div class="nav-dropdown">
+            <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+              Tools
+              <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="nav-drop-panel" role="menu">
+              <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
+              <a href="/flight-risk-assessment/" role="menuitem" aria-current="page"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
+              <a href="/part-61-calculator/" role="menuitem"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
+              <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
+            </div>
+          </div>
+          <a href="/#contact">Contact</a>
+          <a href="/flight-training-louisville-ky/" class="nav-cta" data-cta-id="frat-nav-plan">Plan Training</a>
+        </div>
+      </nav>
+    </header>
+
     <div id="root"></div>
+
+    <!-- Canonical SuarezCFI site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <a href="/" class="wordmark">Diego Suarez</a>
+        <nav aria-label="Footer">
+          <a href="/#about">About</a>
+          <a href="/flight-training-louisville-ky/">Start Here</a>
+          <a href="/#services">Services</a>
+          <a href="/learn/">Learn</a>
+          <a href="/blog/">Blog</a>
+          <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/#contact">Contact</a>
+          <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
+          <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
+        </nav>
+        <div class="social-links footer-social" aria-label="Follow Diego Suarez">
+          <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="footer-social-instagram">Instagram</a>
+          <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="footer-social-threads">Threads</a>
+          <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="footer-social-youtube">YouTube</a>
+          <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="footer-social-tiktok">TikTok</a>
+          <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="footer-social-facebook">Facebook</a>
+        </div>
+        <p class="fine">FlightRisk is a training aid only. It does not replace pilot-in-command judgment, applicable regulations, or an official weather briefing.</p>
+        <p class="fine footer-designer">Designed by Diego Suarez</p>
+        <p class="fine">FAA Certificated Flight Instructor (CFI) &amp; Advanced Ground Instructor · Bowman Field (KLOU), Louisville, Kentucky</p>
+        <p class="fine">&copy; <span id="yr">2026</span> Diego Suarez. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('yr').textContent = new Date().getFullYear();
+    </script>
+    <script defer src="/assets/site-nav.js"></script>
   </body>
 </html>

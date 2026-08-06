@@ -1,8 +1,11 @@
 /* ==========================================================================
-   Certificate Generator — page-scoped styles
-   Reuses the site's canonical nav (design-system.css + simply-endorsed
-   app.css) and theme-blue's geometry, but overrides the tool-accent /
+   certgen.css — Certificate Generator app module (internal tool)
+   Certificate Generator — page-scoped styles.
+   Reuses the site's canonical nav (design-system.css + tool-core.css)
+   and theme-blue's geometry, but overrides the tool-accent /
    accent color family to a distinct teal so this reads as its own tool.
+   Moved out of the certificate-generator directory into the shared tool-system (v9.0.0 decomposition).
+   Load AFTER tool-core.css. Requires body.theme-blue.certgen-view.
    ========================================================================== */
 
 /* Guard the native [hidden] attribute against any class below that sets an

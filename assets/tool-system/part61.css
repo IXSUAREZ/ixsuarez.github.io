@@ -1,0 +1,3186 @@
+/* ==========================================================================
+   part61.css — Part 61 Calculator app module
+   Wizard steps, step rail, results pane, theme-orange accent mapping.
+   Extracted from the pre-v9 monolithic endorsement-app stylesheet (v9.0.0 decomposition).
+   Load AFTER tool-core.css. Requires body.theme-orange.
+   ========================================================================== */
+
+.part61-calculator {
+  gap: 14px;
+}
+
+.part61-calculator-header {
+  min-height: 112px;
+  padding: 18px 24px;
+}
+
+.part61-calculator-header h2 {
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.part61-calculator-header p:not(.part61-kicker) {
+  max-width: 64ch;
+  font-size: 0.92rem;
+}
+
+.part61-workbench {
+  grid-template-columns: 86px minmax(360px, 0.62fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.part61-step-rail {
+  top: 86px;
+  border-radius: 14px;
+}
+
+.part61-panel,
+.part61-results-pane,
+.part61-result-section,
+.part61-calculator .field-group {
+  border-radius: 14px;
+}
+
+.part61-panel {
+  padding: 16px;
+}
+
+.part61-dashboard-grid {
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+}
+
+.part61-calculator table {
+  border-radius: 10px;
+}
+@media (max-width: 1180px) {
+
+  .part61-workbench {
+    grid-template-columns: 80px minmax(0, 0.72fr) minmax(0, 1fr);
+  }
+}
+@media (max-width: 900px) {
+
+  .part61-workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .part61-step-rail {
+    position: relative;
+    top: auto;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .part61-rail-item {
+    min-width: 70px;
+  }
+}
+@media (max-width: 640px) {
+
+  .part61-calculator-header {
+    display: grid;
+  }
+
+  .part61-header-actions {
+    justify-content: flex-start;
+  }
+
+  .part61-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.part61-calculator {
+  --part61-line: rgba(87, 99, 118, 0.16);
+  --part61-line-strong: rgba(87, 99, 118, 0.26);
+  --part61-soft: rgba(248, 250, 252, 0.74);
+  --part61-blue: var(--accent);
+  --part61-green: #1f7a4c;
+  --part61-green-soft: #edf8f1;
+  --part61-red: #b42318;
+  --part61-red-soft: #fff2f1;
+  --part61-amber: #8a5a00;
+  --part61-amber-soft: #fff7e0;
+  --part61-purple: #6c4bb5;
+  --part61-purple-soft: #f5f0ff;
+  --part61-teal: #0f766e;
+  --part61-teal-soft: #eaf8f6;
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  color: var(--text);
+}
+
+.part61-calculator button,
+.part61-calculator input,
+.part61-calculator select {
+  font: inherit;
+}
+
+.part61-calculator a {
+  color: var(--accent);
+}
+
+/* No backdrop-filter here: these are in-flow panels over the solid page
+   background, so the blur had no visible effect but forced a compositing
+   layer per panel (nested three deep in the results pane). */
+.part61-calculator-header,
+.part61-panel,
+.part61-results-pane,
+.part61-step-rail,
+.part61-calculator .field-group,
+.part61-result-section,
+.part61-calculator .dashboard-card,
+.part61-calculator .counts-card,
+.part61-calculator .overlap-card,
+.part61-calculator .summary-block {
+  position: relative;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.68),
+    0 12px 30px rgba(15, 23, 42, 0.04);
+}
+
+.part61-calculator-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 26px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.part61-calculator-header::before {
+  content: "";
+  position: absolute;
+  inset: 16px auto 16px 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    #4f46e5 0% 20%,
+    #16a34a 20% 40%,
+    #f59e0b 40% 60%,
+    #0ea5e9 60% 80%,
+    #7c3aed 80% 100%
+  );
+}
+
+.part61-kicker,
+.part61-panel-heading p,
+.part61-calculator .eyebrow {
+  margin: 0;
+  color: var(--text-muted-2);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.part61-calculator-header h2,
+.part61-panel-heading h3,
+.part61-result-header h3,
+.part61-result-section h4,
+.part61-calculator .summary-block h4,
+.part61-calculator .counts-card h4,
+.part61-calculator .overlap-card h4 {
+  margin: 0;
+  font-family: var(--display);
+  color: var(--text-strong);
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.part61-calculator-header h2 {
+  margin-top: 6px;
+  font-size: clamp(1.55rem, 2.6vw, 2.3rem);
+}
+
+.part61-calculator-header p:not(.part61-kicker) {
+  margin: 8px 0 0;
+  max-width: 70ch;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.part61-header-actions,
+.part61-result-actions,
+.part61-calculator .topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.part61-button,
+.part61-calculator .button,
+.part61-calculator .text-button,
+.part61-filter-button,
+.part61-calculator .filter-button,
+.part61-calculator .option-button,
+.part61-calculator .icon-button {
+  appearance: none;
+  min-height: 44px;
+  border: 1px solid var(--part61-line-strong);
+  border-radius: var(--r-tool);
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-strong);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.1;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.part61-button:hover,
+.part61-calculator .button:hover,
+.part61-calculator .text-button:hover,
+.part61-filter-button:hover,
+.part61-calculator .filter-button:hover,
+.part61-calculator .option-button:hover,
+.part61-calculator .icon-button:hover {
+  border-color: color-mix(in srgb, var(--accent) 46%, white);
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.part61-button-primary,
+.part61-calculator .button.primary {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(31, 94, 214, 0.16);
+}
+
+.part61-button-primary:hover,
+.part61-calculator .button.primary:hover {
+  border-color: var(--accent-strong);
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: #fff;
+}
+
+.part61-button-secondary,
+.part61-calculator .button.secondary {
+  color: var(--text);
+}
+
+.part61-button-full,
+.part61-calculator .button.full {
+  width: 100%;
+}
+
+.part61-button-small,
+.part61-calculator .button.small {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 0.76rem;
+}
+
+.part61-calculator .text-button,
+.part61-text-button {
+  min-height: 30px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--accent);
+  box-shadow: none;
+}
+
+.part61-workbench {
+  display: grid;
+  grid-template-columns: 86px minmax(340px, 520px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.part61-step-rail {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 18px;
+}
+
+.part61-rail-item {
+  min-height: 68px;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  border-radius: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.part61-rail-item span {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--part61-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.part61-rail-item b {
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.part61-rail-item:hover,
+.part61-rail-item.active {
+  background: rgba(232, 240, 255, 0.72);
+  color: var(--accent-ink);
+}
+
+.part61-input-pane,
+.part61-results-pane {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.part61-panel-heading {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.part61-panel-heading h3,
+.part61-result-header h3 {
+  font-size: 1.08rem;
+}
+
+.part61-helper,
+.part61-calculator .helper {
+  margin: -4px 0 14px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.part61-field-label,
+.part61-calculator .field-label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--text-strong);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.part61-text-input,
+.part61-calculator .text-input,
+.part61-calculator select,
+.part61-number-field input,
+.part61-calculator .number-field input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--part61-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-strong);
+  padding: 0 12px;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.part61-text-input:focus,
+.part61-calculator .text-input:focus,
+.part61-calculator select:focus,
+.part61-number-field input:focus,
+.part61-calculator .number-field input:focus {
+  border-color: color-mix(in srgb, var(--accent) 72%, white);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 0 0 4px rgba(31, 94, 214, 0.12);
+}
+
+.part61-option-list,
+.part61-calculator .option-list,
+.part61-chip-list,
+.part61-calculator .chip-list,
+.part61-event-grid,
+.part61-calculator .event-grid,
+.part61-flag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.part61-option-list,
+.part61-calculator .option-list {
+  margin-top: 10px;
+}
+
+.part61-chip-list,
+.part61-calculator .chip-list {
+  margin-top: 10px;
+}
+
+.part61-calculator .option-button.selected {
+  border-color: color-mix(in srgb, var(--accent) 50%, white);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.part61-calculator .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 8px 0 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, white);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.part61-calculator .chip button,
+.part61-calculator .icon-button {
+  width: 28px;
+  min-height: 28px;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.part61-flag-grid,
+.part61-calculator .flag-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.part61-check-row,
+.part61-calculator .check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 38px;
+  padding: 9px 10px;
+  border: 1px solid var(--part61-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.52);
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.part61-check-row input,
+.part61-calculator .check-row input {
+  margin-top: 2px;
+  accent-color: var(--accent);
+}
+
+.part61-rate-grid,
+.part61-calculator .rate-grid,
+.part61-calculator .field-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.part61-rate-grid,
+.part61-calculator .rate-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.part61-number-field,
+.part61-calculator .number-field {
+  display: grid;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.part61-zero-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 8px;
+}
+
+.part61-zero-field-button {
+  width: 42px;
+  min-height: 42px;
+  border: 1px solid rgba(180, 35, 24, 0.28);
+  border-radius: var(--r-tool);
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease,
+    transform 120ms ease;
+}
+
+.part61-zero-field-button:hover {
+  border-color: rgba(180, 35, 24, 0.52);
+  background: #ffe5e3;
+  box-shadow: 0 8px 18px rgba(180, 35, 24, 0.12);
+}
+
+.part61-zero-field-button:focus-visible {
+  outline: none;
+  border-color: rgba(180, 35, 24, 0.72);
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.14);
+}
+
+.part61-zero-field-button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .part61-zero-input-row {
+    grid-template-columns: minmax(0, 1fr) 46px;
+  }
+
+  .part61-zero-field-button {
+    width: 46px;
+    min-height: 46px;
+  }
+}
+
+.part61-number-field.field-invalid input,
+.part61-calculator .number-field.field-invalid input,
+.part61-calculator .is-invalid {
+  border-color: rgba(180, 35, 24, 0.72);
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.1);
+}
+
+.part61-rate-summary,
+.part61-calculator .rate-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.part61-rate-summary span,
+.part61-calculator .rate-summary span,
+.part61-calculator .group-completion,
+.part61-calculator .status-pill,
+.part61-calculator .data-tag,
+.part61-legend-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 0 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.part61-rate-summary span,
+.part61-calculator .rate-summary span,
+.part61-calculator .group-completion {
+  border: 1px solid var(--part61-line);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--text-muted);
+}
+
+.part61-calculator .group-completion.complete {
+  background: var(--part61-green-soft);
+  color: var(--part61-green);
+}
+
+.part61-calculator .group-completion.incomplete {
+  background: var(--part61-amber-soft);
+  color: var(--part61-amber);
+}
+
+.part61-calculator .field-group {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.44);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.part61-calculator .field-group-heading,
+.part61-subhead-row,
+.part61-calculator .subhead-row,
+.part61-section-title-row,
+.part61-result-header,
+.part61-calculator .overlap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.part61-calculator .field-group-heading h3,
+.part61-subhead-row h4,
+.part61-calculator .subhead-row h3 {
+  margin: 0;
+  color: var(--text-strong);
+  font-size: 0.95rem;
+  font-weight: 850;
+}
+
+.part61-calculator .field-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.part61-subhead-row,
+.part61-calculator .subhead-row {
+  margin-top: 16px;
+}
+
+.part61-event-grid,
+.part61-calculator .event-grid {
+  margin-top: 10px;
+}
+
+.part61-event-grid .check-row,
+.part61-calculator .event-grid .check-row {
+  flex: 1 1 220px;
+}
+
+.part61-stage-list,
+.part61-calculator .stage-list {
+  display: grid;
+  gap: 10px;
+}
+
+.part61-calculator .stage-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.part61-calculator .stage-number {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.part61-validation-alert,
+.part61-calculator .validation-alert {
+  margin-top: 10px;
+  border: 1px solid rgba(180, 35, 24, 0.22);
+  border-left: 4px solid var(--part61-red);
+  border-radius: 12px;
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+  padding: 10px 12px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.part61-calculate-button,
+.part61-calculator .calculate-button {
+  margin-top: 10px;
+  min-height: 46px;
+}
+
+.part61-results-pane {
+  padding: 18px;
+}
+
+.part61-results-pane > *,
+.part61-results-tabpanel,
+.part61-result-section {
+  min-width: 0;
+}
+
+.part61-results-pane,
+.part61-results-tabpanel,
+.part61-result-section {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.part61-result-header {
+  padding: 2px 2px 4px;
+}
+
+.part61-result-header-meta {
+  display: grid;
+  gap: 4px;
+  color: var(--text-muted);
+  text-align: right;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.part61-result-header-meta p {
+  margin: 0;
+}
+
+.part61-result-section h4 {
+  font-size: 1rem;
+}
+
+.part61-dashboard-grid,
+.part61-calculator .dashboard-grid,
+.part61-calculator .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 10px;
+}
+
+.part61-calculator .dashboard-card,
+.part61-calculator .metric {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  min-height: 88px;
+  border-radius: 16px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.part61-calculator .dashboard-card span,
+.part61-calculator .metric span {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.part61-calculator .dashboard-card b,
+.part61-calculator .metric b {
+  color: var(--text-strong);
+  font-size: clamp(1rem, 1.4vw, 1.24rem);
+  line-height: 1.14;
+  overflow-wrap: anywhere;
+}
+
+.part61-calculator .dashboard-green,
+.part61-calculator .metric-optimized,
+.part61-calculator .status-complete,
+.part61-legend-green {
+  background: var(--part61-green-soft);
+  color: var(--part61-green);
+}
+
+.part61-calculator .dashboard-red,
+.part61-calculator .status-missing,
+.part61-legend-red {
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+}
+
+.part61-calculator .dashboard-amber,
+.part61-calculator .metric-raw,
+.part61-calculator .metric-cost,
+.part61-calculator .status-remaining,
+.part61-legend-amber {
+  background: var(--part61-amber-soft);
+  color: var(--part61-amber);
+}
+
+.part61-calculator .dashboard-proficiency {
+  border: 2px dashed var(--part61-amber);
+}
+
+.part61-calculator .dashboard-blue,
+.part61-calculator .metric-dual,
+.part61-legend-blue,
+.part61-calculator .tag-dual {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.part61-calculator .metric-solo,
+.part61-legend-purple,
+.part61-calculator .tag-solo,
+.part61-calculator .tag-solo-pdpic {
+  background: var(--part61-purple-soft);
+  color: var(--part61-purple);
+}
+
+.part61-legend-teal,
+.part61-calculator .tag-broad,
+.part61-calculator .tag-broad-credit {
+  background: var(--part61-teal-soft);
+  color: var(--part61-teal);
+}
+
+.part61-calculator .dashboard-slate,
+.part61-legend-slate,
+.part61-calculator .tag-paperwork,
+.part61-calculator .tag-gate,
+.part61-calculator .tag-raw,
+.part61-calculator .tag-optimized,
+.part61-calculator .tag-event,
+.part61-calculator .tag-time-building {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.part61-cfi-readout,
+.part61-calculator .cfi-readout,
+.part61-callout,
+.part61-calculator .callout,
+.part61-combined-strip,
+.part61-calculator .combined-strip,
+.part61-calculator .empty-state {
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text);
+  padding: 12px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.part61-cfi-readout,
+.part61-calculator .cfi-readout {
+  white-space: pre-wrap;
+}
+
+.part61-color-legend,
+.part61-calculator .color-legend,
+.part61-calculator .tag-row,
+.part61-calculator .chip-line,
+.part61-filter-controls,
+.part61-calculator .filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.part61-color-legend {
+  margin-top: 4px;
+}
+
+.part61-filter-controls + .part61-color-legend {
+  margin-top: 2px;
+}
+
+.part61-calculator .summary-block {
+  margin-top: 10px;
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.part61-calculator .list-box {
+  margin: 0;
+  padding: 0 0 0 18px;
+  color: var(--text);
+}
+
+.part61-calculator .list-box li + li {
+  margin-top: 6px;
+}
+
+.part61-calculator .counts-card {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.part61-calculator .counts-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.part61-calculator .counts-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.part61-calculator .counts-columns b {
+  color: var(--text-strong);
+  font-size: 0.84rem;
+}
+
+.part61-calculator .counts-columns ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
+.part61-calculator .overlap-card {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.part61-calculator .overlap-head span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.part61-calculator .overlap-bars {
+  display: grid;
+  gap: 8px;
+}
+
+.part61-calculator .bar-row {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr) 76px;
+  gap: 10px;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.part61-calculator .bar-row div {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.part61-calculator .bar-row i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.part61-calculator .bar-row.raw i {
+  background: var(--part61-amber);
+}
+
+.part61-calculator .bar-row.optimized i {
+  background: var(--part61-green);
+}
+
+.part61-calculator .overlap-blocks {
+  display: grid;
+  gap: 8px;
+}
+
+.part61-calculator .overlap-block {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--part61-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.part61-calculator .overlap-block b {
+  color: var(--text-strong);
+}
+
+.part61-calculator .overlap-block span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.part61-calculator .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.part61-calculator table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+  font-size: 0.8rem;
+}
+
+.part61-calculator th,
+.part61-calculator td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(87, 99, 118, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.part61-calculator th {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.part61-calculator tr:last-child td {
+  border-bottom: 0;
+}
+
+.part61-calculator tr.row-status-satisfied {
+  border-left: 4px solid var(--part61-green);
+  background: rgba(31, 122, 76, 0.04);
+}
+
+.part61-calculator tr.row-status-remaining {
+  border-left: 4px solid var(--part61-amber);
+  background: rgba(138, 90, 0, 0.04);
+}
+
+.part61-calculator tr.row-status-missing {
+  border-left: 4px solid var(--part61-red);
+  background: rgba(180, 35, 24, 0.04);
+}
+
+.part61-calculator tr.ledger-row {
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.part61-calculator tr.ledger-row:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.part61-calculator tr.row-status-satisfied.ledger-row:hover {
+  background: rgba(31, 122, 76, 0.08);
+}
+
+.part61-calculator tr.row-status-remaining.ledger-row:hover {
+  background: rgba(138, 90, 0, 0.08);
+}
+
+.part61-calculator tr.row-status-missing.ledger-row:hover {
+  background: rgba(180, 35, 24, 0.08);
+}
+
+.part61-calculator .ledger-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.05);
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  transition: transform 180ms ease, background 120ms ease;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.part61-calculator tr.ledger-row[aria-expanded="true"] .ledger-chevron {
+  transform: rotate(90deg);
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.part61-calculator .status-unknown,
+.part61-calculator .status-missing {
+  color: var(--part61-red);
+  font-weight: 850;
+}
+
+.part61-calculator .status-good,
+.part61-calculator .status-complete {
+  color: var(--part61-green);
+  font-weight: 850;
+}
+
+.part61-calculator .total-row {
+  background: rgba(232, 240, 255, 0.42);
+  font-weight: 800;
+}
+
+.part61-calculator .progress-cell {
+  min-width: 200px;
+}
+
+.part61-calculator .progress-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.part61-calculator .progress-bar-wrap {
+  flex: 1;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  min-width: 80px;
+}
+
+.part61-calculator .progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 300ms ease;
+  min-width: 0;
+}
+
+.part61-calculator .progress-bar-fill.fill-complete {
+  background: var(--part61-green);
+}
+
+.part61-calculator .progress-bar-fill.fill-partial {
+  background: var(--part61-amber);
+}
+
+.part61-calculator .progress-bar-fill.fill-missing {
+  background: var(--part61-red);
+}
+
+.part61-calculator .progress-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.part61-calculator .progress-remaining {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.part61-calculator .progress-remaining.remaining-complete {
+  background: var(--part61-green-soft);
+  color: var(--part61-green);
+}
+
+.part61-calculator .progress-remaining.remaining-partial {
+  background: var(--part61-amber-soft);
+  color: var(--part61-amber);
+}
+
+.part61-calculator .progress-remaining.remaining-missing {
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+}
+
+.part61-calculator .progress-event-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.part61-calculator .progress-event-badge.event-complete {
+  background: var(--part61-green-soft);
+  color: var(--part61-green);
+}
+
+.part61-calculator .progress-event-badge.event-pending {
+  background: var(--part61-amber-soft);
+  color: var(--part61-amber);
+}
+
+.part61-calculator .progress-event-badge.event-missing {
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+}
+
+.part61-calculator tr.detail-row {
+  display: none;
+}
+
+.part61-calculator tr.detail-row.open {
+  display: table-row;
+}
+
+.part61-calculator tr.detail-row > td {
+  padding: 0 10px 14px 18px;
+  border-bottom: 1px solid rgba(87, 99, 118, 0.12);
+  background: rgba(248, 250, 252, 0.6);
+}
+
+.part61-calculator .detail-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px 20px;
+  padding-top: 4px;
+}
+
+.part61-calculator .detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.part61-calculator .detail-label {
+  font-size: 0.65rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.part61-calculator .detail-value {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.part61-calculator .detail-numbers {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.part61-calculator .detail-number-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 12px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.part61-calculator .detail-number-item .detail-label {
+  font-size: 0.6rem;
+}
+
+.part61-calculator .detail-number-item .detail-value {
+  font-weight: 800;
+  font-size: 0.88rem;
+}
+
+.part61-collapsible-section summary,
+.part61-calculator .collapsible-section summary {
+  cursor: pointer;
+  color: var(--text-strong);
+  font-family: var(--display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.part61-two-col-results,
+.part61-calculator .two-col-results {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.part61-rail-item {
+  position: relative;
+}
+
+.part61-rail-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--part61-amber);
+  transition: background 160ms ease;
+}
+
+.part61-rail-status.done {
+  background: var(--part61-green);
+}
+
+.part61-panel,
+.part61-results-pane,
+.part61-calculator .field-group {
+  scroll-margin-top: 96px;
+}
+
+.part61-field-hint {
+  display: block;
+  color: var(--text-muted-2);
+  font-size: 0.7rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.part61-calculator .field-group-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.part61-calculator .field-group-actions .part61-text-button {
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.part61-rate-summary .part61-rate-warning {
+  border-color: rgba(138, 90, 0, 0.35);
+  background: var(--part61-amber-soft);
+  color: var(--part61-amber);
+}
+
+.part61-event-groups {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.part61-event-group {
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px 12px;
+}
+
+.part61-event-group summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--text-strong);
+  font-size: 0.86rem;
+  font-weight: 800;
+  list-style: none;
+}
+
+.part61-event-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.part61-event-group[open] summary {
+  margin-bottom: 10px;
+}
+
+.part61-event-group .part61-event-grid {
+  margin-top: 0;
+}
+
+.part61-hero-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.part61-hero-banner.is-ready {
+  border-color: rgba(31, 122, 76, 0.28);
+  background: var(--part61-green-soft);
+  color: var(--part61-green);
+}
+
+.part61-hero-banner.is-blocked {
+  border-color: rgba(180, 35, 24, 0.26);
+  background: var(--part61-red-soft);
+  color: var(--part61-red);
+}
+
+.part61-hero-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+}
+
+.part61-hero-grid {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.part61-dashboard-section.is-fresh {
+  animation: part61FreshPulse 1.2s ease;
+}
+
+@keyframes part61FreshPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(31, 94, 214, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 18px rgba(31, 94, 214, 0);
+  }
+}
+
+.part61-readout-details {
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px 12px;
+}
+
+.part61-readout-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--text-strong);
+  font-size: 0.86rem;
+  font-weight: 800;
+  list-style: none;
+}
+
+.part61-readout-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.part61-readout-details[open] summary {
+  margin-bottom: 10px;
+}
+
+.part61-readout-details .part61-cfi-readout {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.part61-results-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.part61-results-tabs [role="tab"] {
+  appearance: none;
+  min-height: 38px;
+  border: 1px solid var(--part61-line-strong);
+  border-radius: 999px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 800;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.part61-results-tabs [role="tab"]:hover {
+  border-color: color-mix(in srgb, var(--accent) 46%, white);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.part61-results-tabs [role="tab"].active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.part61-results-tabpanel {
+  display: grid;
+  gap: 0;
+}
+
+.part61-stale-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  border: 1px solid rgba(138, 90, 0, 0.3);
+  border-left: 4px solid var(--part61-amber);
+  border-radius: 12px;
+  background: var(--part61-amber-soft);
+  color: var(--part61-amber);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.part61-draft-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, white);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.part61-validation-alert p {
+  margin: 0 0 4px;
+}
+
+.part61-validation-alert ul {
+  margin: 6px 0;
+  padding-left: 18px;
+}
+
+.part61-validation-jump {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--part61-red);
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 850;
+  text-decoration: underline;
+}
+
+.part61-validation-alert [data-fill-zero-all] {
+  margin-top: 8px;
+}
+
+.part61-calculator .status-pill.status-complete::before {
+  content: "\2713\00a0";
+}
+
+.part61-calculator .status-pill.status-remaining::before {
+  content: "\25b2\00a0";
+}
+
+.part61-calculator .status-pill.status-missing::before {
+  content: "\2715\00a0";
+}
+
+.part61-mobile-bar {
+  display: none;
+}
+@media (max-width: 1100px) {
+
+  .part61-workbench {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+
+  .part61-results-pane {
+    grid-column: 2 / -1;
+  }
+
+  .part61-dashboard-grid,
+  .part61-calculator .dashboard-grid,
+  .part61-calculator .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+
+  .part61-calculator-header {
+    flex-direction: column;
+    padding: 20px 22px;
+  }
+
+  .part61-header-actions {
+    justify-content: flex-start;
+  }
+
+  .part61-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .part61-step-rail {
+    position: static;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    overflow-x: auto;
+  }
+
+  .part61-rail-item {
+    min-height: 58px;
+  }
+
+  .part61-input-pane,
+  .part61-results-pane {
+    grid-column: auto;
+  }
+
+  .part61-result-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .part61-result-header-meta {
+    text-align: left;
+  }
+
+  .part61-mobile-bar {
+    position: sticky;
+    bottom: 12px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+    border: 1px solid var(--part61-line-strong);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    padding: 10px 14px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .part61-mobile-bar.is-alert {
+    border-color: rgba(138, 90, 0, 0.45);
+    background: var(--part61-amber-soft);
+    color: var(--part61-amber);
+  }
+}
+@media (max-width: 720px) {
+
+  .part61-calculator-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .part61-header-actions {
+    width: 100%;
+  }
+
+  .part61-button,
+  .part61-calculator .button {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .part61-rate-grid,
+  .part61-calculator .rate-grid,
+  .part61-calculator .field-grid,
+  .part61-dashboard-grid,
+  .part61-calculator .dashboard-grid,
+  .part61-calculator .summary-grid,
+  .part61-calculator .counts-columns,
+  .part61-two-col-results,
+  .part61-calculator .two-col-results {
+    grid-template-columns: 1fr;
+  }
+
+  .part61-section-title-row,
+  .part61-calculator .field-group-heading,
+  .part61-subhead-row,
+  .part61-calculator .subhead-row,
+  .part61-calculator .overlap-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .part61-calculator .bar-row {
+    grid-template-columns: 68px minmax(0, 1fr) 64px;
+  }
+}
+@media print {
+
+  .part61-calculator,
+  .part61-workbench,
+  .part61-input-pane,
+  .part61-results-pane {
+    display: block;
+    width: 100%;
+  }
+
+  .part61-calculator-header,
+  .part61-panel,
+  .part61-results-pane,
+  .part61-result-section,
+  .part61-calculator .field-group,
+  .part61-calculator .dashboard-card,
+  .part61-calculator .counts-card,
+  .part61-calculator .overlap-card,
+  .part61-calculator .summary-block {
+    border: 1px solid #d2d7df;
+    background: #ffffff;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    break-inside: avoid;
+  }
+
+  .part61-result-section,
+  .part61-panel {
+    margin: 0 0 12px;
+  }
+}
+
+.data-tag .cfr-link {
+  color: inherit;
+  text-decoration-color: currentColor;
+}
+
+.part61-calculator {
+  gap: 14px;
+}
+
+.part61-calculator-header {
+  min-height: 112px;
+  padding: 18px 24px;
+}
+
+.part61-workbench {
+  grid-template-columns: 86px minmax(360px, 0.62fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.part61-step-rail {
+  top: 86px;
+  border-radius: 14px;
+}
+
+.part61-panel,
+.part61-results-pane,
+.part61-result-section,
+.part61-calculator .field-group {
+  border-radius: 14px;
+}
+
+.part61-panel,
+.part61-result-section {
+  padding: 16px;
+}
+
+.part61-dashboard-grid {
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+}
+@media (max-width: 1180px) {
+
+  .part61-workbench {
+    grid-template-columns: 80px minmax(0, 0.72fr) minmax(0, 1fr);
+  }
+}
+@media (max-width: 900px) {
+
+  .part61-workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .part61-step-rail {
+    position: relative;
+    top: auto;
+    display: flex;
+    overflow-x: auto;
+  }
+}
+@media (max-width: 640px) {
+
+  .part61-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .part61-calculator .table-wrap {
+    overflow-x: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .part61-calculator table {
+    display: block;
+    min-width: 0;
+  }
+
+  .part61-calculator thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .part61-calculator tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .part61-calculator tr {
+    display: grid;
+    gap: 4px;
+    border: 1px solid var(--part61-line);
+    border-left: 4px solid var(--part61-line-strong);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.66);
+    padding: 10px 12px;
+  }
+
+  .part61-calculator tr.row-status-satisfied {
+    border-left-color: var(--part61-green);
+  }
+
+  .part61-calculator tr.row-status-remaining {
+    border-left-color: var(--part61-amber);
+  }
+
+  .part61-calculator tr.row-status-missing {
+    border-left-color: var(--part61-red);
+  }
+
+  .part61-calculator tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .part61-calculator td {
+    display: grid;
+    grid-template-columns: minmax(90px, 38%) minmax(0, 1fr);
+    gap: 8px;
+    border-bottom: 0;
+    padding: 2px 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .part61-calculator td::before {
+    content: attr(data-label);
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .part61-calculator .progress-cell {
+    min-width: 0;
+    grid-column: 1 / -1;
+  }
+
+  .part61-calculator .progress-track {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .part61-calculator .progress-bar-wrap {
+    min-width: 0;
+  }
+
+  .part61-calculator tr.detail-row {
+    display: none;
+    border: 0;
+    padding: 0;
+    margin-top: -10px;
+  }
+
+  .part61-calculator tr.detail-row.open {
+    display: grid;
+  }
+
+  .part61-calculator tr.detail-row > td {
+    grid-column: 1 / -1;
+    padding: 8px 12px 12px;
+    border-radius: 0 0 12px 12px;
+    border: 1px solid var(--part61-line);
+    border-top: 0;
+  }
+
+  .part61-calculator .detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .part61-calculator .ledger-chevron {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .part61-calculator tr.ledger-row {
+    position: relative;
+  }
+}
+
+@media print {
+  .part61-results-tabs,
+  .part61-mobile-bar,
+  .part61-stale-banner,
+  .part61-draft-notice,
+  .part61-rail-status {
+    display: none !important;
+  }
+
+  .part61-results-tabpanel[hidden] {
+    display: grid !important;
+  }
+}
+
+/* Step-by-Step Panel Visibility */
+.part61-workbench[data-active-step] .part61-panel[data-step] {
+  display: none;
+}
+
+/* Specific overrides to display the active wizard step */
+.part61-workbench[data-active-step="1"] .part61-panel[data-step="1"],
+.part61-workbench[data-active-step="2"] .part61-panel[data-step="2"],
+.part61-workbench[data-active-step="3"] .part61-panel[data-step="3"],
+.part61-workbench[data-active-step="4"] .part61-panel[data-step="4"],
+.part61-workbench[data-active-step="5"] .part61-panel[data-step="5"] {
+  display: grid; /* Wizard panels are grid containers internally */
+}
+
+/* Step 5 Summary Panel Layout */
+.part61-workbench[data-active-step] #part61ReviewShare {
+  display: none;
+}
+
+.part61-workbench[data-active-step="5"] #part61ReviewShare {
+  display: grid;
+  gap: 18px;
+}
+
+.part61-success-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--part61-line);
+}
+
+.part61-success-header h4 {
+  margin: 0 0 4px 0;
+  color: var(--part61-green);
+  font-size: 1.15rem;
+}
+
+.part61-success-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.part61-success-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--part61-green);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.part61-review-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.part61-metric-card {
+  border: 1px solid var(--part61-line);
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.part61-metric-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: bold;
+}
+
+.part61-metric-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-strong);
+}
+
+.part61-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.part61-action-grid .part61-button-full {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .part61-action-grid {
+    grid-template-columns: 1fr;
+  }
+  .part61-action-grid .part61-button-full {
+    grid-column: span 1;
+  }
+}
+
+/* Bottom Navigation Button Panel placement */
+.part61-nav-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--part61-line);
+  gap: 12px;
+}
+
+.part61-nav-group .part61-button {
+  min-width: 120px;
+}
+
+/* Align a single button to the right if there is no Back button (e.g. Step 1) */
+.part61-nav-group.single-btn {
+  justify-content: flex-end;
+}
+
+/* Desktop (width > 900px) layout configurations */
+@media screen and (min-width: 901px) {
+  /* Step 5: after Calculate, hide the input column and let the audit take the full width
+     (the step rail stays visible so any step can be reopened with one click) */
+  .part61-workbench[data-active-step="5"].has-result .part61-input-pane {
+    display: none;
+  }
+
+  .part61-workbench[data-active-step="5"].has-result .part61-results-pane {
+    grid-column: 2 / -1;
+  }
+
+  .part61-workbench[data-active-step="5"] .part61-results-pane {
+    border-color: var(--accent);
+    box-shadow:
+      0 0 0 4px rgba(31, 94, 214, 0.12),
+      var(--workbench-shadow);
+    transition:
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .part61-workbench[data-active-step="5"].has-result #part61EditInputsBtn {
+    display: inline-flex;
+  }
+
+  /* Steps 1-4: hide the results pane and give the input pane the full width */
+  .part61-workbench[data-active-step]:not([data-active-step="5"]) .part61-results-pane {
+    display: none;
+  }
+
+  .part61-workbench[data-active-step]:not([data-active-step="5"]) .part61-input-pane {
+    grid-column: 2 / -1;
+  }
+
+  /* Step 5 before any audit exists: same full-width input treatment */
+  .part61-workbench[data-active-step="5"]:not(.has-result) .part61-results-pane {
+    display: none;
+  }
+
+  .part61-workbench[data-active-step="5"]:not(.has-result) .part61-input-pane {
+    grid-column: 2 / -1;
+  }
+}
+
+/* Mobile (width <= 900px) layout configurations */
+@media (max-width: 900px) {
+  /* Hide the results pane for Steps 1-4 on mobile devices */
+  .part61-workbench[data-active-step]:not([data-active-step="5"]) .part61-results-pane {
+    display: none !important;
+  }
+
+  /* Stack results and inputs vertically in a single-column layout on Step 5 */
+  .part61-workbench[data-active-step="5"] .part61-results-pane.mobile-stacked {
+    display: grid !important;
+    width: 100%;
+    margin-top: 18px; /* Visual spacing below Review & Share panel */
+  }
+}
+
+/* Step Rail Active Visual Indicators */
+.part61-rail-item.active,
+.part61-rail-item.is-active,
+.part61-rail-item[aria-current="step"] {
+  background: var(--p61-step-soft, var(--accent-soft)) !important;
+  color: var(--p61-step-ink, var(--accent-ink)) !important;
+}
+
+.part61-rail-item.active span,
+.part61-rail-item.is-active span,
+.part61-rail-item[aria-current="step"] span {
+  border-color: var(--p61-step-accent, var(--accent)) !important;
+  background: var(--p61-step-accent, var(--accent)) !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   Part 61 Calculator — per-step color theming
+   Mirrors the endorsement CATEGORY_THEMES palette system
+   (accent / soft / line / ink) so each step and results section
+   carries its own color family, like the endorsement categories.
+   ============================================================ */
+
+/* Step 1 — Current credentials (indigo, matches practical-test-prereqs) */
+.part61-panel[data-step="1"],
+.part61-step-rail .part61-rail-item:nth-child(1) {
+  --p61-step-accent: #4f46e5;
+  --p61-step-soft: #f1f0fd;
+  --p61-step-line: #d3d1f9;
+  --p61-step-ink: #4338ca;
+}
+
+/* Step 2 — Costs (green, matches sport-pilot) */
+.part61-panel[data-step="2"],
+.part61-step-rail .part61-rail-item:nth-child(2) {
+  --p61-step-accent: #16a34a;
+  --p61-step-soft: #ecf8f1;
+  --p61-step-line: #c5e8d2;
+  --p61-step-ink: #0b7633;
+}
+
+/* Step 3 — Hours (amber, matches student-pilot) */
+.part61-panel[data-step="3"],
+.part61-step-rail .part61-rail-item:nth-child(3) {
+  --p61-step-accent: #f59e0b;
+  --p61-step-soft: #fef7eb;
+  --p61-step-line: #fde7c2;
+  --p61-step-ink: #b37000;
+}
+
+/* Step 4 — Target path (sky, matches private-pilot) */
+.part61-panel[data-step="4"],
+.part61-step-rail .part61-rail-item:nth-child(4) {
+  --p61-step-accent: #0ea5e9;
+  --p61-step-soft: #ecf8fd;
+  --p61-step-line: #c3e9fa;
+  --p61-step-ink: #0476a9;
+}
+
+/* Step 5 — Review & share (purple) */
+.part61-panel[data-step="5"],
+.part61-step-rail .part61-rail-item:nth-child(5) {
+  --p61-step-accent: #7c3aed;
+  --p61-step-soft: #f4effe;
+  --p61-step-line: #e0d3fb;
+  --p61-step-ink: #6023c0;
+}
+
+/* Colored left accent bar on each step panel (same language as
+   .endorsement-card::before) */
+.part61-panel::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: var(--p61-step-accent, var(--accent));
+  opacity: 0.75;
+}
+
+/* Panel lights up in its own color while you work in it */
+.part61-panel:focus-within {
+  border-color: color-mix(in srgb, var(--p61-step-accent, var(--accent)) 38%, white);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.68),
+    0 0 0 4px color-mix(in srgb, var(--p61-step-accent, var(--accent)) 10%, transparent),
+    0 12px 30px rgba(15, 23, 42, 0.04);
+}
+
+/* "Step N" kicker becomes a tinted pill, like endorsement id pills */
+.part61-panel-heading .part61-kicker {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 10px;
+  border: 1px solid var(--p61-step-line, var(--category-line));
+  border-radius: 999px;
+  background: var(--p61-step-soft, var(--accent-soft));
+  color: var(--p61-step-ink, var(--accent-ink));
+  font-size: 0.66rem;
+}
+
+/* Step rail numbers pick up their step color */
+.part61-rail-item span {
+  border-color: var(--p61-step-line, var(--part61-line));
+  background: var(--p61-step-soft, rgba(255, 255, 255, 0.64));
+  color: var(--p61-step-ink, var(--text-muted));
+}
+
+.part61-rail-item:hover {
+  background: color-mix(in srgb, var(--p61-step-soft, var(--accent-soft)) 72%, transparent);
+  color: var(--p61-step-ink, var(--accent-ink));
+}
+
+/* Primary "next" button inside a step follows the step color */
+.part61-panel .part61-button-primary {
+  border-color: var(--p61-step-ink, var(--accent));
+  background: linear-gradient(
+    180deg,
+    var(--p61-step-ink, var(--accent)),
+    color-mix(in srgb, var(--p61-step-ink, var(--accent-strong)) 82%, black)
+  );
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--p61-step-accent, var(--accent)) 16%, transparent);
+}
+
+/* ---------- Results pane ---------- */
+
+/* Section accents: dashboard = brand blue, then one color family per results tab */
+.part61-results-pane {
+  --p61-section-accent: var(--accent);
+  --p61-section-soft: var(--accent-soft);
+  --p61-section-line: #bfd4ff;
+  --p61-section-ink: var(--accent-ink);
+}
+
+.part61-results-tabpanel[data-results-panel="endorsements"] {
+  --p61-section-accent: #16a34a;
+  --p61-section-soft: #ecf8f1;
+  --p61-section-line: #c5e8d2;
+  --p61-section-ink: #0b7633;
+}
+
+.part61-results-tabpanel[data-results-panel="ledger"] {
+  --p61-section-accent: #f59e0b;
+  --p61-section-soft: #fef7eb;
+  --p61-section-line: #fde7c2;
+  --p61-section-ink: #b37000;
+}
+
+.part61-results-tabpanel[data-results-panel="rules"] {
+  --p61-section-accent: #7c3aed;
+  --p61-section-soft: #f4effe;
+  --p61-section-line: #e0d3fb;
+  --p61-section-ink: #6023c0;
+}
+
+/* Colored left bar + heading swatch dot on result sections,
+   same language as the endorsement category swatches */
+.part61-result-section::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: var(--p61-section-accent, var(--accent));
+  opacity: 0.7;
+}
+
+.part61-result-section > h4::before,
+.part61-section-title-row > h4::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  border-radius: 3px;
+  background: var(--p61-section-accent, var(--accent));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--p61-section-accent, var(--accent)) 16%, white);
+}
+
+/* Results tabs: one color per tab with a swatch dot */
+.part61-results-tabs [data-results-tab="plan"] {
+  --p61-tab-accent: var(--accent);
+  --p61-tab-soft: var(--accent-soft);
+  --p61-tab-ink: var(--accent-ink);
+}
+
+.part61-results-tabs [data-results-tab="endorsements"] {
+  --p61-tab-accent: #16a34a;
+  --p61-tab-soft: #ecf8f1;
+  --p61-tab-ink: #0b7633;
+}
+
+.part61-results-tabs [data-results-tab="ledger"] {
+  --p61-tab-accent: #f59e0b;
+  --p61-tab-soft: #fef7eb;
+  --p61-tab-ink: #b37000;
+}
+
+.part61-results-tabs [data-results-tab="rules"] {
+  --p61-tab-accent: #7c3aed;
+  --p61-tab-soft: #f4effe;
+  --p61-tab-ink: #6023c0;
+}
+
+.part61-results-tabs [role="tab"]::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: var(--p61-tab-accent, var(--accent));
+  opacity: 0.85;
+}
+
+.part61-results-tabs [role="tab"]:hover {
+  border-color: color-mix(in srgb, var(--p61-tab-accent, var(--accent)) 46%, white);
+  background: color-mix(in srgb, var(--p61-tab-soft, var(--accent-soft)) 40%, white);
+}
+
+.part61-results-tabs [role="tab"].active {
+  border-color: var(--p61-tab-accent, var(--accent));
+  background: var(--p61-tab-soft, var(--accent-soft));
+  color: var(--p61-tab-ink, var(--accent-ink));
+}
+
+/* Step 5 review metric cards: cost = green, hours = amber,
+   progress = sky (matches dashboard tile tints) */
+.part61-review-metrics .part61-metric-card:nth-child(1) {
+  border-color: #c5e8d2;
+  background: linear-gradient(180deg, rgba(236, 248, 241, 0.85), rgba(255, 255, 255, 0.5));
+}
+
+.part61-review-metrics .part61-metric-card:nth-child(1) .part61-metric-title {
+  color: #0b7633;
+}
+
+.part61-review-metrics .part61-metric-card:nth-child(2) {
+  border-color: #fde7c2;
+  background: linear-gradient(180deg, rgba(254, 247, 235, 0.85), rgba(255, 255, 255, 0.5));
+}
+
+.part61-review-metrics .part61-metric-card:nth-child(2) .part61-metric-title {
+  color: #b37000;
+}
+
+.part61-review-metrics .part61-metric-card:nth-child(3) {
+  border-color: #c3e9fa;
+  background: linear-gradient(180deg, rgba(236, 248, 253, 0.85), rgba(255, 255, 255, 0.5));
+}
+
+.part61-review-metrics .part61-metric-card:nth-child(3) .part61-metric-title {
+  color: #0476a9;
+}
+
+/* CFI Readout narrative callout card inside Plan tab */
+.part61-readout-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 8px;
+}
+
+.part61-readout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 8px;
+}
+
+.part61-readout-header h4 {
+  margin: 0 !important;
+  font-size: 0.95rem;
+  font-weight: 750;
+  color: var(--text-strong);
+}
+
+.part61-readout-header h4::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  border-radius: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, white);
+}
+
+.part61-cfi-readout {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+#part61EditInputsBtn {
+  display: none;
+}
+
+/* ============================================================
+   Wizard full-width pass: wider inner grids on desktop
+   ============================================================ */
+@media screen and (min-width: 901px) {
+  .part61-calculator .field-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+
+  .part61-flag-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .part61-rate-grid {
+    grid-template-columns: repeat(2, minmax(0, 320px));
+  }
+}
+
+/* Layout for the Hours-panel heading completeness badge */
+.part61-heading-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ============================================================
+   Hours step: color family per field group
+   (slug stamped by renderExperienceFields via data-group-slug)
+   ============================================================ */
+.part61-calculator .field-group[data-group-slug="core-time"] {
+  --grp-accent: var(--accent);
+  --grp-soft: var(--accent-soft);
+  --grp-line: #bfd4ff;
+  --grp-ink: var(--accent-ink);
+}
+
+.part61-calculator .field-group[data-group-slug="pic-and-cross-country"] {
+  --grp-accent: #16a34a;
+  --grp-soft: #ecf8f1;
+  --grp-line: #c5e8d2;
+  --grp-ink: #0b7633;
+}
+
+.part61-calculator .field-group[data-group-slug="instrument-and-night"] {
+  --grp-accent: #7c3aed;
+  --grp-soft: #f4effe;
+  --grp-line: #e0d3fb;
+  --grp-ink: #6023c0;
+}
+
+.part61-calculator .field-group[data-group-slug="training-and-checkride-prep"] {
+  --grp-accent: #f59e0b;
+  --grp-soft: #fef7eb;
+  --grp-line: #fde7c2;
+  --grp-ink: #b37000;
+}
+
+.part61-calculator .field-group[data-group-slug] {
+  border-color: var(--grp-line);
+  position: relative;
+}
+
+.part61-calculator .field-group[data-group-slug]::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: var(--grp-accent);
+  opacity: 0.75;
+}
+
+.part61-calculator .field-group[data-group-slug] .field-group-heading {
+  padding: 8px 12px;
+  border: 1px solid var(--grp-line);
+  border-radius: 10px;
+  background: var(--grp-soft);
+}
+
+.part61-calculator .field-group[data-group-slug] .field-group-heading h3 {
+  color: var(--grp-ink);
+}
+
+.part61-calculator .field-group[data-group-slug] .field-group-actions .part61-text-button {
+  color: var(--grp-ink);
+}
+
+.part61-calculator .field-group[data-group-slug] .group-completion.incomplete {
+  border-color: var(--grp-line);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--grp-ink);
+}
+
+/* ============================================================
+   Logged Events: teal family
+   ============================================================ */
+.part61-panel[data-step="3"] .part61-subhead-row {
+  padding: 8px 12px;
+  border: 1px solid #c3e4e1;
+  border-radius: 10px;
+  background: #ecf6f5;
+}
+
+.part61-panel[data-step="3"] .part61-subhead-row h4 {
+  color: #056b62;
+}
+
+.part61-panel[data-step="3"] .part61-subhead-row .part61-text-button {
+  color: #056b62;
+}
+
+.part61-event-group {
+  border-color: #c3e4e1;
+  border-left: 3px solid #0d9488;
+}
+
+.part61-event-group summary {
+  color: #056b62;
+}
+
+.part61-event-group summary .group-completion {
+  border-color: #c3e4e1;
+  color: #056b62;
+}
+
+body.theme-orange {
+  --tool-accent: #EA580C;
+  --tool-accent-bright: #F97316;
+  --tool-accent-deep: #C2410C;
+  --tool-soft: rgba(234, 88, 12, 0.12);
+  --tool-line: rgba(234, 88, 12, 0.42);
+  --tool-ink: #7C2D12;
+  --tool-glow: rgba(234, 88, 12, 0.5);
+
+  /* Interior accents: bold orange app chrome. Per-step calculator
+     colors keep their own palette overrides and are untouched. */
+  --accent: #EA580C;
+  --accent-strong: #C2410C;
+  --accent-soft: rgba(234, 88, 12, 0.12);
+  --accent-ink: #7C2D12;
+  --category-accent: #EA580C;
+  --category-soft: rgba(234, 88, 12, 0.12);
+  --category-line: rgba(234, 88, 12, 0.42);
+  --category-ink: #7C2D12;
+}
+
+/* ===== Part 61 wizard steps 1-4 visual refresh — final cascade, keep last ===== */
+
+/* --------------------------------------------------------------------------
+   1. Theme coherence: collapse the rainbow per-step accents into the single
+      orange brand family. Panels keep their --p61-step-* tokens so the
+      existing kicker pill, focus-within ring, and left accent bar rules
+      re-resolve in orange automatically. Rail items are all orange so the
+      stepper reads as one cohesive control.
+   -------------------------------------------------------------------------- */
+.part61-panel[data-step="1"],
+.part61-panel[data-step="2"],
+.part61-panel[data-step="3"],
+.part61-panel[data-step="4"],
+.part61-step-rail .part61-rail-item:nth-child(1),
+.part61-step-rail .part61-rail-item:nth-child(2),
+.part61-step-rail .part61-rail-item:nth-child(3),
+.part61-step-rail .part61-rail-item:nth-child(4),
+.part61-step-rail .part61-rail-item:nth-child(5) {
+  --p61-step-accent: var(--accent);
+  --p61-step-soft: rgba(234, 88, 12, 0.10);
+  --p61-step-line: rgba(234, 88, 12, 0.35);
+  --p61-step-ink: #7C2D12;
+}
+
+/* Orange focus rings for every text-like control in the calculator
+   (replaces the hardcoded blue ring rgba(31, 94, 214, 0.12)). */
+.part61-calculator .part61-text-input:focus,
+.part61-calculator .part61-number-field input:focus,
+.part61-calculator select:focus,
+.part61-calculator input[type="search"]:focus,
+.part61-calculator input[type="number"]:focus,
+.part61-calculator input[type="text"]:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.14);
+}
+
+/* Invalid fields keep the red ring even while focused. */
+.part61-calculator .is-invalid:focus,
+.part61-calculator .field-invalid input:focus {
+  border-color: rgba(180, 35, 24, 0.72);
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.10);
+}
+
+/* Orange-tinted primary button shadow (was blue rgba(31, 94, 214, 0.16)). */
+.part61-calculator .part61-button-primary {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 12px 24px -6px rgba(234, 88, 12, 0.32);
+}
+
+/* Re-declared last so the "fresh result" pulse animates in orange. */
+@keyframes part61FreshPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 18px rgba(234, 88, 12, 0);
+  }
+}
+
+/* Header accent bar: single orange gradient instead of the rainbow strip. */
+.part61-calculator-header::before {
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+}
+
+/* --------------------------------------------------------------------------
+   2. Step rail → real stepper: circle + label rows, orange active state,
+      green completed state with a CSS-only check glyph, and a subtle
+      vertical connector between circles on the desktop (vertical) rail.
+   -------------------------------------------------------------------------- */
+.part61-step-rail {
+  gap: 8px;
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.part61-rail-item {
+  min-height: 64px;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  color: var(--text-muted);
+}
+
+.part61-rail-item span {
+  border-color: var(--part61-line-strong);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-muted);
+}
+
+.part61-rail-item b {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.part61-rail-item.active b,
+.part61-rail-item.is-active b,
+.part61-rail-item[aria-current="step"] b {
+  font-weight: 800;
+}
+
+/* Completed step: green circle with a check glyph (number visually swapped,
+   text content untouched for JS/AT). */
+.part61-rail-item.is-complete span {
+  border-color: #15803D;
+  background: #15803D;
+  color: #ffffff;
+  font-size: 0;
+}
+
+.part61-rail-item.is-complete span::after {
+  content: "✓";
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Vertical connector between circles — desktop (vertical) rail only. */
+@media (min-width: 901px) {
+  .part61-step-rail .part61-rail-item::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 2px;
+    height: 42px;
+    transform: translateX(-50%);
+    background: var(--part61-line);
+  }
+
+  .part61-step-rail .part61-rail-item:first-child::before {
+    content: none;
+  }
+
+  .part61-step-rail .part61-rail-item span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .part61-step-rail .part61-rail-item.is-complete::before,
+  .part61-step-rail .part61-rail-item.is-complete + .part61-rail-item::before {
+    background: #15803D;
+  }
+}
+
+@media (max-width: 900px) {
+  .part61-rail-item {
+    min-height: 56px;
+    padding: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Panels (steps 1-4): near-white cards, 16px radius, soft shadow,
+      generous padding. Step 5 panel chrome is intentionally untouched.
+   -------------------------------------------------------------------------- */
+.part61-panel[data-step="1"],
+.part61-panel[data-step="2"],
+.part61-panel[data-step="3"],
+.part61-panel[data-step="4"] {
+  padding: 24px;
+  border: 1px solid var(--part61-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.90);
+  box-shadow: var(--shadow-md);
+}
+
+.part61-panel[data-step="1"] .part61-panel-heading h3,
+.part61-panel[data-step="2"] .part61-panel-heading h3,
+.part61-panel[data-step="3"] .part61-panel-heading h3,
+.part61-panel[data-step="4"] .part61-panel-heading h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.part61-panel[data-step="1"] .part61-helper,
+.part61-panel[data-step="2"] .part61-helper,
+.part61-panel[data-step="3"] .part61-helper,
+.part61-panel[data-step="4"] .part61-helper {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   4. Panel navigation: tall primary Next with a CSS-only trailing arrow,
+      quiet ghost Back buttons, hairline divider retained.
+   -------------------------------------------------------------------------- */
+.part61-panel[data-step="1"] .part61-nav-group,
+.part61-panel[data-step="2"] .part61-nav-group,
+.part61-panel[data-step="3"] .part61-nav-group,
+.part61-panel[data-step="4"] .part61-nav-group {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--part61-line);
+}
+
+.part61-panel[data-step="1"] .part61-nav-group .part61-button,
+.part61-panel[data-step="2"] .part61-nav-group .part61-button,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button {
+  min-height: 46px;
+}
+
+.part61-panel[data-step="1"] .part61-nav-group .part61-button-primary,
+.part61-panel[data-step="2"] .part61-nav-group .part61-button-primary,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button-primary,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button-primary {
+  padding: 0 20px;
+}
+
+.part61-nav-group .part61-next-btn::after {
+  content: "→";
+  margin-left: 8px;
+}
+
+.part61-panel[data-step="2"] .part61-nav-group .part61-button-secondary,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button-secondary,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button-secondary {
+  border-color: var(--part61-line-strong);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.part61-panel[data-step="2"] .part61-nav-group .part61-button-secondary:hover,
+.part61-panel[data-step="3"] .part61-nav-group .part61-button-secondary:hover,
+.part61-panel[data-step="4"] .part61-nav-group .part61-button-secondary:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.06);
+  color: var(--accent-ink);
+}
+
+/* The Calculate button carries a legacy margin-top that misaligns the row. */
+.part61-nav-group .part61-calculate-button {
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Step 1 — Current credentials: taller search input, pill toggles,
+      orange chips, selectable flag cards.
+   -------------------------------------------------------------------------- */
+.part61-calculator .part61-text-input {
+  min-height: 46px;
+  border-radius: 12px;
+}
+
+.part61-calculator .option-button {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+}
+
+.part61-calculator .option-button:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.06);
+}
+
+.part61-calculator .option-button.selected {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.10);
+  color: #7C2D12;
+  font-weight: 800;
+}
+
+.part61-calculator .chip button:hover {
+  background: rgba(234, 88, 12, 0.16);
+}
+
+.part61-calculator .part61-check-row {
+  padding: 10px 12px;
+  border-radius: 12px;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.part61-calculator .part61-check-row:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.05);
+}
+
+.part61-calculator .part61-check-row:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.10);
+}
+
+/* --------------------------------------------------------------------------
+   6. Step 2 — Cost assumptions: CSS-only "$" prefix inside the rate inputs
+      (label wraps span + input; the glyph is anchored to the input row),
+      and the dual-rate summary becomes an orange hero pill.
+   -------------------------------------------------------------------------- */
+.part61-calculator label.part61-number-field {
+  position: relative;
+}
+
+.part61-calculator label.part61-number-field::before {
+  content: "$";
+  position: absolute;
+  bottom: 14px;
+  left: 12px;
+  z-index: 1;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.part61-calculator label.part61-number-field input {
+  min-height: 46px;
+  padding-left: 26px;
+}
+
+.part61-rate-summary span:first-child:not(.part61-rate-warning) {
+  min-height: 34px;
+  padding: 0 14px;
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.10);
+  color: #7C2D12;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* --------------------------------------------------------------------------
+   7. Step 3 — Flight experience: field groups as sub-cards (per-group
+      --grp-* heading accents retained), logged-event accordions with a
+      rotating chevron, compact hoverable check rows.
+   -------------------------------------------------------------------------- */
+.part61-calculator .field-group {
+  padding: 16px;
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: none;
+}
+
+/* "Logged Events" subhead: warm orange instead of the legacy teal. */
+.part61-panel[data-step="3"] .part61-subhead-row {
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.08);
+}
+
+.part61-panel[data-step="3"] .part61-subhead-row h4,
+.part61-panel[data-step="3"] .part61-subhead-row .part61-text-button {
+  color: var(--accent-ink);
+}
+
+.part61-event-group {
+  padding: 0;
+  border: 1px solid var(--part61-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.66);
+  overflow: hidden;
+}
+
+.part61-event-group summary {
+  justify-content: flex-start;
+  padding: 12px 14px;
+  color: var(--text-strong);
+  transition: background 160ms ease;
+}
+
+.part61-event-group summary:hover {
+  background: rgba(234, 88, 12, 0.05);
+}
+
+.part61-event-group summary::after {
+  content: "▸";
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: transform 160ms ease;
+}
+
+.part61-event-group[open] > summary {
+  margin-bottom: 0;
+}
+
+.part61-event-group[open] > summary::after {
+  transform: rotate(90deg);
+}
+
+.part61-event-group summary .group-completion {
+  margin-left: auto;
+  border-color: var(--part61-line);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-muted);
+}
+
+.part61-event-group .part61-event-grid {
+  margin-top: 0;
+  padding: 2px 14px 12px;
+}
+
+.part61-event-grid .check-row {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.part61-event-grid .check-row:hover {
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   8. Step 4 — Target path: stage cards own their layout now that the JS no
+      longer injects inline styles, indented proficiency sub-rows with a
+      guide border, and a dashed "Add Stage" affordance.
+   -------------------------------------------------------------------------- */
+.part61-calculator .part61-stage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--part61-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.part61-stage-card select {
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+.part61-proficiency-estimate-container {
+  margin: 6px 0 6px 42px;
+  padding-left: 12px;
+  border-left: 2px solid var(--part61-line);
+}
+
+.proficiency-estimate-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.proficiency-estimate-input {
+  width: 70px;
+  min-height: 34px;
+  padding: 4px 6px;
+  border: 1px solid var(--part61-line);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.proficiency-hint {
+  color: var(--text-muted-2);
+  font-size: 0.78rem;
+}
+
+#part61AddStageBtn {
+  min-height: 46px;
+  border: 1.5px dashed var(--part61-line-strong);
+  border-radius: 12px;
+  background: transparent;
+  color: #7C2D12;
+}
+
+#part61AddStageBtn:hover {
+  border-color: var(--accent);
+  background: rgba(234, 88, 12, 0.08);
+  color: var(--accent-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive: tighter panel padding on small screens. The rail connector
+   is desktop-only (see the min-width: 901px block above); the existing
+   horizontal mobile rail keeps working with the compact padding above.
+   -------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .part61-panel[data-step="1"],
+  .part61-panel[data-step="2"],
+  .part61-panel[data-step="3"],
+  .part61-panel[data-step="4"] {
+    padding: 18px;
+  }
+}
+
+/* Narrow phones (<=420px): shrink the horizontal rail so all five steps fit
+   without scrolling (5 x 60px items + 4 x 6px gaps + padding < 366px content
+   width at 390px viewport). Active/complete treatments are untouched. */
+@media (max-width: 420px) {
+  .part61-step-rail {
+    gap: 6px;
+    padding: 8px 6px;
+  }
+
+  .part61-step-rail .part61-rail-item {
+    min-width: 60px;
+    padding: 8px 4px;
+  }
+
+  .part61-step-rail .part61-rail-item b {
+    font-size: 0.66rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Rail & header-action fixes: solid circles to mask the connector, hide
+      the redundant status dots, and turn the 5 top buttons into a compact
+      connected toolbar so the header feels less cluttered.
+   -------------------------------------------------------------------------- */
+
+/* Number circles must be opaque so the connector line stops showing through. */
+.part61-step-rail .part61-rail-item span {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85);
+}
+
+/* The floating status dot is redundant now — the circle itself shows state. */
+.part61-step-rail .part61-rail-status {
+  display: none;
+}
+
+/* Make the connector slightly subtler and ensure it sits behind the circles. */
+@media (min-width: 901px) {
+  .part61-step-rail .part61-rail-item::before {
+    width: 2px;
+    height: 40px;
+    top: -28px;
+    background: var(--part61-line);
+  }
+
+  .part61-step-rail .part61-rail-item.is-complete::before,
+  .part61-step-rail .part61-rail-item.is-complete + .part61-rail-item::before {
+    width: 2px;
+  }
+}
+
+/* Compact header-actions toolbar */
+.part61-calculator .part61-header-actions {
+  gap: 10px;
+}
+
+.part61-calculator .part61-header-actions .part61-button {
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transform: none;
+}
+
+/* Connect the secondary actions into a single pill-like group. */
+.part61-calculator .part61-header-actions .part61-button-secondary {
+  border-color: var(--part61-line);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary:hover {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.95);
+  transform: none;
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary + .part61-button-secondary {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary:first-of-type {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.part61-calculator .part61-header-actions .part61-button-secondary:last-of-type {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Print stands alone as the primary action. */
+.part61-calculator .part61-header-actions .part61-button-primary {
+  padding: 0 16px;
+  box-shadow: 0 8px 18px -6px rgba(234, 88, 12, 0.28);
+}
+
+.part61-calculator .part61-header-actions .part61-button-primary:hover {
+  box-shadow: 0 10px 22px -6px rgba(234, 88, 12, 0.36);
+}
+
+/* Mobile: don't try to connect buttons when they wrap onto multiple lines. */
+@media (max-width: 640px) {
+  .part61-calculator .part61-header-actions .part61-button-secondary,
+  .part61-calculator .part61-header-actions .part61-button-secondary + .part61-button-secondary,
+  .part61-calculator .part61-header-actions .part61-button-secondary:first-of-type,
+  .part61-calculator .part61-header-actions .part61-button-secondary:last-of-type {
+    margin-left: 0;
+    border-radius: 10px;
+  }
+
+  .part61-calculator .part61-header-actions .part61-button {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.74rem;
+  }
+}
+
+/* Mobile: toolbar wraps naturally and stays left-aligned. */
+@media (max-width: 900px) {
+  .part61-calculator .part61-header-actions .part61-button {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.74rem;
+  }
+}
+

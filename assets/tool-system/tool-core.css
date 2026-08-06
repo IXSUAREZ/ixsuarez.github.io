@@ -1,0 +1,1580 @@
+/* ==========================================================================
+   tool-core.css — shared tool design system (tokens, base, chrome, components)
+   Extracted from the pre-v9 monolithic endorsement-app stylesheet (v9.0.0 decomposition).
+   Loaded by every tool app BEFORE its app module:
+   simply-endorsed-cfi, part-61-calculator, certificate-generator.
+   Do not add app-exclusive rules here — they belong in an app module.
+   ========================================================================== */
+:root {
+  --bg: #F4F6FB;
+  --bg-soft: #fafafa;
+  --bg-elevated: #f5f5f5;
+  --surface: var(--glass-bg);
+  --surface-soft: rgba(255, 255, 255, 0.42);
+  --surface-raised: rgba(255, 255, 255, 0.85);
+  --surface-strong: rgba(255, 255, 255, 0.94);
+  --surface-tint: rgba(245, 245, 245, 0.92);
+  --line: var(--glass-edge);
+  --line-strong: rgba(13, 19, 48, 0.15);
+  --line-bright: rgba(255, 255, 255, 0.78);
+  --hairline: rgba(13, 19, 48, 0.05);
+  --text: var(--ink);
+  --text-strong: var(--navy);
+  --text-muted: var(--ink-muted);
+  --text-muted-2: #8a94a8;
+  --accent: var(--yellow-deep);
+  --accent-strong: var(--yellow-ink);
+  --accent-soft: var(--yellow-soft);
+  --accent-ink: var(--yellow-ink);
+  --category-accent: var(--accent);
+  --category-soft: var(--accent-soft);
+  --category-line: var(--yellow-line);
+  --category-ink: var(--accent-ink);
+  --warn: #e60000;
+  --warn-soft: #ffeaeb;
+  --display: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --sans: "Inter", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", monospace;
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: var(--r-card);
+  --radius-xl: 36px;
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-inset:
+    inset 0 1px 0 rgba(255, 255, 255, 0.66),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.18);
+  --panel-blur: 16px;
+  --edge-blur-visible: 100px;
+  --edge-blur-buffer: 100px;
+  --edge-blur-height: calc(var(--edge-blur-visible) + var(--edge-blur-buffer));
+  --edge-blur-strength: 44px;
+  --edge-blur-z: 70;
+  --edge-blur-top-mask: linear-gradient(to top, transparent 0, #000 var(--edge-blur-visible), #000 100%);
+  --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
+  --max-width: 1440px;
+}
+
+/* Unified workbench redesign */
+:root {
+  --workbench-panel: var(--glass-bg);
+  --workbench-panel-strong: var(--glass-bg-strong);
+  --workbench-border: var(--glass-edge);
+  --workbench-border-strong: rgba(13, 19, 48, 0.14);
+  --workbench-shadow: var(--shadow-md);
+  --workbench-radius: 14px;
+}
+
+.topbar-sticky {
+  position: sticky;
+  top: 14px;
+  z-index: 80;
+  width: min(var(--max-width), calc(100% - 28px));
+  margin: 14px auto 0;
+  padding: 10px 14px 10px 18px;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--r-pill); /* Pill shaped rounded sides */
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.topbar-brand {
+  min-width: 212px;
+  font-size: 1.3rem;
+}
+
+.topbar-actions {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.topbar-view-nav {
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 18px;
+}
+
+.topbar-text-link {
+  min-height: 42px;
+  min-width: 116px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #1b2740;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.topbar-text-link:hover,
+.topbar-text-link.is-active,
+.topbar-text-link[aria-current="page"] {
+  border-color: rgba(31, 94, 214, 0.08);
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.topbar-utility-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.topbar-icon-button,
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--r-tool);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-inset), 0 6px 16px rgba(15, 23, 42, 0.035);
+}
+
+.topbar-icon-button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.topbar-icon-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.icon-btn:hover,
+.topbar-icon-button:hover {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-inset), 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.layout {
+  grid-template-columns: 174px minmax(0, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: none;
+  padding: 14px 14px 34px;
+}
+
+.all-button,
+.nav-group {
+  min-height: 54px;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.all-button.is-active,
+.nav-group.is-active,
+.nav-group.is-view-active {
+  border-color: rgba(31, 94, 214, 0.08);
+  background: var(--accent-soft);
+}
+
+.nav-group::before {
+  inset: 10px auto 10px 0;
+  width: 3px;
+  opacity: 0.72;
+}
+
+.content-area {
+  grid-template-columns: minmax(360px, 0.82fr) minmax(340px, 0.62fr);
+  gap: 14px;
+  padding-top: 0;
+}
+
+.selection-summary,
+.endorsement-list,
+.endorsement-detail-panel,
+.guidance-view,
+.part61-calculator-header,
+.part61-panel,
+.part61-results-pane,
+.part61-step-rail,
+.part61-result-section {
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius);
+  background: var(--workbench-panel);
+  box-shadow: var(--workbench-shadow);
+}
+
+.is-guidance-view .layout,
+.is-calculator-view .layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.is-guidance-view .content-area,
+.is-calculator-view .content-area {
+  display: block;
+  width: min(100%, 100%);
+}
+
+.guidance-shell,
+.guidance-hero-card,
+.guidance-card,
+.scenario-card,
+.journey-node,
+.quickref-block,
+.flashcard-panel,
+.endorsement-scenario-card {
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  border-color: var(--workbench-border) !important;
+  box-shadow: var(--workbench-shadow) !important;
+}
+
+.part61-result-section {
+  padding: 16px;
+}
+
+@media (max-width: 1180px) {
+  .topbar-sticky {
+    padding-inline: 16px;
+  }
+
+  .topbar-view-nav {
+    gap: 8px;
+  }
+
+  .topbar-text-link {
+    min-width: auto;
+    padding-inline: 12px;
+  }
+
+
+  .layout {
+    grid-template-columns: 154px minmax(0, 1fr);
+  }
+
+  .content-area {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-sticky {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .topbar-brand {
+    min-width: auto;
+  }
+
+  .topbar-actions {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .topbar-view-nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: stretch;
+  }
+
+  .topbar-text-link {
+    flex: 1 1 0;
+  }
+
+
+  .layout {
+    display: block;
+    padding: 12px;
+  }
+
+  .content-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+.seo-regulatory-definition pre,
+.seo-regulatory-definitions > pre {
+  padding: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+  background: #f8fafc;
+  font: 0.78rem/1.55 "JetBrains Mono", ui-monospace, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.seo-regulatory-definition {
+  padding: 18px 0;
+  border-bottom: 1px dashed rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 640px) {
+  .topbar-sticky {
+    padding: 12px;
+  }
+
+  .topbar-brand {
+    font-size: 1.08rem;
+  }
+
+  .topbar-brand-credit {
+    font-size: 0.62rem;
+  }
+
+  .topbar-utility-group {
+    display: none;
+  }
+
+  .topbar-text-link {
+    min-height: 36px;
+    padding-inline: 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Regulatory Definitions & Instructor Decisions styling removed */
+
+@media (min-width: 901px) and (max-width: 1220px) {
+  .topbar-sticky {
+    grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .topbar-view-nav {
+    gap: 4px !important;
+  }
+
+  .topbar-text-link {
+    min-width: 0 !important;
+    padding-inline: 10px !important;
+    font-size: 0.8rem !important;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .topbar-view-nav {
+    gap: 4px !important;
+  }
+
+  .topbar-text-link {
+    min-height: 40px !important;
+    padding-inline: 6px !important;
+    font-size: 0.75rem !important;
+    line-height: 1.15;
+  }
+}
+
+/* Final workbench corrections. These keep the redesigned shell consistent across views. */
+@media (min-width: 901px) {
+  .layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  font-family: var(--sans);
+  color: var(--text);
+  line-height: 1.56;
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 768px) {
+  body {
+    background: var(--bg);
+  }
+}
+
+button,
+input {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: rgba(31, 94, 214, 0.14);
+  color: var(--text-strong);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 120px);
+}
+
+.app-shell::before,
+.app-shell::after {
+  display: none;
+}
+
+.topbar-sticky,
+.filter-rail,
+.selection-summary,
+.endorsement-card,
+.placeholder-card {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 0 0 1px var(--hairline);
+}
+
+/* Backdrop blur only where content actually scrolls beneath the element.
+   In-flow panels sit on the solid page background, so blurring it is
+   invisible but costs a compositing layer per element. */
+.topbar-sticky {
+  backdrop-filter: blur(var(--panel-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(180%);
+}
+
+.topbar-sticky::after,
+.filter-rail::after,
+.selection-summary::after,
+.endorsement-card::after,
+.placeholder-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: none;
+}
+
+.topbar-sticky > *,
+.filter-rail > *,
+.selection-summary > *,
+.endorsement-card > *,
+.placeholder-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+.topbar-brand {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  min-width: 0;
+  max-width: 100%;
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+  text-wrap: balance;
+}
+
+.topbar-brand-main {
+  display: block;
+  color: inherit;
+  line-height: 1;
+}
+
+.topbar-brand-credit {
+  display: block;
+  padding-left: 0;
+  color: #384358;
+  font-family: var(--sans);
+  font-size: 0.65em;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.topbar-brand-credit::before {
+  display: none;
+}
+
+.topbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-text-link,
+.footer-guidance-link {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: color 160ms ease;
+}
+
+.topbar-text-link:hover,
+.footer-guidance-link:hover,
+.topbar-text-link.is-active,
+.footer-guidance-link.is-active {
+  color: var(--text-strong);
+}
+
+.icon-btn {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: linear-gradient(180deg, #1b2330 0%, #111827 100%);
+  color: #d5dce7;
+  box-shadow:
+    0 12px 24px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-tool);
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.icon-btn:hover {
+  background: linear-gradient(180deg, #222b3a 0%, #141d2b 100%);
+  box-shadow:
+    0 16px 30px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn:active {
+  background: #0f172a;
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: scale(0.97);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  align-items: start;
+  gap: 28px;
+  width: min(var(--max-width), 100%);
+  margin: 0 auto;
+  padding: 0 16px 38px;
+}
+
+.all-button,
+.rail-close,
+.selection-reset,
+.filters-toggle,
+.detail-toggle,
+.empty-state button {
+  appearance: none;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.36);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: var(--text);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.all-button:hover,
+.rail-close:hover,
+.selection-reset:hover,
+.filters-toggle:hover,
+.detail-toggle:hover,
+.empty-state button:hover {
+  border-color: rgba(23, 32, 51, 0.1);
+  background: rgba(255, 255, 255, 0.54);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.64),
+    0 4px 16px rgba(23, 32, 51, 0.06);
+}
+
+.nav-group.is-empty::before {
+  opacity: 0.16;
+}
+
+.nav-group {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.56);
+}
+
+.nav-group::before {
+  content: "";
+  position: absolute;
+  inset: 12px auto 12px 0;
+  width: 2px;
+  border-radius: 0 999px 999px 0;
+  background: var(--category-accent);
+  opacity: 0.28;
+}
+
+.nav-group::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: none;
+}
+
+.nav-group.is-active {
+  border-color: rgba(23, 32, 51, 0.1);
+}
+
+.nav-group.is-active::before,
+.nav-group.is-open::before,
+.nav-group.is-view-active::before {
+  opacity: 0.92;
+}
+
+.content-area {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding-top: 28px;
+}
+
+.is-calculator-view .layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.topbar-view-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-view-nav .topbar-text-link[aria-current="page"],
+.topbar-view-nav .topbar-text-link.is-active {
+  color: var(--text-strong);
+}
+
+.part61-panel,
+.part61-results-pane,
+.part61-calculator .field-group,
+.part61-result-section {
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.part61-result-section {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.selection-reset,
+.filters-toggle,
+.rail-close,
+.empty-state button {
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.card-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.card-expand-caret {
+  display: none;
+}
+
+@keyframes card-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.empty-state {
+  display: grid;
+  gap: 12px;
+}
+
+
+.footer-designer {
+  color: var(--text-muted-2);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+.category-button:focus-visible,
+.view-category-link:focus-visible,
+.subcategory-link:focus-visible,
+.all-button:focus-visible,
+.breadcrumb-button:focus-visible,
+.bundle-strip-toggle:focus-visible,
+.detail-toggle:focus-visible,
+.inline-action:focus-visible,
+.selection-reset:focus-visible,
+.filters-toggle:focus-visible,
+.search-clear:focus-visible,
+.rail-close:focus-visible,
+.icon-btn:focus-visible,
+.topbar-text-link:focus-visible,
+.footer-guidance-link:focus-visible,
+.search-input:focus-visible,
+.search-suggestion:focus-visible,
+.search-chip:focus-visible,
+.active-filter-chip:focus-visible,
+.scope-filter-button:focus-visible,
+.related-chip:focus-visible,
+.empty-state button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (min-width: 901px) {
+  .topbar-sticky {
+    width: calc(min(var(--max-width), 100%) - 320px - 28px - 32px);
+    margin: 14px 16px 0 auto;
+    margin-right: max(16px, calc((100% - min(var(--max-width), 100%)) / 2 + 16px));
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .topbar-sticky {
+    width: calc(min(var(--max-width), 100%) - 290px - 18px - 32px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .is-guidance-view .layout,
+  .is-calculator-view .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-sticky {
+    top: 10px;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    padding-top: 18px;
+  }
+
+  .is-calculator-view .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar-text-link {
+    display: none;
+  }
+
+  .topbar-view-nav .topbar-text-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.48);
+    color: var(--text-muted);
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar-sticky {
+    padding: 9px 10px 9px 14px;
+  }
+
+  .topbar-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.16rem;
+    font-size: 1.02rem;
+  }
+
+  .topbar-brand-credit {
+    padding-left: 0;
+    font-size: 0.64em;
+    white-space: normal;
+  }
+
+  .topbar-brand-credit::before {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .topbar-view-nav {
+    gap: 5px;
+  }
+
+  .layout {
+    width: calc(100% - 20px);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .all-button:hover,
+  .rail-close:hover,
+  .selection-reset:hover,
+  .filters-toggle:hover,
+  .detail-toggle:hover,
+  .empty-state button:hover,
+  .icon-btn:hover,
+  .endorsement-card:hover,
+  .search-clear:hover,
+  .view-category-link:hover,
+  .subcategory-link:hover {
+    transform: none;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .topbar-sticky,
+  .filter-rail,
+  .status-row,
+  .filter-popover,
+  .filters-toggle,
+  .bundle-strip-toggle,
+  .detail-toggle,
+  .inline-action,
+  .sidebar-backdrop {
+    display: none !important;
+  }
+
+  .app-shell::before,
+  .app-shell::after {
+    display: none;
+  }
+
+  .layout,
+  .content-area,
+  .endorsement-list {
+    display: block;
+    width: 100%;
+    padding: 0;
+    gap: 0;
+  }
+
+  .selection-summary,
+  .endorsement-card,
+  .detail-section {
+    border: 1px solid #d2d7df;
+    background: #ffffff;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .part61-step-rail,
+  .part61-header-actions,
+  .part61-result-actions,
+  .part61-filter-controls {
+    display: none !important;
+  }
+}
+
+.cfr-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.cfr-link:hover {
+  text-decoration: underline;
+}
+
+/* Phase dot colors */
+.phase-dot-pre-solo { background: #f59e0b; }
+.phase-dot-solo { background: #16a34a; }
+.phase-dot-cross-country { background: #0ea5e9; }
+.phase-dot-checkride { background: #4f46e5; }
+
+.scenario-tag-retesting { background: rgba(220,38,38,0.1); color: #a11414; }
+.scenario-tag-additional-ratings { background: rgba(79,70,229,0.1); color: #1d13be; }
+.scenario-tag-time-limits { background: rgba(245,158,11,0.12); color: #92600a; }
+.scenario-tag-recurrent { background: rgba(13,148,136,0.1); color: #056b62; }
+.scenario-tag-special { background: rgba(124,58,237,0.1); color: #4f0ac4; }
+
+.flashcard {
+  perspective: 900px;
+  cursor: pointer;
+  min-height: 160px;
+}
+
+/* Final workbench cascade layer. Keep this at the end of the file. */
+.topbar-sticky {
+  top: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 14px 24px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.035);
+}
+
+.topbar-actions {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.topbar-brand {
+  min-width: 212px;
+  font-size: 1.3rem;
+}
+
+.topbar-view-nav {
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 18px;
+}
+
+.topbar-text-link {
+  min-height: 42px;
+  min-width: 116px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #1b2740;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.topbar-text-link:hover,
+.topbar-text-link.is-active,
+.topbar-text-link[aria-current="page"] {
+  border-color: rgba(31, 94, 214, 0.08);
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.topbar-utility-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-icon-button,
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--r-tool);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-inset), 0 6px 16px rgba(15, 23, 42, 0.035);
+}
+
+.topbar-icon-button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.topbar-icon-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.layout {
+  grid-template-columns: 174px minmax(0, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: none;
+  padding: 14px 14px 34px;
+}
+
+.all-button,
+.nav-group {
+  min-height: 54px;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.all-button.is-active,
+.nav-group.is-active,
+.nav-group.is-view-active {
+  border-color: rgba(31, 94, 214, 0.08);
+  background: var(--accent-soft);
+}
+
+.content-area {
+  grid-template-columns: minmax(360px, 0.82fr) minmax(340px, 0.62fr);
+  gap: 14px;
+  padding-top: 0;
+}
+
+.selection-summary,
+.endorsement-list,
+.endorsement-detail-panel,
+.guidance-view,
+.part61-calculator-header,
+.part61-panel,
+.part61-results-pane,
+.part61-step-rail,
+.part61-result-section {
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius);
+  background: var(--workbench-panel);
+  box-shadow: var(--workbench-shadow);
+}
+
+.is-guidance-view .layout,
+.is-calculator-view .layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.is-guidance-view .content-area,
+.is-calculator-view .content-area {
+  display: block;
+}
+
+.guidance-shell,
+.guidance-hero-card,
+.guidance-card,
+.scenario-card,
+.journey-node,
+.quickref-block,
+.flashcard-panel,
+.endorsement-scenario-card {
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  border-color: var(--workbench-border) !important;
+  box-shadow: var(--workbench-shadow) !important;
+}
+
+@media (max-width: 1180px) {
+  .content-area {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-sticky {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-inline: 12px;
+  }
+
+  .topbar-brand {
+    min-width: auto;
+  }
+
+  .topbar-actions {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .topbar-view-nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: stretch;
+  }
+
+  .topbar-text-link {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+
+  .layout {
+    display: block;
+    padding: 12px;
+  }
+
+  .content-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-brand {
+    font-size: 1.08rem;
+  }
+
+  .topbar-utility-group {
+    display: none;
+  }
+
+  .topbar-text-link {
+    min-height: 36px;
+    padding-inline: 8px;
+    font-size: 0.75rem;
+  }
+
+  .detail-panel-head,
+  .section-title-action,
+  .part61-calculator-header {
+    display: grid;
+  }
+}
+
+/* True final workbench corrections. */
+@media (min-width: 901px) {
+  .layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    display: block;
+  }
+
+  .content-area {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Topbar geometry fix: stable brand / centered tabs / utility controls. */
+@media (min-width: 901px) {
+  .topbar-sticky {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(260px, 1fr);
+    align-items: center;
+    gap: 18px;
+    min-height: 72px;
+    padding: 12px 24px;
+  }
+
+  .topbar-brand {
+    grid-column: 1;
+    justify-self: start;
+    min-width: 0;
+  }
+
+  .topbar-actions {
+    display: contents;
+  }
+
+  .topbar-view-nav {
+    grid-column: 2;
+    justify-self: center;
+    width: auto;
+    min-width: 0;
+  }
+
+  .topbar-utility-group {
+    grid-column: 3;
+    justify-self: end;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-sticky {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand tools"
+      "nav nav";
+    align-items: center;
+    gap: 10px 12px;
+  }
+
+  .topbar-actions {
+    display: contents;
+  }
+
+  .topbar-brand {
+    grid-area: brand;
+    min-width: 0;
+  }
+
+  .topbar-view-nav {
+    grid-area: nav;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .topbar-text-link {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .topbar-utility-group {
+    grid-area: tools;
+    justify-self: end;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .topbar-utility-group {
+    display: none;
+  }
+}
+
+/* Uniform topbar final override: no view can restyle the global app navigation. */
+.topbar-sticky {
+  top: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 72px;
+  margin: 0 !important;
+  padding: 12px 24px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.035);
+}
+
+@media (min-width: 901px) {
+  .topbar-sticky {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(260px, 1fr);
+    align-items: center;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-sticky {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand tools"
+      "nav nav";
+    gap: 10px 12px;
+    z-index: 90;
+  }
+
+  .topbar-actions {
+    display: contents;
+  }
+
+  .topbar-utility-group {
+    display: none !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  .content-area {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* --- Part 61 Wizard Refactoring Styles --- */
+
+/* Utility to ensure programmatically hidden elements are not rendered */
+.hidden {
+  display: none !important;
+}
+
+/* Keep the four-view navigation compact after all legacy topbar cascade layers. */
+@media (min-width: 901px) and (max-width: 1220px) {
+  .topbar-sticky {
+    grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .topbar-view-nav {
+    gap: 4px !important;
+  }
+
+  .topbar-text-link {
+    min-width: 0 !important;
+    padding-inline: 10px !important;
+    font-size: 0.8rem !important;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .topbar-view-nav {
+    gap: 4px !important;
+  }
+
+  .topbar-text-link {
+    min-width: 0 !important;
+    min-height: 40px !important;
+    padding-inline: 6px !important;
+    font-size: 0.75rem !important;
+    line-height: 1.15;
+  }
+}
+
+/* ==========================================================================
+   Canonical floating pill nav — tool pages (2026-07)
+   Shares the .nav-wrap / .nav structure and assets/site-nav.js behavior
+   with every page of suarezcfi.com (see assets/design-system.css).
+   Per-section theme families (accent / soft / line / ink):
+     body.theme-blue   → Simply Endorsed CFI  (bold blue)
+     body.theme-orange → Part 61 Calculator   (bold orange)
+   ========================================================================== */
+
+body.theme-blue {
+  --tool-accent: #2563EB;
+  --tool-accent-bright: #3B82F6;
+  --tool-accent-deep: #1D4ED8;
+  --tool-soft: rgba(37, 99, 235, 0.13);
+  --tool-line: rgba(37, 99, 235, 0.42);
+  --tool-ink: #1E3A8A;
+  --tool-glow: rgba(37, 99, 235, 0.55);
+
+  /* Interior accents: bold blue app chrome. Per-category endorsement
+     colors keep their own palette overrides and are untouched. */
+  --accent: #2563EB;
+  --accent-strong: #1D4ED8;
+  --accent-soft: rgba(37, 99, 235, 0.13);
+  --accent-ink: #1E3A8A;
+  --category-accent: #2563EB;
+  --category-soft: rgba(37, 99, 235, 0.13);
+  --category-line: rgba(37, 99, 235, 0.42);
+  --category-ink: #1E3A8A;
+}
+
+/* The pill nav is fixed (design-system.css); push the app shell below it. */
+body.theme-blue .app-shell,
+body.theme-orange .app-shell {
+  padding-top: 84px;
+}
+
+/* Brand cluster: script wordmark + divider + tool mark */
+.nav--tool .nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  flex: none;
+}
+
+/* Quiet text back-link at the leading edge of the tool nav */
+.link-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 4px;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+.link-back:hover { color: var(--navy); }
+
+.nav-brand-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(13, 19, 48, 0.16);
+  flex: none;
+}
+
+.nav-tool-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 6px 0;
+}
+
+.nav-tool-logo {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 18px -8px var(--tool-glow);
+}
+
+.nav-tool-name {
+  font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
+  font-weight: 800;
+  font-size: 16.5px;
+  letter-spacing: -0.01em;
+  color: var(--tool-accent-deep);
+  line-height: 1.05;
+}
+.nav-tool-mark:hover .nav-tool-name { color: var(--tool-accent); }
+
+/* Right-side controls (category burger, mobile menu) */
+.nav--tool .nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+/* Category burger squeezed to pill scale (visible ≤900px only) */
+.nav--tool .icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill, 999px);
+  background: var(--tool-ink);
+  box-shadow: 0 10px 20px -10px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.nav--tool .icon-btn:hover {
+  background: var(--tool-accent-deep);
+  box-shadow: 0 12px 24px -10px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* The canonical pill keeps its yellow+navy chrome on tool pages; the tool
+   accent survives only on in-app controls and the tool icon. */
+.theme-blue .icon-btn:focus-visible,
+.theme-orange .icon-btn:focus-visible,
+.theme-blue .nav-tool-mark:focus-visible,
+.theme-orange .nav-tool-mark:focus-visible {
+  outline: 2px solid var(--tool-accent);
+  outline-offset: 2px;
+}
+
+.theme-blue ::selection,
+.theme-orange ::selection {
+  background: var(--tool-soft);
+  color: var(--tool-ink);
+}
+
+/* Progressive trims so the pill never overflows */
+@media (max-width: 1140px) {
+  .nav-tool-name { display: none; }
+  .nav--tool .nav-brand { gap: 11px; }
+}
+
+@media (max-width: 1120px) {
+  .nav--tool .nav-links {
+    font-size: 13.5px;
+  }
+  .nav--tool .nav-links > a {
+    padding: 8px 9px;
+  }
+}
+
+@media (max-width: 980px) {
+  /* sheet links restore comfortable tap targets */
+  .nav--tool .nav-links { font-size: 16px; }
+  .nav--tool .nav-links > a {
+    padding: 13px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav--tool .nav-brand { gap: 10px; }
+  .nav--tool .link-back { display: none; }
+}

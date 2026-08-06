@@ -47,7 +47,23 @@ that maps the `--tool-*` tokens. Registry:
 | `theme-night`  | reserved (dark app surfaces)                 | reserved  |
 
 Never invent a per-page accent outside this registry. Claim a reserved slot
-and define it next to the others (`simply-endorsed/css/app.css`).
+and define it next to the others: shared `theme-blue` lives in
+`assets/tool-system/tool-core.css`, app-exclusive themes (e.g. `theme-orange`)
+live in that app's module under `assets/tool-system/`.
+
+### Tool stylesheets (`assets/tool-system/`)
+
+One shared core plus one module per app; each tool page loads exactly
+`tool-core.css` + its own module (in that order):
+
+- `tool-core.css` — tokens, base, shared chrome (`nav--tool`, footer),
+  workbench shell, and any component used by ≥2 apps.
+- `simply-endorsed.css` — endorsement browser, category rail, guidance view.
+- `part61.css` — wizard steps, step rail, results pane, `theme-orange`.
+- `certgen.css` — Certificate Generator exclusives (internal tool).
+
+No app module may style another app's namespaced classes, and no app module
+is loaded by another app's page.
 
 ## 4. Nav contexts and the entry–exit ritual
 

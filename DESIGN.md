@@ -140,3 +140,15 @@ token swap — never a forked component set, never page-level hex overrides.
 - `--r-tool: 16px` — repeated-use app controls.
 - Cards/panels use the shared card radius already in `design-system.css`.
   One radius scale; no per-page inventions.
+
+## 9. Credentials: the ledger, never cards
+
+Credentials, ratings, and certifications render as `.credential-ledger` — the
+logbook pattern: one letterhead line naming the issuing authority (stated
+once, like letterhead), one seal, and ruled rows (`border-top: 1px solid
+var(--border)`) of name + reference fine print (`font-feature-settings:
+"tnum"`). No glass cards, no per-row stamps, no hover lift — a ledger is
+read, not pressed. This is the only way credentials render anywhere on the
+domain; it scales to N rows with zero layout debt. Anything that is not a
+control must not wear control chrome (glass, shadow, stamp).
+

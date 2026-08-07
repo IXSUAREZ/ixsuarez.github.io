@@ -68,7 +68,7 @@
        Shared liquid-glass material (backdrop lives in design-system.css)
        ========================================================================== */
     .eyebrow, .hero-kicker, .social-link, .service-pill,
-    .profile, .cred-card, .journey-panel, .journey-count,
+    .profile, .journey-panel, .journey-count,
     .faq-item, .manifesto-coord-label, .tool-card, .also-card {
       background: var(--glass-bg);
       -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
@@ -78,11 +78,11 @@
     }
 
     /* Specular sheen across the top of the larger glass cards */
-    .profile, .cred-card, .journey-panel, .tool-card, .also-card {
+    .profile, .journey-panel, .tool-card, .also-card {
       position: relative;
       overflow: hidden;
     }
-    .profile::before, .cred-card::before, .journey-panel::before,
+    .profile::before, .journey-panel::before,
     .tool-card::before, .also-card::before {
       content: "";
       position: absolute;
@@ -91,7 +91,7 @@
       pointer-events: none;
       background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 30%);
     }
-    .profile > *, .cred-card > *, .journey-panel > *,
+    .profile > *, .journey-panel > *,
     .tool-card > *, .also-card > * { position: relative; }
 
     /* Buttons (.btn, .btn--primary, .btn--secondary, .btn--tertiary)
@@ -416,10 +416,9 @@
     .cert-signature { font-family: var(--font-signature); font-size: 2.05rem; color: var(--navy); transform: rotate(-2deg); }
     .cert-seal { width: 46px; height: 46px; color: var(--yellow-deep); filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.5)); }
     .cert-seal svg { width: 100%; height: 100%; }
-    .profile .btn--primary { width: calc(100% - 8px); justify-content: center; margin: 0 4px; }
+    .profile .btn--tertiary { display: flex; width: calc(100% - 8px); justify-content: center; margin: 0 4px; }
 
     .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-    .profile-social { margin: 14px 4px 0; }
     .social-link {
       display: inline-flex;
       align-items: center;
@@ -479,53 +478,52 @@
       line-height: 1.45;
       color: var(--navy);
     }
-    .dotted-divider { border: none; border-top: 1px dashed rgba(28, 33, 66, 0.16); margin: 30px 0; }
-    .credentials-label {
-      font-size: 11px;
+    /* Credential ledger — the logbook pattern: one letterhead, one seal, ruled rows.
+       Canonical credential rendering for the domain (see DESIGN.md). Read, not pressed. */
+    .credential-ledger { margin-top: 34px; }
+    .ledger-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+    }
+    .ledger-authority {
+      font-size: 10.5px;
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(28, 33, 66, 0.5);
-      margin-bottom: 14px;
     }
-    .credentials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .cred-card { border-radius: var(--r-md); padding: 20px; }
-    .cred-stamp {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: linear-gradient(160deg, var(--yellow-bright), var(--yellow-deep));
-      color: var(--navy);
+    .ledger-seal { width: 30px; height: 30px; flex: none; filter: none; opacity: 0.9; }
+    .ledger-rows { margin: 0; }
+    .ledger-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 5px 14px rgba(245, 196, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.55);
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 2px;
+      border-top: 1px solid var(--border);
     }
-    .cred-stamp svg { width: 14px; height: 14px; }
-    .cred-authority {
-      margin: 0 0 6px;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(28, 33, 66, 0.45);
-    }
-    .cred-name {
-      margin: 0 0 4px;
+    .ledger-row dt {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.12rem;
+      font-size: 1.02rem;
       letter-spacing: -0.01em;
       color: var(--ink);
     }
-    .cred-id { margin: 0; font-size: 12px; color: var(--ink-muted); }
+    .ledger-row dd {
+      margin: 0;
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-feature-settings: "tnum";
+      text-align: right;
+      white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .ledger-row { flex-direction: column; gap: 2px; }
+      .ledger-row dd { text-align: left; white-space: normal; }
+    }
 
     /* Auto-generated eCFR links (cfr-autolink.js) */
     .cfr-link {
@@ -947,7 +945,6 @@
       }
       .tool-card { flex: 0 0 220px; scroll-snap-align: start; }
 
-      .credentials-grid { grid-template-columns: 1fr; }
       #contact { padding-bottom: 80px; }
     }
 
@@ -1117,32 +1114,10 @@
                   </svg>
                 </span>
               </div>
-              <a href="#contact" class="btn btn--primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-                Contact Me
+              <a href="#contact" class="btn btn--tertiary">
+                Ask Diego a question
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </a>
-              <div class="social-links profile-social" aria-label="Follow Diego Suarez">
-                <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="home-social-instagram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
-                  <span>Instagram</span>
-                </a>
-                <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="home-social-threads">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 9.2c-.5-3-2.5-4.7-5.4-4.7-3.5 0-6.1 2.6-6.1 7.4 0 4.7 2.6 7.6 6.5 7.6 3.2 0 5.4-1.7 5.4-4.2 0-2.3-1.7-3.6-5-3.6h-1.4"/><path d="M12 11.7c2.8 0 5.4.8 6.7 2.8"/></svg>
-                  <span>Threads</span>
-                </a>
-                <a class="social-link" href="https://www.youtube.com/@SUAREZCFI" target="_blank" rel="me noopener" aria-label="YouTube: SUAREZCFI" data-cta-id="home-social-youtube">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 7.1a3 3 0 0 0-2.1-2.1C17.5 4.5 12 4.5 12 4.5s-5.5 0-7.3.5a3 3 0 0 0-2.1 2.1A31.2 31.2 0 0 0 2.1 12c0 1.7.2 3.4.5 4.9a3 3 0 0 0 2.1 2.1c1.8.5 7.3.5 7.3.5s5.5 0 7.3-.5a3 3 0 0 0 2.1-2.1c.3-1.5.5-3.2.5-4.9s-.2-3.4-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
-                  <span>YouTube</span>
-                </a>
-                <a class="social-link" href="https://www.tiktok.com/@suarez.cfi" target="_blank" rel="me noopener" aria-label="TikTok: suarez.cfi" data-cta-id="home-social-tiktok">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a4.2 4.2 0 1 1-4.2-4.2"/><path d="M14 4c.7 2.7 2.4 4.4 5 5"/></svg>
-                  <span>TikTok</span>
-                </a>
-                <a class="social-link" href="https://www.facebook.com/Suarez.CFI" target="_blank" rel="me noopener" aria-label="Facebook: Suarez.CFI" data-cta-id="home-social-facebook">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.2 8.2V6.7c0-.7.5-1.1 1.2-1.1h1.4V3.1c-.7-.1-1.5-.1-2.3-.1-2.5 0-4.2 1.5-4.2 4.2v1H7.7V11h2.6v10h3.1V11h2.6l.4-2.8h-3.2Z"/></svg>
-                  <span>Facebook</span>
-                </a>
-              </div>
             </article>
           </div>
 
@@ -1160,57 +1135,40 @@
               <p>"Flying is the dream. Understanding it is what makes you confident."</p>
             </div>
 
-            <hr class="dotted-divider" />
-
-            <!-- Credentials Cards -->
-            <div class="credentials-label">FAA Credentials &amp; Ratings</div>
-            <div class="credentials-grid" aria-label="Diego Suarez FAA credentials">
-
-              <div class="cred-card">
-                <span class="cred-stamp" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <!-- Credential ledger — one letterhead, one seal, ruled rows -->
+            <div class="credential-ledger" aria-label="Diego Suarez FAA credentials">
+              <div class="ledger-head">
+                <span class="ledger-authority">Federal Aviation Administration · Certificates &amp; Ratings</span>
+                <span class="cert-seal ledger-seal" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
+                    <path d="M24 2l3.1 4.3 4.9-1.9.9 5.2 5.2.9-1.9 4.9L44.6 24l-4.3 3.1 1.9 4.9-5.2.9-.9 5.2-4.9-1.9L24 44.6l-3.1-4.3-4.9 1.9-.9-5.2-5.2-.9 1.9-4.9L3.4 24l4.3-3.1-1.9-4.9 5.2-.9.9-5.2 4.9 1.9z"/>
+                    <circle cx="24" cy="24" r="13" fill="#fff" opacity=".9"/>
+                    <path d="M24 15l2 6.2h6.2l-5 3.8 1.9 6-5.1-3.7-5.1 3.7 1.9-6-5-3.8h6.2z"/>
+                  </svg>
                 </span>
-                <p class="cred-authority">Federal Aviation Administration</p>
-                <p class="cred-name">Certificated Flight Instructor</p>
-                <p class="cred-id">CFI · ASEL · FAA 14 CFR § 61.183</p>
               </div>
-
-              <div class="cred-card">
-                <span class="cred-stamp" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </span>
-                <p class="cred-authority">Federal Aviation Administration</p>
-                <p class="cred-name">Advanced Ground Instructor</p>
-                <p class="cred-id">AGI · FAA 14 CFR § 61.215</p>
-              </div>
-
-              <div class="cred-card">
-                <span class="cred-stamp" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </span>
-                <p class="cred-authority">Federal Aviation Administration</p>
-                <p class="cred-name">Commercial Pilot</p>
-                <p class="cred-id">CPL · ASEL · FAA 14 CFR § 61.123</p>
-              </div>
-
-              <div class="cred-card">
-                <span class="cred-stamp" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </span>
-                <p class="cred-authority">Federal Aviation Administration</p>
-                <p class="cred-name">Instrument Rating</p>
-                <p class="cred-id">IR · ASEL · FAA 14 CFR § 61.65</p>
-              </div>
-
-              <div class="cred-card">
-                <span class="cred-stamp" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                </span>
-                <p class="cred-authority">Federal Aviation Administration</p>
-                <p class="cred-name">Private Pilot</p>
-                <p class="cred-id">PPL · ASEL · FAA 14 CFR § 61.109</p>
-              </div>
-
+              <dl class="ledger-rows">
+                <div class="ledger-row">
+                  <dt>Certificated Flight Instructor</dt>
+                  <dd>CFI · ASEL · FAA 14 CFR § 61.183</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Advanced Ground Instructor</dt>
+                  <dd>AGI · FAA 14 CFR § 61.215</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Commercial Pilot</dt>
+                  <dd>CPL · ASEL · FAA 14 CFR § 61.123</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Instrument Rating</dt>
+                  <dd>IR · ASEL · FAA 14 CFR § 61.65</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Private Pilot</dt>
+                  <dd>PPL · ASEL · FAA 14 CFR § 61.109</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
@@ -1850,7 +1808,7 @@
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!('IntersectionObserver' in window)) return;
-      var selector = '.section-header, .manifesto-strip > .container, .service-pill, .cred-card, .profile--certificate, .about-content-col, .journey-route, .journey-panels, .also-card, .tool-card, .faq-item, .contact';
+      var selector = '.section-header, .manifesto-strip > .container, .service-pill, .credential-ledger, .profile--certificate, .about-content-col, .journey-route, .journey-panels, .also-card, .tool-card, .faq-item, .contact';
       var els = Array.prototype.slice.call(document.querySelectorAll(selector));
       if (!els.length) return;
       var byParent = new Map();

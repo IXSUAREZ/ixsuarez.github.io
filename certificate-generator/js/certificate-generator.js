@@ -1199,7 +1199,7 @@
   /** Every path that can produce a candidate photo file funnels through
       here: the <input type=file> change handler, the clipboard-read
       paste button, the document-level Cmd/Ctrl+V listener, and drag&drop. */
-  function handlePhotoFile(file) {
+  function handlePhotoFile(file, onError) {
     if (!file || !/^image\//.test(file.type)) {
       setStatus("That doesn't look like an image — please choose a photo file.");
       return;
@@ -1216,6 +1216,10 @@
         });
       })
       .catch(function () {
+        if (typeof onError === "function") {
+          onError();
+          return;
+        }
         setStatus("Could not load that photo — please try a different file.");
       });
   }
@@ -1260,6 +1264,39 @@
     }, 0);
   }
 
+  /** iOS often places several representations of the same photo on the
+      clipboard (a PNG transcode AND the original HEIC). Try every offered
+      image type, most-decodable first, before giving up — HEIC blobs
+      cannot be decoded by the browser from a pasted blob. */
+  var PASTE_TYPE_PREFERENCE = ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"];
+
+  function pasteTypeRank(type) {
+    var i = PASTE_TYPE_PREFERENCE.indexOf(type);
+    return i === -1 ? PASTE_TYPE_PREFERENCE.length : i;
+  }
+
+  function tryPasteCandidates(candidates, i) {
+    if (i >= candidates.length) {
+      /* Every representation failed — the classic case is a HEIC original.
+         Upload goes through the file picker, which iOS converts to JPEG;
+         a screenshot is re-encoded as PNG. Both sidestep the HEIC blob. */
+      setStatus("This photo's format can't be pasted directly (HEIC) — use Upload photo, or screenshot it and paste that.");
+      promptManualPaste();
+      return;
+    }
+    var c = candidates[i];
+    c.item
+      .getType(c.type)
+      .then(function (blob) {
+        handlePhotoFile(new File([blob], "pasted-photo." + extFromType(c.type), { type: c.type }), function () {
+          tryPasteCandidates(candidates, i + 1);
+        });
+      })
+      .catch(function () {
+        tryPasteCandidates(candidates, i + 1);
+      });
+  }
+
   /** navigator.clipboard.read() must be called synchronously inside the
       click handler — wrapping it in a timeout or another promise first
       breaks the user-gesture requirement Safari/iOS enforce, and losing
@@ -1272,25 +1309,21 @@
     navigator.clipboard
       .read()
       .then(function (items) {
+        var candidates = [];
         for (var i = 0; i < items.length; i++) {
           var types = items[i].types;
           for (var j = 0; j < types.length; j++) {
             if (/^image\//.test(types[j])) {
-              var item = items[i];
-              var type = types[j];
-              item
-                .getType(type)
-                .then(function (blob) {
-                  handlePhotoFile(new File([blob], "pasted-photo." + extFromType(type), { type: type }));
-                })
-                .catch(function () {
-                  setStatus("Could not read that image from your clipboard — try copying it again.");
-                });
-              return;
+              candidates.push({ item: items[i], type: types[j] });
             }
           }
         }
-        setStatus("No image on your clipboard — copy an image first, then tap Paste.");
+        if (!candidates.length) {
+          setStatus("No image on your clipboard — copy an image first, then tap Paste.");
+          return;
+        }
+        candidates.sort(function (a, b) { return pasteTypeRank(a.type) - pasteTypeRank(b.type); });
+        tryPasteCandidates(candidates, 0);
       })
       .catch(function () {
         promptManualPaste();

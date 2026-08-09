@@ -1232,6 +1232,7 @@
 
   function dismissPasteHint() {
     dom.pasteHint.hidden = true;
+    dom.pasteCatcher.classList.remove("is-paste-armed");
     if (pasteHintTimer) {
       clearTimeout(pasteHintTimer);
       pasteHintTimer = null;
@@ -1240,8 +1241,12 @@
 
   function promptManualPaste() {
     if (pasteHintTimer) clearTimeout(pasteHintTimer);
-    dom.pasteHint.textContent = "Press ⌘V to paste — on a phone, long-press here and choose Paste.";
+    dom.pasteHint.textContent = "Press ⌘V to paste — on a phone, use the paste box at the bottom of the screen.";
     dom.pasteHint.hidden = false;
+    /* The catcher is visually-hidden by default; arming it makes it a real,
+       visible target so iOS/Android can long-press → Paste (the clipboard
+       API is unavailable or denied in insecure contexts and older browsers). */
+    dom.pasteCatcher.classList.add("is-paste-armed");
     dom.pasteCatcher.focus();
     pasteHintTimer = setTimeout(dismissPasteHint, 15000);
   }

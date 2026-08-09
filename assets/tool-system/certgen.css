@@ -1222,6 +1222,34 @@ body.certgen-view {
   border: 0;
 }
 
+/* Armed manual-paste fallback: when the clipboard API is unavailable or
+   denied (insecure context, older mobile browsers), the catcher surfaces as
+   a visible paste bar so long-press → Paste has a real target. */
+#cgPasteCatcher.is-paste-armed {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 70;
+  width: auto;
+  height: auto;
+  min-height: 56px;
+  margin: 0;
+  padding: 14px 16px;
+  overflow: auto;
+  clip: auto;
+  white-space: normal;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--r-tool);
+  background: var(--bg);
+  box-shadow: 0 12px 32px rgba(13, 19, 48, 0.18);
+  color: var(--ink);
+}
+#cgPasteCatcher.is-paste-armed:empty::before {
+  content: "Long-press here and choose Paste";
+  color: var(--ink-muted);
+}
+
 /* ---------------------------------------------------------------------- */
 /* Footer (matches the .calc-footer pattern used on other tool pages)      */
 /* ---------------------------------------------------------------------- */

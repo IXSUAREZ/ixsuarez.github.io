@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""sync-chrome.py — build-time sync for shared site chrome (nav + footer).
+"""sync-chrome.py — build-time sync for shared site chrome (nav + footer +
+blog post-CTA).
 
 suarezcfi.com is a static site: nav and footer markup MUST stay server-rendered
 static HTML in every page (crawlable, no-JS-safe). The single source of truth
@@ -11,6 +12,8 @@ Partials (canonical markup, column-0 based):
   assets/partials/nav-tool.html  tool nav variant (nav--tool: breadcrumb
                                  link-back + wordmark + tool mark + full links)
   assets/partials/footer.html    canonical footer
+  assets/partials/post-cta.html  end-of-article CTA (yellow mat + inset paper
+                                 sheet + two lacquer buttons)
 
 Every synced page wraps its chrome in marker comments, one marker per line at
 the element's indentation, with the ENTIRE nav/footer element between them:
@@ -22,6 +25,12 @@ the element's indentation, with the ENTIRE nav/footer element between them:
   <footer> ... </footer>
   <!-- /site-footer -->
 
+Blog posts additionally wrap their end-of-article CTA:
+
+  <!-- post-cta -->
+  <div class="cta-box"> ... </div>
+  <!-- /post-cta -->
+
 Per-page slots (preserved verbatim across syncs, everything else regenerates
 from the partials):
   nav:      the trailing .nav-cta anchor (contextual CTA: href, label,
@@ -31,8 +40,18 @@ from the partials):
             app-specific buttons after the menu toggle in .nav-tools.
   footer:   class="site-footer" on the element, and any tool-specific extra
             lines between the social links and the credential line.
+  post-cta: the <h2> inner text and the data-cta-id of each of the two
+            anchors (btn--primary / btn--secondary). A missing data-cta-id
+            falls back to the partial default for that anchor. Everything
+            else — structure (.cta-sheet wrapper), copy, hrefs, classes —
+            comes from the partial.
+
+Unlike nav/footer, post-cta regions are only synced where the markers
+already exist; the markers are never auto-added around a bare .cta-box.
 
 Skipped directories (never touched, never warned about):
+  blog/_template/            post skeleton with {{PLACEHOLDER}} slots — not a
+                             page; scripts/new-post.py renders copies of it.
   flight-risk-assessment/  compiled React SPA — its chrome is baked in by its
                            own build; syncing it here would be overwritten on
                            the next app build and could corrupt the bundle.
@@ -64,6 +83,8 @@ NAV_OPEN = "<!-- site-nav -->"
 NAV_CLOSE = "<!-- /site-nav -->"
 FOOTER_OPEN = "<!-- site-footer -->"
 FOOTER_CLOSE = "<!-- /site-footer -->"
+POST_CTA_OPEN = "<!-- post-cta -->"
+POST_CTA_CLOSE = "<!-- /post-cta -->"
 
 CTA_RE = re.compile(r'<a [^>]*class="nav-cta"[^>]*>.*?</a>')
 # Substitution variants consume the element's leading indent so the
@@ -74,6 +95,8 @@ TOOL_MARK_SUB_RE = re.compile(r'^[ \t]*<a [^>]*class="nav-tool-mark"[^>]*>.*?</a
 AC_RE = re.compile(r'<a ([^>]*?)aria-current="page"')
 HREF_RE = re.compile(r'href="([^"]*)"')
 A_TAG_RE = re.compile(r'<a [^>]*>')
+H2_RE = re.compile(r"<h2[^>]*>(.*?)</h2>", re.S)
+DATA_CTA_ID_RE = re.compile(r'data-cta-id="([^"]*)"')
 
 
 def load_partial(name):
@@ -221,6 +244,8 @@ def render_nav(current_block, page):
 def render_footer(current_block, page):
     """Render fresh footer markup (column-0) from partial + preserved slots."""
     partial = load_partial("footer.html")
+    if not current_block.strip():
+        return partial  # empty markers: default footer (template scaffolding)
     opening = current_block.split("\n", 1)[0]
     site_footer = 'class="site-footer"' in opening
 
@@ -246,6 +271,47 @@ def render_footer(current_block, page):
     return out
 
 
+def swap_cta_id(text, cls, cta_id):
+    """Point the partial's .btn cls anchor at the preserved data-cta-id.
+
+    cta_id=None means the slot was absent in the old block: the partial
+    default stays.
+    """
+    if cta_id is None:
+        return text
+    m = re.search(r'<a [^>]*class="btn %s"[^>]*>' % cls, text)
+    if not m:
+        raise ValueError(f"partial post-cta.html lost its {cls} anchor")
+    tag = DATA_CTA_ID_RE.sub(
+        lambda _: 'data-cta-id="%s"' % cta_id, m.group(0), count=1)
+    return text[:m.start()] + tag + text[m.end():]
+
+
+def render_post_cta(current_block, page):
+    """Render fresh post-CTA markup (column-0) from partial + preserved slots."""
+    if 'class="cta-box"' not in current_block:
+        raise ValueError(f"{page}: post-cta markers without a .cta-box inside")
+    partial = load_partial("post-cta.html")
+
+    h2_m = H2_RE.search(current_block)
+    if not h2_m:
+        raise ValueError(f"{page}: malformed post-cta (no <h2>)")
+    h2_text = h2_m.group(1).strip()
+    ids = []
+    for cls in ("btn--primary", "btn--secondary"):
+        a_m = re.search(r'<a [^>]*class="btn %s"[^>]*>' % cls, current_block)
+        id_m = DATA_CTA_ID_RE.search(a_m.group(0)) if a_m else None
+        ids.append(id_m.group(1) if id_m else None)
+
+    # Rebuild from the partial: keep the partial's <h2 ...> opening tag,
+    # swap in the preserved inner text.
+    out = H2_RE.sub(lambda m: m.group(0)[:m.group(0).index(">") + 1]
+                    + h2_text + "</h2>", partial, count=1)
+    for cls, cta_id in zip(("btn--primary", "btn--secondary"), ids):
+        out = swap_cta_id(out, cls, cta_id)
+    return out
+
+
 def sync_file(path, apply):
     """Return (changed, reasons) for one page; writes when apply=True."""
     text = path.read_text(encoding="utf-8")
@@ -258,6 +324,10 @@ def sync_file(path, apply):
          re.compile(r'<header class="nav-wrap"'), re.compile(r"</header>"), render_nav),
         ("footer", FOOTER_OPEN, FOOTER_CLOSE,
          re.compile(r"<footer[ >]"), re.compile(r"</footer>"), render_footer),
+        # post-cta has no auto-detection: start_re/end_re=None means it only
+        # syncs where the markers already exist.
+        ("post-cta", POST_CTA_OPEN, POST_CTA_CLOSE,
+         None, None, render_post_cta),
     ):
         region = find_region(lines, open_m, close_m)
         if region:
@@ -267,6 +337,8 @@ def sync_file(path, apply):
             c = close_idx + 1  # exclusive replace end (through close marker)
             marked = False
         else:
+            if start_re is None:
+                continue  # markers-only type; nothing to auto-detect
             found = find_unmarked_block(lines, start_re, end_re)
             if not found:
                 continue  # no such chrome on this page
@@ -305,6 +377,8 @@ def iter_pages():
             continue
         if rel.parts[:2] == ("assets", "partials"):
             continue  # the source of truth is not a page
+        if "_template" in rel.parts:
+            continue  # blog post skeleton with {{PLACEHOLDER}} slots
         top = rel.parts[0]
         if top in SKIP_DIRS:
             continue

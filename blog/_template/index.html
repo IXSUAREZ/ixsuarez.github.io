@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+  Blog post template — rendered by scripts/new-post.py.
+  Placeholder slots (substituted at scaffold time):
+    {{TITLE}}         post title (plain text — also lands in JSON-LD)
+    {{DESCRIPTION}}   meta description (plain text)
+    {{SLUG}}          directory slug, ^[a-z0-9-]+$
+    {{DATE}}          ISO date, e.g. 2026-08-14
+    {{DATE_DISPLAY}}  display date, e.g. August 14, 2026
+  Hand-edit after scaffolding: body category class, eyebrow label, read
+  time, article sections, FAQ items, see-also links, FAQPage questions.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#F4F6FB" />
+
+  <title>{{TITLE}} | Diego Suarez</title>
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <meta name="author" content="Diego Suarez" />
+  <link rel="canonical" href="https://suarezcfi.com/blog/{{SLUG}}/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://suarezcfi.com/blog/{{SLUG}}/" />
+  <meta property="og:title" content="{{TITLE}}" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="article:author" content="Diego Suarez" />
+  <meta property="article:published_time" content="{{DATE}}" />
+  <meta property="article:modified_time" content="{{DATE}}" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{TITLE}}" />
+  <meta name="twitter:description" content="{{DESCRIPTION}}" />
+  <meta name="twitter:image" content="https://suarezcfi.com/assets/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500;1,6..72,600;1,6..72,700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/design-system.css?v=20260814" />
+  <link rel="stylesheet" href="../style.css" />
+<script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<!-- Category class theming: swap cat-student-pilot for the category that fits
+     (see the .cat-* definitions in blog/style.css). -->
+<body class="cat-student-pilot">
+  <!-- Aviation-themed backdrop and coordinate margins -->
+  <div class="aviation-backdrop" aria-hidden="true">
+    <div class="aviation-grid"></div>
+    <div class="aviation-ambience"></div>
+  </div>
+
+  <!-- site-nav -->
+  <!-- /site-nav -->
+
+  <main>
+    <div class="article-wrap">
+      <div class="container">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="https://suarezcfi.com/">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="/blog/">Blog</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          <span aria-current="page">{{TITLE}}</span>
+        </nav>
+
+        <article>
+          <header class="article-header">
+            <span class="eyebrow">Getting Started</span>
+            <h1>{{TITLE}}</h1>
+            <div class="article-meta">
+              <div class="author-chip">
+                <img src="https://suarezcfi.com/assets/diego-avatar-52.webp" srcset="https://suarezcfi.com/assets/diego-avatar-104.webp 2x" alt="Diego Suarez" width="26" height="26" />
+                Diego Suarez
+              </div>
+              <span class="meta-dot" aria-hidden="true">·</span>
+              <time datetime="{{DATE}}">{{DATE_DISPLAY}}</time>
+              <span class="meta-dot" aria-hidden="true">·</span>
+              <span>~8 min read</span>
+            </div>
+          </header>
+
+          <div class="prose">
+            <p>Lede paragraph — the one thing the reader should take away, stated plainly. This first paragraph renders as the accented lede callout.</p>
+
+            <h2>First section heading</h2>
+            <p>Section content.</p>
+
+            <h2>Second section heading</h2>
+            <p>Section content.</p>
+
+            <h2>Third section heading</h2>
+            <p>Section content.</p>
+          </div>
+
+          <section class="faq-section" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>First question?</summary>
+                <div class="faq-body">Answer.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Second question?</summary>
+                <div class="faq-body">Answer.</div>
+              </details>
+            </div>
+          </section>
+
+          <!-- post-cta -->
+          <div class="cta-box">
+            <div class="cta-sheet">
+              <h2>A little planning makes the first flight easier.</h2>
+              <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
+              <div class="cta-btn-group">
+                <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="{{SLUG}}-article-book">Book your discovery flight</a>
+                <a href="/#contact" class="btn btn--secondary" data-cta-id="{{SLUG}}-article-contact">Or send a message</a>
+              </div>
+            </div>
+          </div>
+          <!-- /post-cta -->
+
+          <div class="see-also">
+            <h3>Related articles</h3>
+            <ul>
+              <li><a href="/blog/private-pilot-cost-louisville-ky/">Related article title</a></li>
+              <li><a href="/blog/private-pilot-timeline-louisville/">Related article title</a></li>
+              <li><a href="/blog/discovery-flight-bowman-field/">Related article title</a></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- site-footer -->
+  <!-- /site-footer -->
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "url": "https://suarezcfi.com/blog/{{SLUG}}/",
+    "datePublished": "{{DATE}}",
+    "dateModified": "{{DATE}}",
+    "author": { "@type": "Person", "name": "Diego Suarez", "url": "https://suarezcfi.com/" },
+    "publisher": { "@type": "Person", "name": "Diego Suarez", "url": "https://suarezcfi.com/" },
+    "image": "https://suarezcfi.com/assets/og-image.jpg",
+    "inLanguage": "en-US"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "First question?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Answer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Second question?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Answer." }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/assets/cfr-autolink.js" defer></script>
+  <script src="/assets/site-nav.js" defer></script>
+  </body>
+</html>

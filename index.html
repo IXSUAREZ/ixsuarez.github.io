@@ -39,8 +39,10 @@
   <style>
     /* ==========================================================================
        SuarezCFI homepage — page-specific styles.
-       Shared tokens, glass material, buttons, nav, backdrop, grain, reveal
+       Shared tokens, paper/glass materials, buttons, nav, backdrop, grain, reveal
        animations and reduced-motion handling live in /assets/design-system.css.
+       Material law (DESIGN.md §10): Air = page base; Glass = floating chrome only;
+       Paper = in-flow surfaces (read = static, press = hover warms, never lifts).
        ========================================================================== */
 
     * { box-sizing: border-box; }
@@ -64,40 +66,29 @@
 
     .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
-    /* ==========================================================================
-       Shared liquid-glass material (backdrop lives in design-system.css)
-       ========================================================================== */
-    .eyebrow, .hero-kicker, .social-link, .service-pill,
-    .profile, .journey-panel, .journey-count,
-    .faq-item, .manifesto-coord-label, .tool-card, .also-card {
-      background: var(--glass-bg);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-      backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-      border: 1px solid var(--glass-edge);
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
-    }
-
-    /* Specular sheen across the top of the larger glass cards */
-    .profile, .journey-panel, .tool-card, .also-card {
-      position: relative;
-      overflow: hidden;
-    }
-    .profile::before, .journey-panel::before,
-    .tool-card::before, .also-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 30%);
-    }
-    .profile > *, .journey-panel > *,
-    .tool-card > *, .also-card > * { position: relative; }
-
     /* Buttons (.btn, .btn--primary, .btn--secondary, .btn--tertiary)
        live in /assets/design-system.css. */
 
     /* Site nav styles live in /assets/design-system.css (canonical pill). */
+
+    /* Typographic kicker / eyebrow — small caps with a flat yellow dash.
+       No chip, no glass: kickers are type, not controls. */
+    .hero-kicker, .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .hero-kicker::before, .eyebrow::before {
+      content: "";
+      width: 12px;
+      height: 3px;
+      background: var(--yellow-deep);
+    }
 
     /* ==========================================================================
        Hero
@@ -110,26 +101,6 @@
       align-items: center;
     }
     .hero-copy { animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 9px 16px;
-      border-radius: var(--r-pill);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-    .hero-kicker::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--yellow-deep);
-      box-shadow: 0 0 0 3px rgba(255, 208, 0, 0.28);
-    }
     .hero h1 {
       font-family: var(--font-display);
       font-weight: 800;
@@ -155,44 +126,34 @@
       font-size: 1.12rem;
       line-height: 1.6;
     }
-    .hero p.lede strong { color: var(--ink); }
-    .hero p.lede a {
-      color: var(--navy);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(245, 196, 0, 0.7);
-      transition: text-decoration-color 0.2s ease;
-    }
-    .hero p.lede a:hover { text-decoration-color: var(--yellow-deep); }
-    .hero p.lede--kicker { font-size: 0.97rem; margin-top: 20px; max-width: 600px; }
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; align-items: center; }
 
-    /* Proof row — one quiet line of small-caps facts, hairline separators */
-    .hero-proof {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 7px 0;
-      margin: 32px 0 0;
-      padding: 0;
-      list-style: none;
+    /* Quiet phone link under the primary CTA — text, not a button */
+    .hero-phone {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--yellow-line);
+      text-underline-offset: 4px;
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
     }
-    .hero-proof li {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 7px;
-      padding: 0 16px;
-      font-size: 11.5px;
+    .hero-phone:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
+
+    /* Proof — one quiet small-caps line, hairline middot separators */
+    .hero-proof {
+      margin: 30px 0 0;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       color: var(--ink-muted);
     }
-    .hero-proof li:first-child { padding-left: 0; }
-    .hero-proof li + li { border-left: 1px solid var(--border-strong); }
-    .hero-proof li strong { color: var(--ink); font-weight: 750; letter-spacing: 0.09em; }
 
-    /* License card stack w/ parallax (JS sets --mx/--my on .hero-visual) */
+    /* License card stack — static, one reveal-up entrance (no parallax) */
     .hero-visual {
       position: relative;
       min-height: 500px;
@@ -226,79 +187,14 @@
       right: 2%;
       top: 4%;
       opacity: 0.92;
-      transform:
-        rotateX(calc(5deg  + var(--my, 0) * -2deg))
-        rotateY(calc(-12deg + var(--mx, 0) *  2.5deg))
-        rotateZ(5deg);
+      transform: rotateX(5deg) rotateY(-12deg) rotateZ(5deg);
     }
     .license-card--front {
       width: 82%;
       left: 0;
       bottom: 4%;
       z-index: 3;
-      transform:
-        rotateX(calc(4deg  + var(--my, 0) * -2.5deg))
-        rotateY(calc(-6deg + var(--mx, 0) *  3deg))
-        rotateZ(-4deg);
-    }
-
-    /* ==========================================================================
-       Manifesto strips — full-bleed vivid yellow brand moment
-       ========================================================================== */
-    .manifesto-strip {
-      position: relative;
-      margin: 30px 0;
-      padding: clamp(84px, 11vw, 136px) 0;
-      background: linear-gradient(120deg, var(--yellow-bright) 0%, var(--yellow) 45%, #FFB800 100%);
-      overflow: hidden;
-      text-align: center;
-    }
-    .manifesto-strip::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(58% 85% at 16% 0%, rgba(255, 255, 255, 0.5), transparent 62%),
-        radial-gradient(48% 70% at 88% 100%, rgba(255, 255, 255, 0.22), transparent 65%);
-    }
-    .manifesto-strip > .container { position: relative; }
-    .manifesto-coord-label {
-      display: inline-flex;
-      padding: 8px 16px;
-      border-radius: var(--r-pill);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(20, 26, 53, 0.78);
-      margin-bottom: 28px;
-      box-shadow: var(--glass-spec), var(--shadow-sm);
-    }
-    .manifesto-quote {
-      font-family: var(--font-serif);
-      font-weight: 500;
-      font-size: clamp(2rem, 4.6vw, 3.6rem);
-      line-height: 1.12;
-      letter-spacing: -0.01em;
-      color: var(--navy-600);
-      margin: 0 auto;
-      max-width: 920px;
-    }
-    .manifesto-sig-wrap {
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-    }
-    .manifesto-sig { font-family: var(--font-signature); font-size: 2.1rem; color: var(--navy-600); font-style: normal; }
-    .manifesto-role {
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(20, 26, 53, 0.62);
+      transform: rotateX(4deg) rotateY(-6deg) rotateZ(-4deg);
     }
 
     /* ==========================================================================
@@ -307,20 +203,6 @@
     section { padding: 84px 0; position: relative; }
     section[id] { scroll-margin-top: 96px; }
     .section-header { text-align: center; margin-bottom: 52px; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: var(--r-pill);
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--navy);
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-    }
-    .eyebrow svg { color: #A67C00; }
     .section-header h2 {
       font-family: var(--font-display);
       font-weight: 800;
@@ -338,7 +220,7 @@
     }
 
     /* ==========================================================================
-       About — asymmetric overlap: certificate profile card + glass bio panel
+       About — asymmetric overlap: certificate profile card + paper bio panel
        ========================================================================== */
     .about-asymmetric {
       display: grid;
@@ -351,6 +233,9 @@
       border-radius: var(--r-card);
       padding: 16px 16px 22px;
       text-align: left;
+      background: var(--paper-bg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
     .cert-topline {
       display: flex;
@@ -416,35 +301,14 @@
     .cert-signature { font-family: var(--font-signature); font-size: 2.05rem; color: var(--navy); transform: rotate(-2deg); }
     .cert-seal { width: 46px; height: 46px; color: var(--yellow-deep); filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.5)); }
     .cert-seal svg { width: 100%; height: 100%; }
-    .profile .btn--tertiary { display: flex; width: calc(100% - 8px); justify-content: center; margin: 0 4px; }
-
-    .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 44px;
-      padding: 8px 14px;
-      border-radius: var(--r-pill);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink);
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    .social-link:hover { transform: translateY(-1px); background: var(--glass-bg-strong); }
-    .social-link svg { width: 15px; height: 15px; flex: 0 0 auto; }
 
     .about-content-col {
       position: relative;
       z-index: 1;
-      background: var(--glass-bg);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-      backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-      border: 1px solid var(--glass-edge);
+      background: var(--paper-bg);
+      border: 1px solid var(--border);
       border-radius: 34px;
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg);
+      box-shadow: var(--shadow-sm);
       padding: clamp(34px, 4.5vw, 56px) clamp(26px, 4vw, 50px) clamp(34px, 4.5vw, 52px) clamp(84px, 10vw, 128px);
     }
     .about-section-label {
@@ -462,6 +326,16 @@
       letter-spacing: -0.025em;
       color: var(--ink);
       margin: 14px 0 18px;
+    }
+    /* The manifesto survives here as the column's one opening line */
+    .about-quote {
+      margin: 0 0 20px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+      line-height: 1.3;
+      color: var(--ink);
     }
     .about-text { color: var(--ink-muted); font-size: 1.05rem; line-height: 1.65; margin: 0; }
     .about-handwriting-quote {
@@ -537,33 +411,33 @@
     .cfr-link:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
 
     /* ==========================================================================
-       Services strip — one quiet row of glass pills (keeps #services alive)
+       Services strip — one baseline row: primary action + quiet text-arrows
        ========================================================================== */
     .services-strip { padding: 24px 0 8px; }
     .services-strip-row {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .service-pill {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      min-height: 46px;
-      padding: 10px 20px;
-      border-radius: var(--r-pill);
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--navy);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      flex-wrap: wrap;
+      gap: 4px 14px;
     }
-    .service-pill:hover { transform: translateY(-2px); box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg); }
-    .service-pill svg { width: 14px; height: 14px; transition: transform 0.22s var(--ease-premium); }
-    .service-pill:hover svg { transform: translateX(3px); }
+    .services-strip-row .btn--primary { margin-right: 8px; }
+    .services-route-line {
+      margin: 20px 0 0;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+    .services-route-line a {
+      color: var(--ink-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(245, 196, 0, 0.55);
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+    .services-route-line a:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
 
     /* ==========================================================================
-       Journey — route tabs with animated plane
+       Journey — decorative route map (one plane flight) + read-only ledger
+       The interactive planner lives at /flight-training-louisville-ky/.
        ========================================================================== */
     .journey-route {
       position: relative;
@@ -571,6 +445,7 @@
       grid-template-columns: repeat(6, 1fr);
       gap: 4px;
       padding-top: 12px;
+      container-type: inline-size;
     }
     .journey-track {
       position: absolute;
@@ -587,17 +462,21 @@
       height: 30px;
       color: var(--yellow-deep);
       filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.55));
-      transform: translateX(calc(var(--plane-x, 8.33%) - 50%));
-      transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform: translateX(calc(91.67cqw - 50%));
       z-index: 2;
       pointer-events: none;
     }
+    /* The plane's one flight — first stop to last, fired when the route reveals.
+       Reduced motion: the global rule strips the animation and the plane
+       simply rests at the end of the route. */
+    .journey-route.reveal-in .journey-plane {
+      animation: journey-plane-flight 2.6s cubic-bezier(0.25, 0.7, 0.25, 1) 0.35s both;
+    }
+    @keyframes journey-plane-flight {
+      from { transform: translateX(calc(8.33cqw - 50%)); }
+      to   { transform: translateX(calc(91.67cqw - 50%)); }
+    }
     .journey-stop {
-      appearance: none;
-      background: none;
-      border: 0;
-      cursor: pointer;
-      font: inherit;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -605,7 +484,6 @@
       padding: 18px 4px 10px;
       position: relative;
       z-index: 1;
-      border-radius: 16px;
     }
     .journey-dot {
       width: 15px;
@@ -613,145 +491,38 @@
       border-radius: 50%;
       background: #fff;
       border: 2px solid rgba(20, 26, 53, 0.2);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-    }
-    .journey-stop:hover .journey-dot { transform: scale(1.15); border-color: var(--yellow-deep); }
-    .journey-stop[aria-selected="true"] .journey-dot {
-      background: var(--yellow);
-      border-color: #fff;
-      box-shadow: 0 0 0 3px rgba(255, 208, 0, 0.45), 0 4px 12px rgba(245, 196, 0, 0.5);
-      transform: scale(1.2);
     }
     .journey-stop-label { font-size: 13px; font-weight: 600; color: var(--ink-muted); }
-    .journey-stop[aria-selected="true"] .journey-stop-label { color: var(--ink); font-weight: 700; }
-    .journey-panel {
-      margin-top: 28px;
-      padding: 32px clamp(24px, 3vw, 38px);
-      border-radius: 26px;
-      border-left: 4px solid var(--yellow-deep);
-    }
-    .journey-panel[hidden] { display: none; }
-    .journey-panel-head {
+
+    /* Read-only ledger — six ruled rows. Read, not pressed: no hover, no chrome. */
+    .journey-ledger { margin-top: 44px; }
+    .journey-leg {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
+      gap: 10px 28px;
+      padding: 22px 2px;
+      border-top: 1px solid var(--border);
     }
-    .you-are-here {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--yellow-ink);
-    }
-    .waypoint-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--yellow-deep);
-      box-shadow: 0 0 0 3px var(--yellow-soft);
-      display: inline-block;
-    }
-    .journey-count {
-      padding: 6px 13px;
-      border-radius: var(--r-pill);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--navy);
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-    }
-    .journey-blurb { color: var(--ink-muted); margin: 4px 0 18px; font-size: 1rem; }
-    .waypoint-list { list-style: none; margin: 0 0 22px; padding: 0; }
-    .waypoint-list li { position: relative; padding: 0 0 13px 26px; }
-    .waypoint-list li::before {
-      content: "";
-      position: absolute;
-      left: 3px;
-      top: 7px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--yellow-deep);
-      box-shadow: 0 0 0 3px var(--yellow-soft);
-    }
-    .waypoint-list li::after {
-      content: "";
-      position: absolute;
-      left: 7px;
-      top: 21px;
-      bottom: -1px;
-      border-left: 2px dashed rgba(245, 196, 0, 0.45);
-    }
-    .waypoint-list li:last-child { padding-bottom: 0; }
-    .waypoint-list li:last-child::after { display: none; }
-    .journey-links { columns: 2; column-gap: 32px; }
-    .journey-links li { break-inside: avoid; }
-    .journey-links a {
-      color: var(--ink);
-      font-weight: 500;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(245, 196, 0, 0.55);
-      transition: color 0.2s ease, text-decoration-color 0.2s ease;
-    }
-    .journey-links a:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
-
-    .journey-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; }
-    .journey-quiet-link {
-      font-size: 0.94rem;
-      font-weight: 600;
-      color: var(--ink-muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(245, 196, 0, 0.55);
-      transition: color 0.2s ease, text-decoration-color 0.2s ease;
-    }
-    .journey-quiet-link:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
-
-    /* Also on the route — the two services that fit no journey leg */
-    .journey-also { margin-top: 36px; }
-    .journey-also-label {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(28, 33, 66, 0.5);
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .journey-also-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      max-width: 820px;
-      margin: 0 auto;
-    }
-    .also-card {
-      border-radius: var(--r-md);
-      padding: 22px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .also-card:hover { transform: translateY(-3px); box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg); }
-    .also-card strong {
+    .journey-leg h3 {
+      margin: 0 0 5px;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.08rem;
+      font-size: 17px;
       letter-spacing: -0.01em;
       color: var(--ink);
     }
-    .also-card span { color: var(--ink-muted); font-size: 0.92rem; line-height: 1.5; }
-    .also-card .also-card-cta { margin-top: 8px; font-weight: 700; font-size: 0.92rem; color: var(--navy); }
+    .journey-leg p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      max-width: 620px;
+    }
+    .journey-leg .btn { flex: none; }
 
     /* ==========================================================================
-       Tools dock — The Hangar: one calm row of the 4 free tools
+       Tools dock — The Hangar: paper-press cards (hover warms, never lifts)
        ========================================================================== */
     .tools-dock-row {
       display: grid;
@@ -765,33 +536,42 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .tool-card:hover { transform: translateY(-2px); box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg); }
-    .tool-card .tool-icon { width: 44px; height: 44px; display: block; flex: none; }
+    .tool-card .tool-icon {
+      width: 44px;
+      height: 44px;
+      display: block;
+      flex: none;
+      transition: transform 0.2s var(--ease-premium);
+    }
+    .tool-card:hover .tool-icon { transform: translateX(2px); }
     .tool-card .tool-icon svg { display: block; width: 44px; height: 44px; }
     .tool-card strong { display: block; font-size: 0.98rem; font-weight: 700; color: var(--ink); line-height: 1.25; }
     .tool-card em { display: block; font-style: normal; font-size: 0.85rem; color: var(--ink-muted); line-height: 1.4; margin-top: 3px; }
 
     /* ==========================================================================
-       FAQ
+       FAQ — one paper sheet of ruled rows; the open row takes a yellow left rule
        ========================================================================== */
     .faq-wrap { position: relative; }
-    .faq-list { display: flex; flex-direction: column; gap: 12px; }
-    .faq-item {
-      border-radius: var(--r-md);
+    .faq-sheet {
+      background: var(--paper-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--paper-radius);
+      box-shadow: var(--shadow-sm);
       overflow: hidden;
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-      transition: box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    .faq-item[open] {
-      border-color: var(--yellow-line);
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
+    .faq-item {
+      border-top: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      transition: border-color 0.25s ease;
     }
+    .faq-item:first-child { border-top: none; }
+    .faq-item[open] { border-left-color: var(--yellow); }
     .faq-item summary {
       list-style: none;
       cursor: pointer;
-      padding: 21px 24px;
+      min-height: 44px;
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -821,18 +601,17 @@
     .faq-body strong { color: var(--ink); }
 
     /* ==========================================================================
-       Contact — vivid yellow panel
+       Contact — the booking desk: one yellow mat framing one inset paper sheet.
+       No control sits directly on the yellow.
        ========================================================================== */
     #contact { padding-bottom: 110px; }
     .contact {
       position: relative;
       overflow: hidden;
       border-radius: 38px;
-      padding: clamp(52px, 7vw, 92px) clamp(24px, 5vw, 64px);
-      text-align: center;
-      background: linear-gradient(120deg, var(--yellow-bright) 0%, var(--yellow) 45%, #FFB800 100%);
+      padding: clamp(28px, 5vw, 56px);
+      background: linear-gradient(160deg, var(--yellow-bright) 0%, var(--yellow-deep) 100%);
       box-shadow: 0 44px 90px -30px rgba(245, 196, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.5);
-      color: var(--navy-600);
     }
     .contact::before {
       content: "";
@@ -844,12 +623,13 @@
         radial-gradient(45% 65% at 90% 100%, rgba(255, 255, 255, 0.22), transparent 65%);
     }
     .contact > * { position: relative; }
-    /* Eyebrow chip sitting on the vivid yellow contact panel */
-    .eyebrow--on-yellow {
-      background: rgba(255, 255, 255, 0.35);
-      color: var(--navy);
-      border-color: rgba(255, 255, 255, 0.55);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    .contact-sheet {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      padding: clamp(24px, 4vw, 44px);
+      text-align: center;
     }
     .contact h2 {
       font-family: var(--font-display);
@@ -857,26 +637,38 @@
       font-size: clamp(2.1rem, 4vw, 3.3rem);
       letter-spacing: -0.03em;
       line-height: 1.05;
-      margin: 20px 0 14px;
-      color: var(--navy-600);
+      margin: 16px 0 20px;
+      color: var(--ink);
     }
-    .contact p {
-      color: rgba(20, 26, 53, 0.78);
-      max-width: 580px;
-      margin: 0 auto 34px;
-      font-size: 1.06rem;
-    }
-    /* Phone & email as plain text links — no competing button styles */
-    .contact .contact-direct { margin: 30px auto 0; }
-    .contact-direct a {
-      color: var(--navy-600);
+    .contact-phone {
+      display: inline-block;
+      font-family: var(--font-display);
       font-weight: 700;
+      font-size: 30px;
+      letter-spacing: -0.01em;
+      color: var(--navy);
+      font-feature-settings: "tnum";
+      text-decoration: none;
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+    .contact-phone:hover {
+      color: var(--navy);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--yellow-deep);
+      text-underline-offset: 5px;
+    }
+    .contact-phone-note { margin: 8px 0 28px; color: var(--ink-muted); font-size: 0.98rem; }
+    .contact-alt { margin: 28px 0 0; color: var(--ink-muted); font-size: 0.95rem; }
+    .contact-alt a {
+      color: var(--navy);
+      font-weight: 600;
       text-decoration: underline;
       text-underline-offset: 3px;
-      text-decoration-color: rgba(20, 26, 53, 0.45);
+      text-decoration-color: rgba(245, 196, 0, 0.55);
       transition: text-decoration-color 0.2s ease;
     }
-    .contact-direct a:hover { text-decoration-color: var(--navy-600); }
+    .contact-alt a:hover { text-decoration-color: var(--yellow-deep); }
 
     /* ==========================================================================
        Footer
@@ -910,10 +702,7 @@
 
       .journey-route { grid-template-columns: repeat(3, 1fr); row-gap: 4px; }
       .journey-track, .journey-plane { display: none; }
-      .journey-stop { flex-direction: row; justify-content: flex-start; padding: 10px 8px; gap: 10px; min-height: 48px; }
-      /* Plane is hidden here — the selected stop keeps a persistent filled state */
-      .journey-stop[aria-selected="true"] { background: var(--yellow-soft); }
-      .journey-links { columns: 1; }
+      .journey-stop { flex-direction: row; justify-content: flex-start; padding: 10px 8px; gap: 10px; }
 
       .about-asymmetric { grid-template-columns: 1fr; gap: 28px; }
       .about-profile-col { margin-right: 0; max-width: 460px; margin-left: auto; margin-right: auto; }
@@ -925,15 +714,16 @@
       section { padding: 64px 0; }
       .premium-hero { padding: 132px 0 64px; }
       .hero h1 { font-size: clamp(2.5rem, 10vw, 3.4rem); }
-      .hero-visual { min-height: 380px; }
+      .hero-visual { display: none; }
       .hero-ctas { flex-direction: column; align-items: stretch; }
       .hero-ctas .btn { justify-content: center; }
-      .hero-ctas .btn--tertiary { width: auto; align-self: center; min-height: 48px; }
 
       .services-strip { padding: 18px 0 4px; }
-      .service-pill { flex: 1 1 calc(50% - 10px); justify-content: center; }
+      .services-strip-row { flex-direction: column; align-items: stretch; gap: 4px; }
+      .services-strip-row .btn--primary { justify-content: center; margin-right: 0; }
+      .services-strip-row .btn--tertiary { align-self: flex-start; }
 
-      .journey-also-grid { grid-template-columns: 1fr; }
+      .journey-leg { flex-direction: column; align-items: flex-start; gap: 6px; }
 
       .tools-dock-row {
         display: flex;
@@ -950,11 +740,6 @@
 
     @media (max-width: 480px) {
       .container { padding: 0 18px; }
-      .hero-visual { min-height: 320px; }
-      .hero-proof { gap: 6px 14px; }
-      .hero-proof li { padding: 0; }
-      .hero-proof li + li { border-left: none; }
-      .manifesto-quote br { display: none; }
     }
   </style>
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
@@ -1008,24 +793,16 @@
               <span class="headline-line headline-line--secondary">starts with a <span class="headline-word--simple">plan</span>.</span>
             </h1>
             <p class="lede">
-              I'm an FAA Certificated Flight Instructor at <strong>Bowman Field (KLOU)</strong> in Louisville. I teach in the airplane and on the ground — training, endorsements, and flight reviews — plus planning, written-test prep, and oral prep for private and commercial students.
+              Airplane and ground instruction at Bowman Field (KLOU) — discovery flights, written &amp; oral prep, and a training plan built around your schedule.
             </p>
             <div class="hero-ctas">
               <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
                 Book a Discovery Flight
               </a>
-              <a href="#journey" class="btn btn--tertiary" data-cta-id="home-hero-plan">
-                Plan your first step
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-              </a>
             </div>
-            <ul class="hero-proof" aria-label="Credentials and training context">
-              <li><strong>FAA CFI</strong> Flight Instructor · ASEL</li>
-              <li><strong>FAA AGI</strong> Advanced Ground Instructor</li>
-              <li><strong>Bowman Field KLOU</strong> Louisville, Kentucky</li>
-              <li><strong>Commercial Pilot</strong> Instrument rated</li>
-            </ul>
+            <a href="tel:+15025100508" class="hero-phone" data-cta-id="home-hero-phone">Or call/text 502-510-0508</a>
+            <p class="hero-proof">FAA CFI · AGI · Commercial Pilot (Instrument) · Louisville, KY</p>
           </div>
 
           <div class="hero-visual" aria-hidden="true">
@@ -1042,37 +819,27 @@
       </div>
     </section>
 
-    <blockquote class="manifesto-strip">
-      <div class="container">
-        <div class="manifesto-coord-label" aria-hidden="true">Bowman Field · KLOU</div>
-        <p class="manifesto-quote" aria-label="Confidence in the cockpit starts on the ground.">&ldquo;Confidence in the cockpit <br>starts on the ground.&rdquo;</p>
-        <div class="manifesto-sig-wrap">
-          <cite class="manifesto-sig">Diego Suarez</cite>
-          <span class="manifesto-role">FAA Certificated Flight Instructor · Bowman Field</span>
-        </div>
-      </div>
-    </blockquote>
-
     <section id="services" class="services-strip" aria-label="Instruction services">
       <div class="container">
         <nav class="services-strip-row">
-          <a href="/discovery-flight-louisville-ky/" class="service-pill" data-cta-id="home-services-discovery">
+          <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-services-discovery">
             Discovery Flight
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="/ground-school-louisville-ky/" class="service-pill" data-cta-id="home-services-ground">
+          <a href="/ground-school-louisville-ky/" class="btn btn--tertiary" data-cta-id="home-services-ground">
             Ground Instruction
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="/faa-written-test-prep/" class="service-pill" data-cta-id="home-services-written">
+          <a href="/faa-written-test-prep/" class="btn btn--tertiary" data-cta-id="home-services-written">
             Written Prep
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="/checkride-oral-prep/" class="service-pill" data-cta-id="home-services-oral">
+          <a href="/checkride-oral-prep/" class="btn btn--tertiary" data-cta-id="home-services-oral">
             Oral Prep
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
         </nav>
+        <p class="services-route-line">Where are you on the route? <a href="/discovery-flight-louisville-ky/">Exploring</a> · <a href="/learn/private-pilot/">Student</a> · <a href="/learn/private-pilot/">Private</a> · <a href="/learn/instrument-rating/">Instrument</a> · <a href="/learn/commercial-pilot/">Commercial</a> · <a href="/learn/career-and-cfi/">CFI</a> — <a href="/flight-training-louisville-ky/">full training plan →</a></p>
       </div>
     </section>
 
@@ -1113,10 +880,6 @@
                   </svg>
                 </span>
               </div>
-              <a href="#contact" class="btn btn--tertiary">
-                Ask Diego a question
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-              </a>
             </article>
           </div>
 
@@ -1124,6 +887,8 @@
           <div class="about-content-col">
             <span class="about-section-label">Bowman Field · KLOU · Louisville, KY</span>
             <h2 class="about-heading">Flight training starts<br>with the right foundation.</h2>
+
+            <p class="about-quote">“Confidence in the cockpit starts on the ground.”</p>
 
             <p class="about-text">
               I'm 24 years old, and while flying wasn't always my plan, one thing led to another and the aviation bug bit me—after that, I could no longer look away. I did my training at the Kentucky Flight Training Center at Bowman Field (KLOU), and I'm incredibly grateful for the amazing instructors and mentors who guided me along the way. I love educating and teaching, and I look forward to sharing everything I’ve learned to help you build a strong, safe, and standards-based foundation.
@@ -1177,168 +942,85 @@
     <section id="journey" class="journey-section" aria-labelledby="journey-heading">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            Choose your path
-          </span>
+          <span class="eyebrow">Choose your path</span>
           <h2 id="journey-heading">Where are you on the route?</h2>
           <p>Pick your leg of the journey and get a curated flight plan of guides for exactly that stage.</p>
         </div>
 
-        <div class="journey" data-journey>
-          <div class="journey-route" role="tablist" aria-label="Training journey stages">
-            <span class="journey-track" aria-hidden="true"></span>
-            <span class="journey-plane" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
-            </span>
-            <button type="button" class="journey-stop cat-ground-school" role="tab" id="jtab-explore" aria-controls="jpanel-explore" aria-selected="true">
-              <span class="journey-dot" aria-hidden="true"></span>
-              <span class="journey-stop-label">Just exploring</span>
-            </button>
-            <button type="button" class="journey-stop cat-student-pilot" role="tab" id="jtab-student" aria-controls="jpanel-student" aria-selected="false" tabindex="-1">
-              <span class="journey-dot" aria-hidden="true"></span>
-              <span class="journey-stop-label">Student Pilot</span>
-            </button>
-            <button type="button" class="journey-stop cat-private-pilot" role="tab" id="jtab-private" aria-controls="jpanel-private" aria-selected="false" tabindex="-1">
-              <span class="journey-dot" aria-hidden="true"></span>
-              <span class="journey-stop-label">Private Pilot</span>
-            </button>
-            <button type="button" class="journey-stop cat-instrument-rating" role="tab" id="jtab-instrument" aria-controls="jpanel-instrument" aria-selected="false" tabindex="-1">
-              <span class="journey-dot" aria-hidden="true"></span>
-              <span class="journey-stop-label">Instrument</span>
-            </button>
-            <button type="button" class="journey-stop cat-commercial-pilot" role="tab" id="jtab-commercial" aria-controls="jpanel-commercial" aria-selected="false" tabindex="-1">
-              <span class="journey-dot" aria-hidden="true"></span>
-              <span class="journey-stop-label">Commercial</span>
-            </button>
-            <button type="button" class="journey-stop cat-cfi" role="tab" id="jtab-cfi" aria-controls="jpanel-cfi" aria-selected="false" tabindex="-1">
-              <span class="journey-dot" aria-hidden="true"></span>
-              <span class="journey-stop-label">CFI</span>
-            </button>
-          </div>
-
-          <div class="journey-panels">
-            <div class="journey-panel cat-ground-school" role="tabpanel" id="jpanel-explore" aria-labelledby="jtab-explore">
-              <div class="journey-panel-head">
-                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 1 of 6</span>
-                <span class="journey-count">Start of the route</span>
-              </div>
-              <p class="journey-blurb">Curious about flying but haven't started? Begin with what training really involves, costs, and feels like at Bowman Field.</p>
-              <ul class="waypoint-list journey-links">
-                <li><a href="/blog/discovery-flight-bowman-field/">What a discovery flight at Bowman Field is like</a></li>
-                <li><a href="/blog/private-pilot-timeline-louisville/">How long the private pilot certificate really takes</a></li>
-                <li><a href="/blog/private-pilot-cost-louisville-ky/">What a private pilot certificate actually costs</a></li>
-                <li><a href="/blog/basicmed-vs-third-class-medical/">BasicMed vs. third-class medical vs. sport pilot</a></li>
-              </ul>
-              <div class="journey-actions">
-                <a class="btn btn--primary journey-cta" href="/flight-training-louisville-ky/" data-cta-id="home-journey-explore">Plan your first step</a>
-                <a class="journey-quiet-link" href="/discovery-flight-louisville-ky/" data-cta-id="home-journey-explore-discovery">Book a discovery flight <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-
-            <div class="journey-panel cat-student-pilot" role="tabpanel" id="jpanel-student" aria-labelledby="jtab-student" hidden>
-              <div class="journey-panel-head">
-                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 2 of 6</span>
-                <span class="journey-count">Student Pilot</span>
-              </div>
-              <p class="journey-blurb">You're in training. Here's what to nail down before solo and your first cross-country.</p>
-              <ul class="waypoint-list journey-links">
-                <li><a href="/learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/">How to Get a Student Pilot Certificate Step by Step</a></li>
-                <li><a href="/learn/private-pilot/6-reasons-why-student-pilots-quit/">6 Reasons Student Pilots Quit Flight Training</a></li>
-                <li><a href="/learn/private-pilot/airplane-landing-technique-student-pilots/">Airplane Landing Technique for Student Pilots</a></li>
-                <li><a href="/learn/private-pilot/cross-country-flight-plan-made-easy-with-tips-and-examples/">Cross-Country Flight Plan Made Easy (With Tips &amp; Examples)</a></li>
-              </ul>
-              <div class="journey-actions">
-                <a class="btn btn--primary journey-cta" href="/learn/private-pilot/" data-cta-id="home-journey-student">See student pilot guides</a>
-                <a class="journey-quiet-link" href="/ground-school-louisville-ky/" data-cta-id="home-journey-student-ground">One-on-one ground instruction <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-
-            <div class="journey-panel cat-private-pilot" role="tabpanel" id="jpanel-private" aria-labelledby="jtab-private" hidden>
-              <div class="journey-panel-head">
-                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 3 of 6</span>
-                <span class="journey-count">91 guides</span>
-              </div>
-              <p class="journey-blurb">Working toward the private pilot checkride? These guides cover the checkride, maneuvers, and the ACS.</p>
-              <ul class="waypoint-list journey-links">
-                <li><a href="/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/">10 Tips for Passing Your Private Pilot Checkride</a></li>
-                <li><a href="/blog/private-pilot-cost-louisville-ky/">How Much Does a Private Pilot Certificate Actually Cost?</a></li>
-                <li><a href="/learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/">10 Inspirational Flying Quotes for Student Pilots</a></li>
-                <li><a href="/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/">How to Prepare for Your Private Pilot Checkride</a></li>
-              </ul>
-              <div class="journey-actions">
-                <a class="btn btn--primary journey-cta" href="/learn/private-pilot/" data-cta-id="home-journey-private">View all private pilot guides</a>
-                <a class="journey-quiet-link" href="/checkride-oral-prep/" data-cta-id="home-journey-private-oral">Practice the checkride oral <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-
-            <div class="journey-panel cat-instrument-rating" role="tabpanel" id="jpanel-instrument" aria-labelledby="jtab-instrument" hidden>
-              <div class="journey-panel-head">
-                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 4 of 6</span>
-                <span class="journey-count">36 guides</span>
-              </div>
-              <p class="journey-blurb">Flying into the clouds means new rules and new precision. Start here for the instrument rating.</p>
-              <ul class="waypoint-list journey-links">
-                <li><a href="/learn/ground-school/how-to-get-an-instrument-rating-step-by-step/">How to Get an Instrument Rating Step by Step</a></li>
-                <li><a href="/learn/ground-school/why-instrument-rating-ground-school-matters/">Why Instrument Rating Ground School Matters</a></li>
-                <li><a href="/learn/ground-school/ifr-vs-vfr-in-aviation-understanding-the-differences/">IFR vs. VFR: Key Differences for Pilots</a></li>
-                <li><a href="/learn/ground-school/how-to-read-an-ifr-approach-chart/">How to Read an IFR Approach Chart</a></li>
-              </ul>
-              <div class="journey-actions">
-                <a class="btn btn--primary journey-cta" href="/learn/instrument-rating/" data-cta-id="home-journey-instrument">View all instrument rating guides</a>
-                <a class="journey-quiet-link" href="/faa-written-test-prep/" data-cta-id="home-journey-instrument-written">Prep for the instrument written <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-
-            <div class="journey-panel cat-commercial-pilot" role="tabpanel" id="jpanel-commercial" aria-labelledby="jtab-commercial" hidden>
-              <div class="journey-panel-head">
-                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 5 of 6</span>
-                <span class="journey-count">30 guides</span>
-              </div>
-              <p class="journey-blurb">Turning flying into a career starts with the commercial certificate. Here's the path.</p>
-              <ul class="waypoint-list journey-links">
-                <li><a href="/learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/">How to Get a Commercial Certificate Step by Step</a></li>
-                <li><a href="/learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/">Commercial Pilot Timeline: From Private to CPL</a></li>
-                <li><a href="/learn/career-and-cfi/low-time-pilot-jobs-and-how-to-build-airplane-hours/">Low-Time Pilot Jobs and How to Build Airplane Hours</a></li>
-              </ul>
-              <div class="journey-actions">
-                <a class="btn btn--primary journey-cta" href="/learn/commercial-pilot/" data-cta-id="home-journey-commercial">View all commercial pilot guides</a>
-                <a class="journey-quiet-link" href="/part-61-calculator/" data-cta-id="home-journey-commercial-part61">Audit your Part 61 hours <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-
-            <div class="journey-panel cat-cfi" role="tabpanel" id="jpanel-cfi" aria-labelledby="jtab-cfi" hidden>
-              <div class="journey-panel-head">
-                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 6 of 6</span>
-                <span class="journey-count">20 guides</span>
-              </div>
-              <p class="journey-blurb">Ready to teach? Here's the real path from commercial pilot to certified flight instructor.</p>
-              <ul class="waypoint-list journey-links">
-                <li><a href="/blog/path-to-cfi-louisville/">From Commercial Pilot to CFI — The Real Path</a></li>
-                <li><a href="/simply-endorsed/blog/cfi-endorsements/">CFI Endorsements Explained</a></li>
-                <li><a href="/learn/career-and-cfi/how-to-become-a-flight-instructor/">How to Become a Flight Instructor</a></li>
-                <li><a href="/learn/career-and-cfi/how-to-make-cfi-flashcards-that-actually-work/">How to Make CFI Flashcards That Actually Work</a></li>
-              </ul>
-              <div class="journey-actions">
-                <a class="btn btn--primary journey-cta" href="/learn/career-and-cfi/" data-cta-id="home-journey-cfi">View all CFI guides</a>
-                <a class="journey-quiet-link" href="/foi-cards/" data-cta-id="home-journey-cfi-foi">Drill the FOI flashcards <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-          </div>
+        <!-- Decorative route map — read-only; the plane makes its one flight on reveal -->
+        <div class="journey-route" aria-hidden="true">
+          <span class="journey-track"></span>
+          <span class="journey-plane">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
+          </span>
+          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Just exploring</span></span>
+          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Student Pilot</span></span>
+          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Private Pilot</span></span>
+          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Instrument</span></span>
+          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Commercial</span></span>
+          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">CFI</span></span>
         </div>
 
-        <div class="journey-also">
-          <p class="journey-also-label">Also worth a look</p>
-          <div class="journey-also-grid">
-            <a class="also-card" href="/bowman-field-klou/" data-cta-id="home-services-klou">
-              <strong>Bowman Field KLOU Help</strong>
-              <span>KLOU procedures, tower flow, Louisville airspace, and local weather habits.</span>
-              <span class="also-card-cta" aria-hidden="true">Study KLOU context →</span>
+        <!-- Read-only ledger: six ruled rows, one quiet link each -->
+        <div class="journey-ledger">
+          <div class="journey-leg">
+            <div>
+              <h3>Just exploring</h3>
+              <p>Curious about flying but haven't started? What training really involves, costs, and feels like at Bowman Field.</p>
+            </div>
+            <a class="btn btn--tertiary" href="/flight-training-louisville-ky/" data-cta-id="home-journey-explore">
+              Plan your first step
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
             </a>
-            <a class="also-card" href="/remote-ground-instruction/" data-cta-id="home-services-remote">
-              <strong>Remote Ground Instruction</strong>
-              <span>One-on-one ground school over video — wherever you are, on your schedule.</span>
-              <span class="also-card-cta" aria-hidden="true">Set up remote ground →</span>
+          </div>
+          <div class="journey-leg">
+            <div>
+              <h3>Student Pilot</h3>
+              <p>You're in training — what to nail down before solo and your first cross-country.</p>
+            </div>
+            <a class="btn btn--tertiary" href="/learn/private-pilot/" data-cta-id="home-journey-student">
+              Student pilot guides
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="journey-leg">
+            <div>
+              <h3>Private Pilot</h3>
+              <p>Working toward the private pilot checkride — the ACS, maneuvers, and checkride guides.</p>
+            </div>
+            <a class="btn btn--tertiary" href="/learn/private-pilot/" data-cta-id="home-journey-private">
+              Private pilot guides
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="journey-leg">
+            <div>
+              <h3>Instrument</h3>
+              <p>New rules and new precision — start here for the instrument rating.</p>
+            </div>
+            <a class="btn btn--tertiary" href="/learn/instrument-rating/" data-cta-id="home-journey-instrument">
+              Instrument rating guides
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="journey-leg">
+            <div>
+              <h3>Commercial</h3>
+              <p>Turning flying into a career starts with the commercial certificate — here's the path.</p>
+            </div>
+            <a class="btn btn--tertiary" href="/learn/commercial-pilot/" data-cta-id="home-journey-commercial">
+              Commercial pilot guides
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="journey-leg">
+            <div>
+              <h3>CFI</h3>
+              <p>The real path from commercial pilot to certificated flight instructor.</p>
+            </div>
+            <a class="btn btn--tertiary" href="/learn/career-and-cfi/" data-cta-id="home-journey-cfi">
+              CFI guides
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
             </a>
           </div>
         </div>
@@ -1348,14 +1030,11 @@
     <section id="tools" class="tools-dock" aria-labelledby="tools-heading">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>
-            The Hangar
-          </span>
+          <span class="eyebrow">The Hangar</span>
           <h2 id="tools-heading">Free tools — built by your instructor.</h2>
         </div>
         <div class="tools-dock-row">
-          <a href="/simply-endorsed-cfi/" class="tool-card" data-cta-id="home-tools-simply-endorsed">
+          <a href="/simply-endorsed-cfi/" class="tool-card paper paper--press" data-cta-id="home-tools-simply-endorsed">
             <span class="tool-icon" aria-hidden="true">
               <svg viewBox="0 0 512 512" width="30" height="30" fill="none">
                 <defs>
@@ -1373,19 +1052,19 @@
             </span>
             <span><strong>Simply Endorsed CFI</strong> <em>FAA endorsement lookup</em></span>
           </a>
-          <a href="/flight-risk-assessment/" class="tool-card" data-cta-id="home-tools-flightrisk">
+          <a href="/flight-risk-assessment/" class="tool-card paper paper--press" data-cta-id="home-tools-flightrisk">
             <span class="tool-icon" aria-hidden="true">
               <svg viewBox="0 0 512 512" width="30" height="30" fill="none"><defs><clipPath id="fratHomeDisc"><circle cx="256" cy="256" r="200"/></clipPath></defs><g clip-path="url(#fratHomeDisc)"><rect x="0" y="0" width="512" height="256" fill="#1E6E66"/><rect x="0" y="256" width="512" height="256" fill="#17262C"/></g><g stroke="#FFFFFF" stroke-width="20" stroke-linecap="round"><line x1="116" y1="248" x2="216" y2="256"/><line x1="296" y1="256" x2="396" y2="248"/></g><circle cx="256" cy="256" r="16" fill="#FFFFFF"/></svg>
             </span>
             <span><strong>FlightRisk</strong> <em>PAVE risk checklist</em></span>
           </a>
-          <a href="/part-61-calculator/" class="tool-card" data-cta-id="home-tools-part61">
+          <a href="/part-61-calculator/" class="tool-card paper paper--press" data-cta-id="home-tools-part61">
             <span class="tool-icon" aria-hidden="true">
               <svg viewBox="0 0 512 512" width="30" height="30" fill="none"><circle cx="256" cy="256" r="256" fill="#EA580C"/><g stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" opacity="0.92"><line x1="256" y1="78" x2="256" y2="126"/><line x1="434" y1="256" x2="386" y2="256"/><line x1="256" y1="434" x2="256" y2="386"/><line x1="78" y1="256" x2="126" y2="256"/></g><g stroke="#FFFFFF" stroke-linecap="round"><line x1="256" y1="256" x2="348" y2="154" stroke-width="30"/><line x1="256" y1="256" x2="188" y2="206" stroke-width="26"/></g><circle cx="256" cy="256" r="24" fill="#7C2D12"/></svg>
             </span>
             <span><strong>Part 61 Calculator</strong> <em>Training-time wizard</em></span>
           </a>
-          <a href="/foi-cards/" class="tool-card" data-cta-id="home-tools-foi">
+          <a href="/foi-cards/" class="tool-card paper paper--press" data-cta-id="home-tools-foi">
             <span class="tool-icon" aria-hidden="true">
               <svg viewBox="0 0 512 512" width="44" height="44" fill="none">
                 <rect x="16" y="16" width="480" height="480" rx="110" fill="#1C2142"/>
@@ -1407,60 +1086,43 @@
     <section id="faq" aria-labelledby="faq-heading">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
-            FAQs
-          </span>
+          <span class="eyebrow">FAQs</span>
           <h2 id="faq-heading">Questions? Answers!</h2>
           <p>Quick answers to the questions new and returning students ask most often.</p>
         </div>
 
         <div class="faq-wrap">
-          <div class="faq-layout">
-            <div class="faq-list">
-              <details class="faq-item" open>
-                <summary>How do I get started with flight training?</summary>
-                <div class="faq-body">
-                  The best first step is a focused planning conversation or introductory lesson: review your certificate goal, medical path, study plan, and what to expect before aircraft time. If you book a flight lesson, it should include a preflight briefing, aircraft familiarization, and clear next steps tied to your training goal.
-                </div>
-              </details>
-              <details class="faq-item">
-                <summary>What kind of training can you help with?</summary>
-                <div class="faq-body">
-                  As a Certificated Flight Instructor, I provide flight training, logbook endorsements, solo and solo cross-country sign-offs, flight reviews, and checkride recommendations in the airplane, along with ground instruction, written-test prep, oral prep, and training-path planning. Instrument and multi-engine flight instruction aren't among my instructor ratings, though I can still help with instrument ground knowledge.
-                </div>
-              </details>
-              <details class="faq-item">
-                <summary>How long does it take to earn a Private Pilot certificate?</summary>
-                <div class="faq-body">
-                  The FAA minimum is 40 flight hours, but the national average is closer to 60–70 hours. Most students complete the Private in 6–12 months flying twice a week. Consistency matters more than intensity — two lessons a week beats one every other week every time.
-                </div>
-              </details>
-              <details class="faq-item">
-                <summary>What medical certificate do I need?</summary>
-                <div class="faq-body">
-                  For Private Pilot you'll need either an FAA <strong>Third-Class Medical</strong> or <strong>BasicMed</strong> (once you've held any class of FAA medical at least once since July 2006). Sport Pilot requires only a valid U.S. driver's license. I can recommend an AME in the Louisville area and walk you through the MedXPress form before your visit.
-                </div>
-              </details>
-              <details class="faq-item">
-                <summary>What does flight training cost?</summary>
-                <div class="faq-body">
-                  The two anchor numbers: flight and ground instruction with me runs <span class="price" data-price="cfi-hourly">$45</span> per hour, and a <a href="/discovery-flight-louisville-ky/" data-cta-id="home-faq-discovery">discovery flight</a> is instructor time at that same rate plus the aircraft — I'll quote you the exact total before you book. Beyond that, every student's path is different — aircraft rental, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan.
-                </div>
-              </details>
-              <details class="faq-item">
-                <summary>How often should I fly to make real progress?</summary>
-                <div class="faq-body">
-                  Twice a week is the sweet spot. It keeps skills fresh between lessons, shortens the total time to checkride, and ends up costing less overall than longer gaps where we end up re-reviewing material.
-                </div>
-              </details>
-              <details class="faq-item">
-                <summary>Can you help with checkride oral prep?</summary>
-                <div class="faq-body">
-                  Yes. I can help with oral prep, ACS organization, scenario practice, written-test weak areas, and the logbook endorsements that go with a checkride recommendation. Instrument-instructor and recurrent instrument-currency work are outside this service offering.
-                </div>
-              </details>
-            </div>
+          <div class="faq-sheet">
+            <details class="faq-item" open>
+              <summary>What does flight training cost?</summary>
+              <div class="faq-body">
+                The two anchor numbers: flight and ground instruction with me runs <span class="price" data-price="cfi-hourly">$45</span> per hour, and a <a href="/discovery-flight-louisville-ky/" data-cta-id="home-faq-discovery">discovery flight</a> is instructor time at that same rate plus the aircraft — I'll quote you the exact total before you book. Beyond that, every student's path is different — aircraft rental, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>What happens on a discovery flight?</summary>
+              <div class="faq-body">
+                A <a href="/discovery-flight-louisville-ky/">discovery flight</a> is a first lesson, not a ride-along: about an hour in the airplane plus 30–40 minutes of briefing and debrief on the ground, so budget about two hours at Bowman Field. Once we're clear of the traffic pattern, you fly — straight-and-level, climbs, descents, and turns — while I handle the takeoff and landing and keep my hands near the controls. There's no commitment to continue; if you're hooked, the hour already counts toward a future certificate.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>What medical certificate do I need?</summary>
+              <div class="faq-body">
+                For Private Pilot you'll need either an FAA <strong>Third-Class Medical</strong> or <strong>BasicMed</strong> (once you've held any class of FAA medical at least once since July 2006). Sport Pilot requires only a valid U.S. driver's license. I can recommend an AME in the Louisville area and walk you through the MedXPress form before your visit.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>How long does it take to earn a Private Pilot certificate?</summary>
+              <div class="faq-body">
+                The FAA minimum is 40 flight hours, but the national average is closer to 60–70 hours. Most students complete the Private in 6–12 months flying twice a week. Consistency matters more than intensity — two lessons a week beats one every other week every time.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Where do lessons take place?</summary>
+              <div class="faq-body">
+                Flight training happens at <a href="/bowman-field-klou/">Bowman Field (KLOU)</a> in Louisville — a towered, Class D airport that's calm enough for a first lesson but busy enough to teach real radio work, with Louisville's Class C airspace right next door once you're ready for it. Ground instruction can also happen <a href="/remote-ground-instruction/">one-on-one over video</a>, wherever you are.
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -1469,16 +1131,16 @@
     <section id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact">
-          <span class="eyebrow eyebrow--on-yellow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
-            Contact
-          </span>
-          <h2 id="contact-heading">Let's map your next training step</h2>
-          <p>Have a question about cost, medical timing, written-test prep, ground school, or Bowman Field training context? Use the short form below, call, text, or email. I usually reply the same day.</p>
-          <div class="contact-form-mount" data-form-context="home">
-            <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email">Email Diego</a> or call <a href="tel:+15025100508" data-cta-id="home-phone">502-510-0508</a>.</p>
+          <div class="contact-sheet">
+            <span class="eyebrow">Contact</span>
+            <h2 id="contact-heading">Talk to Diego.</h2>
+            <a href="tel:+15025100508" class="contact-phone" data-cta-id="home-contact-phone">502-510-0508</a>
+            <p class="contact-phone-note">Call or text — I usually reply the same day.</p>
+            <div class="contact-form-mount" data-form-context="home">
+              <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email">Email Diego</a> or call <a href="tel:+15025100508" data-cta-id="home-phone">502-510-0508</a>.</p>
+            </div>
+            <p class="contact-alt">Prefer email? <a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-contact-email">SuarezCFI@gmail.com</a></p>
           </div>
-          <p class="contact-direct">Prefer to reach out directly? Call <a href="tel:+15025100508" aria-label="Call Diego Suarez at 502-510-0508" data-cta-id="home-contact-phone">502-510-0508</a> or email <a href="mailto:SuarezCFI@gmail.com" aria-label="Email Diego Suarez" data-cta-id="home-contact-email">SuarezCFI@gmail.com</a>.</p>
         </div>
       </div>
     </section>
@@ -1668,26 +1330,18 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I get started with flight training?",
+        "name": "What does flight training cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best first step is a focused planning conversation or introductory lesson: review the certificate goal, medical path, study plan, and what to expect before aircraft time. A flight lesson with Diego includes a preflight briefing, aircraft familiarization, and clear next steps tied to the training goal."
+          "text": "The two anchor numbers: flight and ground instruction with me runs $45 per hour, and a discovery flight is instructor time at that same rate plus the aircraft — I'll quote you the exact total before you book. Beyond that, every student's path is different — aircraft rental, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan."
         }
       },
       {
         "@type": "Question",
-        "name": "What kind of training can Diego help with?",
+        "name": "What happens on a discovery flight?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "As a Certificated Flight Instructor, Diego provides flight training, logbook endorsements, solo and solo cross-country sign-offs, flight reviews, and checkride recommendations in the airplane, along with ground instruction, written-test prep, oral prep, and training-path planning. Instrument and multi-engine flight instruction aren't among his instructor ratings, though he can still help with instrument ground knowledge."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does it take to earn a Private Pilot certificate?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The FAA minimum is 40 flight hours, but the national average is closer to 60–70 hours. Most students complete the Private in 6–12 months flying twice a week. Consistency matters more than intensity — two lessons a week beats one every other week every time."
+          "text": "A discovery flight is a first lesson, not a ride-along: about an hour in the airplane plus 30–40 minutes of briefing and debrief on the ground, so budget about two hours at Bowman Field. Once we're clear of the traffic pattern, you fly — straight-and-level, climbs, descents, and turns — while I handle the takeoff and landing and keep my hands near the controls. There's no commitment to continue; if you're hooked, the hour already counts toward a future certificate."
         }
       },
       {
@@ -1700,127 +1354,29 @@
       },
       {
         "@type": "Question",
-        "name": "What does flight training cost?",
+        "name": "How long does it take to earn a Private Pilot certificate?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The two anchor numbers: flight and ground instruction runs $45 per hour, and a discovery flight is instructor time at that same rate plus the aircraft — exact total quoted before booking. Beyond that, every student's path is different — aircraft rental, examiner fees, and ground materials all add up differently depending on your pace and goals. Reach out by phone or email and I'll put together a clear, honest estimate for your specific training plan."
+          "text": "The FAA minimum is 40 flight hours, but the national average is closer to 60–70 hours. Most students complete the Private in 6–12 months flying twice a week. Consistency matters more than intensity — two lessons a week beats one every other week every time."
         }
       },
       {
         "@type": "Question",
-        "name": "How often should I fly to make real progress?",
+        "name": "Where do lessons take place?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Twice a week is the sweet spot. It keeps skills fresh between lessons, shortens the total time to checkride, and ends up costing less overall than longer gaps where we end up re-reviewing material."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can you help with checkride oral prep?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Diego can help with oral prep, ACS organization, scenario practice, written-test weak areas, and the logbook endorsements that go with a checkride recommendation. Instrument-instructor and recurrent instrument-currency work are outside this service offering."
+          "text": "Flight training happens at Bowman Field (KLOU) in Louisville — a towered, Class D airport that's calm enough for a first lesson but busy enough to teach real radio work, with Louisville's Class C airspace right next door once you're ready for it. Ground instruction can also happen one-on-one over video, wherever you are."
         }
       }
     ]
   }
   </script>
 
-
-  <script>
-  (function () {
-    var journey = document.querySelector('[data-journey]');
-    if (!journey) return;
-    var tabs = Array.prototype.slice.call(journey.querySelectorAll('.journey-stop'));
-    var panels = Array.prototype.slice.call(journey.querySelectorAll('.journey-panel'));
-    var route = journey.querySelector('.journey-route');
-
-    function movePlane(tab) {
-      var x = tab.offsetLeft + tab.offsetWidth / 2;
-      route.style.setProperty('--plane-x', x + 'px');
-    }
-    function selectStop(tab, focus) {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-      });
-      panels.forEach(function (p) { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
-      movePlane(tab);
-      if (focus) tab.focus();
-    }
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { selectStop(tab, false); });
-      tab.addEventListener('keydown', function (e) {
-        var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-        if (!dir) return;
-        e.preventDefault();
-        selectStop(tabs[(i + dir + tabs.length) % tabs.length], true);
-      });
-    });
-    window.addEventListener('resize', function () {
-      var current = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0];
-      if (current) movePlane(current);
-    });
-    movePlane(tabs[0]);
-  })();
-  </script>
-
-  <script>
-    (function () {
-      /* Pointer-response parallax: the cards rest until the pointer moves over
-         the hero visual, and the rAF loop runs only while easing toward the
-         target (and back to rest on pointerleave). No perpetual motion. */
-      var hero = document.querySelector('.premium-hero');
-      if (!hero) return;
-      var visual = hero.querySelector('.hero-visual');
-      if (!visual) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (!window.matchMedia('(pointer: fine)').matches) return;
-
-      var tx = 0, ty = 0, cx = 0, cy = 0;
-      var rafId = null;
-
-      function frame() {
-        cx += (tx - cx) * 0.12;
-        cy += (ty - cy) * 0.12;
-        if (Math.abs(tx - cx) < 0.001 && Math.abs(ty - cy) < 0.001) {
-          cx = tx;
-          cy = ty;
-          visual.style.setProperty('--mx', cx.toFixed(4));
-          visual.style.setProperty('--my', cy.toFixed(4));
-          rafId = null;
-          return;
-        }
-        visual.style.setProperty('--mx', cx.toFixed(4));
-        visual.style.setProperty('--my', cy.toFixed(4));
-        rafId = requestAnimationFrame(frame);
-      }
-
-      function kick() {
-        if (!rafId) rafId = requestAnimationFrame(frame);
-      }
-
-      visual.addEventListener('pointermove', function (e) {
-        var rect = visual.getBoundingClientRect();
-        tx = Math.max(-0.8, Math.min(0.8, (e.clientX - (rect.left + rect.width  * 0.5)) / (rect.width  * 0.5)));
-        ty = Math.max(-0.8, Math.min(0.8, (e.clientY - (rect.top  + rect.height * 0.5)) / (rect.height * 0.5)));
-        kick();
-      });
-
-      visual.addEventListener('pointerleave', function () {
-        tx = 0;
-        ty = 0;
-        kick();
-      });
-    })();
-  </script>
-
   <script>
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!('IntersectionObserver' in window)) return;
-      var selector = '.section-header, .manifesto-strip > .container, .service-pill, .credential-ledger, .profile--certificate, .about-content-col, .journey-route, .journey-panels, .also-card, .tool-card, .faq-item, .contact';
+      var selector = '.section-header, .credential-ledger, .profile--certificate, .about-content-col, .services-strip-row, .services-route-line, .journey-route, .journey-leg, .tool-card, .faq-sheet, .contact';
       var els = Array.prototype.slice.call(document.querySelectorAll(selector));
       if (!els.length) return;
       var byParent = new Map();

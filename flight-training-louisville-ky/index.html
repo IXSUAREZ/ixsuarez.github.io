@@ -32,6 +32,189 @@
   <link rel="stylesheet" href="/assets/design-system.css?v=20260814" />
   <link rel="stylesheet" href="/learn/style.css" />
   <link rel="stylesheet" href="/assets/contact-form.css" />
+
+  <style>
+    /* ==========================================================================
+       Journey planner — interactive route tabs with animated plane.
+       Moved here from the home page (home keeps a read-only ledger version).
+       All selectors are scoped under .journey-planner so nothing collides with
+       /learn/style.css. Panels are paper, per the material law (DESIGN.md §10).
+       ========================================================================== */
+    .journey-planner { padding: 8px 0 64px; }
+    .journey-planner-head { text-align: center; margin-bottom: 44px; }
+    .journey-planner-head h2 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 18px 0 12px;
+    }
+    .journey-planner-head p {
+      color: var(--ink-muted);
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+    .journey-planner .journey-route {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      padding-top: 12px;
+    }
+    .journey-planner .journey-track {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      top: 33px;
+      border-top: 2px dashed rgba(20, 26, 53, 0.18);
+    }
+    .journey-planner .journey-plane {
+      position: absolute;
+      top: 19px;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      color: var(--yellow-deep);
+      filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.55));
+      transform: translateX(calc(var(--plane-x, 8.33%) - 50%));
+      transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .journey-planner .journey-stop {
+      appearance: none;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 11px;
+      padding: 18px 4px 10px;
+      position: relative;
+      z-index: 1;
+      border-radius: 16px;
+    }
+    .journey-planner .journey-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid rgba(20, 26, 53, 0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+    .journey-planner .journey-stop:hover .journey-dot { transform: scale(1.15); border-color: var(--yellow-deep); }
+    .journey-planner .journey-stop[aria-selected="true"] .journey-dot {
+      background: var(--yellow);
+      border-color: #fff;
+      box-shadow: 0 0 0 3px rgba(255, 208, 0, 0.45), 0 4px 12px rgba(245, 196, 0, 0.5);
+      transform: scale(1.2);
+    }
+    .journey-planner .journey-stop-label { font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+    .journey-planner .journey-stop[aria-selected="true"] .journey-stop-label { color: var(--ink); font-weight: 700; }
+    .journey-planner .journey-panel {
+      margin-top: 28px;
+      padding: 32px clamp(24px, 3vw, 38px);
+      border-radius: 26px;
+      background: var(--paper-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--yellow-deep);
+      box-shadow: var(--shadow-sm);
+    }
+    .journey-planner .journey-panel[hidden] { display: none; }
+    .journey-planner .journey-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .journey-planner .you-are-here {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow-ink);
+    }
+    .journey-planner .waypoint-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--yellow-deep);
+      box-shadow: 0 0 0 3px var(--yellow-soft);
+      display: inline-block;
+    }
+    .journey-planner .journey-count {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .journey-planner .journey-blurb { color: var(--ink-muted); margin: 4px 0 18px; font-size: 1rem; }
+    .journey-planner .waypoint-list { list-style: none; margin: 0 0 22px; padding: 0; }
+    .journey-planner .waypoint-list li { position: relative; padding: 0 0 13px 26px; }
+    .journey-planner .waypoint-list li::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 7px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--yellow-deep);
+      box-shadow: 0 0 0 3px var(--yellow-soft);
+    }
+    .journey-planner .waypoint-list li::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 21px;
+      bottom: -1px;
+      border-left: 2px dashed rgba(245, 196, 0, 0.45);
+    }
+    .journey-planner .waypoint-list li:last-child { padding-bottom: 0; }
+    .journey-planner .waypoint-list li:last-child::after { display: none; }
+    .journey-planner .journey-links { columns: 2; column-gap: 32px; }
+    .journey-planner .journey-links li { break-inside: avoid; }
+    .journey-planner .journey-links a {
+      color: var(--ink);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(245, 196, 0, 0.55);
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+    .journey-planner .journey-links a:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
+    .journey-planner .journey-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 22px; }
+    .journey-planner .journey-quiet-link {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(245, 196, 0, 0.55);
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+    .journey-planner .journey-quiet-link:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
+
+    @media (max-width: 980px) {
+      .journey-planner .journey-route { grid-template-columns: repeat(3, 1fr); row-gap: 4px; }
+      .journey-planner .journey-track, .journey-planner .journey-plane { display: none; }
+      .journey-planner .journey-stop { flex-direction: row; justify-content: flex-start; padding: 10px 8px; gap: 10px; min-height: 48px; }
+      /* Plane is hidden here — the selected stop keeps a persistent filled state */
+      .journey-planner .journey-stop[aria-selected="true"] { background: var(--yellow-soft); }
+      .journey-planner .journey-links { columns: 1; }
+    }
+  </style>
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
@@ -83,6 +266,176 @@
           <span>FAA Certificated Flight Instructor</span>
           <span>Bowman Field KLOU</span>
           <span>Private pilot planning</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey-planner" aria-labelledby="journey-planner-heading">
+      <div class="container">
+        <div class="journey-planner-head">
+          <span class="eyebrow">Choose your path</span>
+          <h2 id="journey-planner-heading">Where are you on the route?</h2>
+          <p>Pick your leg of the journey and get a curated flight plan of guides for exactly that stage.</p>
+        </div>
+
+        <div class="journey" data-journey>
+          <div class="journey-route" role="tablist" aria-label="Training journey stages">
+            <span class="journey-track" aria-hidden="true"></span>
+            <span class="journey-plane" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
+            </span>
+            <button type="button" class="journey-stop cat-ground-school" role="tab" id="jtab-explore" aria-controls="jpanel-explore" aria-selected="true">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <span class="journey-stop-label">Just exploring</span>
+            </button>
+            <button type="button" class="journey-stop cat-student-pilot" role="tab" id="jtab-student" aria-controls="jpanel-student" aria-selected="false" tabindex="-1">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <span class="journey-stop-label">Student Pilot</span>
+            </button>
+            <button type="button" class="journey-stop cat-private-pilot" role="tab" id="jtab-private" aria-controls="jpanel-private" aria-selected="false" tabindex="-1">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <span class="journey-stop-label">Private Pilot</span>
+            </button>
+            <button type="button" class="journey-stop cat-instrument-rating" role="tab" id="jtab-instrument" aria-controls="jpanel-instrument" aria-selected="false" tabindex="-1">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <span class="journey-stop-label">Instrument</span>
+            </button>
+            <button type="button" class="journey-stop cat-commercial-pilot" role="tab" id="jtab-commercial" aria-controls="jpanel-commercial" aria-selected="false" tabindex="-1">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <span class="journey-stop-label">Commercial</span>
+            </button>
+            <button type="button" class="journey-stop cat-cfi" role="tab" id="jtab-cfi" aria-controls="jpanel-cfi" aria-selected="false" tabindex="-1">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <span class="journey-stop-label">CFI</span>
+            </button>
+          </div>
+
+          <div class="journey-panels">
+            <div class="journey-panel cat-ground-school" role="tabpanel" id="jpanel-explore" aria-labelledby="jtab-explore">
+              <div class="journey-panel-head">
+                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 1 of 6</span>
+                <span class="journey-count">Start of the route</span>
+              </div>
+              <p class="journey-blurb">Curious about flying but haven't started? Begin with what training really involves, costs, and feels like at Bowman Field.</p>
+              <ul class="waypoint-list journey-links">
+                <li><a href="/blog/discovery-flight-bowman-field/">What a discovery flight at Bowman Field is like</a></li>
+                <li><a href="/blog/private-pilot-timeline-louisville/">How long the private pilot certificate really takes</a></li>
+                <li><a href="/blog/private-pilot-cost-louisville-ky/">What a private pilot certificate actually costs</a></li>
+                <li><a href="/blog/basicmed-vs-third-class-medical/">BasicMed vs. third-class medical vs. sport pilot</a></li>
+              </ul>
+              <div class="journey-actions">
+                <a class="btn btn--tertiary journey-cta" href="#quick-contact" data-cta-id="home-journey-explore">
+                  Plan your first step
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="journey-quiet-link" href="/discovery-flight-louisville-ky/" data-cta-id="home-journey-explore-discovery">Book a discovery flight <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <div class="journey-panel cat-student-pilot" role="tabpanel" id="jpanel-student" aria-labelledby="jtab-student" hidden>
+              <div class="journey-panel-head">
+                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 2 of 6</span>
+                <span class="journey-count">Student Pilot</span>
+              </div>
+              <p class="journey-blurb">You're in training. Here's what to nail down before solo and your first cross-country.</p>
+              <ul class="waypoint-list journey-links">
+                <li><a href="/learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/">How to Get a Student Pilot Certificate Step by Step</a></li>
+                <li><a href="/learn/private-pilot/6-reasons-why-student-pilots-quit/">6 Reasons Student Pilots Quit Flight Training</a></li>
+                <li><a href="/learn/private-pilot/airplane-landing-technique-student-pilots/">Airplane Landing Technique for Student Pilots</a></li>
+                <li><a href="/learn/private-pilot/cross-country-flight-plan-made-easy-with-tips-and-examples/">Cross-Country Flight Plan Made Easy (With Tips &amp; Examples)</a></li>
+              </ul>
+              <div class="journey-actions">
+                <a class="btn btn--tertiary journey-cta" href="/learn/private-pilot/" data-cta-id="home-journey-student">
+                  See student pilot guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="journey-quiet-link" href="/ground-school-louisville-ky/" data-cta-id="home-journey-student-ground">One-on-one ground instruction <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <div class="journey-panel cat-private-pilot" role="tabpanel" id="jpanel-private" aria-labelledby="jtab-private" hidden>
+              <div class="journey-panel-head">
+                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 3 of 6</span>
+                <span class="journey-count">91 guides</span>
+              </div>
+              <p class="journey-blurb">Working toward the private pilot checkride? These guides cover the checkride, maneuvers, and the ACS.</p>
+              <ul class="waypoint-list journey-links">
+                <li><a href="/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/">10 Tips for Passing Your Private Pilot Checkride</a></li>
+                <li><a href="/blog/private-pilot-cost-louisville-ky/">How Much Does a Private Pilot Certificate Actually Cost?</a></li>
+                <li><a href="/learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/">10 Inspirational Flying Quotes for Student Pilots</a></li>
+                <li><a href="/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/">How to Prepare for Your Private Pilot Checkride</a></li>
+              </ul>
+              <div class="journey-actions">
+                <a class="btn btn--tertiary journey-cta" href="/learn/private-pilot/" data-cta-id="home-journey-private">
+                  View all private pilot guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="journey-quiet-link" href="/checkride-oral-prep/" data-cta-id="home-journey-private-oral">Practice the checkride oral <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <div class="journey-panel cat-instrument-rating" role="tabpanel" id="jpanel-instrument" aria-labelledby="jtab-instrument" hidden>
+              <div class="journey-panel-head">
+                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 4 of 6</span>
+                <span class="journey-count">36 guides</span>
+              </div>
+              <p class="journey-blurb">Flying into the clouds means new rules and new precision. Start here for the instrument rating.</p>
+              <ul class="waypoint-list journey-links">
+                <li><a href="/learn/ground-school/how-to-get-an-instrument-rating-step-by-step/">How to Get an Instrument Rating Step by Step</a></li>
+                <li><a href="/learn/ground-school/why-instrument-rating-ground-school-matters/">Why Instrument Rating Ground School Matters</a></li>
+                <li><a href="/learn/ground-school/ifr-vs-vfr-in-aviation-understanding-the-differences/">IFR vs. VFR: Key Differences for Pilots</a></li>
+                <li><a href="/learn/ground-school/how-to-read-an-ifr-approach-chart/">How to Read an IFR Approach Chart</a></li>
+              </ul>
+              <div class="journey-actions">
+                <a class="btn btn--tertiary journey-cta" href="/learn/instrument-rating/" data-cta-id="home-journey-instrument">
+                  View all instrument rating guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="journey-quiet-link" href="/faa-written-test-prep/" data-cta-id="home-journey-instrument-written">Prep for the instrument written <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <div class="journey-panel cat-commercial-pilot" role="tabpanel" id="jpanel-commercial" aria-labelledby="jtab-commercial" hidden>
+              <div class="journey-panel-head">
+                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 5 of 6</span>
+                <span class="journey-count">30 guides</span>
+              </div>
+              <p class="journey-blurb">Turning flying into a career starts with the commercial certificate. Here's the path.</p>
+              <ul class="waypoint-list journey-links">
+                <li><a href="/learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/">How to Get a Commercial Certificate Step by Step</a></li>
+                <li><a href="/learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/">Commercial Pilot Timeline: From Private to CPL</a></li>
+                <li><a href="/learn/career-and-cfi/low-time-pilot-jobs-and-how-to-build-airplane-hours/">Low-Time Pilot Jobs and How to Build Airplane Hours</a></li>
+              </ul>
+              <div class="journey-actions">
+                <a class="btn btn--tertiary journey-cta" href="/learn/commercial-pilot/" data-cta-id="home-journey-commercial">
+                  View all commercial pilot guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="journey-quiet-link" href="/part-61-calculator/" data-cta-id="home-journey-commercial-part61">Audit your Part 61 hours <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <div class="journey-panel cat-cfi" role="tabpanel" id="jpanel-cfi" aria-labelledby="jtab-cfi" hidden>
+              <div class="journey-panel-head">
+                <span class="you-are-here"><span class="waypoint-dot" aria-hidden="true"></span> You are here · Leg 6 of 6</span>
+                <span class="journey-count">20 guides</span>
+              </div>
+              <p class="journey-blurb">Ready to teach? Here's the real path from commercial pilot to certified flight instructor.</p>
+              <ul class="waypoint-list journey-links">
+                <li><a href="/blog/path-to-cfi-louisville/">From Commercial Pilot to CFI — The Real Path</a></li>
+                <li><a href="/simply-endorsed/blog/cfi-endorsements/">CFI Endorsements Explained</a></li>
+                <li><a href="/learn/career-and-cfi/how-to-become-a-flight-instructor/">How to Become a Flight Instructor</a></li>
+                <li><a href="/learn/career-and-cfi/how-to-make-cfi-flashcards-that-actually-work/">How to Make CFI Flashcards That Actually Work</a></li>
+              </ul>
+              <div class="journey-actions">
+                <a class="btn btn--tertiary journey-cta" href="/learn/career-and-cfi/" data-cta-id="home-journey-cfi">
+                  View all CFI guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="journey-quiet-link" href="/foi-cards/" data-cta-id="home-journey-cfi-foi">Drill the FOI flashcards <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -336,6 +689,44 @@
     }
   ]
 }
+  </script>
+  <script>
+  (function () {
+    var journey = document.querySelector('[data-journey]');
+    if (!journey) return;
+    var tabs = Array.prototype.slice.call(journey.querySelectorAll('.journey-stop'));
+    var panels = Array.prototype.slice.call(journey.querySelectorAll('.journey-panel'));
+    var route = journey.querySelector('.journey-route');
+
+    function movePlane(tab) {
+      var x = tab.offsetLeft + tab.offsetWidth / 2;
+      route.style.setProperty('--plane-x', x + 'px');
+    }
+    function selectStop(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach(function (p) { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
+      movePlane(tab);
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { selectStop(tab, false); });
+      tab.addEventListener('keydown', function (e) {
+        var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!dir) return;
+        e.preventDefault();
+        selectStop(tabs[(i + dir + tabs.length) % tabs.length], true);
+      });
+    });
+    window.addEventListener('resize', function () {
+      var current = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0];
+      if (current) movePlane(current);
+    });
+    movePlane(tabs[0]);
+  })();
   </script>
   <script src="/assets/site-nav.js" defer></script>
   </body>

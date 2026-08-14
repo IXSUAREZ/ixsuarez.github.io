@@ -220,48 +220,43 @@
     }
 
     /* ==========================================================================
-       About — asymmetric overlap: certificate profile card + paper bio panel
+       About — one paper panel: photo + bio above, credential ledger below
        ========================================================================== */
-    .about-asymmetric {
-      display: grid;
-      grid-template-columns: 5fr 7fr;
-      align-items: center;
-    }
-    .about-profile-col { position: relative; z-index: 2; margin-right: -64px; }
-    .profile {
-      width: 100%;
-      border-radius: var(--r-card);
-      padding: 16px 16px 22px;
-      text-align: left;
-      background: var(--paper-bg);
+    .about-panel {
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
-    }
-    .cert-topline {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 6px 6px 12px;
-      font-size: 8.5px;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(28, 33, 66, 0.45);
-    }
-    .profile-photo {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 16px 36px -10px rgba(13, 19, 48, 0.18);
+      padding: clamp(24px, 4vw, 44px);
     }
+    .about-main {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    .about-copy h2 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 22px 0 14px;
+    }
+    .about-text { color: var(--ink-muted); font-size: 1.05rem; line-height: 1.65; margin: 0; }
     .profile-avail {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin: 16px 4px 8px;
+      margin: 18px 0 0;
       color: var(--ink);
       font-size: 14px;
       font-weight: 600;
@@ -272,104 +267,31 @@
       border-radius: 50%;
       background: var(--green);
     }
-    .cert-fields { margin: 8px 4px 0; border-top: 2px solid rgba(28, 33, 66, 0.14); }
-    .cert-field {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 10px 2px 9px;
-      border-bottom: 1px dashed rgba(28, 33, 66, 0.13);
-    }
-    .cert-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(28, 33, 66, 0.45);
-    }
-    .cert-field .cert-value { font-weight: 600; font-size: 0.92rem; color: var(--ink); line-height: 1.35; }
-    .cert-field--name h3 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.75rem;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--ink);
-    }
-    .cert-sigrow { display: flex; align-items: center; justify-content: space-between; padding: 12px 6px 14px; }
-    .cert-signature { font-family: var(--font-signature); font-size: 2.05rem; color: var(--navy); transform: rotate(-2deg); }
-    .cert-seal { width: 46px; height: 46px; color: var(--yellow-deep); filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.5)); }
-    .cert-seal svg { width: 100%; height: 100%; }
-
-    .about-content-col {
-      position: relative;
-      z-index: 1;
-      background: var(--paper-bg);
-      border: 1px solid var(--border);
-      border-radius: 34px;
-      box-shadow: var(--shadow-sm);
-      padding: clamp(34px, 4.5vw, 56px) clamp(26px, 4vw, 50px) clamp(34px, 4.5vw, 52px) clamp(84px, 10vw, 128px);
-    }
-    .about-section-label {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--yellow-ink);
-    }
-    .about-heading {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      margin: 14px 0 18px;
-    }
-    /* The manifesto survives here as the column's one opening line */
-    .about-quote {
-      margin: 0 0 20px;
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 500;
-      font-size: clamp(1.4rem, 2.4vw, 1.8rem);
-      line-height: 1.3;
-      color: var(--ink);
-    }
-    .about-text { color: var(--ink-muted); font-size: 1.05rem; line-height: 1.65; margin: 0; }
-    .about-handwriting-quote {
-      margin: 24px 0 0;
-      border-left: 4px solid var(--yellow);
-      padding: 4px 0 4px 20px;
-    }
-    .about-handwriting-quote p {
-      margin: 0;
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 500;
-      font-size: 1.3rem;
-      line-height: 1.45;
+    /* The section's single script element — plain: no rule box, no background */
+    .about-signature {
+      margin: 20px 0 6px;
+      font-family: var(--font-signature);
+      font-size: 1.6rem;
+      line-height: 1.4;
       color: var(--navy);
     }
-    /* Credential ledger — the logbook pattern: one letterhead, one seal, ruled rows.
+    .about-copy .btn--tertiary { margin-left: -8px; }
+    /* Credential ledger — the logbook pattern: one head line, ruled rows.
        Canonical credential rendering for the domain (see DESIGN.md). Read, not pressed. */
-    .credential-ledger { margin-top: 34px; }
-    .ledger-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-bottom: 12px;
+    .credential-ledger {
+      margin-top: clamp(26px, 4vw, 40px);
+      padding-top: clamp(22px, 3vw, 30px);
+      border-top: 1px solid var(--border);
     }
     .ledger-authority {
+      display: block;
+      padding-bottom: 4px;
       font-size: 10.5px;
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(28, 33, 66, 0.5);
+      color: var(--ink-muted);
     }
-    .ledger-seal { width: 30px; height: 30px; flex: none; filter: none; opacity: 0.9; }
     .ledger-rows { margin: 0; }
     .ledger-row {
       display: flex;
@@ -421,105 +343,185 @@
       gap: 4px 14px;
     }
     .services-strip-row .btn--primary { margin-right: 8px; }
-    .services-route-line {
-      margin: 20px 0 0;
-      font-size: 14px;
-      color: var(--ink-muted);
-    }
-    .services-route-line a {
-      color: var(--ink-muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(245, 196, 0, 0.55);
-      transition: color 0.2s ease, text-decoration-color 0.2s ease;
-    }
-    .services-route-line a:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
 
     /* ==========================================================================
-       Journey — decorative route map (one plane flight) + read-only ledger
-       The interactive planner lives at /flight-training-louisville-ky/.
+       Journey — the detent slider: six stops on one hairline track. The plane
+       needle glides to the checked stage; its panel fades in below. State is
+       pure CSS (:checked + :has()) — browsers without :has() get all six
+       panels stacked. The interactive planner lives at /flight-training-louisville-ky/.
        ========================================================================== */
-    .journey-route {
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .journey-sheet {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      border-radius: 20px;
+      padding: clamp(24px, 4vw, 40px);
+    }
+    .journey-slider { border: 0; margin: 0; padding: 0; min-width: 0; }
+    .journey-trackwrap {
       position: relative;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 4px;
-      padding-top: 12px;
-      container-type: inline-size;
+      padding-top: 38px; /* the plane's lane above the track */
+    }
+    .journey-slider input[type="radio"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
     }
     .journey-track {
       position: absolute;
-      left: 6%;
-      right: 6%;
-      top: 33px;
-      border-top: 2px dashed rgba(20, 26, 53, 0.18);
+      left: calc(100% / 12);
+      right: calc(100% / 12);
+      top: 60px; /* dot center: 38px lane + half of the 44px hit area */
+      height: 2px;
+      margin-top: -1px;
+      background: var(--border-strong);
+      pointer-events: none;
     }
     .journey-plane {
       position: absolute;
-      top: 19px;
-      left: 0;
+      top: 52px;
+      left: calc(100% / 12);
       width: 30px;
       height: 30px;
       color: var(--yellow-deep);
       filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.55));
-      transform: translateX(calc(91.67cqw - 50%));
+      transform: translate(-50%, -100%);
+      transition: left 450ms cubic-bezier(0.22, 1, 0.36, 1), transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
       z-index: 2;
       pointer-events: none;
     }
-    /* The plane's one flight — first stop to last, fired when the route reveals.
-       Reduced motion: the global rule strips the animation and the plane
-       simply rests at the end of the route. */
-    .journey-route.reveal-in .journey-plane {
-      animation: journey-plane-flight 2.6s cubic-bezier(0.25, 0.7, 0.25, 1) 0.35s both;
-    }
-    @keyframes journey-plane-flight {
-      from { transform: translateX(calc(8.33cqw - 50%)); }
-      to   { transform: translateX(calc(91.67cqw - 50%)); }
-    }
+    .journey-plane svg { display: block; width: 100%; height: 100%; }
+    .journey-plane.is-gliding { transform: translate(-50%, -100%) rotate(8deg); }
+    .journey-slider:has(#js-student:checked) .journey-plane { left: 25%; }
+    .journey-slider:has(#js-private:checked) .journey-plane { left: 41.667%; }
+    .journey-slider:has(#js-instrument:checked) .journey-plane { left: 58.333%; }
+    .journey-slider:has(#js-commercial:checked) .journey-plane { left: 75%; }
+    .journey-slider:has(#js-cfi:checked) .journey-plane { left: 91.667%; }
     .journey-stop {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 11px;
-      padding: 18px 4px 10px;
+      gap: 10px;
+      cursor: pointer;
       position: relative;
-      z-index: 1;
+      z-index: 1; /* stops paint above the track hairline */
+    }
+    .journey-dotbox {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .journey-dot {
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      background: #fff;
-      border: 2px solid rgba(20, 26, 53, 0.2);
+      background: var(--paper-bg);
+      border: 2px solid var(--border-strong);
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .journey-stop-label { font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+    .journey-slider input:checked + .journey-stop .journey-dot {
+      background: var(--navy);
+      border-color: var(--yellow-deep);
+    }
+    .journey-slider input:focus-visible + .journey-stop .journey-dot {
+      outline: 2px solid var(--yellow-deep);
+      outline-offset: 2px;
+    }
+    .journey-stop-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      transition: color 0.2s ease;
+    }
+    .journey-slider input:checked + .journey-stop .journey-stop-label { color: var(--ink); }
+    @media (max-width: 700px) {
+      .journey-stop-label { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .journey-plane.is-gliding { transform: translate(-50%, -100%); }
+    }
 
-    /* Read-only ledger — six ruled rows. Read, not pressed: no hover, no chrome. */
-    .journey-ledger { margin-top: 44px; }
-    .journey-leg {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px 28px;
-      padding: 22px 2px;
-      border-top: 1px solid var(--border);
+    /* Panels — one per stop. Base flow stacks all six (the no-:has() fallback);
+       :has() browsers share one grid cell and fade the checked stage's panel in. */
+    .journey-panels { display: grid; gap: 30px; margin-top: clamp(24px, 4vw, 36px); }
+    .journey-panel { position: relative; }
+    .journey-panel-eyebrow {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
     }
-    .journey-leg h3 {
-      margin: 0 0 5px;
+    .journey-panel h3 {
+      margin: 10px 0 8px;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 17px;
-      letter-spacing: -0.01em;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
       color: var(--ink);
     }
-    .journey-leg p {
+    .journey-panel p {
       margin: 0;
       color: var(--ink-muted);
-      font-size: 0.95rem;
-      line-height: 1.55;
-      max-width: 620px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      max-width: 640px;
     }
-    .journey-leg .btn { flex: none; }
+    .journey-panel-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      min-height: 44px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .journey-panel-link svg { width: 16px; height: 16px; transition: transform 0.22s var(--ease-premium); }
+    .journey-panel-link:hover svg { transform: translateX(2px); }
+    /* Stretched link — the whole panel presses; text stays selectable, the
+       link stays the panel's only tab stop. */
+    .journey-panel-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    .journey-panel > *:not(.journey-panel-link) { position: relative; z-index: 2; }
+    @supports selector(:has(*)) {
+      .journey-panels { gap: 0; }
+      .journey-panel {
+        grid-area: 1 / 1;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 200ms ease, visibility 0s linear 200ms;
+      }
+      .journey-slider:has(#js-explore:checked) .journey-panel--explore,
+      .journey-slider:has(#js-student:checked) .journey-panel--student,
+      .journey-slider:has(#js-private:checked) .journey-panel--private,
+      .journey-slider:has(#js-instrument:checked) .journey-panel--instrument,
+      .journey-slider:has(#js-commercial:checked) .journey-panel--commercial,
+      .journey-slider:has(#js-cfi:checked) .journey-panel--cfi {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 200ms ease;
+      }
+    }
 
     /* ==========================================================================
        Tools dock — The Hangar: paper-press cards (hover warms, never lifts)
@@ -699,14 +701,6 @@
     @media (max-width: 980px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero-visual { min-height: 440px; max-width: 560px; margin: 0 auto; width: 100%; }
-
-      .journey-route { grid-template-columns: repeat(3, 1fr); row-gap: 4px; }
-      .journey-track, .journey-plane { display: none; }
-      .journey-stop { flex-direction: row; justify-content: flex-start; padding: 10px 8px; gap: 10px; }
-
-      .about-asymmetric { grid-template-columns: 1fr; gap: 28px; }
-      .about-profile-col { margin-right: 0; max-width: 460px; margin-left: auto; margin-right: auto; }
-      .about-content-col { padding: clamp(30px, 6vw, 44px); }
     }
 
     @media (max-width: 780px) {
@@ -723,7 +717,7 @@
       .services-strip-row .btn--primary { justify-content: center; margin-right: 0; }
       .services-strip-row .btn--tertiary { align-self: flex-start; }
 
-      .journey-leg { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .about-main { grid-template-columns: 1fr; }
 
       .tools-dock-row {
         display: flex;
@@ -839,101 +833,49 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
         </nav>
-        <p class="services-route-line">Where are you on the route? <a href="/discovery-flight-louisville-ky/">Exploring</a> · <a href="/learn/private-pilot/">Student</a> · <a href="/learn/private-pilot/">Private</a> · <a href="/learn/instrument-rating/">Instrument</a> · <a href="/learn/commercial-pilot/">Commercial</a> · <a href="/learn/career-and-cfi/">CFI</a> — <a href="/flight-training-louisville-ky/">full training plan →</a></p>
       </div>
     </section>
 
     <section aria-labelledby="profile-heading" id="about">
       <div class="container">
-        <div class="about-asymmetric">
-
-          <!-- Left: Profile card (overlaps the right card) -->
-          <div class="about-profile-col">
-            <article class="profile profile--certificate">
-              <div class="cert-topline" aria-hidden="true">
-                <span>Flight &amp; Ground Instruction</span>
-                <span>Louisville · KY</span>
-              </div>
-              <img src="assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Certificated Flight Instructor based in Louisville, Kentucky" class="profile-photo" width="640" height="640" loading="lazy" decoding="async" />
+        <div class="about-panel">
+          <div class="about-main">
+            <img src="assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Certificated Flight Instructor based in Louisville, Kentucky" class="about-photo" width="640" height="800" loading="lazy" decoding="async" />
+            <div class="about-copy">
+              <span class="eyebrow">Your instructor · Bowman Field (KLOU)</span>
+              <h2 id="profile-heading">Meet Diego Suarez.</h2>
+              <p class="about-text">I'm 24 years old, and while flying wasn't always my plan, the aviation bug bit me — and I never looked back. I did my training at the Kentucky Flight Training Center at Bowman Field (KLOU), and I'm grateful for the instructors and mentors who guided me. Now I love sharing what I've learned — helping you build a strong, safe, standards-based foundation.</p>
               <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
-              <div class="cert-fields">
-                <div class="cert-field cert-field--name">
-                  <span class="cert-label">Name</span>
-                  <h3 id="profile-heading">Diego Suarez</h3>
-                </div>
-                <div class="cert-field">
-                  <span class="cert-label">Certificates</span>
-                  <span class="cert-value">Certificated Flight Instructor · Advanced Ground Instructor · Commercial Pilot (Instrument)</span>
-                </div>
-                <div class="cert-field">
-                  <span class="cert-label">Base</span>
-                  <span class="cert-value">Bowman Field (KLOU) · Louisville, Kentucky</span>
-                </div>
-              </div>
-              <div class="cert-sigrow" aria-hidden="true">
-                <span class="cert-signature">Diego Suarez</span>
-                <span class="cert-seal">
-                  <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-                    <path d="M24 2l3.1 4.3 4.9-1.9.9 5.2 5.2.9-1.9 4.9L44.6 24l-4.3 3.1 1.9 4.9-5.2.9-.9 5.2-4.9-1.9L24 44.6l-3.1-4.3-4.9 1.9-.9-5.2-5.2-.9 1.9-4.9L3.4 24l4.3-3.1-1.9-4.9 5.2-.9.9-5.2 4.9 1.9z"/>
-                    <circle cx="24" cy="24" r="13" fill="#fff" opacity=".9"/>
-                    <path d="M24 15l2 6.2h6.2l-5 3.8 1.9 6-5.1-3.7-5.1 3.7 1.9-6-5-3.8h6.2z"/>
-                  </svg>
-                </span>
-              </div>
-            </article>
+              <p class="about-signature">"Flying is the dream. Understanding it is what makes you confident."</p>
+              <a class="btn btn--tertiary" href="#contact" data-cta-id="home-about-hello">Say hello →</a>
+            </div>
           </div>
 
-          <!-- Right: Bio content card -->
-          <div class="about-content-col">
-            <span class="about-section-label">Bowman Field · KLOU · Louisville, KY</span>
-            <h2 class="about-heading">Flight training starts<br>with the right foundation.</h2>
-
-            <p class="about-quote">“Confidence in the cockpit starts on the ground.”</p>
-
-            <p class="about-text">
-              I'm 24 years old, and while flying wasn't always my plan, one thing led to another and the aviation bug bit me—after that, I could no longer look away. I did my training at the Kentucky Flight Training Center at Bowman Field (KLOU), and I'm incredibly grateful for the amazing instructors and mentors who guided me along the way. I love educating and teaching, and I look forward to sharing everything I’ve learned to help you build a strong, safe, and standards-based foundation.
-            </p>
-
-            <!-- Handwriting-style personal quote -->
-            <div class="about-handwriting-quote">
-              <p>"Flying is the dream. Understanding it is what makes you confident."</p>
-            </div>
-
-            <!-- Credential ledger — one letterhead, one seal, ruled rows -->
-            <div class="credential-ledger" aria-label="Diego Suarez FAA credentials">
-              <div class="ledger-head">
-                <span class="ledger-authority">Federal Aviation Administration · Certificates &amp; Ratings</span>
-                <span class="cert-seal ledger-seal" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-                    <path d="M24 2l3.1 4.3 4.9-1.9.9 5.2 5.2.9-1.9 4.9L44.6 24l-4.3 3.1 1.9 4.9-5.2.9-.9 5.2-4.9-1.9L24 44.6l-3.1-4.3-4.9 1.9-.9-5.2-5.2-.9 1.9-4.9L3.4 24l4.3-3.1-1.9-4.9 5.2-.9.9-5.2 4.9 1.9z"/>
-                    <circle cx="24" cy="24" r="13" fill="#fff" opacity=".9"/>
-                    <path d="M24 15l2 6.2h6.2l-5 3.8 1.9 6-5.1-3.7-5.1 3.7 1.9-6-5-3.8h6.2z"/>
-                  </svg>
-                </span>
+          <!-- Credential ledger — one head line, five ruled rows -->
+          <div class="credential-ledger" aria-label="Diego Suarez FAA credentials">
+            <span class="ledger-authority">Certificates &amp; Ratings · Federal Aviation Administration</span>
+            <dl class="ledger-rows">
+              <div class="ledger-row">
+                <dt>Certificated Flight Instructor</dt>
+                <dd>CFI · ASEL · FAA 14 CFR § 61.183</dd>
               </div>
-              <dl class="ledger-rows">
-                <div class="ledger-row">
-                  <dt>Certificated Flight Instructor</dt>
-                  <dd>CFI · ASEL · FAA 14 CFR § 61.183</dd>
-                </div>
-                <div class="ledger-row">
-                  <dt>Advanced Ground Instructor</dt>
-                  <dd>AGI · FAA 14 CFR § 61.215</dd>
-                </div>
-                <div class="ledger-row">
-                  <dt>Commercial Pilot</dt>
-                  <dd>CPL · ASEL · FAA 14 CFR § 61.123</dd>
-                </div>
-                <div class="ledger-row">
-                  <dt>Instrument Rating</dt>
-                  <dd>IR · ASEL · FAA 14 CFR § 61.65</dd>
-                </div>
-                <div class="ledger-row">
-                  <dt>Private Pilot</dt>
-                  <dd>PPL · ASEL · FAA 14 CFR § 61.109</dd>
-                </div>
-              </dl>
-            </div>
+              <div class="ledger-row">
+                <dt>Advanced Ground Instructor</dt>
+                <dd>AGI · FAA 14 CFR § 61.215</dd>
+              </div>
+              <div class="ledger-row">
+                <dt>Commercial Pilot</dt>
+                <dd>CPL · ASEL · FAA 14 CFR § 61.123</dd>
+              </div>
+              <div class="ledger-row">
+                <dt>Instrument Rating</dt>
+                <dd>IR · ASEL · FAA 14 CFR § 61.65</dd>
+              </div>
+              <div class="ledger-row">
+                <dt>Private Pilot</dt>
+                <dd>PPL · ASEL · FAA 14 CFR § 61.109</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
@@ -944,85 +886,88 @@
         <div class="section-header">
           <span class="eyebrow">Choose your path</span>
           <h2 id="journey-heading">Where are you on the route?</h2>
-          <p>Pick your leg of the journey and get a curated flight plan of guides for exactly that stage.</p>
+          <p>Set your stage and get a curated flight plan of guides for exactly that leg.</p>
         </div>
 
-        <!-- Decorative route map — read-only; the plane makes its one flight on reveal -->
-        <div class="journey-route" aria-hidden="true">
-          <span class="journey-track"></span>
-          <span class="journey-plane">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
-          </span>
-          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Just exploring</span></span>
-          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Student Pilot</span></span>
-          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Private Pilot</span></span>
-          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Instrument</span></span>
-          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">Commercial</span></span>
-          <span class="journey-stop"><span class="journey-dot"></span><span class="journey-stop-label">CFI</span></span>
-        </div>
+        <div class="journey-sheet">
+          <fieldset class="journey-slider">
+            <legend class="visually-hidden">Your training stage</legend>
+            <div class="journey-trackwrap">
+              <span class="journey-track" aria-hidden="true"></span>
+              <input type="radio" name="journey-stage" id="js-explore" checked />
+              <label class="journey-stop" for="js-explore"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Just exploring</span></label>
+              <input type="radio" name="journey-stage" id="js-student" />
+              <label class="journey-stop" for="js-student"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Student Pilot</span></label>
+              <input type="radio" name="journey-stage" id="js-private" />
+              <label class="journey-stop" for="js-private"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Private Pilot</span></label>
+              <input type="radio" name="journey-stage" id="js-instrument" />
+              <label class="journey-stop" for="js-instrument"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Instrument</span></label>
+              <input type="radio" name="journey-stage" id="js-commercial" />
+              <label class="journey-stop" for="js-commercial"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Commercial</span></label>
+              <input type="radio" name="journey-stage" id="js-cfi" />
+              <label class="journey-stop" for="js-cfi"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">CFI</span></label>
+              <span class="journey-plane" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
+              </span>
+            </div>
 
-        <!-- Read-only ledger: six ruled rows, one quiet link each -->
-        <div class="journey-ledger">
-          <div class="journey-leg">
-            <div>
-              <h3>Just exploring</h3>
-              <p>Curious about flying but haven't started? What training really involves, costs, and feels like at Bowman Field.</p>
+            <div class="journey-panels">
+              <article class="journey-panel journey-panel--explore">
+                <span class="journey-panel-eyebrow">01 / 06</span>
+                <h3>Just exploring</h3>
+                <p>Curious about flying but haven't started? What training really involves, costs, and feels like at Bowman Field.</p>
+                <a class="journey-panel-link" href="/flight-training-louisville-ky/" data-cta-id="home-journey-explore">
+                  Plan your first step
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+              </article>
+              <article class="journey-panel journey-panel--student">
+                <span class="journey-panel-eyebrow">02 / 06</span>
+                <h3>Student Pilot</h3>
+                <p>You're in training — what to nail down before solo and your first cross-country.</p>
+                <a class="journey-panel-link" href="/learn/private-pilot/" data-cta-id="home-journey-student">
+                  Student pilot guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+              </article>
+              <article class="journey-panel journey-panel--private">
+                <span class="journey-panel-eyebrow">03 / 06</span>
+                <h3>Private Pilot</h3>
+                <p>Working toward the private pilot checkride — the ACS, maneuvers, and checkride guides.</p>
+                <a class="journey-panel-link" href="/learn/private-pilot/" data-cta-id="home-journey-private">
+                  Private pilot guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+              </article>
+              <article class="journey-panel journey-panel--instrument">
+                <span class="journey-panel-eyebrow">04 / 06</span>
+                <h3>Instrument</h3>
+                <p>New rules and new precision — start here for the instrument rating.</p>
+                <a class="journey-panel-link" href="/learn/instrument-rating/" data-cta-id="home-journey-instrument">
+                  Instrument rating guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+              </article>
+              <article class="journey-panel journey-panel--commercial">
+                <span class="journey-panel-eyebrow">05 / 06</span>
+                <h3>Commercial</h3>
+                <p>Turning flying into a career starts with the commercial certificate — here's the path.</p>
+                <a class="journey-panel-link" href="/learn/commercial-pilot/" data-cta-id="home-journey-commercial">
+                  Commercial pilot guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+              </article>
+              <article class="journey-panel journey-panel--cfi">
+                <span class="journey-panel-eyebrow">06 / 06</span>
+                <h3>CFI</h3>
+                <p>The real path from commercial pilot to certificated flight instructor.</p>
+                <a class="journey-panel-link" href="/learn/career-and-cfi/" data-cta-id="home-journey-cfi">
+                  CFI guides
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+                </a>
+              </article>
             </div>
-            <a class="btn btn--tertiary" href="/flight-training-louisville-ky/" data-cta-id="home-journey-explore">
-              Plan your first step
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="journey-leg">
-            <div>
-              <h3>Student Pilot</h3>
-              <p>You're in training — what to nail down before solo and your first cross-country.</p>
-            </div>
-            <a class="btn btn--tertiary" href="/learn/private-pilot/" data-cta-id="home-journey-student">
-              Student pilot guides
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="journey-leg">
-            <div>
-              <h3>Private Pilot</h3>
-              <p>Working toward the private pilot checkride — the ACS, maneuvers, and checkride guides.</p>
-            </div>
-            <a class="btn btn--tertiary" href="/learn/private-pilot/" data-cta-id="home-journey-private">
-              Private pilot guides
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="journey-leg">
-            <div>
-              <h3>Instrument</h3>
-              <p>New rules and new precision — start here for the instrument rating.</p>
-            </div>
-            <a class="btn btn--tertiary" href="/learn/instrument-rating/" data-cta-id="home-journey-instrument">
-              Instrument rating guides
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="journey-leg">
-            <div>
-              <h3>Commercial</h3>
-              <p>Turning flying into a career starts with the commercial certificate — here's the path.</p>
-            </div>
-            <a class="btn btn--tertiary" href="/learn/commercial-pilot/" data-cta-id="home-journey-commercial">
-              Commercial pilot guides
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="journey-leg">
-            <div>
-              <h3>CFI</h3>
-              <p>The real path from commercial pilot to certificated flight instructor.</p>
-            </div>
-            <a class="btn btn--tertiary" href="/learn/career-and-cfi/" data-cta-id="home-journey-cfi">
-              CFI guides
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
+          </fieldset>
         </div>
       </div>
     </section>
@@ -1376,7 +1321,7 @@
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!('IntersectionObserver' in window)) return;
-      var selector = '.section-header, .credential-ledger, .profile--certificate, .about-content-col, .services-strip-row, .services-route-line, .journey-route, .journey-leg, .tool-card, .faq-sheet, .contact';
+      var selector = '.section-header, .about-panel, .services-strip-row, .journey-sheet, .tool-card, .faq-sheet, .contact';
       var els = Array.prototype.slice.call(document.querySelectorAll(selector));
       if (!els.length) return;
       var byParent = new Map();
@@ -1396,6 +1341,28 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
       els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+  <script>
+    // Journey detent slider — one subtle pitch while the plane glides to its
+    // stop. Pure decoration: state lives in CSS. Skipped under reduced motion
+    // (the plane snaps instantly, level).
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var slider = document.querySelector('.journey-slider');
+      var plane = document.querySelector('.journey-plane');
+      if (!slider || !plane) return;
+      var glideTimer;
+      function land() { plane.classList.remove('is-gliding'); }
+      slider.addEventListener('change', function (e) {
+        if (!e.target || e.target.name !== 'journey-stage') return;
+        plane.classList.add('is-gliding');
+        clearTimeout(glideTimer);
+        glideTimer = setTimeout(land, 450);
+      });
+      plane.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'left') land();
+      });
     })();
   </script>
   <script src="/assets/site-nav.js" defer></script>

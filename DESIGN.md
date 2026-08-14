@@ -9,13 +9,21 @@ never by drift.
 Each viewport has exactly ONE primary action (`.btn--primary`). Everything
 else is secondary (`.btn--secondary`) or quiet (`.btn--tertiary` / text
 links). If a screen seems to need two primaries, the page structure is wrong —
-re-split the content instead of stacking competing CTAs.
+re-split the content instead of stacking competing CTAs. The nav CTA and the
+in-content primary may share a viewport when they are the SAME action —
+repetition of one command is not competition.
 
 ## 2. Buttons: `.btn` in three weights
 
-- `.btn--primary` — the one forward action. Yellow gradient, navy ink.
-- `.btn--secondary` — supportive action, same geometry, quieter surface.
-- `.btn--tertiary` — text-and-arrow; for wayfinding that must not compete.
+- `.btn--primary` — "lacquer": two-stop 180° wash `--yellow-bright → --yellow`,
+  1px inset top highlight, `--shadow-sm`; NO halo, NO inverted variant.
+- `.btn--secondary` — paper-press pill.
+- `.btn--tertiary` — text-and-arrow (44px hit area, arrow travels 3px); for
+  wayfinding that must not compete.
+
+All weights share one geometry: min-height 52px, padding 0 28px, `--r-pill`.
+Hover is a state change (color/border/shadow, 150–200ms) — surfaces never
+lift. Press yields: `scale(0.97)`, ≤120ms, shadow collapses.
 
 No fourth weight. Radius and motion come from the shared tokens
 (`--r-pill: 999px`, `--ease-premium`). App-internal controls that are used
@@ -70,9 +78,13 @@ is loaded by another app's page.
 Three nav contexts, chosen by how the visitor arrives:
 
 1. **Site pill** (`.nav` inside `.nav-wrap`) — the canonical liquid-glass pill
-   with wordmark, Home/Learn/Blog/Tools dropdown, Contact, Plan Training CTA.
-   Every publishable page arrives on the full pill. Compress-on-scroll
-   (`.nav--compact` via `assets/site-nav.js`) is the only permitted mutation.
+   with wordmark (Home is the wordmark — no Home link), Learn, Blog, Tools
+   dropdown, Contact, and the CTA. The nav CTA is 'Book a Discovery Flight' →
+   `/discovery-flight-louisville-ky/` on every page; on the discovery-flight
+   page alone the per-page `.nav-cta` slot swaps to 'Call 502-510-0508'
+   (`tel:`). Every publishable page arrives on the full pill.
+   Compress-on-scroll (`.nav--compact` via `assets/site-nav.js`) is the only
+   permitted mutation.
 2. **Tool nav** (`.nav nav--tool`) — for repeatedly-used tools
    (`simply-endorsed-cfi/`, `part-61-calculator/`, `certificate-generator/`).
    Adds a brand cluster at the leading edge: quiet `.link-back`
@@ -120,7 +132,9 @@ Sync skips, deliberately:
 
 - Reveal: `reveal-up`, `0.9s cubic-bezier(0.16, 1, 0.3, 1)`
   (`--ease-premium`), staggered via `--reveal-delay`.
-- Hover lift on interactive cards/buttons: `translateY(-2px)`.
+- Hover: state change only (color, border, shadow, icon lean ≤2px) over
+  150–200ms. Nothing levitates — `translateY` on hover is banned domain-wide.
+  Press: `scale(0.97)`, ≤120ms.
 - The journey plane animates along the route track; it is the one piece of
   decorative motion on the home page.
 - `prefers-reduced-motion: reduce` disables animation/transition globally and
@@ -152,3 +166,22 @@ read, not pressed. This is the only way credentials render anywhere on the
 domain; it scales to N rows with zero layout debt. Anything that is not a
 control must not wear control chrome (glass, shadow, stamp).
 
+
+## 10. Materials: Air / Glass / Paper
+
+Three materials, each with one job:
+
+- **Air** — the page base (`--bg`, ambience, grain). All content rests on it.
+- **Glass** — floating chrome ONLY: nav pill, dropdown panel, mobile sheets and
+  conversion bar. Nothing in document flow wears glass (no glass eyebrows,
+  kickers, pills, FAQ rows, or form cards).
+- **Paper** — in-flow surfaces (`--paper-bg`, 1px `--border` hairline,
+  `--shadow-sm`, `--paper-radius: 20px`). Two finishes of one sheet:
+  `paper` (read: ledgers, FAQ sheets, bio, form sheet — zero interaction)
+  and `paper--press` (pressable cards: hover warms border to `--yellow-line`
+  and steps shadow to `--shadow-md`; never lifts, never glass).
+
+Yellow appears as ONE field per page maximum (e.g. the contact mat), and no
+control may sit directly on a yellow field — controls live on the inset paper
+sheet. Small machined yellow doses (primary button, focus rings, seals, open
+FAQ left rule) are always allowed.

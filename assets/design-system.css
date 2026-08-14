@@ -27,6 +27,10 @@
   --glass-blur: 16px;
   --glass-ring: 0 0 0 1px rgba(13, 19, 48, 0.04);
 
+  /* Paper material — in-flow surfaces (one sheet, two finishes) */
+  --paper-bg: rgba(255, 255, 255, 0.72);
+  --paper-radius: 20px;
+
   --shadow-sm: 0 2px 8px rgba(13, 19, 48, 0.05);
   --shadow-md: 0 14px 40px -12px rgba(13, 19, 48, 0.14);
   --shadow-lg: 0 30px 70px -18px rgba(13, 19, 48, 0.22);
@@ -145,52 +149,72 @@ textarea:focus-visible {
   z-index: 1;
 }
 
+/* Paper material — in-flow surfaces only (glass is reserved for floating chrome).
+   .paper = read (static content); .paper--press = pressable (hover warms, never lifts). */
+.paper {
+  background: var(--paper-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--paper-radius);
+  box-shadow: var(--shadow-sm);
+}
+.paper--press {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.paper--press:hover {
+  border-color: var(--yellow-line);
+  box-shadow: var(--shadow-md);
+}
+
 /* Shared Button Styles */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 15px 24px;
+  min-height: 52px;
+  padding: 0 28px;
   border-radius: var(--r-pill);
   font-weight: 600;
-  font-size: 15.5px;
+  font-size: 16px;
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.22s ease;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   font-family: var(--font-sans);
 }
 
 .btn svg {
   width: 16px;
   height: 16px;
+  transition: transform 0.18s var(--ease-premium);
 }
 
 .btn--primary {
-  background: linear-gradient(160deg, var(--yellow-bright) 0%, var(--yellow) 45%, var(--yellow-deep) 100%);
+  background: linear-gradient(180deg, var(--yellow-bright) 0%, var(--yellow) 100%);
   color: var(--navy);
   font-weight: 700;
-  box-shadow: var(--shadow-yellow), inset 0 1px 0 rgba(255,255,255,0.6);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 46px -12px rgba(245, 196, 0, 0.75), inset 0 1px 0 rgba(255,255,255,0.6);
+  background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
+  box-shadow: 0 2px 6px rgba(13, 19, 48, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn--primary:hover svg {
+  transform: translateX(2px);
 }
 
 .btn--secondary {
   color: var(--ink);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
+  background: var(--paper-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   border-radius: var(--r-pill);
 }
 
 .btn--secondary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg);
+  border-color: var(--yellow-line);
+  box-shadow: var(--shadow-md);
 }
 
 /* Animations */
@@ -242,12 +266,8 @@ textarea:focus-visible {
    Buttons v2 — hierarchy, press & focus states, mobile stacking
    ========================================================================== */
 
-.btn {
-  min-height: 46px;
-}
-
 .btn:active {
-  transform: translateY(0) scale(0.98);
+  transform: scale(0.97);
 }
 
 .btn:focus-visible {
@@ -261,7 +281,8 @@ textarea:focus-visible {
   border: none;
   box-shadow: none;
   color: var(--navy);
-  padding: 15px 8px;
+  min-height: 44px;
+  padding: 0 8px;
   font-weight: 600;
 }
 .btn--tertiary:hover {
@@ -272,7 +293,7 @@ textarea:focus-visible {
   transition: transform 0.22s var(--ease-premium);
 }
 .btn--tertiary:hover svg {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 /* Full-width stacked CTAs on small screens */
@@ -456,15 +477,18 @@ textarea:focus-visible {
 
 /* Primary CTA — specificity beats .nav-links > a without !important */
 .nav-links > a.nav-cta {
-  background: linear-gradient(160deg, var(--yellow-bright), var(--yellow-deep));
+  background: linear-gradient(180deg, var(--yellow-bright) 0%, var(--yellow) 100%);
   color: var(--navy);
   font-weight: 700;
-  box-shadow: 0 8px 22px -8px rgba(245, 196, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.55);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 .nav-links > a.nav-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px -8px rgba(245, 196, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.55);
+  background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
+  box-shadow: 0 2px 6px rgba(13, 19, 48, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.nav-links > a.nav-cta:active {
+  transform: scale(0.97);
 }
 
 /* Hamburger — morphs to X via aria-expanded */
@@ -633,22 +657,21 @@ textarea:focus-visible {
   gap: 8px;
   min-height: 44px;
   padding: 8px 14px;
-  border: 1px solid var(--glass-edge);
+  border: 1px solid var(--border);
   border-radius: var(--r-pill);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+  background: var(--paper-bg);
   color: var(--ink);
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 .social-link:hover {
-  background: var(--glass-bg-strong);
+  background: rgba(255,255,255,0.85);
   color: var(--navy);
-  transform: translateY(-1px);
+  border-color: var(--yellow-line);
+  box-shadow: var(--shadow-md);
 }
 .social-link svg {
   width: 15px;

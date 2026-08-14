@@ -738,3 +738,44 @@ textarea:focus-visible {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ==========================================================================
+   Sitemap footer columns — canonical footer partial (all pages).
+   Scoped to plain footer so it works with .site-footer and legacy page CSS.
+   ========================================================================== */
+footer .footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 720px;
+  margin: 26px auto 10px;
+  text-align: left;
+}
+footer .footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+footer .footer-col-title {
+  margin: 0 0 3px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+footer .footer-col a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+footer .footer-col a:hover { color: var(--navy); }
+@media (max-width: 640px) {
+  footer .footer-cols {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 28px;
+  }
+}

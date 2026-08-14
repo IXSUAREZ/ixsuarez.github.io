@@ -27,7 +27,7 @@ from the partials):
   nav:      the trailing .nav-cta anchor (contextual CTA: href, label,
             data-cta-id) and the aria-current="page" placement.
   nav-tool: additionally the .nav-tool-mark anchor (logo + tool name), any
-            app-specific links before "Home" in .nav-links, and any
+            app-specific links before "Learn" in .nav-links, and any
             app-specific buttons after the menu toggle in .nav-tools.
   footer:   class="site-footer" on the element, and any tool-specific extra
             lines between the social links and the credential line.
@@ -158,15 +158,19 @@ def render_nav(current_block, page):
         tm_m = TOOL_MARK_RE.search(current_block)
         if tm_m:
             tool_mark = "\n".join(dedent_lines(tm_m.group(0).split("\n")))
-        # app links: lines between the .nav-links opening and the Home anchor
+        # app links: lines between the .nav-links opening and the first
+        # partial-owned link (Learn; the Home link was retired in v10).
+        # A leftover Home anchor from a pre-v10 page is dropped, not kept.
         try:
             nl = next(i for i, l in enumerate(lines)
                       if '<div class="nav-links" id="primary-nav-links">' in l)
-            home_i = next(i for i, l in enumerate(lines)
-                          if i > nl and re.search(r'<a href="/"[^>]*>Home</a>', l))
-            app_links = dedent_lines(lines[nl + 1:home_i])
+            learn_i = next(i for i, l in enumerate(lines)
+                           if i > nl and re.search(r'<a href="/learn/"[^>]*>Learn</a>', l))
+            app_links = dedent_lines([
+                l for l in lines[nl + 1:learn_i]
+                if not re.search(r'<a href="/"[^>]*>Home</a>', l)])
         except StopIteration:
-            raise ValueError(f"{page}: malformed tool nav (nav-links/Home)")
+            raise ValueError(f"{page}: malformed tool nav (nav-links/Learn)")
         # app tools: lines between the menu-toggle close and .nav-tools close
         try:
             nt = next(i for i, l in enumerate(lines) if '<div class="nav-tools">' in l)

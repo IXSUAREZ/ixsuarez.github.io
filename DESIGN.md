@@ -159,12 +159,13 @@ token swap — never a forked component set, never page-level hex overrides.
 
 Credentials, ratings, and certifications render as `.credential-ledger` — the
 logbook pattern: one letterhead line naming the issuing authority (stated
-once, like letterhead), one seal, and ruled rows (`border-top: 1px solid
+once, like letterhead) and ruled rows (`border-top: 1px solid
 var(--border)`) of name + reference fine print (`font-feature-settings:
-"tnum"`). No glass cards, no per-row stamps, no hover lift — a ledger is
-read, not pressed. This is the only way credentials render anywhere on the
-domain; it scales to N rows with zero layout debt. Anything that is not a
-control must not wear control chrome (glass, shadow, stamp).
+"tnum"`). No seals, no glass cards, no per-row stamps, no hover lift — a
+ledger is read, not pressed; the citations carry the credibility. This is
+the only way credentials render anywhere on the domain; it scales to N rows
+with zero layout debt. Anything that is not a control must not wear control
+chrome (glass, shadow, stamp).
 
 
 ## 10. Materials: Air / Glass / Paper
@@ -185,3 +186,15 @@ Yellow appears as ONE field per page maximum (e.g. the contact mat), and no
 control may sit directly on a yellow field — controls live on the inset paper
 sheet. Small machined yellow doses (primary button, focus rings, seals, open
 FAQ left rule) are always allowed.
+
+## 11. Stage selectors: the detent slider
+
+Choosing one of N stages (journey legs, training phases) uses the detent
+slider: a `<fieldset>` of native radio inputs rendered as a hairline track
+with 15px dots inside 44px hit areas; active dot = navy fill + `--yellow-deep`
+ring. State is pure CSS (`:checked` + `:has()` inside `@supports`) so it
+works without JS; browsers without `:has()` get all panels stacked. The plane
+rides the track as the position needle and moves ONLY on user input (glide
+~450ms, transform-only; reduced-motion snaps instantly). One panel visible at
+a time; each panel carries exactly ONE action. No decorative self-running
+animation anywhere — motion is earned by input.

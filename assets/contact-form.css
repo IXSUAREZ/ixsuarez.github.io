@@ -1,6 +1,9 @@
 /* ==========================================================================
    SuarezCFI — Contact form (assets/contact-form.js mount)
-   Uses design-system.css tokens; glass style matches the rest of the site.
+   Paper working surface: the mount lives inside the contact paper sheet,
+   so the form itself carries no card chrome (transparent, no border, no
+   shadow, no blur). Inputs are white with a 1px hairline. Focus uses the
+   domain-wide ring from design-system.css — no local outline reset, no glow.
    ========================================================================== */
 
 .contact-form-mount {
@@ -11,14 +14,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  padding: 24px;
-  border-radius: var(--r-md);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
   font-family: var(--font-sans);
+  text-align: left;
 }
 
 .cf-field {
@@ -33,7 +30,7 @@
 }
 
 .cf-label {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--navy);
 }
@@ -44,7 +41,7 @@
 }
 
 .cf-optional {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink-muted);
   font-size: 12px;
 }
@@ -55,14 +52,18 @@
   width: 100%;
   box-sizing: border-box;
   padding: 12px 14px;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.78);
+  background: #fff;
   color: var(--ink);
   font: inherit;
-  font-size: 15px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  font-size: 16px; /* ≥16px keeps iOS from auto-zooming on focus */
+  transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.cf-input,
+.cf-select {
+  min-height: 48px;
 }
 
 .cf-select {
@@ -75,16 +76,15 @@
 }
 
 .cf-textarea {
-  min-height: 110px;
   resize: vertical;
 }
 
+/* The ring comes from the global :focus-visible rule (2px --yellow-deep,
+   3px offset). On focus the border only warms toward the yellow line. */
 .cf-input:focus,
 .cf-select:focus,
 .cf-textarea:focus {
-  outline: none;
-  border-color: var(--yellow-deep);
-  box-shadow: 0 0 0 3px var(--yellow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-color: var(--yellow-line);
 }
 
 /* Honeypot: present in DOM, invisible to humans */
@@ -99,9 +99,10 @@
 .cf-actions {
   grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  margin-top: 4px;
 }
 
 .cf-submit {
@@ -118,6 +119,7 @@
   margin: 0;
   font-size: 13px;
   color: var(--ink-muted);
+  text-align: center;
 }
 
 .cf-error {
@@ -132,17 +134,16 @@
 }
 
 .cf-success {
-  padding: 24px;
-  border-radius: var(--r-md);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   font-family: var(--font-sans);
   color: var(--ink);
   font-size: 15.5px;
   line-height: 1.55;
+  text-align: left;
 }
 
 .cf-success strong {
@@ -161,7 +162,6 @@
 @media (max-width: 640px) {
   .cf-form {
     grid-template-columns: 1fr;
-    padding: 18px;
   }
 
   .cf-actions .cf-submit {

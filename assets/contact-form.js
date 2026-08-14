@@ -4,8 +4,13 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
    SuarezCFI — Contact form mount upgrader (no dependencies)
    Upgrades every .contact-form-mount on DOMContentLoaded:
    - keeps the existing mailto/tel fallback in the DOM (hidden once upgraded,
-     visible again if submission fails)
-   - renders the intake form and POSTs it to Formspree via fetch
+     visible again if a Formspree submission fails)
+   - renders the same 3-field form (name, email-or-phone, message) on every mount
+   Two submit modes:
+   - Formspree mode (real endpoint configured): POSTs via fetch; success panel
+     on ok, error note + restored fallback on failure
+   - Mailto mode (endpoint still the placeholder): opens the visitor's mail
+     app with a prefilled message to Diego, then shows the success panel
    Mount contract:
      <link rel="stylesheet" href="/assets/contact-form.css" />
      <div class="contact-form-mount" data-form-context="PAGE_SLUG"> ...fallback... </div>
@@ -16,53 +21,7 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
 
   var PHONE_DISPLAY = "502-510-0508";
   var PHONE_HREF = "tel:+15025100508";
-
-  var SELECT_FIELDS = [
-    {
-      name: "goal",
-      label: "Goal",
-      options: [
-        "Discovery flight",
-        "Private pilot",
-        "Ground school",
-        "Written test prep",
-        "Checkride oral prep",
-        "Flight review or endorsements",
-        "Something else"
-      ]
-    },
-    {
-      name: "training_status",
-      label: "Current training status",
-      options: [
-        "Haven't started",
-        "Researching",
-        "Training with a school",
-        "Training with another CFI",
-        "Licensed pilot"
-      ]
-    },
-    {
-      name: "medical_status",
-      label: "Medical status",
-      options: [
-        "Haven't started",
-        "MedXPress submitted",
-        "Have medical",
-        "BasicMed",
-        "Not sure"
-      ]
-    },
-    {
-      name: "written_status",
-      label: "Written test status",
-      options: [
-        "Haven't started",
-        "Studying",
-        "Passed"
-      ]
-    }
-  ];
+  var MAILTO_ADDRESS = "SuarezCFI@gmail.com";
 
   function el(tag, className, text) {
     var node = document.createElement(tag);
@@ -104,40 +63,13 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
     return wrap;
   }
 
-  function buildSelectField(context, def) {
-    var wrap = el("div", "cf-field");
-    var id = fieldId(context, def.name);
-
-    var labelEl = el("label", "cf-label", def.label);
-    labelEl.setAttribute("for", id);
-
-    var select = el("select", "cf-select");
-    select.id = id;
-    select.name = def.name;
-
-    var placeholder = el("option", "", "Select one");
-    placeholder.value = "";
-    placeholder.selected = true;
-    select.appendChild(placeholder);
-
-    def.options.forEach(function (opt) {
-      var option = el("option", "", opt);
-      option.value = opt;
-      select.appendChild(option);
-    });
-
-    wrap.appendChild(labelEl);
-    wrap.appendChild(select);
-    return wrap;
-  }
-
   function buildMessageField(context) {
     var wrap = el("div", "cf-field cf-field--full");
     var id = fieldId(context, "message");
 
     var labelEl = el("label", "cf-label");
     labelEl.setAttribute("for", id);
-    labelEl.appendChild(document.createTextNode("Message "));
+    labelEl.appendChild(document.createTextNode("What are you working toward? "));
     labelEl.appendChild(el("span", "cf-optional", "(optional)"));
 
     var textarea = el("textarea", "cf-textarea");
@@ -174,14 +106,35 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
     if (fallback) fallback.hidden = false;
   }
 
+  // Replace the form with the success panel and fire the CTA success hook.
+  function showSuccess(mount, form, context) {
+    form.remove();
+    var success = el("div", "cf-success");
+    success.setAttribute("role", "status");
+    var strong = el("strong", "", "Thanks");
+    success.appendChild(strong);
+    success.appendChild(document.createTextNode(
+      " — Diego will get back to you within a day. Need it sooner? Call "
+    ));
+    var phoneLink = el("a", "", PHONE_DISPLAY);
+    phoneLink.href = PHONE_HREF;
+    success.appendChild(phoneLink);
+    success.appendChild(document.createTextNode("."));
+    mount.appendChild(success);
+    if (typeof window.trackCtaClick === "function") {
+      window.trackCtaClick("contact-form-success-" + context, null);
+    }
+  }
+
   function upgradeMount(mount) {
     if (mount.getAttribute("data-cf-upgraded")) return; // never double-upgrade
     mount.setAttribute("data-cf-upgraded", "1");
 
     var context = mount.getAttribute("data-form-context") || "page";
+    var formspreeMode = FORMSPREE_ENDPOINT.indexOf("FORMSPREE_ID") === -1;
 
-    // Defensive: without a real Formspree ID, keep the mailto/tel fallback as-is.
-    if (FORMSPREE_ENDPOINT.indexOf("FORMSPREE_ID") !== -1) return;
+    // Formspree submissions need fetch; without it keep the mailto/tel fallback.
+    if (formspreeMode && typeof window.fetch !== "function") return;
 
     // Keep the existing fallback content in the DOM, hidden once upgraded.
     var fallback = el("div", "cf-fallback");
@@ -195,15 +148,7 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
     form.setAttribute("novalidate", "novalidate");
 
     form.appendChild(buildTextField(context, "name", "Name", "text", true, false));
-    form.appendChild(buildTextField(context, "email", "Email", "email", true, false));
-    form.appendChild(buildTextField(context, "phone", "Phone", "tel", false, false));
-    form.appendChild(buildTextField(context, "home_airport", "Home airport", "text", false, false));
-
-    SELECT_FIELDS.forEach(function (def) {
-      form.appendChild(buildSelectField(context, def));
-    });
-
-    form.appendChild(buildTextField(context, "availability", "Availability", "text", false, false));
+    form.appendChild(buildTextField(context, "contact", "Email or phone", "text", true, false));
     form.appendChild(buildMessageField(context));
     form.appendChild(buildHoneypot(context));
 
@@ -226,12 +171,30 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
     submit.type = "submit";
     submit.setAttribute("data-cta-id", "contact-form-submit-" + context);
     actions.appendChild(submit);
-    actions.appendChild(el("p", "cf-note", "Goes straight to Diego's inbox. No account needed."));
+    actions.appendChild(el("p", "cf-note", formspreeMode
+      ? "Goes straight to Diego's inbox — he replies within a day."
+      : "Opens your email app — goes straight to Diego. He replies within a day."));
     form.appendChild(actions);
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       if (submit.disabled) return;
+
+      if (!formspreeMode) {
+        // Mailto mode: hand the message to the visitor's own mail app.
+        // A filled honeypot means a bot — skip the send, still show success.
+        var gotcha = form.elements["_gotcha"];
+        if (!gotcha || !gotcha.value) {
+          var name = form.elements["name"].value;
+          var contact = form.elements["contact"].value;
+          var message = form.elements["message"].value;
+          window.location.href = "mailto:" + MAILTO_ADDRESS +
+            "?subject=" + encodeURIComponent("Website message — " + name + " (" + context + ")") +
+            "&body=" + encodeURIComponent("Name: " + name + "\nEmail/phone: " + contact + "\nPage: " + context + "\n\n" + message);
+        }
+        showSuccess(mount, form, context);
+        return;
+      }
 
       errorNote.hidden = true;
       submit.disabled = true;
@@ -266,22 +229,7 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
           fail();
           return;
         }
-        form.remove();
-        var success = el("div", "cf-success");
-        success.setAttribute("role", "status");
-        var strong = el("strong", "", "Thanks");
-        success.appendChild(strong);
-        success.appendChild(document.createTextNode(
-          " — Diego will get back to you within a day. Need it sooner? Call "
-        ));
-        var phoneLink = el("a", "", PHONE_DISPLAY);
-        phoneLink.href = PHONE_HREF;
-        success.appendChild(phoneLink);
-        success.appendChild(document.createTextNode("."));
-        mount.appendChild(success);
-        if (typeof window.trackCtaClick === "function") {
-          window.trackCtaClick("contact-form-success-" + context, null);
-        }
+        showSuccess(mount, form, context);
       }).catch(fail);
     });
 
@@ -289,7 +237,6 @@ var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID"; // TODO(Diego): 
   }
 
   function init() {
-    if (typeof window.fetch !== "function") return; // no fetch: fallback stays visible
     var mounts = document.querySelectorAll(".contact-form-mount");
     for (var i = 0; i < mounts.length; i++) {
       try {

@@ -216,20 +216,9 @@ rides the track as the position needle and moves ONLY on user input (glide
 a time; each panel carries exactly ONE action. No decorative self-running
 animation anywhere — motion is earned by input.
 
-## 12. The spine
+## 12. Removed motifs
 
-The home page's signature motif: a static dashed centerline (2px, 24px dash /
-18px gap, `--yellow-deep` at 60% opacity) down the content axis, `z-index`
-behind all content — paper surfaces cover it, and it threads the air between
-objects. Waypoint dots (10px navy) with 11px tabular altitude labels mark each
-home section's entry, descending to "546 — FIELD ELEVATION" (KLOU's field
-elevation) at the contact mat. The plane glyph parks at the active waypoint:
-ONE IntersectionObserver (threshold ~0.35) picks the active section; the
-incoming dot fills (color/scale, 200ms) and the plane flies ONE leg along the
-line (transition on `translateY`, ≤600ms, level) — banking 8° over `#journey`
-and settling nose-up at the contact mat's top edge. No scroll listeners, no
-rAF — IO + CSS transitions only. Desktop ≥980px only: ≤979px the plane and
-labels are hidden and the line retreats to a quiet 20px left gutter at 40%
-opacity with dots alone. Reduced-motion: dots fill instantly and the plane
-jumps with no transition. Other pages may adopt the spine only under these
-same rules.
+The "spine" (dashed centerline + waypoint dots + taxiing plane, v11.0.0) was
+cut in v11.0.1: it read as visual noise and misbehaved on mobile. Lesson now
+codified: no page-spanning decorative apparatus — motion belongs inside the
+control the visitor is touching, never on the page's chrome or background.

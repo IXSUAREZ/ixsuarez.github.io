@@ -845,81 +845,8 @@
     footer .fine { font-size: 13px; margin: 6px 0; }
 
     /* ==========================================================================
-       The Spine — a static dashed centerline (24px dash / 18px gap,
-       --yellow-deep at 60%) down the content axis, behind all content.
-       Waypoint dots + tabular altitude labels at each section's entry; the
-       plane glyph flies one leg per section crossing (IO-driven, ≤600ms,
-       transform-only). Desktop ≥980px only (see responsive block).
-       ========================================================================== */
-    .spine {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      margin-left: -1px;
-      z-index: -1; /* threads the air behind main's content */
-      pointer-events: none;
-    }
-    .spine::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.6;
-      background: repeating-linear-gradient(180deg, var(--yellow-deep) 0 24px, transparent 24px 42px);
-    }
-    .spine-waypoint {
-      position: absolute;
-      left: 1px;
-      width: 10px;
-      height: 10px;
-      margin-left: -5px;
-      margin-top: -5px;
-      border-radius: 50%;
-      background: var(--navy);
-      transition: background 200ms ease, transform 200ms ease;
-    }
-    .spine-waypoint.is-active { background: var(--yellow-deep); transform: scale(1.3); }
-    .spine-alt {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--ink-muted);
-      font-feature-settings: "tnum";
-      white-space: nowrap;
-    }
-    .spine-waypoint--field .spine-alt { color: var(--ink); font-weight: 700; }
-    .spine-plane {
-      position: absolute;
-      left: 1px;
-      top: 0;
-      width: 22px;
-      height: 22px;
-      margin-left: -11px;
-      margin-top: -11px;
-      color: var(--yellow-deep);
-      filter: drop-shadow(0 3px 8px rgba(245, 196, 0, 0.5));
-      transition: transform 560ms var(--ease-premium);
-      will-change: transform;
-    }
-    .spine-plane svg { display: block; width: 100%; height: 100%; transition: transform 320ms ease; }
-    .spine-plane.is-turning svg { transform: rotate(8deg); } /* banking onto the route */
-    .spine-plane.is-field svg { transform: rotate(-12deg); } /* nose-up at the mat */
-
-    /* ==========================================================================
        Responsive
        ========================================================================== */
-    /* Spine on small screens: no plane, no labels — a quiet left-gutter line */
-    @media (max-width: 979px) {
-      .spine { left: 20px; margin-left: 0; }
-      .spine::before { opacity: 0.4; }
-      .spine-plane, .spine-alt { display: none; }
-    }
-
     @media (max-width: 780px) {
       :root { --glass-blur: 12px; }
       section { padding: 64px 0; }
@@ -1342,7 +1269,6 @@
       </div>
     </section>
 
-    <div class="spine" aria-hidden="true"></div>
   </main>
 
   <!-- site-footer -->
@@ -1729,98 +1655,6 @@
           e.stopPropagation();
         }
       }, true);
-    })();
-  </script>
-  <script>
-    // The Spine — waypoint dots + altitude labels per home section, and the
-    // plane glyph that flies one leg per section crossing. ONE
-    // IntersectionObserver (no scroll listeners, no rAF); CSS transitions do
-    // the flying. Reduced-motion: the global block strips the transitions, so
-    // dots fill instantly and the plane jumps. ≤979px: CSS hides plane/labels.
-    (function () {
-      if (!('IntersectionObserver' in window)) return;
-      var spine = document.querySelector('.spine');
-      if (!spine) return;
-      var defs = [
-        { sel: '.premium-hero', alt: '1,546', nudge: 132 },
-        { sel: '#services', alt: '1,400', nudge: 10 },
-        { sel: '#about', alt: '1,200', nudge: 10 },
-        { sel: '#journey', alt: '1,000', nudge: 10 },
-        { sel: '#tools', alt: '850', nudge: 10 },
-        { sel: '#faq', alt: '700', nudge: 10 },
-        { sel: '#contact', alt: '546 — FIELD ELEVATION', field: true }
-      ];
-      var legs = [];
-      defs.forEach(function (def) {
-        var el = document.querySelector(def.sel);
-        if (!el) return;
-        var dot = document.createElement('div');
-        dot.className = 'spine-waypoint' + (def.field ? ' spine-waypoint--field' : '');
-        var label = document.createElement('span');
-        label.className = 'spine-alt';
-        label.textContent = def.alt;
-        dot.appendChild(label);
-        spine.appendChild(dot);
-        legs.push({ el: el, def: def, dot: dot, y: 0, ratio: 0 });
-      });
-      if (!legs.length) return;
-      var plane = document.createElement('div');
-      plane.className = 'spine-plane';
-      plane.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="var(--navy)" stroke-width="0.8"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>';
-      spine.appendChild(plane);
-
-      function measure() {
-        legs.forEach(function (leg) {
-          var y;
-          if (leg.def.field) {
-            var mat = leg.el.querySelector('.contact');
-            /* Park just ABOVE the mat's top edge so the dot, label, and plane
-               rest on air at the threshold — not clipped beneath the yellow. */
-            leg.y = leg.el.offsetTop + (mat ? mat.offsetTop : 84) - 30;
-          } else {
-            leg.y = leg.el.offsetTop + leg.def.nudge;
-          }
-          leg.dot.style.top = leg.y + 'px';
-        });
-        plane.style.transform = 'translateY(' + legs[activeIndex < 0 ? 0 : activeIndex].y + 'px)';
-      }
-
-      var activeIndex = -1;
-      function setActive(i) {
-        if (i === activeIndex) return;
-        activeIndex = i;
-        legs.forEach(function (leg, j) { leg.dot.classList.toggle('is-active', j === i); });
-        plane.style.transform = 'translateY(' + legs[i].y + 'px)';
-        plane.classList.toggle('is-turning', legs[i].def.sel === '#journey');
-        plane.classList.toggle('is-field', !!legs[i].def.field);
-      }
-
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          for (var i = 0; i < legs.length; i++) {
-            if (legs[i].el === entry.target) {
-              legs[i].ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
-              break;
-            }
-          }
-        });
-        var best = -1, bestRatio = 0;
-        legs.forEach(function (leg, i) {
-          if (leg.ratio > bestRatio) { bestRatio = leg.ratio; best = i; }
-        });
-        if (best >= 0) setActive(best);
-      }, { threshold: [0, 0.35] });
-      legs.forEach(function (leg) { io.observe(leg.el); });
-
-      var resizeTimer;
-      function remeasure() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(measure, 150);
-      }
-      measure();
-      setActive(0);
-      window.addEventListener('resize', remeasure);
-      window.addEventListener('load', measure);
     })();
   </script>
   <script src="/assets/site-nav.js" defer></script>

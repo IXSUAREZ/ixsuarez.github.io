@@ -23,7 +23,10 @@ repetition of one command is not competition.
 
 All weights share one geometry: min-height 52px, padding 0 28px, `--r-pill`.
 Hover is a state change (color/border/shadow, 150–200ms) — surfaces never
-lift. Press yields: `scale(0.97)`, ≤120ms, shadow collapses.
+lift. Press yields: 2px `translateY` travel on pills (90ms in, ~220ms release);
+on lacquer primaries the resting `--shadow-sm` crossfades into a collapsed
+contact shadow carried by `::before`. `scale(0.97)` survives ONLY on small
+square icon keys (the conversion-bar call key).
 
 No fourth weight. Radius and motion come from the shared tokens
 (`--r-pill: 999px`, `--ease-premium`). App-internal controls that are used
@@ -130,13 +133,27 @@ Sync skips, deliberately:
 
 ## 6. Motion contract
 
-- Reveal: `reveal-up`, `0.9s cubic-bezier(0.16, 1, 0.3, 1)`
-  (`--ease-premium`), staggered via `--reveal-delay`.
+Motion is a whitelist. Everything that moves on this site is one of:
+
+1. **Hero load choreography** — runs once on load: a pure-CSS timeline
+   (kicker dash, masked headline line rises, italic + lede rise, the Crown
+   settles, the photo fades in). Never re-triggers.
+2. **Section entrance reveals** — once per element: opacity + 26px rise,
+   stagger ≤350ms (`reveal-arm`/`reveal-in`, one IntersectionObserver).
+3. **Ledger stamp** — the credential rows stamp in once (scale 1.12→1,
+   −3.5°→0°, 240ms, 70ms stagger).
+4. **Spine leg flights** — discrete IntersectionObserver triggers only: the
+   plane flies one leg per section crossing (≤600ms, transform-only). See §12.
+5. **Form/focus states** — hovers, presses, focus rings, details open/close.
+
+Nothing loops. Nothing tracks scrollY. Press = 2px travel on pills,
+scale(0.97) on small icon keys only.
+
 - Hover: state change only (color, border, shadow, icon lean ≤2px) over
   150–200ms. Nothing levitates — `translateY` on hover is banned domain-wide.
-  Press: `scale(0.97)`, ≤120ms.
-- The journey plane animates along the route track; it is the one piece of
-  decorative motion on the home page.
+- The journey plane animates along the route track and may be dragged
+  (pointer capture, transform-only, snaps to the nearest detent on release);
+  it is the one piece of input-driven decorative motion on the home page.
 - `prefers-reduced-motion: reduce` disables animation/transition globally and
   forces revealed content visible. This is non-negotiable.
 
@@ -198,3 +215,21 @@ rides the track as the position needle and moves ONLY on user input (glide
 ~450ms, transform-only; reduced-motion snaps instantly). One panel visible at
 a time; each panel carries exactly ONE action. No decorative self-running
 animation anywhere — motion is earned by input.
+
+## 12. The spine
+
+The home page's signature motif: a static dashed centerline (2px, 24px dash /
+18px gap, `--yellow-deep` at 60% opacity) down the content axis, `z-index`
+behind all content — paper surfaces cover it, and it threads the air between
+objects. Waypoint dots (10px navy) with 11px tabular altitude labels mark each
+home section's entry, descending to "546 — FIELD ELEVATION" (KLOU's field
+elevation) at the contact mat. The plane glyph parks at the active waypoint:
+ONE IntersectionObserver (threshold ~0.35) picks the active section; the
+incoming dot fills (color/scale, 200ms) and the plane flies ONE leg along the
+line (transition on `translateY`, ≤600ms, level) — banking 8° over `#journey`
+and settling nose-up at the contact mat's top edge. No scroll listeners, no
+rAF — IO + CSS transitions only. Desktop ≥980px only: ≤979px the plane and
+labels are hidden and the line retreats to a quiet 20px left gutter at 40%
+opacity with dots alone. Reduced-motion: dots fill instantly and the plane
+jumps with no transition. Other pages may adopt the spine only under these
+same rules.

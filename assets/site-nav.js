@@ -74,20 +74,21 @@
       document.body.classList.remove("nav-open");
     });
 
-    // Compress the pill once the page scrolls past ~40px (CSS transitions
-    // live in design-system.css; stripped automatically under reduced motion)
-    var compactTicking = false;
-    function syncCompact() {
-      nav.classList.toggle("nav--compact", window.scrollY > 40);
-      compactTicking = false;
+    // Compress the pill once the page scrolls past ~40px — an
+    // IntersectionObserver sentinel at document y=40, so no scroll listener
+    // and no rAF (CSS transitions live in design-system.css; stripped
+    // automatically under reduced motion). Without IO the pill simply stays
+    // full-size.
+    if ("IntersectionObserver" in window) {
+      var sentinel = document.createElement("div");
+      sentinel.setAttribute("aria-hidden", "true");
+      sentinel.style.cssText =
+        "position:absolute;top:40px;left:0;width:1px;height:1px;pointer-events:none;";
+      document.body.appendChild(sentinel);
+      new IntersectionObserver(function (entries) {
+        nav.classList.toggle("nav--compact", !entries[0].isIntersecting);
+      }).observe(sentinel);
     }
-    window.addEventListener("scroll", function () {
-      if (!compactTicking) {
-        compactTicking = true;
-        window.requestAnimationFrame(syncCompact);
-      }
-    }, { passive: true });
-    syncCompact();
   }
 
   function initAll() {

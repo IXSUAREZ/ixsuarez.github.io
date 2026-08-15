@@ -91,111 +91,148 @@
     }
 
     /* ==========================================================================
-       Hero
+       Hero — "The Ramp": full-viewport, copy left + one arch photo bleeding
+       the right and bottom viewport edges. Entrance is a pure-CSS timeline
+       (animation-delay, transform/opacity only); reduced-motion = instant.
        ========================================================================== */
-    .premium-hero { padding: 158px 0 90px; position: relative; overflow: hidden; overflow: clip; }
+    .premium-hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+      overflow: clip;
+    }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.06fr 0.94fr;
-      gap: clamp(36px, 5vw, 72px);
+      grid-template-columns: minmax(0, 1fr) clamp(300px, 33vw, 500px);
+      gap: clamp(24px, 4vw, 48px);
       align-items: center;
+      width: 100%;
     }
-    .hero-copy { animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
-    .hero h1 {
+    .hero-copy { position: relative; z-index: 1; max-width: 620px; }
+    .premium-hero h1 {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2.9rem, 5.6vw, 4.9rem);
-      line-height: 1.0;
-      letter-spacing: -0.035em;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.02;
+      letter-spacing: var(--tracking-display);
       color: var(--ink);
       margin: 24px 0 0;
     }
-    .hero h1 .headline-line { display: block; }
-    .hero h1 .headline-word--simple {
-      color: var(--navy);
-      background-image: linear-gradient(120deg, var(--yellow-bright), var(--yellow-deep));
-      background-repeat: no-repeat;
-      background-size: 100% 42%;
-      background-position: 0 92%;
-      border-radius: 4px;
+    /* Masked line rises — each line is an overflow:hidden mask + inner span.
+       The padding/margin pair keeps descenders (y) from clipping. */
+    .hero-line { display: block; overflow: hidden; padding-bottom: 0.09em; margin-bottom: -0.09em; }
+    .hero-line-in { display: inline-block; white-space: nowrap; }
+    .hero-tagline {
+      margin: 20px 0 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      color: var(--ink);
     }
-    .hero p.lede {
-      margin: 26px 0 0;
-      max-width: 560px;
+    .premium-hero .lede {
+      margin: 18px 0 0;
+      max-width: 540px;
       color: var(--ink-muted);
       font-size: 1.12rem;
       line-height: 1.6;
     }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; align-items: center; }
 
-    /* Quiet phone link under the primary CTA — text, not a button */
-    .hero-phone {
-      display: inline-block;
-      margin-top: 16px;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--ink-muted);
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-decoration-color: var(--yellow-line);
-      text-underline-offset: 4px;
-      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    /* The Cluster — Crown, phone row, message */
+    .hero-cluster { margin-top: 34px; display: flex; flex-direction: column; align-items: flex-start; }
+    .btn--crown {
+      min-height: 62px;
+      padding: 0 34px;
+      font-size: 17px;
+      font-weight: 700;
+      /* clips the fill-sweep to the pill shape; the element's own shadow
+         fade on :active still shows (only the ::before contact shadow is
+         clipped) */
+      overflow: hidden;
     }
-    .hero-phone:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
-
-    /* Proof — one quiet small-caps line, hairline middot separators */
-    .hero-proof {
-      margin: 30px 0 0;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-    }
-
-    /* License card stack — static, one reveal-up entrance (no parallax) */
-    .hero-visual {
-      position: relative;
-      min-height: 500px;
-      animation: reveal-up 0.9s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    .hero-visual::before {
+    /* Hover fill-sweep: yellow-deep washes in from the left, behind the label */
+    .btn--crown::after {
       content: "";
       position: absolute;
-      inset: 6% -8% -6% 4%;
-      background: radial-gradient(closest-side, rgba(255, 208, 0, 0.55), rgba(255, 208, 0, 0.18) 58%, transparent 78%);
-      z-index: 0;
+      inset: 0;
+      border-radius: inherit;
+      background: var(--yellow-deep);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 280ms var(--ease-premium);
+      pointer-events: none;
     }
-    .license-card-stack {
-      position: absolute;
-      inset: 4% 0;
-      perspective: 1400px;
-      z-index: 1;
+    .btn--crown:hover::after,
+    .btn--crown:focus-visible::after { transform: scaleX(1); }
+    .btn--crown .btn-crown-label { position: relative; z-index: 1; }
+    .hero-phonerow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      margin: 16px 0 0;
     }
-    .license-card {
+    .hero-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--navy);
+      font-feature-settings: "tnum";
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+      transition: text-decoration-color 0.2s ease;
+    }
+    .hero-phone:hover { text-decoration-color: var(--yellow-line); }
+    .hero-phone svg { width: 20px; height: 20px; flex: none; }
+    .hero-phone-note { color: var(--ink-muted); font-size: 15px; }
+    .hero-message { margin-top: 6px; margin-left: -8px; }
+
+    /* Arch photo — bleeds the right + bottom viewport edges, one continuous
+       arch radius on the left edge. No card, no shadow, absolutely still. */
+    .hero-photo {
       position: absolute;
+      top: 96px;
+      right: 0;
+      bottom: 0;
+      height: calc(100% - 96px); /* replaced elements ignore bottom with auto height */
+      width: clamp(340px, 36vw, 600px);
       margin: 0;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      box-shadow: 0 44px 90px -24px rgba(20, 26, 53, 0.38), 0 14px 30px -12px rgba(20, 26, 53, 0.18);
-      transform-style: preserve-3d;
+      object-fit: cover;
+      object-position: 65% 40%;
+      border-radius: 999px 0 0 0;
     }
-    .license-card img { width: 100%; height: 100%; object-fit: cover; }
-    .license-card--back {
-      width: 84%;
-      right: 2%;
-      top: 4%;
-      opacity: 0.92;
-      transform: rotateX(5deg) rotateY(-12deg) rotateZ(5deg);
+
+    /* Entrance choreography — runs once on load. Fill mode `backwards` so
+       resting styles (including the :active press) are never locked by the
+       animation's final keyframe. */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-kicker { animation: hero-fade 0.6s ease 0.05s backwards; }
+      .hero-kicker::before { transform-origin: left center; animation: kicker-dash 0.5s var(--ease-premium) 0.05s backwards; }
+      .hero-line-in { animation: hero-line-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+      .hero-line:nth-of-type(1) .hero-line-in { animation-delay: 0.15s; }
+      .hero-line:nth-of-type(2) .hero-line-in { animation-delay: 0.24s; }
+      .hero-tagline { animation: hero-rise 0.7s var(--ease-premium) 0.48s backwards; }
+      .premium-hero .lede { animation: hero-rise 0.7s var(--ease-premium) 0.56s backwards; }
+      .hero-cluster .btn--crown { animation: crown-settle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards; }
+      .hero-phonerow { animation: hero-fade 0.5s ease 0.85s backwards; }
+      .hero-message { animation: hero-fade 0.5s ease 0.95s backwards; }
+      .hero-photo { animation: hero-photo-in 1.1s var(--ease-premium) 0.35s backwards; }
     }
-    .license-card--front {
-      width: 82%;
-      left: 0;
-      bottom: 4%;
-      z-index: 3;
-      transform: rotateX(4deg) rotateY(-6deg) rotateZ(-4deg);
-    }
+    @keyframes kicker-dash { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes hero-line-rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
+    @keyframes hero-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes crown-settle { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+    @keyframes hero-photo-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
 
     /* ==========================================================================
        Section scaffolding
@@ -218,6 +255,9 @@
       margin: 0 auto;
       font-size: 1.06rem;
     }
+    /* Placard variant — left-set eyebrow dash + H2 (+ quiet subline) */
+    .section-header--placard { text-align: left; }
+    .section-header--placard p { margin: 0; max-width: 600px; }
 
     /* ==========================================================================
        About — one paper panel: photo + bio above, credential ledger below
@@ -316,6 +356,46 @@
       text-align: right;
       white-space: nowrap;
     }
+    /* Evidence — the two FAA certificates, small and flat, left of the ledger
+       beneath a tiny caption */
+    .ledger-body {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+      margin-top: 16px;
+    }
+    .ledger-evidence-caption {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+    }
+    .ledger-evidence-photos { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+    .ledger-evidence-photos img {
+      width: 100%;
+      max-width: 190px;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    @media (max-width: 780px) {
+      .ledger-evidence-photos img { max-width: calc(50% - 6px); }
+    }
+    /* Ledger stamp-in — armed by JS (no-JS and reduced-motion: rows simply
+       render); one class stamps the rows in with a 70ms stagger. */
+    .ledger-rows.stamp-arm .ledger-row { opacity: 0; transform: scale(1.12) rotate(-3.5deg); }
+    .ledger-rows.stamp-arm.stamp-in .ledger-row {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 240ms ease var(--stamp-delay, 0ms),
+        transform 240ms cubic-bezier(0.3, 1.25, 0.5, 1) var(--stamp-delay, 0ms);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ledger-rows.stamp-arm .ledger-row { opacity: 1; transform: none; }
+    }
     @media (max-width: 640px) {
       .ledger-row { flex-direction: column; gap: 2px; }
       .ledger-row dd { text-align: left; white-space: normal; }
@@ -333,16 +413,49 @@
     .cfr-link:hover { color: var(--navy); text-decoration-color: var(--yellow-deep); }
 
     /* ==========================================================================
-       Services strip — one baseline row: primary action + quiet text-arrows
+       The flight plan — a numbered index of four ruled rows; the whole row is
+       one stretched link. Row 01 carries a compact lacquer "Book →" pill at
+       its right instead of the arrow.
        ========================================================================== */
-    .services-strip { padding: 24px 0 8px; }
-    .services-strip-row {
-      display: flex;
+    .plan-row {
+      display: grid;
+      grid-template-columns: 3ch minmax(0, 1fr) auto;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 4px 14px;
+      column-gap: clamp(18px, 3vw, 34px);
+      padding: clamp(18px, 2.6vw, 26px) 6px;
+      border-top: 1px solid var(--border);
+      transition: background 0.2s ease;
     }
-    .services-strip-row .btn--primary { margin-right: 8px; }
+    .plan-row:last-child { border-bottom: 1px solid var(--border); }
+    .plan-row:hover { background: var(--yellow-soft); }
+    .plan-row-num {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      font-feature-settings: "tnum";
+    }
+    .plan-row-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    .plan-row-desc { color: var(--ink-muted); font-size: 0.95rem; margin-left: 14px; }
+    .plan-row-arrow {
+      width: 22px;
+      height: 22px;
+      color: var(--navy);
+      transition: transform 0.22s var(--ease-premium);
+    }
+    .plan-row:hover .plan-row-arrow { transform: translateX(2px); }
+    /* Compact lacquer pill on row 01 — decorative; the row itself is the link */
+    .plan-pill { min-height: 44px; padding: 0 20px; font-size: 15px; pointer-events: none; }
+    @media (max-width: 640px) {
+      .plan-row-desc { display: block; margin: 4px 0 0; }
+    }
 
     /* ==========================================================================
        Journey — the detent slider: six stops on one hairline track. The plane
@@ -408,6 +521,18 @@
     }
     .journey-plane svg { display: block; width: 100%; height: 100%; }
     .journey-plane.is-gliding { transform: translate(-50%, -100%) rotate(8deg); }
+    /* Drag enhancement (JS pointer capture): the needle tracks the pointer
+       transform-only and banks ≤±10°; on release the nearest radio is checked
+       and the CSS transition glides the needle home. Radios stay the truth. */
+    .journey-trackwrap { touch-action: pan-y; cursor: grab; }
+    .journey-trackwrap.is-dragging { cursor: grabbing; }
+    .journey-plane.is-dragging { transition: none; }
+    @keyframes dot-drop {
+      0% { transform: scale(0.8); }
+      60% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    .journey-stop.is-dropped .journey-dot { animation: dot-drop 300ms cubic-bezier(0.34, 1.56, 0.64, 1); }
     .journey-slider:has(#js-student:checked) .journey-plane { left: 25%; }
     .journey-slider:has(#js-private:checked) .journey-plane { left: 41.667%; }
     .journey-slider:has(#js-instrument:checked) .journey-plane { left: 58.333%; }
@@ -547,6 +672,9 @@
       transition: transform 0.2s var(--ease-premium);
     }
     .tool-card:hover .tool-icon { transform: translateX(2px); }
+    /* Press: the icon dips 2px while the border warms */
+    .tool-card:active { border-color: var(--yellow-line); }
+    .tool-card:active .tool-icon { transform: translateY(2px); }
     .tool-card .tool-icon svg { display: block; width: 44px; height: 44px; }
     .tool-card strong { display: block; font-size: 0.98rem; font-weight: 700; color: var(--ink); line-height: 1.25; }
     .tool-card em { display: block; font-style: normal; font-size: 0.85rem; color: var(--ink-muted); line-height: 1.4; margin-top: 3px; }
@@ -563,12 +691,24 @@
       overflow: hidden;
     }
     .faq-item {
+      position: relative;
       border-top: 1px solid var(--border);
-      border-left: 3px solid transparent;
-      transition: border-color 0.25s ease;
+    }
+    /* The open row's yellow left rule draws down from the top (scaleY 0→1) */
+    .faq-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--yellow);
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 200ms ease;
     }
     .faq-item:first-child { border-top: none; }
-    .faq-item[open] { border-left-color: var(--yellow); }
+    .faq-item[open]::before { transform: scaleY(1); }
     .faq-item summary {
       list-style: none;
       cursor: pointer;
@@ -671,6 +811,15 @@
       transition: text-decoration-color 0.2s ease;
     }
     .contact-alt a:hover { text-decoration-color: var(--yellow-deep); }
+    /* The Crown repeated under the form mount — on the paper, never on the mat */
+    .contact-crown-note { margin: 30px 0 10px; color: var(--ink-muted); font-size: 12.5px; }
+    .contact-crown {
+      display: flex;
+      width: min(100%, 640px);
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+    }
 
     /* ==========================================================================
        Footer
@@ -696,28 +845,105 @@
     footer .fine { font-size: 13px; margin: 6px 0; }
 
     /* ==========================================================================
+       The Spine — a static dashed centerline (24px dash / 18px gap,
+       --yellow-deep at 60%) down the content axis, behind all content.
+       Waypoint dots + tabular altitude labels at each section's entry; the
+       plane glyph flies one leg per section crossing (IO-driven, ≤600ms,
+       transform-only). Desktop ≥980px only (see responsive block).
+       ========================================================================== */
+    .spine {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      margin-left: -1px;
+      z-index: -1; /* threads the air behind main's content */
+      pointer-events: none;
+    }
+    .spine::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.6;
+      background: repeating-linear-gradient(180deg, var(--yellow-deep) 0 24px, transparent 24px 42px);
+    }
+    .spine-waypoint {
+      position: absolute;
+      left: 1px;
+      width: 10px;
+      height: 10px;
+      margin-left: -5px;
+      margin-top: -5px;
+      border-radius: 50%;
+      background: var(--navy);
+      transition: background 200ms ease, transform 200ms ease;
+    }
+    .spine-waypoint.is-active { background: var(--yellow-deep); transform: scale(1.3); }
+    .spine-alt {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      font-feature-settings: "tnum";
+      white-space: nowrap;
+    }
+    .spine-waypoint--field .spine-alt { color: var(--ink); font-weight: 700; }
+    .spine-plane {
+      position: absolute;
+      left: 1px;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      margin-left: -11px;
+      margin-top: -11px;
+      color: var(--yellow-deep);
+      filter: drop-shadow(0 3px 8px rgba(245, 196, 0, 0.5));
+      transition: transform 560ms var(--ease-premium);
+      will-change: transform;
+    }
+    .spine-plane svg { display: block; width: 100%; height: 100%; transition: transform 320ms ease; }
+    .spine-plane.is-turning svg { transform: rotate(8deg); } /* banking onto the route */
+    .spine-plane.is-field svg { transform: rotate(-12deg); } /* nose-up at the mat */
+
+    /* ==========================================================================
        Responsive
        ========================================================================== */
-    @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-visual { min-height: 440px; max-width: 560px; margin: 0 auto; width: 100%; }
+    /* Spine on small screens: no plane, no labels — a quiet left-gutter line */
+    @media (max-width: 979px) {
+      .spine { left: 20px; margin-left: 0; }
+      .spine::before { opacity: 0.4; }
+      .spine-plane, .spine-alt { display: none; }
     }
 
     @media (max-width: 780px) {
       :root { --glass-blur: 12px; }
       section { padding: 64px 0; }
-      .premium-hero { padding: 132px 0 64px; }
-      .hero h1 { font-size: clamp(2.5rem, 10vw, 3.4rem); }
-      .hero-visual { display: none; }
-      .hero-ctas { flex-direction: column; align-items: stretch; }
-      .hero-ctas .btn { justify-content: center; }
 
-      .services-strip { padding: 18px 0 4px; }
-      .services-strip-row { flex-direction: column; align-items: stretch; gap: 4px; }
-      .services-strip-row .btn--primary { justify-content: center; margin-right: 0; }
-      .services-strip-row .btn--tertiary { align-self: flex-start; }
+      /* Hero stacks: kicker → H1 → italic → lede → Crown → phone → message → photo */
+      .premium-hero { display: block; min-height: 0; padding: 124px 0 0; }
+      .hero-grid { display: block; }
+      .hero-copy { max-width: none; }
+      .premium-hero h1 { font-size: clamp(2.5rem, 10.5vw, 3rem); }
+      .hero-cluster { align-items: stretch; }
+      .hero-cluster .btn--crown { width: 100%; justify-content: center; }
+      .hero-phonerow { justify-content: center; }
+      .hero-message { align-self: center; margin-left: 0; }
+      .hero-photo {
+        position: static;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        margin-top: 48px;
+        border-radius: 999px 999px 0 0;
+      }
 
       .about-main { grid-template-columns: 1fr; }
+      .ledger-body { grid-template-columns: 1fr; }
 
       .tools-dock-row {
         display: flex;
@@ -781,56 +1007,70 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-copy">
-            <span class="hero-kicker">FAA Certificated Flight Instructor · Bowman Field</span>
+            <span class="hero-kicker">FAA Certificated Flight Instructor · Bowman Field (KLOU)</span>
             <h1 id="hero-heading">
-              <span class="headline-line headline-line--primary">Louisville flight training</span>
-              <span class="headline-line headline-line--secondary">starts with a <span class="headline-word--simple">plan</span>.</span>
+              <span class="hero-line"><span class="hero-line-in">Learn to fly</span></span>
+              <span class="hero-line"><span class="hero-line-in">in Louisville.</span></span>
             </h1>
-            <p class="lede">
-              Airplane and ground instruction at Bowman Field (KLOU) — discovery flights, written &amp; oral prep, and a training plan built around your schedule.
-            </p>
-            <div class="hero-ctas">
-              <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-                Book a Discovery Flight
-              </a>
-            </div>
-            <a href="tel:+15025100508" class="hero-phone" data-cta-id="home-hero-phone">Or call/text 502-510-0508</a>
-            <p class="hero-proof">FAA CFI · AGI · Commercial Pilot (Instrument) · Louisville, KY</p>
-          </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <div class="license-card-stack">
-              <figure class="license-card license-card--back">
-                <img src="assets/faa-license/BACK-LICENSE-hero.webp" alt="" width="1600" height="912" fetchpriority="high" decoding="async" />
-              </figure>
-              <figure class="license-card license-card--front">
-                <img src="assets/faa-license/FRONT-LICENSE-hero.webp" alt="" width="1600" height="1027" fetchpriority="high" decoding="async" />
-              </figure>
+            <p class="hero-tagline">Every rating starts with a plan.</p>
+            <p class="lede">Discovery flights, ground instruction, and written &amp; oral prep at Bowman Field — built around your schedule.</p>
+            <div class="hero-cluster">
+              <a href="/discovery-flight-louisville-ky/" class="btn btn--primary btn--crown" data-cta-id="home-hero-discovery"><span class="btn-crown-label">Book a Discovery Flight</span></a>
+              <p class="hero-phonerow">
+                <a href="tel:+15025100508" class="hero-phone" data-cta-id="home-hero-phone">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
+                  502-510-0508
+                </a>
+                <span class="hero-phone-note">— call or text, I answer.</span>
+              </p>
+              <a href="#contact" class="btn btn--tertiary hero-message" data-cta-id="home-hero-message">Send a message →</a>
             </div>
           </div>
         </div>
       </div>
+      <img class="hero-photo" src="assets/diego-1.webp" alt="Diego Suarez sitting on the wing of a yellow light-sport airplane at Bowman Field" width="720" height="1280" fetchpriority="high" decoding="async" />
     </section>
 
-    <section id="services" class="services-strip" aria-label="Instruction services">
+    <section id="services" class="flight-plan" aria-labelledby="services-heading">
       <div class="container">
-        <nav class="services-strip-row">
-          <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-services-discovery">
-            Discovery Flight
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+        <div class="section-header section-header--placard">
+          <span class="eyebrow">Instruction</span>
+          <h2 id="services-heading">The flight plan</h2>
+        </div>
+        <nav class="plan-rows" aria-label="Instruction services">
+          <a class="plan-row" href="/discovery-flight-louisville-ky/" data-cta-id="home-services-discovery">
+            <span class="plan-row-num" aria-hidden="true">01</span>
+            <span class="plan-row-text">
+              <span class="plan-row-name">Discovery Flight</span>
+              <span class="plan-row-desc">A first lesson, not a ride-along — you fly the airplane.</span>
+            </span>
+            <span class="btn btn--primary plan-pill" aria-hidden="true">Book
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+            </span>
           </a>
-          <a href="/ground-school-louisville-ky/" class="btn btn--tertiary" data-cta-id="home-services-ground">
-            Ground Instruction
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+          <a class="plan-row" href="/ground-school-louisville-ky/" data-cta-id="home-services-ground">
+            <span class="plan-row-num" aria-hidden="true">02</span>
+            <span class="plan-row-text">
+              <span class="plan-row-name">Ground Instruction</span>
+              <span class="plan-row-desc">One-on-one ground school, at Bowman Field or over video.</span>
+            </span>
+            <svg class="plan-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="/faa-written-test-prep/" class="btn btn--tertiary" data-cta-id="home-services-written">
-            Written Prep
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+          <a class="plan-row" href="/faa-written-test-prep/" data-cta-id="home-services-written">
+            <span class="plan-row-num" aria-hidden="true">03</span>
+            <span class="plan-row-text">
+              <span class="plan-row-name">Written Prep</span>
+              <span class="plan-row-desc">A plan to pass the FAA knowledge test, not a cram.</span>
+            </span>
+            <svg class="plan-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="/checkride-oral-prep/" class="btn btn--tertiary" data-cta-id="home-services-oral">
-            Oral Prep
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+          <a class="plan-row" href="/checkride-oral-prep/" data-cta-id="home-services-oral">
+            <span class="plan-row-num" aria-hidden="true">04</span>
+            <span class="plan-row-text">
+              <span class="plan-row-name">Oral Prep</span>
+              <span class="plan-row-desc">Walk into the checkride ready for the examiner's questions.</span>
+            </span>
+            <svg class="plan-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
           </a>
         </nav>
       </div>
@@ -851,31 +1091,40 @@
             </div>
           </div>
 
-          <!-- Credential ledger — one head line, five ruled rows -->
+          <!-- Credential ledger — letterhead line, evidence photos, five ruled rows -->
           <div class="credential-ledger" aria-label="Diego Suarez FAA credentials">
             <span class="ledger-authority">Certificates &amp; Ratings · Federal Aviation Administration</span>
-            <dl class="ledger-rows">
-              <div class="ledger-row">
-                <dt>Certificated Flight Instructor</dt>
-                <dd>CFI · ASEL · FAA 14 CFR § 61.183</dd>
+            <div class="ledger-body">
+              <div class="ledger-evidence">
+                <span class="ledger-evidence-caption">On file — FAA airman certificates</span>
+                <div class="ledger-evidence-photos">
+                  <img src="assets/faa-license/FRONT-LICENSE-hero.webp" alt="Front of Diego Suarez's FAA airman certificate" width="1600" height="1027" loading="lazy" decoding="async" />
+                  <img src="assets/faa-license/BACK-LICENSE-hero.webp" alt="Back of Diego Suarez's FAA airman certificate, listing ratings" width="1600" height="912" loading="lazy" decoding="async" />
+                </div>
               </div>
-              <div class="ledger-row">
-                <dt>Advanced Ground Instructor</dt>
-                <dd>AGI · FAA 14 CFR § 61.215</dd>
-              </div>
-              <div class="ledger-row">
-                <dt>Commercial Pilot</dt>
-                <dd>CPL · ASEL · FAA 14 CFR § 61.123</dd>
-              </div>
-              <div class="ledger-row">
-                <dt>Instrument Rating</dt>
-                <dd>IR · ASEL · FAA 14 CFR § 61.65</dd>
-              </div>
-              <div class="ledger-row">
-                <dt>Private Pilot</dt>
-                <dd>PPL · ASEL · FAA 14 CFR § 61.109</dd>
-              </div>
-            </dl>
+              <dl class="ledger-rows">
+                <div class="ledger-row">
+                  <dt>Certificated Flight Instructor</dt>
+                  <dd>CFI · ASEL · FAA 14 CFR § 61.183</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Advanced Ground Instructor</dt>
+                  <dd>AGI · FAA 14 CFR § 61.215</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Commercial Pilot</dt>
+                  <dd>CPL · ASEL · FAA 14 CFR § 61.123</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Instrument Rating</dt>
+                  <dd>IR · ASEL · FAA 14 CFR § 61.65</dd>
+                </div>
+                <div class="ledger-row">
+                  <dt>Private Pilot</dt>
+                  <dd>PPL · ASEL · FAA 14 CFR § 61.109</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </div>
@@ -883,7 +1132,7 @@
 
     <section id="journey" class="journey-section" aria-labelledby="journey-heading">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header section-header--placard">
           <span class="eyebrow">Choose your path</span>
           <h2 id="journey-heading">Where are you on the route?</h2>
           <p>Set your stage and get a curated flight plan of guides for exactly that leg.</p>
@@ -974,9 +1223,10 @@
 
     <section id="tools" class="tools-dock" aria-labelledby="tools-heading">
       <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">The Hangar</span>
-          <h2 id="tools-heading">Free tools — built by your instructor.</h2>
+        <div class="section-header section-header--placard">
+          <span class="eyebrow">Free tools</span>
+          <h2 id="tools-heading">The hangar</h2>
+          <p>Free tools — built by your instructor.</p>
         </div>
         <div class="tools-dock-row">
           <a href="/simply-endorsed-cfi/" class="tool-card paper paper--press" data-cta-id="home-tools-simply-endorsed">
@@ -1030,9 +1280,9 @@
 
     <section id="faq" aria-labelledby="faq-heading">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header section-header--placard">
           <span class="eyebrow">FAQs</span>
-          <h2 id="faq-heading">Questions? Answers!</h2>
+          <h2 id="faq-heading">The checklist.</h2>
           <p>Quick answers to the questions new and returning students ask most often.</p>
         </div>
 
@@ -1084,12 +1334,15 @@
             <div class="contact-form-mount" data-form-context="home">
               <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email">Email Diego</a> or call <a href="tel:+15025100508" data-cta-id="home-phone">502-510-0508</a>.</p>
             </div>
+            <p class="contact-crown-note">Ready when you are —</p>
+            <a href="/discovery-flight-louisville-ky/" class="btn btn--primary btn--crown contact-crown" data-cta-id="home-contact-discovery"><span class="btn-crown-label">Book a Discovery Flight</span></a>
             <p class="contact-alt">Prefer email? <a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-contact-email">SuarezCFI@gmail.com</a></p>
           </div>
         </div>
       </div>
     </section>
 
+    <div class="spine" aria-hidden="true"></div>
   </main>
 
   <!-- site-footer -->
@@ -1321,7 +1574,7 @@
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!('IntersectionObserver' in window)) return;
-      var selector = '.section-header, .about-panel, .services-strip-row, .journey-sheet, .tool-card, .faq-sheet, .contact';
+      var selector = '.section-header, .about-panel, .plan-row, .journey-sheet, .tool-card, .faq-sheet, .contact';
       var els = Array.prototype.slice.call(document.querySelectorAll(selector));
       if (!els.length) return;
       var byParent = new Map();
@@ -1363,6 +1616,211 @@
       plane.addEventListener('transitionend', function (e) {
         if (e.propertyName === 'left') land();
       });
+    })();
+  </script>
+  <script>
+    // Credential ledger — the rows stamp in once on first intersection
+    // (scale 1.12→1, −3.5°→0°, 240ms, 70ms stagger). JS only arms and trips;
+    // CSS runs the motion. No-JS / reduced-motion: rows render normally.
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!('IntersectionObserver' in window)) return;
+      var ledger = document.querySelector('.ledger-rows');
+      if (!ledger) return;
+      var rows = ledger.querySelectorAll('.ledger-row');
+      if (!rows.length) return;
+      Array.prototype.forEach.call(rows, function (row, i) {
+        row.style.setProperty('--stamp-delay', Math.min(i * 70, 350) + 'ms');
+      });
+      ledger.classList.add('stamp-arm');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            ledger.classList.add('stamp-in');
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(ledger);
+    })();
+  </script>
+  <script>
+    // Journey detent slider — pointer drag. Pointer capture on the track: the
+    // plane needle tracks the pointer x (transform-only), banking ≤±10° toward
+    // the drag direction; on release the nearest radio is checked (radios stay
+    // the state truth) and the CSS transition glides the needle home while the
+    // target dot compresses and rebounds. Click/keyboard/no-JS paths untouched.
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var wrap = document.querySelector('.journey-trackwrap');
+      var plane = document.querySelector('.journey-plane');
+      if (!wrap || !plane) return;
+      var stops = ['js-explore', 'js-student', 'js-private', 'js-instrument', 'js-commercial', 'js-cfi']
+        .map(function (id) { return document.getElementById(id); });
+      if (stops.some(function (r) { return !r; })) return;
+      var dragging = false, moved = false, suppressClick = false;
+      var startX = 0, lastX = 0, bank = 0, rect = null;
+
+      function laneMin() { return rect.width / 12; }
+      function laneMax() { return rect.width * 11 / 12; }
+      function clampX(x) { return Math.min(laneMax(), Math.max(laneMin(), x)); }
+
+      wrap.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        dragging = true;
+        moved = false;
+        suppressClick = false;
+        startX = lastX = e.clientX;
+        rect = wrap.getBoundingClientRect();
+        /* No pointer capture here: capture retargets the trailing click to the
+           wrap, which kills native label→radio activation for plain taps.
+           Capture begins only once a real drag crosses the threshold. */
+      });
+
+      wrap.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        if (!moved) {
+          if (Math.abs(e.clientX - startX) < 5) return;
+          moved = true;
+          bank = 0;
+          wrap.classList.add('is-dragging');
+          plane.classList.add('is-dragging');
+          try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+        plane.style.left = clampX(e.clientX - rect.left) + 'px';
+        var target = Math.min(10, Math.max(-10, (e.clientX - lastX) * 1.6));
+        lastX = e.clientX;
+        bank += (target - bank) * 0.35;
+        plane.style.transform = 'translate(-50%, -100%) rotate(' + bank.toFixed(2) + 'deg)';
+      });
+
+      function release(e, commit) {
+        if (!dragging) return;
+        dragging = false;
+        if (!moved) return;
+        moved = false;
+        wrap.classList.remove('is-dragging');
+        plane.classList.remove('is-dragging');
+        if (commit) {
+          var x = clampX(e.clientX - rect.left);
+          var i = Math.min(5, Math.max(0, Math.floor(x / (rect.width / 6))));
+          stops[i].checked = true;
+          stops[i].dispatchEvent(new Event('change', { bubbles: true }));
+          var label = wrap.querySelector('label[for="' + stops[i].id + '"]');
+          if (label) {
+            label.classList.remove('is-dropped');
+            void label.offsetWidth; /* restart the rebound keyframe */
+            label.classList.add('is-dropped');
+          }
+          suppressClick = true;
+        }
+        plane.style.left = '';
+        plane.style.transform = '';
+      }
+
+      wrap.addEventListener('pointerup', function (e) { release(e, true); });
+      wrap.addEventListener('pointercancel', function (e) { release(e, false); });
+      /* After a real drag, swallow the trailing click so it cannot re-check
+         whichever stop the pointer happens to rest over. */
+      wrap.addEventListener('click', function (e) {
+        if (suppressClick) {
+          suppressClick = false;
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    })();
+  </script>
+  <script>
+    // The Spine — waypoint dots + altitude labels per home section, and the
+    // plane glyph that flies one leg per section crossing. ONE
+    // IntersectionObserver (no scroll listeners, no rAF); CSS transitions do
+    // the flying. Reduced-motion: the global block strips the transitions, so
+    // dots fill instantly and the plane jumps. ≤979px: CSS hides plane/labels.
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      var spine = document.querySelector('.spine');
+      if (!spine) return;
+      var defs = [
+        { sel: '.premium-hero', alt: '1,546', nudge: 132 },
+        { sel: '#services', alt: '1,400', nudge: 10 },
+        { sel: '#about', alt: '1,200', nudge: 10 },
+        { sel: '#journey', alt: '1,000', nudge: 10 },
+        { sel: '#tools', alt: '850', nudge: 10 },
+        { sel: '#faq', alt: '700', nudge: 10 },
+        { sel: '#contact', alt: '546 — FIELD ELEVATION', field: true }
+      ];
+      var legs = [];
+      defs.forEach(function (def) {
+        var el = document.querySelector(def.sel);
+        if (!el) return;
+        var dot = document.createElement('div');
+        dot.className = 'spine-waypoint' + (def.field ? ' spine-waypoint--field' : '');
+        var label = document.createElement('span');
+        label.className = 'spine-alt';
+        label.textContent = def.alt;
+        dot.appendChild(label);
+        spine.appendChild(dot);
+        legs.push({ el: el, def: def, dot: dot, y: 0, ratio: 0 });
+      });
+      if (!legs.length) return;
+      var plane = document.createElement('div');
+      plane.className = 'spine-plane';
+      plane.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="var(--navy)" stroke-width="0.8"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>';
+      spine.appendChild(plane);
+
+      function measure() {
+        legs.forEach(function (leg) {
+          var y;
+          if (leg.def.field) {
+            var mat = leg.el.querySelector('.contact');
+            /* Park just ABOVE the mat's top edge so the dot, label, and plane
+               rest on air at the threshold — not clipped beneath the yellow. */
+            leg.y = leg.el.offsetTop + (mat ? mat.offsetTop : 84) - 30;
+          } else {
+            leg.y = leg.el.offsetTop + leg.def.nudge;
+          }
+          leg.dot.style.top = leg.y + 'px';
+        });
+        plane.style.transform = 'translateY(' + legs[activeIndex < 0 ? 0 : activeIndex].y + 'px)';
+      }
+
+      var activeIndex = -1;
+      function setActive(i) {
+        if (i === activeIndex) return;
+        activeIndex = i;
+        legs.forEach(function (leg, j) { leg.dot.classList.toggle('is-active', j === i); });
+        plane.style.transform = 'translateY(' + legs[i].y + 'px)';
+        plane.classList.toggle('is-turning', legs[i].def.sel === '#journey');
+        plane.classList.toggle('is-field', !!legs[i].def.field);
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          for (var i = 0; i < legs.length; i++) {
+            if (legs[i].el === entry.target) {
+              legs[i].ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
+              break;
+            }
+          }
+        });
+        var best = -1, bestRatio = 0;
+        legs.forEach(function (leg, i) {
+          if (leg.ratio > bestRatio) { bestRatio = leg.ratio; best = i; }
+        });
+        if (best >= 0) setActive(best);
+      }, { threshold: [0, 0.35] });
+      legs.forEach(function (leg) { io.observe(leg.el); });
+
+      var resizeTimer;
+      function remeasure() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(measure, 150);
+      }
+      measure();
+      setActive(0);
+      window.addEventListener('resize', remeasure);
+      window.addEventListener('load', measure);
     })();
   </script>
   <script src="/assets/site-nav.js" defer></script>

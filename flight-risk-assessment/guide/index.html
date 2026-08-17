@@ -22,6 +22,71 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/design-system.css?v=20260814" />
+    <style>
+      /* Tool-nav cluster (SuarezCFI tool-nav context, DESIGN.md §4) — the
+         leading brand group inside the single canonical pill. */
+      .nav--tool { --maxw: 1400px; } /* tool pills run wider than marketing pages */
+      .nav-brand { display: inline-flex; align-items: center; gap: 13px; flex: none; }
+      .link-back {
+        display: inline-flex; align-items: center; gap: 6px;
+        min-height: 44px; padding: 6px 4px;
+        color: var(--ink-muted); font-size: 13.5px; font-weight: 600;
+        text-decoration: none; white-space: nowrap; border-radius: 8px;
+        transition: color 0.2s ease;
+      }
+      .link-back:hover { color: var(--navy); }
+      .nav-brand-divider { width: 1px; height: 26px; background: rgba(13, 19, 48, 0.16); flex: none; }
+      .nav-tool-mark {
+        display: inline-flex; align-items: center; gap: 9px;
+        text-decoration: none; white-space: nowrap; padding: 6px 0;
+      }
+      .nav-tool-mark img { width: 28px; height: 28px; display: block; }
+      .nav-tool-name { font-weight: 700; font-size: 15px; color: var(--navy); letter-spacing: -0.01em; }
+      .nav-tool-chip {
+        font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 700;
+        letter-spacing: 0.12em; color: var(--navy);
+        background: var(--yellow-soft); border-radius: 999px; padding: 3px 8px;
+      }
+      .nav-sep { width: 1px; height: 22px; background: rgba(13, 19, 48, 0.12); margin: 0 8px; flex: none; }
+      #app-nav-slot:empty { display: none; }
+      #app-nav-slot { display: inline-flex; align-items: center; }
+      .nav-extra-reset {
+        display: inline-flex; align-items: center; gap: 6px;
+        min-height: 44px; padding: 9px 12px; border: none; background: none;
+        color: var(--ink-muted); font: inherit; font-size: 14.5px; font-weight: 500;
+        border-radius: var(--r-pill); cursor: pointer; white-space: nowrap;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+      .nav-extra-reset:hover { background: rgba(190, 18, 60, 0.08); color: #9f1239; }
+      .nav-extra-reset svg { width: 15px; height: 15px; }
+      .nav-cta .cta-short { display: none; }
+      @media (max-width: 1320px) {
+        .nav-tool-chip { display: none; }
+        .nav-sep { display: none; }
+        .nav-links > a, .nav-drop-toggle { padding-left: 8px; padding-right: 8px; }
+        .nav-cta .cta-long { display: none; }
+        .nav-cta .cta-short { display: inline; }
+      }
+      /* Desktop mid-band only (981–1320px): lighten the pill. On mobile
+         (≤980px) every link must survive for the sheet. */
+      @media (min-width: 981px) and (max-width: 1320px) {
+        .link-back { display: none; }
+        #primary-nav-links > a[href="/learn/"],
+        #primary-nav-links > a[href="/blog/"],
+        #primary-nav-links > a[href="/#contact"] { display: none; }
+      }
+      /* never let the pill's flex layout squeeze the CTA or brand cluster */
+      .nav-links > a.nav-cta, .nav-brand, .nav-extra-reset { flex: none; }
+      .nav-links { min-width: 0; }
+      @media (max-width: 980px) {
+        .nav-sep { display: none; }
+        #app-nav-slot { display: contents; }
+        .nav-extra-reset { width: 100%; justify-content: flex-start; min-height: 48px; padding: 13px 16px; border-radius: 14px; font-size: 16px; }
+      }
+      @media (max-width: 480px) {
+        .nav-tool-name { display: none; }
+      }
+    </style>
     <title>How to Use FlightRisk — SuarezCFI</title>
     <script type="application/ld+json">
       {
@@ -43,8 +108,8 @@
     </script>
     <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
     <script defer src="/assets/cta-tracking.js"></script>
-    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-Dibr7gyI.js"></script>
-    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-DbHPXNd0.css">
+    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-D6Yw5Peu.js"></script>
+    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-C7qK2TbN.css">
   </head>
   <body>
     <!-- Aviation-themed backdrop (site design system) -->
@@ -53,16 +118,30 @@
       <div class="aviation-ambience"></div>
     </div>
 
-    <!-- Canonical SuarezCFI pill nav (assets/design-system.css + assets/site-nav.js) -->
+    <!-- Canonical SuarezCFI TOOL pill nav (DESIGN.md §4): one bar — link-back,
+         wordmark, FlightRisk tool mark, app routes, site links, one CTA.
+         #app-nav-slot receives Reset/status from the React app (portal). -->
     <header class="nav-wrap" role="banner">
-      <nav class="nav" aria-label="Primary">
-        <a href="/" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
+      <nav class="nav nav--tool" aria-label="Primary">
+        <span class="nav-brand">
+          <a href="/" class="link-back">← SuarezCFI.com</a>
+          <a href="/" class="wordmark" aria-label="Diego Suarez — home">Diego Suarez</a>
+          <span class="nav-brand-divider" aria-hidden="true"></span>
+          <a href="/flight-risk-assessment/" class="nav-tool-mark">
+            <img src="/flight-risk-assessment/logo.svg" alt="" width="28" height="28" />
+            <span class="nav-tool-name">FlightRisk</span>
+            <span class="nav-tool-chip">FRAT</span>
+          </a>
+        </span>
         <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
           <span class="nav-toggle-label">Menu</span>
           <span class="nav-toggle-icon" aria-hidden="true"></span>
         </button>
         <div class="nav-links" id="primary-nav-links">
-          <a href="/">Home</a>
+          <a href="/flight-risk-assessment/" data-app-route>Assessment</a>
+          <a href="/flight-risk-assessment/methodology" data-app-route>Methodology</a>
+          <a href="/flight-risk-assessment/guide" data-app-route>Guide</a>
+          <span class="nav-sep" aria-hidden="true"></span>
           <a href="/learn/">Learn</a>
           <a href="/blog/">Blog</a>
           <div class="nav-dropdown">
@@ -78,29 +157,43 @@
             </div>
           </div>
           <a href="/#contact">Contact</a>
-          <a href="/flight-training-louisville-ky/" class="nav-cta" data-cta-id="frat-nav-plan">Plan Training</a>
+          <span id="app-nav-slot"></span>
+          <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery"><span class="cta-long">Book a Discovery Flight</span><span class="cta-short">Book</span></a>
         </div>
       </nav>
     </header>
 
     <div id="root"></div>
 
-    <!-- Canonical SuarezCFI site footer -->
+    <!-- Canonical SuarezCFI sitemap footer (+ FlightRisk fine print) -->
     <footer class="site-footer">
       <div class="container">
         <a href="/" class="wordmark">Diego Suarez</a>
-        <nav aria-label="Footer">
-          <a href="/#about">About</a>
-          <a href="/flight-training-louisville-ky/">Start Here</a>
-          <a href="/#services">Services</a>
-          <a href="/learn/">Learn</a>
-          <a href="/blog/">Blog</a>
-          <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a>
-          <a href="/#faq">FAQ</a>
-          <a href="/#contact">Contact</a>
-          <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
-          <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
-        </nav>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <p class="footer-col-title">Learn</p>
+            <a href="/learn/">Learn</a>
+            <a href="/blog/">Blog</a>
+            <a href="/#tools">Free tools</a>
+            <a href="/#about">About</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Instruction</p>
+            <a href="/discovery-flight-louisville-ky/">Discovery Flight</a>
+            <a href="/flight-training-louisville-ky/">Flight Training</a>
+            <a href="/ground-school-louisville-ky/">Ground Instruction</a>
+            <a href="/faa-written-test-prep/">Written Prep</a>
+            <a href="/checkride-oral-prep/">Oral Prep</a>
+            <a href="/remote-ground-instruction/">Remote Ground</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Contact</p>
+            <a href="tel:+15025100508" data-cta-id="footer-phone">502-510-0508</a>
+            <a href="mailto:SuarezCFI@gmail.com" data-cta-id="footer-email">Email Diego</a>
+            <a href="/#contact">Contact form</a>
+          </div>
+        </div>
         <div class="social-links footer-social" aria-label="Follow Diego Suarez">
           <a class="social-link" href="https://www.instagram.com/suarez.cfi/" target="_blank" rel="me noopener" aria-label="Instagram: suarez.cfi" data-cta-id="footer-social-instagram">Instagram</a>
           <a class="social-link" href="https://www.threads.net/@suarez.cfi" target="_blank" rel="me noopener" aria-label="Threads: suarez.cfi" data-cta-id="footer-social-threads">Threads</a>

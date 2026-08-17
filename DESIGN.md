@@ -135,27 +135,30 @@ Sync skips, deliberately:
 
 Motion is a whitelist. Everything that moves on this site is one of:
 
-1. **Hero load choreography** — runs once on load: a pure-CSS timeline
-   (kicker dash, masked headline line rises, italic + lede rise, the Crown
-   settles, the photo fades in). Never re-triggers.
-2. **Section entrance reveals** — once per element: opacity + 26px rise,
-   stagger ≤350ms (`reveal-arm`/`reveal-in`, one IntersectionObserver).
+1. **Boot** — the hero's load choreography, once, ≤700ms, pure CSS (kicker
+   dash, masked headline rises, tagline/lede rise, the Crown settles, the
+   plane poster fades in, the shadow's one touch-device pulse).
+2. **Reveals** — once per element: opacity + 16px rise over 250ms,
+   transform+opacity together, stagger ≤60ms, ≤5 items per group
+   (`reveal-arm`/`reveal-in`, one IntersectionObserver).
 3. **Ledger stamp** — the credential rows stamp in once (scale 1.12→1,
    −3.5°→0°, 240ms, 70ms stagger).
-4. **Spine leg flights** — discrete IntersectionObserver triggers only: the
-   plane flies one leg per section crossing (≤600ms, transform-only). See §12.
-5. **Form/focus states** — hovers, presses, focus rings, details open/close.
+4. **The hero plane** — input-driven only: 1:1 drag (yaw ±60°, pitch ±12°),
+   bank ≤10° into the drag, critically-damped spring settle (~600ms), desktop
+   pointer bank ≤±4°, the one entrance breath (nose dips 1°). The prop turns
+   only while held. Never idles, never loops, never flies unasked.
+5. **The journey slider** — radio-driven, draggable (transform-only), glide
+   450ms with ≤10° banking, detent squash-and-rebound.
+6. **Form/focus states** — hovers, presses, focus rings, details open/close.
 
 Nothing loops. Nothing tracks scrollY. Press = 2px travel on pills,
 scale(0.97) on small icon keys only.
 
 - Hover: state change only (color, border, shadow, icon lean ≤2px) over
   150–200ms. Nothing levitates — `translateY` on hover is banned domain-wide.
-- The journey plane animates along the route track and may be dragged
-  (pointer capture, transform-only, snaps to the nearest detent on release);
-  it is the one piece of input-driven decorative motion on the home page.
 - `prefers-reduced-motion: reduce` disables animation/transition globally and
-  forces revealed content visible. This is non-negotiable.
+  forces revealed content visible. Under it the hero plane never upgrades
+  (the poster is the hero) and sound defaults OFF. Non-negotiable.
 
 ## 7. Dark as a mode, via tokens
 
@@ -222,3 +225,48 @@ The "spine" (dashed centerline + waypoint dots + taxiing plane, v11.0.0) was
 cut in v11.0.1: it read as visual noise and misbehaved on mobile. Lesson now
 codified: no page-spanning decorative apparatus — motion belongs inside the
 control the visitor is touching, never on the page's chrome or background.
+
+## 13. Sound: the quiet sky
+
+The home page carries an optional synthesized sound layer
+(`assets/quiet-sky.js`). Rules:
+
+- **Zero audio files.** Everything is WebAudio synthesis at arm-time —
+  no downloads, no licensing.
+- **Default ON, armed by gesture.** The preference defaults to ON (OFF under
+  `prefers-reduced-motion`) and persists in `localStorage`. Browsers forbid
+  audio before a user gesture, so the AudioContext is created on the first
+  pointerdown/keypress anywhere; the STRIP toggle mutes and persists. We
+  never pretend autoplay works.
+- **The bed is hero-gated:** wind (band-passed noise, ≈ −31dBFS), a distant
+  plane drone that wanders in and out over ~20–40s (≈ −34dBFS), and a
+  near-idle layer (90Hz + 14Hz prop-pulse AM) that exists only while the hero
+  intersects. Dragging the hero plane is the throttle: idle pitch +8%,
+  filter opens. Everything fades ~600ms on intersection changes.
+- **Committed sounds, a closed registry:** detent clunk on journey commits
+  (55ms, −18dBFS, +8ms `navigator.vibrate` on Android), quieter clunk on FAQ
+  toggle (−24dBFS), mic-key blip on form-send success (200ms, −18dBFS),
+  starter spool on first arm (1.4s, once per session). NO sound on outbound
+  navigation — the destination confirms itself.
+- Master bus: compressor, peaks ≈ −16dBFS; the bed ducks −6dB under any
+  one-shot; Page Visibility suspends the context on tab-hide.
+
+## 14. The STRIP (home page app chrome)
+
+The home page's one piece of persistent chrome (replaces the v10–11
+conversion bar, whose component it absorbs):
+
+- Contents: seven stage dots (RAMP · FLIGHT PLAN · CREW · ENROUTE · HANGAR ·
+  CHECKLIST · TOWER), a "Next · {stage}" anchor (desktop only), the sound
+  toggle, and on mobile the compact Crown + phone icon. The Crown NEVER
+  duplicates on desktop — the locked nav CTA owns booking there.
+- Layouts: mobile = glass bottom bar (≤64px content, safe-area padded);
+  desktop = slim fixed right-edge rail. Both are floating chrome (glass is
+  lawful here and nowhere else in flow).
+- Truth: dots and Next are real anchor links (URL updates, back-button and
+  deep links work); an IntersectionObserver only *reports* the active stage.
+  The strip is JS-hidden by default — with JS off it never appears, and the
+  page loses nothing.
+- §12's ban stands: the strip is chrome, not apparatus — it must never
+  animate itself, track scrollY, or decorate beyond dot state changes.
+

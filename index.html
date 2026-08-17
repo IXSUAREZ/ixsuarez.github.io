@@ -196,19 +196,55 @@
     .hero-phone-note { color: var(--ink-muted); font-size: 15px; }
     .hero-message { margin-top: 6px; margin-left: -8px; }
 
-    /* Arch photo — bleeds the right + bottom viewport edges, one continuous
-       arch radius on the left edge. No card, no shadow, absolutely still. */
-    .hero-photo {
+    /* The parked trainer — the v12 hero's progressive 3D stage. The poster
+       (<img>) IS the hero at first paint; hero-plane.js upgrades it to a live
+       model (canvas crossfades in). No card, no frame: daylight is the stage. */
+    .hero-plane {
       position: absolute;
       top: 96px;
       right: 0;
-      bottom: 0;
-      height: calc(100% - 96px); /* replaced elements ignore bottom with auto height */
-      width: clamp(340px, 36vw, 600px);
-      margin: 0;
-      object-fit: cover;
-      object-position: 65% 40%;
-      border-radius: 999px 0 0 0;
+      width: clamp(420px, 44vw, 760px);
+      aspect-ratio: 4 / 3;
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .hero-plane.is-held { cursor: grabbing; }
+    .hero-plane-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+    .hero-plane-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.24s ease;
+    }
+    .hero-plane.is-live .hero-plane-canvas { opacity: 1; }
+    .hero-plane-shadow {
+      position: absolute;
+      left: 50%;
+      bottom: 4%;
+      width: 58%;
+      height: 9%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(13, 19, 48, 0.30) 0%, transparent 68%);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+    .hero-plane.is-held .hero-plane-shadow { transform: translateX(-50%) scaleX(0.88); opacity: 0.42; }
+    @media (hover: none) {
+      .hero-plane.is-live .hero-plane-shadow { animation: shadow-pulse 0.3s ease 0.4s 1; }
+      @keyframes shadow-pulse { 50% { transform: translateX(-50%) scaleX(0.88); opacity: 0.42; } }
     }
 
     /* Entrance choreography — runs once on load. Fill mode `backwards` so
@@ -225,14 +261,13 @@
       .hero-cluster .btn--crown { animation: crown-settle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards; }
       .hero-phonerow { animation: hero-fade 0.5s ease 0.85s backwards; }
       .hero-message { animation: hero-fade 0.5s ease 0.95s backwards; }
-      .hero-photo { animation: hero-photo-in 1.1s var(--ease-premium) 0.35s backwards; }
+      .hero-plane-poster { animation: hero-fade 0.8s ease 0.3s backwards; }
     }
     @keyframes kicker-dash { from { transform: scaleX(0); } to { transform: scaleX(1); } }
     @keyframes hero-line-rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
     @keyframes hero-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes crown-settle { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
-    @keyframes hero-photo-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
 
     /* ==========================================================================
        Section scaffolding
@@ -364,24 +399,6 @@
       gap: clamp(24px, 4vw, 48px);
       align-items: start;
       margin-top: 16px;
-    }
-    .ledger-evidence-caption {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.02em;
-      color: var(--ink-muted);
-      margin-bottom: 10px;
-    }
-    .ledger-evidence-photos { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
-    .ledger-evidence-photos img {
-      width: 100%;
-      max-width: 190px;
-      height: auto;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-    @media (max-width: 780px) {
-      .ledger-evidence-photos img { max-width: calc(50% - 6px); }
     }
     /* Ledger stamp-in — armed by JS (no-JS and reduced-motion: rows simply
        render); one class stamps the rows in with a 70ms stagger. */
@@ -845,13 +862,126 @@
     footer .fine { font-size: 13px; margin: 6px 0; }
 
     /* ==========================================================================
+       The STRIP — persistent app chrome (v12). Mobile: glass bottom bar with
+       dots + compact Crown + phone + sound. Desktop: slim right-edge rail with
+       dots + Next + sound (Crown stays in the locked nav). JS un-hides it.
+       ========================================================================== */
+    .strip {
+      position: fixed;
+      z-index: var(--z-nav);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--glass-bg);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+      backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+      border: 1px solid var(--glass-edge);
+      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
+    }
+    .strip[hidden] { display: none; }
+    .strip-dots { display: flex; align-items: center; gap: 2px; }
+    .strip-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 34px;
+    }
+    .strip-dot-in {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .strip-dot.is-active .strip-dot-in { background: var(--navy); transform: scale(1.35); }
+    .strip-next {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+      padding: 8px 4px;
+      border-radius: 8px;
+    }
+    .strip-next:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--yellow-line); text-underline-offset: 3px; }
+    .strip-sound {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--navy);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .strip-sound:hover { background: rgba(255, 255, 255, 0.85); border-color: var(--yellow-line); }
+    .strip-sound:active { transform: scale(0.97); }
+    .strip-sound svg { width: 19px; height: 19px; }
+    .strip-sound .icon-sound-off { display: none; }
+    .strip-sound.is-muted .icon-sound-on { display: none; }
+    .strip-sound.is-muted .icon-sound-off { display: block; }
+    .strip-call {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: var(--r-pill);
+      color: var(--navy);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--border);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .strip-call:hover { background: rgba(255, 255, 255, 0.85); border-color: var(--yellow-line); }
+    .strip-call:active { transform: scale(0.97); }
+    .strip-call svg { width: 20px; height: 20px; }
+    .strip-book { min-height: 52px; flex: 1; justify-content: center; }
+
+    /* Desktop: slim right-edge rail */
+    @media (min-width: 981px) {
+      .strip {
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        padding: 14px 10px;
+        border-radius: var(--r-pill);
+        gap: 8px;
+      }
+      .strip-dots { flex-direction: column; gap: 2px; }
+      .strip-dot { width: 34px; height: 22px; }
+      .strip-next { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 2px; font-size: 12.5px; }
+      .strip-book, .strip-call { display: none; }
+    }
+    /* Mobile: bottom bar */
+    @media (max-width: 980px) {
+      .strip {
+        left: 12px;
+        right: 12px;
+        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        padding: 8px 10px;
+        border-radius: var(--r-pill);
+      }
+      .strip-dots { gap: 0; }
+      .strip-dot { width: 20px; height: 30px; }
+      .strip-dot-in { width: 7px; height: 7px; }
+      .strip-next { display: none; }
+    }
+    @media (max-width: 420px) {
+      .strip-dots { display: none; }
+    }
+
+    /* ==========================================================================
        Responsive
        ========================================================================== */
     @media (max-width: 780px) {
       :root { --glass-blur: 12px; }
       section { padding: 64px 0; }
 
-      /* Hero stacks: kicker → H1 → italic → lede → Crown → phone → message → photo */
+      /* Hero stacks: kicker → H1 → italic → lede → Crown → phone → message → plane */
       .premium-hero { display: block; min-height: 0; padding: 124px 0 0; }
       .hero-grid { display: block; }
       .hero-copy { max-width: none; }
@@ -860,13 +990,13 @@
       .hero-cluster .btn--crown { width: 100%; justify-content: center; }
       .hero-phonerow { justify-content: center; }
       .hero-message { align-self: center; margin-left: 0; }
-      .hero-photo {
-        position: static;
+      .hero-plane {
+        position: relative;
+        top: auto;
+        right: auto;
         width: 100%;
-        height: auto;
-        aspect-ratio: 4 / 5;
-        margin-top: 48px;
-        border-radius: 999px 999px 0 0;
+        max-width: 480px;
+        margin: 40px auto 0;
       }
 
       .about-main { grid-template-columns: 1fr; }
@@ -930,7 +1060,7 @@
 
   <main id="top">
 
-    <section class="hero premium-hero" aria-labelledby="hero-heading">
+    <section class="hero premium-hero" id="hero" aria-labelledby="hero-heading">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-copy">
@@ -955,13 +1085,16 @@
           </div>
         </div>
       </div>
-      <img class="hero-photo" src="assets/diego-1.webp" alt="Diego Suarez sitting on the wing of a yellow light-sport airplane at Bowman Field" width="720" height="1280" fetchpriority="high" decoding="async" />
+      <div class="hero-plane" aria-hidden="true">
+        <img class="hero-plane-poster" src="assets/plane/poster.png" alt="" width="1320" height="990" fetchpriority="high" decoding="async" />
+        <span class="hero-plane-shadow"></span>
+      </div>
     </section>
 
     <section id="services" class="flight-plan" aria-labelledby="services-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-          <span class="eyebrow">Instruction</span>
+          <span class="eyebrow">01 · Flight plan — instruction</span>
           <h2 id="services-heading">The flight plan</h2>
         </div>
         <nav class="plan-rows" aria-label="Instruction services">
@@ -1009,7 +1142,7 @@
           <div class="about-main">
             <img src="assets/IMG_8866.jpeg" alt="Diego Suarez, FAA Certificated Flight Instructor based in Louisville, Kentucky" class="about-photo" width="640" height="800" loading="lazy" decoding="async" />
             <div class="about-copy">
-              <span class="eyebrow">Your instructor · Bowman Field (KLOU)</span>
+              <span class="eyebrow">02 · Crew — your instructor · Bowman Field (KLOU)</span>
               <h2 id="profile-heading">Meet Diego Suarez.</h2>
               <p class="about-text">I'm 24 years old, and while flying wasn't always my plan, the aviation bug bit me — and I never looked back. I did my training at the Kentucky Flight Training Center at Bowman Field (KLOU), and I'm grateful for the instructors and mentors who guided me. Now I love sharing what I've learned — helping you build a strong, safe, standards-based foundation.</p>
               <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
@@ -1022,13 +1155,6 @@
           <div class="credential-ledger" aria-label="Diego Suarez FAA credentials">
             <span class="ledger-authority">Certificates &amp; Ratings · Federal Aviation Administration</span>
             <div class="ledger-body">
-              <div class="ledger-evidence">
-                <span class="ledger-evidence-caption">On file — FAA airman certificates</span>
-                <div class="ledger-evidence-photos">
-                  <img src="assets/faa-license/FRONT-LICENSE-hero.webp" alt="Front of Diego Suarez's FAA airman certificate" width="1600" height="1027" loading="lazy" decoding="async" />
-                  <img src="assets/faa-license/BACK-LICENSE-hero.webp" alt="Back of Diego Suarez's FAA airman certificate, listing ratings" width="1600" height="912" loading="lazy" decoding="async" />
-                </div>
-              </div>
               <dl class="ledger-rows">
                 <div class="ledger-row">
                   <dt>Certificated Flight Instructor</dt>
@@ -1060,7 +1186,7 @@
     <section id="journey" class="journey-section" aria-labelledby="journey-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-          <span class="eyebrow">Choose your path</span>
+          <span class="eyebrow">03 · Enroute — choose your path</span>
           <h2 id="journey-heading">Where are you on the route?</h2>
           <p>Set your stage and get a curated flight plan of guides for exactly that leg.</p>
         </div>
@@ -1083,7 +1209,8 @@
               <input type="radio" name="journey-stage" id="js-cfi" />
               <label class="journey-stop" for="js-cfi"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">CFI</span></label>
               <span class="journey-plane" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5l-8-4.5V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5V18l8-2.3v4.6L7.5 22v1.5L12 22.5l4.5 1V22L14 20.3v-4.6l8 2.3z"/></svg>
+                <!-- top-view silhouette of the hero's low-wing trainer: same airplane, two drawings -->
+                <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1.5c.9 0 1.3.6 1.3 1.5l.3 5.2L30 16.8v2.6l-12.2-2.2.5 5.6 3.9 2.4v2l-4.6-1-1.6-.4-1.6.4-4.6 1v-2l3.9-2.4.5-5.6L2 19.4v-2.6l12.4-8.6.3-5.2c0-.9.4-1.5 1.3-1.5z"/><circle cx="16" cy="6.2" r="1.7" fill="var(--navy)"/></svg>
               </span>
             </div>
 
@@ -1151,7 +1278,7 @@
     <section id="tools" class="tools-dock" aria-labelledby="tools-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-          <span class="eyebrow">Free tools</span>
+          <span class="eyebrow">04 · Hangar — free tools</span>
           <h2 id="tools-heading">The hangar</h2>
           <p>Free tools — built by your instructor.</p>
         </div>
@@ -1208,7 +1335,7 @@
     <section id="faq" aria-labelledby="faq-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-          <span class="eyebrow">FAQs</span>
+          <span class="eyebrow">05 · Checklist</span>
           <h2 id="faq-heading">The checklist.</h2>
           <p>Quick answers to the questions new and returning students ask most often.</p>
         </div>
@@ -1254,7 +1381,7 @@
       <div class="container">
         <div class="contact">
           <div class="contact-sheet">
-            <span class="eyebrow">Contact</span>
+            <span class="eyebrow">06 · Tower — contact</span>
             <h2 id="contact-heading">Talk to Diego.</h2>
             <a href="tel:+15025100508" class="contact-phone" data-cta-id="home-contact-phone">502-510-0508</a>
             <p class="contact-phone-note">Call or text — I usually reply the same day.</p>
@@ -1658,13 +1785,99 @@
     })();
   </script>
   <script src="/assets/site-nav.js" defer></script>
+  <script src="/assets/plane/hero-plane.js" defer></script>
+  <script src="/assets/quiet-sky.js" defer></script>
 
-  <div class="conversion-bar" role="region" aria-label="Quick contact">
-    <a href="/discovery-flight-louisville-ky/" class="btn btn--primary conversion-bar__book" data-cta-id="home-bar-book">Book a Discovery Flight</a>
-    <a href="tel:+15025100508" class="conversion-bar__call" aria-label="Call or text Diego" data-cta-id="home-bar-call">
+  <!-- The STRIP — the v12 app chrome. Seven stage dots, Next anchor, sound
+       toggle; mobile adds the compact Crown + phone. JS (strip behavior at the
+       bottom of this file) activates it; no-JS hides it entirely. -->
+  <nav class="strip" aria-label="Page stages" hidden>
+    <div class="strip-dots" role="list">
+      <a href="#hero" class="strip-dot is-active" role="listitem" data-stage="hero" aria-label="Ramp — top"><span class="strip-dot-in"></span></a>
+      <a href="#services" class="strip-dot" role="listitem" data-stage="services" aria-label="Flight plan"><span class="strip-dot-in"></span></a>
+      <a href="#about" class="strip-dot" role="listitem" data-stage="about" aria-label="Crew — your instructor"><span class="strip-dot-in"></span></a>
+      <a href="#journey" class="strip-dot" role="listitem" data-stage="journey" aria-label="Enroute — the route"><span class="strip-dot-in"></span></a>
+      <a href="#tools" class="strip-dot" role="listitem" data-stage="tools" aria-label="Hangar — free tools"><span class="strip-dot-in"></span></a>
+      <a href="#faq" class="strip-dot" role="listitem" data-stage="faq" aria-label="Checklist — questions"><span class="strip-dot-in"></span></a>
+      <a href="#contact" class="strip-dot" role="listitem" data-stage="contact" aria-label="Tower — contact"><span class="strip-dot-in"></span></a>
+    </div>
+    <a href="#services" class="strip-next" data-strip-next>Next · The flight plan ↓</a>
+    <a href="/discovery-flight-louisville-ky/" class="btn btn--primary strip-book" data-cta-id="home-strip-book">Book</a>
+    <a href="tel:+15025100508" class="strip-call" aria-label="Call or text Diego" data-cta-id="home-strip-call">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
     </a>
-  </div>
-  <script src="/assets/conversion-bar.js" defer></script>
+    <button class="strip-sound" type="button" aria-pressed="true" aria-label="Sound on">
+      <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.4 9.4 0 0 1 0 13"/></svg>
+      <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </button>
+  </nav>
+
+  <script>
+    /* The STRIP behavior: IntersectionObserver tracks the active stage;
+       dots + Next are real anchors. The sound toggle talks to quiet-sky.js. */
+    (function () {
+      var strip = document.querySelector('.strip');
+      if (!strip) return;
+      var stages = [
+        { id: 'hero', next: 'The flight plan', href: '#services' },
+        { id: 'services', next: 'Your instructor', href: '#about' },
+        { id: 'about', next: 'The route', href: '#journey' },
+        { id: 'journey', next: 'The hangar', href: '#tools' },
+        { id: 'tools', next: 'The checklist', href: '#faq' },
+        { id: 'faq', next: 'The tower', href: '#contact' },
+        { id: 'contact', next: null, href: null }
+      ];
+      var dots = {};
+      strip.querySelectorAll('.strip-dot').forEach(function (d) { dots[d.getAttribute('data-stage')] = d; });
+      var next = strip.querySelector('[data-strip-next]');
+
+      function setActive(id) {
+        var idx = -1;
+        stages.forEach(function (s, i) {
+          var on = s.id === id;
+          if (on) idx = i;
+          var dot = dots[s.id];
+          if (dot) dot.classList.toggle('is-active', on);
+        });
+        if (idx >= 0 && next) {
+          var s = stages[idx];
+          if (s.next) { next.textContent = 'Next · ' + s.next + ' ↓'; next.setAttribute('href', s.href); }
+          else { next.textContent = 'Book a Discovery Flight ↑'; next.setAttribute('href', '/discovery-flight-louisville-ky/'); }
+        }
+      }
+
+      strip.hidden = false;
+      if ('IntersectionObserver' in window) {
+        var ratios = {};
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { ratios[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+          var best = null, bestR = 0;
+          stages.forEach(function (s) {
+            var r = ratios[s.id] || 0;
+            if (r > bestR) { bestR = r; best = s.id; }
+          });
+          if (best) setActive(best);
+        }, { threshold: [0, 0.25, 0.5, 0.75] });
+        stages.forEach(function (s) {
+          var el = document.getElementById(s.id);
+          if (el) io.observe(el);
+        });
+      }
+
+      /* Sound toggle (quiet-sky.js exposes window.quietSky) */
+      var toggle = strip.querySelector('.strip-sound');
+      function paint(on) {
+        toggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+        toggle.setAttribute('aria-label', on ? 'Sound on' : 'Sound off');
+        toggle.classList.toggle('is-muted', !on);
+      }
+      toggle.addEventListener('click', function () {
+        if (window.quietSky) paint(window.quietSky.toggle());
+      });
+      /* Initial paint once quiet-sky boots (it defaults ON unless reduced-motion) */
+      paint(!(window.matchMedia('(prefers-reduced-motion: reduce)').matches));
+      if (window.quietSky && window.quietSky.onChange) window.quietSky.onChange(paint);
+    })();
+  </script>
   </body>
 </html>

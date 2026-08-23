@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"/><title>preview</title><style>
+/* pdf.css — print stylesheet for the Simply Endorsed CFI PDF book.
+ *
+ * Inlined into dist/book.html by build.js. Category colors arrive via the
+ * CSS custom properties --cat-accent / --cat-soft / --cat-line / --cat-ink,
+ * set inline on .category-banner, .bundle-header, and .endorsement-card
+ * (see lib/theme.js themeVars()).
+ *
+ * Page footer/header are added later by Playwright's headerTemplate /
+ * footerTemplate — that is why there are intentionally no @page margin
+ * boxes here.
+ */
+
+/* ── Page & base ─────────────────────────────────────────────────────── */
+
+@page {
+  size: Letter;
+  margin: 0.75in 0.7in 0.8in 0.7in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1f2430;
+  margin: 0;
+}
+
+code,
+.mono,
+.verbatim {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Headings (Chromium PDF outline picks up h1-h6) ──────────────────── */
+
+h1.section-title {
+  font-size: 20pt;
+  line-height: 1.2;
+  margin: 0 0 14pt 0;
+  padding-bottom: 6pt;
+  border-bottom: 2pt solid #1c2142;
+  color: #1c2142;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin: 0;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 0;
+}
+
+/* ── Page-break helpers ──────────────────────────────────────────────── */
+
+.page-break {
+  break-before: page;
+}
+
+.avoid-break {
+  break-inside: avoid;
+}
+
+/* ── Cover ───────────────────────────────────────────────────────────── */
+
+.cover {
+  height: 9.2in;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  break-after: page;
+}
+
+.cover-logo {
+  width: 1.5in;
+  height: 1.5in;
+  margin-bottom: 0.35in;
+}
+
+.cover-title {
+  font-size: 30pt;
+  font-weight: 800;
+  color: #1c2142;
+  margin: 0 0 8pt 0;
+}
+
+.cover-subtitle {
+  font-size: 13pt;
+  color: #4b5563;
+  margin: 0 0 18pt 0;
+  max-width: 5.5in;
+}
+
+.cover-meta {
+  font-size: 9.5pt;
+  color: #6b7280;
+}
+
+/* ── Table of contents ───────────────────────────────────────────────── */
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin: 0 0 4pt 0;
+}
+
+.toc-list a {
+  text-decoration: none;
+}
+
+.toc-level-2 {
+  padding-left: 14pt;
+  font-size: 9.5pt;
+}
+
+/* ── Links ───────────────────────────────────────────────────────────── */
+
+a.internal {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external::after {
+  content: " ↗";
+  font-size: 0.85em;
+}
+
+/* ── Category banner (h2 level) ──────────────────────────────────────── */
+
+.category-banner {
+  break-before: page;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10pt;
+  padding: 10pt 14pt;
+  margin: 0 0 10pt 0;
+  background: var(--cat-soft);
+  border: 1pt solid var(--cat-line);
+  border-left: 5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  color: var(--cat-ink);
+}
+
+.category-banner h2 {
+  color: var(--cat-ink);
+}
+
+.category-banner-count {
+  font-size: 9pt;
+  color: var(--cat-accent);
+  font-weight: 600;
+}
+
+/* ── Bundle (subcategory) header (h3 level) ──────────────────────────── */
+
+.bundle-header {
+  break-after: avoid;
+  break-inside: avoid;
+  margin: 14pt 0 6pt 0;
+  padding: 6pt 10pt;
+  border-left: 3pt solid var(--cat-accent);
+  background: var(--cat-soft);
+  border-radius: 3pt;
+}
+
+.bundle-header h3 {
+  color: var(--cat-ink);
+}
+
+.bundle-desc {
+  margin: 3pt 0 0 0;
+  font-size: 9pt;
+  color: #4b5563;
+}
+
+/* ── Endorsement card ────────────────────────────────────────────────── */
+
+.endorsement-card {
+  break-inside: avoid;
+  margin: 0 0 12pt 0;
+  padding: 10pt 12pt;
+  background: var(--cat-soft);
+  border: 1px solid var(--cat-line);
+  border-left: 4px solid var(--cat-accent);
+  border-radius: 4pt;
+}
+
+.ec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8pt;
+  margin-bottom: 5pt;
+}
+
+.id-pill {
+  display: inline-block;
+  padding: 1.5pt 7pt;
+  border-radius: 9pt;
+  color: #ffffff;
+  background: #1c2142; /* overridden inline with the NAVY constant */
+  font-size: 9pt;
+  font-weight: 700;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  white-space: nowrap;
+}
+
+.ec-title {
+  color: #1c2142;
+}
+
+.ec-badges {
+  margin: 0 0 6pt 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+  font-weight: 600;
+  border: 0.75pt solid transparent;
+}
+
+.badge-signer {
+  color: #1c2142;
+  background: #e8eaf6;
+  border-color: #c5cae9;
+}
+
+.badge-validity {
+  color: #065f46;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.badge-perflight {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.badge-featured {
+  color: #ffffff;
+  background: var(--cat-accent, #475569);
+  border-color: var(--cat-accent, #475569);
+}
+
+.badge-muted {
+  color: #4b5563;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+/* ── Chips (CFR citations, tags) ─────────────────────────────────────── */
+
+.chip {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+}
+
+.cfr-chip {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--cat-ink, #313b4a);
+  background: #ffffff;
+  border: 0.75pt solid var(--cat-line, #d1d5da);
+  text-decoration: none;
+}
+
+.tag-chip {
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.65);
+  border: 0.75pt solid var(--cat-line, #e5e7eb);
+}
+
+.ec-cfr {
+  margin: 0 0 6pt 0;
+}
+
+/* ── Verbatim block ──────────────────────────────────────────────────── */
+
+.ec-verbatim {
+  margin: 0 0 8pt 0;
+}
+
+.ec-verbatim-label {
+  display: block;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cat-accent, #475569);
+  margin-bottom: 2pt;
+}
+
+.verbatim {
+  margin: 0;
+  padding: 6pt 8pt;
+  font-size: 8.5pt;
+  line-height: 1.5;
+  background: #f8f9fb;
+  border: 0.75pt solid #e3e6ec;
+  border-radius: 3pt;
+  color: #111827;
+}
+
+/* ── Explanation bullets / related / footer ──────────────────────────── */
+
+.ec-explanation ul {
+  margin: 0 0 6pt 0;
+  padding-left: 14pt;
+}
+
+.ec-explanation li {
+  margin-bottom: 2pt;
+}
+
+.ec-tags {
+  margin: 0 0 4pt 0;
+}
+
+.ec-related {
+  margin: 4pt 0 0 0;
+  padding-top: 4pt;
+  border-top: 0.75pt dashed var(--cat-line, #d1d5da);
+  font-size: 9pt;
+}
+
+.ec-related:empty {
+  display: none;
+}
+
+.ec-foot {
+  margin-top: 6pt;
+  font-size: 8.5pt;
+}
+
+/* ── Generic content blocks & tables ─────────────────────────────────── */
+
+.guidance-section {
+  break-inside: auto;
+  margin-bottom: 12pt;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 6pt 0 12pt 0;
+}
+
+table.data-table th,
+table.data-table td {
+  border: 0.75pt solid #d7dbe2;
+  padding: 4pt 6pt;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.data-table th {
+  background: #eef0f4;
+  font-weight: 700;
+  color: #1c2142;
+}
+
+table.data-table tr {
+  break-inside: avoid;
+}
+
+ul,
+ol {
+  margin: 4pt 0 8pt 0;
+  padding-left: 16pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+p {
+  margin: 0 0 6pt 0;
+}
+
+</style></head>
+<body>
+<div class="cover cov-wrap">
+  <div class="cov-rule"></div>
+  <div class="cov-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="se-disc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.55" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="256" fill="url(#se-disc)"/>
+  <circle cx="256" cy="256" r="212" fill="none" stroke="#1E3A8A" stroke-opacity="0.35" stroke-width="10"/>
+  <!-- Bold endorsement check -->
+  <path d="M140 252 L212 326 L376 158" fill="none" stroke="#FFFFFF" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- CFI signature flourish -->
+  <path d="M122 388 C 172 352, 214 356, 245 383 C 276 410, 315 412, 344 387 C 362 372, 380 367, 394 373"
+        fill="none" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" stroke-opacity="0.95"/>
+</svg>
+</div>
+  <h1 class="cover-title cov-title">Simply Endorsed CFI</h1>
+  <p class="cover-subtitle cov-subtitle">FAA AC 61-65K Endorsement Reference</p>
+  <p class="cov-badge">Interactive PDF Prototype</p>
+  <div class="cov-meta-card">
+    <p class="cov-meta-line">
+      <strong>AC 61-65K</strong> &middot; Issued November 14, 2025
+      &middot; 96 endorsements &middot; 13 categories
+    </p>
+    <p class="cov-meta-line">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Official FAA source: AC 61-65K</a>
+    </p>
+  </div>
+  <p class="cov-disclaimer">Hyperlinked study reference &mdash; not for operational use. Always verify against current FAA sources.</p>
+  <div class="cov-rule"></div>
+</div>
+<style>
+.cov-wrap { position: relative; }
+.cov-rule {
+  width: 1.1in;
+  height: 2.5pt;
+  background: #1C2142;
+  border-radius: 2pt;
+  margin: 0.18in 0;
+}
+.cov-logo { width: 120px; height: 120px; margin-bottom: 0.28in; }
+.cov-logo svg { width: 100%; height: 100%; display: block; }
+.cov-title { font-size: 34pt; letter-spacing: -0.01em; }
+.cov-subtitle { margin-bottom: 14pt; }
+.cov-badge {
+  display: inline-block;
+  margin: 0 0 0.32in 0;
+  padding: 3pt 14pt;
+  border-radius: 11pt;
+  background: #1C2142;
+  color: #ffffff;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.cov-meta-card {
+  background: #f8f9fb;
+  border: 0.75pt solid #d7dbe2;
+  border-radius: 6pt;
+  padding: 10pt 20pt;
+}
+.cov-meta-line { margin: 0; font-size: 10pt; color: #374151; }
+.cov-meta-line + .cov-meta-line { margin-top: 5pt; }
+.cov-disclaimer {
+  margin: 0.28in 0 0 0;
+  font-size: 8.5pt;
+  color: #6b7280;
+  max-width: 4.9in;
+}
+</style>
+<!-- (a)(b) front matter intro page -->
+<div class="fm-intro">
+  <h2 class="fm-h">How to use this PDF</h2>
+  <div class="fm-howto">
+    <ul>
+      <li><strong>Clickable contents.</strong> The master TOC on the next page — and every cross-reference in this book — is a live link. Click any row, chip, or card ID to jump straight to it.</li>
+      <li><strong>Category color coding.</strong> Each of the 13 endorsement categories owns a color (legend below). Category banners, bundle headers, and endorsement cards all wear their category color.</li>
+      <li><strong>Endorsement chips.</strong> Inline chips like <a class="internal fm-inline-chip" href="#A-6">A.6</a> jump to that endorsement's full card — verbatim AC text, plain-English notes, and citations.</li>
+      <li><strong>External links.</strong> eCFR regulation citations and FAA source links open in your browser and are marked with &#8599;.</li>
+      <li><strong>PDF bookmarks.</strong> Your PDF viewer's outline/bookmark panel mirrors this book's heading structure (parts &rarr; categories &rarr; bundles &rarr; endorsements) for quick navigation.</li>
+    </ul>
+  </div>
+  <h2 class="fm-h">Category color legend</h2>
+  <div class="fm-legend-grid">
+      <a class="internal fm-cat-chip" href="#cat-practical-test-prereqs" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+        <span class="fm-cat-label">Practical Test Prerequisites</span>
+        <span class="fm-cat-count">2</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-student-pilot" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+        <span class="fm-cat-label">Student Pilot</span>
+        <span class="fm-cat-count">14</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-sport-pilot" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+        <span class="fm-cat-label">Sport Pilot</span>
+        <span class="fm-cat-count">12</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-recreational-pilot" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+        <span class="fm-cat-label">Recreational Pilot</span>
+        <span class="fm-cat-count">7</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-private-pilot" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+        <span class="fm-cat-label">Private Pilot</span>
+        <span class="fm-cat-count">2</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-commercial-pilot" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+        <span class="fm-cat-label">Commercial Pilot</span>
+        <span class="fm-cat-count">2</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-atp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+        <span class="fm-cat-label">ATP</span>
+        <span class="fm-cat-count">2</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-instrument-rating" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+        <span class="fm-cat-label">Instrument Rating</span>
+        <span class="fm-cat-count">3</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-flight-instructor" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+        <span class="fm-cat-label">Flight Instructor</span>
+        <span class="fm-cat-count">6</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-sport-pilot-instructor" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+        <span class="fm-cat-label">Sport Pilot Instructor</span>
+        <span class="fm-cat-count">8</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-additional-recurrent" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+        <span class="fm-cat-label">Additional / Recurrent</span>
+        <span class="fm-cat-count">20</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-robinson-sfar73" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+        <span class="fm-cat-label">Robinson SFAR 73</span>
+        <span class="fm-cat-count">9</span>
+      </a>
+      <a class="internal fm-cat-chip" href="#cat-specialty-operations" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+        <span class="fm-cat-label">Specialty Operations</span>
+        <span class="fm-cat-count">9</span>
+      </a>
+  </div>
+</div>
+
+<!-- (c) master TOC on its own page -->
+<div class="page-break">
+  <h1 class="section-title">Contents</h1>
+  <div class="toc-cols">
+    <div class="toc-col">
+      <h2 class="toc-part"><a class="internal" href="#part-1">Part I &mdash; Endorsement Library</a></h2>
+      <p class="toc-part-note">96 endorsements &middot; 13 categories</p>
+      <ul class="toc-list toc-rows">
+        <li class="toc-row" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-practical-test-prereqs">Practical Test Prerequisites</a>
+          <span class="toc-count">2</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-student-pilot">Student Pilot</a>
+          <span class="toc-count">14</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-sport-pilot">Sport Pilot</a>
+          <span class="toc-count">12</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-recreational-pilot">Recreational Pilot</a>
+          <span class="toc-count">7</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-private-pilot">Private Pilot</a>
+          <span class="toc-count">2</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-commercial-pilot">Commercial Pilot</a>
+          <span class="toc-count">2</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-atp">ATP</a>
+          <span class="toc-count">2</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-instrument-rating">Instrument Rating</a>
+          <span class="toc-count">3</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-flight-instructor">Flight Instructor</a>
+          <span class="toc-count">6</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-sport-pilot-instructor">Sport Pilot Instructor</a>
+          <span class="toc-count">8</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-additional-recurrent">Additional / Recurrent</a>
+          <span class="toc-count">20</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-robinson-sfar73">Robinson SFAR 73</a>
+          <span class="toc-count">9</span>
+        </li>
+        <li class="toc-row" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#cat-specialty-operations">Specialty Operations</a>
+          <span class="toc-count">9</span>
+        </li>
+      </ul>
+    </div>
+    <div class="toc-col">
+      <h2 class="toc-part"><a class="internal" href="#part-2">Part II &mdash; Workflow Flows</a></h2>
+      <p class="toc-part-note">8 featured flows</p>
+      <ul class="toc-list toc-rows">
+        <li class="toc-row" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-first-solo">First Solo</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-initial-solo-xc">Initial Solo XC</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-private-airplane-initial-checkride-bundle">ASEL Initial Checkride Bundle</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-commercial-airplane-initial-checkride-bundle">ASEL Initial Checkride Bundle</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-instrument-checkride-bundle">Instrument Checkride Bundle</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-cfi-initial-checkride-bundle">CFI ASEL Initial Checkride Bundle</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-flight-review-and-wings">Flight Review and WINGS</a>
+        </li>
+        <li class="toc-row" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+          <span class="toc-dot"></span>
+          <a class="internal toc-link" href="#wf-aircraft-endorsements">Complex / High-Performance / High-Altitude / Tailwheel</a>
+        </li>
+      </ul>
+      <h2 class="toc-part"><a class="internal" href="#part-3">Part III &mdash; Guidance</a></h2>
+      <ul class="toc-list toc-rows">
+        <li class="toc-row">
+          <span class="toc-dot toc-dot-navy"></span>
+          <a class="internal toc-link" href="#journey">Student Journey</a>
+        </li>
+        <li class="toc-row">
+          <span class="toc-dot toc-dot-navy"></span>
+          <a class="internal toc-link" href="#scenarios">Scenarios</a>
+        </li>
+        <li class="toc-row">
+          <span class="toc-dot toc-dot-navy"></span>
+          <a class="internal toc-link" href="#quickref">Quick Reference</a>
+        </li>
+        <li class="toc-row">
+          <span class="toc-dot toc-dot-navy"></span>
+          <a class="internal toc-link" href="#cfi-career">CFI Career</a>
+        </li>
+        <li class="toc-row">
+          <span class="toc-dot toc-dot-navy"></span>
+          <a class="internal toc-link" href="#flashcards">DPE Prep Flashcards</a>
+        </li>
+        <li class="toc-row">
+          <span class="toc-dot toc-dot-navy"></span>
+          <a class="internal toc-link" href="#lesson-plan">Lesson Plan</a>
+        </li>
+      </ul>
+      <h2 class="toc-part"><a class="internal" href="#appendix">Appendix</a></h2>
+    </div>
+  </div>
+</div>
+<style>
+/* front matter intro (scoped .fm-*) */
+.fm-h {
+  font-size: 13pt;
+  color: #1C2142;
+  margin: 0 0 6pt 0;
+  padding-bottom: 3pt;
+  border-bottom: 1pt solid #d7dbe2;
+}
+.fm-h + .fm-howto, .fm-h + .fm-legend-grid { margin-bottom: 14pt; }
+.fm-howto {
+  background: #f8f9fb;
+  border: 0.75pt solid #d7dbe2;
+  border-left: 4pt solid #1C2142;
+  border-radius: 4pt;
+  padding: 8pt 12pt;
+}
+.fm-howto ul { margin: 0; padding-left: 14pt; }
+.fm-howto li { margin-bottom: 4pt; font-size: 9.5pt; }
+.fm-howto li:last-child { margin-bottom: 0; }
+.fm-inline-chip {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 8pt;
+  font-weight: 700;
+  padding: 0.5pt 5pt;
+  border-radius: 7pt;
+  background: #1C2142;
+  color: #ffffff !important;
+}
+.fm-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5pt;
+}
+.fm-cat-chip {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  padding: 4pt 8pt;
+  background: var(--cat-soft);
+  border: 0.75pt solid var(--cat-line);
+  border-left: 3.5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  color: var(--cat-ink);
+  text-decoration: none;
+  font-size: 8.5pt;
+  break-inside: avoid;
+}
+.fm-cat-label { font-weight: 600; color: var(--cat-ink); }
+.fm-cat-count {
+  margin-left: auto;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--cat-accent);
+}
+/* master TOC (scoped .toc-* additions; .toc-list itself lives in pdf.css) */
+.toc-cols { display: flex; gap: 18pt; align-items: flex-start; }
+.toc-col { flex: 1 1 0; }
+.toc-part {
+  font-size: 10.5pt;
+  margin: 10pt 0 4pt 0;
+  padding-bottom: 2pt;
+  border-bottom: 1pt solid #d7dbe2;
+}
+.toc-col > .toc-part:first-child { margin-top: 0; }
+.toc-part a { color: #1C2142; }
+.toc-part-note {
+  margin: 0 0 4pt 0;
+  font-size: 8pt;
+  color: #6b7280;
+}
+.toc-rows { margin: 0; }
+.toc-rows .toc-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6pt;
+  margin: 0 0 2.5pt 0;
+  font-size: 9pt;
+  break-inside: avoid;
+}
+.toc-dot {
+  flex: 0 0 auto;
+  width: 6pt;
+  height: 6pt;
+  border-radius: 50%;
+  background: var(--cat-accent, #1C2142);
+  align-self: center;
+}
+.toc-dot-navy { background: #1C2142; }
+.toc-link { color: #1f2430; }
+.toc-count {
+  margin-left: auto;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--cat-accent, #6b7280);
+}
+</style>
+</body>
+</html>

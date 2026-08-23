@@ -1,0 +1,1198 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>preview part3</title><style>/* pdf.css — print stylesheet for the Simply Endorsed CFI PDF book.
+ *
+ * Inlined into dist/book.html by build.js. Category colors arrive via the
+ * CSS custom properties --cat-accent / --cat-soft / --cat-line / --cat-ink,
+ * set inline on .category-banner, .bundle-header, and .endorsement-card
+ * (see lib/theme.js themeVars()).
+ *
+ * Page footer/header are added later by Playwright's headerTemplate /
+ * footerTemplate — that is why there are intentionally no @page margin
+ * boxes here.
+ */
+
+/* ── Page & base ─────────────────────────────────────────────────────── */
+
+@page {
+  size: Letter;
+  margin: 0.75in 0.7in 0.8in 0.7in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1f2430;
+  margin: 0;
+}
+
+code,
+.mono,
+.verbatim {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Headings (Chromium PDF outline picks up h1-h6) ──────────────────── */
+
+h1.section-title {
+  font-size: 20pt;
+  line-height: 1.2;
+  margin: 0 0 14pt 0;
+  padding-bottom: 6pt;
+  border-bottom: 2pt solid #1c2142;
+  color: #1c2142;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin: 0;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 0;
+}
+
+/* ── Page-break helpers ──────────────────────────────────────────────── */
+
+.page-break {
+  break-before: page;
+}
+
+.avoid-break {
+  break-inside: avoid;
+}
+
+/* ── Cover ───────────────────────────────────────────────────────────── */
+
+.cover {
+  height: 9.2in;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  break-after: page;
+}
+
+.cover-logo {
+  width: 1.5in;
+  height: 1.5in;
+  margin-bottom: 0.35in;
+}
+
+.cover-title {
+  font-size: 30pt;
+  font-weight: 800;
+  color: #1c2142;
+  margin: 0 0 8pt 0;
+}
+
+.cover-subtitle {
+  font-size: 13pt;
+  color: #4b5563;
+  margin: 0 0 18pt 0;
+  max-width: 5.5in;
+}
+
+.cover-meta {
+  font-size: 9.5pt;
+  color: #6b7280;
+}
+
+/* ── Table of contents ───────────────────────────────────────────────── */
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin: 0 0 4pt 0;
+}
+
+.toc-list a {
+  text-decoration: none;
+}
+
+.toc-level-2 {
+  padding-left: 14pt;
+  font-size: 9.5pt;
+}
+
+/* ── Links ───────────────────────────────────────────────────────────── */
+
+a.internal {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external::after {
+  content: " ↗";
+  font-size: 0.85em;
+}
+
+/* ── Category banner (h2 level) ──────────────────────────────────────── */
+
+.category-banner {
+  break-before: page;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10pt;
+  padding: 10pt 14pt;
+  margin: 0 0 10pt 0;
+  background: var(--cat-soft);
+  border: 1pt solid var(--cat-line);
+  border-left: 5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  color: var(--cat-ink);
+}
+
+.category-banner h2 {
+  color: var(--cat-ink);
+}
+
+.category-banner-count {
+  font-size: 9pt;
+  color: var(--cat-accent);
+  font-weight: 600;
+}
+
+/* ── Bundle (subcategory) header (h3 level) ──────────────────────────── */
+
+.bundle-header {
+  break-after: avoid;
+  break-inside: avoid;
+  margin: 14pt 0 6pt 0;
+  padding: 6pt 10pt;
+  border-left: 3pt solid var(--cat-accent);
+  background: var(--cat-soft);
+  border-radius: 3pt;
+}
+
+.bundle-header h3 {
+  color: var(--cat-ink);
+}
+
+.bundle-desc {
+  margin: 3pt 0 0 0;
+  font-size: 9pt;
+  color: #4b5563;
+}
+
+/* ── Endorsement card ────────────────────────────────────────────────── */
+
+.endorsement-card {
+  break-inside: avoid;
+  margin: 0 0 12pt 0;
+  padding: 10pt 12pt;
+  background: var(--cat-soft);
+  border: 1px solid var(--cat-line);
+  border-left: 4px solid var(--cat-accent);
+  border-radius: 4pt;
+}
+
+.ec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8pt;
+  margin-bottom: 5pt;
+}
+
+.id-pill {
+  display: inline-block;
+  padding: 1.5pt 7pt;
+  border-radius: 9pt;
+  color: #ffffff;
+  background: #1c2142; /* overridden inline with the NAVY constant */
+  font-size: 9pt;
+  font-weight: 700;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  white-space: nowrap;
+}
+
+.ec-title {
+  color: #1c2142;
+}
+
+.ec-badges {
+  margin: 0 0 6pt 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+  font-weight: 600;
+  border: 0.75pt solid transparent;
+}
+
+.badge-signer {
+  color: #1c2142;
+  background: #e8eaf6;
+  border-color: #c5cae9;
+}
+
+.badge-validity {
+  color: #065f46;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.badge-perflight {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.badge-featured {
+  color: #ffffff;
+  background: var(--cat-accent, #475569);
+  border-color: var(--cat-accent, #475569);
+}
+
+.badge-muted {
+  color: #4b5563;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+/* ── Chips (CFR citations, tags) ─────────────────────────────────────── */
+
+.chip {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+}
+
+.cfr-chip {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--cat-ink, #313b4a);
+  background: #ffffff;
+  border: 0.75pt solid var(--cat-line, #d1d5da);
+  text-decoration: none;
+}
+
+.tag-chip {
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.65);
+  border: 0.75pt solid var(--cat-line, #e5e7eb);
+}
+
+.ec-cfr {
+  margin: 0 0 6pt 0;
+}
+
+/* ── Verbatim block ──────────────────────────────────────────────────── */
+
+.ec-verbatim {
+  margin: 0 0 8pt 0;
+}
+
+.ec-verbatim-label {
+  display: block;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cat-accent, #475569);
+  margin-bottom: 2pt;
+}
+
+.verbatim {
+  margin: 0;
+  padding: 6pt 8pt;
+  font-size: 8.5pt;
+  line-height: 1.5;
+  background: #f8f9fb;
+  border: 0.75pt solid #e3e6ec;
+  border-radius: 3pt;
+  color: #111827;
+}
+
+/* ── Explanation bullets / related / footer ──────────────────────────── */
+
+.ec-explanation ul {
+  margin: 0 0 6pt 0;
+  padding-left: 14pt;
+}
+
+.ec-explanation li {
+  margin-bottom: 2pt;
+}
+
+.ec-tags {
+  margin: 0 0 4pt 0;
+}
+
+.ec-related {
+  margin: 4pt 0 0 0;
+  padding-top: 4pt;
+  border-top: 0.75pt dashed var(--cat-line, #d1d5da);
+  font-size: 9pt;
+}
+
+.ec-related:empty {
+  display: none;
+}
+
+.ec-foot {
+  margin-top: 6pt;
+  font-size: 8.5pt;
+}
+
+/* ── Generic content blocks & tables ─────────────────────────────────── */
+
+.guidance-section {
+  break-inside: auto;
+  margin-bottom: 12pt;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 6pt 0 12pt 0;
+}
+
+table.data-table th,
+table.data-table td {
+  border: 0.75pt solid #d7dbe2;
+  padding: 4pt 6pt;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.data-table th {
+  background: #eef0f4;
+  font-weight: 700;
+  color: #1c2142;
+}
+
+table.data-table tr {
+  break-inside: avoid;
+}
+
+ul,
+ol {
+  margin: 4pt 0 8pt 0;
+  padding-left: 16pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+p {
+  margin: 0 0 6pt 0;
+}
+</style></head><body><style>
+.qr-limit{display:inline-block;padding:2pt 6pt;border-left:3pt solid var(--cat-accent,#475569);background:var(--cat-soft,#f0f1f3);color:var(--cat-ink,#313b4a);font-weight:700;font-size:9pt;border-radius:2pt}
+.qr-acref{display:inline-block;background:#1C2142;color:#fff;font-weight:700;font-size:8.5pt;padding:1.5pt 6pt;border-radius:8pt;text-decoration:none;font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.qr-note{font-size:8.5pt;color:#5b6472;margin:-6pt 0 12pt 0}
+.cc-compare{display:flex;gap:10pt;margin:6pt 0 12pt 0}
+.cc-panel{flex:1;border:0.75pt solid #d7dbe2;border-radius:4pt;padding:8pt 10pt;break-inside:avoid}
+.cc-panel-h{font-weight:700;color:#1C2142;margin:0 0 4pt 0;font-size:10pt}
+.cc-panel p{margin:0 0 4pt 0;font-size:9pt}
+.cc-note{font-size:8.5pt;color:#5b6472;margin:4pt 0 0 0}
+.fc-card{border:0.75pt solid #d7dbe2;border-left:3pt solid #1C2142;border-radius:4pt;padding:8pt 10pt;margin:0 0 8pt 0;break-inside:avoid}
+.fc-meta{display:flex;justify-content:space-between;align-items:center;margin:0 0 4pt 0}
+.fc-badge{display:inline-block;background:#1C2142;color:#fff;font-size:7.5pt;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:1.5pt 6pt;border-radius:8pt}
+.fc-num{font-size:8pt;color:#8a92a3;font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.fc-q{font-weight:700;font-size:9.5pt;margin:0 0 6pt 0}
+.fc-a{border:0.75pt solid #d7dbe2;background:#f7f8fa;border-radius:3pt;padding:6pt 8pt;font-size:9pt}
+.fc-a p{margin:0}
+.lp-toc{columns:2;font-size:9.5pt}
+.apx-src p{margin:0 0 4pt 0}
+.apx-muted{color:#5b6472;font-size:8.5pt}
+</style>
+<div class="page-break">
+  <h2 id="quickref">Quick Reference</h2>
+  <p>Print-friendly tables of the limits, records, and cross-references CFIs reach for most. Endorsement pills jump to the full card in Part I; CFR chips open the current eCFR text.</p>
+
+  <h3>Endorsement Time Limits</h3>
+  <table class="data-table">
+    <thead><tr><th>Limit</th><th>Applies To</th><th>Governing FAR</th><th>Resets When</th></tr></thead>
+    <tbody>
+<tr>
+      <td><span class="qr-limit" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">90 Calendar Days</span></td>
+      <td>Student pilot solo privileges (<a class="internal" href="#A-6">A.6</a> first solo, <a class="internal" href="#A-7">A.7</a> renewals)</td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">14 CFR § 61.87(n)</a> <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">§ 61.87(p)</a></td>
+      <td>New <a class="internal" href="#A-7">A.7</a> solo renewal endorsement issued after instructor review</td>
+    </tr>
+<tr>
+      <td><span class="qr-limit" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">2 Calendar Months</span></td>
+      <td><a class="internal" href="#A-1">A.1</a> &#39;Prerequisites&#39; endorsement — must be issued within 2 calendar months preceding month of practical test application</td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)</a></td>
+      <td>New <a class="internal" href="#A-1">A.1</a> issued by authorized instructor before each application</td>
+    </tr>
+<tr>
+      <td><span class="qr-limit" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">2 Calendar Months</span></td>
+      <td>Completion of a practical test conducted in planned increments</td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(g)-(h)</a></td>
+      <td>Must re-accomplish entire test if not completed; new <a class="internal" href="#A-1">A.1</a> required</td>
+    </tr>
+<tr>
+      <td><span class="qr-limit" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">60 Calendar Days</span></td>
+      <td>Credit for passed areas after discontinuance or partial failure</td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.43" target="_blank" rel="noopener noreferrer">14 CFR § 61.43(f)(1)</a></td>
+      <td>Credit expires after 60 days; entire test must be re-accomplished</td>
+    </tr>
+<tr>
+      <td><span class="qr-limit" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">24 Calendar Months</span></td>
+      <td>Flight review requirement for all pilots exercising PIC privileges</td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.56" target="_blank" rel="noopener noreferrer">14 CFR § 61.56</a></td>
+      <td>Completion of a flight review (<a class="internal" href="#A-69">A.69</a>) or successful practical test/proficiency check</td>
+    </tr>
+<tr>
+      <td><span class="qr-limit" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">3 Years (36 months)</span></td>
+      <td>CFI recordkeeping — endorsement records must be retained</td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.189" target="_blank" rel="noopener noreferrer">14 CFR § 61.189</a></td>
+      <td>Continuous requirement — records must be kept for at least 3 years from date of endorsement</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Logbook Entry Checklist</h3>
+  <p class="qr-note">Every logbook entry should contain all of the following elements.</p>
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Required Element</th></tr></thead>
+    <tbody>
+<tr>
+      <td class="mono">1</td>
+      <td>Date of the flight</td>
+    </tr>
+<tr>
+      <td class="mono">2</td>
+      <td>Aircraft identification (N-number or registration)</td>
+    </tr>
+<tr>
+      <td class="mono">3</td>
+      <td>Aircraft make and model</td>
+    </tr>
+<tr>
+      <td class="mono">4</td>
+      <td>Type of experience (Solo, PIC, SIC, Dual, etc.)</td>
+    </tr>
+<tr>
+      <td class="mono">5</td>
+      <td>Total flight time for the entry</td>
+    </tr>
+<tr>
+      <td class="mono">6</td>
+      <td>Flight conditions (Day, Night, Instrument, Simulated Instrument)</td>
+    </tr>
+<tr>
+      <td class="mono">7</td>
+      <td>Location of departure and arrival airports</td>
+    </tr>
+<tr>
+      <td class="mono">8</td>
+      <td>Name of safety pilot, if a safety pilot was required</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>AC 61-65K ↔ FAR Cross-Reference</h3>
+  <table class="data-table">
+    <thead><tr><th>AC Endorsement</th><th>FAR Reference</th><th>Use</th><th>Expiration</th></tr></thead>
+    <tbody>
+<tr>
+      <td><a class="internal qr-acref" href="#A-1">A.1</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">§ 61.39(a)(6)(i)&amp;(ii)</a></td>
+      <td>Prerequisites for practical test</td>
+      <td>2 calendar months</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-2">A.2</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">§ 61.39(a)(6)(iii)</a></td>
+      <td>Review of deficiencies on knowledge test report</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-3">A.3</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">§ 61.87(b)</a></td>
+      <td>Pre-solo aeronautical knowledge</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-4">A.4</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">§ 61.87(c)(1)&amp;(2)</a></td>
+      <td>Pre-solo flight training</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-5">A.5</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">§ 61.87(o)</a></td>
+      <td>Pre-solo flight training at night</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-6">A.6</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">§ 61.87(n)</a></td>
+      <td>Solo flight – first 90-day period</td>
+      <td>90 calendar days</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-7">A.7</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">§ 61.87(p)</a></td>
+      <td>Solo flight – each additional 90-day period</td>
+      <td>90 calendar days</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-8">A.8</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">§ 61.93(b)(1)</a></td>
+      <td>Solo takeoffs/landings at another airport within 25 NM</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-9">A.9</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">§ 61.93(c)(1)&amp;(2)</a></td>
+      <td>Solo XC training (category-specific authorization)</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-10">A.10</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">§ 61.93(c)(3)</a></td>
+      <td>Solo XC flight planning – per individual flight</td>
+      <td>Per flight</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-11">A.11</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">§ 61.93(b)(2)</a></td>
+      <td>Repeated solo XC flights ≤ 50 NM from departure</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-12">A.12</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.95" target="_blank" rel="noopener noreferrer">§ 61.95(a)</a></td>
+      <td>Solo flight in Class B airspace</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-13">A.13</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.95" target="_blank" rel="noopener noreferrer">§ 61.95(b)</a> <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-91/section-91.131" target="_blank" rel="noopener noreferrer">§ 91.131(b)(1)</a></td>
+      <td>Solo flight to/from/at a Class B airport</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-14">A.14</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-49/part-1552/section-1552.3" target="_blank" rel="noopener noreferrer">49 CFR § 1552.3(h)</a></td>
+      <td>TSA U.S. citizenship endorsement</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-36">A.36</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">§ 61.35(a)(1)</a> <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.103" target="_blank" rel="noopener noreferrer">61.103(d)</a> <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.105" target="_blank" rel="noopener noreferrer">61.105</a></td>
+      <td>Aeronautical knowledge test (Private Pilot)</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-37">A.37</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.103" target="_blank" rel="noopener noreferrer">§ 61.103(f)</a> <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.107" target="_blank" rel="noopener noreferrer">61.107(b)</a> <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.109" target="_blank" rel="noopener noreferrer">61.109</a></td>
+      <td>Flight proficiency/practical test (Private Pilot)</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-69">A.69</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.56" target="_blank" rel="noopener noreferrer">§ 61.56(a)&amp;(c)</a></td>
+      <td>Flight review completion</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-71">A.71</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.57" target="_blank" rel="noopener noreferrer">§ 61.57(d)</a></td>
+      <td>Instrument proficiency check (IPC) completion</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-72">A.72</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">§ 61.31(e)</a></td>
+      <td>Complex aircraft PIC endorsement</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-76">A.76</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">§ 61.31(d)(2)</a></td>
+      <td>Solo PIC without appropriate category/class rating</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-77">A.77</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.49" target="_blank" rel="noopener noreferrer">§ 61.49</a></td>
+      <td>Retesting after failure of knowledge or practical test</td>
+      <td>None</td>
+    </tr>
+<tr>
+      <td><a class="internal qr-acref" href="#A-78">A.78</a></td>
+      <td><a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">§ 61.63(c)</a></td>
+      <td>Additional aircraft category or class rating (other than ATP)</td>
+      <td>None</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Special Federal Aviation Regulations (SFARs)</h3>
+  <table class="data-table">
+    <thead><tr><th>SFAR</th><th>Title</th><th>Notes</th></tr></thead>
+    <tbody>
+<tr>
+      <td class="mono">SFAR 73</td>
+      <td>Robinson R-22 / R-44 Special Training &amp; Experience Requirements</td>
+      <td>Not applicable to fixed-wing airplanes, but sample endorsements appear in AC 61-65K. Review when endorsing students training in Robinson helicopters.</td>
+    </tr>
+<tr>
+      <td class="mono">SFAR 100-2</td>
+      <td>Relief for U.S. Military and Civilians Assigned Outside the U.S.</td>
+      <td>Provides relief for military personnel and DoD civilians supporting Armed Forces operations who cannot meet standard currency requirements while deployed.</td>
+    </tr>
+<tr>
+      <td class="mono">Part 91 Regional SFARs</td>
+      <td>Prohibited Flight Regions</td>
+      <td>Part 91 SFARs generally prohibit flight in specific regions (e.g., Damascus, Pyongyang, Tehran, Somalia airspace). Review applicable SFARs when endorsing students operating internationally.</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="page-break">
+  <h2 id="cfi-career">CFI Career — Renewal, Reinstatement &amp; Trainer Qualification</h2>
+  <p>Everything about keeping the instructor certificate itself alive: the December 2024 rule change, the six renewal pathways, reinstatement after expiration, and who may train initial CFI applicants.</p>
+
+  <h3>Renewal Rules — Before vs. After December 1, 2024</h3>
+  <div class="cc-compare">
+    <div class="cc-panel">
+      <p class="cc-panel-h">Issued Before December 1, 2024</p>
+      <p>Certificates issued before December 1, 2024 expire 24 calendar months from the month issued, renewed, or reinstated (Exception: <a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.197" target="_blank" rel="noopener noreferrer">FAR 61.197(b)</a>). Renewal is required every 2 years.</p>
+    </div>
+    <div class="cc-panel">
+      <p class="cc-panel-h">Issued On or After December 1, 2024</p>
+      <p>Certificates issued on or after December 1, 2024 are issued without an expiration date. However, instructors must still satisfy recent experience requirements every 24 calendar months to maintain instructional privileges.</p>
+    </div>
+  </div>
+
+  <h3>Renewal Pathways</h3>
+  <table class="data-table">
+    <thead><tr><th>Pathway</th><th>Time Frame</th><th>Description</th><th>Notes</th></tr></thead>
+    <tbody>
+<tr>
+      <td><strong>Pass a Practical Test</strong></td>
+      <td>Within previous 24 calendar months</td>
+      <td>Pass a practical test for one of the ratings listed on your instructor certificate, or for an additional flight instructor rating.</td>
+      <td>Most direct path — also adds or upgrades your ratings.</td>
+    </tr>
+<tr>
+      <td><strong>80% Pass Rate — 5+ Applicants</strong></td>
+      <td>Within previous 24 calendar months</td>
+      <td>Submit documentation showing you endorsed 5 or more applicants for a practical test and achieved an 80% or better first-attempt pass rate.</td>
+      <td>Qualifying for a Gold Seal certificate may be done simultaneously.</td>
+    </tr>
+<tr>
+      <td><strong>Evaluative Position</strong></td>
+      <td>Within previous 24 calendar months</td>
+      <td>Serve in an evaluative or instructional oversight role: company check pilot, check airman, chief flight instructor, Part 121 or 135 instructor, or similar qualified position.</td>
+      <td>Must hold the position and conduct evaluations during that 24-month window.</td>
+    </tr>
+<tr>
+      <td><strong>Approved FIRC</strong></td>
+      <td>Within previous 3 calendar months</td>
+      <td>Complete a Flight Instructor Refresher Course (FIRC) that meets the standards of AC 61-83.</td>
+      <td>Shorter window than other pathways — 3 months, not 24. Plan accordingly.</td>
+    </tr>
+<tr>
+      <td><strong>Military Proficiency Check</strong></td>
+      <td>Within previous 24 calendar months</td>
+      <td>Pass a military instructor pilot or pilot examiner proficiency check in an aircraft within the preceding 24 calendar months.</td>
+      <td>Applies to military instructor pilots maintaining both FAA and military credentials.</td>
+    </tr>
+<tr>
+      <td><strong>FAA WINGS Program</strong></td>
+      <td>1 Phase completed within previous 12 months; 15 activities evaluated</td>
+      <td>Complete an FAA-sponsored pilot proficiency program (WINGS) meeting all three conditions: hold a current CFI, complete at least 1 phase in the last 12 months, and evaluate and endorse 15 flight activities for at least 5 different pilots.</td>
+      <td>See AC 61-91 for full WINGS program details. All three conditions must be met simultaneously.</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Reinstatement After Expiration</h3>
+  <div class="cc-compare">
+    <div class="cc-panel">
+      <p class="cc-panel-h">Expired ≤ 3 Calendar Months</p>
+      <p>An expired certificate may be reinstated via an approved FIRC (Flight Instructor Refresher Course) that meets AC 61-83 standards.</p>
+      <p class="cc-note">No instructional privileges may be exercised during this reinstatement period — until the application is submitted and the certificate is reinstated.</p>
+    </div>
+    <div class="cc-panel">
+      <p class="cc-panel-h">Expired &gt; 3 Calendar Months</p>
+      <p>Must pass a practical test for one of the ratings on the expired certificate, a practical test for an additional flight instructor rating, or a military instructor pilot/pilot examiner proficiency check.</p>
+      <p class="cc-note">A FIRC alone is not sufficient after the 3-month window closes. A full practical test is required.</p>
+    </div>
+  </div>
+  <p class="cc-note">Submit an Airman Certificate and/or Rating Application (Form 8710-1 or 8710-11) to validate recent experience or reinstate privileges.</p>
+
+  <h3>Qualifying to Train Initial CFI Applicants</h3>
+  <p><span class="badge badge-muted">Effective December 1, 2024</span></p>
+  <h4>Ground training options</h4>
+  <ul>
+      <li>Held the appropriate instructor certificate for 24+ months AND given 40+ hours of ground training, OR</li>
+      <li>Held the appropriate instructor certificate AND given 100+ hours of ground training in an FAA-approved course</li>
+  </ul>
+  <h4>Flight training options</h4>
+  <ul>
+      <li>Held a flight instructor certificate for at least 24 months AND given at least 200 hours of flight training, OR</li>
+      <li>Maintained an 80%+ practical test pass rate for at least 5 applicants in the last 24 months, OR</li>
+      <li>Provided 200 hours of flight training AND completed a Flight Instructor Enhanced Qualification Training Program (FIEQTP) under Part 141 — per <a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.95" target="_blank" rel="noopener noreferrer">FAR 61.95(h)(3)</a> and AC 61-145</li>
+  </ul>
+</div>
+<div class="page-break">
+  <h2 id="flashcards">DPE Prep Flashcards</h2>
+  <p>Fifteen oral-exam-style questions covering the endorsement knowledge DPEs actually probe. Answers link back to the full endorsement cards and the governing regulations.</p>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Student Endorsements</span>
+      <span class="fc-num">1 / 15</span>
+    </div>
+    <p class="fc-q">Q: What are the three pre-solo endorsements a student must have before their first solo flight?</p>
+    <div class="fc-a"><p><a class="internal" href="#A-3">A.3</a> — Pre-solo aeronautical knowledge (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">FAR 61.87(b)</a>), <a class="internal" href="#A-4">A.4</a> — Pre-solo flight training (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">FAR 61.87(c)</a>), and <a class="internal" href="#A-5">A.5</a> — Pre-solo flight training at night (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">FAR 61.87(o)</a>) if night solo is planned. All must be in the logbook before the first solo.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Student Endorsements</span>
+      <span class="fc-num">2 / 15</span>
+    </div>
+    <p class="fc-q">Q: How long is a first solo endorsement (<a class="internal" href="#A-6">A.6</a>) valid, and who may issue it?</p>
+    <div class="fc-a"><p>90 calendar days from the date of the endorsement (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">FAR 61.87(n)</a>). The instructor who gave the training must issue the <a class="internal" href="#A-6">A.6</a> first solo endorsement. The endorsement must list the specific make and model of aircraft.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Student Endorsements</span>
+      <span class="fc-num">3 / 15</span>
+    </div>
+    <p class="fc-q">Q: Your student&#39;s 90-day solo endorsement expired yesterday. What must you do before they fly solo again?</p>
+    <div class="fc-a"><p>Review the student and issue a new <a class="internal" href="#A-7">A.7</a> endorsement (solo flight — each additional 90-day period, <a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">FAR 61.87(p)</a>). Any authorized CFI may issue <a class="internal" href="#A-7">A.7</a> renewals — it does not have to be the original instructor.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Student Endorsements</span>
+      <span class="fc-num">4 / 15</span>
+    </div>
+    <p class="fc-q">Q: What endorsement is required before each individual solo cross-country flight, and what must the instructor review?</p>
+    <div class="fc-a"><p><a class="internal" href="#A-10">A.10</a> — Solo cross-country flight planning (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">FAR 61.93(c)(3)</a>). Before each flight, the instructor must review: the route, weather, NOTAMs, fuel requirements, and alternates. It cannot be issued in advance for future flights.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Logbook Entries</span>
+      <span class="fc-num">5 / 15</span>
+    </div>
+    <p class="fc-q">Q: What are the 8 required elements of a logbook entry under <a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.51" target="_blank" rel="noopener noreferrer">FAR 61.51</a>?</p>
+    <div class="fc-a"><p>(1) Date, (2) Aircraft identification (N-number), (3) Aircraft make and model, (4) Type of experience (Solo, PIC, Dual, etc.), (5) Total flight time, (6) Flight conditions (Day, Night, Instrument, Simulated Instrument), (7) Departure and arrival locations, (8) Name of safety pilot, if required.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Logbook Entries</span>
+      <span class="fc-num">6 / 15</span>
+    </div>
+    <p class="fc-q">Q: How long must a CFI retain records of endorsements, and what records are required?</p>
+    <div class="fc-a"><p>At least 3 years (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.189" target="_blank" rel="noopener noreferrer">FAR 61.189</a>). Required records: (1) name of each person endorsed for solo flight and the date of endorsement, (2) name of each person endorsed for a knowledge or practical test, the kind of test, date, and results.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Practical Test</span>
+      <span class="fc-num">7 / 15</span>
+    </div>
+    <p class="fc-q">Q: Within what time frame must the <a class="internal" href="#A-1">A.1</a> (prerequisites for practical test) endorsement be issued?</p>
+    <div class="fc-a"><p>Within 2 calendar months preceding the month of application (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">FAR 61.39(a)(6)</a>). For example, if the checkride is in May, the <a class="internal" href="#A-1">A.1</a> must have been issued in March, April, or May.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Practical Test</span>
+      <span class="fc-num">8 / 15</span>
+    </div>
+    <p class="fc-q">Q: Your student fails the knowledge test. What must you do before they can take the practical test?</p>
+    <div class="fc-a"><p>Review all areas of deficiency identified on the Airman Knowledge Test Report, then issue an <a class="internal" href="#A-2">A.2</a> endorsement (review of deficiencies, <a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">FAR 61.39(a)(6)(iii)</a>) confirming the student now has satisfactory knowledge in those areas. The <a class="internal" href="#A-2">A.2</a> is required before every practical test.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Retesting</span>
+      <span class="fc-num">9 / 15</span>
+    </div>
+    <p class="fc-q">Q: Your student fails one area of operation on the checkride. What endorsements are needed before the retest, and what time limit applies?</p>
+    <div class="fc-a"><p>Both <a class="internal" href="#A-77">A.77</a> (retesting after failure, after additional training, <a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.49" target="_blank" rel="noopener noreferrer">FAR 61.49</a>) AND a new <a class="internal" href="#A-1">A.1</a> (prerequisites, within 2 calendar months). To retain credit for passed areas, the remainder must be completed within 60 calendar days of the original test date (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.43" target="_blank" rel="noopener noreferrer">FAR 61.43(f)</a>).</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Retesting</span>
+      <span class="fc-num">10 / 15</span>
+    </div>
+    <p class="fc-q">Q: What is the difference between the 60-calendar-day limit and the 2-calendar-month limit?</p>
+    <div class="fc-a"><p>60 calendar days (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.43" target="_blank" rel="noopener noreferrer">FAR 61.43(f)</a>): governs credit retention for passed areas after discontinuance or partial failure — after 60 days, all areas must be re-tested. 2 calendar months (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">FAR 61.39(g)</a>): governs completion of a practical test conducted in planned increments — if not done in 2 months, entire test must be re-accomplished. Neither is related to the 90-day solo window.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Recurrent</span>
+      <span class="fc-num">11 / 15</span>
+    </div>
+    <p class="fc-q">Q: A pilot&#39;s flight review has lapsed. Who can conduct it, what are the minimums, and what endorsement is given?</p>
+    <div class="fc-a"><p>Any authorized CFI. Minimum: 1 hour of ground training (reviewing Part 91) and 1 hour of flight training. After satisfactory completion: <a class="internal" href="#A-69">A.69</a> endorsement in the pilot&#39;s logbook (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.56" target="_blank" rel="noopener noreferrer">FAR 61.56(a)</a>&amp;(c)). No unsatisfactory-performance entry is required if the review is not completed, but log the instruction given.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">Recurrent</span>
+      <span class="fc-num">12 / 15</span>
+    </div>
+    <p class="fc-q">Q: Who can conduct an IPC, and what endorsement is given?</p>
+    <div class="fc-a"><p>Only a CFII (Certificated Flight Instructor – Instrument) — a standard CFI cannot conduct an IPC. After satisfactory completion: <a class="internal" href="#A-71">A.71</a> in the pilot&#39;s logbook (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.57" target="_blank" rel="noopener noreferrer">FAR 61.57(d)</a>). As with the flight review, no unsatisfactory-performance entry is required, but log the instruction.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">CFI Career</span>
+      <span class="fc-num">13 / 15</span>
+    </div>
+    <p class="fc-q">Q: Name the 6 ways a CFI can satisfy the recent experience requirement to maintain instructional privileges.</p>
+    <div class="fc-a"><p>(1) Pass a practical test for a rating on the certificate or additional instructor rating. (2) Document 5+ applicants endorsed for checkride with 80%+ first-attempt pass rate. (3) Hold an evaluative position (check pilot, chief instructor, Part 121/135 instructor). (4) Complete an approved FIRC (within 3 calendar months). (5) Pass a military instructor/examiner proficiency check. (6) Complete the FAA WINGS program. All must be within the previous 24 calendar months (FIRC: 3 months).</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">CFI Career</span>
+      <span class="fc-num">14 / 15</span>
+    </div>
+    <p class="fc-q">Q: Your CFI certificate expired 2 months ago. How do you reinstate it?</p>
+    <div class="fc-a"><p>Within 3 calendar months of expiration: complete an approved FIRC (AC 61-83). No instructional privileges may be exercised during this period — submit the application first. Then reinstatement is processed. You may NOT instruct while expired even if the FIRC is done.</p></div>
+  </div>
+<div class="fc-card">
+    <div class="fc-meta">
+      <span class="fc-badge">CFI Career</span>
+      <span class="fc-num">15 / 15</span>
+    </div>
+    <p class="fc-q">Q: Your CFI certificate expired 5 months ago. What must you do to reinstate it?</p>
+    <div class="fc-a"><p>After 3 calendar months of expiration, a FIRC alone is insufficient. You must pass a practical test for one of the ratings on your expired certificate, a practical test for an additional instructor rating, or a military instructor pilot/pilot examiner proficiency check (<a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.199" target="_blank" rel="noopener noreferrer">FAR 61.199</a>, effective December 1, 2024).</p></div>
+  </div>
+</div>
+<div class="page-break">
+  <h2 id="lesson-plan">Lesson Plan — Teaching Endorsements</h2>
+  <p>A ten-part ground lesson for CFI candidates and working instructors on issuing, managing, and verifying AC 61-65K endorsements.</p>
+  <ol class="lp-toc">
+      <li><a class="internal" href="#gs-objectives">1. Lesson Objectives &amp; Key Elements</a></li>
+      <li><a class="internal" href="#gs-logbook">2. Logbook Entries &amp; Required Records</a></li>
+      <li><a class="internal" href="#gs-student-endorsements">3. Student Pilot Certificate Endorsements</a></li>
+      <li><a class="internal" href="#gs-practical-test">4. Practical Test Preparation &amp; Recommendation</a></li>
+      <li><a class="internal" href="#gs-additional-ratings">5. Additional Ratings &amp; Retesting</a></li>
+      <li><a class="internal" href="#gs-time-limits">6. Time Limits: 60 Calendar Days vs. 2 Calendar Months</a></li>
+      <li><a class="internal" href="#gs-flight-review">7. Flight Review &amp; Instrument Proficiency Check Endorsements</a></li>
+      <li><a class="internal" href="#gs-instructor-responsibilities">8. Flight Instructor Responsibilities</a></li>
+      <li><a class="internal" href="#gs-cfi-certificate">9. Maintaining Your CFI Certificate &amp; WINGS Program</a></li>
+      <li><a class="internal" href="#gs-conclusion">10. Conclusion &amp; Verification</a></li>
+  </ol>
+<section class="guidance-section">
+  <h3 id="gs-objectives">1. Lesson Objectives &amp; Key Elements</h3>
+  <h3>References</h3>
+<ul><li>14 CFR Part 61</li><li>AC 61-65K – Certification: Pilots and Flight and Ground Instructors</li><li>AC 61-98 – Currency Requirements and Guidance for the Flight Review and Instrument Proficiency Check</li><li>AC 61-83 – Flight Instructor Refresher Course</li><li>AC 61-91 – WINGS Pilot Proficiency Program</li><li>FAA Order 8900.1 (FSIMS)</li></ul>
+<h3>Objective</h3>
+<p>The learner should develop knowledge of the elements related to logbook entries and endorsements as required by the appropriate Airman Certification Standards (ACS).</p>
+<h3>Key Elements</h3>
+<ol><li>AC 61-65</li><li>Endorsements</li><li>Required Records</li><li>Logbook Entries</li><li>Student Pilot Certificate Endorsements</li><li>Preparation of a Practical Test Recommendation</li><li>Additional Ratings</li><li>Reapplying for a Practical Test</li><li>Time Limits</li><li>Flight Review Endorsements</li><li>Flight Instructor Responsibilities</li><li>Maintaining Your CFI Certificate</li></ol>
+<h3>Lesson Schedule</h3>
+<ol><li>Discuss objectives</li><li>Review material</li><li>Development</li><li>Conclusion</li></ol>
+<h3>Instructor &amp; Student Actions</h3>
+<ul><li>Instructor: Discuss lesson objectives, present lecture, ask and answer questions, assign homework</li><li>Student: Participate in discussion, take notes, ask and respond to questions</li></ul>
+<h3>Completion Standards</h3>
+<p>The learner understands what is necessary in their logbooks, what is required for student pilot certificates and preparing a learner for a practical test, and the requirements for flight review endorsements and flight instructor records.</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-logbook">2. Logbook Entries &amp; Required Records</h3>
+  <h3>Instructor Logbook Signing Requirement (FAR 61.51)</h3>
+<p>A flight instructor must sign the logbook of each person to whom they have given flight or ground training. Required elements of a logbook entry under FAR 61.51:</p>
+<ul><li>Date</li><li>Aircraft identification</li><li>Aircraft make and model</li><li>Type of experience (Solo, PIC, etc.)</li><li>Total flight time</li><li>Flight conditions (Day, Night, Instrument, etc.)</li><li>Location of departure and arrival</li><li>Name of safety pilot, if required</li></ul>
+<h3>Recordkeeping Requirements (FAR 61.189)</h3>
+<p>An instructor must maintain a record in a logbook or separate document containing:</p>
+<ul><li>Name of each person endorsed for solo flight privileges, and the date of the endorsement</li><li>Name of each person endorsed for a knowledge or practical test, with the kind of test, date, and results</li></ul>
+<p>These records must be retained for at least 3 years.</p>
+<h3>Unsatisfactory Performance</h3>
+<p>No logbook entry reflecting unsatisfactory performance on a flight review or instrument proficiency check is required. However, a logbook entry for the instruction given should still be made.</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-student-endorsements">3. Student Pilot Certificate Endorsements</h3>
+  <h3>Pre-Solo Endorsements</h3>
+<ul><li>Pre-solo aeronautical knowledge – FAR 61.87(b), AC 61-65 A.3</li><li>Pre-solo flight training – FAR 61.87(c)(1)&amp;(2), AC 61-65 A.4</li><li>Pre-solo flight training at night – FAR 61.87(o), AC 61-65 A.5</li></ul>
+<h3>Solo Flight Endorsements</h3>
+<ul><li>Solo flight (first 90-day period) – FAR 61.87(n), AC 61-65 A.6 — endorsement for the specific make &amp; model by the instructor who gave the training within the preceding 90 days</li><li>Solo flight (each additional 90-day period) – FAR 61.87(p), AC 61-65 A.7</li><li>Solo takeoffs and landings at another airport within 25 NM – FAR 61.93(b)(1), AC 61-65 A.8</li></ul>
+<h3>Cross-Country Endorsements</h3>
+<ul><li>Solo cross-country training (category-specific) – FAR 61.93(c)(1)&amp;(2), AC 61-65 A.9</li><li>Solo cross-country flight planning (make &amp; model-specific) – FAR 61.93(c)(3), AC 61-65 A.10 — required for each individual cross-country flight</li><li>Repeated solo cross-country flights not more than 50 NM from departure – FAR 61.93(b)(2), AC 61-65 A.11</li></ul>
+<h3>Class B Airspace Endorsements</h3>
+<ul><li>Solo flight in Class B airspace – FAR 61.95(a), AC 61-65 A.12</li><li>Solo flight to/from/at a Class B airport – FAR 61.95(b) &amp; FAR 91.131(b)(1), AC 61-65 A.13</li></ul>
+<h3>TSA U.S. Citizenship Endorsement</h3>
+<p>The instructor must keep a copy of the documents used to provide proof of citizenship for 5 years, or make the following endorsement:</p>
+<ul><li>AC 61-65 A.14 – Endorsement of U.S. Citizenship recommended by the TSA: 49 CFR 1552.3(h)</li></ul>
+<h3>Special Federal Aviation Regulations (SFARs)</h3>
+<p>SFARs are temporary regulations issued by the FAA that apply to specific people and aircraft, often with an expiration date that can be amended, extended, or rescinded.</p>
+<ul><li>SFAR 73 – Robinson R-22/R-44 Special Training &amp; Experience Requirements (not applicable to airplanes, but sample endorsements appear in AC 61-65)</li><li>SFAR 100-2 – Relief for U.S. Military/Civilians assigned outside the U.S. in support of Armed Forces operations</li><li>Part 91 SFARs generally prohibit flight in specific regions (e.g., Damascus, Somalia, Pyongyang, Tehran)</li></ul>
+<p>Review applicable SFARs whenever endorsing a student operating under special regulatory conditions.</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-practical-test">4. Practical Test Preparation &amp; Recommendation</h3>
+  <h3>Prerequisites Endorsement — AC 61-65 A.1</h3>
+<p>Except as provided by FAR 61.39, each applicant must receive an endorsement from an authorized instructor certifying that the applicant received and logged the required flight time and training in preparation for the practical test within 2 calendar months preceding the month of application, and is prepared for the test.</p>
+<h3>Knowledge-Test Deficiency Review — AC 61-65 A.2</h3>
+<p>The instructor must endorse the applicant after reviewing areas of deficiency identified on the Airman Knowledge Test Report. This confirms the applicant has satisfactory knowledge of those subject areas. It is sometimes combined with the A.1 endorsement (e.g., AC 61-65 A.44 for instrument rating).</p>
+<h3>Example: Single-Engine Private Pilot Endorsements</h3>
+<ol><li>AC 61-65 A.1 – Prerequisites for a Practical Test: FAR 61.39(a)(6)(i)&amp;(ii)</li><li>AC 61-65 A.2 – Review of Deficiencies Identified on Airman Knowledge Test: FAR 61.39(a)(6)(iii)</li><li>AC 61-65 A.36 – Aeronautical Knowledge Test: FAR 61.35(a)(1), 61.103(d), 61.105</li><li>AC 61-65 A.37 – Flight Proficiency/Practical Test: FAR 61.103(f), 61.107(b), 61.109</li></ol>
+<h3>IACRA vs. Paper Application</h3>
+<p>The instructor and student must complete the IACRA rating application online at iacra.faa.gov, or complete and sign Form 8710-1 for the examiner at the practical test. Most examiners now prefer IACRA.</p>
+<h3>Medical Requirements</h3>
+<p>Except in certain instances, the applicant must hold at least a current third-class medical certificate (FAR 61.23(a)(3)(iii)).</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-additional-ratings">5. Additional Ratings &amp; Retesting</h3>
+  <h3>Additional Class Rating — FAR 61.63(c)</h3>
+<p>For an additional class rating (e.g., adding multiengine to a single-engine private pilot certificate), the applicant needs:</p>
+<ul><li>AC 61-65 A.78 – Additional Aircraft Category or Class Rating (other than ATP): FAR 61.63(c)</li><li>AC 61-65 A.1 – Practical test endorsement</li><li>Other endorsements as required (e.g., A.72 for complex aircraft if applicable)</li></ul>
+<p>No knowledge test is required provided the applicant already holds a rating at the same certificate level. No need to meet the time requirements applicable to the initial class rating.</p>
+<h3>Additional Category Rating — FAR 61.63(b)</h3>
+<p>Complete all applicable aeronautical experience and training, then receive endorsements A.78 + A.1 (plus others as required) and pass the practical test.</p>
+<h3>Example: Single-Engine Private Pilot Adding Multiengine Rating</h3>
+<ol><li>AC 61-65 A.1 – Prerequisite for a Practical Test: FAR 61.39(a)(6)(i)&amp;(ii)</li><li>AC 61-65 A.78 – Additional Aircraft Category or Class Rating (other than ATP): FAR 61.63(c)</li><li>AC 61-65 A.72 – To act as PIC in a complex aircraft: FAR 61.31(e) (if applicable)</li></ol>
+<h3>Solo Flight Without Appropriate Category/Class — FAR 61.31(d)(2)</h3>
+<p>If a pilot does not hold the appropriate category/class rating, they must have received the required training. Endorsement: AC 61-65 A.76 – Solo PIC when the pilot does not hold the appropriate category/class.</p>
+<h3>Retesting After Disapproval — FAR 61.43(f) &amp; 61.49</h3>
+<ul><li>A practical test, whether satisfactory or not, uses up the endorsement for that test</li><li>The applicant must receive additional instruction and a new endorsement before retesting: AC 61-65 A.77 – Retesting after failure of a knowledge or practical test: FAR 61.49</li><li>An instructor recommendation (IACRA or 8710) is required for every retest</li><li>The applicant may receive credit for Areas of Operation already passed if the remainder is completed within 60 calendar days after discontinuation</li></ul>
+<h3>After a Letter of Discontinuance</h3>
+<ul><li>No additional endorsements required</li><li>Credit is given for areas already passed if the test is completed within 60 calendar days</li><li>After 60 calendar days, the entire practical test must be re-accomplished</li></ul>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-time-limits">6. Time Limits: 60 Calendar Days vs. 2 Calendar Months</h3>
+  <h3>60 Calendar-Day Limit — FAR 61.43(e)-(f)</h3>
+<p>A practical test may be discontinued for four reasons:</p>
+<ol><li>Failing one or more areas of operation</li><li>Inclement weather</li><li>Airworthiness concerns</li><li>Safety of flight concern</li></ol>
+<p>If discontinued, the applicant receives credit for areas already passed. The remainder of the test must be completed within 60 calendar days (FAR 61.43(f)(1)). After 60 calendar days, all areas must be re-tested from the beginning.</p>
+<h3>2 Calendar-Month Limit — FAR 61.39(g)-(h)</h3>
+<p>If all increments of a practical test are not completed on the same date — whether due to discontinuance or because the test was planned in increments — all remaining increments must be completed within 2 calendar months (FAR 61.39(g)). After 2 calendar months, the entire test must be re-accomplished (FAR 61.39(h)).</p>
+<h3>Key Distinction</h3>
+<p>These two time limits are separate. The 60-day limit governs credit for passed areas after discontinuance; the 2-calendar-month limit governs completion of a test conducted in planned increments. Neither is related to the 90-day endorsement window for student solo flights.</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-flight-review">7. Flight Review &amp; Instrument Proficiency Check Endorsements</h3>
+  <h3>Flight Review Completion — AC 61-65 A.69</h3>
+<p>After satisfactory completion of a flight review, the instructor must endorse the pilot&#39;s logbook per FAR 61.56(a)&amp;(c). No entry reflecting unsatisfactory performance is required, but instruction given should be recorded.</p>
+<h3>Instrument Proficiency Check (IPC) — AC 61-65 A.71</h3>
+<p>A CFII is required to conduct an IPC for instrument-rated pilots. After satisfactory completion, endorse the pilot&#39;s logbook per FAR 61.57(d). As with the flight review, no unsatisfactory-performance entry is required, but log the instruction given.</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-instructor-responsibilities">8. Flight Instructor Responsibilities</h3>
+  <h3>Recordkeeping — FAR 61.189</h3>
+<p>An instructor must maintain a logbook or separate document containing:</p>
+<ul><li>Name of each person endorsed for solo flight privileges, and the date of the endorsement</li><li>Name of each person endorsed for a knowledge or practical test, with the kind of test, date, and results</li></ul>
+<p>Records must be retained for at least 3 years.</p>
+<h3>Limitations &amp; Expiration Dates</h3>
+<p>Failure to ensure proper endorsements is a serious performance deficiency. Depending on the situation, the FAA could hold the instructor accountable. Required limitations and expiration dates exist for safety — ensure proper endorsements and confirm the learner understands them.</p>
+<h3>Training Initial Flight Instructor Applicants (Effective December 1, 2024)</h3>
+<p>Ground training options — the trainer must have:</p>
+<ul><li>Held the appropriate instructor certificate for 24+ months and given 40+ hours of ground training, OR</li><li>Held the appropriate instructor certificate and given 100+ hours of ground training in an FAA-approved course</li></ul>
+<p>Flight training options — the trainer must have:</p>
+<ul><li>Held a flight instructor certificate for at least 24 months and given at least 200 hours of flight training, OR</li><li>Maintained an 80% practical test pass rate for at least 5 applicants in the last 24 months, OR</li><li>Provided 200 hours of flight training and completed a Flight Instructor Enhanced Qualification Training Program (FIEQTP) under Part 141 — per FAR 61.95(h)(3) and AC 61-145</li></ul>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-cfi-certificate">9. Maintaining Your CFI Certificate &amp; WINGS Program</h3>
+  <h3>Duration of Certificates (Effective December 1, 2024)</h3>
+<ul><li>Certificates issued before December 1, 2024 expire 24 calendar months from the month issued, renewed, or reinstated (Exception: FAR 61.197(b))</li><li>Certificates issued on or after December 1, 2024 are issued without an expiration date</li></ul>
+<h3>Recent Experience Requirements — FAR 61.197</h3>
+<p>Within the previous 24 calendar months, satisfy one of the following:</p>
+<ol><li>Pass a practical test for one of the ratings listed on the instructor certificate, or for an additional flight instructor rating</li><li>Submit documentation showing endorsement of 5+ applicants for a checkride with an 80%+ first-attempt pass rate (a Gold Seal certificate may be applied for/renewed at the same time)</li><li>Serve as a company check pilot or check airman, chief flight instructor, Part 121 or 135 instructor, or similar evaluative position within the past 24 calendar months</li><li>Complete an approved flight instructor refresher course within the past 3 calendar months (see AC 61-83)</li><li>Pass a military instructor pilot or pilot examiner proficiency check in an aircraft within the past 24 calendar months</li><li>Complete an FAA-sponsored pilot proficiency program (WINGS) — see requirements below</li></ol>
+<h3>WINGS Program Requirements — AC 61-91</h3>
+<ul><li>Hold a current flight instructor certificate</li><li>Complete at least 1 phase of an FAA-sponsored pilot proficiency program in the last 12 months</li><li>Evaluate and endorse 15 flight activities (at least 5 pilots) under the pilot proficiency program</li></ul>
+<h3>Reinstatement of Flight Instructor Privileges — FAR 61.199 (Effective December 1, 2024)</h3>
+<p>If a certificate has expired:</p>
+<ul><li>Within 3 calendar months of expiration: Privileges can be reinstated via an approved FIRC (Flight Instructor Refresher Course). No instructional privileges during this reinstatement period.</li><li>After 3 calendar months: Must pass an instructor practical test for one of the ratings on the expired certificate, a practical test for an additional flight instructor rating, or a military instructor pilot/pilot examiner proficiency check</li></ul>
+<h3>Documentation</h3>
+<p>Submit an Airman Certificate and/or Rating Application (Form 8710-1 or 8710-11) to validate recent experience.</p>
+</section>
+<section class="guidance-section">
+  <h3 id="gs-conclusion">10. Conclusion &amp; Verification</h3>
+  <p>Understanding logbook requirements and endorsement procedures is essential for every flight instructor. Proper records protect both student and instructor — ensuring training is documented, certificates remain valid, and the FAA&#39;s requirements are met.</p>
+<p>Before endorsing a student or recommending an applicant for a practical test, verify that all required training has been completed, appropriate time limits are satisfied, and endorsement language matches current AC 61-65K model text.</p>
+<h3>Important Reminder</h3>
+<p>This site is a reference aid. Always verify endorsement applicability against the pilot&#39;s specific context, current FARs, and current FAA guidance — including the latest edition of AC 61-65.</p>
+<h3>Official References</h3>
+<ul><li>AC 61-65K – Certification: Pilots and Flight and Ground Instructors</li><li>AC 61-98 – Currency Requirements and Guidance for the Flight Review and IPC</li><li>AC 61-83 – Flight Instructor Refresher Course</li><li>AC 61-91 – WINGS Pilot Proficiency Program</li><li>FAA Order 8900.1 (FSIMS)</li></ul>
+</section>
+</div>
+<div class="page-break">
+  <h2 id="appendix">Appendix</h2>
+
+  <h3>eCFR Link Index</h3>
+  <p>Every unique eCFR section referenced by the 96 endorsement cards in this book, sorted by URL. Links open the current eCFR text — always verify against the live regulation.</p>
+  <table class="data-table">
+    <thead><tr><th>Citation (as listed in AC 61-65K)</th><th>eCFR URL</th></tr></thead>
+    <tbody>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">14 CFR § 61.101(b)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.101</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.103" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.103(f), 61.107(b), and 61.109</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.103" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.103</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.123" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.123(e), 61.127, and 61.129</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.123" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.123</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.153" target="_blank" rel="noopener noreferrer">14 CFR § 61.153(e)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.153" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.153</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.157" target="_blank" rel="noopener noreferrer">14 CFR § 61.157(b)(2)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.157" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.157</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.160" target="_blank" rel="noopener noreferrer">14 CFR § 61.160</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.160" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.160</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">14 CFR § 61.183(d)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.183</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.195" target="_blank" rel="noopener noreferrer">14 CFR § 61.195(k)(7)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.195" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.195</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.217" target="_blank" rel="noopener noreferrer">14 CFR § 61.217(d)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.217" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.217</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.309" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.309 and 61.311</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.309" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.309</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">14 CFR § 61.31(e)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.31</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.325" target="_blank" rel="noopener noreferrer">14 CFR § 61.325</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.325" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.325</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.327" target="_blank" rel="noopener noreferrer">14 CFR § 61.327</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.327" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.327</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.329" target="_blank" rel="noopener noreferrer">14 CFR § 61.329</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.329" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.329</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.331" target="_blank" rel="noopener noreferrer">14 CFR § 61.331(a)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.331" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.331</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1) and 61.309</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.35</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.39</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.405" target="_blank" rel="noopener noreferrer">14 CFR § 61.405(a)(1)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.405" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.405</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.409" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.409 and 61.419</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.409" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.409</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.412" target="_blank" rel="noopener noreferrer">14 CFR § 61.412</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.412" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.412</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.45" target="_blank" rel="noopener noreferrer">14 CFR § 61.45(g)(4)(ii)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.45" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.45</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.49" target="_blank" rel="noopener noreferrer">14 CFR § 61.49</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.49" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.49</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.52" target="_blank" rel="noopener noreferrer">14 CFR § 61.52</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.52" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.52</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.56" target="_blank" rel="noopener noreferrer">14 CFR § 61.56(a) and (c)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.56" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.56</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.57" target="_blank" rel="noopener noreferrer">14 CFR § 61.57(d)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.57" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.57</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">14 CFR § 61.63(b) or (c)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.63</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.65" target="_blank" rel="noopener noreferrer">14 CFR § 61.65(a)(6)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.65" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.65</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.66" target="_blank" rel="noopener noreferrer">14 CFR § 61.66(a)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.66" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.66</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.69" target="_blank" rel="noopener noreferrer">14 CFR § 61.69(a)(5)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.69" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.69</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">14 CFR § 61.87(b)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.87" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.87</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">14 CFR § 61.93(b)(1)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.93" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.93</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.94" target="_blank" rel="noopener noreferrer">14 CFR § 61.94(a)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.94" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.94</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.95" target="_blank" rel="noopener noreferrer">14 CFR § 61.95(a)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.95" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.95</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.96" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.96(b)(5), 61.98(a) and (b), and 61.99</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.96" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-14/part-61/section-61.96</a></td>
+    </tr>
+<tr>
+      <td><a class="external" href="https://www.ecfr.gov/current/title-49/part-1552/section-1552.15" target="_blank" rel="noopener noreferrer">Title 49 of the Code of Federal Regulations (49 CFR) § 1552.15(c)</a></td>
+      <td class="mono"><a class="external" href="https://www.ecfr.gov/current/title-49/part-1552/section-1552.15" target="_blank" rel="noopener noreferrer">https://www.ecfr.gov/current/title-49/part-1552/section-1552.15</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Source</h3>
+  <div class="apx-src">
+    <p><strong>AC 61-65K</strong> · Issued 2025-11-14</p>
+    <p><a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">AC 61-65K (FAA)</a></p>
+  </div>
+
+  <p class="apx-muted">Interactive PDF prototype generated from the Simply Endorsed CFI web app (suarezcfi.com/simply-endorsed-cfi).</p>
+</div></body></html>

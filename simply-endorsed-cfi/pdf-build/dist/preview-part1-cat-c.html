@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><title>preview part1-cat-c</title>
+<style>/* pdf.css — print stylesheet for the Simply Endorsed CFI PDF book.
+ *
+ * Inlined into dist/book.html by build.js. Category colors arrive via the
+ * CSS custom properties --cat-accent / --cat-soft / --cat-line / --cat-ink,
+ * set inline on .category-banner, .bundle-header, and .endorsement-card
+ * (see lib/theme.js themeVars()).
+ *
+ * Page footer/header are added later by Playwright's headerTemplate /
+ * footerTemplate — that is why there are intentionally no @page margin
+ * boxes here.
+ */
+
+/* ── Page & base ─────────────────────────────────────────────────────── */
+
+@page {
+  size: Letter;
+  margin: 0.75in 0.7in 0.8in 0.7in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1f2430;
+  margin: 0;
+}
+
+code,
+.mono,
+.verbatim {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Headings (Chromium PDF outline picks up h1-h6) ──────────────────── */
+
+h1.section-title {
+  font-size: 20pt;
+  line-height: 1.2;
+  margin: 0 0 14pt 0;
+  padding-bottom: 6pt;
+  border-bottom: 2pt solid #1c2142;
+  color: #1c2142;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin: 0;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 0;
+}
+
+/* ── Page-break helpers ──────────────────────────────────────────────── */
+
+.page-break {
+  break-before: page;
+}
+
+.avoid-break {
+  break-inside: avoid;
+}
+
+/* ── Cover ───────────────────────────────────────────────────────────── */
+
+.cover {
+  height: 9.2in;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  break-after: page;
+}
+
+.cover-logo {
+  width: 1.5in;
+  height: 1.5in;
+  margin-bottom: 0.35in;
+}
+
+.cover-title {
+  font-size: 30pt;
+  font-weight: 800;
+  color: #1c2142;
+  margin: 0 0 8pt 0;
+}
+
+.cover-subtitle {
+  font-size: 13pt;
+  color: #4b5563;
+  margin: 0 0 18pt 0;
+  max-width: 5.5in;
+}
+
+.cover-meta {
+  font-size: 9.5pt;
+  color: #6b7280;
+}
+
+/* ── Table of contents ───────────────────────────────────────────────── */
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin: 0 0 4pt 0;
+}
+
+.toc-list a {
+  text-decoration: none;
+}
+
+.toc-level-2 {
+  padding-left: 14pt;
+  font-size: 9.5pt;
+}
+
+/* ── Links ───────────────────────────────────────────────────────────── */
+
+a.internal {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external::after {
+  content: " ↗";
+  font-size: 0.85em;
+}
+
+/* ── Category banner (h2 level) ──────────────────────────────────────── */
+
+.category-banner {
+  break-before: page;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10pt;
+  padding: 10pt 14pt;
+  margin: 0 0 10pt 0;
+  background: var(--cat-soft);
+  border: 1pt solid var(--cat-line);
+  border-left: 5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  color: var(--cat-ink);
+}
+
+.category-banner h2 {
+  color: var(--cat-ink);
+}
+
+.category-banner-count {
+  font-size: 9pt;
+  color: var(--cat-accent);
+  font-weight: 600;
+}
+
+/* ── Bundle (subcategory) header (h3 level) ──────────────────────────── */
+
+.bundle-header {
+  break-after: avoid;
+  break-inside: avoid;
+  margin: 14pt 0 6pt 0;
+  padding: 6pt 10pt;
+  border-left: 3pt solid var(--cat-accent);
+  background: var(--cat-soft);
+  border-radius: 3pt;
+}
+
+.bundle-header h3 {
+  color: var(--cat-ink);
+}
+
+.bundle-desc {
+  margin: 3pt 0 0 0;
+  font-size: 9pt;
+  color: #4b5563;
+}
+
+/* ── Endorsement card ────────────────────────────────────────────────── */
+
+.endorsement-card {
+  break-inside: avoid;
+  margin: 0 0 12pt 0;
+  padding: 10pt 12pt;
+  background: var(--cat-soft);
+  border: 1px solid var(--cat-line);
+  border-left: 4px solid var(--cat-accent);
+  border-radius: 4pt;
+}
+
+.ec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8pt;
+  margin-bottom: 5pt;
+}
+
+.id-pill {
+  display: inline-block;
+  padding: 1.5pt 7pt;
+  border-radius: 9pt;
+  color: #ffffff;
+  background: #1c2142; /* overridden inline with the NAVY constant */
+  font-size: 9pt;
+  font-weight: 700;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  white-space: nowrap;
+}
+
+.ec-title {
+  color: #1c2142;
+}
+
+.ec-badges {
+  margin: 0 0 6pt 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+  font-weight: 600;
+  border: 0.75pt solid transparent;
+}
+
+.badge-signer {
+  color: #1c2142;
+  background: #e8eaf6;
+  border-color: #c5cae9;
+}
+
+.badge-validity {
+  color: #065f46;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.badge-perflight {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.badge-featured {
+  color: #ffffff;
+  background: var(--cat-accent, #475569);
+  border-color: var(--cat-accent, #475569);
+}
+
+.badge-muted {
+  color: #4b5563;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+/* ── Chips (CFR citations, tags) ─────────────────────────────────────── */
+
+.chip {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+}
+
+.cfr-chip {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--cat-ink, #313b4a);
+  background: #ffffff;
+  border: 0.75pt solid var(--cat-line, #d1d5da);
+  text-decoration: none;
+}
+
+.tag-chip {
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.65);
+  border: 0.75pt solid var(--cat-line, #e5e7eb);
+}
+
+.ec-cfr {
+  margin: 0 0 6pt 0;
+}
+
+/* ── Verbatim block ──────────────────────────────────────────────────── */
+
+.ec-verbatim {
+  margin: 0 0 8pt 0;
+}
+
+.ec-verbatim-label {
+  display: block;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cat-accent, #475569);
+  margin-bottom: 2pt;
+}
+
+.verbatim {
+  margin: 0;
+  padding: 6pt 8pt;
+  font-size: 8.5pt;
+  line-height: 1.5;
+  background: #f8f9fb;
+  border: 0.75pt solid #e3e6ec;
+  border-radius: 3pt;
+  color: #111827;
+}
+
+/* ── Explanation bullets / related / footer ──────────────────────────── */
+
+.ec-explanation ul {
+  margin: 0 0 6pt 0;
+  padding-left: 14pt;
+}
+
+.ec-explanation li {
+  margin-bottom: 2pt;
+}
+
+.ec-tags {
+  margin: 0 0 4pt 0;
+}
+
+.ec-related {
+  margin: 4pt 0 0 0;
+  padding-top: 4pt;
+  border-top: 0.75pt dashed var(--cat-line, #d1d5da);
+  font-size: 9pt;
+}
+
+.ec-related:empty {
+  display: none;
+}
+
+.ec-foot {
+  margin-top: 6pt;
+  font-size: 8.5pt;
+}
+
+/* ── Generic content blocks & tables ─────────────────────────────────── */
+
+.guidance-section {
+  break-inside: auto;
+  margin-bottom: 12pt;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 6pt 0 12pt 0;
+}
+
+table.data-table th,
+table.data-table td {
+  border: 0.75pt solid #d7dbe2;
+  padding: 4pt 6pt;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.data-table th {
+  background: #eef0f4;
+  font-weight: 700;
+  color: #1c2142;
+}
+
+table.data-table tr {
+  break-inside: avoid;
+}
+
+ul,
+ol {
+  margin: 4pt 0 8pt 0;
+  padding-left: 16pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+p {
+  margin: 0 0 6pt 0;
+}
+</style></head><body>
+<section class="p1c-chapter" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+<section class="category-banner" id="cat-instrument-rating" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <h2>Instrument Rating</h2>
+    <span class="category-banner-count">3 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-instrument-knowledge-test" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <h3>Knowledge Test</h3>
+    <p class="bundle-desc">Instrument rating aeronautical knowledge test preparation.</p>
+  </header>
+<article class="endorsement-card" id="A-42" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.42</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1) and 61.65(a) and (b)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-15</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.65(b). I have determined that they are prepared for the Instrument–[airplane, helicopter, or powered-lift] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant was prepared for the ATP-level written exam.</li>
+      <li>Supports testing in more advanced subject areas than lower certificates require.</li>
+      <li>Helps ensure the applicant did not skip formal academic preparation.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">instrument rating</span>
+      <span class="chip tag-chip">knowledge test</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-43" title="Flight proficiency/practical test">A.43</a>
+      <a class="chip tag-chip internal" href="#A-44" title="Prerequisites for instrument practical tests">A.44</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-instrument-checkride-bundle" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <h3>Instrument Checkride Bundle <span class="badge badge-featured">Featured bundle</span></h3>
+    <p class="bundle-desc">Common Part 61 instrument practical test package.</p>
+  </header>
+<p class="p1c-group-label">Primary endorsements</p>
+<article class="endorsement-card" id="A-43" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.43</span>
+      <h4 class="ec-title">Flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.65" target="_blank" rel="noopener noreferrer">14 CFR § 61.65(a)(6)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-15</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.65(c) and (d). I have determined they are prepared for the Instrument–[airplane, helicopter, or powered-lift] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Documents readiness for ATP-level evaluation.</li>
+      <li>Supports the applicant’s eligibility for one of the highest certification levels.</li>
+      <li>Helps show the applicant was trained to a polished, professional standard.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">instrument rating</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-44" title="Prerequisites for instrument practical tests">A.44</a>
+      <a class="chip tag-chip internal" href="#A-1" title="Prerequisites for practical test">A.1</a>
+      <a class="chip tag-chip internal" href="#A-42" title="Aeronautical knowledge test">A.42</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-44" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.44</span>
+      <h4 class="ec-title">Prerequisites for instrument practical tests</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-15</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged the required flight time/training of 14 CFR § 61.39(a) in preparation for the practical test within 2 calendar months preceding the date of the test and has satisfactory knowledge of the subject areas in which they were shown to be deficient by the FAA Airman Knowledge Test Report. I have determined they are prepared for the Instrument–[airplane, helicopter, or powered-lift] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Instrument flying depends on precise procedures and solid judgment.</li>
+      <li>Combines recent checkride prep with review of written-test weak areas.</li>
+      <li>The 2-calendar-month limit keeps instrument skills and knowledge fresh.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">instrument rating</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-43" title="Flight proficiency/practical test">A.43</a>
+      <a class="chip tag-chip internal" href="#A-1" title="Prerequisites for practical test">A.1</a>
+      <a class="chip tag-chip internal" href="#A-42" title="Aeronautical knowledge test">A.42</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1c-sup-note">Also commonly included for a typical instrument practical test package.</p>
+<p class="p1c-ref"><span class="id-pill">A.1</span> <a class="internal" href="#A-1">Prerequisites for practical test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+</section>
+<section class="p1c-chapter" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+<section class="category-banner" id="cat-flight-instructor" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h2>Flight Instructor</h2>
+    <span class="category-banner-count">6 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-flight-instructor-foi-knowledge" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>FOI Knowledge</h3>
+    <p class="bundle-desc">Fundamentals of instruction knowledge test preparation endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-45" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.45</span>
+      <h4 class="ec-title">Fundamentals of instructing knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">14 CFR § 61.183(d)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-15</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required fundamentals of instruction training of 14 CFR § 61.185(a)(1). I have determined that they are prepared for the Fundamentals of Instructing knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Good flying skill does not automatically mean good teaching skill.</li>
+      <li>FOI builds the foundation for how instructors teach, evaluate, and correct errors.</li>
+      <li>Helps future instructors understand how students learn.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">flight instructor</span>
+      <span class="chip tag-chip">knowledge test</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-47" title="Flight instructor ground and flight proficiency/practical test">A.47</a>
+      <a class="chip tag-chip internal" href="#A-49" title="Spin training">A.49</a>
+      <a class="chip tag-chip internal" href="#A-46" title="Flight instructor aeronautical knowledge test">A.46</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-flight-instructor-aeronautical-knowledge" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>Instructor Aeronautical Knowledge</h3>
+    <p class="bundle-desc">Flight instructor aeronautical knowledge test preparation endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-46" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.46</span>
+      <h4 class="ec-title">Flight instructor aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">14 CFR § 61.183(f)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-15</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.185(a)[(2) or (3) (as appropriate to the flight instructor rating sought)]. I have determined that they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>A flight instructor must explain material clearly, not just know it personally.</li>
+      <li>Confirms the applicant is prepared for the instructor-level knowledge exam.</li>
+      <li>Supports safe teaching of regulations, systems, procedures, and aerodynamics.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">flight instructor</span>
+      <span class="chip tag-chip">knowledge test</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-47" title="Flight instructor ground and flight proficiency/practical test">A.47</a>
+      <a class="chip tag-chip internal" href="#A-49" title="Spin training">A.49</a>
+      <a class="chip tag-chip internal" href="#A-45" title="Fundamentals of instructing knowledge test">A.45</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-cfi-initial-checkride-bundle" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>CFI ASEL Initial Checkride Bundle <span class="badge badge-featured">Featured bundle</span></h3>
+    <p class="bundle-desc">Common Part 61 Airplane Single-Engine Land initial flight instructor practical test package.</p>
+  </header>
+<p class="p1c-group-label">Primary endorsements</p>
+<article class="endorsement-card" id="A-47" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.47</span>
+      <h4 class="ec-title">Flight instructor ground and flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">14 CFR § 61.183(g)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-15</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.187(b). I have determined that they are prepared for the certificated flight instructor – [aircraft category and class] practical test. Note: The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in endorsements 1 and 2 (see paragraphs A.1 and A.2).</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>This is about readiness to teach as well as fly.</li>
+      <li>The applicant must demonstrate instruction skill, analysis, and professional judgment.</li>
+      <li>Helps ensure future students are trained by someone who can both do and teach.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">flight instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-49" title="Spin training">A.49</a>
+      <a class="chip tag-chip internal" href="#A-46" title="Flight instructor aeronautical knowledge test">A.46</a>
+      <a class="chip tag-chip internal" href="#A-45" title="Fundamentals of instructing knowledge test">A.45</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-49" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.49</span>
+      <h4 class="ec-title">Spin training</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">14 CFR § 61.183(i)(1)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-16</span>
+      <p class="verbatim">The spin training endorsement is only required of flight instructor airplane and flight instructor glider applicants. I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.183(i) in [an airplane, a glider]. I have determined that they are competent and possess instructional proficiency in stall awareness, spin entry, spins, and spin recovery procedures.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Flight instructors teach stalls and loss-of-control awareness.</li>
+      <li>Spin training helps them recognize, prevent, and explain spin-related risks.</li>
+      <li>Supports safer instruction in stall and upset topics.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">flight instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-47" title="Flight instructor ground and flight proficiency/practical test">A.47</a>
+      <a class="chip tag-chip internal" href="#A-46" title="Flight instructor aeronautical knowledge test">A.46</a>
+      <a class="chip tag-chip internal" href="#A-45" title="Fundamentals of instructing knowledge test">A.45</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1c-sup-note">Also commonly included for a typical CFI ASEL initial practical test package.</p>
+<p class="p1c-ref"><span class="id-pill">A.46</span> <a class="internal" href="#A-46">Flight instructor aeronautical knowledge test</a> <span class="p1c-ref-note">— full card under “Instructor Aeronautical Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.45</span> <a class="internal" href="#A-45">Fundamentals of instructing knowledge test</a> <span class="p1c-ref-note">— full card under “FOI Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.2</span> <a class="internal" href="#A-2">Review of deficiencies identified on airman knowledge test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<p class="p1c-ref"><span class="id-pill">A.1</span> <a class="internal" href="#A-1">Prerequisites for practical test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<header class="bundle-header" id="bundle-cfi-amel-initial-checkride-bundle" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>CFI AMEL Initial Checkride Bundle</h3>
+    <p class="bundle-desc">Common Part 61 Airplane Multi-Engine Land initial flight instructor practical test package.</p>
+  </header>
+<p class="p1c-group-label">Primary endorsements</p>
+<p class="p1c-ref"><span class="id-pill">A.47</span> <a class="internal" href="#A-47">Flight instructor ground and flight proficiency/practical test</a> <span class="p1c-ref-note">— full card under “CFI ASEL Initial Checkride Bundle”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.49</span> <a class="internal" href="#A-49">Spin training</a> <span class="p1c-ref-note">— full card under “CFI ASEL Initial Checkride Bundle”</span></p>
+<p class="p1c-sup-note">Also commonly included for a typical CFI AMEL initial practical test package.</p>
+<p class="p1c-ref"><span class="id-pill">A.46</span> <a class="internal" href="#A-46">Flight instructor aeronautical knowledge test</a> <span class="p1c-ref-note">— full card under “Instructor Aeronautical Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.45</span> <a class="internal" href="#A-45">Fundamentals of instructing knowledge test</a> <span class="p1c-ref-note">— full card under “FOI Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.2</span> <a class="internal" href="#A-2">Review of deficiencies identified on airman knowledge test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<p class="p1c-ref"><span class="id-pill">A.1</span> <a class="internal" href="#A-1">Prerequisites for practical test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<header class="bundle-header" id="bundle-cfi-amel-add-on-checkride-bundle" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>CFI AMEL Add-On Checkride Bundle</h3>
+    <p class="bundle-desc">FAA-accurate Airplane Multi-Engine Land additional flight instructor practical test package.</p>
+  </header>
+<p class="p1c-group-label">Primary endorsements</p>
+<p class="p1c-ref"><span class="id-pill">A.47</span> <a class="internal" href="#A-47">Flight instructor ground and flight proficiency/practical test</a> <span class="p1c-ref-note">— full card under “CFI ASEL Initial Checkride Bundle”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.49</span> <a class="internal" href="#A-49">Spin training</a> <span class="p1c-ref-note">— full card under “CFI ASEL Initial Checkride Bundle”</span></p>
+<p class="p1c-sup-note">Also commonly included for a typical CFI AMEL add-on practical test package.</p>
+<p class="p1c-ref"><span class="id-pill">A.46</span> <a class="internal" href="#A-46">Flight instructor aeronautical knowledge test</a> <span class="p1c-ref-note">— full card under “Instructor Aeronautical Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.2</span> <a class="internal" href="#A-2">Review of deficiencies identified on airman knowledge test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<p class="p1c-ref"><span class="id-pill">A.1</span> <a class="internal" href="#A-1">Prerequisites for practical test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<header class="bundle-header" id="bundle-cfii-add-on-bundle" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>CFII Add-On Bundle</h3>
+    <p class="bundle-desc">Common instrument instructor add-on practical test package.</p>
+  </header>
+<p class="p1c-group-label">Primary endorsements</p>
+<article class="endorsement-card" id="A-48" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.48</span>
+      <h4 class="ec-title">Flight instructor certificate with instrument–(category/class) rating/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.183" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.183(g) and 61.187(a) and (b)(7)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-16</span>
+      <p class="verbatim">The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in endorsements 1 and 2 (see paragraphs A.1 and A.2). I certify that [First name, MI, Last name] has received the required certificated flight instructor - instrument training of 14 CFR § 61.187(b)(7). I have determined they are prepared for the certificated flight instructor - instrument–[airplane, helicopter, or powered-lift] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Instrument instruction requires a very high standard of precision.</li>
+      <li>The instructor must teach approaches, holds, scan, procedures, and regulations accurately.</li>
+      <li>Helps protect students in one of the least forgiving training environments.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">flight instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-46" title="Flight instructor aeronautical knowledge test">A.46</a>
+      <a class="chip tag-chip internal" href="#A-45" title="Fundamentals of instructing knowledge test">A.45</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a>
+      <a class="chip tag-chip internal" href="#A-1" title="Prerequisites for practical test">A.1</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1c-sup-note">Also commonly included for a typical CFII add-on practical test package.</p>
+<p class="p1c-ref"><span class="id-pill">A.46</span> <a class="internal" href="#A-46">Flight instructor aeronautical knowledge test</a> <span class="p1c-ref-note">— full card under “Instructor Aeronautical Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.45</span> <a class="internal" href="#A-45">Fundamentals of instructing knowledge test</a> <span class="p1c-ref-note">— full card under “FOI Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.2</span> <a class="internal" href="#A-2">Review of deficiencies identified on airman knowledge test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<p class="p1c-ref"><span class="id-pill">A.1</span> <a class="internal" href="#A-1">Prerequisites for practical test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<header class="bundle-header" id="bundle-helicopter-touchdown-autorotation" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <h3>Helicopter Touchdown Autorotation</h3>
+    <p class="bundle-desc">Required endorsement for helicopter instructor applicants completing touchdown autorotation training.</p>
+  </header>
+<article class="endorsement-card" id="A-50" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.50</span>
+      <h4 class="ec-title">Helicopter Touchdown Autorotation</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <span class="chip cfr-chip">FAA-S-8081-7, Flight Instructor Practical Test Standards for Rotorcraft Category Gyroplane Rating</span>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-16</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received training in straight-in autorotations in a single engine helicopter and autorotation with turns in a single engine helicopter to include touchdown. I have determined that they are competent in instructional knowledge relating to the elements, common errors, performance, and correction of common errors related to straight-in autorotations in a single engine helicopter and autorotation with turns in a single engine helicopter.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Autorotation is a critical emergency procedure in helicopters.</li>
+      <li>Touchdown autorotation requires precise energy and rotor management through landing.</li>
+      <li>Builds skill for one of the most important power-loss responses in rotorcraft.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">flight instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-45" title="Fundamentals of instructing knowledge test">A.45</a>
+      <a class="chip tag-chip internal" href="#A-46" title="Flight instructor aeronautical knowledge test">A.46</a>
+      <a class="chip tag-chip internal" href="#A-47" title="Flight instructor ground and flight proficiency/practical test">A.47</a>
+      <a class="chip tag-chip internal" href="#A-48" title="Flight instructor certificate with instrument–(category/class) rating/practical test">A.48</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<section class="p1c-chapter" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+<section class="category-banner" id="cat-sport-pilot-instructor" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h2>Sport Pilot Instructor</h2>
+    <span class="category-banner-count">8 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-sport-instructor-foi-knowledge" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h3>FOI Knowledge</h3>
+    <p class="bundle-desc">Fundamentals of instruction knowledge test preparation for sport pilot instructors.</p>
+  </header>
+<article class="endorsement-card" id="A-51" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.51</span>
+      <h4 class="ec-title">Fundamentals of instructing knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.405" target="_blank" rel="noopener noreferrer">14 CFR § 61.405(a)(1)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-16</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR § 61.405(a)(1). I have determined that they are prepared for the Fundamentals of Instructing knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Teaching skill still requires formal understanding of how people learn.</li>
+      <li>Helps future instructors organize lessons, communicate clearly, and correct errors.</li>
+      <li>Supports safer and more effective instruction.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-55" title="Flight instructor with a sport pilot rating practical test endorsement">A.55</a>
+      <a class="chip tag-chip internal" href="#A-56" title="Flight instructor with a sport pilot rating practical test completion endorsement">A.56</a>
+      <a class="chip tag-chip internal" href="#A-52" title="Sport pilot flight instructor aeronautical knowledge test">A.52</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-instructor-aeronautical-knowledge" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h3>Instructor Aeronautical Knowledge</h3>
+    <p class="bundle-desc">Sport pilot instructor aeronautical knowledge test preparation.</p>
+  </header>
+<article class="endorsement-card" id="A-52" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.52</span>
+      <h4 class="ec-title">Sport pilot flight instructor aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1) and 61.405(a)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-16</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.405(a)(2). I have determined that they are prepared for the [name of the knowledge test].</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Sport pilot instructors still carry real instructional responsibility.</li>
+      <li>Confirms readiness in regulations, privileges, limitations, and teaching knowledge.</li>
+      <li>Prevents the assumption that simpler aircraft mean simpler teaching standards.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-55" title="Flight instructor with a sport pilot rating practical test endorsement">A.55</a>
+      <a class="chip tag-chip internal" href="#A-56" title="Flight instructor with a sport pilot rating practical test completion endorsement">A.56</a>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-instructor-additional-category-class-proficiency" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h3>Additional Category/Class Proficiency</h3>
+    <p class="bundle-desc">Additional category/class proficiency checks for sport pilot instructors.</p>
+  </header>
+<article class="endorsement-card" id="A-53" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.53</span>
+      <h4 class="ec-title">Flight instructor with a sport pilot rating flight proficiency check for additional category/class</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.409" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.409 and 61.419</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-17</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR §§ 61.409 and 61.419 and have determined that they are prepared for a proficiency check for the flight instructor with a sport pilot rating in a [aircraft category and class]. Note: Cannot be provided to applicants seeking an airplane or helicopter privilege. Must successfully accomplish a practical test per 14 CFR § 61.419(e).</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>An added category or class changes what the instructor may teach.</li>
+      <li>Confirms training and readiness for that expanded authority.</li>
+      <li>Prevents automatic carryover of teaching privileges without qualification.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-54" title="Flight instructor with a sport pilot rating proficiency check completion endorsement for additional category or class privilege">A.54</a>
+      <a class="chip tag-chip internal" href="#A-55" title="Flight instructor with a sport pilot rating practical test endorsement">A.55</a>
+      <a class="chip tag-chip internal" href="#A-56" title="Flight instructor with a sport pilot rating practical test completion endorsement">A.56</a>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-54" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.54</span>
+      <h4 class="ec-title">Flight instructor with a sport pilot rating proficiency check completion endorsement for additional category or class privilege</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.409" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.409 and 61.419</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-17</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has successfully completed a proficiency check in accordance with 14 CFR §§ 61.409 and 61.419. I have determined that they are proficient and authorized for the additional [aircraft category and class] flight instructor privilege. Note: Not applicable to the airplane or helicopter privilege. Must successfully accomplish a practical test per 14 CFR § 61.419(e).</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Creates a record that the added privilege was successfully completed.</li>
+      <li>Distinguishes between starting training and actually qualifying.</li>
+      <li>Supports proper documentation of expanded instructional authority.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-53" title="Flight instructor with a sport pilot rating flight proficiency check for additional category/class">A.53</a>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a>
+      <a class="chip tag-chip internal" href="#A-52" title="Sport pilot flight instructor aeronautical knowledge test">A.52</a>
+      <a class="chip tag-chip internal" href="#A-55" title="Flight instructor with a sport pilot rating practical test endorsement">A.55</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-instructor-practical-test-package" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h3>Practical Test Package</h3>
+    <p class="bundle-desc">Common sport pilot instructor practical test endorsement set.</p>
+  </header>
+<p class="p1c-group-label">Primary endorsements</p>
+<article class="endorsement-card" id="A-55" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.55</span>
+      <h4 class="ec-title">Flight instructor with a sport pilot rating practical test endorsement</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.409" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.409 and 61.411</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-17</span>
+      <p class="verbatim">An endorsement is required in addition to the 14 CFR § 61.39 endorsements provided in paragraphs A.1 and A.2. I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.409 and met the aeronautical experience requirements of 14 CFR § 61.411. I have determined that they are prepared for the flight instructor with a sport pilot rating practical test in a [aircraft category and class]. /s/ [date] S. P. [Instructor name] 987654321 RE 12-31-2026</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Shows the applicant reached practical-test readiness for that instructor certificate.</li>
+      <li>Serves as the recommending instructor’s formal approval to test.</li>
+      <li>Helps ensure the examiner receives a qualified applicant.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-56" title="Flight instructor with a sport pilot rating practical test completion endorsement">A.56</a>
+      <a class="chip tag-chip internal" href="#A-52" title="Sport pilot flight instructor aeronautical knowledge test">A.52</a>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-56" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.56</span>
+      <h4 class="ec-title">Flight instructor with a sport pilot rating practical test completion endorsement</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Examiner only</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.409" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.409 and 61.411</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-17</span>
+      <p class="verbatim">This endorsement is required by 14 CFR § 61.417 and is issued by an authorized evaluator. I certify that [First name, MI, Last name] has met the requirements in accordance with 14 CFR §§ 61.409 and 61.411 and successfully completed the practical test. I have determined that they are proficient and authorized for the [aircraft category and class] flight instructor privilege. /s/ [date] S. P. [Examiner name] 987654321 RE 12-31-2026</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Documents that the training and proficiency tied to the test were completed.</li>
+      <li>Supports the certification record for the new authority granted.</li>
+      <li>Confirms the applicant moved beyond training into qualification.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-55" title="Flight instructor with a sport pilot rating practical test endorsement">A.55</a>
+      <a class="chip tag-chip internal" href="#A-52" title="Sport pilot flight instructor aeronautical knowledge test">A.52</a>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a>
+      <a class="chip tag-chip internal" href="#A-2" title="Review of deficiencies identified on airman knowledge test">A.2</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1c-sup-note">Also commonly included for the sport pilot instructor practical test path.</p>
+<p class="p1c-ref"><span class="id-pill">A.52</span> <a class="internal" href="#A-52">Sport pilot flight instructor aeronautical knowledge test</a> <span class="p1c-ref-note">— full card under “Instructor Aeronautical Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.51</span> <a class="internal" href="#A-51">Fundamentals of instructing knowledge test</a> <span class="p1c-ref-note">— full card under “FOI Knowledge”</span></p>
+<p class="p1c-ref"><span class="id-pill">A.2</span> <a class="internal" href="#A-2">Review of deficiencies identified on airman knowledge test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<p class="p1c-ref"><span class="id-pill">A.1</span> <a class="internal" href="#A-1">Prerequisites for practical test</a> <span class="p1c-ref-note">— full card in Practical Test Prerequisites</span></p>
+<header class="bundle-header" id="bundle-sport-instructor-instrument-reference-training" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h3>Instrument Reference Training</h3>
+    <p class="bundle-desc">Instrument reference training requirement for sport pilot instructor applicants.</p>
+  </header>
+<article class="endorsement-card" id="A-57" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.57</span>
+      <h4 class="ec-title">Flight instructor with a sport pilot rating to train sport pilots on flight by reference to instruments</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.412" target="_blank" rel="noopener noreferrer">14 CFR § 61.412</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-17</span>
+      <p class="verbatim">This endorsement from an instructor certificated under 14 CFR part 61 subpart H to a flight instructor with a sport pilot rating (14 CFR part 61 subpart K) authorizes the 14 CFR part 61 subpart K instructor to train sport pilot candidates on control and maneuvering an airplane solely by reference to the instruments. I certify that I have given [First name, MI, Last name] 3 hours of flight training and 1 hour of ground instruction specific to providing flight training on control and maneuvering an airplane solely by reference to the instruments in accordance with 14 CFR § 61.412. I have determined that they are proficient and authorized to provide training on control and maneuvering an airplane solely by reference to the flight instruments to this instructor’s sport pilot candidate, who intends to operate an aircraft with a V H greater than 87 KCAS on a cross-country flight. /s/ [date] Subpart H Instructor 987654321 RE 12-31-2026</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Even limited instrument-reference training can be safety-critical.</li>
+      <li>Helps ensure the instructor can teach unusual attitude and reference-to-instruments skills correctly.</li>
+      <li>Prevents unsafe habits from forming in students.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a>
+      <a class="chip tag-chip internal" href="#A-52" title="Sport pilot flight instructor aeronautical knowledge test">A.52</a>
+      <a class="chip tag-chip internal" href="#A-53" title="Flight instructor with a sport pilot rating flight proficiency check for additional category/class">A.53</a>
+      <a class="chip tag-chip internal" href="#A-54" title="Flight instructor with a sport pilot rating proficiency check completion endorsement for additional category or class privilege">A.54</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-instructor-spin-training" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <h3>Spin Training</h3>
+    <p class="bundle-desc">Spin training endorsement for sport pilot instructor applicants in applicable airplanes.</p>
+  </header>
+<article class="endorsement-card" id="A-58" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.58</span>
+      <h4 class="ec-title">Spin training</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.405" target="_blank" rel="noopener noreferrer">14 CFR § 61.405(b)(1)(ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-18</span>
+      <p class="verbatim">This spin training endorsement is only required for flight instructor airplane and flight instructor glider applicants. I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.405(b)(1)(ii). I have determined that they are competent and possess instructional proficiency in stall awareness, spin entry, spins, and spin recovery procedures.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Gives the applicable instructor candidate a deeper understanding of stall/spin risk.</li>
+      <li>Supports safer teaching of loss-of-control prevention topics.</li>
+      <li>Helps instructors recognize and address dangerous student habits early.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot instructor</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-51" title="Fundamentals of instructing knowledge test">A.51</a>
+      <a class="chip tag-chip internal" href="#A-52" title="Sport pilot flight instructor aeronautical knowledge test">A.52</a>
+      <a class="chip tag-chip internal" href="#A-53" title="Flight instructor with a sport pilot rating flight proficiency check for additional category/class">A.53</a>
+      <a class="chip tag-chip internal" href="#A-54" title="Flight instructor with a sport pilot rating proficiency check completion endorsement for additional category or class privilege">A.54</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<section class="p1c-chapter" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+<section class="category-banner" id="cat-specialty-operations" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <h2>Specialty Operations</h2>
+    <span class="category-banner-count">9 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-nvg" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <h3>NVG</h3>
+    <p class="bundle-desc">Night vision goggle qualification and currency endorsements.</p>
+  </header>
+<article class="endorsement-card" id="A-88" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.88</span>
+      <h4 class="ec-title">Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">14 CFR § 61.31(k)(1)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-23</span>
+      <p class="verbatim">This training and endorsement must be given by an authorized instructor, which is one who meets the requirements of 14 CFR § 61.195(k)(1)–(7). Refer to 14 CFR § 61.31(k)(3) for exceptions to this required ground training. I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has received the ground training required by 14 CFR § 61.31(k)(1), (i) through (v) to conduct night vision goggle operations.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>NVG operations change visual perception, scanning, and risk factors.</li>
+      <li>Ground training helps the pilot understand limitations, illusions, and equipment use.</li>
+      <li>Builds knowledge before trying NVG flight operations.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-89" title="Endorsement required for flight training and statement of proficiency to act as PIC of an aircraft using NVG">A.89</a>
+      <a class="chip tag-chip internal" href="#A-90" title="Endorsement required to provide training for NVGOs">A.90</a>
+      <a class="chip tag-chip internal" href="#A-91" title="Endorsement for EFVS ground training">A.91</a>
+      <a class="chip tag-chip internal" href="#A-92" title="Endorsement for EFVS flight training">A.92</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-89" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.89</span>
+      <h4 class="ec-title">Endorsement required for flight training and statement of proficiency to act as PIC of an aircraft using NVG</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">14 CFR § 61.31(k)(2)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-23</span>
+      <p class="verbatim">This training and endorsement must be given by an authorized instructor, which is one who meets the requirements of 14 CFR § 61.195(k)(1)–(7). Refer to 14 CFR § 61.31(k)(3) for exceptions to this required flight training. I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has received the flight training on night vision goggle operations required by 14 CFR § 61.31(k)(2), (i) through (iv). I find them proficient in the use of night vision goggles.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Classroom knowledge alone is not enough for NVG use.</li>
+      <li>The pilot must demonstrate real scanning, landing, and obstacle-awareness skill.</li>
+      <li>Helps ensure actual proficiency in a specialized operation.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a>
+      <a class="chip tag-chip internal" href="#A-90" title="Endorsement required to provide training for NVGOs">A.90</a>
+      <a class="chip tag-chip internal" href="#A-91" title="Endorsement for EFVS ground training">A.91</a>
+      <a class="chip tag-chip internal" href="#A-92" title="Endorsement for EFVS flight training">A.92</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-90" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.90</span>
+      <h4 class="ec-title">Endorsement required to provide training for NVGOs</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">DPE or ASI only</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.195" target="_blank" rel="noopener noreferrer">14 CFR § 61.195(k)(7)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-24</span>
+      <p class="verbatim">“Position,” as mentioned in the signature block of the endorsement, is a person who is authorized by the FAA to provide that logbook endorsement. Refer to FAA Order 8900.1, Flight Standards Information Management System. I certify that [First name, MI, Last name], holder of CFI Certificate No. [ ], meets the night vision goggle instructor requirements of 14 CFR § 61.195(k) and is authorized to perform the night vision goggle pilot-in-command qualification and recent flight experience requirements under 14 CFR §§ 61.31(k) and 61.57(f) and (g). This endorsement does not provide the authority to endorse another flight instructor as a night vision goggle instructor. /s/ [date] I. M. Inspector 987654321CFI RE Date 12-31-24 Position</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Teaching NVG operations requires a higher level of competence than simply using NVGs.</li>
+      <li>The instructor must be able to recognize and correct specialized errors.</li>
+      <li>Protects students in a high-risk training environment.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a>
+      <a class="chip tag-chip internal" href="#A-89" title="Endorsement required for flight training and statement of proficiency to act as PIC of an aircraft using NVG">A.89</a>
+      <a class="chip tag-chip internal" href="#A-91" title="Endorsement for EFVS ground training">A.91</a>
+      <a class="chip tag-chip internal" href="#A-92" title="Endorsement for EFVS flight training">A.92</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-efvs" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <h3>EFVS</h3>
+    <p class="bundle-desc">Enhanced Flight Vision System training and qualification endorsements.</p>
+  </header>
+<article class="endorsement-card" id="A-91" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.91</span>
+      <h4 class="ec-title">Endorsement for EFVS ground training</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.66" target="_blank" rel="noopener noreferrer">14 CFR § 61.66(a)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-24</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [pilot certificate], [certificate number], has satisfactorily completed the ground training required by 14 CFR § 61.66(a) appropriate to the [appropriate aircraft category] category of aircraft.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>EFVS requires both system knowledge and regulatory understanding.</li>
+      <li>The pilot must know what the system can do, what it cannot do, and when it may be used.</li>
+      <li>Helps prevent misuse based on misunderstanding the equipment or rules.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-92" title="Endorsement for EFVS flight training">A.92</a>
+      <a class="chip tag-chip internal" href="#A-93" title="Endorsement for EFVS ground and flight training">A.93</a>
+      <a class="chip tag-chip internal" href="#A-94" title="Endorsement for EFVS supplementary training">A.94</a>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-92" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.92</span>
+      <h4 class="ec-title">Endorsement for EFVS flight training</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.66" target="_blank" rel="noopener noreferrer">14 CFR § 61.66(b)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-24</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [pilot certificate], [certificate number], has received the flight training required by 14 CFR § 61.66(b) and is proficient in the use of EFVS in the [appropriate aircraft category in which the flight training was conducted] category of aircraft for EFVS operations conducted under [14 CFR § 91.176(a), (b), or both 14 CFR § 91.176(a) and (b)].</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>EFVS use in flight requires practice, not just theory.</li>
+      <li>Helps the pilot learn scan technique, display use, and transition decisions.</li>
+      <li>Reduces the risk of fixation or poor interpretation during critical phases of flight.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-91" title="Endorsement for EFVS ground training">A.91</a>
+      <a class="chip tag-chip internal" href="#A-93" title="Endorsement for EFVS ground and flight training">A.93</a>
+      <a class="chip tag-chip internal" href="#A-94" title="Endorsement for EFVS supplementary training">A.94</a>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-93" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.93</span>
+      <h4 class="ec-title">Endorsement for EFVS ground and flight training</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.66" target="_blank" rel="noopener noreferrer">14 CFR § 61.66(a) and (b)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-24</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [pilot certificate], [certificate number], has satisfactorily completed the ground training required by 14 CFR § 61.66(a) and has received the flight training required by 14 CFR § 61.66(b) for EFVS operations and is proficient in the use of EFVS in the [appropriate aircraft category in which the ground and flight training was conducted] category of aircraft for EFVS operations conducted under [14 CFR § 91.176(a), (b), or both 14 CFR § 91.176(a) and (b)].</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Documents the full EFVS qualification, not just one part of it.</li>
+      <li>Confirms the pilot received both rule knowledge and practical training.</li>
+      <li>Supports safe and legal EFVS operations.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-91" title="Endorsement for EFVS ground training">A.91</a>
+      <a class="chip tag-chip internal" href="#A-92" title="Endorsement for EFVS flight training">A.92</a>
+      <a class="chip tag-chip internal" href="#A-94" title="Endorsement for EFVS supplementary training">A.94</a>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-94" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.94</span>
+      <h4 class="ec-title">Endorsement for EFVS supplementary training</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.66" target="_blank" rel="noopener noreferrer">14 CFR § 61.66(c)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-24</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [pilot certificate], [certificate number], has satisfactorily completed the required ground and flight training required by 14 CFR § 61.66(c) for EFVS operations and is proficient in the use of EFVS in the [appropriate aircraft category in which the supplementary ground and flight training was conducted] category of aircraft for EFVS operations conducted under [14 CFR § 91.176(a), (b), or both 14 CFR § 91.176(a) and (b)].</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Additional EFVS privileges require added preparation.</li>
+      <li>Expanded system use usually brings added complexity and decision-making demands.</li>
+      <li>Helps prevent pilots from using EFVS beyond the level they were trained for.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-91" title="Endorsement for EFVS ground training">A.91</a>
+      <a class="chip tag-chip internal" href="#A-92" title="Endorsement for EFVS flight training">A.92</a>
+      <a class="chip tag-chip internal" href="#A-93" title="Endorsement for EFVS ground and flight training">A.93</a>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-simplified-flight-controls" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <h3>Simplified Flight Controls</h3>
+    <p class="bundle-desc">Specialized endorsements for simplified flight control systems.</p>
+  </header>
+<article class="endorsement-card" id="A-95" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.95</span>
+      <h4 class="ec-title">To act as PIC in an aircraft with a simplified flight controls designation</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.31" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.31(l) and 61.45(h)(1)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-25</span>
+      <p class="verbatim">I certify that [First Name, MI, Last Name], [grade of pilot certificate], [certificate number], has received the required training of 14 CFR § 61.31(l)(1) in a [M/M] aircraft with simplified flight controls designation. I have determined that [pilot name] is proficient in the operation of an [category and class, M/M] aircraft with simplified flight controls.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Even with simplified controls, the pilot still needs make-and-model-specific training.</li>
+      <li>The pilot must understand the aircraft’s features, limits, and any related restrictions.</li>
+      <li>Prevents overconfidence based only on the word “simplified.”</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-96" title="Initial cadre training in an aircraft with simplified flight controls">A.96</a>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a>
+      <a class="chip tag-chip internal" href="#A-89" title="Endorsement required for flight training and statement of proficiency to act as PIC of an aircraft using NVG">A.89</a>
+      <a class="chip tag-chip internal" href="#A-90" title="Endorsement required to provide training for NVGOs">A.90</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-96" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.96</span>
+      <h4 class="ec-title">Initial cadre training in an aircraft with simplified flight controls</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.195" target="_blank" rel="noopener noreferrer">14 CFR § 61.195(n)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-25</span>
+      <p class="verbatim">I certify that [First Name, MI, Last Name], [grade of pilot certificate], [certificate number], has received the required training of 14 CFR § 61.195(n)(2)(ii) in a [M/M] aircraft with simplified flight controls designation. I have determined that [pilot name] is proficient in the operation of an [category and class, M/M] aircraft with simplified flight controls. Signature of Instructor Pilot _________ Print Name _____________ Cert No. _________ Date ______</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>The initial cadre becomes the foundation for later standardization and training.</li>
+      <li>Their qualification matters because they help establish safe operating practices in that aircraft.</li>
+      <li>Supports future instructor, examiner, and pilot development from a solid base.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">specialty operations</span>
+    </div>
+    <div class="ec-related"><span class="p1c-related-label">Related</span>
+      <a class="chip tag-chip internal" href="#A-95" title="To act as PIC in an aircraft with a simplified flight controls designation">A.95</a>
+      <a class="chip tag-chip internal" href="#A-88" title="Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)">A.88</a>
+      <a class="chip tag-chip internal" href="#A-89" title="Endorsement required for flight training and statement of proficiency to act as PIC of an aircraft using NVG">A.89</a>
+      <a class="chip tag-chip internal" href="#A-90" title="Endorsement required to provide training for NVGOs">A.90</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<style>
+.p1c-group-label {
+  margin: 8pt 0 4pt 0;
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cat-accent, #475569);
+  break-after: avoid;
+}
+.p1c-sup-note {
+  margin: 8pt 0 3pt 0;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: var(--cat-ink, #313b4a);
+  break-after: avoid;
+}
+.p1c-ref {
+  margin: 0 0 4pt 0;
+  padding: 4pt 8pt;
+  font-size: 9pt;
+  background: var(--cat-soft, #f0f1f3);
+  border: 0.75pt solid var(--cat-line, #d1d5da);
+  border-radius: 3pt;
+  break-inside: avoid;
+}
+.p1c-ref-note {
+  font-size: 8pt;
+  color: #6b7280;
+}
+.p1c-related-label {
+  display: inline-block;
+  margin: 0 4pt 2pt 0;
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+</style>
+</body></html>

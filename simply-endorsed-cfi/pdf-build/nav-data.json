@@ -1,0 +1,618 @@
+{
+  "sourceUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf",
+  "categories": [
+    {
+      "slug": "practical-test-prereqs",
+      "label": "Practical Test Prerequisites",
+      "code": "PTP",
+      "theme": {
+        "accent": "#4f46e5",
+        "soft": "#f1f0fd",
+        "line": "#d3d1f9",
+        "ink": "#1d13be"
+      },
+      "bundles": [
+        {
+          "id": "practical-test-recommendation",
+          "label": "Practical Test Recommendation",
+          "abbrev": "TEST REC"
+        },
+        {
+          "id": "knowledge-test-deficiency-review",
+          "label": "Knowledge Test Deficiency Review",
+          "abbrev": "DEFICIENCY"
+        }
+      ]
+    },
+    {
+      "slug": "student-pilot",
+      "label": "Student Pilot",
+      "code": "STU",
+      "theme": {
+        "accent": "#f59e0b",
+        "soft": "#fef7eb",
+        "line": "#fde7c2",
+        "ink": "#b37000"
+      },
+      "bundles": [
+        {
+          "id": "pre-solo",
+          "label": "Pre-Solo",
+          "abbrev": "PRE-SOLO"
+        },
+        {
+          "id": "first-solo",
+          "label": "First Solo",
+          "abbrev": "1ST SOLO"
+        },
+        {
+          "id": "night-solo",
+          "label": "Night Solo",
+          "abbrev": "NGT SOLO"
+        },
+        {
+          "id": "solo-renewal",
+          "label": "Solo Renewal",
+          "abbrev": "RENEWAL"
+        },
+        {
+          "id": "another-airport-within-25nm",
+          "label": "Another Airport within 25 NM",
+          "abbrev": "25NM ARPT"
+        },
+        {
+          "id": "initial-solo-xc",
+          "label": "Initial Solo XC",
+          "abbrev": "SOLO XC"
+        },
+        {
+          "id": "repeated-solo-xc-50nm",
+          "label": "Repeated Solo XC within 50 NM",
+          "abbrev": "50NM XC"
+        },
+        {
+          "id": "class-b-solo",
+          "label": "Class B Solo",
+          "abbrev": "CLASS B"
+        },
+        {
+          "id": "bcd-towered-solo",
+          "label": "Class B/C/D or Towered Solo",
+          "abbrev": "B/C/D TWR"
+        },
+        {
+          "id": "tsa-citizenship",
+          "label": "TSA Citizenship",
+          "abbrev": "TSA CIT"
+        }
+      ]
+    },
+    {
+      "slug": "sport-pilot",
+      "label": "Sport Pilot",
+      "code": "SPT",
+      "theme": {
+        "accent": "#16a34a",
+        "soft": "#ecf8f1",
+        "line": "#c5e8d2",
+        "ink": "#0b7633"
+      },
+      "bundles": [
+        {
+          "id": "sport-knowledge-test",
+          "label": "Knowledge Test",
+          "abbrev": "KNOW TEST"
+        },
+        {
+          "id": "sport-additional-category-class-proficiency",
+          "label": "Additional Category/Class Proficiency",
+          "abbrev": "ADD CAT/CL"
+        },
+        {
+          "id": "sport-practical-test-package",
+          "label": "Practical Test Package",
+          "abbrev": "PRAC TEST"
+        },
+        {
+          "id": "sport-towered-bcd-ops",
+          "label": "Towered or B/C/D Operations",
+          "abbrev": "TWR B/C/D"
+        },
+        {
+          "id": "sport-vh-87-or-less",
+          "label": "Vh 87 Knots or Less",
+          "abbrev": "VH <87"
+        },
+        {
+          "id": "sport-vh-above-87",
+          "label": "Vh Above 87 Knots",
+          "abbrev": "VH >87"
+        },
+        {
+          "id": "sport-night-training",
+          "label": "Night Training",
+          "abbrev": "NIGHT"
+        },
+        {
+          "id": "sport-retractable-gear",
+          "label": "Retractable Gear",
+          "abbrev": "RETRACT"
+        },
+        {
+          "id": "sport-controllable-pitch-propeller",
+          "label": "Controllable Pitch Propeller",
+          "abbrev": "PROP CTRL"
+        }
+      ]
+    },
+    {
+      "slug": "recreational-pilot",
+      "label": "Recreational Pilot",
+      "code": "REC",
+      "theme": {
+        "accent": "#65a30d",
+        "soft": "#f3f8ec",
+        "line": "#d9e8c3",
+        "ink": "#477605"
+      },
+      "bundles": [
+        {
+          "id": "recreational-knowledge-test",
+          "label": "Knowledge Test",
+          "abbrev": "KNOW TEST"
+        },
+        {
+          "id": "recreational-practical-test",
+          "label": "Practical Test",
+          "abbrev": "PRAC TEST"
+        },
+        {
+          "id": "recreational-within-50nm",
+          "label": "Within 50 NM",
+          "abbrev": "IN 50NM"
+        },
+        {
+          "id": "recreational-beyond-50nm",
+          "label": "Beyond 50 NM",
+          "abbrev": "OUT 50NM"
+        },
+        {
+          "id": "recreational-under-400-no-pic",
+          "label": "Under 400 Hours / No Recent PIC",
+          "abbrev": "<400 PIC"
+        },
+        {
+          "id": "recreational-additional-rating-solo",
+          "label": "Additional Rating Solo",
+          "abbrev": "ADD RATING"
+        },
+        {
+          "id": "recreational-towered-bcd-ops",
+          "label": "Towered or B/C/D Operations",
+          "abbrev": "TWR B/C/D"
+        }
+      ]
+    },
+    {
+      "slug": "private-pilot",
+      "label": "Private Pilot",
+      "code": "PVT",
+      "theme": {
+        "accent": "#0ea5e9",
+        "soft": "#ecf8fd",
+        "line": "#c3e9fa",
+        "ink": "#0476a9"
+      },
+      "bundles": [
+        {
+          "id": "private-knowledge-test",
+          "label": "Knowledge Test",
+          "abbrev": "KNOW TEST"
+        },
+        {
+          "id": "private-airplane-initial-checkride-bundle",
+          "label": "ASEL Initial Checkride Bundle",
+          "abbrev": "ASEL INIT"
+        },
+        {
+          "id": "private-airplane-add-on-bundle",
+          "label": "ASEL Add-On Checkride Bundle",
+          "abbrev": "ASEL ADDON"
+        },
+        {
+          "id": "private-amel-initial-checkride-bundle",
+          "label": "AMEL Initial Checkride Bundle",
+          "abbrev": "AMEL INIT"
+        },
+        {
+          "id": "private-amel-add-on-checkride-bundle",
+          "label": "AMEL Add-On Checkride Bundle",
+          "abbrev": "AMEL ADDON"
+        }
+      ]
+    },
+    {
+      "slug": "commercial-pilot",
+      "label": "Commercial Pilot",
+      "code": "COM",
+      "theme": {
+        "accent": "#ca8a04",
+        "soft": "#fbf6eb",
+        "line": "#f2e2c0",
+        "ink": "#906200"
+      },
+      "bundles": [
+        {
+          "id": "commercial-knowledge-test",
+          "label": "Knowledge Test",
+          "abbrev": "KNOW TEST"
+        },
+        {
+          "id": "commercial-airplane-initial-checkride-bundle",
+          "label": "ASEL Initial Checkride Bundle",
+          "abbrev": "ASEL INIT"
+        },
+        {
+          "id": "commercial-airplane-add-on-bundle",
+          "label": "ASEL Add-On Checkride Bundle",
+          "abbrev": "ASEL ADDON"
+        },
+        {
+          "id": "commercial-amel-initial-checkride-bundle",
+          "label": "AMEL Initial Checkride Bundle",
+          "abbrev": "AMEL INIT"
+        },
+        {
+          "id": "commercial-amel-add-on-checkride-bundle",
+          "label": "AMEL Add-On Checkride Bundle",
+          "abbrev": "AMEL ADDON"
+        }
+      ]
+    },
+    {
+      "slug": "atp",
+      "label": "ATP",
+      "code": "ATP",
+      "theme": {
+        "accent": "#1f2937",
+        "soft": "#edeeef",
+        "line": "#c7cacd",
+        "ink": "#151d27"
+      },
+      "bundles": [
+        {
+          "id": "restricted-atp-amel",
+          "label": "Restricted ATP AMEL",
+          "abbrev": "R-ATP"
+        },
+        {
+          "id": "atp-ctp",
+          "label": "ATP CTP",
+          "abbrev": "ATP CTP"
+        }
+      ]
+    },
+    {
+      "slug": "instrument-rating",
+      "label": "Instrument Rating",
+      "code": "INS",
+      "theme": {
+        "accent": "#64748b",
+        "soft": "#f3f4f6",
+        "line": "#d8dce2",
+        "ink": "#455162"
+      },
+      "bundles": [
+        {
+          "id": "instrument-knowledge-test",
+          "label": "Knowledge Test",
+          "abbrev": "KNOW TEST"
+        },
+        {
+          "id": "instrument-checkride-bundle",
+          "label": "Instrument Checkride Bundle",
+          "abbrev": "CHECKRIDE"
+        }
+      ]
+    },
+    {
+      "slug": "flight-instructor",
+      "label": "Flight Instructor",
+      "code": "CFI",
+      "theme": {
+        "accent": "#dc2626",
+        "soft": "#fceeee",
+        "line": "#f6c9c9",
+        "ink": "#a11414"
+      },
+      "bundles": [
+        {
+          "id": "flight-instructor-foi-knowledge",
+          "label": "FOI Knowledge",
+          "abbrev": "FOI"
+        },
+        {
+          "id": "flight-instructor-aeronautical-knowledge",
+          "label": "Instructor Aeronautical Knowledge",
+          "abbrev": "AERO KNOW"
+        },
+        {
+          "id": "cfi-initial-checkride-bundle",
+          "label": "CFI ASEL Initial Checkride Bundle",
+          "abbrev": "ASEL INIT"
+        },
+        {
+          "id": "cfi-amel-initial-checkride-bundle",
+          "label": "CFI AMEL Initial Checkride Bundle",
+          "abbrev": "AMEL INIT"
+        },
+        {
+          "id": "cfi-amel-add-on-checkride-bundle",
+          "label": "CFI AMEL Add-On Checkride Bundle",
+          "abbrev": "AMEL ADDON"
+        },
+        {
+          "id": "cfii-add-on-bundle",
+          "label": "CFII Add-On Bundle",
+          "abbrev": "CFII ADDON"
+        },
+        {
+          "id": "helicopter-touchdown-autorotation",
+          "label": "Helicopter Touchdown Autorotation",
+          "abbrev": "AUTOROT"
+        }
+      ]
+    },
+    {
+      "slug": "sport-pilot-instructor",
+      "label": "Sport Pilot Instructor",
+      "code": "SPI",
+      "theme": {
+        "accent": "#ea580c",
+        "soft": "#fdf2ec",
+        "line": "#fad5c2",
+        "ink": "#aa3c02"
+      },
+      "bundles": [
+        {
+          "id": "sport-instructor-foi-knowledge",
+          "label": "FOI Knowledge",
+          "abbrev": "FOI"
+        },
+        {
+          "id": "sport-instructor-aeronautical-knowledge",
+          "label": "Instructor Aeronautical Knowledge",
+          "abbrev": "AERO KNOW"
+        },
+        {
+          "id": "sport-instructor-additional-category-class-proficiency",
+          "label": "Additional Category/Class Proficiency",
+          "abbrev": "ADD CAT/CL"
+        },
+        {
+          "id": "sport-instructor-practical-test-package",
+          "label": "Practical Test Package",
+          "abbrev": "PRAC TEST"
+        },
+        {
+          "id": "sport-instructor-instrument-reference-training",
+          "label": "Instrument Reference Training",
+          "abbrev": "INST REF"
+        },
+        {
+          "id": "sport-instructor-spin-training",
+          "label": "Spin Training",
+          "abbrev": "SPIN"
+        }
+      ]
+    },
+    {
+      "slug": "additional-recurrent",
+      "label": "Additional / Recurrent",
+      "code": "ADD",
+      "theme": {
+        "accent": "#0d9488",
+        "soft": "#ecf6f5",
+        "line": "#c3e4e1",
+        "ink": "#056b62"
+      },
+      "bundles": [
+        {
+          "id": "ground-instructor-recent-experience",
+          "label": "Ground Instructor Recent Experience",
+          "abbrev": "GND INST"
+        },
+        {
+          "id": "flight-review-and-wings",
+          "label": "Flight Review and WINGS",
+          "abbrev": "FLT REVIEW"
+        },
+        {
+          "id": "instrument-proficiency-check",
+          "label": "Instrument Proficiency Check",
+          "abbrev": "IPC"
+        },
+        {
+          "id": "aircraft-endorsements",
+          "label": "Complex / High-Performance / High-Altitude / Tailwheel",
+          "abbrev": "AIRCRAFT"
+        },
+        {
+          "id": "solo-without-category-class",
+          "label": "Solo Without Category/Class",
+          "abbrev": "SOLO NOCAT"
+        },
+        {
+          "id": "retest-after-disapproval",
+          "label": "Retest After Disapproval",
+          "abbrev": "RETEST"
+        },
+        {
+          "id": "additional-category-or-class",
+          "label": "Additional Category or Class",
+          "abbrev": "ADD CAT/CL"
+        },
+        {
+          "id": "type-rating-practical-test-non-atp",
+          "label": "Type Rating Practical Test - Non-ATP",
+          "abbrev": "TYPE N-ATP"
+        },
+        {
+          "id": "type-rating-practical-test-atp",
+          "label": "Type Rating Practical Test - ATP",
+          "abbrev": "TYPE ATP"
+        },
+        {
+          "id": "glider-and-tow-operations",
+          "label": "Glider and Tow Operations",
+          "abbrev": "GLIDER/TOW"
+        },
+        {
+          "id": "home-study-and-ultralight-credit",
+          "label": "Home Study and Ultralight Credit",
+          "abbrev": "HOME STUDY"
+        }
+      ]
+    },
+    {
+      "slug": "robinson-sfar73",
+      "label": "Robinson SFAR 73",
+      "code": "RBZ",
+      "theme": {
+        "accent": "#db2777",
+        "soft": "#fceef4",
+        "line": "#f6c9dd",
+        "ink": "#a01553"
+      },
+      "bundles": [
+        {
+          "id": "r22-track",
+          "label": "R22 Track",
+          "abbrev": "R22"
+        },
+        {
+          "id": "r44-track",
+          "label": "R44 Track",
+          "abbrev": "R44"
+        }
+      ]
+    },
+    {
+      "slug": "specialty-operations",
+      "label": "Specialty Operations",
+      "code": "SPE",
+      "theme": {
+        "accent": "#7c3aed",
+        "soft": "#f5effe",
+        "line": "#decefb",
+        "ink": "#4f0ac4"
+      },
+      "bundles": [
+        {
+          "id": "nvg",
+          "label": "NVG",
+          "abbrev": "NVG"
+        },
+        {
+          "id": "efvs",
+          "label": "EFVS",
+          "abbrev": "EFVS"
+        },
+        {
+          "id": "simplified-flight-controls",
+          "label": "Simplified Flight Controls",
+          "abbrev": "SIMP CTRL"
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "id": "pre-solo",
+      "label": "Pre-Solo",
+      "abbrev": "PRE-SOLO"
+    },
+    {
+      "id": "first-solo",
+      "label": "First Solo",
+      "abbrev": "1ST SOLO"
+    },
+    {
+      "id": "initial-solo-xc",
+      "label": "Initial Solo XC",
+      "abbrev": "SOLO XC"
+    },
+    {
+      "id": "private-airplane-initial-checkride-bundle",
+      "label": "ASEL Initial Checkride Bundle",
+      "abbrev": "PVT CHK"
+    },
+    {
+      "id": "commercial-airplane-initial-checkride-bundle",
+      "label": "ASEL Initial Checkride Bundle",
+      "abbrev": "COM CHK"
+    },
+    {
+      "id": "instrument-checkride-bundle",
+      "label": "Instrument Checkride Bundle",
+      "abbrev": "INS CHK"
+    },
+    {
+      "id": "cfi-initial-checkride-bundle",
+      "label": "CFI ASEL Initial Checkride Bundle",
+      "abbrev": "CFI CHK"
+    },
+    {
+      "id": "flight-review-and-wings",
+      "label": "Flight Review and WINGS",
+      "abbrev": "FLT REV"
+    },
+    {
+      "id": "aircraft-endorsements",
+      "label": "Complex / High-Performance / High-Altitude / Tailwheel",
+      "abbrev": "AIRCRAFT"
+    },
+    {
+      "id": "wf-index",
+      "label": "Workflow Index",
+      "abbrev": "INDEX"
+    }
+  ],
+  "guidance": [
+    {
+      "id": "journey",
+      "label": "Pilot Journey",
+      "abbrev": "JOURNEY"
+    },
+    {
+      "id": "scenarios",
+      "label": "Scenarios",
+      "abbrev": "SCENARIOS"
+    },
+    {
+      "id": "quickref",
+      "label": "Quick Reference",
+      "abbrev": "QUICKREF"
+    },
+    {
+      "id": "cfi-career",
+      "label": "CFI Career",
+      "abbrev": "CAREER"
+    },
+    {
+      "id": "flashcards",
+      "label": "Flashcards",
+      "abbrev": "CARDS"
+    },
+    {
+      "id": "lesson-plan",
+      "label": "Lesson Plans",
+      "abbrev": "LESSONS"
+    },
+    {
+      "id": "appendix",
+      "label": "Appendix",
+      "abbrev": "APPENDIX"
+    }
+  ]
+}

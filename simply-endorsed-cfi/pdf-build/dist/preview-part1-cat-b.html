@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Preview — Part I — Categories: Sport, Recreational, Private, Commercial, ATP</title>
+<style>
+/* pdf.css — print stylesheet for the Simply Endorsed CFI PDF book.
+ *
+ * Inlined into dist/book.html by build.js. Category colors arrive via the
+ * CSS custom properties --cat-accent / --cat-soft / --cat-line / --cat-ink,
+ * set inline on .category-banner, .bundle-header, and .endorsement-card
+ * (see lib/theme.js themeVars()).
+ *
+ * Page footer/header are added later by Playwright's headerTemplate /
+ * footerTemplate — that is why there are intentionally no @page margin
+ * boxes here.
+ */
+
+/* ── Page & base ─────────────────────────────────────────────────────── */
+
+@page {
+  size: Letter;
+  margin: 0.75in 0.7in 0.8in 0.7in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1f2430;
+  margin: 0;
+}
+
+code,
+.mono,
+.verbatim {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Headings (Chromium PDF outline picks up h1-h6) ──────────────────── */
+
+h1.section-title {
+  font-size: 20pt;
+  line-height: 1.2;
+  margin: 0 0 14pt 0;
+  padding-bottom: 6pt;
+  border-bottom: 2pt solid #1c2142;
+  color: #1c2142;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin: 0;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 0;
+}
+
+/* ── Page-break helpers ──────────────────────────────────────────────── */
+
+.page-break {
+  break-before: page;
+}
+
+.avoid-break {
+  break-inside: avoid;
+}
+
+/* ── Cover ───────────────────────────────────────────────────────────── */
+
+.cover {
+  height: 9.2in;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  break-after: page;
+}
+
+.cover-logo {
+  width: 1.5in;
+  height: 1.5in;
+  margin-bottom: 0.35in;
+}
+
+.cover-title {
+  font-size: 30pt;
+  font-weight: 800;
+  color: #1c2142;
+  margin: 0 0 8pt 0;
+}
+
+.cover-subtitle {
+  font-size: 13pt;
+  color: #4b5563;
+  margin: 0 0 18pt 0;
+  max-width: 5.5in;
+}
+
+.cover-meta {
+  font-size: 9.5pt;
+  color: #6b7280;
+}
+
+/* ── Table of contents ───────────────────────────────────────────────── */
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin: 0 0 4pt 0;
+}
+
+.toc-list a {
+  text-decoration: none;
+}
+
+.toc-level-2 {
+  padding-left: 14pt;
+  font-size: 9.5pt;
+}
+
+/* ── Links ───────────────────────────────────────────────────────────── */
+
+a.internal {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a.external::after {
+  content: " ↗";
+  font-size: 0.85em;
+}
+
+/* ── Category banner (h2 level) ──────────────────────────────────────── */
+
+.category-banner {
+  break-before: page;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10pt;
+  padding: 10pt 14pt;
+  margin: 0 0 10pt 0;
+  background: var(--cat-soft);
+  border: 1pt solid var(--cat-line);
+  border-left: 5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  color: var(--cat-ink);
+}
+
+.category-banner h2 {
+  color: var(--cat-ink);
+}
+
+.category-banner-count {
+  font-size: 9pt;
+  color: var(--cat-accent);
+  font-weight: 600;
+}
+
+/* ── Bundle (subcategory) header (h3 level) ──────────────────────────── */
+
+.bundle-header {
+  break-after: avoid;
+  break-inside: avoid;
+  margin: 14pt 0 6pt 0;
+  padding: 6pt 10pt;
+  border-left: 3pt solid var(--cat-accent);
+  background: var(--cat-soft);
+  border-radius: 3pt;
+}
+
+.bundle-header h3 {
+  color: var(--cat-ink);
+}
+
+.bundle-desc {
+  margin: 3pt 0 0 0;
+  font-size: 9pt;
+  color: #4b5563;
+}
+
+/* ── Endorsement card ────────────────────────────────────────────────── */
+
+.endorsement-card {
+  break-inside: avoid;
+  margin: 0 0 12pt 0;
+  padding: 10pt 12pt;
+  background: var(--cat-soft);
+  border: 1px solid var(--cat-line);
+  border-left: 4px solid var(--cat-accent);
+  border-radius: 4pt;
+}
+
+.ec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8pt;
+  margin-bottom: 5pt;
+}
+
+.id-pill {
+  display: inline-block;
+  padding: 1.5pt 7pt;
+  border-radius: 9pt;
+  color: #ffffff;
+  background: #1c2142; /* overridden inline with the NAVY constant */
+  font-size: 9pt;
+  font-weight: 700;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  white-space: nowrap;
+}
+
+.ec-title {
+  color: #1c2142;
+}
+
+.ec-badges {
+  margin: 0 0 6pt 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+  font-weight: 600;
+  border: 0.75pt solid transparent;
+}
+
+.badge-signer {
+  color: #1c2142;
+  background: #e8eaf6;
+  border-color: #c5cae9;
+}
+
+.badge-validity {
+  color: #065f46;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.badge-perflight {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.badge-featured {
+  color: #ffffff;
+  background: var(--cat-accent, #475569);
+  border-color: var(--cat-accent, #475569);
+}
+
+.badge-muted {
+  color: #4b5563;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+/* ── Chips (CFR citations, tags) ─────────────────────────────────────── */
+
+.chip {
+  display: inline-block;
+  padding: 1pt 6pt;
+  margin: 0 4pt 2pt 0;
+  border-radius: 8pt;
+  font-size: 8pt;
+}
+
+.cfr-chip {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--cat-ink, #313b4a);
+  background: #ffffff;
+  border: 0.75pt solid var(--cat-line, #d1d5da);
+  text-decoration: none;
+}
+
+.tag-chip {
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.65);
+  border: 0.75pt solid var(--cat-line, #e5e7eb);
+}
+
+.ec-cfr {
+  margin: 0 0 6pt 0;
+}
+
+/* ── Verbatim block ──────────────────────────────────────────────────── */
+
+.ec-verbatim {
+  margin: 0 0 8pt 0;
+}
+
+.ec-verbatim-label {
+  display: block;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cat-accent, #475569);
+  margin-bottom: 2pt;
+}
+
+.verbatim {
+  margin: 0;
+  padding: 6pt 8pt;
+  font-size: 8.5pt;
+  line-height: 1.5;
+  background: #f8f9fb;
+  border: 0.75pt solid #e3e6ec;
+  border-radius: 3pt;
+  color: #111827;
+}
+
+/* ── Explanation bullets / related / footer ──────────────────────────── */
+
+.ec-explanation ul {
+  margin: 0 0 6pt 0;
+  padding-left: 14pt;
+}
+
+.ec-explanation li {
+  margin-bottom: 2pt;
+}
+
+.ec-tags {
+  margin: 0 0 4pt 0;
+}
+
+.ec-related {
+  margin: 4pt 0 0 0;
+  padding-top: 4pt;
+  border-top: 0.75pt dashed var(--cat-line, #d1d5da);
+  font-size: 9pt;
+}
+
+.ec-related:empty {
+  display: none;
+}
+
+.ec-foot {
+  margin-top: 6pt;
+  font-size: 8.5pt;
+}
+
+/* ── Generic content blocks & tables ─────────────────────────────────── */
+
+.guidance-section {
+  break-inside: auto;
+  margin-bottom: 12pt;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 6pt 0 12pt 0;
+}
+
+table.data-table th,
+table.data-table td {
+  border: 0.75pt solid #d7dbe2;
+  padding: 4pt 6pt;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.data-table th {
+  background: #eef0f4;
+  font-weight: 700;
+  color: #1c2142;
+}
+
+table.data-table tr {
+  break-inside: avoid;
+}
+
+ul,
+ol {
+  margin: 4pt 0 8pt 0;
+  padding-left: 16pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+p {
+  margin: 0 0 6pt 0;
+}
+
+</style>
+</head>
+<body>
+<style>
+.p1b-supp-label{font-size:9pt;font-weight:600;color:var(--cat-ink,#313b4a);margin:10pt 0 2pt 0;padding-left:14pt;break-after:avoid;}
+.p1b-rel-label{font-weight:600;color:var(--cat-ink,#313b4a);margin-right:3pt;}
+</style>
+<section class="p1b-chapter" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+<section class="category-banner" id="cat-sport-pilot" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h2>Sport Pilot</h2>
+    <span class="category-banner-count">12 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-sport-knowledge-test" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Knowledge Test</h3>
+    <p class="bundle-desc">Sport pilot aeronautical knowledge test preparation endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-17" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.17</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1) and 61.309</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-10</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required aeronautical knowledge training of 14 CFR § 61.309. I have determined that they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Shows the applicant was prepared before taking the written test.</li>
+      <li>Helps prevent poor test attempts based on weak or incomplete study.</li>
+      <li>Creates a record that required ground prep was completed.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-additional-category-class-proficiency" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Additional Category/Class Proficiency</h3>
+    <p class="bundle-desc">Proficiency checks for adding privileges within sport pilot rules.</p>
+  </header>
+<article class="endorsement-card" id="A-18" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.18</span>
+      <h4 class="ec-title">Taking flight proficiency check for different category or class of aircraft</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.309" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.309 and 61.311</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-10</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR §§ 61.309 and 61.311 and have determined that they are prepared for the [name of] proficiency check. /s/ [date] S. P. (Instructor name) 987654321 RE 12-31-2026 Note: Cannot be provided to applicants seeking an airplane or helicopter privilege. Must accomplish a practical test, 14 CFR § 61.321(b).</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the pilot is ready to be evaluated for a new category or class.</li>
+      <li>Recognizes that moving to a different category or class can involve major differences.</li>
+      <li>Helps ensure the pilot does not test before receiving the needed training.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-19" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.19</span>
+      <h4 class="ec-title">Passing flight proficiency check for different category or class of aircraft</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.309" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.309 and 61.311</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-10</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has met the requirements of 14 CFR §§ 61.309 and 61.311, and I have determined them proficient to act as pilot in command of [category and class of] aircraft. /s/ [date] S. P. (Instructor name) 987654321 RE 12-31-2026 Note: Cannot be provided to applicants seeking an airplane or helicopter privilege. Must accomplish a practical test, 14 CFR § 61.321(b).</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Records that the pilot completed the required training and proficiency for that added privilege.</li>
+      <li>Creates a clear qualification record, not just informal familiarization.</li>
+      <li>Supports the FAA basis for granting the new privilege.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-practical-test-package" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Practical Test Package</h3>
+    <p class="bundle-desc">Common sport pilot practical test endorsement set.</p>
+  </header>
+<article class="endorsement-card" id="A-20" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.20</span>
+      <h4 class="ec-title">Taking sport pilot practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.309" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.309, 61.311, and 61.313</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-10</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the training required in accordance with 14 CFR §§ 61.309 and 61.311 and met the aeronautical experience requirements of 14 CFR § 61.313. I have determined that they are prepared for the [type of] practical test. Note: The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in endorsements 1 and 2 (see paragraphs A.1 and A.2).</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Shows the applicant was trained to practical-test level, not just basic familiarity.</li>
+      <li>Acts as the instructor’s formal recommendation to test.</li>
+      <li>Helps the examiner receive a prepared applicant.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-21" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.21</span>
+      <h4 class="ec-title">Passing a sport pilot practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Examiner only</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.309" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.309, 61.311, and 61.313</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-11</span>
+      <p class="verbatim">This endorsement is required by 14 CFR § 61.317 and is issued by an examiner. I certify that [First name, MI, Last name] has met the requirements of 14 CFR §§ 61.309, 61.311, and 61.313, and I have determined them proficient to act as pilot in command of [category and class of] aircraft. /s/ [date] Examiner 987654321 RE 12-31-2026</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Documents that the required training and proficiency standard were met.</li>
+      <li>Supports the certification record after successful testing.</li>
+      <li>Shows the outcome is tied to documented preparation, not just test-day performance.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" id="A-22" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.22</span>
+      <h4 class="ec-title">Passing a sport pilot practical test with a simplified flight controls limitation</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Examiner only</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.45" target="_blank" rel="noopener noreferrer">14 CFR § 61.45(g)(4)(ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-11</span>
+      <p class="verbatim">This endorsement is required by 14 CFR § 61.45 and is issued by an examiner. I certify that [First name, MI, Last name] has successfully completed the practical test in [category/class/model] with simplified flight controls designation and is authorized to act as pilot in command in [aircraft category/class] limited to [aircraft model] with simplified flight controls designation. /s/ [date] Examiner 987654321 RE 12-31-2026</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Connects the qualification to the specific aircraft/control configuration used.</li>
+      <li>Helps match the pilot’s privilege to the proper limitation or authorization.</li>
+      <li>Ensures the paperwork reflects the actual basis of qualification.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Also commonly included for the practical test path.</p>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.2</span>
+      <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(iii), as required</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has demonstrated satisfactory knowledge of the subject areas in which they were deficient on the [applicable] airman knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Makes sure missed written-test topics were reviewed before the checkride.</li>
+      <li>Helps fix weak areas like airspace, weather, or regulations before testing.</li>
+      <li>Reduces the chance the same knowledge gaps show up during the oral.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-towered-bcd-ops" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Towered or B/C/D Operations</h3>
+    <p class="bundle-desc">Sport pilot operations in towered or Class B/C/D airspace.</p>
+  </header>
+<article class="endorsement-card" id="A-23" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.23</span>
+      <h4 class="ec-title">Class B, C, or D airspace; at an airport located in Class B, C, or D airspace; or to, from, through, or at an airport having an operational control tower</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.325" target="_blank" rel="noopener noreferrer">14 CFR § 61.325</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-11</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.325. I have determined they are proficient to conduct operations in Class B, C, or D airspace; at an airport located in Class B, C, or D airspace; or to, from, through, or at an airport having an operational control tower.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Shows the pilot was trained for more complex airspace and airport operations.</li>
+      <li>Covers communication, sequencing, and traffic-management demands.</li>
+      <li>Prevents higher-workload operations without specific training.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-17">A.17 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-vh-87-or-less" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Vh 87 Knots or Less</h3>
+    <p class="bundle-desc">Operations in a light-sport aircraft with a Vh of 87 knots or less.</p>
+  </header>
+<article class="endorsement-card" id="A-24" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.24</span>
+      <h4 class="ec-title">Aircraft that has a maximum speed in level flight with maximum continuous power (V H) less than or equal to 87 Knots Calibrated Airspeed (KCAS)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.327" target="_blank" rel="noopener noreferrer">14 CFR § 61.327</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-11</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR § 61.327(a) in a [M/M] aircraft. I have determined them proficient to act as pilot in command of an aircraft that has a V H less than or equal to 87 KCAS.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Separates lower-performance aircraft from faster ones.</li>
+      <li>Recognizes that slower airplanes usually allow more time for planning and correction.</li>
+      <li>Helps tie training and privilege level to aircraft performance.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-17">A.17 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-vh-above-87" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Vh Above 87 Knots</h3>
+    <p class="bundle-desc">Operations in a light-sport aircraft with a Vh above 87 knots.</p>
+  </header>
+<article class="endorsement-card" id="A-25" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.25</span>
+      <h4 class="ec-title">Aircraft that has a VH greater than 87 KCAS</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.327" target="_blank" rel="noopener noreferrer">14 CFR § 61.327</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-11</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR § 61.327(b) in a [M/M] aircraft. I have determined them proficient to act as pilot in command of an aircraft that has a V H greater than 87 KCAS.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Faster aircraft increase workload and reduce reaction time.</li>
+      <li>Pilots need stronger energy management and earlier planning in higher-speed airplanes.</li>
+      <li>Helps prevent pilots from treating faster aircraft like basic trainers.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-17">A.17 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-night-training" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Night Training</h3>
+    <p class="bundle-desc">Training endorsement related to night operations in the sport pilot context.</p>
+  </header>
+<article class="endorsement-card" id="A-26" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.26</span>
+      <h4 class="ec-title">Flight training at night</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.329" target="_blank" rel="noopener noreferrer">14 CFR § 61.329</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-12</span>
+      <p class="verbatim">I certify that [First Name, MI, Last Name], [grade of pilot certificate], [certificate number], has received the required training at night in a [category and class] aircraft. I have determined they meet all of the requirements of 14 CFR § 61.329(a) and are proficient to operate as a sport pilot at night.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Night flying includes different risks than daytime flying.</li>
+      <li>Helps cover illusions, reduced visual references, and lighting systems.</li>
+      <li>Builds safer judgment for night departures, arrivals, and navigation.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-17">A.17 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-retractable-gear" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Retractable Gear</h3>
+    <p class="bundle-desc">Sport pilot privileges in retractable gear aircraft.</p>
+  </header>
+<article class="endorsement-card" id="A-27" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.27</span>
+      <h4 class="ec-title">To act as pilot in command (PIC) in an aircraft with retractable landing gear</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.331" target="_blank" rel="noopener noreferrer">14 CFR § 61.331(a)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-12</span>
+      <p class="verbatim">I certify that [First Name, MI, Last Name], [certificate number], has received the required training of 14 CFR § 61.331(a) in an aircraft with retractable landing gear. I have determined that they are proficient in the operation of an aircraft with retractable landing gear when exercising their sport pilot privileges.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Retractable gear adds systems management and checklist discipline.</li>
+      <li>Helps prevent common and costly errors like gear-up landings.</li>
+      <li>Confirms the pilot can manage the added complexity safely.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-17">A.17 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-sport-controllable-pitch-propeller" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <h3>Controllable Pitch Propeller</h3>
+    <p class="bundle-desc">Sport pilot privileges in aircraft with a controllable pitch propeller.</p>
+  </header>
+<article class="endorsement-card" id="A-28" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.28</span>
+      <h4 class="ec-title">To act as PIC in an airplane with a manual controllable pitch propeller</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.331" target="_blank" rel="noopener noreferrer">14 CFR § 61.331(b)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-12</span>
+      <p class="verbatim">I certify that [First Name, MI, Last Name], [certificate number], has received the required training of 14 CFR § 61.331(b) in an airplane with a controllable pitch propeller. I have determined that they are proficient in the operation of an airplane with a controllable pitch propeller when exercising their sport pilot privileges.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Manual propeller control changes engine and performance management.</li>
+      <li>The pilot must understand how settings affect climb, cruise, and descent.</li>
+      <li>Prevents misuse by pilots trained only in fixed-pitch trainers.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">sport pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-17">A.17 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-18">A.18 · Taking flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-19">A.19 · Passing flight proficiency check for different category or class of aircraft</a>
+      <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<section class="p1b-chapter" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+<section class="category-banner" id="cat-recreational-pilot" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h2>Recreational Pilot</h2>
+    <span class="category-banner-count">7 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-recreational-knowledge-test" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Knowledge Test</h3>
+    <p class="bundle-desc">Recreational pilot aeronautical knowledge test preparation.</p>
+  </header>
+<article class="endorsement-card" id="A-29" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.29</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.96(b)(3), and 61.97(b)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-12</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.97(b). I have determined that they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Creates a record that the applicant was academically prepared before testing.</li>
+      <li>Helps ensure the written exam measures learning, not guesswork.</li>
+      <li>Supports instructor accountability for ground preparation.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">recreational pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-30">A.30 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-31">A.31 · Recreational pilot to operate within 50 NM of the airport where training was received</a>
+      <a class="chip tag-chip internal" href="#A-32">A.32 · Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</a>
+      <a class="chip tag-chip internal" href="#A-33">A.33 · Recreational pilot with less than 400 flight hours and no logged PIC time within the preceding 180 calendar days</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-recreational-practical-test" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Practical Test</h3>
+    <p class="bundle-desc">Recreational pilot practical test proficiency endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-30" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.30</span>
+      <h4 class="ec-title">Flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.96" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.96(b)(5), 61.98(a) and (b), and 61.99</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-12</span>
+      <p class="verbatim">The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in paragraphs A.1 and A.2. I certify that [First name, MI, Last name] has received the required training of 14 CFR §§ 61.98(b) and 61.99. I have determined that they are prepared for the [name of] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Serves as the instructor’s formal statement that the applicant is ready to test.</li>
+      <li>Helps screen out applicants with unresolved skill or judgment problems.</li>
+      <li>Supports the integrity of the practical-test process.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">recreational pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a>
+      <a class="chip tag-chip internal" href="#A-29">A.29 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-31">A.31 · Recreational pilot to operate within 50 NM of the airport where training was received</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Also commonly included for the practical test path.</p>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.2</span>
+      <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(iii), as required</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has demonstrated satisfactory knowledge of the subject areas in which they were deficient on the [applicable] airman knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Makes sure missed written-test topics were reviewed before the checkride.</li>
+      <li>Helps fix weak areas like airspace, weather, or regulations before testing.</li>
+      <li>Reduces the chance the same knowledge gaps show up during the oral.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-recreational-within-50nm" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Within 50 NM</h3>
+    <p class="bundle-desc">Recreational pilot operations within 50 NM of the departure airport.</p>
+  </header>
+<article class="endorsement-card" id="A-31" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.31</span>
+      <h4 class="ec-title">Recreational pilot to operate within 50 NM of the airport where training was received</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">14 CFR § 61.101(b)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-12</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.101(b). I have determined that they are competent to operate at the [name of airport].</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Keeps the pilot’s operating area tied to a familiar training environment.</li>
+      <li>Recognizes that local knowledge matters for a limited-privilege pilot.</li>
+      <li>Prevents routine operation beyond the area the pilot was trained for.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">recreational pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-29">A.29 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-30">A.30 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-32">A.32 · Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</a>
+      <a class="chip tag-chip internal" href="#A-33">A.33 · Recreational pilot with less than 400 flight hours and no logged PIC time within the preceding 180 calendar days</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-recreational-beyond-50nm" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Beyond 50 NM</h3>
+    <p class="bundle-desc">Recreational pilot authorization beyond 50 NM.</p>
+  </header>
+<article class="endorsement-card" id="A-32" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.32</span>
+      <h4 class="ec-title">Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">14 CFR § 61.101(c)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required cross-country training of 14 CFR § 61.101(c). I have determined that they are proficient in cross-country flying of 14 CFR part 61 subpart E.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Going farther requires stronger navigation, weather, and diversion planning.</li>
+      <li>Confirms the pilot got training beyond basic local-area use.</li>
+      <li>Helps manage the added risk of unfamiliar airports and longer routes.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">recreational pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-29">A.29 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-30">A.30 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-31">A.31 · Recreational pilot to operate within 50 NM of the airport where training was received</a>
+      <a class="chip tag-chip internal" href="#A-33">A.33 · Recreational pilot with less than 400 flight hours and no logged PIC time within the preceding 180 calendar days</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-recreational-under-400-no-pic" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Under 400 Hours / No Recent PIC</h3>
+    <p class="bundle-desc">Recreational pilot endorsement for limited recent PIC experience.</p>
+  </header>
+<article class="endorsement-card" id="A-33" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.33</span>
+      <h4 class="ec-title">Recreational pilot with less than 400 flight hours and no logged PIC time within the preceding 180 calendar days</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">14 CFR § 61.101(g)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required 180-day recurrent training of 14 CFR § 61.101(g) in a [M/M] aircraft. I have determined them proficient to act as pilot in command of that aircraft.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Low total time plus low recent time can raise risk significantly.</li>
+      <li>Helps refresh skill and judgment before acting on pilot privileges again.</li>
+      <li>Adds oversight when rust may be a major factor.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">recreational pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-29">A.29 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-30">A.30 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-31">A.31 · Recreational pilot to operate within 50 NM of the airport where training was received</a>
+      <a class="chip tag-chip internal" href="#A-32">A.32 · Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-recreational-additional-rating-solo" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Additional Rating Solo</h3>
+    <p class="bundle-desc">Supervised solo for an additional recreational pilot rating.</p>
+  </header>
+<article class="endorsement-card" id="A-34" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.34</span>
+      <h4 class="ec-title">Recreational pilot to conduct solo flights for the purpose of obtaining an additional certificate or rating while under the supervision of an authorized flight instructor</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">14 CFR § 61.101(j)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.87 in a [M/M] aircraft. I have determined they are prepared to conduct a solo flight on [date] under the following conditions: [List all conditions which require endorsement (e.g., flight which requires communication with air traffic control (ATC), flight in an aircraft for which the pilot does not hold a category/class rating, etc.).]</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Allows needed solo experience while still keeping the operation supervised.</li>
+      <li>Supports training toward a new certificate or rating without assuming full qualification.</li>
+      <li>Gives structure and limits during a transition phase.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">recreational pilot</span>
+      <span class="chip tag-chip">solo</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-29">A.29 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-30">A.30 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-31">A.31 · Recreational pilot to operate within 50 NM of the airport where training was received</a>
+      <a class="chip tag-chip internal" href="#A-32">A.32 · Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-recreational-towered-bcd-ops" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <h3>Towered or B/C/D Operations</h3>
+    <p class="bundle-desc">Recreational pilot operations in towered or Class B/C/D airspace.</p>
+  </header>
+<article class="endorsement-card" id="A-35" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.35</span>
+      <h4 class="ec-title">Class B, C, or D airspace; at an airport located in Class B, C, or D airspace; or to, from, through, or at an airport having an operational control tower</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.101" target="_blank" rel="noopener noreferrer">14 CFR § 61.101(d)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.101(d). I have determined they are proficient to conduct operations in Class B, C, or D airspace; at an airport located in Class B, C, or D airspace; or to, from, through, or at an airport having an operational control tower.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Requires specific preparation before entering more demanding airspace or towered airports.</li>
+      <li>Focuses on communication, sequencing, and traffic awareness.</li>
+      <li>Helps keep limited-privilege pilots out of complex environments unless trained.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">recreational pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-29">A.29 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-30">A.30 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-31">A.31 · Recreational pilot to operate within 50 NM of the airport where training was received</a>
+      <a class="chip tag-chip internal" href="#A-32">A.32 · Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<section class="p1b-chapter" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+<section class="category-banner" id="cat-private-pilot" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <h2>Private Pilot</h2>
+    <span class="category-banner-count">2 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-private-knowledge-test" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <h3>Knowledge Test</h3>
+    <p class="bundle-desc">Private pilot aeronautical knowledge test preparation endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-36" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.36</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.103(d), and 61.105</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR § 61.105. I have determined they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant completed required ground prep before testing.</li>
+      <li>Helps improve test readiness and consistency.</li>
+      <li>Provides a documented training record for that test path.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">private pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-37">A.37 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-private-airplane-initial-checkride-bundle" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <h3>ASEL Initial Checkride Bundle <span class="badge badge-featured">Featured bundle</span></h3>
+    <p class="bundle-desc">Common Part 61 Airplane Single-Engine Land private practical test package.</p>
+  </header>
+<article class="endorsement-card" id="A-37" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.37</span>
+      <h4 class="ec-title">Flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.103" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.103(f), 61.107(b), and 61.109</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in paragraphs A.1 and A.2. I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR §§ 61.107 and 61.109. I have determined they are prepared for the [name of] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Shows the applicant reached test-level proficiency, not just lesson completion.</li>
+      <li>Supports the instructor’s decision to recommend the applicant.</li>
+      <li>Helps protect the practical-test process from premature applicants.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">private pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-36">A.36 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Also commonly included for a typical private ASEL checkride package.</p>
+<article class="endorsement-card" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.36</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.103(d), and 61.105</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR § 61.105. I have determined they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant completed required ground prep before testing.</li>
+      <li>Helps improve test readiness and consistency.</li>
+      <li>Provides a documented training record for that test path.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">private pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-37">A.37 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.2</span>
+      <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(iii), as required</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has demonstrated satisfactory knowledge of the subject areas in which they were deficient on the [applicable] airman knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Makes sure missed written-test topics were reviewed before the checkride.</li>
+      <li>Helps fix weak areas like airspace, weather, or regulations before testing.</li>
+      <li>Reduces the chance the same knowledge gaps show up during the oral.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-private-airplane-add-on-bundle" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <h3>ASEL Add-On Checkride Bundle</h3>
+    <p class="bundle-desc">Common Airplane Single-Engine Land additional category/class package at the private pilot level.</p>
+  </header>
+<article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.78</span>
+      <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">14 CFR § 61.63(b) or (c)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-21</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has received the required training for an additional [aircraft category/class rating]. I have determined that they are prepared for the [name of] practical test for the addition of a [name of specific aircraft category/class/type] type rating.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Adding a category or class means learning new skills, knowledge, or procedures.</li>
+      <li>Confirms the pilot was trained specifically for that transition.</li>
+      <li>Provides the core endorsement basis for the added rating process.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">add-on</span>
+      <span class="chip tag-chip">additional recurrent</span>
+      <span class="chip tag-chip">recurrent</span>
+      <span class="chip tag-chip">transition</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a>
+      <a class="chip tag-chip internal" href="#A-69">A.69 · Completion of a flight review</a>
+      <a class="chip tag-chip internal" href="#A-70">A.70 · Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</a>
+      <a class="chip tag-chip internal" href="#A-71">A.71 · Completion of an instrument proficiency check (IPC)</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Verify Airplane Single-Engine Land add-on specifics before using the full bundle.</p>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-private-amel-initial-checkride-bundle" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <h3>AMEL Initial Checkride Bundle</h3>
+    <p class="bundle-desc">Common Part 61 Airplane Multi-Engine Land private practical test package.</p>
+  </header>
+<article class="endorsement-card" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.37</span>
+      <h4 class="ec-title">Flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.103" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.103(f), 61.107(b), and 61.109</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in paragraphs A.1 and A.2. I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR §§ 61.107 and 61.109. I have determined they are prepared for the [name of] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Shows the applicant reached test-level proficiency, not just lesson completion.</li>
+      <li>Supports the instructor’s decision to recommend the applicant.</li>
+      <li>Helps protect the practical-test process from premature applicants.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">private pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-36">A.36 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Also commonly included for a typical private AMEL checkride package.</p>
+<article class="endorsement-card" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.36</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.103(d), and 61.105</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-13</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training in accordance with 14 CFR § 61.105. I have determined they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant completed required ground prep before testing.</li>
+      <li>Helps improve test readiness and consistency.</li>
+      <li>Provides a documented training record for that test path.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">private pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-37">A.37 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.2</span>
+      <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(iii), as required</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has demonstrated satisfactory knowledge of the subject areas in which they were deficient on the [applicable] airman knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Makes sure missed written-test topics were reviewed before the checkride.</li>
+      <li>Helps fix weak areas like airspace, weather, or regulations before testing.</li>
+      <li>Reduces the chance the same knowledge gaps show up during the oral.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-private-amel-add-on-checkride-bundle" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <h3>AMEL Add-On Checkride Bundle</h3>
+    <p class="bundle-desc">Common Airplane Multi-Engine Land additional category/class package at the private pilot level.</p>
+  </header>
+<article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.78</span>
+      <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">14 CFR § 61.63(b) or (c)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-21</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has received the required training for an additional [aircraft category/class rating]. I have determined that they are prepared for the [name of] practical test for the addition of a [name of specific aircraft category/class/type] type rating.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Adding a category or class means learning new skills, knowledge, or procedures.</li>
+      <li>Confirms the pilot was trained specifically for that transition.</li>
+      <li>Provides the core endorsement basis for the added rating process.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">add-on</span>
+      <span class="chip tag-chip">additional recurrent</span>
+      <span class="chip tag-chip">recurrent</span>
+      <span class="chip tag-chip">transition</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a>
+      <a class="chip tag-chip internal" href="#A-69">A.69 · Completion of a flight review</a>
+      <a class="chip tag-chip internal" href="#A-70">A.70 · Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</a>
+      <a class="chip tag-chip internal" href="#A-71">A.71 · Completion of an instrument proficiency check (IPC)</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Verify Airplane Multi-Engine Land add-on specifics before using the full bundle.</p>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<section class="p1b-chapter" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+<section class="category-banner" id="cat-commercial-pilot" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <h2>Commercial Pilot</h2>
+    <span class="category-banner-count">2 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-commercial-knowledge-test" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <h3>Knowledge Test</h3>
+    <p class="bundle-desc">Commercial pilot aeronautical knowledge test preparation endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-38" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.38</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.123(c), and 61.125</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.125. I have determined that they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Provides the same check on academic readiness for another certificate or rating path.</li>
+      <li>Helps ensure the applicant has the required knowledge foundation.</li>
+      <li>Keeps training records complete and consistent.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">commercial pilot</span>
+      <span class="chip tag-chip">knowledge test</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-39">A.39 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-commercial-airplane-initial-checkride-bundle" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <h3>ASEL Initial Checkride Bundle <span class="badge badge-featured">Featured bundle</span></h3>
+    <p class="bundle-desc">Common Part 61 Airplane Single-Engine Land commercial practical test package.</p>
+  </header>
+<article class="endorsement-card" id="A-39" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.39</span>
+      <h4 class="ec-title">Flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.123" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.123(e), 61.127, and 61.129</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in paragraphs A.1 and A.2. I certify that [First name, MI, Last name] has received the required training of 14 CFR §§ 61.127 and 61.129. I have determined that they are prepared for the [name of] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Documents readiness for evaluation under that certificate or rating path.</li>
+      <li>Shows the applicant was screened by an instructor before testing.</li>
+      <li>Helps align training completion with FAA evaluation standards.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">commercial pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-38">A.38 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Also commonly included for a typical commercial ASEL checkride package.</p>
+<article class="endorsement-card" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.38</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.123(c), and 61.125</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.125. I have determined that they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Provides the same check on academic readiness for another certificate or rating path.</li>
+      <li>Helps ensure the applicant has the required knowledge foundation.</li>
+      <li>Keeps training records complete and consistent.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">commercial pilot</span>
+      <span class="chip tag-chip">knowledge test</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-39">A.39 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.2</span>
+      <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(iii), as required</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has demonstrated satisfactory knowledge of the subject areas in which they were deficient on the [applicable] airman knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Makes sure missed written-test topics were reviewed before the checkride.</li>
+      <li>Helps fix weak areas like airspace, weather, or regulations before testing.</li>
+      <li>Reduces the chance the same knowledge gaps show up during the oral.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-commercial-airplane-add-on-bundle" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <h3>ASEL Add-On Checkride Bundle</h3>
+    <p class="bundle-desc">Common Airplane Single-Engine Land additional category/class package at the commercial pilot level.</p>
+  </header>
+<article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.78</span>
+      <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">14 CFR § 61.63(b) or (c)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-21</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has received the required training for an additional [aircraft category/class rating]. I have determined that they are prepared for the [name of] practical test for the addition of a [name of specific aircraft category/class/type] type rating.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Adding a category or class means learning new skills, knowledge, or procedures.</li>
+      <li>Confirms the pilot was trained specifically for that transition.</li>
+      <li>Provides the core endorsement basis for the added rating process.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">add-on</span>
+      <span class="chip tag-chip">additional recurrent</span>
+      <span class="chip tag-chip">recurrent</span>
+      <span class="chip tag-chip">transition</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a>
+      <a class="chip tag-chip internal" href="#A-69">A.69 · Completion of a flight review</a>
+      <a class="chip tag-chip internal" href="#A-70">A.70 · Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</a>
+      <a class="chip tag-chip internal" href="#A-71">A.71 · Completion of an instrument proficiency check (IPC)</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Verify Airplane Single-Engine Land add-on specifics before using the full bundle.</p>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-commercial-amel-initial-checkride-bundle" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <h3>AMEL Initial Checkride Bundle</h3>
+    <p class="bundle-desc">Common Part 61 Airplane Multi-Engine Land commercial practical test package.</p>
+  </header>
+<article class="endorsement-card" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.39</span>
+      <h4 class="ec-title">Flight proficiency/practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.123" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.123(e), 61.127, and 61.129</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">The endorsement for a practical test is required in addition to the 14 CFR § 61.39 endorsements provided in paragraphs A.1 and A.2. I certify that [First name, MI, Last name] has received the required training of 14 CFR §§ 61.127 and 61.129. I have determined that they are prepared for the [name of] practical test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Documents readiness for evaluation under that certificate or rating path.</li>
+      <li>Shows the applicant was screened by an instructor before testing.</li>
+      <li>Helps align training completion with FAA evaluation standards.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">commercial pilot</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-38">A.38 · Aeronautical knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Also commonly included for a typical commercial AMEL checkride package.</p>
+<article class="endorsement-card" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.38</span>
+      <h4 class="ec-title">Aeronautical knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.35" target="_blank" rel="noopener noreferrer">14 CFR §§ 61.35(a)(1), 61.123(c), and 61.125</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received the required training of 14 CFR § 61.125. I have determined that they are prepared for the [name of] knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Provides the same check on academic readiness for another certificate or rating path.</li>
+      <li>Helps ensure the applicant has the required knowledge foundation.</li>
+      <li>Keeps training records complete and consistent.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">commercial pilot</span>
+      <span class="chip tag-chip">knowledge test</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-39">A.39 · Flight proficiency/practical test</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.2</span>
+      <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(iii), as required</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has demonstrated satisfactory knowledge of the subject areas in which they were deficient on the [applicable] airman knowledge test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Makes sure missed written-test topics were reviewed before the checkride.</li>
+      <li>Helps fix weak areas like airspace, weather, or regulations before testing.</li>
+      <li>Reduces the chance the same knowledge gaps show up during the oral.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">knowledge test</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-commercial-amel-add-on-checkride-bundle" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <h3>AMEL Add-On Checkride Bundle</h3>
+    <p class="bundle-desc">Common Airplane Multi-Engine Land additional category/class package at the commercial pilot level.</p>
+  </header>
+<article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.78</span>
+      <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.63" target="_blank" rel="noopener noreferrer">14 CFR § 61.63(b) or (c)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-21</span>
+      <p class="verbatim">I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has received the required training for an additional [aircraft category/class rating]. I have determined that they are prepared for the [name of] practical test for the addition of a [name of specific aircraft category/class/type] type rating.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Adding a category or class means learning new skills, knowledge, or procedures.</li>
+      <li>Confirms the pilot was trained specifically for that transition.</li>
+      <li>Provides the core endorsement basis for the added rating process.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">add-on</span>
+      <span class="chip tag-chip">additional recurrent</span>
+      <span class="chip tag-chip">recurrent</span>
+      <span class="chip tag-chip">transition</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-1">A.1 · Prerequisites for practical test</a>
+      <a class="chip tag-chip internal" href="#A-69">A.69 · Completion of a flight review</a>
+      <a class="chip tag-chip internal" href="#A-70">A.70 · Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</a>
+      <a class="chip tag-chip internal" href="#A-71">A.71 · Completion of an instrument proficiency check (IPC)</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<p class="p1b-supp-label">Supplemental — Verify Airplane Multi-Engine Land add-on specifics before using the full bundle.</p>
+<article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.1</span>
+      <h4 class="ec-title">Prerequisites for practical test</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">2 calendar months</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.39" target="_blank" rel="noopener noreferrer">14 CFR § 61.39(a)(6)(i) and (ii)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-7</span>
+      <p class="verbatim">I certify that [First name, MI, Last name] has received and logged training time within 2 calendar months preceding the month of application in preparation for the practical test and they are prepared for the required practical test for the issuance of [applicable] certificate.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Confirms the applicant’s checkride prep is recent, not stale.</li>
+      <li>Helps ensure oral knowledge and flight skills are still current on test day.</li>
+      <li>Shows the instructor believes the applicant is truly ready to be evaluated.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">checkride</span>
+      <span class="chip tag-chip">practical test prereqs</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-20">A.20 · Taking sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-21">A.21 · Passing a sport pilot practical test</a>
+      <a class="chip tag-chip internal" href="#A-22">A.22 · Passing a sport pilot practical test with a simplified flight controls limitation</a>
+      <a class="chip tag-chip internal" href="#A-2">A.2 · Review of deficiencies identified on airman knowledge test</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+<section class="p1b-chapter" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+<section class="category-banner" id="cat-atp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <h2>ATP</h2>
+    <span class="category-banner-count">2 endorsements</span>
+  </section>
+<header class="bundle-header" id="bundle-restricted-atp-amel" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <h3>Restricted ATP AMEL</h3>
+    <p class="bundle-desc">Restricted privileges ATP endorsement through an authorized institution.</p>
+  </header>
+<article class="endorsement-card" id="A-40" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.40</span>
+      <h4 class="ec-title">Restricted privileges ATP Certificate, Airplane Multiengine Land (AMEL) rating</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Approved institution</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.160" target="_blank" rel="noopener noreferrer">14 CFR § 61.160</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">This certifying statement can only be provided by an authorized institution of higher education in accordance with its Letter of Authorization (LOA). Refer to AC 61-139, Institution of Higher Education’s Application for Authority to Certify its Graduates for an Airline Transport Pilot Certificate with Reduced Aeronautical Experience. The [insert institution’s name] certifies that the recipient of this degree has successfully completed all of the aviation coursework requirements of 14 CFR § 61.160[(b), (c), or (d)] and therefore meets the academic eligibility requirements of 14 CFR § 61.160[(b), (c), or (d)].</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>Restricted ATP pathways have strict eligibility rules that must be documented.</li>
+      <li>Connects the applicant to the correct ATP route and standard.</li>
+      <li>Helps ensure the certificate is issued under the proper authority and basis.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">atp</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-41">A.41 · ATP Certification Training Program (CTP)</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+<header class="bundle-header" id="bundle-atp-ctp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <h3>ATP CTP</h3>
+    <p class="bundle-desc">ATP Certification Training Program completion endorsement.</p>
+  </header>
+<article class="endorsement-card" id="A-41" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <header class="ec-head">
+      <span class="id-pill" style="background:#1C2142">A.41</span>
+      <h4 class="ec-title">ATP Certification Training Program (CTP)</h4>
+    </header>
+    <div class="ec-badges">
+      <span class="badge badge-signer">Standard CFI signoff</span>
+      <span class="badge badge-validity">No expiration</span>
+    </div>
+    <div class="ec-cfr">
+      <a class="chip cfr-chip external" href="https://www.ecfr.gov/current/title-14/part-61/section-61.153" target="_blank" rel="noopener noreferrer">14 CFR § 61.153(e)</a>
+    </div>
+    <div class="ec-verbatim">
+      <span class="ec-verbatim-label">AC 61-65K verbatim · AC page A-14</span>
+      <p class="verbatim">This endorsement is only provided by an approved training provider of an ATP CTP and is found on the graduation certificate a pilot receives following completion of that training in accordance with 14 CFR § 61.156. Refer to AC 61-138, Airline Transport Pilot Certification Training Program. The applicant named above has successfully completed the Airline Transport Pilot Certification Training Program as required by 14 CFR § 61.156, and therefore has met the prerequisite required by 14 CFR § 61.35(a)(2) for the Airline Transport Pilot Multiengine Airplane Knowledge Test.</p>
+    </div>
+    <div class="ec-explanation">
+      <ul>
+      <li>ATP-level operations require knowledge beyond typical GA training.</li>
+      <li>Covers advanced topics like high-altitude operations, systems, and transport-style concepts.</li>
+      <li>Creates a common baseline before ATP written testing.</li>
+      </ul>
+    </div>
+    <div class="ec-tags">
+      <span class="chip tag-chip">atp</span>
+    </div>
+    <div class="ec-related"><span class="p1b-rel-label">Related:</span> <a class="chip tag-chip internal" href="#A-40">A.40 · Restricted privileges ATP Certificate, Airplane Multiengine Land (AMEL) rating</a></div>
+    <footer class="ec-foot">
+      <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
+    </footer>
+  </article>
+</section>
+</body>
+</html>

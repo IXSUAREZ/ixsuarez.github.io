@@ -192,6 +192,7 @@ function renderEndorsementCard(e, opts) {
       <span class="id-pill" style="background:${NAVY}">${esc(e.id)}</span>
       <h4 class="ec-title">${esc(e.title)}</h4>
     </header>
+    ${e.cardExplanation ? `\n    <p class="ec-lede">${esc(e.cardExplanation)}</p>` : ""}
     <div class="ec-badges">
       ${badge(who, "signer")}
       ${badge(validity, e.perFlight ? "perflight" : "validity")}

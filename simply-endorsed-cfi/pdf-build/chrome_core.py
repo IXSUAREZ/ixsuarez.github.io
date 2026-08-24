@@ -618,7 +618,7 @@ def draw_rail(page, rel, model, nav, markers, offset=0):
         _, cat, active_id = ctx
         theme = {k: hx(v) if isinstance(v, str) else v
                  for k, v in cat["theme"].items()}
-        draw_hero(page, cat["code"], offset + markers["part:part-1"], theme)
+        draw_hero(page, cat["code"], offset + markers[f"cat:{cat['slug']}"], theme)
         for i, b in enumerate(cat["bundles"]):
             draw_bead(page, BEAD_FIRST_Y0 + i * BEAD_PITCH, f"{i + 1:02d}",
                       b["abbrev"], offset + markers[f"bundle:{b['id']}"], theme,

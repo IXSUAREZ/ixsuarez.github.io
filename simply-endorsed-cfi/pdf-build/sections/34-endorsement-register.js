@@ -10,11 +10,11 @@
 const SCOPED_CSS = `<style>
 .reg-wrap { margin-top: 10pt; }
 .reg-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.reg-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.reg-sub { font-size: 9.5pt; color: #475569; margin: 0; line-height: 1.35; }
-.reg-table { width: 100%; border-collapse: collapse; font-size: 9.0pt; margin-top: 8pt; }
-.reg-table th, .reg-table td { border: 0.5pt solid #cbd5e1; padding: 4pt 6pt; text-align: left; height: 22pt; }
-.reg-table th { background: #0f172a; color: #ffffff; font-weight: 700; font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.04em; }
+.reg-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.reg-sub { font-size: 11.5pt; color: #475569; margin: 0; line-height: 1.35; }
+.reg-table { width: 100%; border-collapse: collapse; font-size: 11.0pt; margin-top: 8pt; }
+.reg-table th, .reg-table td { border: 0.5pt solid #cbd5e1; padding: 4pt 6pt; text-align: left; height: 28pt; }
+.reg-table th { background: #0f172a; color: #ffffff; font-weight: 700; font-size: 10.5pt; text-transform: uppercase; letter-spacing: 0.04em; }
 .reg-col-date { width: 65pt; }
 .reg-col-name { width: 140pt; }
 .reg-col-id { width: 50pt; text-align: center; }

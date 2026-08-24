@@ -244,52 +244,46 @@ module.exports = {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 6pt 0;
-  padding-bottom: 3pt;
-  border-bottom: 1.5pt solid #0f172a;
+  margin: 0 0 10pt 0;
+  padding-bottom: 5pt;
+  border-bottom: 2.5pt solid #0f172a;
 }
 .fm-h {
   font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
-  font-size: 12pt;
+  font-size: 15pt;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: #0f172a;
   margin: 0;
-  padding-bottom: 2pt;
-  border-bottom: 1pt solid #cbd5e1;
-}
-.fm-hero-bar .fm-h {
-  border-bottom: none;
-  padding-bottom: 0;
+  padding-bottom: 3pt;
 }
 .fm-hero-badge {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
-  font-weight: 700;
+  font-size: 9pt;
+  font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 2pt 6pt;
+  padding: 3pt 8pt;
   background: #0f172a;
   color: #ffffff;
-  border-radius: 3pt;
+  border-radius: 3.5pt;
 }
-.fm-h + .fm-howto, .fm-h + .fm-legend-grid { margin-bottom: 10pt; }
 .fm-howto {
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
-  border-left: 3.5pt solid #0f172a;
-  border-radius: 4pt;
-  padding: 6pt 10pt;
-  margin-bottom: 10pt;
+  border: 1pt solid #cbd5e1;
+  border-left: 5pt solid #0f172a;
+  border-radius: 5pt;
+  padding: 10pt 14pt;
+  margin-bottom: 14pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
 }
-.fm-howto ul { margin: 0; padding-left: 12pt; }
-.fm-howto-li { margin-bottom: 4pt; font-size: 9.5pt; line-height: 1.4; color: #334155; } line-height: 1.35; color: #334155; }
+.fm-howto ul { margin: 0; padding-left: 16pt; }
+.fm-howto-li { margin-bottom: 5pt; font-size: 11pt; line-height: 1.45; color: #334155; }
 .fm-howto-li:last-child { margin-bottom: 0; }
-.fm-navchrome { margin: 0 0 10pt 0; }
+.fm-navchrome { margin: 0 0 14pt 0; }
 .fm-navchrome-title {
-  margin: 0 0 3pt 0;
+  margin: 0 0 5pt 0;
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 7.5pt;
+  font-size: 10pt;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -298,73 +292,65 @@ module.exports = {
 .fm-navchrome-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 8pt;
+  font-size: 10.5pt;
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
-  border-radius: 4pt;
+  border: 1pt solid #cbd5e1;
+  border-radius: 5pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
 }
 .fm-navchrome-table th,
 .fm-navchrome-table td {
-  border: 0.5pt solid #e2e8f0;
-  padding: 3pt 6pt;
+  border: 0.6pt solid #e2e8f0;
+  padding: 5pt 9pt;
   text-align: left;
   vertical-align: top;
 }
 .fm-navchrome-table th {
-  width: 1.05in;
-  font-size: 7.5pt;
-  font-weight: 700;
+  width: 1.2in;
+  font-size: 9.5pt;
+  font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #0f172a;
   white-space: nowrap;
   background: #f1f5f9;
 }
-.fm-inline-chip {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
-  font-weight: 700;
-  padding: 0.5pt 4.5pt;
-  border-radius: 3pt;
-  background: #0f172a;
-  color: #ffffff !important;
-}
 .fm-legend-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.5pt;
-  margin-top: 4pt;
+  gap: 5.5pt;
+  margin-top: 8pt;
 }
 .fm-cat-btn {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 4pt;
-  padding: 2.5pt 5pt 2.5pt 2pt;
+  gap: 6pt;
+  padding: 4pt 7pt 4pt 3.5pt;
   background: var(--cat-soft, #f8fafc);
-  border: 0.6pt solid var(--cat-line, #cbd5e1);
-  border-radius: 3.5pt;
+  border: 0.8pt solid var(--cat-line, #cbd5e1);
+  border-radius: 4pt;
   color: var(--cat-ink, #0f172a);
   text-decoration: none;
-  font-size: 7.5pt;
+  font-size: 10.5pt;
   break-inside: avoid;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.8), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
 .fm-cat-stripe {
-  width: 2.5pt;
+  width: 3.5pt;
   align-self: stretch;
   background: var(--cat-accent, #0f172a);
-  border-radius: 1.5pt;
+  border-radius: 2pt;
   flex-shrink: 0;
 }
-.fm-cat-code { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
-  font-weight: 700;
+.fm-cat-code { font-family: "JetBrains Mono", monospace; font-size: 10.5pt;
+  font-weight: 800;
   color: var(--cat-accent, #0f172a);
   letter-spacing: 0.02em;
   flex-shrink: 0;
 }
 .fm-cat-label {
+  font-size: 10.5pt;
   font-weight: 700;
   color: var(--cat-ink, #0f172a);
   white-space: nowrap;
@@ -372,32 +358,32 @@ module.exports = {
   text-overflow: ellipsis;
   flex: 1 1 auto;
 }
-.fm-cat-count { font-size: 8.5pt;
+.fm-cat-count { font-family: "JetBrains Mono", monospace; font-size: 10.5pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
-  padding: 0.5pt 3.5pt;
+  padding: 1.5pt 5pt;
   border-radius: 2.5pt;
   flex-shrink: 0;
 }
 .fm-cat-chevron {
-  font-size: 9pt;
-  font-weight: 700;
+  font-size: 12pt;
+  font-weight: 800;
   line-height: 1;
   color: var(--cat-accent, #64748b);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* ── (c) MASTER CONTENTS (TOC) IVE/NEWSON & FERRARI SYSTEM ────────── */
 
 .toc-header-hud {
   margin-bottom: 8pt;
-  padding-bottom: 4pt;
-  border-bottom: 1.5pt solid #0f172a;
+  padding-bottom: 3pt;
+  border-bottom: 2pt solid #0f172a;
 }
 .toc-title-row {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 }
 .toc-main-title {
@@ -405,67 +391,63 @@ module.exports = {
   padding: 0 !important;
   border-bottom: none !important;
   font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
-  font-size: 18pt;
+  font-size: 26pt;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #0f172a;
-  line-height: 1.1;
+  line-height: 1.05;
 }
 .toc-telemetry-badge {
   display: flex;
   align-items: center;
-  gap: 4.5pt;
+  gap: 5pt;
   background: #0f172a;
-  padding: 2.5pt 7pt;
-  border-radius: 3.5pt;
+  padding: 3pt 8pt;
+  border-radius: 4pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.2);
 }
 .toc-pulse-dot {
-  width: 4.5pt;
-  height: 4.5pt;
+  width: 5pt;
+  height: 5pt;
   border-radius: 50%;
   background: #10b981;
-  box-shadow: 0 0 4pt #10b981;
+  box-shadow: 0 0 5pt #10b981;
   flex-shrink: 0;
 }
 .toc-telemetry-txt {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
-  font-weight: 700;
+  font-size: 8pt;
+  font-weight: 800;
   letter-spacing: 0.06em;
   color: #f1f5f9;
 }
 
 .toc-cols {
   display: flex;
-  gap: 14pt;
+  gap: 16pt;
   align-items: flex-start;
 }
-.toc-col {
-  flex: 1 1 0;
-  min-width: 0;
-}
 .toc-col-left {
-  flex: 1 1 0;
+  flex: 1.08 1 0;
 }
 .toc-col-right {
-  flex: 1 1 0;
+  flex: 0.92 1 0;
 }
 
 .toc-deck-header {
-  margin-bottom: 3.5pt;
-  padding-bottom: 1.5pt;
-  border-bottom: 0.75pt solid #cbd5e1;
+  margin-bottom: 4pt;
+  padding-bottom: 2pt;
+  border-bottom: 1.5pt solid #0f172a;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
 .toc-deck-header-mt {
-  margin-top: 6.5pt;
+  margin-top: 7pt;
 }
 .toc-part {
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 9pt;
+  font-size: 11pt;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -479,8 +461,8 @@ module.exports = {
 }
 .toc-part-note {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
-  font-weight: 600;
+  font-size: 8.0pt;
+  font-weight: 700;
   color: #64748b;
   letter-spacing: 0.02em;
 }
@@ -488,7 +470,10 @@ module.exports = {
 .toc-btn-stack {
   display: flex;
   flex-direction: column;
-  gap: 2.2pt;
+  gap: 7.5pt;
+}
+.toc-col-right .toc-btn-stack {
+  gap: 5.5pt;
 }
 
 /* Base Tactile Switchplate */
@@ -496,43 +481,47 @@ module.exports = {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 4.5pt;
+  gap: 7pt;
   text-decoration: none;
-  border-radius: 3.5pt;
-  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
+  border-radius: 4.5pt;
+  box-shadow: inset 0 0.75pt 0 rgba(255, 255, 255, 0.9), 0 1pt 2pt rgba(15, 23, 42, 0.04);
   break-inside: avoid;
 }
 
-/* Category Button (Part I) */
+/* Category Button (Part I) — Large 40pt Tactile Switchplate */
 .toc-cat-btn {
-  height: 18.5pt;
-  padding: 0 5pt 0 2pt;
+  height: 40pt;
+  padding: 0 10pt 0 4pt;
   background: var(--cat-soft, #f8fafc);
-  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  border: 0.9pt solid var(--cat-line, #cbd5e1);
   color: var(--cat-ink, #0f172a);
 }
 .toc-btn-stripe {
-  width: 2.5pt;
-  align-self: stretch;
+  width: 4.5pt;
+  height: 28pt;
+  align-self: center;
   background: var(--cat-accent, #0f172a);
-  border-radius: 1.5pt;
+  border-radius: 2.5pt;
   flex-shrink: 0;
 }
 .toc-stripe-navy {
   background: #0f172a !important;
 }
-.toc-btn-idx { font-family: "JetBrains Mono", monospace; font-size: 9.0pt;
-  font-weight: 700;
+.toc-btn-idx {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5pt;
+  font-weight: 800;
   color: var(--cat-accent, #475569);
-  background: rgba(255, 255, 255, 0.85);
-  border: 0.4pt solid var(--cat-line, #cbd5e1);
-  padding: 0.5pt 2.5pt;
-  border-radius: 2pt;
+  background: rgba(255, 255, 255, 0.95);
+  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  padding: 2.5pt 6pt;
+  border-radius: 3pt;
   flex-shrink: 0;
   letter-spacing: -0.01em;
 }
-.toc-btn-label { font-size: 10.5pt;
-  font-weight: 700;
+.toc-btn-label {
+  font-size: 14pt;
+  font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -540,86 +529,120 @@ module.exports = {
   text-overflow: ellipsis;
   flex: 1 1 auto;
 }
-.toc-btn-count { font-size: 9.0pt;
+.toc-btn-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
-  padding: 0.5pt 4pt;
-  border-radius: 2.5pt;
+  padding: 2pt 7pt;
+  border-radius: 3.5pt;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
 }
 .toc-btn-arrow {
-  font-size: 9.5pt;
-  font-weight: 700;
+  font-size: 15pt;
+  font-weight: 800;
   line-height: 1;
   color: var(--cat-accent, #64748b);
-  opacity: 0.8;
+  opacity: 0.85;
   flex-shrink: 0;
 }
 
-/* Workflow Flow Button (Part II) */
+/* Workflow Flow Button (Part II) — 32pt Switchplate */
 .toc-wf-btn {
-  height: 18.5pt;
-  padding: 0 5pt 0 2pt;
+  height: 32pt;
+  padding: 0 9pt 0 3.5pt;
   background: #ffffff;
-  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  border: 0.85pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
-.toc-wf-cat-pill { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
+.toc-wf-btn .toc-btn-stripe {
+  height: 22pt;
+  width: 4pt;
+}
+.toc-wf-cat-pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
-  padding: 1pt 3pt;
-  border-radius: 2pt;
+  padding: 2.5pt 6pt;
+  border-radius: 3pt;
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
-.toc-wf-badge { font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.toc-wf-btn .toc-btn-label {
+  font-size: 12.5pt;
+  font-weight: 800;
+}
+.toc-wf-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10pt;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   color: #475569;
   background: #f1f5f9;
-  border: 0.4pt solid #cbd5e1;
-  padding: 0.5pt 3pt;
-  border-radius: 2pt;
+  border: 0.5pt solid #cbd5e1;
+  padding: 1.5pt 5pt;
+  border-radius: 2.5pt;
   flex-shrink: 0;
 }
 
-/* Guidance Module Button (Part III) */
+/* Guidance Module Button (Part III) — 30pt Switchplate */
 .toc-guide-btn {
-  height: 18.5pt;
-  padding: 0 5pt 0 2pt;
+  height: 30pt;
+  padding: 0 9pt 0 3.5pt;
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
+  border: 0.85pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
-.toc-guide-code { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
+.toc-guide-btn .toc-btn-stripe {
+  height: 20pt;
+  width: 4pt;
+}
+.toc-guide-code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11pt;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: #ffffff;
   background: #0f172a;
-  padding: 1pt 3pt;
-  border-radius: 2pt;
+  padding: 2.5pt 6pt;
+  border-radius: 3pt;
   flex-shrink: 0;
 }
-.toc-btn-sub { font-size: 8.5pt;
-  font-weight: 500;
+.toc-guide-btn .toc-btn-label {
+  font-size: 12.5pt;
+  font-weight: 800;
+}
+.toc-btn-sub {
+  font-size: 10.5pt;
+  font-weight: 600;
   color: #64748b;
   margin-left: auto;
-  margin-right: 2pt;
+  margin-right: 3pt;
   white-space: nowrap;
 }
 
-/* Appendix Button */
+/* Appendix Button — 32pt Switchplate */
 .toc-app-btn {
-  height: 19pt;
-  padding: 0 6pt 0 2pt;
+  height: 32pt;
+  padding: 0 10pt 0 3.5pt;
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
+  border: 0.85pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
-</style>`;
+.toc-app-btn .toc-btn-stripe {
+  height: 22pt;
+  width: 4pt;
+}
+.toc-app-btn .toc-btn-label {
+  font-size: 12.5pt;
+  font-weight: 800;
+}
+</style>
+`;
   },
 };

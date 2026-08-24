@@ -7,11 +7,11 @@
 const SCOPED_CSS = `<style>
 .chk-wrap { margin-top: 10pt; }
 .chk-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.chk-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.chk-sub { font-size: 9.5pt; color: #475569; margin: 0; }
+.chk-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.chk-sub { font-size: 11.5pt; color: #475569; margin: 0; }
 .chk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
-.chk-card { padding: 8pt 10pt; background: #ffffff; border: 0.75pt solid #cbd5e1; border-top: 3pt solid #0f172a; border-radius: 4pt; font-size: 9.0pt; break-inside: avoid; }
-.chk-card-h { font-family: "Inter Tight", "Inter", sans-serif; font-size: 11.5pt; font-weight: 800; color: #0f172a; margin: 0 0 4pt 0; }
+.chk-card { padding: 8pt 10pt; background: #ffffff; border: 0.75pt solid #cbd5e1; border-top: 3pt solid #0f172a; border-radius: 4pt; font-size: 11.5pt; break-inside: avoid; }
+.chk-card-h { font-family: "Inter Tight", "Inter", sans-serif; font-size: 14.0pt; font-weight: 800; color: #0f172a; margin: 0 0 4pt 0; }
 .chk-list { list-style: none; margin: 0; padding: 0; }
 .chk-item { margin-bottom: 3pt; padding-left: 8pt; position: relative; line-height: 1.35; }
 .chk-item::before { content: "□"; position: absolute; left: 0; color: #64748b; font-weight: 800; }

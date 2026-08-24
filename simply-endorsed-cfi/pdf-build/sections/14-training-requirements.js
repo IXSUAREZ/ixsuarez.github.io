@@ -11,8 +11,8 @@
 const SCOPED_CSS = `<style>
 .tr-wrap { margin-top: 10pt; }
 .tr-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.tr-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 16pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.tr-sub { font-size: 9.5pt; color: #475569; margin: 0; line-height: 1.4; }
+.tr-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.tr-sub { font-size: 11.5pt; color: #475569; margin: 0; line-height: 1.4; }
 .tr-card {
   margin-bottom: 10pt;
   padding: 8pt 10pt;
@@ -23,18 +23,18 @@ const SCOPED_CSS = `<style>
   break-inside: avoid;
 }
 .tr-card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4pt; }
-.tr-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 12.0pt; font-weight: 800; color: #0f172a; margin: 0; }
-.tr-card-cat { font-family: "JetBrains Mono", monospace; font-size: 8.5pt; font-weight: 700; color: var(--cat-accent, #0f172a); }
-.tr-card-summary { font-size: 9.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
+.tr-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 14.5pt; font-weight: 800; color: #0f172a; margin: 0; }
+.tr-card-cat { font-family: "JetBrains Mono", monospace; font-size: 11.0pt; font-weight: 700; color: var(--cat-accent, #0f172a); }
+.tr-card-summary { font-size: 11.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
 .tr-req-list { list-style: none; margin: 0 0 6pt 0; padding: 0; }
-.tr-req-item { margin-bottom: 4pt; font-size: 9.0pt; color: #1e293b; line-height: 1.35; padding-left: 10pt; position: relative; }
+.tr-req-item { margin-bottom: 5pt; font-size: 11.0pt; line-height: 1.45; color: #1e293b; line-height: 1.35; padding-left: 10pt; position: relative; }
 .tr-req-item::before { content: "•"; position: absolute; left: 0; color: var(--cat-accent, #0f172a); font-weight: 800; font-size: 10pt; }
 .tr-req-lbl { font-weight: 700; color: #0f172a; }
 .tr-chip-row { display: flex; flex-wrap: wrap; gap: 3pt; align-items: center; margin-top: 4pt; }
-.tr-chip-lbl { font-size: 8.0pt; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.04em; }
+.tr-chip-lbl { font-size: 9.5pt; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.04em; }
 .tr-pill {
   font-family: "JetBrains Mono", monospace;
-  font-size: 8.0pt;
+  font-size: 10.0pt;
   font-weight: 700;
   background: #ffffff;
   border: 0.5pt solid var(--cat-line, #cbd5e1);
@@ -45,7 +45,7 @@ const SCOPED_CSS = `<style>
 }
 .tr-cfr-chip {
   font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
+  font-size: 9.5pt;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.7);
   border: 0.4pt solid #cbd5e1;

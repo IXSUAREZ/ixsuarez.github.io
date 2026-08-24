@@ -34,15 +34,15 @@ const SCOPED_CSS = `<style>
 .wf-swatch { display: inline-block; width: 9pt; height: 9pt; border-radius: 50%; background: var(--cat-accent, #475569); margin-right: 6pt; }
 .wf-meta { margin: 0 0 6pt; }
 .wf-cat-chip { display: inline-block; padding: 1pt 7pt; border-radius: 8pt; font-size: 8pt; font-weight: 600; color: var(--cat-ink, #313b4a); background: var(--cat-soft, #f0f1f3); border: 0.75pt solid var(--cat-line, #d1d5da); }
-.wf-lead { font-size: 10pt; color: #374151; margin: 0 0 10pt; line-height: 1.45; }
+.wf-lead { font-size: 12pt; color: #374151; margin: 0 0 10pt; line-height: 1.45; }
 .wf-h3 { margin: 12pt 0 5pt; color: var(--cat-ink, #1c2142); }
 .wf-steps { list-style: none; margin: 0 0 10pt; padding: 0; counter-reset: wf-step; }
 .wf-step { position: relative; counter-increment: wf-step; margin: 0 0 6pt; padding: 7pt 10pt 7pt 32pt; background: var(--cat-soft, #f7f7f8); border: 0.75pt solid var(--cat-line, #d1d5da); border-left: 3pt solid var(--cat-accent, #475569); border-radius: 4pt; break-inside: avoid; }
 .wf-steps .wf-step::before { content: counter(wf-step); position: absolute; left: 8pt; top: 8pt; width: 15pt; height: 15pt; border-radius: 50%; background: var(--cat-accent, #475569); color: #ffffff; font-size: 8.5pt; font-weight: 700; line-height: 15pt; text-align: center; }
 .wf-step-head { display: flex; align-items: baseline; gap: 7pt; margin-bottom: 2pt; }
-.wf-step-link { font-weight: 700; font-size: 11.5pt; color: #1c2142; }
-.wf-step-title { font-weight: 700; font-size: 11.5pt; color: #1c2142; }
-.wf-step-desc { margin: 0; font-size: 10pt; color: #4b5563; line-height: 1.4; }
+.wf-step-link { font-weight: 700; font-size: 13.5pt; color: #1c2142; }
+.wf-step-title { font-weight: 700; font-size: 13.5pt; color: #1c2142; }
+.wf-step-desc { margin: 0; font-size: 11.5pt; color: #4b5563; line-height: 1.4; }
 .wf-step-tim { padding-left: 10pt; }
 .wf-tim { margin: 0 0 10pt; }
 .wf-tim-pill { display: inline-block; min-width: 15pt; height: 15pt; border-radius: 50%; background: var(--cat-accent, #475569); color: #ffffff; font-size: 8.5pt; font-weight: 700; line-height: 15pt; text-align: center; padding: 0 3pt; box-sizing: border-box; }

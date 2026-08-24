@@ -7,17 +7,17 @@
 const SCOPED_CSS = `<style>
 .jt-wrap { margin-top: 10pt; }
 .jt-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.jt-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.jt-sub { font-size: 9.5pt; color: #475569; margin: 0; }
+.jt-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.jt-sub { font-size: 11.5pt; color: #475569; margin: 0; }
 .jt-meta-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8pt; margin-bottom: 8pt; padding: 6pt; background: #f8fafc; border: 0.75pt solid #cbd5e1; border-radius: 4pt; font-size: 8pt; }
 .jt-meta-field { display: flex; flex-direction: column; gap: 2pt; }
-.jt-meta-lbl { font-size: 8.0pt; font-weight: 700; text-transform: uppercase; color: #64748b; }
+.jt-meta-lbl { font-size: 10.0pt; font-weight: 700; text-transform: uppercase; color: #64748b; }
 .jt-meta-line { border-bottom: 0.75pt solid #94a3b8; height: 12pt; }
-.jt-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.jt-table { width: 100%; border-collapse: collapse; font-size: 11.0pt; }
 .jt-table th, .jt-table td { border: 0.5pt solid #cbd5e1; padding: 3.5pt 5pt; text-align: left; }
-.jt-table th { background: #0f172a; color: #fff; font-weight: 700; font-size: 8.0pt; text-transform: uppercase; }
-.jt-stage-num { font-family: "JetBrains Mono", monospace; font-size: 9.0pt; font-weight: 800; color: #2563eb; width: 22pt; text-align: center; }
-.jt-pills { font-family: "JetBrains Mono", monospace; font-size: 7.5pt; }
+.jt-table th { background: #0f172a; color: #fff; font-weight: 700; font-size: 10.0pt; text-transform: uppercase; }
+.jt-stage-num { font-family: "JetBrains Mono", monospace; font-size: 11.5pt; font-weight: 800; color: #2563eb; width: 22pt; text-align: center; }
+.jt-pills { font-family: "JetBrains Mono", monospace; font-size: 9.5pt; }
 </style>`;
 
 function renderJourneyTracker(data, helpers) {

@@ -20,13 +20,13 @@ const SCOPED_CSS = `<style>
 }
 .ac-idx-title {
   font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
-  font-size: 15pt;
+  font-size: 20pt;
   font-weight: 800;
   color: #0f172a;
   margin: 0 0 3pt 0;
 }
 .ac-idx-sub {
-  font-size: 9.5pt;
+  font-size: 11.5pt;
   color: #475569;
   margin: 0;
   line-height: 1.35;
@@ -37,7 +37,7 @@ const SCOPED_CSS = `<style>
 }
 .ac-idx-group-title {
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 9.0pt;
+  font-size: 11.5pt;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -66,7 +66,7 @@ const SCOPED_CSS = `<style>
 }
 .ac-idx-pill {
   font-family: "JetBrains Mono", monospace;
-  font-size: 8.5pt;
+  font-size: 10.5pt;
   font-weight: 800;
   background: var(--cat-accent, #0f172a);
   color: #ffffff;
@@ -79,7 +79,7 @@ const SCOPED_CSS = `<style>
 .ac-idx-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 9.0pt;
+  font-size: 11.0pt; font-weight: 700;
   font-weight: 600;
   color: #0f172a;
   white-space: nowrap;
@@ -88,7 +88,7 @@ const SCOPED_CSS = `<style>
 }
 .ac-idx-cfr {
   font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
+  font-size: 9.5pt;
   font-weight: 600;
   color: var(--cat-ink, #475569);
   flex-shrink: 0;

@@ -1,75 +1,75 @@
 {
   "pipeline": "simply-endorsed-cfi pdf-build",
-  "gitSha": "5e0bd21177acd90819eaa1a40ceaa7c4aea9b95d",
+  "gitSha": "e5b52a22f292d5ab0eb8ec86853f21a5fa19ba0d",
   "outputPdf": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf",
-  "startedAt": "2026-08-24T21:34:32.627Z",
+  "startedAt": "2026-08-24T22:25:31.854Z",
   "stages": [
     {
       "name": "build",
       "command": "node build.js",
-      "startedAt": "2026-08-24T21:34:32.686Z",
-      "finishedAt": "2026-08-24T21:34:32.786Z",
-      "durationMs": 100,
+      "startedAt": "2026-08-24T22:25:31.902Z",
+      "finishedAt": "2026-08-24T22:25:31.989Z",
+      "durationMs": 87,
       "exitCode": 0
     },
     {
       "name": "test-render",
       "command": "node test-render.js",
-      "startedAt": "2026-08-24T21:34:32.786Z",
-      "finishedAt": "2026-08-24T21:34:32.835Z",
-      "durationMs": 49,
+      "startedAt": "2026-08-24T22:25:31.989Z",
+      "finishedAt": "2026-08-24T22:25:32.039Z",
+      "durationMs": 50,
       "exitCode": 0
     },
     {
       "name": "qa-check",
       "command": "node qa-check.js",
-      "startedAt": "2026-08-24T21:34:32.835Z",
-      "finishedAt": "2026-08-24T21:34:32.890Z",
-      "durationMs": 55,
+      "startedAt": "2026-08-24T22:25:32.040Z",
+      "finishedAt": "2026-08-24T22:25:32.094Z",
+      "durationMs": 54,
       "exitCode": 0
     },
     {
       "name": "qa-markers",
       "command": "node qa-markers.js",
-      "startedAt": "2026-08-24T21:34:32.890Z",
-      "finishedAt": "2026-08-24T21:34:32.941Z",
-      "durationMs": 51,
+      "startedAt": "2026-08-24T22:25:32.094Z",
+      "finishedAt": "2026-08-24T22:25:32.142Z",
+      "durationMs": 48,
       "exitCode": 0
     },
     {
       "name": "make-nav-data",
       "command": "node make-nav-data.js",
-      "startedAt": "2026-08-24T21:34:32.941Z",
-      "finishedAt": "2026-08-24T21:34:32.990Z",
-      "durationMs": 49,
+      "startedAt": "2026-08-24T22:25:32.142Z",
+      "finishedAt": "2026-08-24T22:25:32.192Z",
+      "durationMs": 50,
       "exitCode": 0
     },
     {
       "name": "render-pdf",
       "command": "node render-pdf.js",
-      "startedAt": "2026-08-24T21:34:32.990Z",
-      "finishedAt": "2026-08-24T21:34:39.721Z",
-      "durationMs": 6731,
+      "startedAt": "2026-08-24T22:25:32.192Z",
+      "finishedAt": "2026-08-24T22:25:38.979Z",
+      "durationMs": 6787,
       "exitCode": 0
     },
     {
       "name": "stamp_nav",
       "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python stamp_nav.py",
-      "startedAt": "2026-08-24T21:34:39.721Z",
-      "finishedAt": "2026-08-24T21:35:12.501Z",
-      "durationMs": 32780,
+      "startedAt": "2026-08-24T22:25:38.979Z",
+      "finishedAt": "2026-08-24T22:26:13.436Z",
+      "durationMs": 34457,
       "exitCode": 0
     },
     {
       "name": "qa-nav",
       "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python qa-nav.py",
-      "startedAt": "2026-08-24T21:35:12.501Z",
-      "finishedAt": "2026-08-24T21:35:14.884Z",
-      "durationMs": 2383,
+      "startedAt": "2026-08-24T22:26:13.436Z",
+      "finishedAt": "2026-08-24T22:26:15.868Z",
+      "durationMs": 2432,
       "exitCode": 0
     }
   ],
   "status": "ok",
-  "finishedAt": "2026-08-24T21:35:14.885Z",
-  "durationMs": 42258
+  "finishedAt": "2026-08-24T22:26:15.868Z",
+  "durationMs": 44014
 }

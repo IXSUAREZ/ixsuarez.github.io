@@ -92,8 +92,8 @@ html {
 
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 10.5pt;
-  line-height: 1.45;
+  font-size: 11.5pt;
+  line-height: 1.5;
   color: #1f2430;
   margin: 0;
 }
@@ -101,33 +101,43 @@ body {
 code,
 .mono,
 .verbatim {
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin: 0;
+  padding: 9pt 11pt;
+  font-size: 12.0pt;
+  line-height: 1.55;
+  background: #f8f9fb;
+  border: 0.8pt solid #cbd5e1;
+  border-radius: 3.5pt;
+  color: #0f172a;
 }
 
 /* ── Headings (Chromium PDF outline picks up h1-h6) ──────────────────── */
 
 h1.section-title {
   font-family: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 22pt;
+  font-size: 24pt;
   line-height: 1.2;
-  margin: 0 0 14pt 0;
-  padding-bottom: 6pt;
-  border-bottom: 2pt solid #1c2142;
+  margin: 0 0 16pt 0;
+  padding-bottom: 8pt;
+  border-bottom: 2.5pt solid #1c2142;
   color: #1c2142;
 }
 
 h2 {
-  font-size: 16pt;
+  font-size: 18pt;
+  font-weight: 800;
   margin: 0;
 }
 
 h3 {
-  font-size: 13.5pt;
+  font-size: 15pt;
+  font-weight: 800;
   margin: 0;
 }
 
 h4 {
-  font-size: 12.5pt;
+  font-size: 14pt;
+  font-weight: 800;
   margin: 0;
 }
 
@@ -245,25 +255,27 @@ a.external::after {
   break-after: avoid;
   display: flex;
   align-items: baseline;
-  gap: 10pt;
-  padding: 8pt 12pt;
-  margin: 0 0 10pt 0;
+  gap: 12pt;
+  padding: 10pt 14pt;
+  margin: 0 0 12pt 0;
   background: var(--cat-soft);
-  border: 0.6pt solid var(--cat-line);
-  border-left: 4.5pt solid var(--cat-accent);
-  border-radius: 4pt;
+  border: 0.75pt solid var(--cat-line);
+  border-left: 5pt solid var(--cat-accent);
+  border-radius: 4.5pt;
   color: var(--cat-ink);
-  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 1pt 2pt rgba(15, 23, 42, 0.04);
 }
 
 .category-banner h2 {
-  color: var(--cat-ink);
+  font-size: 18pt;
+  font-weight: 800;
+  margin: 0;
 }
 
 .category-banner-count {
-  font-size: 10pt;
+  font-size: 11pt;
   color: var(--cat-accent);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ── Bundle (subcategory) header (h3 level) ──────────────────────────── */
@@ -271,57 +283,60 @@ a.external::after {
 .bundle-header {
   break-after: avoid;
   break-inside: avoid;
-  margin: 12pt 0 6pt 0;
-  padding: 5pt 9pt;
-  border: 0.6pt solid var(--cat-line);
-  border-left: 3.5pt solid var(--cat-accent);
+  margin: 14pt 0 8pt 0;
+  padding: 7pt 11pt;
+  border: 0.75pt solid var(--cat-line);
+  border-left: 4pt solid var(--cat-accent);
   background: var(--cat-soft);
-  border-radius: 3.5pt;
+  border-radius: 4pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85);
 }
 
 .bundle-header h3 {
-  color: var(--cat-ink);
+  font-size: 15pt;
+  font-weight: 800;
+  margin: 0;
 }
 
 .bundle-desc {
-  margin: 3pt 0 0 0;
-  font-size: 10pt;
-  color: #4b5563;
+  margin: 4pt 0 0 0;
+  font-size: 11pt;
+  color: #334155;
+  line-height: 1.4;
 }
 
 /* ── Endorsement card ────────────────────────────────────────────────── */
 
 .endorsement-card {
   break-inside: avoid;
-  margin: 0 0 10pt 0;
-  padding: 8pt 10pt;
+  margin: 0 0 14pt 0;
+  padding: 10pt 12pt;
   background: var(--cat-soft);
-  border: 0.6pt solid var(--cat-line);
-  border-left: 4pt solid var(--cat-accent);
-  border-radius: 4pt;
-  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
+  border: 0.75pt solid var(--cat-line);
+  border-left: 4.5pt solid var(--cat-accent);
+  border-radius: 4.5pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 1pt 2pt rgba(15, 23, 42, 0.04);
 }
 
 .ec-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8pt;
-  margin-bottom: 5pt;
+  margin-bottom: 6pt;
 }
 
 .id-pill {
   display: inline-block;
-  padding: 2pt 7pt;
+  padding: 2.5pt 8pt;
   border-radius: 3pt;
   color: #ffffff;
   background: #0f172a;
-  font-size: 9.5pt;
-  font-weight: 700;
+  font-size: 11.5pt;
+  font-weight: 800;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   white-space: nowrap;
   letter-spacing: -0.01em;
-  box-shadow: 0 0.5pt 1pt rgba(15, 23, 42, 0.2);
+  box-shadow: 0 1pt 1.5pt rgba(15, 23, 42, 0.25);
 }
 
 .ec-title {
@@ -334,10 +349,10 @@ a.external::after {
 
 .badge {
   display: inline-block;
-  padding: 1.5pt 6pt;
-  margin: 0 3pt 2pt 0;
-  border-radius: 2.5pt;
-  font-size: 8.5pt;
+  padding: 2pt 7pt;
+  margin: 0 4pt 3pt 0;
+  border-radius: 3pt;
+  font-size: 9.5pt;
   font-weight: 700;
   border: 0.6pt solid transparent;
   letter-spacing: 0.02em;
@@ -377,11 +392,11 @@ a.external::after {
 
 .chip {
   display: inline-block;
-  padding: 1.5pt 6pt;
-  margin: 0 3pt 2pt 0;
-  border-radius: 2.5pt;
-  font-size: 8.5pt;
-  font-weight: 600;
+  padding: 2pt 7pt;
+  margin: 0 4pt 3pt 0;
+  border-radius: 3pt;
+  font-size: 9.5pt;
+  font-weight: 700;
 }
 
 .cfr-chip {
@@ -410,23 +425,23 @@ a.external::after {
 
 .ec-verbatim-label {
   display: block;
-  font-size: 8.5pt;
-  font-weight: 700;
+  font-size: 9.5pt;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--cat-accent, #475569);
-  margin-bottom: 2pt;
+  margin-bottom: 3pt;
 }
 
 .verbatim {
   margin: 0;
-  padding: 7pt 9pt;
-  font-size: 10.5pt;
-  line-height: 1.45;
+  padding: 9pt 11pt;
+  font-size: 12.0pt;
+  line-height: 1.55;
   background: #f8f9fb;
-  border: 0.75pt solid #e3e6ec;
-  border-radius: 3pt;
-  color: #111827;
+  border: 0.8pt solid #cbd5e1;
+  border-radius: 3.5pt;
+  color: #0f172a;
 }
 
 /* ── Explanation bullets / related / footer ──────────────────────────── */
@@ -445,10 +460,10 @@ a.external::after {
 }
 
 .ec-related {
-  margin: 4pt 0 0 0;
-  padding-top: 4pt;
+  margin: 6pt 0 0 0;
+  padding-top: 5pt;
   border-top: 0.75pt dashed var(--cat-line, #d1d5da);
-  font-size: 9pt;
+  font-size: 10.5pt;
 }
 
 .ec-related:empty {
@@ -460,18 +475,18 @@ a.external::after {
    navy outline instead of the category tint so outbound usage links read
    differently from lateral Related links. */
 .ec-usedin {
-  margin: 4pt 0 0 0;
-  padding-top: 4pt;
+  margin: 6pt 0 0 0;
+  padding-top: 5pt;
   border-top: 0.75pt dashed var(--cat-line, #d1d5da);
-  font-size: 9pt;
+  font-size: 10.5pt;
 }
 
 .ec-usedin-label {
-  font-size: 8.5pt;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 9.5pt;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #6b7280;
+  color: #475569;
   margin-right: 4pt;
 }
 
@@ -497,8 +512,8 @@ a.external::after {
 table.data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 9.5pt;
-  margin: 6pt 0 12pt 0;
+  font-size: 10.5pt;
+  margin: 8pt 0 14pt 0;
 }
 
 table.data-table th,
@@ -533,7 +548,14 @@ p {
   margin: 0 0 6pt 0;
 }
 
-.ec-lede { font-size: 10pt; color: #475569; margin: 3pt 0 5pt 0; line-height: 1.4; font-style: italic; color: #475569; margin: 2pt 0 4pt 0; line-height: 1.35; font-style: italic; }
+.ec-lede {
+  font-size: 11.5pt;
+  color: #334155;
+  margin: 3pt 0 6pt 0;
+  line-height: 1.45;
+  font-style: italic;
+  font-weight: 500;
+}
 
 </style>
 </head>
@@ -1006,52 +1028,46 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 6pt 0;
-  padding-bottom: 3pt;
-  border-bottom: 1.5pt solid #0f172a;
+  margin: 0 0 10pt 0;
+  padding-bottom: 5pt;
+  border-bottom: 2.5pt solid #0f172a;
 }
 .fm-h {
   font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
-  font-size: 12pt;
+  font-size: 15pt;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: #0f172a;
   margin: 0;
-  padding-bottom: 2pt;
-  border-bottom: 1pt solid #cbd5e1;
-}
-.fm-hero-bar .fm-h {
-  border-bottom: none;
-  padding-bottom: 0;
+  padding-bottom: 3pt;
 }
 .fm-hero-badge {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
-  font-weight: 700;
+  font-size: 9pt;
+  font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 2pt 6pt;
+  padding: 3pt 8pt;
   background: #0f172a;
   color: #ffffff;
-  border-radius: 3pt;
+  border-radius: 3.5pt;
 }
-.fm-h + .fm-howto, .fm-h + .fm-legend-grid { margin-bottom: 10pt; }
 .fm-howto {
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
-  border-left: 3.5pt solid #0f172a;
-  border-radius: 4pt;
-  padding: 6pt 10pt;
-  margin-bottom: 10pt;
+  border: 1pt solid #cbd5e1;
+  border-left: 5pt solid #0f172a;
+  border-radius: 5pt;
+  padding: 10pt 14pt;
+  margin-bottom: 14pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
 }
-.fm-howto ul { margin: 0; padding-left: 12pt; }
-.fm-howto-li { margin-bottom: 4pt; font-size: 9.5pt; line-height: 1.4; color: #334155; } line-height: 1.35; color: #334155; }
+.fm-howto ul { margin: 0; padding-left: 16pt; }
+.fm-howto-li { margin-bottom: 5pt; font-size: 11pt; line-height: 1.45; color: #334155; }
 .fm-howto-li:last-child { margin-bottom: 0; }
-.fm-navchrome { margin: 0 0 10pt 0; }
+.fm-navchrome { margin: 0 0 14pt 0; }
 .fm-navchrome-title {
-  margin: 0 0 3pt 0;
+  margin: 0 0 5pt 0;
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 7.5pt;
+  font-size: 10pt;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1060,73 +1076,65 @@ p {
 .fm-navchrome-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 8pt;
+  font-size: 10.5pt;
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
-  border-radius: 4pt;
+  border: 1pt solid #cbd5e1;
+  border-radius: 5pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
 }
 .fm-navchrome-table th,
 .fm-navchrome-table td {
-  border: 0.5pt solid #e2e8f0;
-  padding: 3pt 6pt;
+  border: 0.6pt solid #e2e8f0;
+  padding: 5pt 9pt;
   text-align: left;
   vertical-align: top;
 }
 .fm-navchrome-table th {
-  width: 1.05in;
-  font-size: 7.5pt;
-  font-weight: 700;
+  width: 1.2in;
+  font-size: 9.5pt;
+  font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #0f172a;
   white-space: nowrap;
   background: #f1f5f9;
 }
-.fm-inline-chip {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
-  font-weight: 700;
-  padding: 0.5pt 4.5pt;
-  border-radius: 3pt;
-  background: #0f172a;
-  color: #ffffff !important;
-}
 .fm-legend-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.5pt;
-  margin-top: 4pt;
+  gap: 5.5pt;
+  margin-top: 8pt;
 }
 .fm-cat-btn {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 4pt;
-  padding: 2.5pt 5pt 2.5pt 2pt;
+  gap: 6pt;
+  padding: 4pt 7pt 4pt 3.5pt;
   background: var(--cat-soft, #f8fafc);
-  border: 0.6pt solid var(--cat-line, #cbd5e1);
-  border-radius: 3.5pt;
+  border: 0.8pt solid var(--cat-line, #cbd5e1);
+  border-radius: 4pt;
   color: var(--cat-ink, #0f172a);
   text-decoration: none;
-  font-size: 7.5pt;
+  font-size: 10.5pt;
   break-inside: avoid;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.8), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
 .fm-cat-stripe {
-  width: 2.5pt;
+  width: 3.5pt;
   align-self: stretch;
   background: var(--cat-accent, #0f172a);
-  border-radius: 1.5pt;
+  border-radius: 2pt;
   flex-shrink: 0;
 }
-.fm-cat-code { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
-  font-weight: 700;
+.fm-cat-code { font-family: "JetBrains Mono", monospace; font-size: 10.5pt;
+  font-weight: 800;
   color: var(--cat-accent, #0f172a);
   letter-spacing: 0.02em;
   flex-shrink: 0;
 }
 .fm-cat-label {
+  font-size: 10.5pt;
   font-weight: 700;
   color: var(--cat-ink, #0f172a);
   white-space: nowrap;
@@ -1134,32 +1142,32 @@ p {
   text-overflow: ellipsis;
   flex: 1 1 auto;
 }
-.fm-cat-count { font-size: 8.5pt;
+.fm-cat-count { font-family: "JetBrains Mono", monospace; font-size: 10.5pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
-  padding: 0.5pt 3.5pt;
+  padding: 1.5pt 5pt;
   border-radius: 2.5pt;
   flex-shrink: 0;
 }
 .fm-cat-chevron {
-  font-size: 9pt;
-  font-weight: 700;
+  font-size: 12pt;
+  font-weight: 800;
   line-height: 1;
   color: var(--cat-accent, #64748b);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* ── (c) MASTER CONTENTS (TOC) IVE/NEWSON & FERRARI SYSTEM ────────── */
 
 .toc-header-hud {
   margin-bottom: 8pt;
-  padding-bottom: 4pt;
-  border-bottom: 1.5pt solid #0f172a;
+  padding-bottom: 3pt;
+  border-bottom: 2pt solid #0f172a;
 }
 .toc-title-row {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 }
 .toc-main-title {
@@ -1167,67 +1175,63 @@ p {
   padding: 0 !important;
   border-bottom: none !important;
   font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
-  font-size: 18pt;
+  font-size: 26pt;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #0f172a;
-  line-height: 1.1;
+  line-height: 1.05;
 }
 .toc-telemetry-badge {
   display: flex;
   align-items: center;
-  gap: 4.5pt;
+  gap: 5pt;
   background: #0f172a;
-  padding: 2.5pt 7pt;
-  border-radius: 3.5pt;
+  padding: 3pt 8pt;
+  border-radius: 4pt;
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.2);
 }
 .toc-pulse-dot {
-  width: 4.5pt;
-  height: 4.5pt;
+  width: 5pt;
+  height: 5pt;
   border-radius: 50%;
   background: #10b981;
-  box-shadow: 0 0 4pt #10b981;
+  box-shadow: 0 0 5pt #10b981;
   flex-shrink: 0;
 }
 .toc-telemetry-txt {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
-  font-weight: 700;
+  font-size: 8pt;
+  font-weight: 800;
   letter-spacing: 0.06em;
   color: #f1f5f9;
 }
 
 .toc-cols {
   display: flex;
-  gap: 14pt;
+  gap: 16pt;
   align-items: flex-start;
 }
-.toc-col {
-  flex: 1 1 0;
-  min-width: 0;
-}
 .toc-col-left {
-  flex: 1 1 0;
+  flex: 1.08 1 0;
 }
 .toc-col-right {
-  flex: 1 1 0;
+  flex: 0.92 1 0;
 }
 
 .toc-deck-header {
-  margin-bottom: 3.5pt;
-  padding-bottom: 1.5pt;
-  border-bottom: 0.75pt solid #cbd5e1;
+  margin-bottom: 4pt;
+  padding-bottom: 2pt;
+  border-bottom: 1.5pt solid #0f172a;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
 .toc-deck-header-mt {
-  margin-top: 6.5pt;
+  margin-top: 7pt;
 }
 .toc-part {
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 9pt;
+  font-size: 11pt;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1241,8 +1245,8 @@ p {
 }
 .toc-part-note {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
-  font-weight: 600;
+  font-size: 8.0pt;
+  font-weight: 700;
   color: #64748b;
   letter-spacing: 0.02em;
 }
@@ -1250,7 +1254,10 @@ p {
 .toc-btn-stack {
   display: flex;
   flex-direction: column;
-  gap: 2.2pt;
+  gap: 7.5pt;
+}
+.toc-col-right .toc-btn-stack {
+  gap: 5.5pt;
 }
 
 /* Base Tactile Switchplate */
@@ -1258,43 +1265,47 @@ p {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 4.5pt;
+  gap: 7pt;
   text-decoration: none;
-  border-radius: 3.5pt;
-  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
+  border-radius: 4.5pt;
+  box-shadow: inset 0 0.75pt 0 rgba(255, 255, 255, 0.9), 0 1pt 2pt rgba(15, 23, 42, 0.04);
   break-inside: avoid;
 }
 
-/* Category Button (Part I) */
+/* Category Button (Part I) — Large 40pt Tactile Switchplate */
 .toc-cat-btn {
-  height: 18.5pt;
-  padding: 0 5pt 0 2pt;
+  height: 40pt;
+  padding: 0 10pt 0 4pt;
   background: var(--cat-soft, #f8fafc);
-  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  border: 0.9pt solid var(--cat-line, #cbd5e1);
   color: var(--cat-ink, #0f172a);
 }
 .toc-btn-stripe {
-  width: 2.5pt;
-  align-self: stretch;
+  width: 4.5pt;
+  height: 28pt;
+  align-self: center;
   background: var(--cat-accent, #0f172a);
-  border-radius: 1.5pt;
+  border-radius: 2.5pt;
   flex-shrink: 0;
 }
 .toc-stripe-navy {
   background: #0f172a !important;
 }
-.toc-btn-idx { font-family: "JetBrains Mono", monospace; font-size: 9.0pt;
-  font-weight: 700;
+.toc-btn-idx {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5pt;
+  font-weight: 800;
   color: var(--cat-accent, #475569);
-  background: rgba(255, 255, 255, 0.85);
-  border: 0.4pt solid var(--cat-line, #cbd5e1);
-  padding: 0.5pt 2.5pt;
-  border-radius: 2pt;
+  background: rgba(255, 255, 255, 0.95);
+  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  padding: 2.5pt 6pt;
+  border-radius: 3pt;
   flex-shrink: 0;
   letter-spacing: -0.01em;
 }
-.toc-btn-label { font-size: 10.5pt;
-  font-weight: 700;
+.toc-btn-label {
+  font-size: 14pt;
+  font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -1302,87 +1313,121 @@ p {
   text-overflow: ellipsis;
   flex: 1 1 auto;
 }
-.toc-btn-count { font-size: 9.0pt;
+.toc-btn-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
-  padding: 0.5pt 4pt;
-  border-radius: 2.5pt;
+  padding: 2pt 7pt;
+  border-radius: 3.5pt;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
 }
 .toc-btn-arrow {
-  font-size: 9.5pt;
-  font-weight: 700;
+  font-size: 15pt;
+  font-weight: 800;
   line-height: 1;
   color: var(--cat-accent, #64748b);
-  opacity: 0.8;
+  opacity: 0.85;
   flex-shrink: 0;
 }
 
-/* Workflow Flow Button (Part II) */
+/* Workflow Flow Button (Part II) — 32pt Switchplate */
 .toc-wf-btn {
-  height: 18.5pt;
-  padding: 0 5pt 0 2pt;
+  height: 32pt;
+  padding: 0 9pt 0 3.5pt;
   background: #ffffff;
-  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  border: 0.85pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
-.toc-wf-cat-pill { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
+.toc-wf-btn .toc-btn-stripe {
+  height: 22pt;
+  width: 4pt;
+}
+.toc-wf-cat-pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
-  padding: 1pt 3pt;
-  border-radius: 2pt;
+  padding: 2.5pt 6pt;
+  border-radius: 3pt;
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
-.toc-wf-badge { font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.toc-wf-btn .toc-btn-label {
+  font-size: 12.5pt;
+  font-weight: 800;
+}
+.toc-wf-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10pt;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   color: #475569;
   background: #f1f5f9;
-  border: 0.4pt solid #cbd5e1;
-  padding: 0.5pt 3pt;
-  border-radius: 2pt;
+  border: 0.5pt solid #cbd5e1;
+  padding: 1.5pt 5pt;
+  border-radius: 2.5pt;
   flex-shrink: 0;
 }
 
-/* Guidance Module Button (Part III) */
+/* Guidance Module Button (Part III) — 30pt Switchplate */
 .toc-guide-btn {
-  height: 18.5pt;
-  padding: 0 5pt 0 2pt;
+  height: 30pt;
+  padding: 0 9pt 0 3.5pt;
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
+  border: 0.85pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
-.toc-guide-code { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
+.toc-guide-btn .toc-btn-stripe {
+  height: 20pt;
+  width: 4pt;
+}
+.toc-guide-code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11pt;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: #ffffff;
   background: #0f172a;
-  padding: 1pt 3pt;
-  border-radius: 2pt;
+  padding: 2.5pt 6pt;
+  border-radius: 3pt;
   flex-shrink: 0;
 }
-.toc-btn-sub { font-size: 8.5pt;
-  font-weight: 500;
+.toc-guide-btn .toc-btn-label {
+  font-size: 12.5pt;
+  font-weight: 800;
+}
+.toc-btn-sub {
+  font-size: 10.5pt;
+  font-weight: 600;
   color: #64748b;
   margin-left: auto;
-  margin-right: 2pt;
+  margin-right: 3pt;
   white-space: nowrap;
 }
 
-/* Appendix Button */
+/* Appendix Button — 32pt Switchplate */
 .toc-app-btn {
-  height: 19pt;
-  padding: 0 6pt 0 2pt;
+  height: 32pt;
+  padding: 0 10pt 0 3.5pt;
   background: #f8fafc;
-  border: 0.6pt solid #cbd5e1;
+  border: 0.85pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
+.toc-app-btn .toc-btn-stripe {
+  height: 22pt;
+  width: 4pt;
+}
+.toc-app-btn .toc-btn-label {
+  font-size: 12.5pt;
+  font-weight: 800;
+}
 </style>
+
 <!-- section: 10-part1-cat-a.js — Part I — Endorsement Library (Practical Test Prerequisites, Student Pilot) -->
 
 <style>
@@ -7022,8 +7067,8 @@ p {
 <style>
 .tr-wrap { margin-top: 10pt; }
 .tr-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.tr-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 16pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.tr-sub { font-size: 9.5pt; color: #475569; margin: 0; line-height: 1.4; }
+.tr-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.tr-sub { font-size: 11.5pt; color: #475569; margin: 0; line-height: 1.4; }
 .tr-card {
   margin-bottom: 10pt;
   padding: 8pt 10pt;
@@ -7034,18 +7079,18 @@ p {
   break-inside: avoid;
 }
 .tr-card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4pt; }
-.tr-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 12.0pt; font-weight: 800; color: #0f172a; margin: 0; }
-.tr-card-cat { font-family: "JetBrains Mono", monospace; font-size: 8.5pt; font-weight: 700; color: var(--cat-accent, #0f172a); }
-.tr-card-summary { font-size: 9.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
+.tr-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 14.5pt; font-weight: 800; color: #0f172a; margin: 0; }
+.tr-card-cat { font-family: "JetBrains Mono", monospace; font-size: 11.0pt; font-weight: 700; color: var(--cat-accent, #0f172a); }
+.tr-card-summary { font-size: 11.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
 .tr-req-list { list-style: none; margin: 0 0 6pt 0; padding: 0; }
-.tr-req-item { margin-bottom: 4pt; font-size: 9.0pt; color: #1e293b; line-height: 1.35; padding-left: 10pt; position: relative; }
+.tr-req-item { margin-bottom: 5pt; font-size: 11.0pt; line-height: 1.45; color: #1e293b; line-height: 1.35; padding-left: 10pt; position: relative; }
 .tr-req-item::before { content: "•"; position: absolute; left: 0; color: var(--cat-accent, #0f172a); font-weight: 800; font-size: 10pt; }
 .tr-req-lbl { font-weight: 700; color: #0f172a; }
 .tr-chip-row { display: flex; flex-wrap: wrap; gap: 3pt; align-items: center; margin-top: 4pt; }
-.tr-chip-lbl { font-size: 8.0pt; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.04em; }
+.tr-chip-lbl { font-size: 9.5pt; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.04em; }
 .tr-pill {
   font-family: "JetBrains Mono", monospace;
-  font-size: 8.0pt;
+  font-size: 10.0pt;
   font-weight: 700;
   background: #ffffff;
   border: 0.5pt solid var(--cat-line, #cbd5e1);
@@ -7056,7 +7101,7 @@ p {
 }
 .tr-cfr-chip {
   font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
+  font-size: 9.5pt;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.7);
   border: 0.4pt solid #cbd5e1;
@@ -7332,8 +7377,8 @@ p {
 <style>
 .pl-wrap { margin-top: 10pt; }
 .pl-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.pl-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 16pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.pl-sub { font-size: 9.5pt; color: #475569; margin: 0; line-height: 1.4; }
+.pl-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.pl-sub { font-size: 11.5pt; color: #475569; margin: 0; line-height: 1.4; }
 .pl-card {
   margin-bottom: 10pt;
   padding: 8pt 10pt;
@@ -7344,20 +7389,20 @@ p {
   break-inside: avoid;
 }
 .pl-card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4pt; border-bottom: 0.75pt solid #e2e8f0; padding-bottom: 3pt; }
-.pl-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 12.0pt; font-weight: 800; color: #0f172a; margin: 0; }
-.pl-rules { font-family: "JetBrains Mono", monospace; font-size: 8.5pt; font-weight: 700; color: #0369a1; }
-.pl-summary { font-size: 9.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
+.pl-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 14.5pt; font-weight: 800; color: #0f172a; margin: 0; }
+.pl-rules { font-family: "JetBrains Mono", monospace; font-size: 11.0pt; font-weight: 700; color: #0369a1; }
+.pl-summary { font-size: 11.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
 .pl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
-.pl-col-h { font-size: 8.5pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 3pt; padding-bottom: 1pt; }
+.pl-col-h { font-size: 11.0pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 3pt; padding-bottom: 1pt; }
 .pl-col-priv .pl-col-h { color: #059669; border-bottom: 1pt solid #a7f3d0; }
 .pl-col-lim .pl-col-h { color: #dc2626; border-bottom: 1pt solid #fecaca; }
-.pl-list { list-style: none; margin: 0; padding: 0; font-size: 9.0pt; color: #1e293b; line-height: 1.35; }
+.pl-list { list-style: none; margin: 0; padding: 0; font-size: 11.0pt; line-height: 1.45; color: #1e293b; line-height: 1.35; }
 .pl-item { margin-bottom: 3.5pt; padding-left: 8pt; position: relative; }
 .pl-col-priv .pl-item::before { content: "+"; font-family: monospace; position: absolute; left: 0; color: #059669; font-weight: 800; }
 .pl-col-lim .pl-item::before { content: "−"; font-family: monospace; position: absolute; left: 0; color: #dc2626; font-weight: 800; }
 .pl-cfr-chip {
   font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
+  font-size: 9.5pt;
   font-weight: 600;
   background: #f1f5f9;
   border: 0.4pt solid #cbd5e1;
@@ -7607,15 +7652,15 @@ p {
 .wf-swatch { display: inline-block; width: 9pt; height: 9pt; border-radius: 50%; background: var(--cat-accent, #475569); margin-right: 6pt; }
 .wf-meta { margin: 0 0 6pt; }
 .wf-cat-chip { display: inline-block; padding: 1pt 7pt; border-radius: 8pt; font-size: 8pt; font-weight: 600; color: var(--cat-ink, #313b4a); background: var(--cat-soft, #f0f1f3); border: 0.75pt solid var(--cat-line, #d1d5da); }
-.wf-lead { font-size: 10pt; color: #374151; margin: 0 0 10pt; line-height: 1.45; }
+.wf-lead { font-size: 12pt; color: #374151; margin: 0 0 10pt; line-height: 1.45; }
 .wf-h3 { margin: 12pt 0 5pt; color: var(--cat-ink, #1c2142); }
 .wf-steps { list-style: none; margin: 0 0 10pt; padding: 0; counter-reset: wf-step; }
 .wf-step { position: relative; counter-increment: wf-step; margin: 0 0 6pt; padding: 7pt 10pt 7pt 32pt; background: var(--cat-soft, #f7f7f8); border: 0.75pt solid var(--cat-line, #d1d5da); border-left: 3pt solid var(--cat-accent, #475569); border-radius: 4pt; break-inside: avoid; }
 .wf-steps .wf-step::before { content: counter(wf-step); position: absolute; left: 8pt; top: 8pt; width: 15pt; height: 15pt; border-radius: 50%; background: var(--cat-accent, #475569); color: #ffffff; font-size: 8.5pt; font-weight: 700; line-height: 15pt; text-align: center; }
 .wf-step-head { display: flex; align-items: baseline; gap: 7pt; margin-bottom: 2pt; }
-.wf-step-link { font-weight: 700; font-size: 11.5pt; color: #1c2142; }
-.wf-step-title { font-weight: 700; font-size: 11.5pt; color: #1c2142; }
-.wf-step-desc { margin: 0; font-size: 10pt; color: #4b5563; line-height: 1.4; }
+.wf-step-link { font-weight: 700; font-size: 13.5pt; color: #1c2142; }
+.wf-step-title { font-weight: 700; font-size: 13.5pt; color: #1c2142; }
+.wf-step-desc { margin: 0; font-size: 11.5pt; color: #4b5563; line-height: 1.4; }
 .wf-step-tim { padding-left: 10pt; }
 .wf-tim { margin: 0 0 10pt; }
 .wf-tim-pill { display: inline-block; min-width: 15pt; height: 15pt; border-radius: 50%; background: var(--cat-accent, #475569); color: #ffffff; font-size: 8.5pt; font-weight: 700; line-height: 15pt; text-align: center; padding: 0 3pt; box-sizing: border-box; }
@@ -9305,13 +9350,13 @@ p {
 }
 .ac-idx-title {
   font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
-  font-size: 15pt;
+  font-size: 20pt;
   font-weight: 800;
   color: #0f172a;
   margin: 0 0 3pt 0;
 }
 .ac-idx-sub {
-  font-size: 9.5pt;
+  font-size: 11.5pt;
   color: #475569;
   margin: 0;
   line-height: 1.35;
@@ -9322,7 +9367,7 @@ p {
 }
 .ac-idx-group-title {
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 9.0pt;
+  font-size: 11.5pt;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -9351,7 +9396,7 @@ p {
 }
 .ac-idx-pill {
   font-family: "JetBrains Mono", monospace;
-  font-size: 8.5pt;
+  font-size: 10.5pt;
   font-weight: 800;
   background: var(--cat-accent, #0f172a);
   color: #ffffff;
@@ -9364,7 +9409,7 @@ p {
 .ac-idx-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 9.0pt;
+  font-size: 11.0pt; font-weight: 700;
   font-weight: 600;
   color: #0f172a;
   white-space: nowrap;
@@ -9373,7 +9418,7 @@ p {
 }
 .ac-idx-cfr {
   font-family: "JetBrains Mono", monospace;
-  font-size: 7.5pt;
+  font-size: 9.5pt;
   font-weight: 600;
   color: var(--cat-ink, #475569);
   flex-shrink: 0;
@@ -9919,13 +9964,13 @@ p {
 <style>
 .alias-wrap { margin-top: 8pt; }
 .alias-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.alias-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.alias-sub { font-size: 9.5pt; color: #475569; margin: 0; }
+.alias-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.alias-sub { font-size: 11.5pt; color: #475569; margin: 0; }
 .alias-columns { columns: 3; column-gap: 8pt; }
 .alias-group { margin-bottom: 6pt; break-inside: avoid; }
 .alias-group-letter {
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 9.5pt;
+  font-size: 12.0pt;
   font-weight: 800;
   color: #0f172a;
   background: #f1f5f9;
@@ -9940,14 +9985,14 @@ p {
   align-items: baseline;
   padding: 2pt 2pt;
   border-bottom: 0.4pt solid #f1f5f9;
-  font-size: 8.5pt;
+  font-size: 10.5pt;
   text-decoration: none;
 }
 .alias-term { color: #1e293b; font-weight: 600; }
 .alias-arrow { color: #94a3b8; font-size: 6pt; margin: 0 2pt; }
 .alias-target {
   font-family: "JetBrains Mono", monospace;
-  font-size: 8.0pt;
+  font-size: 10.0pt;
   font-weight: 700;
   color: #2563eb;
   background: #eff6ff;
@@ -11276,11 +11321,11 @@ p {
 <style>
 .reg-wrap { margin-top: 10pt; }
 .reg-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.reg-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.reg-sub { font-size: 9.5pt; color: #475569; margin: 0; line-height: 1.35; }
-.reg-table { width: 100%; border-collapse: collapse; font-size: 9.0pt; margin-top: 8pt; }
-.reg-table th, .reg-table td { border: 0.5pt solid #cbd5e1; padding: 4pt 6pt; text-align: left; height: 22pt; }
-.reg-table th { background: #0f172a; color: #ffffff; font-weight: 700; font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.04em; }
+.reg-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.reg-sub { font-size: 11.5pt; color: #475569; margin: 0; line-height: 1.35; }
+.reg-table { width: 100%; border-collapse: collapse; font-size: 11.0pt; margin-top: 8pt; }
+.reg-table th, .reg-table td { border: 0.5pt solid #cbd5e1; padding: 4pt 6pt; text-align: left; height: 28pt; }
+.reg-table th { background: #0f172a; color: #ffffff; font-weight: 700; font-size: 10.5pt; text-transform: uppercase; letter-spacing: 0.04em; }
 .reg-col-date { width: 65pt; }
 .reg-col-name { width: 140pt; }
 .reg-col-id { width: 50pt; text-align: center; }
@@ -11456,17 +11501,17 @@ p {
 <style>
 .jt-wrap { margin-top: 10pt; }
 .jt-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.jt-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.jt-sub { font-size: 9.5pt; color: #475569; margin: 0; }
+.jt-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.jt-sub { font-size: 11.5pt; color: #475569; margin: 0; }
 .jt-meta-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8pt; margin-bottom: 8pt; padding: 6pt; background: #f8fafc; border: 0.75pt solid #cbd5e1; border-radius: 4pt; font-size: 8pt; }
 .jt-meta-field { display: flex; flex-direction: column; gap: 2pt; }
-.jt-meta-lbl { font-size: 8.0pt; font-weight: 700; text-transform: uppercase; color: #64748b; }
+.jt-meta-lbl { font-size: 10.0pt; font-weight: 700; text-transform: uppercase; color: #64748b; }
 .jt-meta-line { border-bottom: 0.75pt solid #94a3b8; height: 12pt; }
-.jt-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.jt-table { width: 100%; border-collapse: collapse; font-size: 11.0pt; }
 .jt-table th, .jt-table td { border: 0.5pt solid #cbd5e1; padding: 3.5pt 5pt; text-align: left; }
-.jt-table th { background: #0f172a; color: #fff; font-weight: 700; font-size: 8.0pt; text-transform: uppercase; }
-.jt-stage-num { font-family: "JetBrains Mono", monospace; font-size: 9.0pt; font-weight: 800; color: #2563eb; width: 22pt; text-align: center; }
-.jt-pills { font-family: "JetBrains Mono", monospace; font-size: 7.5pt; }
+.jt-table th { background: #0f172a; color: #fff; font-weight: 700; font-size: 10.0pt; text-transform: uppercase; }
+.jt-stage-num { font-family: "JetBrains Mono", monospace; font-size: 11.5pt; font-weight: 800; color: #2563eb; width: 22pt; text-align: center; }
+.jt-pills { font-family: "JetBrains Mono", monospace; font-size: 9.5pt; }
 </style>
 <div class="page-break jt-wrap">
     <div class="jt-header">
@@ -11606,11 +11651,11 @@ p {
 <style>
 .exp-wrap { margin-top: 10pt; }
 .exp-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.exp-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.exp-sub { font-size: 9.5pt; color: #475569; margin: 0; }
-.exp-card { padding: 8pt 10pt; background: #f8fafc; border: 0.75pt solid #cbd5e1; border-radius: 4pt; margin-bottom: 8pt; font-size: 9.5pt; line-height: 1.4; break-inside: avoid; }
-.exp-card h4 { margin: 0 0 3pt 0; color: #0f172a; font-size: 11.5pt; font-weight: 800; }
-.exp-rule-box { background: #ffffff; border-left: 3pt solid #2563eb; padding: 5pt 9pt; margin: 5pt 0; font-family: "JetBrains Mono", monospace; font-size: 9.0pt; }
+.exp-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.exp-sub { font-size: 14.0pt; color: #475569; margin: 0; }
+.exp-card { padding: 8pt 10pt; background: #f8fafc; border: 0.75pt solid #cbd5e1; border-radius: 4pt; margin-bottom: 8pt; font-size: 14.0pt; line-height: 1.4; break-inside: avoid; }
+.exp-card h4 { margin: 0 0 3pt 0; color: #0f172a; font-size: 14.0pt; font-weight: 800; }
+.exp-rule-box { background: #ffffff; border-left: 3pt solid #2563eb; padding: 5pt 9pt; margin: 5pt 0; font-family: "JetBrains Mono", monospace; font-size: 11.5pt; }
 </style>
 <div class="page-break exp-wrap">
     <div class="exp-header">
@@ -11634,11 +11679,11 @@ p {
 <style>
 .chk-wrap { margin-top: 10pt; }
 .chk-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
-.chk-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.chk-sub { font-size: 9.5pt; color: #475569; margin: 0; }
+.chk-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 20pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
+.chk-sub { font-size: 11.5pt; color: #475569; margin: 0; }
 .chk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
-.chk-card { padding: 8pt 10pt; background: #ffffff; border: 0.75pt solid #cbd5e1; border-top: 3pt solid #0f172a; border-radius: 4pt; font-size: 9.0pt; break-inside: avoid; }
-.chk-card-h { font-family: "Inter Tight", "Inter", sans-serif; font-size: 11.5pt; font-weight: 800; color: #0f172a; margin: 0 0 4pt 0; }
+.chk-card { padding: 8pt 10pt; background: #ffffff; border: 0.75pt solid #cbd5e1; border-top: 3pt solid #0f172a; border-radius: 4pt; font-size: 11.5pt; break-inside: avoid; }
+.chk-card-h { font-family: "Inter Tight", "Inter", sans-serif; font-size: 14.0pt; font-weight: 800; color: #0f172a; margin: 0 0 4pt 0; }
 .chk-list { list-style: none; margin: 0; padding: 0; }
 .chk-item { margin-bottom: 3pt; padding-left: 8pt; position: relative; line-height: 1.35; }
 .chk-item::before { content: "□"; position: absolute; left: 0; color: #64748b; font-weight: 800; }

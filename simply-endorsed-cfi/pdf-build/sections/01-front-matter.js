@@ -87,12 +87,21 @@ module.exports = {
         </a>`;
     }).join("\n        ");
 
-    const part2Buttons = featured.map((b) => {
+    const wfLabelOverrides = {
+      "pre-solo": "Pre-Solo Requirements & Knowledge",
+      "first-solo": "First Solo Flight",
+      "initial-solo-xc": "Initial Solo Cross-Country",
+      "private-airplane-initial-checkride-bundle": "Private Pilot ASEL Checkride",
+      "commercial-airplane-initial-checkride-bundle": "Commercial Pilot ASEL Checkride",
+      "instrument-checkride-bundle": "Instrument Rating Checkride",
+      "cfi-initial-checkride-bundle": "Flight Instructor ASEL Checkride",
+      "flight-review-and-wings": "Flight Review & WINGS Program",
+      "aircraft-endorsements": "Complex · HP · High-Alt · Tailwheel",
+    };
+
+    const part2FlowButtons = featured.map((b) => {
       const catCode = CAT_CODES[b.categoryId] || b.categoryId.slice(0, 3).toUpperCase();
-      let label = b.label;
-      if (b.id === "aircraft-endorsements") {
-        label = "Complex · HP · High-Alt · Tailwheel";
-      }
+      const label = wfLabelOverrides[b.id] || b.label;
       return `<a class="internal toc-btn toc-wf-btn" href="#wf-${esc(b.id)}" style="${themeVars(b.categoryId)}">
           <span class="toc-btn-stripe"></span>
           <span class="toc-wf-cat-pill">${esc(catCode)}</span>
@@ -100,7 +109,17 @@ module.exports = {
           <span class="toc-wf-badge">FLOW</span>
           <span class="toc-btn-arrow">&#x203A;</span>
         </a>`;
-    }).join("\n        ");
+    });
+
+    part2FlowButtons.push(`<a class="internal toc-btn toc-wf-btn" href="#wf-index" style="--cat-accent:#0f172a;--cat-soft:#f8fafc;--cat-line:#cbd5e1;--cat-ink:#0f172a">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-wf-cat-pill" style="background:#0f172a">ALL</span>
+          <span class="toc-btn-label">All 71 Workflows Directory Index</span>
+          <span class="toc-wf-badge">INDEX</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>`);
+
+    const part2Buttons = part2FlowButtons.join("\n        ");
 
     const guidanceItems = [
       { id: "journey", label: "Student Pilot Journey", code: "MAP", desc: "Stage-by-stage progression" },

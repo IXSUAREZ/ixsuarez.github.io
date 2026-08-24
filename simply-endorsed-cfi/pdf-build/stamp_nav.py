@@ -11,19 +11,29 @@ Reads nav-data.json (make-nav-data.js) and the invisible ZZPGM|<key>|ZZ page
 markers already in the PDF text layer. Writes to a temp file and atomically
 replaces the target PDF.
 
-Usage:  ./stamp_nav.py            (idempotent-guarded; re-run `node
-        render-pdf.js` first if the PDF was already stamped)
+Target PDF comes from config.py (config.json; SIMPLY_ENDORSED_OUT env var
+overrides it for scratch runs).
+
+Usage:  ./stamp_nav.py                stamp the rendered PDF
+        ./stamp_nav.py --from-base    copy .base.pdf over the target first,
+                                      then stamp (fast re-stamp: skips the
+                                      minutes-long render-pdf.js re-run)
 """
 
+import argparse
 import json
 import os
 import re
+import shutil
 import sys
 
 import fitz
 
+import config
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH = "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+PDF_PATH = config.PDF_PATH
+BASE_PATH = config.BASE_PATH
 NAV_DATA = os.path.join(HERE, "nav-data.json")
 
 PAGE_W, PAGE_H = 612.0, 792.0
@@ -428,6 +438,22 @@ doc_page_count = [0]      # mutable cell used by draw_dock
 
 
 def main():
+    ap = argparse.ArgumentParser(
+        description="Stamp navigation chrome onto the Simply Endorsed CFI PDF.")
+    ap.add_argument("--from-base", action="store_true",
+                    help="copy the pristine .base.pdf over the target first, "
+                         "then stamp (fast re-stamp without re-rendering)")
+    args = ap.parse_args()
+
+    if args.from_base:
+        if not os.path.exists(BASE_PATH):
+            print(f"--from-base: base copy not found: {BASE_PATH}\n"
+                  "run node render-pdf.js first to create it",
+                  file=sys.stderr)
+            sys.exit(1)
+        shutil.copyfile(BASE_PATH, PDF_PATH)
+        print(f"reset {PDF_PATH} from clean base {BASE_PATH}")
+
     with open(NAV_DATA) as f:
         nav = json.load(f)
     doc = fitz.open(PDF_PATH)
@@ -438,7 +464,9 @@ def main():
     for lnk in doc[1].get_links():
         if lnk["kind"] == fitz.LINK_NAMED and \
                 fitz.Rect(lnk["from"]).intersects(dock_zone):
-            print("already stamped — re-run node render-pdf.js first",
+            print("already stamped — for a fast re-stamp use "
+                  "`./stamp_nav.py --from-base` (restores the clean base "
+                  "first), or re-run node render-pdf.js for a full re-render",
                   file=sys.stderr)
             sys.exit(1)
 

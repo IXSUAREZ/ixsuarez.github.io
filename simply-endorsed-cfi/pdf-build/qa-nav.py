@@ -13,6 +13,9 @@ Checks:
 
 Run via the pdf-build venv python. Exit 0 = all green, 1 = failures.
 (Invoke with the interpreter path — the shebang contains a space.)
+
+Target PDF comes from config.py (config.json; SIMPLY_ENDORSED_OUT env var
+overrides it for scratch runs).
 """
 
 import json
@@ -22,8 +25,10 @@ import sys
 
 import fitz
 
+import config
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH = "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+PDF_PATH = config.PDF_PATH
 
 with open(os.path.join(HERE, "nav-data.json")) as f:
     NAV = json.load(f)

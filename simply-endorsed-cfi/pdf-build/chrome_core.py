@@ -369,15 +369,19 @@ def build_model(nav, markers):
 
 # ── chrome drawing ──────────────────────────────────────────────────────
 def draw_top_deck(page, targets, active_label, source_url,
-                  ac_label="AC 61-65K"):
+                  ac_label="AC 61-65K", min_widths=None, ac_min_w=None):
     """Top deck: (label, absolute_page) chips, active_label in blue, plus the
     AC external source button (right cluster, ends x=548). `ac_label` is the
     AC version label — callers pass nav-data.json's acVersion (emitted by
     make-nav-data.js from APP_META.acVersion, the single source of truth);
-    the default only covers stale nav-data files."""
+    the default only covers stale nav-data files. `min_widths` optionally
+    widens specific deck chips (label -> min width; the binder deck uses
+    thumb-sized buttons); `ac_min_w` optionally floors the AC chip width."""
     x = 36.0
     for label, target in targets:
         w = chrome_w(label, BTN_FS) + 24
+        if min_widths:
+            w = max(min_widths.get(label, 0.0), w)
         rect = fitz.Rect(x, TOP_Y0, x + w, TOP_Y1)
         active = (label == active_label)
         nav_button(
@@ -389,6 +393,8 @@ def draw_top_deck(page, targets, active_label, source_url,
     label = ac_label
     tw = chrome_w(label, BTN_FS)
     w = tw + 30
+    if ac_min_w:
+        w = max(ac_min_w, tw + 28)
     rect = fitz.Rect(548 - w, TOP_Y0, 548, TOP_Y1)
     rrect(page, rect, TITAN_MID, border=tuple(c * 0.75 for c in TITAN_MID),
           border_w=0.6, bevel=BEVEL_DARK)

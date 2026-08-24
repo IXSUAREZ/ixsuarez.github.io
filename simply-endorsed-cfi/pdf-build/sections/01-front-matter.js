@@ -198,12 +198,20 @@ module.exports = {
       <div class="toc-deck-header toc-deck-header-mt">
         <h2 class="toc-part"><a class="internal" href="#appendix">Appendix &amp; Cross-Reference</a></h2>
       </div>
-      <a class="internal toc-btn toc-app-btn" href="#appendix">
-        <span class="toc-btn-stripe toc-stripe-navy"></span>
-        <span class="toc-guide-code">APP</span>
-        <span class="toc-btn-label">Regulatory References, Acronyms &amp; Index</span>
-        <span class="toc-btn-arrow">&#x203A;</span>
-      </a>
+      <div class="toc-btn-stack">
+        <a class="internal toc-btn toc-app-btn" href="#ac-number-index">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">A-Z</span>
+          <span class="toc-btn-label">AC 61-65K Number Index (A.1 – A.96)</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-app-btn" href="#appendix">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">APP</span>
+          <span class="toc-btn-label">Regulatory References, Acronyms &amp; Index</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+      </div>
     </div>
   </div>
 </div>

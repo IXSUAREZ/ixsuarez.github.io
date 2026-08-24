@@ -61,7 +61,7 @@ from chrome_core import (      # noqa: F401  (re-exported for legacy callers)
     SLATE, DIM, BEVEL_DARK, WHITE, RULE, NEUTRAL, BTN_FS, RADIUS, rrect,
     CHROME_FONT_FILE, CHROME_FONT, CHROME_FONTNAME, chrome_w, chrome_text,
     fit_size, ctext, chevron, ext_arrow, nav_button, scan_markers,
-    scrub_pgm_markers,
+    scrub_pgm_markers, build_units,
     build_model, insert_raw_goback, insert_named_goback, draw_top_deck,
     draw_dock, draw_bead, draw_hero, draw_rail,
 )
@@ -167,7 +167,8 @@ def main():
             [f"bundle:{b['id']}" for c in nav["categories"]
              for b in c["bundles"]] +
             [f"wf:{w['id']}" for w in nav["workflows"]] +
-            [f"gs:{g['id']}" for g in nav["guidance"]])
+            [f"gs:{g['id']}" for g in nav["guidance"]] +
+            [f"gs:{l['id']}" for l in nav.get("lessons", [])])
     missing = [k for k in need if k not in markers]
     if missing:
         print(f"missing markers: {missing}", file=sys.stderr)

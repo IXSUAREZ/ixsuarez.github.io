@@ -616,5 +616,47 @@
       "label": "Appendix",
       "abbrev": "APPENDIX"
     }
+  ],
+  "lessons": [
+    {
+      "id": "objectives",
+      "title": "1. Lesson Objectives & Key Elements"
+    },
+    {
+      "id": "logbook",
+      "title": "2. Logbook Entries & Required Records"
+    },
+    {
+      "id": "student-endorsements",
+      "title": "3. Student Pilot Certificate Endorsements"
+    },
+    {
+      "id": "practical-test",
+      "title": "4. Practical Test Preparation & Recommendation"
+    },
+    {
+      "id": "additional-ratings",
+      "title": "5. Additional Ratings & Retesting"
+    },
+    {
+      "id": "time-limits",
+      "title": "6. Time Limits: 60 Calendar Days vs. 2 Calendar Months"
+    },
+    {
+      "id": "flight-review",
+      "title": "7. Flight Review & Instrument Proficiency Check Endorsements"
+    },
+    {
+      "id": "instructor-responsibilities",
+      "title": "8. Flight Instructor Responsibilities"
+    },
+    {
+      "id": "cfi-certificate",
+      "title": "9. Maintaining Your CFI Certificate & WINGS Program"
+    },
+    {
+      "id": "conclusion",
+      "title": "10. Conclusion & Verification"
+    }
   ]
 }

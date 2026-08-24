@@ -169,6 +169,47 @@ def nav_button(page, rect, label, link, fill=TITAN_DARK, text_color=WHITE,
 
 
 # ── model (offset-relative page numbers; offset added at link insertion) ──
+def build_units(nav, markers, cat_order, p1, p2, p3):
+    """PREV/NEXT unit sequence in reading order (idea-01).
+
+    Part I   — category opener + one unit per bundle start page, so the
+               dock steps bundle-by-bundle within a category before
+               advancing to the next (previously whole bundle ranges were
+               silently skipped, e.g. NEXT p9 -> p22 over Student Pilot).
+    Part II  — one unit per workflow page (already granular).
+    Part III — guidance sections + the lesson-plan sub-pages (nav
+               "lessons", the 10 gs:<lesson> markers under gs:lesson-plan).
+
+    Units that would share a page are merged (first/coarsest wins) so
+    PREV/NEXT always land on a different page; nothing is skipped because
+    merged units start on the same physical page. Unit pages strictly
+    increase along the returned list.
+    """
+    units = [{"id": "part-1", "page": p1,
+              "crumb": "PART I · ENDORSEMENT LIBRARY"}]
+    for c in cat_order:
+        units.append({"id": f"cat:{c['slug']}",
+                      "page": markers[f"cat:{c['slug']}"]})
+        for b in c["bundles"]:
+            units.append({"id": f"bundle:{b['id']}",
+                          "page": markers[f"bundle:{b['id']}"]})
+    units.append({"id": "part-2", "page": p2,
+                  "crumb": "PART II · WORKFLOWS"})
+    for w in nav["workflows"]:
+        units.append({"id": f"wf:{w['id']}", "page": markers[f"wf:{w['id']}"]})
+    units.append({"id": "part-3", "page": p3,
+                  "crumb": "PART III · CFI GUIDANCE"})
+    for g in nav["guidance"]:
+        units.append({"id": f"gs:{g['id']}", "page": markers[f"gs:{g['id']}"]})
+        if g["id"] == "lesson-plan":
+            for l in nav.get("lessons", []):
+                units.append({"id": f"gs:{l['id']}",
+                              "page": markers[f"gs:{l['id']}"]})
+    units.sort(key=lambda u: u["page"])     # stable: reading order on ties
+    return [u for i, u in enumerate(units)
+            if i == 0 or u["page"] != units[i - 1]["page"]]
+
+
 def scan_markers(doc, offset=0, count=None):
     """ZZPGM|<key>|ZZ marker pages, relative to offset. First wins."""
     if count is None:
@@ -225,20 +266,8 @@ def build_model(nav, markers):
         nxt = cat_pages[i + 1][0] if i + 1 < len(cat_pages) else p2
         bounds[c["slug"]] = (pg, nxt)          # [start, end)
 
-    # nav-unit sequence in reading order
-    units = [{"id": "part-1", "page": p1,
-              "crumb": "PART I · ENDORSEMENT LIBRARY"}]
-    for c in cat_order:
-        units.append({"id": f"cat:{c['slug']}", "page": markers[f"cat:{c['slug']}"]})
-    units.append({"id": "part-2", "page": p2,
-                  "crumb": "PART II · WORKFLOWS"})
-    for w in nav["workflows"]:
-        units.append({"id": f"wf:{w['id']}", "page": markers[f"wf:{w['id']}"]})
-    units.append({"id": "part-3", "page": p3,
-                  "crumb": "PART III · CFI GUIDANCE"})
-    for g in nav["guidance"]:
-        units.append({"id": f"gs:{g['id']}", "page": markers[f"gs:{g['id']}"]})
-    units.sort(key=lambda u: u["page"])
+    # nav-unit sequence in reading order (see build_units docstring)
+    units = build_units(nav, markers, cat_order, p1, p2, p3)
 
     # per-bundle marker pages within each category
     bundle_page = {b["id"]: markers[f"bundle:{b['id']}"]
@@ -267,9 +296,13 @@ def build_model(nav, markers):
                "WORKFLOWS" if pno < p3 else "GUIDANCE")
         if "crumb" in u:                       # part dividers
             return u["crumb"], top
-        if uid.startswith("cat:"):
-            slug = uid[4:]
-            cat = cats_by_slug[slug]
+        if uid.startswith(("cat:", "bundle:")):
+            if uid.startswith("cat:"):
+                cat = cats_by_slug[uid[4:]]
+            else:
+                bid = uid[7:]
+                cat = next(c for c in nav["categories"]
+                           if any(b["id"] == bid for b in c["bundles"]))
             active_b = None
             for b in cat["bundles"]:
                 if bundle_page[b["id"]] <= pno:
@@ -292,7 +325,9 @@ def build_model(nav, markers):
                 crumb = f"PART II · WORKFLOWS · {w['abbrev']}"
             return crumb, top
         if uid.startswith("gs:"):
-            g = next(g for g in nav["guidance"] if g["id"] == uid[3:])
+            g = next((g for g in nav["guidance"] if g["id"] == uid[3:]), None)
+            if g is None:                # lesson sub-page: parent section crumb
+                g = next(g for g in nav["guidance"] if g["id"] == "lesson-plan")
             return f"PART III · GUIDANCE · {g['label'].upper()}", top
         return "SIMPLY ENDORSED CFI", top
 

@@ -6,6 +6,7 @@
   "description": "Build pipeline: Simply Endorsed CFI web app data -> single hyperlinked print-ready HTML book (rendered to PDF by Playwright in a later step).",
   "scripts": {
     "build": "node build.js",
-    "test:render": "node test-render.js"
+    "test:render": "node test-render.js",
+    "pipeline": "node pipeline.js"
   }
 }

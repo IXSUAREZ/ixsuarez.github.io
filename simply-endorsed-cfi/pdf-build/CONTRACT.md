@@ -134,3 +134,9 @@ cd pdf-build
 node build.js         # must end with "wrote dist/book.html (…), 0 errors"
 node test-render.js   # fixture check: full A.6 card → dist/preview-card.html
 ```
+
+Full pipeline (build → QA → render → stamp → nav QA): `node pipeline.js`
+(records every stage in `dist/build-manifest.json`). Output paths live in
+`config.json`; set `SIMPLY_ENDORSED_OUT=/scratch/path.pdf` to redirect a test
+run away from the real deliverable. Fast chrome re-stamp without
+re-rendering: `./stamp_nav.py --from-base`.

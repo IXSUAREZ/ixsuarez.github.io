@@ -8,6 +8,7 @@
  * the Chromium browser binary comes from ~/Library/Caches/ms-playwright.
  *
  * Usage:  node render-pdf.js
+ * Env:    SIMPLY_ENDORSED_OUT overrides the output PDF path (see config.js).
  */
 
 const fs = require("fs");
@@ -38,13 +39,11 @@ console.log(`[render] playwright from: ${pwSource}`);
 
 /* ── Paths ─────────────────────────────────────────────────────────────── */
 const BOOK = path.join(__dirname, "dist", "book.html");
-const OUT_DIR =
-  "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf";
-const QA_DIR = path.join(OUT_DIR, "qa");
-const PDF_PATH = path.join(OUT_DIR, "Simply-Endorsed-CFI-AC61-65K.pdf");
-// Pristine pre-stamp copy consumed by the CFI Binder V34 merge pipeline
-// (the binder stamps its own chrome; stamp_nav.py must never see this file).
-const BASE_PATH = path.join(OUT_DIR, "Simply-Endorsed-CFI-AC61-65K.base.pdf");
+// Shared config (config.json; SIMPLY_ENDORSED_OUT env var overrides the
+// output PDF path for scratch runs). BASE_PATH is the pristine pre-stamp
+// copy consumed by the CFI Binder V34 merge pipeline (the binder stamps its
+// own chrome; stamp_nav.py must never see this file).
+const { QA_DIR, PDF_PATH, BASE_PATH } = require("./config");
 fs.mkdirSync(QA_DIR, { recursive: true });
 
 /* Screenshot targets: [filename, selector, mode]

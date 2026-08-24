@@ -16,12 +16,19 @@ binder's endorse_chrome.py); this file is only the standalone-PDF wrapper:
 deck = CONTENTS|LIBRARY|WORKFLOWS|GUIDANCE + AC button, page offset 0, and
 BACK via a named /GoBack link (chrome_core.insert_named_goback).
 
-Usage:  ./stamp_nav.py            (idempotent-guarded; re-run `node
-        render-pdf.js` first if the PDF was already stamped)
+Target PDF comes from config.py (config.json; SIMPLY_ENDORSED_OUT env var
+overrides it for scratch runs).
+
+Usage:  ./stamp_nav.py                stamp the rendered PDF
+        ./stamp_nav.py --from-base    copy .base.pdf over the target first,
+                                      then stamp (fast re-stamp: skips the
+                                      minutes-long render-pdf.js re-run)
 """
 
+import argparse
 import json
 import os
+import shutil
 import sys
 
 import fitz
@@ -35,14 +42,32 @@ from chrome_core import (      # noqa: F401  (re-exported for legacy callers)
     build_model, insert_named_goback, draw_top_deck, draw_dock, draw_bead,
     draw_hero, draw_rail,
 )
+import config
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH = "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+PDF_PATH = config.PDF_PATH
+BASE_PATH = config.BASE_PATH
 NAV_DATA = os.path.join(HERE, "nav-data.json")
 
 
 # ── main ────────────────────────────────────────────────────────────────
 def main():
+    ap = argparse.ArgumentParser(
+        description="Stamp navigation chrome onto the Simply Endorsed CFI PDF.")
+    ap.add_argument("--from-base", action="store_true",
+                    help="copy the pristine .base.pdf over the target first, "
+                         "then stamp (fast re-stamp without re-rendering)")
+    args = ap.parse_args()
+
+    if args.from_base:
+        if not os.path.exists(BASE_PATH):
+            print(f"--from-base: base copy not found: {BASE_PATH}\n"
+                  "run node render-pdf.js first to create it",
+                  file=sys.stderr)
+            sys.exit(1)
+        shutil.copyfile(BASE_PATH, PDF_PATH)
+        print(f"reset {PDF_PATH} from clean base {BASE_PATH}")
+
     with open(NAV_DATA) as f:
         nav = json.load(f)
     doc = fitz.open(PDF_PATH)
@@ -53,7 +78,9 @@ def main():
     for lnk in doc[1].get_links():
         if lnk["kind"] == fitz.LINK_NAMED and \
                 fitz.Rect(lnk["from"]).intersects(dock_zone):
-            print("already stamped — re-run node render-pdf.js first",
+            print("already stamped — for a fast re-stamp use "
+                  "`./stamp_nav.py --from-base` (restores the clean base "
+                  "first), or re-run node render-pdf.js for a full re-render",
                   file=sys.stderr)
             sys.exit(1)
 

@@ -11,12 +11,12 @@ const SCOPED_CSS = `<style>
 .alias-wrap { margin-top: 8pt; }
 .alias-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
 .alias-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.alias-sub { font-size: 8pt; color: #475569; margin: 0; }
+.alias-sub { font-size: 9.5pt; color: #475569; margin: 0; }
 .alias-columns { columns: 3; column-gap: 8pt; }
 .alias-group { margin-bottom: 6pt; break-inside: avoid; }
 .alias-group-letter {
   font-family: "Inter Tight", "Inter", sans-serif;
-  font-size: 8.5pt;
+  font-size: 9.5pt;
   font-weight: 800;
   color: #0f172a;
   background: #f1f5f9;
@@ -29,16 +29,16 @@ const SCOPED_CSS = `<style>
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 1.5pt 2pt;
+  padding: 2pt 2pt;
   border-bottom: 0.4pt solid #f1f5f9;
-  font-size: 7pt;
+  font-size: 8.5pt;
   text-decoration: none;
 }
 .alias-term { color: #1e293b; font-weight: 600; }
 .alias-arrow { color: #94a3b8; font-size: 6pt; margin: 0 2pt; }
 .alias-target {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
+  font-size: 8.0pt;
   font-weight: 700;
   color: #2563eb;
   background: #eff6ff;

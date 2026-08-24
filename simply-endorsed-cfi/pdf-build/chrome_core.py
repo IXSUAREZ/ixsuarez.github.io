@@ -106,7 +106,7 @@ def chrome_text(page, point, text, fs, color):
                      color=color)
 
 
-BTN_FS = 7.0          # top bar / dock button font size
+BTN_FS = 8.8          # top bar / dock button font size
 RADIUS = 3.5
 
 
@@ -521,7 +521,7 @@ def draw_dock(page, rel, model, offset=0, goback=insert_raw_goback):
     # breadcrumb + global page number (1-based merged page)
     crumb, _ = model["crumb_for"](rel)
     crumb_full = f"{crumb}  ·  p. {offset + rel + 1}"
-    fs = fit_size(crumb_full, 240, BTN_FS, minimum=5.0)
+    fs = fit_size(crumb_full, 240, 8.5, minimum=7.0)
     chrome_text(page, (36, (DOCK_Y0 + DOCK_Y1) / 2 + fs * 0.35),
                 crumb_full, fs, SLATE)
     # right cluster: PREV CONTENTS NEXT BACK
@@ -580,12 +580,12 @@ def draw_bead(page, y0, num, label, target_page, theme, active):
     rrect(page, draw_rect, fill, border=border, border_w=0.6, bevel=bevel,
           radius=3.0)
     # number line
-    nfs = fit_size(num, draw_rect.width - 8, 8.0)
+    nfs = fit_size(num, draw_rect.width - 8, 9.0)
     ntw = chrome_w(num, nfs)
     chrome_text(page, (draw_rect.x0 + (draw_rect.width - ntw) / 2,
                        y0 + 10.6), num, nfs, txt)
     # abbrev line
-    afs = fit_size(label, draw_rect.width - 6, 6.2)
+    afs = fit_size(label, draw_rect.width - 6, 7.6)
     atw = chrome_w(label, afs)
     chrome_text(page, (draw_rect.x0 + (draw_rect.width - atw) / 2,
                        y0 + 19.6), label, afs, txt)
@@ -599,7 +599,7 @@ def draw_hero(page, code, target_page, theme):
     rrect(page, rect, theme["accent"],
           border=tuple(c * 0.75 for c in theme["accent"]), border_w=0.6,
           bevel=WHITE, radius=3.0)
-    fs = fit_size(code, rect.width - 8, 11.0)
+    fs = fit_size(code, rect.width - 8, 12.0)
     tw = chrome_w(code, fs)
     chrome_text(page, (rect.x0 + (rect.width - tw) / 2,
                        rect.y0 + rect.height / 2 + fs * 0.35),

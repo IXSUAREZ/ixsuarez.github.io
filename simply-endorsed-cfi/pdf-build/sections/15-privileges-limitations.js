@@ -11,7 +11,7 @@ const SCOPED_CSS = `<style>
 .pl-wrap { margin-top: 10pt; }
 .pl-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
 .pl-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 16pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.pl-sub { font-size: 8.5pt; color: #475569; margin: 0; line-height: 1.4; }
+.pl-sub { font-size: 9.5pt; color: #475569; margin: 0; line-height: 1.4; }
 .pl-card {
   margin-bottom: 10pt;
   padding: 8pt 10pt;
@@ -22,20 +22,20 @@ const SCOPED_CSS = `<style>
   break-inside: avoid;
 }
 .pl-card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4pt; border-bottom: 0.75pt solid #e2e8f0; padding-bottom: 3pt; }
-.pl-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 10.5pt; font-weight: 800; color: #0f172a; margin: 0; }
-.pl-rules { font-family: "JetBrains Mono", monospace; font-size: 7.5pt; font-weight: 700; color: #0369a1; }
-.pl-summary { font-size: 8.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
+.pl-card-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 12.0pt; font-weight: 800; color: #0f172a; margin: 0; }
+.pl-rules { font-family: "JetBrains Mono", monospace; font-size: 8.5pt; font-weight: 700; color: #0369a1; }
+.pl-summary { font-size: 9.5pt; color: #334155; margin: 0 0 6pt 0; line-height: 1.4; }
 .pl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
-.pl-col-h { font-size: 7.5pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 3pt; padding-bottom: 1pt; }
+.pl-col-h { font-size: 8.5pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 3pt; padding-bottom: 1pt; }
 .pl-col-priv .pl-col-h { color: #059669; border-bottom: 1pt solid #a7f3d0; }
 .pl-col-lim .pl-col-h { color: #dc2626; border-bottom: 1pt solid #fecaca; }
-.pl-list { list-style: none; margin: 0; padding: 0; font-size: 7.5pt; color: #1e293b; line-height: 1.35; }
+.pl-list { list-style: none; margin: 0; padding: 0; font-size: 9.0pt; color: #1e293b; line-height: 1.35; }
 .pl-item { margin-bottom: 3.5pt; padding-left: 8pt; position: relative; }
 .pl-col-priv .pl-item::before { content: "+"; font-family: monospace; position: absolute; left: 0; color: #059669; font-weight: 800; }
 .pl-col-lim .pl-item::before { content: "−"; font-family: monospace; position: absolute; left: 0; color: #dc2626; font-weight: 800; }
 .pl-cfr-chip {
   font-family: "JetBrains Mono", monospace;
-  font-size: 6pt;
+  font-size: 7.5pt;
   font-weight: 600;
   background: #f1f5f9;
   border: 0.4pt solid #cbd5e1;

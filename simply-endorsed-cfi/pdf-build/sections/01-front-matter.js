@@ -283,7 +283,7 @@ module.exports = {
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
 }
 .fm-howto ul { margin: 0; padding-left: 12pt; }
-.fm-howto-li { margin-bottom: 3pt; font-size: 8.5pt; line-height: 1.35; color: #334155; }
+.fm-howto-li { margin-bottom: 4pt; font-size: 9.5pt; line-height: 1.4; color: #334155; } line-height: 1.35; color: #334155; }
 .fm-howto-li:last-child { margin-bottom: 0; }
 .fm-navchrome { margin: 0 0 10pt 0; }
 .fm-navchrome-title {
@@ -358,9 +358,7 @@ module.exports = {
   border-radius: 1.5pt;
   flex-shrink: 0;
 }
-.fm-cat-code {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
+.fm-cat-code { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
   font-weight: 700;
   color: var(--cat-accent, #0f172a);
   letter-spacing: 0.02em;
@@ -374,9 +372,7 @@ module.exports = {
   text-overflow: ellipsis;
   flex: 1 1 auto;
 }
-.fm-cat-count {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 7pt;
+.fm-cat-count { font-size: 8.5pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
@@ -525,9 +521,7 @@ module.exports = {
 .toc-stripe-navy {
   background: #0f172a !important;
 }
-.toc-btn-idx {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 6.5pt;
+.toc-btn-idx { font-family: "JetBrains Mono", monospace; font-size: 9.0pt;
   font-weight: 700;
   color: var(--cat-accent, #475569);
   background: rgba(255, 255, 255, 0.85);
@@ -537,9 +531,7 @@ module.exports = {
   flex-shrink: 0;
   letter-spacing: -0.01em;
 }
-.toc-btn-label {
-  font-family: "Inter", -apple-system, sans-serif;
-  font-size: 8pt;
+.toc-btn-label { font-size: 10.5pt;
   font-weight: 700;
   color: #0f172a;
   letter-spacing: -0.01em;
@@ -548,9 +540,7 @@ module.exports = {
   text-overflow: ellipsis;
   flex: 1 1 auto;
 }
-.toc-btn-count {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 7pt;
+.toc-btn-count { font-size: 9.0pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
@@ -577,9 +567,7 @@ module.exports = {
   border: 0.6pt solid var(--cat-line, #cbd5e1);
   color: #0f172a;
 }
-.toc-wf-cat-pill {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 6pt;
+.toc-wf-cat-pill { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
   font-weight: 800;
   color: #ffffff;
   background: var(--cat-accent, #0f172a);
@@ -588,9 +576,7 @@ module.exports = {
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
-.toc-wf-badge {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 5.5pt;
+.toc-wf-badge { font-family: "JetBrains Mono", monospace; font-size: 7.5pt;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: #475569;
@@ -609,9 +595,7 @@ module.exports = {
   border: 0.6pt solid #cbd5e1;
   color: #0f172a;
 }
-.toc-guide-code {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 6pt;
+.toc-guide-code { font-family: "JetBrains Mono", monospace; font-size: 8.5pt;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: #ffffff;
@@ -620,9 +604,7 @@ module.exports = {
   border-radius: 2pt;
   flex-shrink: 0;
 }
-.toc-btn-sub {
-  font-family: "Inter", sans-serif;
-  font-size: 6.5pt;
+.toc-btn-sub { font-size: 8.5pt;
   font-weight: 500;
   color: #64748b;
   margin-left: auto;

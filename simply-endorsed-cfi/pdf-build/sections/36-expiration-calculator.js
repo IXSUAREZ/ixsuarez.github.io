@@ -8,10 +8,10 @@ const SCOPED_CSS = `<style>
 .exp-wrap { margin-top: 10pt; }
 .exp-header { margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1.5pt solid #0f172a; }
 .exp-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 15pt; font-weight: 800; color: #0f172a; margin: 0 0 3pt 0; }
-.exp-sub { font-size: 8pt; color: #475569; margin: 0; }
-.exp-card { padding: 8pt 10pt; background: #f8fafc; border: 0.75pt solid #cbd5e1; border-radius: 4pt; margin-bottom: 8pt; font-size: 8pt; line-height: 1.4; break-inside: avoid; }
-.exp-card h4 { margin: 0 0 3pt 0; color: #0f172a; font-size: 9.5pt; font-weight: 800; }
-.exp-rule-box { background: #ffffff; border-left: 3pt solid #2563eb; padding: 4pt 8pt; margin: 4pt 0; font-family: "JetBrains Mono", monospace; font-size: 7.5pt; }
+.exp-sub { font-size: 9.5pt; color: #475569; margin: 0; }
+.exp-card { padding: 8pt 10pt; background: #f8fafc; border: 0.75pt solid #cbd5e1; border-radius: 4pt; margin-bottom: 8pt; font-size: 9.5pt; line-height: 1.4; break-inside: avoid; }
+.exp-card h4 { margin: 0 0 3pt 0; color: #0f172a; font-size: 11.5pt; font-weight: 800; }
+.exp-rule-box { background: #ffffff; border-left: 3pt solid #2563eb; padding: 5pt 9pt; margin: 5pt 0; font-family: "JetBrains Mono", monospace; font-size: 9.0pt; }
 </style>`;
 
 function renderExpirationCalc(data, helpers) {

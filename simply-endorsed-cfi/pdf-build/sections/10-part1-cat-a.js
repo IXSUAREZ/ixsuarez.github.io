@@ -7,7 +7,8 @@
  *   2. student-pilot           (Student Pilot — incl. the PRE_SOLO_CONTENT
  *                               pre-solo bundle)
  *
- * Structure: one h1 (Part I divider) → h2 category banners → h3 bundle
+ * Structure: one h1 (Part I divider, with a 13-category mini-TOC chip grid
+ * linking to every #cat-<slug> banner) → h2 category banners → h3 bundle
  * headers → h4 endorsement card titles (cards via helpers). See CONTRACT.md.
  *
  * Anchor discipline (shared Part I contract, same as 11/12/13): bundles
@@ -82,6 +83,37 @@ const SCOPED_CSS = `
 }
 .p1a-links {
   margin: 0 0 6pt 0;
+}
+/* Part I divider mini-TOC: one theme-colored chip per category (same chip
+   anatomy as the front-matter legend, laid out as a 2-column gateway). */
+.p1a-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5pt;
+}
+.p1a-cat-chip {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  padding: 5pt 9pt;
+  background: var(--cat-soft);
+  border: 0.75pt solid var(--cat-line);
+  border-left: 3.5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  text-decoration: none;
+  break-inside: avoid;
+}
+.p1a-cat-label {
+  font-weight: 600;
+  font-size: 9.5pt;
+  color: var(--cat-ink);
+}
+.p1a-cat-count {
+  margin-left: auto;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--cat-accent);
+  white-space: nowrap;
 }
 </style>`;
 
@@ -286,6 +318,20 @@ module.exports = {
     /** A-anchor ids already emitted in this file (first occurrence keeps the anchor). */
     const emittedAnchors = new Set();
 
+    /* Divider mini-TOC: one chip per category (themeVars swatch + label +
+       endorsement count + link to #cat-<slug>), in CATEGORY_ORDER. */
+    const counts = {};
+    for (const e of data.ENDORSEMENTS) {
+      counts[e.category] = (counts[e.category] || 0) + 1;
+    }
+    const catChips = helpers.CATEGORY_ORDER.map((slug) => {
+      const count = counts[slug] || 0;
+      return `<a class="internal p1a-cat-chip" href="#cat-${helpers.esc(slug)}" style="${helpers.themeVars(slug)}">
+    <span class="p1a-cat-label">${helpers.esc(helpers.CATEGORY_LABELS[slug] || slug)}</span>
+    <span class="p1a-cat-count">${count} endorsement${count === 1 ? "" : "s"}</span>
+  </a>`;
+    }).join("\n    ");
+
     const divider = `<div class="page-break">
   <span class="pgm" aria-hidden="true">ZZPGM|part:part-1|ZZ</span>
   <h1 class="section-title" id="part-1">Part I — Endorsement Library</h1>
@@ -296,6 +342,10 @@ module.exports = {
   the Advisory Circular, plain-English notes, who may sign the endorsement, and
   how long it remains valid; chips on each card link to related endorsements
   inside this book and to the referenced regulations on eCFR.</p>
+  <p class="p1a-sub-label">In this part — ${catCount} categories</p>
+  <div class="p1a-cat-grid">
+    ${catChips}
+  </div>
 </div>`;
 
     const chapters = MY_CATEGORIES.map((slug) =>

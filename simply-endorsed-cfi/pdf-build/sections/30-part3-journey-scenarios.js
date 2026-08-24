@@ -5,7 +5,10 @@
  * and DPE Scenarios.
  *
  * Renders:
- *   - Part III divider page (h1, id="part-3") with a short explainer
+ *   - Part III divider page (h1, id="part-3") with a short explainer and an
+ *     "In this part" mini-TOC chip grid linking all seven Part III anchors
+ *     (journey, scenarios, quickref, cfi-career, flashcards, lesson-plan,
+ *     appendix)
  *   - Student Journey (h2, id="journey"): the 12 JOURNEY_STAGES grouped by
  *     phase (first-appearance order), h3 per phase, one styled block per stage
  *   - DPE Scenarios (h2, id="scenarios"): the 8 SCENARIO_CARDS as h3 blocks
@@ -31,7 +34,12 @@ const SCOPED_CSS = `
 .p3-lede { font-size: 10.5pt; color: #374151; max-width: 6.6in; }
 .p3-contents { margin-top: 12pt; padding: 9pt 13pt; background: #f3f4f8; border: 0.75pt solid #d9dce6; border-left: 4pt solid ${NAVY}; border-radius: 4pt; font-size: 9.5pt; break-inside: avoid; }
 .p3-contents-title { display: block; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${NAVY}; margin-bottom: 4pt; }
-.p3-contents a.internal { display: inline-block; margin-right: 14pt; font-weight: 600; }
+/* Divider mini-TOC: white chips on the gray contents box; same chip anatomy
+   as the Part I/II divider grids (left accent border, label left, meta right). */
+.p3-toc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5pt; margin-top: 6pt; }
+.p3-toc-chip { display: flex; align-items: center; gap: 6pt; padding: 5pt 9pt; background: #ffffff; border: 0.75pt solid #d9dce6; border-left: 3.5pt solid ${NAVY}; border-radius: 4pt; text-decoration: none; break-inside: avoid; }
+.p3-toc-label { font-weight: 600; font-size: 9.5pt; color: ${NAVY}; }
+.p3-toc-meta { margin-left: auto; font-size: 8pt; font-weight: 700; color: #6b7280; white-space: nowrap; }
 
 .jny-h2, .scn-h2 { font-size: 14pt; color: ${NAVY}; border-bottom: 1.5pt solid ${NAVY}; padding-bottom: 4pt; margin: 0 0 6pt 0; }
 .jny-intro, .scn-intro { color: #4b5563; font-size: 9.5pt; margin: 0 0 10pt 0; }
@@ -286,14 +294,35 @@ function renderScenarios(data, helpers) {
 module.exports = {
   title: "Part III — Guidance: Student Journey & DPE Scenarios",
   render(data, helpers) {
+    /* Divider mini-TOC: all seven top-level Part III anchors. Counts are
+       derived from the data files where a natural count exists. */
+    const tocEntries = [
+      ["journey", "Student Journey", `${(data.JOURNEY_STAGES || []).length} stages`],
+      ["scenarios", "DPE Scenarios", `${(data.SCENARIO_CARDS || []).length} scenarios`],
+      ["quickref", "Quick Reference", "tables &amp; checklists"],
+      ["cfi-career", "CFI Career", "renewal &amp; reinstatement"],
+      ["flashcards", "DPE Prep Flashcards", `${(data.FLASHCARD_DECK || []).length} cards`],
+      ["lesson-plan", "Lesson Plan", `${(data.GUIDANCE_SECTIONS || []).length} parts`],
+      ["appendix", "Appendix", "eCFR index"],
+    ];
+    const tocChips = tocEntries
+      .map(
+        ([anchor, label, meta]) =>
+          `<a class="internal p3-toc-chip" href="#${helpers.esc(anchor)}">` +
+          `<span class="p3-toc-label">${label}</span>` +
+          `<span class="p3-toc-meta">${meta}</span></a>`
+      )
+      .join("\n    ");
+
     const divider = `<div class="page-break">
   <span class="pgm" aria-hidden="true">ZZPGM|part:part-3|ZZ</span>
   <h1 class="section-title" id="part-3">Part III — Guidance</h1>
-  <p class="p3-lede">Part I cataloged what each endorsement says. This part turns that catalog into operational guidance: the student journey from enrollment to checkride shows <em>when</em> each endorsement is used, and the DPE scenarios walk through the situations where the paperwork most often goes wrong.</p>
+  <p class="p3-lede">Part I cataloged what each endorsement says. This part turns that catalog into operational guidance: the student journey from enrollment to checkride shows <em>when</em> each endorsement is used, and the DPE scenarios walk through the situations where the paperwork most often goes wrong. Quick-reference tables, CFI career guidance, DPE prep flashcards, a lesson plan for teaching endorsements, and the appendix round out the part.</p>
   <div class="p3-contents">
     <span class="p3-contents-title">In this part</span>
-    <a class="internal" href="#journey">Student Journey</a>
-    <a class="internal" href="#scenarios">DPE Scenarios</a>
+    <div class="p3-toc-grid">
+    ${tocChips}
+    </div>
   </div>
 </div>`;
 

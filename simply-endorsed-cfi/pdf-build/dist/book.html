@@ -983,6 +983,37 @@ p {
 .p1a-links {
   margin: 0 0 6pt 0;
 }
+/* Part I divider mini-TOC: one theme-colored chip per category (same chip
+   anatomy as the front-matter legend, laid out as a 2-column gateway). */
+.p1a-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5pt;
+}
+.p1a-cat-chip {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  padding: 5pt 9pt;
+  background: var(--cat-soft);
+  border: 0.75pt solid var(--cat-line);
+  border-left: 3.5pt solid var(--cat-accent);
+  border-radius: 4pt;
+  text-decoration: none;
+  break-inside: avoid;
+}
+.p1a-cat-label {
+  font-weight: 600;
+  font-size: 9.5pt;
+  color: var(--cat-ink);
+}
+.p1a-cat-count {
+  margin-left: auto;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--cat-accent);
+  white-space: nowrap;
+}
 </style>
 <div class="page-break">
   <span class="pgm" aria-hidden="true">ZZPGM|part:part-1|ZZ</span>
@@ -992,6 +1023,61 @@ p {
   the Advisory Circular, plain-English notes, who may sign the endorsement, and
   how long it remains valid; chips on each card link to related endorsements
   inside this book and to the referenced regulations on eCFR.</p>
+  <p class="p1a-sub-label">In this part — 13 categories</p>
+  <div class="p1a-cat-grid">
+    <a class="internal p1a-cat-chip" href="#cat-practical-test-prereqs" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <span class="p1a-cat-label">Practical Test Prerequisites</span>
+    <span class="p1a-cat-count">2 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-student-pilot" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="p1a-cat-label">Student Pilot</span>
+    <span class="p1a-cat-count">14 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-sport-pilot" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="p1a-cat-label">Sport Pilot</span>
+    <span class="p1a-cat-count">12 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-recreational-pilot" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="p1a-cat-label">Recreational Pilot</span>
+    <span class="p1a-cat-count">7 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-private-pilot" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <span class="p1a-cat-label">Private Pilot</span>
+    <span class="p1a-cat-count">2 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-commercial-pilot" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <span class="p1a-cat-label">Commercial Pilot</span>
+    <span class="p1a-cat-count">2 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-atp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <span class="p1a-cat-label">ATP</span>
+    <span class="p1a-cat-count">2 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-instrument-rating" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <span class="p1a-cat-label">Instrument Rating</span>
+    <span class="p1a-cat-count">3 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-flight-instructor" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="p1a-cat-label">Flight Instructor</span>
+    <span class="p1a-cat-count">6 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-sport-pilot-instructor" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="p1a-cat-label">Sport Pilot Instructor</span>
+    <span class="p1a-cat-count">8 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-additional-recurrent" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="p1a-cat-label">Additional / Recurrent</span>
+    <span class="p1a-cat-count">20 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-robinson-sfar73" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="p1a-cat-label">Robinson SFAR 73</span>
+    <span class="p1a-cat-count">9 endorsements</span>
+  </a>
+    <a class="internal p1a-cat-chip" href="#cat-specialty-operations" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="p1a-cat-label">Specialty Operations</span>
+    <span class="p1a-cat-count">9 endorsements</span>
+  </a>
+  </div>
 </div>
 <div class="page-break">
 <section class="category-banner" id="cat-practical-test-prereqs" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
@@ -5843,9 +5929,13 @@ p {
 <style>
 /* Part II — workflow flows (scoped: wf-*) */
 .wf-part-lead { font-size: 11pt; line-height: 1.5; color: #374151; max-width: 46em; }
-.wf-part-nav { margin: 10pt 0 0; padding: 0; list-style: none; columns: 2; }
-.wf-part-nav li { margin: 0 0 4pt; font-size: 9.5pt; break-inside: avoid; }
-.wf-nav-cat { color: #6b7280; font-size: 8pt; }
+/* Part II divider mini-TOC: one theme-colored chip per featured flow plus a
+   navy index chip; same chip anatomy as the Part I/III divider grids. */
+.wf-grid-label { font-size: 8.5pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; margin: 14pt 0 5pt; }
+.wf-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5pt; }
+.wf-flow-chip { display: flex; align-items: center; gap: 6pt; padding: 5pt 9pt; background: var(--cat-soft, #f3f4f8); border: 0.75pt solid var(--cat-line, #d9dce6); border-left: 3.5pt solid var(--cat-accent, #1c2142); border-radius: 4pt; text-decoration: none; break-inside: avoid; }
+.wf-flow-label { font-weight: 600; font-size: 9.5pt; color: var(--cat-ink, #1c2142); }
+.wf-flow-cat { margin-left: auto; font-size: 8pt; font-weight: 700; color: var(--cat-accent, #6b7280); white-space: nowrap; text-align: right; }
 .wf-title { margin: 0 0 2pt; }
 .wf-swatch { display: inline-block; width: 9pt; height: 9pt; border-radius: 50%; background: var(--cat-accent, #475569); margin-right: 6pt; }
 .wf-meta { margin: 0 0 6pt; }
@@ -5880,17 +5970,19 @@ p {
 <span class="pgm" aria-hidden="true">ZZPGM|part:part-2|ZZ</span>
 <h1 class="section-title" id="part-2">Part II — Workflow Flows</h1>
 <p class="wf-part-lead">This part walks through the most common real-world sign-off workflows a CFI performs — from a student pilot's pre-solo prerequisites and first solo to checkride packages, flight reviews, and aircraft endorsements. Each numbered step names the exact AC 61-65K endorsement used at that point and links straight to its full card in Part I, so you can jump from the workflow to the verbatim endorsement language and back. Supplemental endorsements that are commonly signed in the same sitting are listed under "Also commonly included."</p>
-<ul class="wf-part-nav">
-  <li><a class="internal" href="#wf-pre-solo">Pre-Solo</a> <span class="wf-nav-cat">Student Pilot</span></li>
-  <li><a class="internal" href="#wf-first-solo">First Solo</a> <span class="wf-nav-cat">Student Pilot</span></li>
-  <li><a class="internal" href="#wf-initial-solo-xc">Initial Solo XC</a> <span class="wf-nav-cat">Student Pilot</span></li>
-  <li><a class="internal" href="#wf-private-airplane-initial-checkride-bundle">ASEL Initial Checkride Bundle</a> <span class="wf-nav-cat">Private Pilot</span></li>
-  <li><a class="internal" href="#wf-commercial-airplane-initial-checkride-bundle">ASEL Initial Checkride Bundle</a> <span class="wf-nav-cat">Commercial Pilot</span></li>
-  <li><a class="internal" href="#wf-instrument-checkride-bundle">Instrument Checkride Bundle</a> <span class="wf-nav-cat">Instrument Rating</span></li>
-  <li><a class="internal" href="#wf-cfi-initial-checkride-bundle">CFI ASEL Initial Checkride Bundle</a> <span class="wf-nav-cat">Flight Instructor</span></li>
-  <li><a class="internal" href="#wf-flight-review-and-wings">Flight Review and WINGS</a> <span class="wf-nav-cat">Additional / Recurrent</span></li>
-  <li><a class="internal" href="#wf-aircraft-endorsements">Complex / High-Performance / High-Altitude / Tailwheel</a> <span class="wf-nav-cat">Additional / Recurrent</span></li>
-</ul>
+<p class="wf-grid-label">In this part — 9 featured flows + index</p>
+<div class="wf-flow-grid">
+  <a class="internal wf-flow-chip" href="#wf-pre-solo" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000"><span class="wf-flow-label">Pre-Solo</span><span class="wf-flow-cat">Student Pilot</span></a>
+  <a class="internal wf-flow-chip" href="#wf-first-solo" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000"><span class="wf-flow-label">First Solo</span><span class="wf-flow-cat">Student Pilot</span></a>
+  <a class="internal wf-flow-chip" href="#wf-initial-solo-xc" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000"><span class="wf-flow-label">Initial Solo XC</span><span class="wf-flow-cat">Student Pilot</span></a>
+  <a class="internal wf-flow-chip" href="#wf-private-airplane-initial-checkride-bundle" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9"><span class="wf-flow-label">ASEL Initial Checkride Bundle</span><span class="wf-flow-cat">Private Pilot</span></a>
+  <a class="internal wf-flow-chip" href="#wf-commercial-airplane-initial-checkride-bundle" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200"><span class="wf-flow-label">ASEL Initial Checkride Bundle</span><span class="wf-flow-cat">Commercial Pilot</span></a>
+  <a class="internal wf-flow-chip" href="#wf-instrument-checkride-bundle" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162"><span class="wf-flow-label">Instrument Checkride Bundle</span><span class="wf-flow-cat">Instrument Rating</span></a>
+  <a class="internal wf-flow-chip" href="#wf-cfi-initial-checkride-bundle" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414"><span class="wf-flow-label">CFI ASEL Initial Checkride Bundle</span><span class="wf-flow-cat">Flight Instructor</span></a>
+  <a class="internal wf-flow-chip" href="#wf-flight-review-and-wings" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62"><span class="wf-flow-label">Flight Review and WINGS</span><span class="wf-flow-cat">Additional / Recurrent</span></a>
+  <a class="internal wf-flow-chip" href="#wf-aircraft-endorsements" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62"><span class="wf-flow-label">Complex / High-Performance / High-Altitude / Tailwheel</span><span class="wf-flow-cat">Additional / Recurrent</span></a>
+  <a class="internal wf-flow-chip" href="#wf-index" style="--cat-accent:#1C2142;--cat-soft:#f3f4f8;--cat-line:#d9dce6;--cat-ink:#1C2142"><span class="wf-flow-label">All workflows index</span><span class="wf-flow-cat">71 bundles</span></a>
+</div>
 </div>
 <section class="page-break wf-flow" id="wf-pre-solo" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
   <span class="pgm" aria-hidden="true">ZZPGM|wf:pre-solo|ZZ</span>
@@ -6305,7 +6397,12 @@ p {
 .p3-lede { font-size: 10.5pt; color: #374151; max-width: 6.6in; }
 .p3-contents { margin-top: 12pt; padding: 9pt 13pt; background: #f3f4f8; border: 0.75pt solid #d9dce6; border-left: 4pt solid #1C2142; border-radius: 4pt; font-size: 9.5pt; break-inside: avoid; }
 .p3-contents-title { display: block; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #1C2142; margin-bottom: 4pt; }
-.p3-contents a.internal { display: inline-block; margin-right: 14pt; font-weight: 600; }
+/* Divider mini-TOC: white chips on the gray contents box; same chip anatomy
+   as the Part I/II divider grids (left accent border, label left, meta right). */
+.p3-toc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5pt; margin-top: 6pt; }
+.p3-toc-chip { display: flex; align-items: center; gap: 6pt; padding: 5pt 9pt; background: #ffffff; border: 0.75pt solid #d9dce6; border-left: 3.5pt solid #1C2142; border-radius: 4pt; text-decoration: none; break-inside: avoid; }
+.p3-toc-label { font-weight: 600; font-size: 9.5pt; color: #1C2142; }
+.p3-toc-meta { margin-left: auto; font-size: 8pt; font-weight: 700; color: #6b7280; white-space: nowrap; }
 
 .jny-h2, .scn-h2 { font-size: 14pt; color: #1C2142; border-bottom: 1.5pt solid #1C2142; padding-bottom: 4pt; margin: 0 0 6pt 0; }
 .jny-intro, .scn-intro { color: #4b5563; font-size: 9.5pt; margin: 0 0 10pt 0; }
@@ -6347,11 +6444,18 @@ p {
 <div class="page-break">
   <span class="pgm" aria-hidden="true">ZZPGM|part:part-3|ZZ</span>
   <h1 class="section-title" id="part-3">Part III — Guidance</h1>
-  <p class="p3-lede">Part I cataloged what each endorsement says. This part turns that catalog into operational guidance: the student journey from enrollment to checkride shows <em>when</em> each endorsement is used, and the DPE scenarios walk through the situations where the paperwork most often goes wrong.</p>
+  <p class="p3-lede">Part I cataloged what each endorsement says. This part turns that catalog into operational guidance: the student journey from enrollment to checkride shows <em>when</em> each endorsement is used, and the DPE scenarios walk through the situations where the paperwork most often goes wrong. Quick-reference tables, CFI career guidance, DPE prep flashcards, a lesson plan for teaching endorsements, and the appendix round out the part.</p>
   <div class="p3-contents">
     <span class="p3-contents-title">In this part</span>
-    <a class="internal" href="#journey">Student Journey</a>
-    <a class="internal" href="#scenarios">DPE Scenarios</a>
+    <div class="p3-toc-grid">
+    <a class="internal p3-toc-chip" href="#journey"><span class="p3-toc-label">Student Journey</span><span class="p3-toc-meta">12 stages</span></a>
+    <a class="internal p3-toc-chip" href="#scenarios"><span class="p3-toc-label">DPE Scenarios</span><span class="p3-toc-meta">8 scenarios</span></a>
+    <a class="internal p3-toc-chip" href="#quickref"><span class="p3-toc-label">Quick Reference</span><span class="p3-toc-meta">tables &amp; checklists</span></a>
+    <a class="internal p3-toc-chip" href="#cfi-career"><span class="p3-toc-label">CFI Career</span><span class="p3-toc-meta">renewal &amp; reinstatement</span></a>
+    <a class="internal p3-toc-chip" href="#flashcards"><span class="p3-toc-label">DPE Prep Flashcards</span><span class="p3-toc-meta">15 cards</span></a>
+    <a class="internal p3-toc-chip" href="#lesson-plan"><span class="p3-toc-label">Lesson Plan</span><span class="p3-toc-meta">10 parts</span></a>
+    <a class="internal p3-toc-chip" href="#appendix"><span class="p3-toc-label">Appendix</span><span class="p3-toc-meta">eCFR index</span></a>
+    </div>
   </div>
 </div>
 <div class="page-break">

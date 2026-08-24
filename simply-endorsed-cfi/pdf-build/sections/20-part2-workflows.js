@@ -4,7 +4,9 @@
  * sections/20-part2-workflows.js — Part II divider + workflow flow-pages.
  *
  * Renders:
- *   1. Part II divider (h1#part-2) with an explainer and a nav list of flows.
+ *   1. Part II divider (h1#part-2) with an explainer and a mini-TOC chip
+ *      grid: one chip per featured flow → #wf-<id>, plus a navy index chip
+ *      → #wf-index.
  *   2. One flow page per featured bundle in BROWSE_STRUCTURE, plus the
  *      student-pilot "pre-solo" bundle (contentRenderer: "pre-solo"), in
  *      BROWSE_STRUCTURE category order. Each page: id="wf-<bundle.id>",
@@ -21,9 +23,13 @@
 const SCOPED_CSS = `<style>
 /* Part II — workflow flows (scoped: wf-*) */
 .wf-part-lead { font-size: 11pt; line-height: 1.5; color: #374151; max-width: 46em; }
-.wf-part-nav { margin: 10pt 0 0; padding: 0; list-style: none; columns: 2; }
-.wf-part-nav li { margin: 0 0 4pt; font-size: 9.5pt; break-inside: avoid; }
-.wf-nav-cat { color: #6b7280; font-size: 8pt; }
+/* Part II divider mini-TOC: one theme-colored chip per featured flow plus a
+   navy index chip; same chip anatomy as the Part I/III divider grids. */
+.wf-grid-label { font-size: 8.5pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; margin: 14pt 0 5pt; }
+.wf-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5pt; }
+.wf-flow-chip { display: flex; align-items: center; gap: 6pt; padding: 5pt 9pt; background: var(--cat-soft, #f3f4f8); border: 0.75pt solid var(--cat-line, #d9dce6); border-left: 3.5pt solid var(--cat-accent, #1c2142); border-radius: 4pt; text-decoration: none; break-inside: avoid; }
+.wf-flow-label { font-weight: 600; font-size: 9.5pt; color: var(--cat-ink, #1c2142); }
+.wf-flow-cat { margin-left: auto; font-size: 8pt; font-weight: 700; color: var(--cat-accent, #6b7280); white-space: nowrap; text-align: right; }
 .wf-title { margin: 0 0 2pt; }
 .wf-swatch { display: inline-block; width: 9pt; height: 9pt; border-radius: 50%; background: var(--cat-accent, #475569); margin-right: 6pt; }
 .wf-meta { margin: 0 0 6pt; }
@@ -231,23 +237,38 @@ module.exports = {
     }
     const flowIds = new Set(flows.map((f) => f.bundle.id));
 
+    /* Divider mini-TOC: one chip per featured flow (category themeVars) plus
+       a navy chip for the all-workflows index — 9 flows + index. */
     const navItems = flows
       .map(
         ({ categorySlug, bundle }) =>
-          `<li><a class="internal" href="#wf-${helpers.esc(bundle.id)}">${helpers.esc(bundle.label)}</a> ` +
-          `<span class="wf-nav-cat">${helpers.esc(
+          `<a class="internal wf-flow-chip" href="#wf-${helpers.esc(bundle.id)}" style="${helpers.themeVars(categorySlug)}">` +
+          `<span class="wf-flow-label">${helpers.esc(bundle.label)}</span>` +
+          `<span class="wf-flow-cat">${helpers.esc(
             helpers.CATEGORY_LABELS[categorySlug] || categorySlug
-          )}</span></li>`
+          )}</span></a>`
       )
       .join("\n  ");
+
+    const bundleTotal = data.BROWSE_STRUCTURE.reduce(
+      (n, c) => n + c.subcategories.length,
+      0
+    );
+    const indexChip =
+      `<a class="internal wf-flow-chip" href="#wf-index" ` +
+      `style="--cat-accent:${helpers.NAVY};--cat-soft:#f3f4f8;--cat-line:#d9dce6;--cat-ink:${helpers.NAVY}">` +
+      `<span class="wf-flow-label">All workflows index</span>` +
+      `<span class="wf-flow-cat">${bundleTotal} bundles</span></a>`;
 
     const divider = `<div class="page-break wf-divider">
 <span class="pgm" aria-hidden="true">ZZPGM|part:part-2|ZZ</span>
 <h1 class="section-title" id="part-2">Part II — Workflow Flows</h1>
 <p class="wf-part-lead">This part walks through the most common real-world sign-off workflows a CFI performs — from a student pilot's pre-solo prerequisites and first solo to checkride packages, flight reviews, and aircraft endorsements. Each numbered step names the exact AC 61-65K endorsement used at that point and links straight to its full card in Part I, so you can jump from the workflow to the verbatim endorsement language and back. Supplemental endorsements that are commonly signed in the same sitting are listed under "Also commonly included."</p>
-<ul class="wf-part-nav">
+<p class="wf-grid-label">In this part — ${flows.length} featured flows + index</p>
+<div class="wf-flow-grid">
   ${navItems}
-</ul>
+  ${indexChip}
+</div>
 </div>`;
 
     const pages = flows

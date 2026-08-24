@@ -16,6 +16,11 @@ binder's endorse_chrome.py); this file is only the standalone-PDF wrapper:
 deck = CONTENTS|LIBRARY|WORKFLOWS|GUIDANCE + AC button, page offset 0, and
 BACK via a named /GoBack link (chrome_core.insert_named_goback).
 
+Also stamps provenance metadata (author / subject / keywords / creator) onto
+the document: the creator field carries the UTC build timestamp plus the
+dataHash of the committed dist/data-snapshot.json (see qa-data-drift.js), so
+every shipped PDF states exactly which data revision produced it.
+
 Target PDF comes from config.py (config.json; SIMPLY_ENDORSED_OUT env var
 overrides it for scratch runs).
 
@@ -28,8 +33,10 @@ Usage:  ./stamp_nav.py                stamp the rendered PDF
 import argparse
 import json
 import os
+import re
 import shutil
 import sys
+from datetime import datetime, timezone
 
 import fitz
 
@@ -48,6 +55,49 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PDF_PATH = config.PDF_PATH
 BASE_PATH = config.BASE_PATH
 NAV_DATA = os.path.join(HERE, "nav-data.json")
+DATA_SNAPSHOT = os.path.join(HERE, "dist", "data-snapshot.json")
+
+
+# ── provenance metadata ─────────────────────────────────────────────────
+def ac_version_from_source(source_url):
+    """'…/AC_61-65K.pdf' → 'AC 61-65K' (fallback: 'AC 61-65')."""
+    m = re.search(r"AC_(\d+)-(\d+)([A-Z])", source_url or "")
+    if m:
+        return f"AC {m.group(1)}-{m.group(2)}{m.group(3)}"
+    return "AC 61-65"
+
+
+def set_provenance_metadata(doc, nav):
+    """Author/subject/keywords + build stamp (UTC time · data-snapshot hash).
+
+    Merges into the existing metadata so Chromium's title/producer survive.
+    The dataHash links this PDF to the committed dist/data-snapshot.json —
+    the qa-data-drift.js gate for an AC 61-65L revision.
+    """
+    data_hash = "unknown"
+    try:
+        with open(DATA_SNAPSHOT) as f:
+            data_hash = json.load(f).get("dataHash", "unknown")
+    except (OSError, ValueError):
+        pass
+
+    # AC version: nav-data's acVersion (APP_META — single source of truth),
+    # falling back to parsing the sourceUrl for stale nav-data files.
+    ac = nav.get("acVersion") or ac_version_from_source(
+        nav.get("sourceUrl", ""))
+    keywords = "; ".join(
+        [c["label"] for c in nav.get("categories", [])] + ["logbook endorsement"]
+    )
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    md = dict(doc.metadata)
+    md.update({
+        "author": "Suarez CFI",
+        "subject": f"FAA {ac} Endorsement Reference",
+        "keywords": keywords,
+        "creator": f"Simply Endorsed CFI pdf-build · built {stamp} UTC · data-snapshot {data_hash}",
+    })
+    doc.set_metadata(md)
 
 
 # ── main ────────────────────────────────────────────────────────────────
@@ -107,6 +157,8 @@ def main():
                       ac_label=nav.get("acVersion", "AC 61-65K"))
         draw_rail(page, pno, model, nav, markers)
         draw_dock(page, pno, model)
+
+    set_provenance_metadata(doc, nav)
 
     tmp = PDF_PATH + ".tmp-stamp.pdf"
     doc.save(tmp, garbage=3, deflate=True)

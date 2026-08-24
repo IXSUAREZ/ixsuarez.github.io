@@ -5,6 +5,8 @@ the Simply Endorsed CFI PDF (except the cover):
 
   * top bar      y=16..38   CONTENTS LIBRARY WORKFLOWS GUIDANCE | AC 61-65K
   * right rail   x=552..612 hero badge + numbered beads (bleeds to page edge)
+  * thumb band   x=608..612 staggered chapter index tab at the extreme edge
+                 (idea-31; drawn before the rail so beads paint over)
   * bottom dock  y=748..772 breadcrumb | PREV CONTENTS NEXT BACK(GoBack)
 
 Reads nav-data.json (make-nav-data.js) and the invisible ZZPGM|<key>|ZZ page
@@ -64,6 +66,7 @@ from chrome_core import (      # noqa: F401  (re-exported for legacy callers)
     scrub_pgm_markers, build_units,
     build_model, insert_raw_goback, insert_named_goback, draw_top_deck,
     draw_dock, draw_bead, draw_hero, draw_rail,
+    BAND_X0, BAND_H, BAND_CLEARANCE, band_rect, draw_thumb_band,
 )
 import config
 
@@ -183,6 +186,8 @@ def main():
         _, active_top = model["crumb_for"](pno)
         draw_top_deck(page, deck_targets, active_top, nav["sourceUrl"],
                       ac_label=nav.get("acVersion", "AC 61-65K"))
+        # idea-31: thumb band first — rail hero/beads paint over any overlap
+        draw_thumb_band(page, pno, model)
         draw_rail(page, pno, model, nav, markers)
         draw_dock(page, pno, model)
 

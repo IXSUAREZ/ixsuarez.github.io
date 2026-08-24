@@ -12,6 +12,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { getData } = require("./lib/load-data");
 
 /* ── Playwright resolution (existing installs only, no downloads) ──────── */
 const PW_CANDIDATES = [
@@ -39,12 +40,17 @@ console.log(`[render] playwright from: ${pwSource}`);
 /* ── Paths ─────────────────────────────────────────────────────────────── */
 const BOOK = path.join(__dirname, "dist", "book.html");
 const OUT_DIR =
+  process.env.SIMPLY_ENDORSED_OUT_DIR ||
   "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf";
 const QA_DIR = path.join(OUT_DIR, "qa");
-const PDF_PATH = path.join(OUT_DIR, "Simply-Endorsed-CFI-AC61-65K.pdf");
+// Output filenames derive from the single source of truth for the AC version
+// (APP_META.acVersion in endorsements-data.js) — slug rule: strip whitespace,
+// "AC 61-65K" → "AC61-65K". make-nav-data.js emits the same value as acSlug.
+const AC_SLUG = getData().APP_META.acVersion.replace(/\s+/g, "");
+const PDF_PATH = path.join(OUT_DIR, `Simply-Endorsed-CFI-${AC_SLUG}.pdf`);
 // Pristine pre-stamp copy consumed by the CFI Binder V34 merge pipeline
 // (the binder stamps its own chrome; stamp_nav.py must never see this file).
-const BASE_PATH = path.join(OUT_DIR, "Simply-Endorsed-CFI-AC61-65K.base.pdf");
+const BASE_PATH = path.join(OUT_DIR, `Simply-Endorsed-CFI-${AC_SLUG}.base.pdf`);
 fs.mkdirSync(QA_DIR, { recursive: true });
 
 /* Screenshot targets: [filename, selector, mode]

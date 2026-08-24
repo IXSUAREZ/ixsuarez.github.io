@@ -118,7 +118,7 @@ function main() {
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Simply Endorsed CFI — AC 61-65K Endorsement Reference</title>
+<title>Simply Endorsed CFI — ${data.APP_META.acVersion} Endorsement Reference</title>
 <style>
 ${css}
 </style>

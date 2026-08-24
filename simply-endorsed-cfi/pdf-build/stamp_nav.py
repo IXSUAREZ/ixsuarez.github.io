@@ -294,8 +294,11 @@ def draw_top_bar(page, pno, model, nav, source_url):
             {"kind": fitz.LINK_GOTO, "page": target, "to": LINK_TO},
             fill=ACTIVE_BLUE if active else TITAN_DARK, active=active)
         x += w + 6
-    # AC 61-65K external source button (right cluster, ends x=548)
-    label = "AC 61-65K"
+    # AC external source button (right cluster, ends x=548). Label comes
+    # from nav-data.json (acVersion, emitted by make-nav-data.js from
+    # APP_META.acVersion — the single source of truth); the fallback only
+    # covers stale nav-data files.
+    label = nav.get("acVersion", "AC 61-65K")
     tw = fitz.get_text_length(label, fontname="hebo", fontsize=BTN_FS)
     w = tw + 30
     rect = fitz.Rect(548 - w, TOP_Y0, 548, TOP_Y1)

@@ -1,5 +1,7 @@
 {
   "sourceUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf",
+  "acVersion": "AC 61-65K",
+  "acSlug": "AC61-65K",
   "categories": [
     {
       "slug": "practical-test-prereqs",

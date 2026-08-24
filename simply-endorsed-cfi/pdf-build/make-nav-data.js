@@ -5,7 +5,9 @@
  * (stamp_nav.py). Run:  node make-nav-data.js
  *
  * Contents:
- *   - sourceUrl (APP_META)
+ *   - sourceUrl, acVersion + acSlug (APP_META — the single source of truth
+ *     for the AC version label; acSlug is the no-spaces filename form,
+ *     e.g. "AC 61-65K" → "AC61-65K")
  *   - categories: slug, label, hero short code, theme hex, bundles in
  *     BROWSE_STRUCTURE order with hand-tuned rail abbreviations
  *   - workflows: the 9 flow pages (pre-solo + featured bundles) + wf-index
@@ -188,6 +190,11 @@ workflows.push({ id: "wf-index", label: "Workflow Index", abbrev: "INDEX" });
 
 const out = {
   sourceUrl: data.APP_META.sourceUrl,
+  // Single source of truth for the AC version label is APP_META.acVersion.
+  // stamp_nav.py / endorse_chrome.py read acVersion for the top-bar button;
+  // render-pdf.js uses the same slug rule for its output filenames.
+  acVersion: data.APP_META.acVersion,
+  acSlug: data.APP_META.acVersion.replace(/\s+/g, ""),
   categories,
   workflows,
   guidance: GUIDANCE_SECTIONS,

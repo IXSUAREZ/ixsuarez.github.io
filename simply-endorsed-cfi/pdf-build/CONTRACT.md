@@ -81,10 +81,11 @@ Every export of both modules is on the single `helpers` object.
 |---|---|
 | `esc` | `(s) → string` HTML-escape |
 | `anchorForEndorsement` | `("A.6") → "A-6"` |
-| `renderEndorsementCard` | `(endorsement, opts?) → card HTML`. `opts.relatedHtml` fills the Related slot; `opts.showRelated:false` omits it. `sourceUrl`/`acVersion` are pre-bound from `APP_META`. |
+| `renderEndorsementCard` | `(endorsement, opts?) → card HTML`. `opts.relatedHtml` fills the Related slot; `opts.showRelated:false` omits it. The "Used in:" chip row (reverse links to the flow pages / journey / scenarios that consume the endorsement, from `lib/used-in.js`) renders by default whenever usages exist; `opts.showUsedIn:false` omits it (use for compact cross-ref cards). `sourceUrl`/`acVersion` are pre-bound from `APP_META`. |
 | `renderCategoryHeader` | `(slug, count?) → banner HTML` (count = number or string, optional) |
 | `renderBundleHeader` | `(bundle, categorySlug) → header HTML` |
 | `renderBlocks` | `(Block[]) → HTML` for guidance/accordion content |
+| `usedInChips` | `(endorsementId) → [{ href, label, title }]` (≤ 5) reverse usage chips, `[]` when unused — `renderEndorsementCard` already renders these |
 | `badge` | `(text, kind) → pill HTML`; kinds: `signer`, `validity`, `perflight`, `featured`, `muted` |
 | `cfrChip` | `(citation) → chip HTML` (linked when possible) |
 | `explanationBullets` | `(explanationString) → string[]` |
@@ -100,6 +101,8 @@ Every export of both modules is on the single `helpers` object.
 | Endorsement card | `A-<n>` (dots → dashes) | `#A-6`, `#A-77` |
 | Category banner | `cat-<slug>` | `#cat-student-pilot` |
 | Bundle header | `bundle-<bundle.id>` | `#bundle-first-solo` |
+| Workflow flow page | `wf-<bundle.id>` (featured/pre-solo bundles only) | `#wf-first-solo` |
+| Part III top sections | `journey`, `scenarios` | `#journey` |
 | Guidance lesson section | `gs-<GUIDANCE_SECTIONS[i].id>` | `#gs-logbook` |
 
 Internal links: `<a class="internal" href="#A-6">…</a>`.
@@ -116,9 +119,10 @@ External links: `<a class="external" href="…" target="_blank" rel="noopener no
 - Bundle: `.bundle-header`, `.bundle-desc`
 - Card: `.endorsement-card`, `.ec-head`, `.id-pill`, `.ec-title`,
   `.ec-badges`, `.ec-cfr`, `.ec-verbatim`, `.ec-verbatim-label`, `.verbatim`,
-  `.ec-explanation`, `.ec-tags`, `.ec-related`, `.ec-foot`
+  `.ec-explanation`, `.ec-tags`, `.ec-related`, `.ec-usedin`,
+  `.ec-usedin-label`, `.ec-foot`
 - Pills/chips: `.badge.badge-{signer|validity|perflight|featured|muted}`,
-  `.chip.cfr-chip`, `.chip.tag-chip`
+  `.chip.cfr-chip`, `.chip.tag-chip`, `.chip.usedin-chip`
 - Content: `.guidance-section`, `table.data-table`, `.mono`
 - Links: `a.internal`, `a.external`
 

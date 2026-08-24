@@ -11,20 +11,33 @@ Reads nav-data.json (make-nav-data.js) and the invisible ZZPGM|<key>|ZZ page
 markers already in the PDF text layer. Writes to a temp file and atomically
 replaces the target PDF.
 
+Also stamps provenance metadata (author / subject / keywords / creator) onto
+the document: the creator field carries the UTC build timestamp plus the
+dataHash of the committed dist/data-snapshot.json (see qa-data-drift.js), so
+every shipped PDF states exactly which data revision produced it.
+
 Usage:  ./stamp_nav.py            (idempotent-guarded; re-run `node
         render-pdf.js` first if the PDF was already stamped)
+
+STAMP_NAV_PDF_PATH env var overrides the target PDF (used by tests to stamp
+a scratch copy in /tmp instead of the real output).
 """
 
 import json
 import os
 import re
 import sys
+from datetime import datetime, timezone
 
 import fitz
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH = "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+PDF_PATH = os.environ.get(
+    "STAMP_NAV_PDF_PATH",
+    "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf",
+)
 NAV_DATA = os.path.join(HERE, "nav-data.json")
+DATA_SNAPSHOT = os.path.join(HERE, "dist", "data-snapshot.json")
 
 PAGE_W, PAGE_H = 612.0, 792.0
 
@@ -423,6 +436,45 @@ def draw_rail(page, pno, model, nav):
                       g["id"] == active_id)
 
 
+# ── provenance metadata ─────────────────────────────────────────────────
+def ac_version_from_source(source_url):
+    """'…/AC_61-65K.pdf' → 'AC 61-65K' (fallback: 'AC 61-65')."""
+    m = re.search(r"AC_(\d+)-(\d+)([A-Z])", source_url or "")
+    if m:
+        return f"AC {m.group(1)}-{m.group(2)}{m.group(3)}"
+    return "AC 61-65"
+
+
+def set_provenance_metadata(doc, nav):
+    """Author/subject/keywords + build stamp (UTC time · data-snapshot hash).
+
+    Merges into the existing metadata so Chromium's title/producer survive.
+    The dataHash links this PDF to the committed dist/data-snapshot.json —
+    the qa-data-drift.js gate for an AC 61-65L revision.
+    """
+    data_hash = "unknown"
+    try:
+        with open(DATA_SNAPSHOT) as f:
+            data_hash = json.load(f).get("dataHash", "unknown")
+    except (OSError, ValueError):
+        pass
+
+    ac = ac_version_from_source(nav.get("sourceUrl", ""))
+    keywords = "; ".join(
+        [c["label"] for c in nav.get("categories", [])] + ["logbook endorsement"]
+    )
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    md = dict(doc.metadata)
+    md.update({
+        "author": "Suarez CFI",
+        "subject": f"FAA {ac} Endorsement Reference",
+        "keywords": keywords,
+        "creator": f"Simply Endorsed CFI pdf-build · built {stamp} UTC · data-snapshot {data_hash}",
+    })
+    doc.set_metadata(md)
+
+
 # ── main ────────────────────────────────────────────────────────────────
 doc_page_count = [0]      # mutable cell used by draw_dock
 
@@ -462,6 +514,8 @@ def main():
         draw_top_bar(page, pno, model, nav, nav["sourceUrl"])
         draw_rail(page, pno, model, nav)
         draw_dock(page, pno, model, nav)
+
+    set_provenance_metadata(doc, nav)
 
     tmp = PDF_PATH + ".tmp-stamp.pdf"
     doc.save(tmp, garbage=3, deflate=True)

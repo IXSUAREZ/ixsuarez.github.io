@@ -211,7 +211,13 @@ def build_units(nav, markers, cat_order, p1, p2, p3):
 
 
 def scan_markers(doc, offset=0, count=None):
-    """ZZPGM|<key>|ZZ marker pages, relative to offset. First wins."""
+    """ZZPGM|<key>|ZZ marker pages, relative to offset. First wins.
+
+    Collects every marker key verbatim, including ones the chrome model
+    does not consume (e.g. the per-card `en:<id>` endorsement markers).
+    build_model/units/crumb/rail only look up their explicit cat:/bundle:/
+    wf:/gs:/part:/toc: keys, so extra keys are inert here but available to
+    downstream consumers (the binder merge maps `en:` keys to pages)."""
     if count is None:
         count = doc.page_count - offset
     markers = {}

@@ -100,8 +100,11 @@ function relatedChipsHtml(e, data, helpers) {
 }
 
 /**
- * Render one endorsement card. Keeps the id="A-<n>" anchor only on the
- * first own-category occurrence in this file (see header comment).
+ * Render one endorsement card. Keeps the id="A-<n>" anchor and its en:
+ * page marker only on the first own-category occurrence in this file
+ * (see header comment); later occurrences and cross-category cards have
+ * both stripped so the book never gets duplicate anchors or duplicate
+ * en: markers.
  */
 function renderCard(id, data, helpers, emittedAnchors) {
   const e = helpers.endorsementById.get(id);
@@ -113,7 +116,7 @@ function renderCard(id, data, helpers, emittedAnchors) {
   if (CHAPTER_SLUGS.has(e.category) && !emittedAnchors.has(anchor)) {
     emittedAnchors.add(anchor);
   } else {
-    html = html.replace(` id="${anchor}"`, "");
+    html = helpers.stripCardAnchor(html, e.id);
   }
   return html;
 }

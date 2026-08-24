@@ -14,6 +14,8 @@
  *   wf:<id> — one per featured/pre-solo BROWSE_STRUCTURE bundle, plus wf:wf-index
  *   gs:<id> — journey, scenarios, quickref, cfi-career, flashcards,
  *             lesson-plan, appendix (structural) + one per GUIDANCE_SECTIONS lesson
+ *   en:<id> — one per ENDORSEMENTS item, on the canonical card only
+ *             (re-rendered/ref copies carry neither anchor nor marker)
  *
  * Usage:  node qa-markers.js     (run after `node build.js`)
  * Exit code 0 when every check passes, 1 otherwise.
@@ -97,6 +99,7 @@ console.log("\n[3] Expected marker inventory");
     }
   }
   for (const g of data.GUIDANCE_SECTIONS) expectOne.push(`gs:${g.id}`);
+  for (const e of data.ENDORSEMENTS) expectOne.push(`en:${e.id}`);
 
   const missing = expectOne.filter((k) => !counts.has(k));
   const unexpected = [...counts.keys()].filter((k) => !expectOne.includes(k));
@@ -133,6 +136,7 @@ console.log("\n[4] Group counts");
     ["bundle:", data.BROWSE_STRUCTURE.reduce((n, c) => n + c.subcategories.length, 0)],
     ["wf:", wfPages],
     ["gs:", PART_III_TOP_LEVEL + data.GUIDANCE_SECTIONS.length],
+    ["en:", data.ENDORSEMENTS.length],
   ];
   const groupCount = (prefix) =>
     [...counts.keys()].filter((k) => k.startsWith(prefix)).length;

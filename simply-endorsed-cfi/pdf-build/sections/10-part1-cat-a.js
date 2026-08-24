@@ -199,11 +199,12 @@ function renderPreSolo(helpers, preSolo) {
 /* ── Bundles & category chapters ─────────────────────────────────────────── */
 
 /**
- * Render one endorsement card. Keeps the id="A-<n>" anchor only on the
- * first occurrence in this file; later occurrences (bundles deliberately
- * re-render shared endorsements, e.g. A.14 supplemental in first-solo and
- * primary in tsa-citizenship) have the id stripped so the book never gets
- * duplicate anchors. Same convention as sections/11-part1-cat-b.js.
+ * Render one endorsement card. Keeps the id="A-<n>" anchor and its en:
+ * page marker only on the first occurrence in this file; later occurrences
+ * (bundles deliberately re-render shared endorsements, e.g. A.14
+ * supplemental in first-solo and primary in tsa-citizenship) have both
+ * stripped so the book never gets duplicate anchors or duplicate en:
+ * markers. Same convention as sections/11-part1-cat-b.js.
  */
 function renderCard(helpers, e, bundles, catEndorsements, emittedAnchors) {
   let html = helpers.renderEndorsementCard(e, {
@@ -211,7 +212,7 @@ function renderCard(helpers, e, bundles, catEndorsements, emittedAnchors) {
   });
   const anchor = helpers.anchorForEndorsement(e.id);
   if (emittedAnchors.has(anchor)) {
-    html = html.replace(` id="${anchor}"`, "");
+    html = helpers.stripCardAnchor(html, e.id);
   } else {
     emittedAnchors.add(anchor);
   }

@@ -148,6 +148,14 @@ h4 {
   letter-spacing: 0;
 }
 
+/* Card markers (the en:<id> page markers) sit inside .endorsement-card,
+ * which is break-inside:avoid — an in-flow marker's strut line would grow
+ * every card and cascade into extra pages. Out of flow it paints at its
+ * static position (same page as the card anchor) with zero layout impact. */
+.endorsement-card > .pgm {
+  position: absolute;
+}
+
 /* ── Cover ───────────────────────────────────────────────────────────── */
 
 .cover {

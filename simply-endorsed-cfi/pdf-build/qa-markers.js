@@ -6,13 +6,14 @@
  * navigation-chrome stamping pass (Agent B) keys its per-page overlay off
  * these markers, so the inventory must be exact.
  *
- * Expected inventory:
+ * Expected inventory (all counts derived from the data files — they move
+ * with AC revisions — except the structural cover/toc/part markers):
  *   cover:end ×1, toc:toc ×1, part:part-1 / part:part-2 / part:part-3 ×1 each
- *   cat:<slug> ×13   (one per BROWSE_STRUCTURE category)
- *   bundle:<id> ×71  (one per BROWSE_STRUCTURE subcategory)
- *   wf:<id> ×10      (9 flow pages: featured bundles + pre-solo, plus wf:wf-index)
- *   gs:<id> ×17      (journey, scenarios, quickref, cfi-career, flashcards,
- *                     lesson-plan, appendix + the 10 GUIDANCE_SECTIONS lessons)
+ *   cat:<slug> — one per BROWSE_STRUCTURE category
+ *   bundle:<id> — one per BROWSE_STRUCTURE subcategory
+ *   wf:<id> — one per featured/pre-solo BROWSE_STRUCTURE bundle, plus wf:wf-index
+ *   gs:<id> — journey, scenarios, quickref, cfi-career, flashcards,
+ *             lesson-plan, appendix (structural) + one per GUIDANCE_SECTIONS lesson
  *
  * Usage:  node qa-markers.js     (run after `node build.js`)
  * Exit code 0 when every check passes, 1 otherwise.
@@ -99,17 +100,32 @@ console.log("\n[3] Expected marker inventory");
 /* ── 4. Group counts ─────────────────────────────────────────────────── */
 console.log("\n[4] Group counts");
 {
-  const groupCount = (prefix) =>
-    [...counts.keys()].filter((k) => k.startsWith(prefix)).length;
+  const data = getData();
+  // Derived from the data files (they move with AC revisions) instead of
+  // hardcoded counts. cover:/toc:/part: stay constant — they are
+  // structural to the section builders, as are the 7 top-level Part III
+  // sections and wf-index.
+  const PART_III_TOP_LEVEL = 7; // journey, scenarios, quickref, cfi-career, flashcards, lesson-plan, appendix
+  const wfPages =
+    data.BROWSE_STRUCTURE.reduce(
+      (n, c) =>
+        n +
+        c.subcategories.filter(
+          (b) => b.featured || b.contentRenderer === "pre-solo"
+        ).length,
+      0
+    ) + 1; // + wf-index
   const groups = [
     ["cover:", 1],
     ["toc:", 1],
     ["part:", 3],
-    ["cat:", 13],
-    ["bundle:", 71],
-    ["wf:", 10],
-    ["gs:", 17],
+    ["cat:", data.BROWSE_STRUCTURE.length],
+    ["bundle:", data.BROWSE_STRUCTURE.reduce((n, c) => n + c.subcategories.length, 0)],
+    ["wf:", wfPages],
+    ["gs:", PART_III_TOP_LEVEL + data.GUIDANCE_SECTIONS.length],
   ];
+  const groupCount = (prefix) =>
+    [...counts.keys()].filter((k) => k.startsWith(prefix)).length;
   let total = 0;
   for (const [prefix, expected] of groups) {
     const n = groupCount(prefix);

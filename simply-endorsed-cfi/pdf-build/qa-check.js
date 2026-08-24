@@ -6,14 +6,15 @@
  * Checks:
  *  1. No duplicate id="…" anywhere in the document.
  *  2. Zero broken internal links: every href="#…" has a matching id.
- *  3. All expected anchors present:
- *       - 96 endorsement anchors  A-1 … A-96        (from ENDORSEMENTS)
- *       - 13 category anchors     cat-<slug>        (from BROWSE_STRUCTURE)
+ *  3. All expected anchors present (counts derived from the data files):
+ *       - endorsement anchors      A-<n>      (one per ENDORSEMENTS item)
+ *       - category anchors         cat-<slug> (one per BROWSE_STRUCTURE category)
  *       - part-1 / part-2 / part-3
- *       - featured workflow anchors wf-<id>         (fixed list, per contract)
+ *       - featured workflow anchors wf-<id>   (derived: featured or pre-solo
+ *         BROWSE_STRUCTURE bundles — same rule as make-nav-data.js)
  *       - Part III guidance anchors (journey, scenarios, quickref, cfi-career,
- *         flashcards, lesson-plan, appendix)
- *       - 10 guidance lesson anchors gs-<id>        (from GUIDANCE_SECTIONS)
+ *         flashcards, lesson-plan, appendix — structural to the section files)
+ *       - guidance lesson anchors  gs-<id>    (one per GUIDANCE_SECTIONS item)
  *  4. External links: ecfr.gov count > 0; FAA AC source links present.
  *  5. No "undefined" / "null" / "NaN" / "[object Object]" leakage in text.
  *
@@ -67,26 +68,23 @@ console.log("\n[3] Required anchors");
   const data = getData();
 
   const expected = [];
-  // 96 endorsement anchors
+  // endorsement anchors
   for (const e of data.ENDORSEMENTS) {
     expected.push(`A-${e.id.slice(2)}`); // "A.6" → "A-6"
   }
-  // 13 category anchors
+  // category anchors
   for (const c of data.BROWSE_STRUCTURE) expected.push(`cat-${c.categoryId}`);
   // parts
   expected.push("part-1", "part-2", "part-3");
-  // featured workflows
-  expected.push(
-    "wf-pre-solo",
-    "wf-first-solo",
-    "wf-initial-solo-xc",
-    "wf-private-airplane-initial-checkride-bundle",
-    "wf-commercial-airplane-initial-checkride-bundle",
-    "wf-instrument-checkride-bundle",
-    "wf-cfi-initial-checkride-bundle",
-    "wf-flight-review-and-wings",
-    "wf-aircraft-endorsements"
-  );
+  // featured workflow anchors — derived from BROWSE_STRUCTURE (featured or
+  // pre-solo bundles), the same rule make-nav-data.js / qa-markers.js use
+  const wfIds = [];
+  for (const c of data.BROWSE_STRUCTURE) {
+    for (const b of c.subcategories) {
+      if (b.featured || b.contentRenderer === "pre-solo") wfIds.push(b.id);
+    }
+  }
+  for (const id of wfIds) expected.push(`wf-${id}`);
   // Part III guidance anchors
   expected.push(
     "journey",
@@ -104,6 +102,7 @@ console.log("\n[3] Required anchors");
   const groups = {
     endorsements: data.ENDORSEMENTS.length,
     categories: data.BROWSE_STRUCTURE.length,
+    workflows: wfIds.length,
     "gs-* lessons": data.GUIDANCE_SECTIONS.length,
   };
   if (missing.length) {
@@ -111,11 +110,13 @@ console.log("\n[3] Required anchors");
   } else {
     pass(
       `all ${expected.length} required anchors present ` +
-        `(${groups.endorsements} A-*, ${groups.categories} cat-*, 3 parts, 9 wf-*, 7 Part III, ${groups["gs-* lessons"]} gs-*)`
+        `(${groups.endorsements} A-*, ${groups.categories} cat-*, 3 parts, ${groups.workflows} wf-*, 7 Part III, ${groups["gs-* lessons"]} gs-*)`
     );
   }
-  // sanity: endorsementById still resolves
-  if (!endorsementById.get("A.96")) fail("endorsementById lookup for A.96 failed");
+  // sanity: endorsementById still resolves (last endorsement in the data —
+  // derived, not hardcoded, so the check survives AC revision count moves)
+  const lastId = data.ENDORSEMENTS[data.ENDORSEMENTS.length - 1].id;
+  if (!endorsementById.get(lastId)) fail(`endorsementById lookup for ${lastId} failed`);
 }
 
 /* ── 4. External links ─────────────────────────────────────────────────── */

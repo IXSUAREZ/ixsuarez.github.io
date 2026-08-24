@@ -41,9 +41,23 @@ function sanityChecks(data) {
   console.log(`[build] categories loaded:   ${categories}`);
   console.log(`[build] cfrLink("14 CFR § 61.87(n)") → ${sampleLink}`);
 
+  // Data-volume expectations for AC 61-65K. These counts move with each AC
+  // revision (the data files get regenerated from the new AC), so a
+  // mismatch is a WARNING, not a build failure. The structural checks
+  // below (linkifier shape, id lookup) remain fatal.
+  const AC_61_65K = { endorsements: 96, categories: 13 };
+  if (endorsements !== AC_61_65K.endorsements) {
+    console.warn(
+      `[build] WARNING: AC 61-65K has ${AC_61_65K.endorsements} endorsements, data has ${endorsements} — AC revision change?`
+    );
+  }
+  if (categories !== AC_61_65K.categories) {
+    console.warn(
+      `[build] WARNING: AC 61-65K has ${AC_61_65K.categories} categories, data has ${categories} — AC revision change?`
+    );
+  }
+
   const problems = [];
-  if (endorsements !== 96) problems.push(`expected 96 endorsements, got ${endorsements}`);
-  if (categories !== 13) problems.push(`expected 13 categories, got ${categories}`);
   if (
     sampleLink !==
     "https://www.ecfr.gov/current/title-14/part-61/section-61.87"

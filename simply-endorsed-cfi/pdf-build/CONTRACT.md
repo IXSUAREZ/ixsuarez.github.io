@@ -140,3 +140,14 @@ Full pipeline (build → QA → render → stamp → nav QA): `node pipeline.js`
 `config.json`; set `SIMPLY_ENDORSED_OUT=/scratch/path.pdf` to redirect a test
 run away from the real deliverable. Fast chrome re-stamp without
 re-rendering: `./stamp_nav.py --from-base`.
+
+After a full render + stamp (the shipped PDF), the regression gates run
+with the pdf-build venv python:
+
+```sh
+./render-pages.py     # rasterize 23 marker-picked pages → qa/pages/
+./qa-visual.py        # pixel-diff qa/pages/ vs committed qa/baseline/
+./qa-nav.py           # exhaustive chrome-link audit (every bead/dock/deck link)
+# intentional visual change? inspect the diffs, then:
+./qa-visual.py --update-baseline   # accept qa/pages/ as the new baseline (commit it)
+```

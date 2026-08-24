@@ -239,13 +239,14 @@ a.external::after {
   display: flex;
   align-items: baseline;
   gap: 10pt;
-  padding: 10pt 14pt;
+  padding: 8pt 12pt;
   margin: 0 0 10pt 0;
   background: var(--cat-soft);
-  border: 1pt solid var(--cat-line);
-  border-left: 5pt solid var(--cat-accent);
+  border: 0.6pt solid var(--cat-line);
+  border-left: 4.5pt solid var(--cat-accent);
   border-radius: 4pt;
   color: var(--cat-ink);
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
 
 .category-banner h2 {
@@ -263,11 +264,13 @@ a.external::after {
 .bundle-header {
   break-after: avoid;
   break-inside: avoid;
-  margin: 14pt 0 6pt 0;
-  padding: 6pt 10pt;
-  border-left: 3pt solid var(--cat-accent);
+  margin: 12pt 0 6pt 0;
+  padding: 5pt 9pt;
+  border: 0.6pt solid var(--cat-line);
+  border-left: 3.5pt solid var(--cat-accent);
   background: var(--cat-soft);
-  border-radius: 3pt;
+  border-radius: 3.5pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85);
 }
 
 .bundle-header h3 {
@@ -284,12 +287,13 @@ a.external::after {
 
 .endorsement-card {
   break-inside: avoid;
-  margin: 0 0 12pt 0;
-  padding: 10pt 12pt;
+  margin: 0 0 10pt 0;
+  padding: 8pt 10pt;
   background: var(--cat-soft);
-  border: 1px solid var(--cat-line);
-  border-left: 4px solid var(--cat-accent);
+  border: 0.6pt solid var(--cat-line);
+  border-left: 4pt solid var(--cat-accent);
   border-radius: 4pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
 
 .ec-head {
@@ -301,14 +305,16 @@ a.external::after {
 
 .id-pill {
   display: inline-block;
-  padding: 1.5pt 7pt;
-  border-radius: 9pt;
+  padding: 1.5pt 6pt;
+  border-radius: 2.5pt;
   color: #ffffff;
-  background: #1c2142; /* overridden inline with the NAVY constant */
-  font-size: 9pt;
+  background: #0f172a; /* overridden inline with the NAVY constant */
+  font-size: 8.5pt;
   font-weight: 700;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   white-space: nowrap;
+  letter-spacing: -0.01em;
+  box-shadow: 0 0.5pt 1pt rgba(15, 23, 42, 0.2);
 }
 
 .ec-title {
@@ -321,12 +327,13 @@ a.external::after {
 
 .badge {
   display: inline-block;
-  padding: 1pt 6pt;
-  margin: 0 4pt 2pt 0;
-  border-radius: 8pt;
-  font-size: 8pt;
-  font-weight: 600;
-  border: 0.75pt solid transparent;
+  padding: 1pt 5pt;
+  margin: 0 3pt 2pt 0;
+  border-radius: 2.5pt;
+  font-size: 7.5pt;
+  font-weight: 700;
+  border: 0.6pt solid transparent;
+  letter-spacing: 0.02em;
 }
 
 .badge-signer {
@@ -363,10 +370,11 @@ a.external::after {
 
 .chip {
   display: inline-block;
-  padding: 1pt 6pt;
-  margin: 0 4pt 2pt 0;
-  border-radius: 8pt;
-  font-size: 8pt;
+  padding: 1pt 5pt;
+  margin: 0 3pt 2pt 0;
+  border-radius: 2.5pt;
+  font-size: 7.5pt;
+  font-weight: 600;
 }
 
 .cfr-chip {
@@ -573,78 +581,120 @@ p {
 <!-- section: 01-front-matter.js — Front Matter -->
 <!-- (a)(b) front matter intro page -->
 <div class="fm-intro">
-  <h2 class="fm-h">How to use this PDF</h2>
+  <div class="fm-hero-bar">
+    <h2 class="fm-h">How to use this PDF</h2>
+    <span class="fm-hero-badge">AC 61-65K COMPLIANT · C.F.I. FIELD REFERENCE</span>
+  </div>
   <div class="fm-howto">
     <ul>
-      <li><strong>Clickable contents.</strong> The master TOC on the next page — and every cross-reference in this book — is a live link. Click any row, chip, or card ID to jump straight to it.</li>
-      <li><strong>Category color coding.</strong> Each of the 13 endorsement categories owns a color (legend below). Category banners, bundle headers, and endorsement cards all wear their category color.</li>
-      <li><strong>Endorsement chips.</strong> Inline chips like <a class="internal fm-inline-chip" href="#A-6">A.6</a> jump to that endorsement's full card — verbatim AC text, plain-English notes, and citations.</li>
-      <li><strong>External links.</strong> eCFR regulation citations and FAA source links open in your browser and are marked with &#8599;.</li>
-      <li><strong>PDF bookmarks.</strong> Your PDF viewer's outline/bookmark panel mirrors this book's heading structure (parts &rarr; categories &rarr; bundles &rarr; endorsements) for quick navigation.</li>
+      <li class="fm-howto-li"><strong>Tactile Interactive Switchplates.</strong> Every category, workflow, and guidance module is an engineered interactive button. Tap any card to jump immediately to that section.</li>
+      <li class="fm-howto-li"><strong>Calibrated Category Chromatics.</strong> Each of the 13 endorsement categories possesses a dedicated semantic color theme for instant visual recognition.</li>
+      <li class="fm-howto-li"><strong>Direct Endorsement Access.</strong> Monospaced chips like <a class="internal fm-inline-chip" href="#A-6">A.6</a> jump directly to full endorsement cards featuring verbatim AC text, regulatory citations, and plain-English notes.</li>
+      <li class="fm-howto-li"><strong>Active FAA & eCFR Telemetry.</strong> Links marked with &#8599; open live electronic Code of Federal Regulations and FAA advisory circular documents in your browser.</li>
+      <li class="fm-howto-li"><strong>Cockpit PDF Bookmarks.</strong> Your PDF reader outline mirrors the four-tier hierarchy (Parts &rarr; Categories &rarr; Bundles &rarr; Endorsements) for rapid single-tap navigation.</li>
     </ul>
   </div>
   <div class="fm-navchrome">
-    <p class="fm-navchrome-title">Navigation chrome</p>
+    <p class="fm-navchrome-title">Navigation Chrome Architecture</p>
     <table class="fm-navchrome-table">
-      <tr><th>Top bar</th><td>Jump between Contents, Part I Library, Part II Workflows, and Part III Guidance &mdash; the active part is highlighted.</td></tr>
-      <tr><th>Right-edge rail</th><td>Numbered subcategory beads for the current chapter &mdash; tap a bead to jump to that bundle. The active bead marks where you are.</td></tr>
-      <tr><th>Bottom dock</th><td>Breadcrumb + page number, &lsaquo; PREV / NEXT &rsaquo; section buttons, and BACK (uses your PDF viewer&#39;s history, like a browser back button).</td></tr>
-      <tr><th>Cover</th><td>The cover page has no chrome.</td></tr>
+      <tr><th>Top Deck</th><td>Global switchgear: Jump between Contents, Part I Library, Part II Workflows, and Part III Guidance.</td></tr>
+      <tr><th>Right Rail</th><td>Chapter rail with subcategory beads. Tap any bead to jump directly to that bundle.</td></tr>
+      <tr><th>Bottom Dock</th><td>Breadcrumb path + binder page number, &lsaquo; PREV / NEXT &rsaquo; unit stepper, and BACK history button.</td></tr>
+      <tr><th>Cover</th><td>Milled cover is clean and chrome-free.</td></tr>
     </table>
   </div>
-  <h2 class="fm-h">Category color legend</h2>
+  <h2 class="fm-h">Category Color System</h2>
   <div class="fm-legend-grid">
-      <a class="internal fm-cat-chip" href="#cat-practical-test-prereqs" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+      <a class="internal fm-cat-btn" href="#cat-practical-test-prereqs" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">PTP</span>
         <span class="fm-cat-label">Practical Test Prerequisites</span>
         <span class="fm-cat-count">2</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-student-pilot" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+      <a class="internal fm-cat-btn" href="#cat-student-pilot" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">STU</span>
         <span class="fm-cat-label">Student Pilot</span>
         <span class="fm-cat-count">14</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-sport-pilot" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+      <a class="internal fm-cat-btn" href="#cat-sport-pilot" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">SPT</span>
         <span class="fm-cat-label">Sport Pilot</span>
         <span class="fm-cat-count">12</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-recreational-pilot" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+      <a class="internal fm-cat-btn" href="#cat-recreational-pilot" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">REC</span>
         <span class="fm-cat-label">Recreational Pilot</span>
         <span class="fm-cat-count">7</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-private-pilot" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+      <a class="internal fm-cat-btn" href="#cat-private-pilot" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">PVT</span>
         <span class="fm-cat-label">Private Pilot</span>
         <span class="fm-cat-count">2</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-commercial-pilot" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+      <a class="internal fm-cat-btn" href="#cat-commercial-pilot" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">COM</span>
         <span class="fm-cat-label">Commercial Pilot</span>
         <span class="fm-cat-count">2</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-atp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+      <a class="internal fm-cat-btn" href="#cat-atp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">ATP</span>
         <span class="fm-cat-label">ATP</span>
         <span class="fm-cat-count">2</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-instrument-rating" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+      <a class="internal fm-cat-btn" href="#cat-instrument-rating" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">INS</span>
         <span class="fm-cat-label">Instrument Rating</span>
         <span class="fm-cat-count">3</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-flight-instructor" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+      <a class="internal fm-cat-btn" href="#cat-flight-instructor" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">CFI</span>
         <span class="fm-cat-label">Flight Instructor</span>
         <span class="fm-cat-count">6</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-sport-pilot-instructor" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+      <a class="internal fm-cat-btn" href="#cat-sport-pilot-instructor" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">SPI</span>
         <span class="fm-cat-label">Sport Pilot Instructor</span>
         <span class="fm-cat-count">8</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-additional-recurrent" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+      <a class="internal fm-cat-btn" href="#cat-additional-recurrent" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">ADD</span>
         <span class="fm-cat-label">Additional / Recurrent</span>
         <span class="fm-cat-count">20</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-robinson-sfar73" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+      <a class="internal fm-cat-btn" href="#cat-robinson-sfar73" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">SFAR</span>
         <span class="fm-cat-label">Robinson SFAR 73</span>
         <span class="fm-cat-count">9</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
-      <a class="internal fm-cat-chip" href="#cat-specialty-operations" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+      <a class="internal fm-cat-btn" href="#cat-specialty-operations" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+        <span class="fm-cat-stripe"></span>
+        <span class="fm-cat-code">SPEC</span>
         <span class="fm-cat-label">Specialty Operations</span>
         <span class="fm-cat-count">9</span>
+        <span class="fm-cat-chevron">&#x203A;</span>
       </a>
   </div>
 </div>
@@ -652,273 +702,652 @@ p {
 <!-- (c) master TOC on its own page -->
 <div class="page-break">
   <span class="pgm" aria-hidden="true">ZZPGM|toc:toc|ZZ</span>
-  <h1 class="section-title">Contents</h1>
-  <div class="toc-cols">
-    <div class="toc-col">
-      <h2 class="toc-part"><a class="internal" href="#part-1">Part I &mdash; Endorsement Library</a></h2>
-      <p class="toc-part-note">96 endorsements &middot; 13 categories</p>
-      <ul class="toc-list toc-rows">
-        <li class="toc-row" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-practical-test-prereqs">Practical Test Prerequisites</a>
-          <span class="toc-count">2</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-student-pilot">Student Pilot</a>
-          <span class="toc-count">14</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-sport-pilot">Sport Pilot</a>
-          <span class="toc-count">12</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-recreational-pilot">Recreational Pilot</a>
-          <span class="toc-count">7</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-private-pilot">Private Pilot</a>
-          <span class="toc-count">2</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-commercial-pilot">Commercial Pilot</a>
-          <span class="toc-count">2</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-atp">ATP</a>
-          <span class="toc-count">2</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-instrument-rating">Instrument Rating</a>
-          <span class="toc-count">3</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-flight-instructor">Flight Instructor</a>
-          <span class="toc-count">6</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-sport-pilot-instructor">Sport Pilot Instructor</a>
-          <span class="toc-count">8</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-additional-recurrent">Additional / Recurrent</a>
-          <span class="toc-count">20</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-robinson-sfar73">Robinson SFAR 73</a>
-          <span class="toc-count">9</span>
-        </li>
-        <li class="toc-row" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#cat-specialty-operations">Specialty Operations</a>
-          <span class="toc-count">9</span>
-        </li>
-      </ul>
+  
+  <!-- Sculpted Cockpit Header HUD -->
+  <div class="toc-header-hud">
+    <div class="toc-title-row">
+      <h1 class="section-title toc-main-title">Contents</h1>
+      <div class="toc-telemetry-badge">
+        <span class="toc-pulse-dot"></span>
+        <span class="toc-telemetry-txt">AC 61-65K &middot; 96 ENDORSEMENTS &middot; 13 CATEGORIES</span>
+      </div>
     </div>
-    <div class="toc-col">
-      <h2 class="toc-part"><a class="internal" href="#part-2">Part II &mdash; Workflow Flows</a></h2>
-      <p class="toc-part-note">8 featured flows</p>
-      <ul class="toc-list toc-rows">
-        <li class="toc-row" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-first-solo">First Solo</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-initial-solo-xc">Initial Solo XC</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-private-airplane-initial-checkride-bundle">ASEL Initial Checkride Bundle</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-commercial-airplane-initial-checkride-bundle">ASEL Initial Checkride Bundle</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-instrument-checkride-bundle">Instrument Checkride Bundle</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-cfi-initial-checkride-bundle">CFI ASEL Initial Checkride Bundle</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-flight-review-and-wings">Flight Review and WINGS</a>
-        </li>
-        <li class="toc-row" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
-          <span class="toc-dot"></span>
-          <a class="internal toc-link" href="#wf-aircraft-endorsements">Complex / High-Performance / High-Altitude / Tailwheel</a>
-        </li>
-      </ul>
-      <h2 class="toc-part"><a class="internal" href="#part-3">Part III &mdash; Guidance</a></h2>
-      <ul class="toc-list toc-rows">
-        <li class="toc-row">
-          <span class="toc-dot toc-dot-navy"></span>
-          <a class="internal toc-link" href="#journey">Student Journey</a>
-        </li>
-        <li class="toc-row">
-          <span class="toc-dot toc-dot-navy"></span>
-          <a class="internal toc-link" href="#scenarios">Scenarios</a>
-        </li>
-        <li class="toc-row">
-          <span class="toc-dot toc-dot-navy"></span>
-          <a class="internal toc-link" href="#quickref">Quick Reference</a>
-        </li>
-        <li class="toc-row">
-          <span class="toc-dot toc-dot-navy"></span>
-          <a class="internal toc-link" href="#cfi-career">CFI Career</a>
-        </li>
-        <li class="toc-row">
-          <span class="toc-dot toc-dot-navy"></span>
-          <a class="internal toc-link" href="#flashcards">DPE Prep Flashcards</a>
-        </li>
-        <li class="toc-row">
-          <span class="toc-dot toc-dot-navy"></span>
-          <a class="internal toc-link" href="#lesson-plan">Lesson Plan</a>
-        </li>
-      </ul>
-      <h2 class="toc-part"><a class="internal" href="#appendix">Appendix</a></h2>
+  </div>
+
+  <div class="toc-cols">
+    <!-- LEFT COLUMN: PART I ENDORSEMENT LIBRARY -->
+    <div class="toc-col toc-col-left">
+      <div class="toc-deck-header">
+        <h2 class="toc-part"><a class="internal" href="#part-1">Part I &mdash; Endorsement Library</a></h2>
+        <span class="toc-part-note">96 certs &middot; 13 cats</span>
+      </div>
+      <div class="toc-btn-stack">
+        <a class="internal toc-btn toc-cat-btn" href="#cat-practical-test-prereqs" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">01</span>
+          <span class="toc-btn-label">Practical Test Prerequisites</span>
+          <span class="toc-btn-count">2</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-student-pilot" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">02</span>
+          <span class="toc-btn-label">Student Pilot</span>
+          <span class="toc-btn-count">14</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-sport-pilot" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">03</span>
+          <span class="toc-btn-label">Sport Pilot</span>
+          <span class="toc-btn-count">12</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-recreational-pilot" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">04</span>
+          <span class="toc-btn-label">Recreational Pilot</span>
+          <span class="toc-btn-count">7</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-private-pilot" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">05</span>
+          <span class="toc-btn-label">Private Pilot</span>
+          <span class="toc-btn-count">2</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-commercial-pilot" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">06</span>
+          <span class="toc-btn-label">Commercial Pilot</span>
+          <span class="toc-btn-count">2</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-atp" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">07</span>
+          <span class="toc-btn-label">ATP</span>
+          <span class="toc-btn-count">2</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-instrument-rating" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">08</span>
+          <span class="toc-btn-label">Instrument Rating</span>
+          <span class="toc-btn-count">3</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-flight-instructor" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">09</span>
+          <span class="toc-btn-label">Flight Instructor</span>
+          <span class="toc-btn-count">6</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-sport-pilot-instructor" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">10</span>
+          <span class="toc-btn-label">Sport Pilot Instructor</span>
+          <span class="toc-btn-count">8</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-additional-recurrent" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">11</span>
+          <span class="toc-btn-label">Additional / Recurrent</span>
+          <span class="toc-btn-count">20</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-robinson-sfar73" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">12</span>
+          <span class="toc-btn-label">Robinson SFAR 73</span>
+          <span class="toc-btn-count">9</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-cat-btn" href="#cat-specialty-operations" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-btn-idx">13</span>
+          <span class="toc-btn-label">Specialty Operations</span>
+          <span class="toc-btn-count">9</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: PART II WORKFLOWS + PART III GUIDANCE + APPENDIX -->
+    <div class="toc-col toc-col-right">
+      <!-- PART II -->
+      <div class="toc-deck-header">
+        <h2 class="toc-part"><a class="internal" href="#part-2">Part II &mdash; Workflow Flows</a></h2>
+        <span class="toc-part-note">8 featured flows</span>
+      </div>
+      <div class="toc-btn-stack">
+        <a class="internal toc-btn toc-wf-btn" href="#wf-first-solo" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">STU</span>
+          <span class="toc-btn-label">First Solo</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-initial-solo-xc" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">STU</span>
+          <span class="toc-btn-label">Initial Solo XC</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-private-airplane-initial-checkride-bundle" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">PVT</span>
+          <span class="toc-btn-label">ASEL Initial Checkride Bundle</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-commercial-airplane-initial-checkride-bundle" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">COM</span>
+          <span class="toc-btn-label">ASEL Initial Checkride Bundle</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-instrument-checkride-bundle" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">INS</span>
+          <span class="toc-btn-label">Instrument Checkride Bundle</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-cfi-initial-checkride-bundle" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">CFI</span>
+          <span class="toc-btn-label">CFI ASEL Initial Checkride Bundle</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-flight-review-and-wings" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">ADD</span>
+          <span class="toc-btn-label">Flight Review and WINGS</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-wf-btn" href="#wf-aircraft-endorsements" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+          <span class="toc-btn-stripe"></span>
+          <span class="toc-wf-cat-pill">ADD</span>
+          <span class="toc-btn-label">Complex · HP · High-Alt · Tailwheel</span>
+          <span class="toc-wf-badge">FLOW</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+      </div>
+
+      <!-- PART III -->
+      <div class="toc-deck-header toc-deck-header-mt">
+        <h2 class="toc-part"><a class="internal" href="#part-3">Part III &mdash; Guidance &amp; Toolkit</a></h2>
+        <span class="toc-part-note">6 modules</span>
+      </div>
+      <div class="toc-btn-stack">
+        <a class="internal toc-btn toc-guide-btn" href="#journey">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">MAP</span>
+          <span class="toc-btn-label">Student Pilot Journey</span>
+          <span class="toc-btn-sub">Stage-by-stage progression</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-guide-btn" href="#scenarios">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">CASE</span>
+          <span class="toc-btn-label">Checkride Decision Scenarios</span>
+          <span class="toc-btn-sub">Oral defense cases</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-guide-btn" href="#quickref">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">REF</span>
+          <span class="toc-btn-label">Quick Reference &amp; FAR Tables</span>
+          <span class="toc-btn-sub">Time limits matrix</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-guide-btn" href="#cfi-career">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">FAR</span>
+          <span class="toc-btn-label">CFI Career &amp; Regulations</span>
+          <span class="toc-btn-sub">Dec 2024 rule changes</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-guide-btn" href="#flashcards">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">DECK</span>
+          <span class="toc-btn-label">DPE Prep Oral Flashcards</span>
+          <span class="toc-btn-sub">15 oral checkride cards</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-guide-btn" href="#lesson-plan">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">PLAN</span>
+          <span class="toc-btn-label">Lesson Plan Architecture</span>
+          <span class="toc-btn-sub">10 ground lesson signoffs</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+      </div>
+
+      <!-- APPENDIX -->
+      <div class="toc-deck-header toc-deck-header-mt">
+        <h2 class="toc-part"><a class="internal" href="#appendix">Appendix &amp; Cross-Reference</a></h2>
+      </div>
+      <a class="internal toc-btn toc-app-btn" href="#appendix">
+        <span class="toc-btn-stripe toc-stripe-navy"></span>
+        <span class="toc-guide-code">APP</span>
+        <span class="toc-btn-label">Regulatory References, Acronyms &amp; Index</span>
+        <span class="toc-btn-arrow">&#x203A;</span>
+      </a>
     </div>
   </div>
 </div>
+
 <style>
-/* front matter intro (scoped .fm-*) */
-.fm-h {
-  font-size: 13pt;
-  color: #1C2142;
+/* ── (a)(b) FRONT MATTER INTRO & LEGEND ────────────────────────────── */
+.fm-intro {
+  padding-top: 2pt;
+}
+.fm-hero-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 0 6pt 0;
   padding-bottom: 3pt;
-  border-bottom: 1pt solid #d7dbe2;
+  border-bottom: 1.5pt solid #0f172a;
 }
-.fm-h + .fm-howto, .fm-h + .fm-legend-grid { margin-bottom: 14pt; }
-.fm-howto {
-  background: #f8f9fb;
-  border: 0.75pt solid #d7dbe2;
-  border-left: 4pt solid #1C2142;
-  border-radius: 4pt;
-  padding: 8pt 12pt;
+.fm-h {
+  font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
+  font-size: 12pt;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+  margin: 0;
+  padding-bottom: 2pt;
+  border-bottom: 1pt solid #cbd5e1;
 }
-.fm-howto ul { margin: 0; padding-left: 14pt; }
-.fm-howto li { margin-bottom: 4pt; font-size: 9.5pt; }
-.fm-howto li:last-child { margin-bottom: 0; }
-.fm-navchrome { margin: 0 0 14pt 0; }
-.fm-navchrome-title {
-  margin: 0 0 3pt 0;
-  font-size: 8pt;
+.fm-hero-bar .fm-h {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.fm-hero-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6.5pt;
   font-weight: 700;
   letter-spacing: 0.06em;
+  padding: 2pt 6pt;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 3pt;
+}
+.fm-h + .fm-howto, .fm-h + .fm-legend-grid { margin-bottom: 10pt; }
+.fm-howto {
+  background: #f8fafc;
+  border: 0.6pt solid #cbd5e1;
+  border-left: 3.5pt solid #0f172a;
+  border-radius: 4pt;
+  padding: 6pt 10pt;
+  margin-bottom: 10pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
+}
+.fm-howto ul { margin: 0; padding-left: 12pt; }
+.fm-howto-li { margin-bottom: 3pt; font-size: 8.5pt; line-height: 1.35; color: #334155; }
+.fm-howto-li:last-child { margin-bottom: 0; }
+.fm-navchrome { margin: 0 0 10pt 0; }
+.fm-navchrome-title {
+  margin: 0 0 3pt 0;
+  font-family: "Inter Tight", "Inter", sans-serif;
+  font-size: 7.5pt;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #6b7280;
+  color: #475569;
 }
 .fm-navchrome-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 9pt;
-  background: #f8f9fb;
-  border: 0.75pt solid #d7dbe2;
+  font-size: 8pt;
+  background: #f8fafc;
+  border: 0.6pt solid #cbd5e1;
   border-radius: 4pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.9);
 }
 .fm-navchrome-table th,
 .fm-navchrome-table td {
-  border: 0.75pt solid #d7dbe2;
-  padding: 3.5pt 8pt;
+  border: 0.5pt solid #e2e8f0;
+  padding: 3pt 6pt;
   text-align: left;
   vertical-align: top;
 }
 .fm-navchrome-table th {
-  width: 1.15in;
-  font-size: 8pt;
+  width: 1.05in;
+  font-size: 7.5pt;
   font-weight: 700;
-  color: #1C2142;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0f172a;
   white-space: nowrap;
+  background: #f1f5f9;
 }
 .fm-inline-chip {
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 8pt;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7.5pt;
   font-weight: 700;
-  padding: 0.5pt 5pt;
-  border-radius: 7pt;
-  background: #1C2142;
+  padding: 0.5pt 4.5pt;
+  border-radius: 3pt;
+  background: #0f172a;
   color: #ffffff !important;
 }
 .fm-legend-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5pt;
+  gap: 3.5pt;
+  margin-top: 4pt;
 }
-.fm-cat-chip {
+.fm-cat-btn {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 6pt;
-  padding: 4pt 8pt;
-  background: var(--cat-soft);
-  border: 0.75pt solid var(--cat-line);
-  border-left: 3.5pt solid var(--cat-accent);
-  border-radius: 4pt;
-  color: var(--cat-ink);
+  gap: 4pt;
+  padding: 2.5pt 5pt 2.5pt 2pt;
+  background: var(--cat-soft, #f8fafc);
+  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  border-radius: 3.5pt;
+  color: var(--cat-ink, #0f172a);
   text-decoration: none;
-  font-size: 8.5pt;
+  font-size: 7.5pt;
   break-inside: avoid;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.8), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
-.fm-cat-label { font-weight: 600; color: var(--cat-ink); }
-.fm-cat-count {
-  margin-left: auto;
-  font-size: 8pt;
+.fm-cat-stripe {
+  width: 2.5pt;
+  align-self: stretch;
+  background: var(--cat-accent, #0f172a);
+  border-radius: 1.5pt;
+  flex-shrink: 0;
+}
+.fm-cat-code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6.5pt;
   font-weight: 700;
-  color: var(--cat-accent);
+  color: var(--cat-accent, #0f172a);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
 }
-/* master TOC (scoped .toc-* additions; .toc-list itself lives in pdf.css) */
-.toc-cols { display: flex; gap: 18pt; align-items: flex-start; }
-.toc-col { flex: 1 1 0; }
-.toc-part {
-  font-size: 10.5pt;
-  margin: 10pt 0 4pt 0;
-  padding-bottom: 2pt;
-  border-bottom: 1pt solid #d7dbe2;
+.fm-cat-label {
+  font-weight: 700;
+  color: var(--cat-ink, #0f172a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
 }
-.toc-col > .toc-part:first-child { margin-top: 0; }
-.toc-part a { color: #1C2142; }
-.toc-part-note {
-  margin: 0 0 4pt 0;
-  font-size: 8pt;
-  color: #6b7280;
+.fm-cat-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7pt;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--cat-accent, #0f172a);
+  padding: 0.5pt 3.5pt;
+  border-radius: 2.5pt;
+  flex-shrink: 0;
 }
-.toc-rows { margin: 0; }
-.toc-rows .toc-row {
+.fm-cat-chevron {
+  font-size: 9pt;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cat-accent, #64748b);
+  opacity: 0.7;
+}
+
+/* ── (c) MASTER CONTENTS (TOC) IVE/NEWSON & FERRARI SYSTEM ────────── */
+
+.toc-header-hud {
+  margin-bottom: 8pt;
+  padding-bottom: 4pt;
+  border-bottom: 1.5pt solid #0f172a;
+}
+.toc-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.toc-main-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: none !important;
+  font-family: "Inter Tight", "Inter", -apple-system, sans-serif;
+  font-size: 18pt;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  line-height: 1.1;
+}
+.toc-telemetry-badge {
+  display: flex;
+  align-items: center;
+  gap: 4.5pt;
+  background: #0f172a;
+  padding: 2.5pt 7pt;
+  border-radius: 3.5pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.2);
+}
+.toc-pulse-dot {
+  width: 4.5pt;
+  height: 4.5pt;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 4pt #10b981;
+  flex-shrink: 0;
+}
+.toc-telemetry-txt {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #f1f5f9;
+}
+
+.toc-cols {
+  display: flex;
+  gap: 14pt;
+  align-items: flex-start;
+}
+.toc-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.toc-col-left {
+  flex: 1 1 0;
+}
+.toc-col-right {
+  flex: 1 1 0;
+}
+
+.toc-deck-header {
+  margin-bottom: 3.5pt;
+  padding-bottom: 1.5pt;
+  border-bottom: 0.75pt solid #cbd5e1;
   display: flex;
   align-items: baseline;
-  gap: 6pt;
-  margin: 0 0 2.5pt 0;
+  justify-content: space-between;
+}
+.toc-deck-header-mt {
+  margin-top: 6.5pt;
+}
+.toc-part {
+  font-family: "Inter Tight", "Inter", sans-serif;
   font-size: 9pt;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.toc-part a {
+  color: #0f172a;
+  text-decoration: none;
+}
+.toc-part-note {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6.5pt;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.02em;
+}
+
+.toc-btn-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2pt;
+}
+
+/* Base Tactile Switchplate */
+.toc-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4.5pt;
+  text-decoration: none;
+  border-radius: 3.5pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
   break-inside: avoid;
 }
-.toc-dot {
-  flex: 0 0 auto;
-  width: 6pt;
-  height: 6pt;
-  border-radius: 50%;
-  background: var(--cat-accent, #1C2142);
-  align-self: center;
+
+/* Category Button (Part I) */
+.toc-cat-btn {
+  height: 18.5pt;
+  padding: 0 5pt 0 2pt;
+  background: var(--cat-soft, #f8fafc);
+  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  color: var(--cat-ink, #0f172a);
 }
-.toc-dot-navy { background: #1C2142; }
-.toc-link { color: #1f2430; }
-.toc-count {
-  margin-left: auto;
+.toc-btn-stripe {
+  width: 2.5pt;
+  align-self: stretch;
+  background: var(--cat-accent, #0f172a);
+  border-radius: 1.5pt;
+  flex-shrink: 0;
+}
+.toc-stripe-navy {
+  background: #0f172a !important;
+}
+.toc-btn-idx {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6.5pt;
+  font-weight: 700;
+  color: var(--cat-accent, #475569);
+  background: rgba(255, 255, 255, 0.85);
+  border: 0.4pt solid var(--cat-line, #cbd5e1);
+  padding: 0.5pt 2.5pt;
+  border-radius: 2pt;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+.toc-btn-label {
+  font-family: "Inter", -apple-system, sans-serif;
   font-size: 8pt;
   font-weight: 700;
-  color: var(--cat-accent, #6b7280);
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+}
+.toc-btn-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7pt;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--cat-accent, #0f172a);
+  padding: 0.5pt 4pt;
+  border-radius: 2.5pt;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.toc-btn-arrow {
+  font-size: 9.5pt;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cat-accent, #64748b);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+/* Workflow Flow Button (Part II) */
+.toc-wf-btn {
+  height: 18.5pt;
+  padding: 0 5pt 0 2pt;
+  background: #ffffff;
+  border: 0.6pt solid var(--cat-line, #cbd5e1);
+  color: #0f172a;
+}
+.toc-wf-cat-pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6pt;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--cat-accent, #0f172a);
+  padding: 1pt 3pt;
+  border-radius: 2pt;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.toc-wf-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 5.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #475569;
+  background: #f1f5f9;
+  border: 0.4pt solid #cbd5e1;
+  padding: 0.5pt 3pt;
+  border-radius: 2pt;
+  flex-shrink: 0;
+}
+
+/* Guidance Module Button (Part III) */
+.toc-guide-btn {
+  height: 18.5pt;
+  padding: 0 5pt 0 2pt;
+  background: #f8fafc;
+  border: 0.6pt solid #cbd5e1;
+  color: #0f172a;
+}
+.toc-guide-code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 6pt;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: #0f172a;
+  padding: 1pt 3pt;
+  border-radius: 2pt;
+  flex-shrink: 0;
+}
+.toc-btn-sub {
+  font-family: "Inter", sans-serif;
+  font-size: 6.5pt;
+  font-weight: 500;
+  color: #64748b;
+  margin-left: auto;
+  margin-right: 2pt;
+  white-space: nowrap;
+}
+
+/* Appendix Button */
+.toc-app-btn {
+  height: 19pt;
+  padding: 0 6pt 0 2pt;
+  background: #f8fafc;
+  border: 0.6pt solid #cbd5e1;
+  color: #0f172a;
 }
 </style>
 <!-- section: 10-part1-cat-a.js — Part I — Endorsement Library (Practical Test Prerequisites, Student Pilot) -->

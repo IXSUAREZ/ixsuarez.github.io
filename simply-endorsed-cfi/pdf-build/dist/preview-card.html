@@ -239,13 +239,14 @@ a.external::after {
   display: flex;
   align-items: baseline;
   gap: 10pt;
-  padding: 10pt 14pt;
+  padding: 8pt 12pt;
   margin: 0 0 10pt 0;
   background: var(--cat-soft);
-  border: 1pt solid var(--cat-line);
-  border-left: 5pt solid var(--cat-accent);
+  border: 0.6pt solid var(--cat-line);
+  border-left: 4.5pt solid var(--cat-accent);
   border-radius: 4pt;
   color: var(--cat-ink);
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
 
 .category-banner h2 {
@@ -263,11 +264,13 @@ a.external::after {
 .bundle-header {
   break-after: avoid;
   break-inside: avoid;
-  margin: 14pt 0 6pt 0;
-  padding: 6pt 10pt;
-  border-left: 3pt solid var(--cat-accent);
+  margin: 12pt 0 6pt 0;
+  padding: 5pt 9pt;
+  border: 0.6pt solid var(--cat-line);
+  border-left: 3.5pt solid var(--cat-accent);
   background: var(--cat-soft);
-  border-radius: 3pt;
+  border-radius: 3.5pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85);
 }
 
 .bundle-header h3 {
@@ -284,12 +287,13 @@ a.external::after {
 
 .endorsement-card {
   break-inside: avoid;
-  margin: 0 0 12pt 0;
-  padding: 10pt 12pt;
+  margin: 0 0 10pt 0;
+  padding: 8pt 10pt;
   background: var(--cat-soft);
-  border: 1px solid var(--cat-line);
-  border-left: 4px solid var(--cat-accent);
+  border: 0.6pt solid var(--cat-line);
+  border-left: 4pt solid var(--cat-accent);
   border-radius: 4pt;
+  box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85), 0 0.5pt 1.5pt rgba(15, 23, 42, 0.03);
 }
 
 .ec-head {
@@ -301,14 +305,16 @@ a.external::after {
 
 .id-pill {
   display: inline-block;
-  padding: 1.5pt 7pt;
-  border-radius: 9pt;
+  padding: 1.5pt 6pt;
+  border-radius: 2.5pt;
   color: #ffffff;
-  background: #1c2142; /* overridden inline with the NAVY constant */
-  font-size: 9pt;
+  background: #0f172a; /* overridden inline with the NAVY constant */
+  font-size: 8.5pt;
   font-weight: 700;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   white-space: nowrap;
+  letter-spacing: -0.01em;
+  box-shadow: 0 0.5pt 1pt rgba(15, 23, 42, 0.2);
 }
 
 .ec-title {
@@ -321,12 +327,13 @@ a.external::after {
 
 .badge {
   display: inline-block;
-  padding: 1pt 6pt;
-  margin: 0 4pt 2pt 0;
-  border-radius: 8pt;
-  font-size: 8pt;
-  font-weight: 600;
-  border: 0.75pt solid transparent;
+  padding: 1pt 5pt;
+  margin: 0 3pt 2pt 0;
+  border-radius: 2.5pt;
+  font-size: 7.5pt;
+  font-weight: 700;
+  border: 0.6pt solid transparent;
+  letter-spacing: 0.02em;
 }
 
 .badge-signer {
@@ -363,10 +370,11 @@ a.external::after {
 
 .chip {
   display: inline-block;
-  padding: 1pt 6pt;
-  margin: 0 4pt 2pt 0;
-  border-radius: 8pt;
-  font-size: 8pt;
+  padding: 1pt 5pt;
+  margin: 0 3pt 2pt 0;
+  border-radius: 2.5pt;
+  font-size: 7.5pt;
+  font-weight: 600;
 }
 
 .cfr-chip {

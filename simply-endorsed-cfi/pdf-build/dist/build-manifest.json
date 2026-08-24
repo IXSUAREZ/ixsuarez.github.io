@@ -1,0 +1,75 @@
+{
+  "pipeline": "simply-endorsed-cfi pdf-build",
+  "gitSha": "f2d57f09e2ed0a80fb2ffa073e4c829562d25464",
+  "outputPdf": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf",
+  "startedAt": "2026-08-24T18:30:59.095Z",
+  "stages": [
+    {
+      "name": "build",
+      "command": "node build.js",
+      "startedAt": "2026-08-24T18:30:59.152Z",
+      "finishedAt": "2026-08-24T18:30:59.244Z",
+      "durationMs": 92,
+      "exitCode": 0
+    },
+    {
+      "name": "test-render",
+      "command": "node test-render.js",
+      "startedAt": "2026-08-24T18:30:59.244Z",
+      "finishedAt": "2026-08-24T18:30:59.293Z",
+      "durationMs": 49,
+      "exitCode": 0
+    },
+    {
+      "name": "qa-check",
+      "command": "node qa-check.js",
+      "startedAt": "2026-08-24T18:30:59.293Z",
+      "finishedAt": "2026-08-24T18:30:59.345Z",
+      "durationMs": 52,
+      "exitCode": 0
+    },
+    {
+      "name": "qa-markers",
+      "command": "node qa-markers.js",
+      "startedAt": "2026-08-24T18:30:59.345Z",
+      "finishedAt": "2026-08-24T18:30:59.398Z",
+      "durationMs": 53,
+      "exitCode": 0
+    },
+    {
+      "name": "make-nav-data",
+      "command": "node make-nav-data.js",
+      "startedAt": "2026-08-24T18:30:59.399Z",
+      "finishedAt": "2026-08-24T18:30:59.450Z",
+      "durationMs": 51,
+      "exitCode": 0
+    },
+    {
+      "name": "render-pdf",
+      "command": "node render-pdf.js",
+      "startedAt": "2026-08-24T18:30:59.450Z",
+      "finishedAt": "2026-08-24T18:31:05.813Z",
+      "durationMs": 6363,
+      "exitCode": 0
+    },
+    {
+      "name": "stamp_nav",
+      "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python stamp_nav.py",
+      "startedAt": "2026-08-24T18:31:05.813Z",
+      "finishedAt": "2026-08-24T18:31:35.313Z",
+      "durationMs": 29500,
+      "exitCode": 0
+    },
+    {
+      "name": "qa-nav",
+      "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python qa-nav.py",
+      "startedAt": "2026-08-24T18:31:35.314Z",
+      "finishedAt": "2026-08-24T18:31:37.617Z",
+      "durationMs": 2303,
+      "exitCode": 0
+    }
+  ],
+  "status": "ok",
+  "finishedAt": "2026-08-24T18:31:37.618Z",
+  "durationMs": 38523
+}

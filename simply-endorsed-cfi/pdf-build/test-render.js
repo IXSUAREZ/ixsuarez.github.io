@@ -76,6 +76,11 @@ ${cardHtml}
     "tag chip": (e.tags[0] || ""),
     "AC PDF link": data.APP_META.sourceUrl,
     "related slot": "ec-related",
+    "used-in row": 'class="ec-usedin"',
+    "used-in label": "Used in:",
+    "used-in flow chip → #wf-first-solo": 'href="#wf-first-solo"',
+    "used-in journey chip → #journey": 'href="#journey"',
+    "used-in chip class": "usedin-chip",
     "category banner anchor": 'id="cat-student-pilot"',
     "bundle header anchor": 'id="bundle-first-solo"',
     "bundle featured badge": "Featured bundle",
@@ -85,6 +90,32 @@ ${cardHtml}
   for (const [label, needle] of Object.entries(checks)) {
     const ok = needle && html.includes(needle);
     console.log(`[test-render] ${ok ? "ok  " : "FAIL"} ${label}${ok ? "" : ` (missing: ${needle})`}`);
+    if (!ok) failed += 1;
+  }
+
+  // Negative cases: a card nothing consumes renders no "Used in" row at all,
+  // and showUsedIn:false suppresses it (for cards rendered as compact refs).
+  const orphan = endorsementById.get("A.15"); // no flow/journey/scenario refs
+  if (!orphan) {
+    console.log("[test-render] FAIL endorsement A.15 not found");
+    failed += 1;
+  } else {
+    const orphanHtml = render.renderEndorsementCard(orphan, {
+      sourceUrl: data.APP_META.sourceUrl,
+      acVersion: data.APP_META.acVersion,
+    });
+    const ok = !orphanHtml.includes("ec-usedin");
+    console.log(`[test-render] ${ok ? "ok  " : "FAIL"} no used-in row on unused card (A.15)`);
+    if (!ok) failed += 1;
+  }
+  {
+    const suppressedHtml = render.renderEndorsementCard(e, {
+      sourceUrl: data.APP_META.sourceUrl,
+      acVersion: data.APP_META.acVersion,
+      showUsedIn: false,
+    });
+    const ok = !suppressedHtml.includes("ec-usedin");
+    console.log(`[test-render] ${ok ? "ok  " : "FAIL"} showUsedIn:false suppresses the row`);
     if (!ok) failed += 1;
   }
 

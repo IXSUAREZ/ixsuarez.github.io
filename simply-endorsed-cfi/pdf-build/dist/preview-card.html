@@ -448,6 +448,33 @@ a.external::after {
   display: none;
 }
 
+/* "Used in" row: reverse links to the flow pages / journey / scenarios that
+   consume this endorsement. Same pill shape as the Related chips, but a
+   navy outline instead of the category tint so outbound usage links read
+   differently from lateral Related links. */
+.ec-usedin {
+  margin: 4pt 0 0 0;
+  padding-top: 4pt;
+  border-top: 0.75pt dashed var(--cat-line, #d1d5da);
+  font-size: 9pt;
+}
+
+.ec-usedin-label {
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-right: 4pt;
+}
+
+.usedin-chip {
+  color: #1c2142;
+  background: #ffffff;
+  border: 0.75pt solid #1c2142;
+  text-decoration: none;
+}
+
 .ec-foot {
   margin-top: 6pt;
   font-size: 8.5pt;
@@ -541,6 +568,10 @@ p {
       <span class="chip tag-chip">student pilot</span>
     </div>
     <div class="ec-related">See also <a class="internal" href="#A-7">A.7 — Solo flight (each additional 90-day period)</a></div>
+    <div class="ec-usedin"><span class="ec-usedin-label">Used in:</span>
+      <a class="chip usedin-chip internal" href="#wf-first-solo" title="Workflow: First Solo (Part II)">First Solo</a>
+      <a class="chip usedin-chip internal" href="#journey" title="Student Journey (Part III)">Student Journey</a>
+    </div>
     <footer class="ec-foot">
       <a class="external" href="https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf" target="_blank" rel="noopener noreferrer">Open in AC 61-65K PDF</a>
     </footer>

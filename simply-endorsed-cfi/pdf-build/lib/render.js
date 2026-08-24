@@ -9,6 +9,7 @@
  */
 
 const { cfrLink } = require("./load-data");
+const { usedInChips } = require("./used-in");
 const {
   CATEGORY_LABELS,
   WHO_ISSUES_LABELS,
@@ -119,6 +120,25 @@ function renderBlocks(blocks) {
 /* ── Big components ─────────────────────────────────────────────────────── */
 
 /**
+ * "Used in:" chip row for a card — reverse links to the pages that consume
+ * the endorsement (Part II flow pages, Student Journey, DPE Scenarios; see
+ * lib/used-in.js). Returns "" when nothing in the book uses the endorsement,
+ * so cards without usages never render an empty row.
+ */
+function usedInRowHtml(id) {
+  const chips = usedInChips(id);
+  if (!chips.length) return "";
+  const chipsHtml = chips
+    .map(
+      (c) =>
+        `<a class="chip usedin-chip internal" href="${esc(c.href)}" ` +
+        `title="${esc(c.title)}">${esc(c.label)}</a>`
+    )
+    .join("\n      ");
+  return `\n    <div class="ec-usedin"><span class="ec-usedin-label">Used in:</span>\n      ${chipsHtml}\n    </div>`;
+}
+
+/**
  * renderEndorsementCard(endorsement, opts?) → full endorsement card HTML.
  *
  * opts:
@@ -127,6 +147,9 @@ function renderBlocks(blocks) {
  *                APP_META.sourceUrl; build.js pre-binds this)
  *   acVersion    override for the AC version label in that link
  *   showRelated  set false to omit the Related slot entirely (default true)
+ *   showUsedIn   set false to omit the "Used in:" chip row (default true;
+ *                suppress when a card is rendered as a compact cross-ref
+ *                rather than as a full library card)
  *
  * Heading level: the card title is an <h4>, so sections should use
  * h1 (section title) → h2 (category banner) → h3 (bundle header) → h4 (cards).
@@ -161,6 +184,7 @@ function renderEndorsementCard(e, opts) {
     o.showRelated === false
       ? ""
       : `\n    <div class="ec-related">${o.relatedHtml || ""}</div>`;
+  const usedInSlot = o.showUsedIn === false ? "" : usedInRowHtml(e.id);
 
   return `<article class="endorsement-card" id="${esc(anchor)}" style="${themeVars(e.category)}">
     ${pgmMarker(`en:${e.id}`)}
@@ -186,7 +210,7 @@ function renderEndorsementCard(e, opts) {
     </div>
     <div class="ec-tags">
       ${tagsHtml}
-    </div>${relatedSlot}
+    </div>${relatedSlot}${usedInSlot}
     <footer class="ec-foot">
       <a class="external" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">Open in ${esc(acVersion)} PDF</a>
     </footer>
@@ -254,6 +278,7 @@ module.exports = {
   cfrChip,
   explanationBullets,
   renderBlocks,
+  usedInChips,
   renderEndorsementCard,
   stripCardAnchor,
   renderCategoryHeader,

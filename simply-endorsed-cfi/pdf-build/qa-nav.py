@@ -24,7 +24,11 @@ Checks:
      zero rail links; every other page has a hero badge targeting its
      chapter marker page plus one bead per bundle / workflow / guidance
      entry — and EVERY bead (all ~88 targets, on every page where they
-     appear) lands on the page that actually carries its ZZPGM marker
+     appear) lands on the page that actually carries its ZZPGM marker;
+     plus exactly one thumb-index band (idea-31) at the extreme right
+     edge (x0>=608): model-exact staggered rect targeting the chapter
+     opener (category page for Part I, part-2/part-3 dividers for the
+     workflow/guidance sections) — every band target verified
   6. shipped text layer is marker-free: zero 'ZZPGM' anywhere in the
      stamped PDF (stamp_nav.py redacts the markers after stamping)
   7. every font object on every page is embedded — allow-list none
@@ -115,6 +119,13 @@ def dock_slot(rect):
     if 0 <= i <= 3 and abs(x0 - (DOCK_X0 + i * (DOCK_BW + DOCK_GAP))) < 2:
         return i
     return None
+
+
+def rect_close(a, b, tol=0.75):
+    """Rects equal within tol on every edge (PDF float save/load round-trip)."""
+    a, b = fitz.Rect(a), fitz.Rect(b)
+    return all(abs(p - q) <= tol for p, q in
+               zip((a.x0, a.y0, a.x1, a.y1), (b.x0, b.y0, b.x1, b.y1)))
 
 
 def goback_action_links(pno):
@@ -306,21 +317,35 @@ else:
        f"{next_checked} NEXT links match the unit sequence exactly "
        f"(disabled edges link-free)")
 
-print("\n[5] rail: hero + every bead target, every page")
+print("\n[5] rail: hero + every bead target + thumb band, every page")
 rail_bad = []
 bead_links = 0
+band_links = 0
 verified_targets = set()
+verified_band_targets = set()
 all_bead_keys = (
     {f"bundle:{b['id']}" for c in NAV["categories"] for b in c["bundles"]}
     | {f"wf:{w['id']}" for w in NAV["workflows"]}
     | {f"gs:{g['id']}" for g in NAV["guidance"]}
 )
+# idea-31: every railed page carries exactly one thumb-index band whose
+# target is its chapter opener — category pages for Part I, the part
+# dividers for Part II/III.
+all_band_targets = ({markers[f"cat:{c['slug']}"] for c in NAV["categories"]}
+                    | {model["p2"], model["p3"]})
 for pno in range(1, npages):
     ctx = model["rail_for"](pno)
-    rail = [l for l in page_links[pno] if in_rail(l["from"])]
+    rail_all = [l for l in page_links[pno] if in_rail(l["from"])]
+    # thumb bands sit at the extreme edge (x0 >= BAND_X0); separate them
+    # before hero/bead classification so they don't count as either
+    bands = [l for l in rail_all
+             if fitz.Rect(l["from"]).x0 >= stamp_nav.BAND_X0 - 0.5]
+    rail = [l for l in rail_all
+            if fitz.Rect(l["from"]).x0 < stamp_nav.BAND_X0 - 0.5]
     if ctx is None:
-        if rail:
-            rail_bad.append((pno + 1, [f"{len(rail)} unexpected rail link(s)"]))
+        if rail or bands:
+            rail_bad.append((pno + 1, [f"{len(rail) + len(bands)} "
+                                       "unexpected rail/band link(s)"]))
         continue
     hero = [l for l in rail
             if fitz.Rect(l["from"]).y1 <= stamp_nav.HERO_Y0 + stamp_nav.HERO_H + 1]
@@ -358,18 +383,39 @@ for pno in range(1, npages):
             else:
                 probs.append(f"bead {eid} -> page "
                              f"{tgt + 1 if tgt >= 0 else tgt}, want {want + 1}")
+    # thumb-index band (idea-31): exactly one per railed page, model-exact
+    # staggered rect, targeting the chapter opener
+    spec = model["band_for"](pno)
+    want_rect, _, want_band_target = spec
+    if len(bands) != 1 or bands[0]["kind"] != fitz.LINK_GOTO \
+            or bands[0].get("page") != want_band_target:
+        probs.append(f"band -> {bands[0].get('page') if bands else None} "
+                     f"({len(bands)} band link(s)), want 1 band -> page "
+                     f"{want_band_target + 1}")
+    elif not rect_close(bands[0]["from"], want_rect):
+        probs.append(f"band rect {tuple(round(v, 1) for v in fitz.Rect(bands[0]['from']))}, "
+                     f"want {tuple(round(v, 1) for v in want_rect)}")
+    else:
+        band_links += 1
+        verified_band_targets.add(want_band_target)
     if probs:
         rail_bad.append((pno + 1, ctx[0], probs))
 
 unverified = sorted(all_bead_keys - verified_targets)
+unverified_bands = sorted(all_band_targets - verified_band_targets)
 if rail_bad:
     fail(f"rail problems: {rail_bad[:5]}{' …' if len(rail_bad) > 5 else ''}")
 elif unverified:
     fail(f"bead targets never verified: {unverified}")
+elif unverified_bands:
+    fail(f"band targets never verified (0-based pages): {unverified_bands}")
 else:
     ok(f"{bead_links} rail bead links checked across all pages — every one "
        f"of the {len(all_bead_keys)} bead targets (71 bundles + 10 workflows "
        f"+ 7 guidance) lands on a page carrying its marker")
+    ok(f"{band_links} thumb-index band links checked — every one of the "
+       f"{len(all_band_targets)} band targets (13 categories + Part II + "
+       f"Part III) lands on its chapter opener at the model's staggered rect")
     ok("rail-less pages (cover/front matter/part dividers) carry zero rail links")
 
 print("\n[6] shipped text layer is marker-free")
@@ -431,7 +477,8 @@ print("\n[9] per-chapter bead counts (diagnostic)")
 cat_pages = sorted((markers[f"cat:{c['slug']}"], c) for c in NAV["categories"])
 for i, (pg, c) in enumerate(cat_pages):
     beads = [l for l in page_links[pg]
-             if fitz.Rect(l["from"]).x0 >= stamp_nav.RAIL_X0
+             if stamp_nav.RAIL_X0 <= fitz.Rect(l["from"]).x0
+             < stamp_nav.BAND_X0 - 0.5
              and fitz.Rect(l["from"]).y0 >= stamp_nav.BEAD_FIRST_Y0 - 4]
     print(f"        {c['slug']:<28} beads={len(beads):<3} bundles={len(c['bundles'])}")
 

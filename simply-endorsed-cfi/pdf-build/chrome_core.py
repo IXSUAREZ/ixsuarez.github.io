@@ -43,6 +43,27 @@ BEAD_H, BEAD_PITCH = 24.0, 28.0
 BEAD_FIRST_Y0 = HERO_Y0 + HERO_H + 6.0   # 88
 LINK_TO = fitz.Point(36, 54)         # internal goto landing point
 
+# ── thumb-index edge bands (idea-31) ────────────────────────────────────
+# Staggered pure-color tabs flush at the extreme right edge (x=608..612),
+# one per chapter, so a fanned book edge (or a ForeFlight/GoodReader
+# thumbnail grid) reads as a visible index. The safe band area is computed
+# per model (build_model): it starts below the deepest possible bead
+# column (+ BAND_CLEARANCE) so bands never collide with bead/hero hitboxes,
+# and ends at the dock hairline.
+BAND_X0 = 608.0                      # band left edge (bleeds to PAGE_W)
+BAND_H = 18.0                        # band height
+BAND_CLEARANCE = 8.0                 # gap below the deepest bead column
+
+
+def band_rect(slot, n_slots, area):
+    """Rect of thumb-index band `slot` of `n_slots` within the safe band
+    area (y0, y1): flush at the extreme right edge, staggered so slot 0
+    sits at the area top and slot n_slots-1 flush at its bottom."""
+    y0a, y1a = area
+    y0 = y0a if n_slots < 2 else \
+        y0a + (y1a - y0a - BAND_H) * slot / (n_slots - 1)
+    return fitz.Rect(BAND_X0, y0, PAGE_W, y0 + BAND_H)
+
 # ── palette ─────────────────────────────────────────────────────────────
 def hx(s):
     s = s.lstrip("#")
@@ -373,9 +394,46 @@ def build_model(nav, markers):
             return ("guide", active)
         return None
 
+    # ── thumb-index bands (idea-31) ─────────────────────────────────────
+    # Safe band area: below the deepest bead column any railed page can
+    # carry (+ clearance), above the dock hairline — bands stay outside
+    # every bead/hero hitbox. Derived from the data so an AC revision that
+    # adds bundles/workflows/guidance entries shifts the area with it.
+    max_beads = max([len(c["bundles"]) for c in nav["categories"]]
+                    + [len(nav["workflows"]), len(nav["guidance"])])
+    band_area = (max(HERO_Y0 + HERO_H,
+                     BEAD_FIRST_Y0 + (max_beads - 1) * BEAD_PITCH + BEAD_H)
+                 + BAND_CLEARANCE, DOCK_RULE_Y)
+    cat_slot = {c["slug"]: i for i, c in enumerate(cat_order)}
+    n_band_slots = len(cat_order) + 2        # categories + Part II + Part III
+
+    def band_for(pno):
+        """Thumb-index band spec for an offset-relative page:
+        (rect, fill, target_rel_page) | None. None exactly where the rail
+        is suppressed (front matter, part dividers; the cover takes no
+        chrome at all). Part I chapter pages carry their category's accent
+        band at the category's physical-order slot; Part II/III pages a
+        single neutral band at their trailing section slots."""
+        ctx = rail_for(pno)
+        if ctx is None:
+            return None
+        if ctx[0] == "cat":
+            cat = ctx[1]
+            accent = cat["theme"]["accent"]
+            slot = cat_slot[cat["slug"]]
+            fill = hx(accent) if isinstance(accent, str) else accent
+            target = markers[f"cat:{cat['slug']}"]
+        elif ctx[0] == "flows":
+            slot, fill, target = len(cat_order), NEUTRAL["accent"], p2
+        else:                                # guide
+            slot, fill, target = len(cat_order) + 1, NEUTRAL["accent"], p3
+        return (band_rect(slot, n_band_slots, band_area), fill, target)
+
     return dict(cat_order=cat_order, bounds=bounds, units=units,
                 p1=p1, p2=p2, p3=p3, toc=toc, crumb_for=crumb_for,
-                rail_for=rail_for, unit_index_for=unit_index_for)
+                rail_for=rail_for, unit_index_for=unit_index_for,
+                band_for=band_for, band_area=band_area,
+                n_band_slots=n_band_slots, cat_slot=cat_slot)
 
 
 # ── chrome drawing ──────────────────────────────────────────────────────
@@ -581,3 +639,26 @@ def draw_rail(page, rel, model, nav, markers, offset=0):
             draw_bead(page, BEAD_FIRST_Y0 + i * BEAD_PITCH, f"{i + 1:02d}",
                       g["abbrev"], offset + markers[f"gs:{g['id']}"], theme,
                       g["id"] == active_id)
+
+
+def draw_thumb_band(page, rel, model, offset=0):
+    """Thumb-index edge band for doc page (offset + rel) — idea-31.
+
+    A pure-color tab flush at the extreme right edge (x=608..612, ~18pt
+    tall), staggered by chapter so a fanned book edge / thumbnail grid
+    reads as an index: Part I pages carry their category's accent band at
+    the category's slot, Part II/III pages a single neutral band at their
+    section slot. No border/bevel/shadow — just the chapter color.
+
+    The band doubles as a link to the chapter opener. Call BEFORE
+    draw_rail so hero/beads paint over any overlap (bands sit behind at
+    the edge). No-op where the model suppresses bands (front matter, part
+    dividers); callers skip the cover entirely.
+    """
+    spec = model["band_for"](rel)
+    if spec is None:
+        return
+    rect, fill, target = spec
+    page.draw_rect(rect, color=None, fill=fill)
+    page.insert_link({"kind": fitz.LINK_GOTO, "from": rect,
+                      "page": offset + target, "to": LINK_TO})

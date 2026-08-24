@@ -6,8 +6,12 @@ Nothing is sampled: every check below runs on EVERY stamped page.
 Checks:
   1. every page except the cover has >= 8 chrome links (top bar y=16..38,
      dock y>=742, rail x0>=552 — content links never enter these zones);
-     the cover must be chrome-free
-  2. every non-cover page has exactly one LINK_NAMED GoBack, in dock slot 4
+     the cover must be chrome-free. The BACK button's raw /S/Named action
+     is invisible to get_links() (MuPDF drops /S/Named), so the raw BACK
+     annot is folded into the chrome count explicitly
+  2. every non-cover page has exactly one true /Named /GoBack action in
+     dock slot 4 (raw annot /A check — the old LINK_NAMED/nameddest form
+     also matched the malformed GoTo-to-'GoBack' that made BACK a no-op)
   3. top deck, every non-cover page: exactly 4 internal buttons targeting
      CONTENTS / LIBRARY / WORKFLOWS / GUIDANCE (the toc, part-1, part-2,
      part-3 marker pages, in x order) plus exactly one URI button whose
@@ -99,6 +103,36 @@ def dock_slot(rect):
     return None
 
 
+def goback_action_links(pno):
+    """True /Named /GoBack link actions on page pno, as get_links-style dicts.
+
+    The old get_links() check (kind == LINK_NAMED and nameddest == 'GoBack')
+    also matched the malformed form — a GoTo to a nonexistent named
+    destination 'GoBack' — and so green-lit a dead BACK button. Assert on
+    the annot's raw /A instead: /S/Named with /N/GoBack. (MuPDF's link
+    loader silently drops /S/Named actions, so get_links() never reports
+    the BACK button; read the raw annots.)
+    """
+    out = []
+    page = doc[pno]
+    for entry in page.annot_xrefs():
+        a_type, a_val = doc.xref_get_key(entry[0], "A")
+        if a_type != "dict":
+            continue
+        flat = a_val.replace(" ", "").replace("\n", "")
+        if "/S/Named" not in flat or "/N/GoBack" not in flat:
+            continue
+        rect = fitz.Rect()
+        r_type, r_val = doc.xref_get_key(entry[0], "Rect")
+        if r_type == "array":
+            x0, y0, x1, y1 = (float(v) for v in r_val.strip("[]").split())
+            rect = fitz.Rect(x0, page.rect.height - y1,
+                             x1, page.rect.height - y0)
+        out.append({"kind": fitz.LINK_NAMED, "from": rect,
+                    "nameddest": "GoBack", "xref": entry[0]})
+    return out
+
+
 doc = fitz.open(PDF_PATH)
 npages = doc.page_count
 page_texts = [doc[p].get_text() for p in range(npages)]
@@ -126,29 +160,34 @@ model = stamp_nav.build_model(NAV, markers)
 units = model["units"]
 toc_page = markers["toc:toc"]
 
+# Raw /Named /GoBack BACK annots per page. get_links() drops /S/Named
+# actions (MuPDF limitation), so collect them via raw annot surgery and
+# fold them into the chrome counts explicitly (they sit in the dock zone).
+page_gobacks = [goback_action_links(p) for p in range(npages)]
+
 print("\n[1] chrome link counts per page")
 bad = [p + 1 for p in range(1, npages)
-       if sum(1 for l in page_links[p] if chrome_zone(l["from"])) < 8]
+       if sum(1 for l in page_links[p] if chrome_zone(l["from"]))
+       + sum(1 for l in page_gobacks[p] if chrome_zone(l["from"])) < 8]
 if bad:
     fail(f"pages with <8 chrome links: {bad}")
 else:
     ok(f"pages 2..{npages} each have >=8 chrome links")
-if any(chrome_zone(l["from"]) for l in page_links[0]):
+if any(chrome_zone(l["from"]) for l in page_links[0]) or page_gobacks[0]:
     fail("cover page has chrome links (must be chrome-free)")
 else:
     ok("cover page is chrome-free")
 
-print("\n[2] exactly one LINK_NAMED GoBack per non-cover page, dock slot 4")
+print("\n[2] exactly one raw /Named /GoBack action per non-cover page, "
+      "dock slot 4")
 bad = []
 for pno in range(1, npages):
-    gb = [l for l in page_links[pno]
-          if l["kind"] == fitz.LINK_NAMED and l.get("nameddest") == "GoBack"]
+    gb = page_gobacks[pno]
     if len(gb) != 1:
-        bad.append((pno + 1, f"{len(gb)} GoBack links"))
+        bad.append((pno + 1, f"{len(gb)} GoBack actions"))
     elif dock_slot(gb[0]["from"]) != 3:
         bad.append((pno + 1, "GoBack not in dock slot 4"))
-if any(l["kind"] == fitz.LINK_NAMED and l.get("nameddest") == "GoBack"
-       for l in page_links[0]):
+if page_gobacks[0]:
     bad.append((1, "cover has GoBack"))
 if bad:
     fail(f"GoBack problems: {bad[:10]}{' …' if len(bad) > 10 else ''}")
@@ -227,10 +266,12 @@ for pno in range(1, npages):
     else:
         next_checked += 1
 
-    back = by_slot.get(3, [])
-    if len(back) != 1 or back[0]["kind"] != fitz.LINK_NAMED \
-            or back[0].get("nameddest") != "GoBack":
-        probs.append("BACK missing from slot 4 or not a GoBack named link")
+    # BACK (slot 4) is a raw /S/Named action — invisible to get_links();
+    # check [2] already asserted its presence + slot via raw annots.
+    back_stray = [l for l in by_slot.get(3, [])]
+    if back_stray:
+        probs.append(f"{len(back_stray)} unexpected link(s) in dock slot 4 "
+                     "(BACK lives only as a raw /S/Named annot)")
 
     if probs:
         dock_bad.append((pno + 1, probs))

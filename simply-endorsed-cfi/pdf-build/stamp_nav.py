@@ -14,7 +14,7 @@ replaces the target PDF.
 All drawing/model logic lives in chrome_core.py (idea #40 — shared with the
 binder's endorse_chrome.py); this file is only the standalone-PDF wrapper:
 deck = CONTENTS|LIBRARY|WORKFLOWS|GUIDANCE + AC button, page offset 0, and
-BACK via a named /GoBack link (chrome_core.insert_named_goback).
+BACK via a raw /Named /GoBack action (chrome_core.insert_raw_goback).
 
 Also stamps provenance metadata (author / subject / keywords / creator) onto
 the document: the creator field carries the UTC build timestamp plus the
@@ -46,8 +46,8 @@ from chrome_core import (      # noqa: F401  (re-exported for legacy callers)
     BEAD_FIRST_Y0, LINK_TO, hx, TITAN_DARK, TITAN_MID, ACTIVE_BLUE, SHADOW,
     SLATE, DIM, BEVEL_DARK, WHITE, RULE, NEUTRAL, BTN_FS, RADIUS, rrect,
     fit_size, ctext, chevron, ext_arrow, nav_button, scan_markers,
-    build_model, insert_named_goback, draw_top_deck, draw_dock, draw_bead,
-    draw_hero, draw_rail,
+    build_model, insert_raw_goback, insert_named_goback, draw_top_deck,
+    draw_dock, draw_bead, draw_hero, draw_rail,
 )
 import config
 
@@ -123,11 +123,14 @@ def main():
     doc = fitz.open(PDF_PATH)
     npages = doc.page_count
 
-    # idempotence guard: chrome on page 2 (index 1) means already stamped
-    dock_zone = fitz.Rect(0, 730, PAGE_W, PAGE_H)
-    for lnk in doc[1].get_links():
-        if lnk["kind"] == fitz.LINK_NAMED and \
-                fitz.Rect(lnk["from"]).intersects(dock_zone):
+    # idempotence guard: a raw /Named /GoBack BACK annot on page 2 (index 1)
+    # means already stamped. get_links() cannot see /S/Named actions
+    # (MuPDF limitation), so inspect the raw annot objects.
+    for entry in doc[1].annot_xrefs():
+        a_type, a_val = doc.xref_get_key(entry[0], "A")
+        flat = a_val.replace(" ", "").replace("\n", "") \
+            if a_type == "dict" else ""
+        if "/S/Named" in flat and "/N/GoBack" in flat:
             print("already stamped — for a fast re-stamp use "
                   "`./stamp_nav.py --from-base` (restores the clean base "
                   "first), or re-run node render-pdf.js for a full re-render",

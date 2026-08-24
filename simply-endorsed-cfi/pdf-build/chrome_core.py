@@ -19,8 +19,8 @@ parameterization points:
      model pages stay section-relative, `offset` is added at link-insertion
      and page-number-display time (0 for the standalone PDF).
   3. goback injection — draw_dock(goback=callable(page, rect)); defaults to
-     insert_named_goback (a LINK_NAMED /GoBack link). The binder injects raw
-     /Named /GoBack annot surgery instead.
+     insert_raw_goback (raw /A<</S/Named/N/GoBack>> annot surgery — the
+     only BACK form viewers honor).
 
 Requires PyMuPDF (fitz). No file paths live here — callers own all I/O.
 """
@@ -317,17 +317,47 @@ def draw_top_deck(page, targets, active_label, source_url,
     page.insert_link({"kind": fitz.LINK_URI, "from": rect, "uri": source_url})
 
 
+def insert_raw_goback(page, rect):
+    """True /Named /GoBack link annotation (viewer history-back).
+
+    Ported from sportys_linker._insert_goback_link (FORE binder) via idea
+    #46's stamp_nav. insert_link({"kind": LINK_NAMED, "name": "GoBack"})
+    writes a GoTo to a named destination 'GoBack' that does not exist — a
+    dead link. Raw xref surgery emits the real /A<</S/Named/N/GoBack>>
+    action instead.
+    """
+    doc = page.parent
+    xref = doc.get_new_xref()
+    y0 = page.rect.height - rect.y1
+    y1 = page.rect.height - rect.y0
+    doc.update_object(
+        xref,
+        f"<</Type/Annot/Subtype/Link/Rect[{rect.x0} {y0} {rect.x1} {y1}]"
+        f"/Border[0 0 0]/A<</S/Named/N/GoBack>>>>",
+    )
+    key_type, value = doc.xref_get_key(page.xref, "Annots")
+    if key_type == "array":
+        doc.xref_set_key(page.xref, "Annots", value[:-1] + f" {xref} 0 R]")
+    else:
+        doc.xref_set_key(page.xref, "Annots", f"[{xref} 0 R]")
+    return xref
+
+
 def insert_named_goback(page, rect):
-    """Default BACK-button action: a named /GoBack link annotation."""
+    """Legacy BACK-button action: a named /GoBack link annotation.
+
+    DEAD in practice (see insert_raw_goback) — kept only for API
+    compatibility with early chrome_core consumers.
+    """
     page.insert_link({"kind": fitz.LINK_NAMED, "name": "GoBack",
                       "from": rect})
 
 
-def draw_dock(page, rel, model, offset=0, goback=insert_named_goback):
+def draw_dock(page, rel, model, offset=0, goback=insert_raw_goback):
     """Bottom dock on doc page (offset + rel): hairline, breadcrumb + global
     1-based page number, then PREV CONTENTS NEXT BACK. `goback` is a
-    callable(page, rect) that installs the BACK action (default: named
-    /GoBack link; the binder injects raw annot surgery instead)."""
+    callable(page, rect) that installs the BACK action (default: a raw
+    /Named /GoBack action — the only form viewers honor)."""
     # hairline rule
     page.draw_line((36, DOCK_RULE_Y), (548, DOCK_RULE_Y), color=RULE,
                    width=0.5)

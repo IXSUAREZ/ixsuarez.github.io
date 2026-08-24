@@ -141,6 +141,31 @@ def nav_button(page, rect, label, link, fill=TITAN_DARK, text_color=WHITE,
         page.insert_link(dict(link, **{"from": rect}))
 
 
+def insert_goback_link(page, rect):
+    """True /Named /GoBack link annotation (viewer history-back).
+
+    Ported from sportys_linker._insert_goback_link (FORE binder).
+    insert_link({"kind": LINK_NAMED, "name": "GoBack"}) writes a GoTo to a
+    named destination 'GoBack' that does not exist — a dead link. Raw xref
+    surgery emits the real /A<</S/Named/N/GoBack>> action instead.
+    """
+    doc = page.parent
+    xref = doc.get_new_xref()
+    y0 = page.rect.height - rect.y1
+    y1 = page.rect.height - rect.y0
+    doc.update_object(
+        xref,
+        f"<</Type/Annot/Subtype/Link/Rect[{rect.x0} {y0} {rect.x1} {y1}]"
+        f"/Border[0 0 0]/A<</S/Named/N/GoBack>>>>",
+    )
+    key_type, value = doc.xref_get_key(page.xref, "Annots")
+    if key_type == "array":
+        doc.xref_set_key(page.xref, "Annots", value[:-1] + f" {xref} 0 R]")
+    else:
+        doc.xref_set_key(page.xref, "Annots", f"[{xref} 0 R]")
+    return xref
+
+
 # ── model ───────────────────────────────────────────────────────────────
 def scan_markers(doc):
     markers = {}
@@ -348,9 +373,9 @@ def draw_dock(page, pno, model, nav):
                     "to": LINK_TO}, chev=+1)
     else:
         nav_button(page, rects[2], "NEXT", None, text_color=DIM, chev=+1)
-    # BACK (named GoBack)
-    nav_button(page, rects[3], "BACK",
-               {"kind": fitz.LINK_NAMED, "name": "GoBack"})
+    # BACK (true /Named /GoBack action — insert_link cannot express it)
+    nav_button(page, rects[3], "BACK", None)
+    insert_goback_link(page, rects[3])
 
 
 def draw_bead(page, y0, num, label, target_page, theme, active):
@@ -433,11 +458,14 @@ def main():
     doc = fitz.open(PDF_PATH)
     doc_page_count[0] = doc.page_count
 
-    # idempotence guard: chrome on page 2 (index 1) means already stamped
-    dock_zone = fitz.Rect(0, 730, PAGE_W, PAGE_H)
-    for lnk in doc[1].get_links():
-        if lnk["kind"] == fitz.LINK_NAMED and \
-                fitz.Rect(lnk["from"]).intersects(dock_zone):
+    # idempotence guard: a raw /Named /GoBack BACK annot on page 2 (index 1)
+    # means already stamped. get_links() cannot see /S/Named actions
+    # (MuPDF limitation), so inspect the raw annot objects.
+    for entry in doc[1].annot_xrefs():
+        a_type, a_val = doc.xref_get_key(entry[0], "A")
+        flat = a_val.replace(" ", "").replace("\n", "") \
+            if a_type == "dict" else ""
+        if "/S/Named" in flat and "/N/GoBack" in flat:
             print("already stamped — re-run node render-pdf.js first",
                   file=sys.stderr)
             sys.exit(1)

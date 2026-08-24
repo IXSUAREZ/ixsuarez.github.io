@@ -5,7 +5,9 @@ qa-nav.py — programmatic QA for the stamped navigation chrome.
 Checks:
   1. every page except the cover has >= 8 chrome links (top bar y=16..38,
      dock y>=742, rail x0>=552 — content links never enter these zones)
-  2. every non-cover page has exactly one LINK_NAMED GoBack
+  2. every non-cover page has exactly one true /Named /GoBack action
+     (raw annot /A check — the old LINK_NAMED/nameddest form also matched
+     the malformed GoTo-to-'GoBack' that made BACK a no-op)
   3. rail bead counts per chapter == bundle counts (3 chapters sampled in
      full; bead counts printed for ALL chapters)
   4. 5 sampled bead links land on pages containing their bundle marker
@@ -48,6 +50,36 @@ def chrome_zone(r):
     return in_top or in_dock or in_rail
 
 
+def goback_action_links(pno):
+    """True /Named /GoBack link actions on page pno, as get_links-style dicts.
+
+    The old get_links() check (kind == LINK_NAMED and nameddest == 'GoBack')
+    also matched the malformed form — a GoTo to a nonexistent named
+    destination 'GoBack' — and so green-lit a dead BACK button. Assert on
+    the annot's raw /A instead: /S/Named with /N/GoBack. (MuPDF's link
+    loader silently drops /S/Named actions, so get_links() never reports
+    the BACK button; read the raw annots.)
+    """
+    out = []
+    page = doc[pno]
+    for entry in page.annot_xrefs():
+        a_type, a_val = doc.xref_get_key(entry[0], "A")
+        if a_type != "dict":
+            continue
+        flat = a_val.replace(" ", "").replace("\n", "")
+        if "/S/Named" not in flat or "/N/GoBack" not in flat:
+            continue
+        rect = fitz.Rect()
+        r_type, r_val = doc.xref_get_key(entry[0], "Rect")
+        if r_type == "array":
+            x0, y0, x1, y1 = (float(v) for v in r_val.strip("[]").split())
+            rect = fitz.Rect(x0, page.rect.height - y1,
+                             x1, page.rect.height - y0)
+        out.append({"kind": fitz.LINK_NAMED, "from": rect,
+                    "nameddest": "GoBack", "xref": entry[0]})
+    return out
+
+
 doc = fitz.open(PDF_PATH)
 npages = doc.page_count
 
@@ -63,10 +95,13 @@ goback_pages = []
 for pno in range(npages):
     links = doc[pno].get_links()
     all_links.extend(links)
+    gb = goback_action_links(pno)
+    # get_links() drops /S/Named actions, so fold the raw BACK annot into
+    # the chrome count explicitly (it sits in the dock zone)
     chrome = [l for l in links if chrome_zone(l["from"])]
+    chrome += [l for l in gb if chrome_zone(l["from"])]
     per_page_chrome[pno] = chrome
-    if sum(1 for l in links if l["kind"] == fitz.LINK_NAMED
-           and l.get("nameddest") == "GoBack"):
+    if gb:
         goback_pages.append(pno)
 
 print("\n[1] chrome link counts per page")
@@ -80,11 +115,10 @@ if per_page_chrome[0]:
 else:
     ok("cover page is chrome-free")
 
-print("\n[2] exactly one LINK_NAMED GoBack per non-cover page")
+print("\n[2] exactly one raw /Named /GoBack action per non-cover page")
 bad = []
 for pno in range(1, npages):
-    n = sum(1 for l in doc[pno].get_links()
-            if l["kind"] == fitz.LINK_NAMED and l.get("nameddest") == "GoBack")
+    n = len(goback_action_links(pno))
     if n != 1:
         bad.append((pno + 1, n))
 if goback_pages and 0 in goback_pages:

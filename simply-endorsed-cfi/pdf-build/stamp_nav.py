@@ -18,6 +18,12 @@ binder's endorse_chrome.py); this file is only the standalone-PDF wrapper:
 deck = CONTENTS|LIBRARY|WORKFLOWS|GUIDANCE + AC button, page offset 0, and
 BACK via a raw /Named /GoBack action (chrome_core.insert_raw_goback).
 
+All chrome text uses an embedded bold TTF (fonts/Inter-700.ttf via
+chrome_core's CHROME_FONT helpers — core-14 Helvetica is never embedded
+and breaks fit_size() under viewer substitution). The final save uses
+subset_fonts() + garbage=4, deflate=True, clean=True so the stamped file
+stays close to the clean base (idea-48).
+
 After chrome is stamped, every ZZPGM marker is redacted out of the shipped
 text layer (chrome_core.scrub_pgm_markers) so in-PDF search, copy-paste,
 and screen readers stay clean; the pristine .base.pdf keeps its markers
@@ -53,6 +59,7 @@ from chrome_core import (      # noqa: F401  (re-exported for legacy callers)
     RAIL_X0, RAIL_DRAW_X0, HERO_Y0, HERO_H, BEAD_H, BEAD_PITCH,
     BEAD_FIRST_Y0, LINK_TO, hx, TITAN_DARK, TITAN_MID, ACTIVE_BLUE, SHADOW,
     SLATE, DIM, BEVEL_DARK, WHITE, RULE, NEUTRAL, BTN_FS, RADIUS, rrect,
+    CHROME_FONT_FILE, CHROME_FONT, CHROME_FONTNAME, chrome_w, chrome_text,
     fit_size, ctext, chevron, ext_arrow, nav_button, scan_markers,
     scrub_pgm_markers,
     build_model, insert_raw_goback, insert_named_goback, draw_top_deck,
@@ -184,7 +191,12 @@ def main():
     scrubbed = scrub_pgm_markers(doc)
 
     tmp = pdf_path + ".tmp-stamp.pdf"
-    doc.save(tmp, garbage=3, deflate=True)
+    # idea-48: subset the embedded chrome font (full TTF would add ~300 KB;
+    # the chrome uses only a few dozen glyphs), then garbage=4 + clean —
+    # together the stamped file lands well below the clean base (was
+    # garbage=3, which bloated the file by ~48%). Exactly ONE save.
+    doc.subset_fonts()
+    doc.save(tmp, garbage=4, deflate=True, clean=True)
     doc.close()
     os.replace(tmp, pdf_path)
     print(f"stamped chrome onto pages 2..{npages} of {pdf_path}")

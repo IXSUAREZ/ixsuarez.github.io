@@ -25,6 +25,7 @@ parameterization points:
 Requires PyMuPDF (fitz). No file paths live here — callers own all I/O.
 """
 
+import os
 import re
 
 import fitz
@@ -59,6 +60,31 @@ RULE = hx("#E2E8F0")
 NEUTRAL = {"accent": TITAN_DARK, "soft": hx("#F1F5F9"),
            "line": hx("#CBD5E1"), "ink": hx("#334155")}
 
+# ── chrome font (idea-48) ───────────────────────────────────────────────
+# Embedded bold TTF for ALL stamped chrome text. Core-14 Helvetica-Bold
+# ("hebo") is never embedded in the PDF, so viewers substitute it and the
+# fit_size() measurements drift; an embedded font keeps metrics identical
+# in every viewer. insert_font() with a fixed resource name reuses one
+# document-wide font object, so the TTF lands in the file exactly once.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+CHROME_FONT_FILE = os.path.join(_HERE, "fonts", "Inter-700.ttf")
+CHROME_FONT = fitz.Font(fontfile=CHROME_FONT_FILE)
+CHROME_FONTNAME = "CFIB"
+
+
+def chrome_w(text, fs):
+    """Width of `text` at fontsize `fs` in the embedded chrome font."""
+    return CHROME_FONT.text_length(text, fontsize=fs)
+
+
+def chrome_text(page, point, text, fs, color):
+    """insert_text() with the embedded chrome font (registered per page
+    under a fixed resource name; PyMuPDF reuses the shared font object)."""
+    page.insert_font(fontname=CHROME_FONTNAME, fontfile=CHROME_FONT_FILE)
+    page.insert_text(point, text, fontname=CHROME_FONTNAME, fontsize=fs,
+                     color=color)
+
+
 BTN_FS = 7.0          # top bar / dock button font size
 RADIUS = 3.5
 
@@ -81,21 +107,20 @@ def rrect(page, rect, fill, border=None, border_w=0.6, shadow=True,
 
 
 def fit_size(text, max_w, base, minimum=4.2):
-    """Largest fontsize <= base at which text fits max_w (hebo)."""
+    """Largest fontsize <= base at which text fits max_w (chrome font)."""
     fs = base
-    while fs > minimum and fitz.get_text_length(
-            text, fontname="hebo", fontsize=fs) > max_w:
+    while fs > minimum and chrome_w(text, fs) > max_w:
         fs -= 0.1
     return fs
 
 
 def ctext(page, rect, text, fs, color, dy=0.0):
-    """Horizontally centered hebo text, cap-height vertically centered."""
+    """Horizontally centered chrome text, cap-height vertically centered."""
     fs = fit_size(text, rect.width - 6, fs)
-    tw = fitz.get_text_length(text, fontname="hebo", fontsize=fs)
+    tw = chrome_w(text, fs)
     baseline = rect.y0 + rect.height / 2 + fs * 0.35 + dy
-    page.insert_text((rect.x0 + (rect.width - tw) / 2, baseline),
-                     text, fontname="hebo", fontsize=fs, color=color)
+    chrome_text(page, (rect.x0 + (rect.width - tw) / 2, baseline),
+                text, fs, color)
     return fs, tw, baseline
 
 
@@ -127,7 +152,7 @@ def nav_button(page, rect, label, link, fill=TITAN_DARK, text_color=WHITE,
     border = tuple(c * 0.75 for c in fill)
     rrect(page, rect, fill, border=border, border_w=0.6, bevel=bevel)
     fs = fit_size(label, rect.width - 14, BTN_FS)
-    tw = fitz.get_text_length(label, fontname="hebo", fontsize=fs)
+    tw = chrome_w(label, fs)
     gap = 3.0 if chev else 0.0
     group_w = tw + (gap + 3.0 if chev else 0.0)
     x = rect.x0 + (rect.width - group_w) / 2
@@ -136,8 +161,7 @@ def nav_button(page, rect, label, link, fill=TITAN_DARK, text_color=WHITE,
     if chev < 0:
         chevron(page, x, ymid - 0.4, 2.6, -1, text_color)
         x += 3.0 + gap
-    page.insert_text((x, baseline), label, fontname="hebo",
-                     fontsize=fs, color=text_color)
+    chrome_text(page, (x, baseline), label, fs, text_color)
     if chev > 0:
         chevron(page, x + tw + gap, ymid - 0.4, 2.6, +1, text_color)
     if link:
@@ -318,8 +342,7 @@ def draw_top_deck(page, targets, active_label, source_url,
     the default only covers stale nav-data files."""
     x = 36.0
     for label, target in targets:
-        w = fitz.get_text_length(label, fontname="hebo",
-                                 fontsize=BTN_FS) + 24
+        w = chrome_w(label, BTN_FS) + 24
         rect = fitz.Rect(x, TOP_Y0, x + w, TOP_Y1)
         active = (label == active_label)
         nav_button(
@@ -329,15 +352,14 @@ def draw_top_deck(page, targets, active_label, source_url,
         x += w + 6
     # AC external source button (right cluster, ends x=548)
     label = ac_label
-    tw = fitz.get_text_length(label, fontname="hebo", fontsize=BTN_FS)
+    tw = chrome_w(label, BTN_FS)
     w = tw + 30
     rect = fitz.Rect(548 - w, TOP_Y0, 548, TOP_Y1)
     rrect(page, rect, TITAN_MID, border=tuple(c * 0.75 for c in TITAN_MID),
           border_w=0.6, bevel=BEVEL_DARK)
     baseline = rect.y0 + rect.height / 2 + BTN_FS * 0.35
     tx = rect.x0 + (rect.width - tw - 9) / 2
-    page.insert_text((tx, baseline), label, fontname="hebo",
-                     fontsize=BTN_FS, color=WHITE)
+    chrome_text(page, (tx, baseline), label, BTN_FS, WHITE)
     ext_arrow(page, tx + tw + 4, baseline - 1.2, 3.6, WHITE)
     page.insert_link({"kind": fitz.LINK_URI, "from": rect, "uri": source_url})
 
@@ -390,8 +412,8 @@ def draw_dock(page, rel, model, offset=0, goback=insert_raw_goback):
     crumb, _ = model["crumb_for"](rel)
     crumb_full = f"{crumb}  ·  p. {offset + rel + 1}"
     fs = fit_size(crumb_full, 240, BTN_FS, minimum=5.0)
-    page.insert_text((36, (DOCK_Y0 + DOCK_Y1) / 2 + fs * 0.35), crumb_full,
-                     fontname="hebo", fontsize=fs, color=SLATE)
+    chrome_text(page, (36, (DOCK_Y0 + DOCK_Y1) / 2 + fs * 0.35),
+                crumb_full, fs, SLATE)
     # right cluster: PREV CONTENTS NEXT BACK
     units = model["units"]
     ui = model["unit_index_for"](rel)
@@ -428,10 +450,10 @@ def draw_dock(page, rel, model, offset=0, goback=insert_raw_goback):
     border = tuple(c * 0.75 for c in TITAN_DARK)
     rrect(page, rects[3], TITAN_DARK, border=border, border_w=0.6, bevel=bevel)
     fs = fit_size("BACK", rects[3].width - 14, BTN_FS)
-    tw = fitz.get_text_length("BACK", fontname="hebo", fontsize=fs)
+    tw = chrome_w("BACK", fs)
     baseline = rects[3].y0 + rects[3].height / 2 + fs * 0.35
-    page.insert_text((rects[3].x0 + (rects[3].width - tw) / 2, baseline),
-                     "BACK", fontname="hebo", fontsize=fs, color=WHITE)
+    chrome_text(page, (rects[3].x0 + (rects[3].width - tw) / 2, baseline),
+                "BACK", fs, WHITE)
     if goback:
         goback(page, rects[3])
 
@@ -447,14 +469,14 @@ def draw_bead(page, y0, num, label, target_page, theme, active):
           radius=3.0)
     # number line
     nfs = fit_size(num, draw_rect.width - 8, 8.0)
-    ntw = fitz.get_text_length(num, fontname="hebo", fontsize=nfs)
-    page.insert_text((draw_rect.x0 + (draw_rect.width - ntw) / 2, y0 + 10.6),
-                     num, fontname="hebo", fontsize=nfs, color=txt)
+    ntw = chrome_w(num, nfs)
+    chrome_text(page, (draw_rect.x0 + (draw_rect.width - ntw) / 2,
+                       y0 + 10.6), num, nfs, txt)
     # abbrev line
     afs = fit_size(label, draw_rect.width - 6, 6.2)
-    atw = fitz.get_text_length(label, fontname="hebo", fontsize=afs)
-    page.insert_text((draw_rect.x0 + (draw_rect.width - atw) / 2, y0 + 19.6),
-                     label, fontname="hebo", fontsize=afs, color=txt)
+    atw = chrome_w(label, afs)
+    chrome_text(page, (draw_rect.x0 + (draw_rect.width - atw) / 2,
+                       y0 + 19.6), label, afs, txt)
     page.insert_link({"kind": fitz.LINK_GOTO, "from": hit_rect,
                       "page": target_page, "to": LINK_TO})
 
@@ -466,10 +488,10 @@ def draw_hero(page, code, target_page, theme):
           border=tuple(c * 0.75 for c in theme["accent"]), border_w=0.6,
           bevel=WHITE, radius=3.0)
     fs = fit_size(code, rect.width - 8, 11.0)
-    tw = fitz.get_text_length(code, fontname="hebo", fontsize=fs)
-    page.insert_text((rect.x0 + (rect.width - tw) / 2,
-                      rect.y0 + rect.height / 2 + fs * 0.35),
-                     code, fontname="hebo", fontsize=fs, color=WHITE)
+    tw = chrome_w(code, fs)
+    chrome_text(page, (rect.x0 + (rect.width - tw) / 2,
+                       rect.y0 + rect.height / 2 + fs * 0.35),
+                code, fs, WHITE)
     page.insert_link({"kind": fitz.LINK_GOTO, "from": hit,
                       "page": target_page, "to": LINK_TO})
 

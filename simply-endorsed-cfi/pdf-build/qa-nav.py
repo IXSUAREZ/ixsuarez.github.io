@@ -27,7 +27,11 @@ Checks:
      appear) lands on the page that actually carries its ZZPGM marker
   6. shipped text layer is marker-free: zero 'ZZPGM' anywhere in the
      stamped PDF (stamp_nav.py redacts the markers after stamping)
-  7. prints total link annotations + per-chapter bead counts (diagnostic)
+  7. every font object on every page is embedded — allow-list none
+     (idea-48: fails on Type3 glyph-path fonts and unembedded core-14)
+  8. stamped file size <= clean .base.pdf + 15% chrome allowance
+     (idea-48: garbage=4/deflate/clean + font subsetting diet; was +48%)
+  9. prints total link annotations + per-chapter bead counts (diagnostic)
 
 Marker page numbers are read from the `.base.pdf` sibling of the stamped
 PDF: stamp_nav.py scrubs the markers out of the shipped file, so the
@@ -377,7 +381,53 @@ else:
 base_zz = sum(base[p].get_text().count("ZZPGM|") for p in range(npages))
 print(f"        (base PDF still carries {base_zz} markers for the binder pipeline)")
 
-print("\n[7] per-chapter bead counts (diagnostic)")
+# ── idea-48: font embedding + file-size diet ────────────────────────────
+def check_fonts_embedded():
+    """Every font object on every page must be embedded (allow-list: none).
+    Catches Type3 glyph-path fonts (no font file) and unembedded core-14
+    references alike — both lack an extractable font file."""
+    print("\n[7] every font object embedded (no Type3 / core-14)")
+    seen = {}
+    for pno in range(npages):
+        for f in doc[pno].get_fonts(full=True):
+            seen.setdefault(f[0], (f[2], f[3], pno + 1))
+    unembedded = []
+    for xref, (ftype, basefont, page1) in seen.items():
+        if not doc.extract_font(xref)[3]:
+            unembedded.append((page1, xref, ftype, basefont or "-"))
+    if unembedded:
+        fail(f"unembedded font objects (page, xref, type, basefont): "
+             f"{sorted(unembedded)[:10]}")
+    else:
+        ok(f"all {len(seen)} unique font objects are embedded")
+
+
+def check_file_size():
+    """Stamp pass must not bloat the file: with garbage=4, deflate, clean
+    (+ subset_fonts) the stamped PDF lands within 15% of the clean base
+    (was +48% with garbage=3). The 15% headroom covers the chrome's own
+    content streams + link annotations, which are irreducible new bytes;
+    an at-or-below-base check was calibrated on the pre-idea-48 Type3
+    pipeline whose uncompressed base had more slack."""
+    print("\n[8] stamped file size <= clean base + 15% chrome allowance")
+    if not BASE_PATH or not os.path.exists(BASE_PATH):
+        ok(f"base PDF not found ({BASE_PATH}) — size check skipped")
+        return
+    final_sz = os.path.getsize(PDF_PATH)
+    base_sz = os.path.getsize(BASE_PATH)
+    pct = (final_sz - base_sz) * 100.0 / base_sz
+    if final_sz <= base_sz * 1.15:
+        ok(f"stamped {final_sz / 1e6:.2f} MB vs base {base_sz / 1e6:.2f} MB "
+           f"({pct:+.1f}%, allowance +15%)")
+    else:
+        fail(f"stamped {final_sz} bytes vs base {base_sz} bytes "
+             f"({pct:+.1f}% > +15% allowance)")
+
+
+check_fonts_embedded()
+check_file_size()
+
+print("\n[9] per-chapter bead counts (diagnostic)")
 cat_pages = sorted((markers[f"cat:{c['slug']}"], c) for c in NAV["categories"])
 for i, (pg, c) in enumerate(cat_pages):
     beads = [l for l in page_links[pg]

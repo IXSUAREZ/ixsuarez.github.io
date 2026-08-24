@@ -8,13 +8,20 @@ the Simply Endorsed CFI PDF (except the cover):
   * bottom dock  y=748..772 breadcrumb | PREV CONTENTS NEXT BACK(GoBack)
 
 Reads nav-data.json (make-nav-data.js) and the invisible ZZPGM|<key>|ZZ page
-markers already in the PDF text layer. Writes to a temp file and atomically
-replaces the target PDF.
+markers already in the PDF text layer. After chrome is stamped, every marker
+is redacted out of the shipped text layer (scrub_pgm_markers) so in-PDF
+search, copy-paste, and screen readers stay clean. Writes to a temp file and
+atomically replaces the target PDF.
 
 All drawing/model logic lives in chrome_core.py (idea #40 — shared with the
 binder's endorse_chrome.py); this file is only the standalone-PDF wrapper:
 deck = CONTENTS|LIBRARY|WORKFLOWS|GUIDANCE + AC button, page offset 0, and
 BACK via a raw /Named /GoBack action (chrome_core.insert_raw_goback).
+
+After chrome is stamped, every ZZPGM marker is redacted out of the shipped
+text layer (chrome_core.scrub_pgm_markers) so in-PDF search, copy-paste,
+and screen readers stay clean; the pristine .base.pdf keeps its markers
+for the binder pipeline and QA.
 
 Also stamps provenance metadata (author / subject / keywords / creator) onto
 the document: the creator field carries the UTC build timestamp plus the
@@ -22,12 +29,13 @@ dataHash of the committed dist/data-snapshot.json (see qa-data-drift.js), so
 every shipped PDF states exactly which data revision produced it.
 
 Target PDF comes from config.py (config.json; SIMPLY_ENDORSED_OUT env var
-overrides it for scratch runs).
+overrides it for scratch runs); a positional pdf-path argument overrides
+both.
 
-Usage:  ./stamp_nav.py                stamp the rendered PDF
-        ./stamp_nav.py --from-base    copy .base.pdf over the target first,
-                                      then stamp (fast re-stamp: skips the
-                                      minutes-long render-pdf.js re-run)
+Usage:  ./stamp_nav.py [pdf-path]   stamp the rendered PDF
+        ./stamp_nav.py --from-base  copy .base.pdf over the target first,
+                                    then stamp (fast re-stamp: skips the
+                                    minutes-long render-pdf.js re-run)
 """
 
 import argparse
@@ -46,6 +54,7 @@ from chrome_core import (      # noqa: F401  (re-exported for legacy callers)
     BEAD_FIRST_Y0, LINK_TO, hx, TITAN_DARK, TITAN_MID, ACTIVE_BLUE, SHADOW,
     SLATE, DIM, BEVEL_DARK, WHITE, RULE, NEUTRAL, BTN_FS, RADIUS, rrect,
     fit_size, ctext, chevron, ext_arrow, nav_button, scan_markers,
+    scrub_pgm_markers,
     build_model, insert_raw_goback, insert_named_goback, draw_top_deck,
     draw_dock, draw_bead, draw_hero, draw_rail,
 )
@@ -104,23 +113,31 @@ def set_provenance_metadata(doc, nav):
 def main():
     ap = argparse.ArgumentParser(
         description="Stamp navigation chrome onto the Simply Endorsed CFI PDF.")
+    ap.add_argument("pdf", nargs="?", default=None,
+                    help="target PDF path (overrides config.py / "
+                         "SIMPLY_ENDORSED_OUT for this run)")
     ap.add_argument("--from-base", action="store_true",
                     help="copy the pristine .base.pdf over the target first, "
                          "then stamp (fast re-stamp without re-rendering)")
     args = ap.parse_args()
 
+    pdf_path = args.pdf or PDF_PATH
+    base_path = (pdf_path[:-4] + ".base.pdf"
+                 if pdf_path.lower().endswith(".pdf")
+                 else pdf_path + ".base.pdf")
+
     if args.from_base:
-        if not os.path.exists(BASE_PATH):
-            print(f"--from-base: base copy not found: {BASE_PATH}\n"
+        if not os.path.exists(base_path):
+            print(f"--from-base: base copy not found: {base_path}\n"
                   "run node render-pdf.js first to create it",
                   file=sys.stderr)
             sys.exit(1)
-        shutil.copyfile(BASE_PATH, PDF_PATH)
-        print(f"reset {PDF_PATH} from clean base {BASE_PATH}")
+        shutil.copyfile(base_path, pdf_path)
+        print(f"reset {pdf_path} from clean base {base_path}")
 
     with open(NAV_DATA) as f:
         nav = json.load(f)
-    doc = fitz.open(PDF_PATH)
+    doc = fitz.open(pdf_path)
     npages = doc.page_count
 
     # idempotence guard: a raw /Named /GoBack BACK annot on page 2 (index 1)
@@ -163,11 +180,15 @@ def main():
 
     set_provenance_metadata(doc, nav)
 
-    tmp = PDF_PATH + ".tmp-stamp.pdf"
+    # markers have served their purpose — scrub them from the text layer
+    scrubbed = scrub_pgm_markers(doc)
+
+    tmp = pdf_path + ".tmp-stamp.pdf"
     doc.save(tmp, garbage=3, deflate=True)
     doc.close()
-    os.replace(tmp, PDF_PATH)
-    print(f"stamped chrome onto pages 2..{npages} of {PDF_PATH}")
+    os.replace(tmp, pdf_path)
+    print(f"stamped chrome onto pages 2..{npages} of {pdf_path}")
+    print(f"scrubbed {scrubbed} ZZPGM page markers from the shipped text layer")
 
 
 if __name__ == "__main__":

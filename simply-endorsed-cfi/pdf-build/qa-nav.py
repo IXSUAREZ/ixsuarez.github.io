@@ -25,13 +25,21 @@ Checks:
      chapter marker page plus one bead per bundle / workflow / guidance
      entry — and EVERY bead (all ~88 targets, on every page where they
      appear) lands on the page that actually carries its ZZPGM marker
-  6. prints total link annotations + per-chapter bead counts
+  6. shipped text layer is marker-free: zero 'ZZPGM' anywhere in the
+     stamped PDF (stamp_nav.py redacts the markers after stamping)
+  7. prints total link annotations + per-chapter bead counts (diagnostic)
+
+Marker page numbers are read from the `.base.pdf` sibling of the stamped
+PDF: stamp_nav.py scrubs the markers out of the shipped file, so the
+pristine pre-stamp base is the only place they still exist. Pagination is
+identical between the two files (stamping only adds overlays).
 
 Geometry constants and the nav-unit model come from stamp_nav.py itself
-(the module under test is also the spec); marker pages and link targets
-are re-derived here from the shipped PDF and nav-data.json.
+(the module under test is also the spec); link targets are re-derived here
+from the shipped PDF, the base PDF's markers, and nav-data.json.
 
-Usage:  ./qa-nav.py [pdf-path]     (default: the shipped PDF)
+Usage:  ./qa-nav.py [pdf-path]     (default: config.py's shipped PDF; the
+        base is derived by replacing ".pdf" with ".base.pdf")
 Run via the pdf-build venv python. Exit 0 = all green, 1 = failures.
 (Invoke with the interpreter path — the shebang contains a space.)
 
@@ -53,8 +61,10 @@ sys.path.insert(0, HERE)
 import stamp_nav  # noqa: E402  geometry constants + build_model (the spec)
 
 # argv[1] overrides the config.py path (config.json; SIMPLY_ENDORSED_OUT
-# env var) for scratch runs.
+# env var) for scratch runs; the base is derived from the resolved path.
 PDF_PATH = sys.argv[1] if len(sys.argv) > 1 else config.PDF_PATH
+BASE_PATH = (PDF_PATH[:-4] if PDF_PATH.lower().endswith(".pdf")
+             else PDF_PATH) + ".base.pdf"
 
 with open(os.path.join(HERE, "nav-data.json")) as f:
     NAV = json.load(f)
@@ -135,13 +145,23 @@ def goback_action_links(pno):
 
 doc = fitz.open(PDF_PATH)
 npages = doc.page_count
-page_texts = [doc[p].get_text() for p in range(npages)]
 page_links = [doc[p].get_links() for p in range(npages)]
 
-# marker table (target verification) — first occurrence wins, as stamp_nav
+# markers (target verification) — read from the pristine pre-stamp base;
+# stamp_nav.py redacts them out of the shipped PDF (see check [6]).
+# First occurrence wins, as stamp_nav.
+if not os.path.exists(BASE_PATH):
+    print(f"  FAIL  base PDF not found: {BASE_PATH}\n"
+          f"        (run node render-pdf.js first — it writes the .base.pdf)")
+    sys.exit(1)
+base = fitz.open(BASE_PATH)
+if base.page_count != npages:
+    print(f"  FAIL  page count mismatch: stamped={npages} base={base.page_count}")
+    sys.exit(1)
+base_texts = [base[p].get_text() for p in range(npages)]
 markers = {}
 for pno in range(npages):
-    for m in re.finditer(r"ZZPGM\|([^|]+)\|ZZ", page_texts[pno]):
+    for m in re.finditer(r"ZZPGM\|([^|]+)\|ZZ", base_texts[pno]):
         markers.setdefault(m.group(1), pno)
 
 need = (
@@ -329,7 +349,7 @@ for pno in range(1, npages):
             tgt = l.get("page", -1)
             want = markers[mkey]
             if l["kind"] == fitz.LINK_GOTO and tgt == want \
-                    and f"ZZPGM|{mkey}|ZZ" in page_texts[tgt]:
+                    and f"ZZPGM|{mkey}|ZZ" in base_texts[tgt]:
                 verified_targets.add(mkey)
             else:
                 probs.append(f"bead {eid} -> page "
@@ -348,7 +368,16 @@ else:
        f"+ 7 guidance) lands on a page carrying its marker")
     ok("rail-less pages (cover/front matter/part dividers) carry zero rail links")
 
-print("\n[6] per-chapter bead counts (diagnostic)")
+print("\n[6] shipped text layer is marker-free")
+zz_pages = [p + 1 for p in range(npages) if "ZZPGM" in doc[p].get_text()]
+if zz_pages:
+    fail(f"'ZZPGM' still present in shipped text on pages: {zz_pages}")
+else:
+    ok("zero 'ZZPGM' in the stamped PDF text layer")
+base_zz = sum(base[p].get_text().count("ZZPGM|") for p in range(npages))
+print(f"        (base PDF still carries {base_zz} markers for the binder pipeline)")
+
+print("\n[7] per-chapter bead counts (diagnostic)")
 cat_pages = sorted((markers[f"cat:{c['slug']}"], c) for c in NAV["categories"])
 for i, (pg, c) in enumerate(cat_pages):
     beads = [l for l in page_links[pg]

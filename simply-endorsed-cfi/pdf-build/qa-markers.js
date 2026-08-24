@@ -46,6 +46,16 @@ const counts = new Map();
 for (const t of tokens) counts.set(t, (counts.get(t) || 0) + 1);
 pass(`${tokens.length} marker tokens found (${counts.size} distinct keys)`);
 
+// every marker span must be aria-hidden so tagged-PDF screen readers skip it
+{
+  const bare = html.match(/<span class="pgm">/g) || [];
+  if (bare.length) {
+    fail(`${bare.length} marker span(s) missing aria-hidden="true"`);
+  } else {
+    pass("every marker span carries aria-hidden=\"true\"");
+  }
+}
+
 /* ── 2. No duplicates ────────────────────────────────────────────────── */
 console.log("\n[2] Duplicate marker keys");
 {

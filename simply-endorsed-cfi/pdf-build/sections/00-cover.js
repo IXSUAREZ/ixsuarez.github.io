@@ -60,7 +60,7 @@ module.exports = {
   </div>
   <p class="cov-disclaimer">Hyperlinked study reference &mdash; not for operational use. Always verify against current FAA sources.</p>
   <div class="cov-rule"></div>
-  <span class="pgm">ZZPGM|cover:end|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|cover:end|ZZ</span>
 </div>
 <style>
 .cov-wrap { position: relative; }

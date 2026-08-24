@@ -10,11 +10,15 @@ toc.png, part-1.png, cat-student-pilot.png, wf-pre-solo.png,
 gs-journey.png, ...) — that stability is what makes qa/baseline/
 comparable across builds.
 
+Markers are read from the pristine `.base.pdf` sibling (stamp_nav.py scrubs
+them out of the shipped PDF); the stamped PDF is what gets rasterized.
+Pagination is identical between the two files (stamping only adds overlays).
+
 Fixed page list: cover, toc, the 3 part dividers, one page per category
 chapter, one workflow flow page (pre-solo), and the journey, quickref,
 flashcards and appendix guidance pages.
 
-Usage:  ./render-pages.py [pdf-path]     (default: the shipped PDF)
+Usage:  ./render-pages.py [pdf-path]     (default: config.py's shipped PDF)
 Writes: qa/pages/<key>.png + qa/pages/manifest.json (key → marker → page)
 
 Run via the pdf-build venv python. Exit 0 = rendered, 1 = missing markers.
@@ -43,13 +47,26 @@ GUIDANCE_PICKS = ["journey", "quickref", "flashcards", "appendix"]
 
 def main():
     pdf_path = sys.argv[1] if len(sys.argv) > 1 else config.PDF_PATH
+    base_path = (pdf_path[:-4] + ".base.pdf"
+                 if pdf_path.lower().endswith(".pdf")
+                 else pdf_path + ".base.pdf")
     with open(os.path.join(HERE, "nav-data.json")) as f:
         nav = json.load(f)
 
+    if not os.path.exists(base_path):
+        print(f"base PDF not found: {base_path}\n"
+              "run node render-pdf.js first — it writes the .base.pdf",
+              file=sys.stderr)
+        sys.exit(1)
     doc = fitz.open(pdf_path)
+    base = fitz.open(base_path)
+    if base.page_count != doc.page_count:
+        print(f"page count mismatch: stamped={doc.page_count} "
+              f"base={base.page_count}", file=sys.stderr)
+        sys.exit(1)
     markers = {}
-    for pno in range(doc.page_count):
-        for m in re.finditer(r"ZZPGM\|([^|]+)\|ZZ", doc[pno].get_text()):
+    for pno in range(base.page_count):
+        for m in re.finditer(r"ZZPGM\|([^|]+)\|ZZ", base[pno].get_text()):
             markers.setdefault(m.group(1), pno)
 
     # (output key, marker key) — the cover is always page 0 (marker None)

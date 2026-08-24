@@ -127,7 +127,7 @@ function renderQuickRef(data, helpers) {
     .join("\n");
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:quickref|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:quickref|ZZ</span>
   <h2 id="quickref">Quick Reference</h2>
   <p>Print-friendly tables of the limits, records, and cross-references CFIs reach for most. Endorsement pills jump to the full card in Part I; CFR chips open the current eCFR text.</p>
 
@@ -190,7 +190,7 @@ function renderCfiCareer(data, helpers) {
     .join("\n      ");
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:cfi-career|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:cfi-career|ZZ</span>
   <h2 id="cfi-career">CFI Career — Renewal, Reinstatement &amp; Trainer Qualification</h2>
   <p>Everything about keeping the instructor certificate itself alive: the December 2024 rule change, the six renewal pathways, reinstatement after expiration, and who may train initial CFI applicants.</p>
 
@@ -260,7 +260,7 @@ function renderFlashcards(data, helpers) {
     .join("\n");
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:flashcards|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:flashcards|ZZ</span>
   <h2 id="flashcards">DPE Prep Flashcards</h2>
   <p>Fifteen oral-exam-style questions covering the endorsement knowledge DPEs actually probe. Answers link back to the full endorsement cards and the governing regulations.</p>
 ${cards}
@@ -289,7 +289,7 @@ function renderLessonPlan(data, helpers) {
     .join("\n");
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:lesson-plan|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:lesson-plan|ZZ</span>
   <h2 id="lesson-plan">Lesson Plan — Teaching Endorsements</h2>
   <p>A ten-part ground lesson for CFI candidates and working instructors on issuing, managing, and verifying AC 61-65K endorsements.</p>
   <ol class="lp-toc">
@@ -325,7 +325,7 @@ function renderAppendix(data, helpers) {
   const meta = data.APP_META;
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:appendix|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:appendix|ZZ</span>
   <h2 id="appendix">Appendix</h2>
 
   <h3>eCFR Link Index</h3>

@@ -158,6 +158,31 @@ def scan_markers(doc, offset=0, count=None):
     return markers
 
 
+def scrub_pgm_markers(doc):
+    """Redact every ZZPGM|<key>|ZZ marker out of the shipped text layer.
+
+    Call AFTER scan_markers() and chrome stamping: the markers have done
+    their job and would otherwise pollute in-PDF search, copy-paste, and
+    screen readers. Redaction rects come from search_for() on the exact
+    token, so they wrap only the 0.6pt white marker glyphs — body text,
+    vector banner fills, and the freshly stamped chrome are untouched
+    (fill=False paints nothing; LINE_ART_NONE spares vector graphics).
+    Returns the number of redacted marker rects.
+    """
+    scrubbed = 0
+    for pno in range(doc.page_count):
+        page = doc[pno]
+        tokens = [m.group(0)
+                  for m in re.finditer(r"ZZPGM\|[^|]+\|ZZ", page.get_text())]
+        for token in tokens:
+            for rect in page.search_for(token, quads=False):
+                page.add_redact_annot(rect, fill=False, cross_out=False)
+                scrubbed += 1
+        if tokens:
+            page.apply_redactions(graphics=fitz.PDF_REDACT_LINE_ART_NONE)
+    return scrubbed
+
+
 def build_model(nav, markers):
     cats_by_slug = {c["slug"]: c for c in nav["categories"]}
     # physical category order (the PDF's render order, not CATEGORY_ORDER)

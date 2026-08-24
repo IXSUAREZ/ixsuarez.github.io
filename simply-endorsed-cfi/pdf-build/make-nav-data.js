@@ -10,6 +10,8 @@
  *     BROWSE_STRUCTURE order with hand-tuned rail abbreviations
  *   - workflows: the 9 flow pages (pre-solo + featured bundles) + wf-index
  *   - guidance: the 7 top-level Part III sections
+ *   - lessons: the 10 GUIDANCE_SECTIONS lesson sub-pages rendered under
+ *     the lesson-plan section (PREV/NEXT steps through them, idea-01)
  *
  * Abbreviation rules: UPPERCASE, <= 10 chars, no ellipsis, ASCII only
  * (core Helvetica is WinAnsi — no arrows/guillemets). Hand-tuned below;
@@ -186,16 +188,25 @@ for (const c of data.BROWSE_STRUCTURE) {
 }
 workflows.push({ id: "wf-index", label: "Workflow Index", abbrev: "INDEX" });
 
+// Lesson-plan sub-pages (Part III): the 10 GUIDANCE_SECTIONS lessons
+// rendered under the lesson-plan section, in render order. stamp_nav.py
+// inserts them into the PREV/NEXT unit sequence after gs:lesson-plan.
+const lessons = data.GUIDANCE_SECTIONS.map((g) => ({
+  id: g.id,
+  title: g.title,
+}));
+
 const out = {
   sourceUrl: data.APP_META.sourceUrl,
   categories,
   workflows,
   guidance: GUIDANCE_SECTIONS,
+  lessons,
 };
 
 const dest = path.join(__dirname, "nav-data.json");
 fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n");
 console.log(`wrote ${dest}`);
 console.log(
-  `categories=${categories.length} bundles=${categories.reduce((n, c) => n + c.bundles.length, 0)} workflows=${workflows.length} guidance=${GUIDANCE_SECTIONS.length}`
+  `categories=${categories.length} bundles=${categories.reduce((n, c) => n + c.bundles.length, 0)} workflows=${workflows.length} guidance=${GUIDANCE_SECTIONS.length} lessons=${lessons.length}`
 );

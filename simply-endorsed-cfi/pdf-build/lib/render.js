@@ -41,14 +41,17 @@ function anchorForEndorsement(id) {
 
 /**
  * pgmMarker(key) → invisible page-marker span, e.g. pgmMarker("cat:student-pilot")
- * → `<span class="pgm">ZZPGM|cat:student-pilot|ZZ</span>`. The .pgm CSS keeps it
- * visually invisible (0.6pt white, zero line-height) while the text stays in
- * the PDF text layer for the later navigation-chrome stamping pass. Token
- * format is pipe-delimited with no spaces; place the span inside the same
- * wrapper as the anchor it marks so both land on the same page.
+ * → `<span class="pgm" aria-hidden="true">ZZPGM|cat:student-pilot|ZZ</span>`.
+ * The .pgm CSS keeps it visually invisible (0.6pt white, zero line-height)
+ * while the text stays in the PDF text layer for the later navigation-chrome
+ * stamping pass; aria-hidden keeps it out of the tagged-PDF struct tree so
+ * screen readers never announce it. stamp_nav.py redacts the token from the
+ * shipped file once chrome is stamped, so search/copy-paste stay clean.
+ * Token format is pipe-delimited with no spaces; place the span inside the
+ * same wrapper as the anchor it marks so both land on the same page.
  */
 function pgmMarker(key) {
-  return `<span class="pgm">ZZPGM|${esc(key)}|ZZ</span>`;
+  return `<span class="pgm" aria-hidden="true">ZZPGM|${esc(key)}|ZZ</span>`;
 }
 
 /**

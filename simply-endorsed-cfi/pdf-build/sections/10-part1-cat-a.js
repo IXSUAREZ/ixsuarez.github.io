@@ -287,7 +287,7 @@ module.exports = {
     const emittedAnchors = new Set();
 
     const divider = `<div class="page-break">
-  <span class="pgm">ZZPGM|part:part-1|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|part:part-1|ZZ</span>
   <h1 class="section-title" id="part-1">Part I — Endorsement Library</h1>
   <p>This part collects all ${total} model endorsements from FAA ${helpers.esc(
       data.APP_META.display

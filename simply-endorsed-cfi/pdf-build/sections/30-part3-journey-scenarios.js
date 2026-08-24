@@ -232,7 +232,7 @@ ${stagesHtml}`;
     .join("\n");
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:journey|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:journey|ZZ</span>
   <h2 class="jny-h2" id="journey">Student Journey</h2>
   <p class="jny-intro">The ${(data.JOURNEY_STAGES || []).length} stages of a student&#39;s training, grouped by phase — from enrollment through the checkride — with the regulation, endorsements, time limits, and gotchas that apply at each step. Endorsement chips jump to the full card in Part I.</p>
   ${groupsHtml}
@@ -274,7 +274,7 @@ function renderScenarios(data, helpers) {
     .join("\n");
 
   return `<div class="page-break">
-  <span class="pgm">ZZPGM|gs:scenarios|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|gs:scenarios|ZZ</span>
   <h2 class="scn-h2" id="scenarios">DPE Scenarios</h2>
   <p class="scn-intro">${(data.SCENARIO_CARDS || []).length} real-world situations examiners and instructors actually face, walked through step by step — with the endorsements each one triggers and the deadlines and pitfalls to watch. Endorsement chips jump to the full card in Part I.</p>
   ${cardsHtml}
@@ -287,7 +287,7 @@ module.exports = {
   title: "Part III — Guidance: Student Journey & DPE Scenarios",
   render(data, helpers) {
     const divider = `<div class="page-break">
-  <span class="pgm">ZZPGM|part:part-3|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|part:part-3|ZZ</span>
   <h1 class="section-title" id="part-3">Part III — Guidance</h1>
   <p class="p3-lede">Part I cataloged what each endorsement says. This part turns that catalog into operational guidance: the student journey from enrollment to checkride shows <em>when</em> each endorsement is used, and the DPE scenarios walk through the situations where the paperwork most often goes wrong.</p>
   <div class="p3-contents">

@@ -113,7 +113,7 @@ module.exports = {
 
 <!-- (c) master TOC on its own page -->
 <div class="page-break">
-  <span class="pgm">ZZPGM|toc:toc|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|toc:toc|ZZ</span>
   <h1 class="section-title">Contents</h1>
   <div class="toc-cols">
     <div class="toc-col">

@@ -210,7 +210,7 @@ function indexHtml(data, helpers, flowIds) {
   }).join("\n");
 
   return `<div class="page-break wf-index">
-  <span class="pgm">ZZPGM|wf:wf-index|ZZ</span>
+  <span class="pgm" aria-hidden="true">ZZPGM|wf:wf-index|ZZ</span>
   <h3 id="wf-index">All workflows index</h3>
   <p class="wf-lead">Every bundle in the book, grouped by category. Links jump to the bundle headers in Part I; bundles with a dedicated flow page also link back to it.</p>
   ${cats}
@@ -242,7 +242,7 @@ module.exports = {
       .join("\n  ");
 
     const divider = `<div class="page-break wf-divider">
-<span class="pgm">ZZPGM|part:part-2|ZZ</span>
+<span class="pgm" aria-hidden="true">ZZPGM|part:part-2|ZZ</span>
 <h1 class="section-title" id="part-2">Part II — Workflow Flows</h1>
 <p class="wf-part-lead">This part walks through the most common real-world sign-off workflows a CFI performs — from a student pilot's pre-solo prerequisites and first solo to checkride packages, flight reviews, and aircraft endorsements. Each numbered step names the exact AC 61-65K endorsement used at that point and links straight to its full card in Part I, so you can jump from the workflow to the verbatim endorsement language and back. Supplemental endorsements that are commonly signed in the same sitting are listed under "Also commonly included."</p>
 <ul class="wf-part-nav">

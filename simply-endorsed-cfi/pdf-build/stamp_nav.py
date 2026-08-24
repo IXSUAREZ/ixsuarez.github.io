@@ -8,11 +8,14 @@ the Simply Endorsed CFI PDF (except the cover):
   * bottom dock  y=748..772 breadcrumb | PREV CONTENTS NEXT BACK(GoBack)
 
 Reads nav-data.json (make-nav-data.js) and the invisible ZZPGM|<key>|ZZ page
-markers already in the PDF text layer. Writes to a temp file and atomically
-replaces the target PDF.
+markers already in the PDF text layer. After chrome is stamped, every marker
+is redacted out of the shipped text layer (scrub_pgm_markers) so in-PDF
+search, copy-paste, and screen readers stay clean. Writes to a temp file and
+atomically replaces the target PDF.
 
-Usage:  ./stamp_nav.py            (idempotent-guarded; re-run `node
-        render-pdf.js` first if the PDF was already stamped)
+Usage:  ./stamp_nav.py [pdf-path]   (idempotent-guarded; re-run `node
+        render-pdf.js` first if the PDF was already stamped). pdf-path
+        defaults to the shipped PDF in SUAREZ.CFI/output.
 """
 
 import json
@@ -23,7 +26,8 @@ import sys
 import fitz
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH = "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+PDF_PATH = sys.argv[1] if len(sys.argv) > 1 else \
+    "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
 NAV_DATA = os.path.join(HERE, "nav-data.json")
 
 PAGE_W, PAGE_H = 612.0, 792.0
@@ -150,6 +154,32 @@ def scan_markers(doc):
             if key not in markers:          # first occurrence wins
                 markers[key] = pno
     return markers
+
+
+# ── marker scrub ────────────────────────────────────────────────────────
+def scrub_pgm_markers(doc):
+    """Redact every ZZPGM|<key>|ZZ marker out of the shipped text layer.
+
+    Call AFTER scan_markers() and chrome stamping: the markers have done
+    their job and would otherwise pollute in-PDF search, copy-paste, and
+    screen readers. Redaction rects come from search_for() on the exact
+    token, so they wrap only the 0.6pt white marker glyphs — body text,
+    vector banner fills, and the freshly stamped chrome are untouched
+    (fill=False paints nothing; LINE_ART_NONE spares vector graphics).
+    Returns the number of redacted marker rects.
+    """
+    scrubbed = 0
+    for pno in range(doc.page_count):
+        page = doc[pno]
+        tokens = [m.group(0)
+                  for m in re.finditer(r"ZZPGM\|[^|]+\|ZZ", page.get_text())]
+        for token in tokens:
+            for rect in page.search_for(token, quads=False):
+                page.add_redact_annot(rect, fill=False, cross_out=False)
+                scrubbed += 1
+        if tokens:
+            page.apply_redactions(graphics=fitz.PDF_REDACT_LINE_ART_NONE)
+    return scrubbed
 
 
 def build_model(doc, nav, markers):
@@ -463,11 +493,15 @@ def main():
         draw_rail(page, pno, model, nav)
         draw_dock(page, pno, model, nav)
 
+    # markers have served their purpose — scrub them from the text layer
+    scrubbed = scrub_pgm_markers(doc)
+
     tmp = PDF_PATH + ".tmp-stamp.pdf"
     doc.save(tmp, garbage=3, deflate=True)
     doc.close()
     os.replace(tmp, PDF_PATH)
     print(f"stamped chrome onto pages 2..{doc_page_count[0]} of {PDF_PATH}")
+    print(f"scrubbed {scrubbed} ZZPGM page markers from the shipped text layer")
 
 
 if __name__ == "__main__":

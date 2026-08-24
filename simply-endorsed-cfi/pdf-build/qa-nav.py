@@ -10,7 +10,17 @@ Checks:
      full; bead counts printed for ALL chapters)
   4. 5 sampled bead links land on pages containing their bundle marker
   5. prints total link annotations + per-chapter bead counts
+  6. shipped text layer is marker-free: zero 'ZZPGM' anywhere in the
+     stamped PDF (stamp_nav.py redacts the markers after stamping)
 
+Marker page numbers are read from the `.base.pdf` sibling of the stamped
+PDF: stamp_nav.py scrubs the markers out of the shipped file, so the
+pristine pre-stamp base is the only place they still exist. Pagination is
+identical between the two files (stamping only adds overlays).
+
+Usage:  qa-nav.py [pdf-path]   (pdf-path defaults to the shipped PDF in
+        SUAREZ.CFI/output; the base is derived by replacing ".pdf" with
+        ".base.pdf")
 Run via the pdf-build venv python. Exit 0 = all green, 1 = failures.
 (Invoke with the interpreter path — the shebang contains a space.)
 """
@@ -23,7 +33,10 @@ import sys
 import fitz
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH = "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+PDF_PATH = sys.argv[1] if len(sys.argv) > 1 else \
+    "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf"
+BASE_PATH = (PDF_PATH[:-4] if PDF_PATH.lower().endswith(".pdf")
+             else PDF_PATH) + ".base.pdf"
 
 with open(os.path.join(HERE, "nav-data.json")) as f:
     NAV = json.load(f)
@@ -51,10 +64,19 @@ def chrome_zone(r):
 doc = fitz.open(PDF_PATH)
 npages = doc.page_count
 
-# markers (target verification)
+# markers (target verification) — read from the pristine pre-stamp base;
+# stamp_nav.py redacts them out of the shipped PDF (see check [6])
+if not os.path.exists(BASE_PATH):
+    print(f"  FAIL  base PDF not found: {BASE_PATH}\n"
+          f"        (run node render-pdf.js first — it writes the .base.pdf)")
+    sys.exit(1)
+base = fitz.open(BASE_PATH)
+if base.page_count != npages:
+    print(f"  FAIL  page count mismatch: stamped={npages} base={base.page_count}")
+    sys.exit(1)
 markers = {}
 for pno in range(npages):
-    for m in re.finditer(r"ZZPGM\|([^|]+)\|ZZ", doc[pno].get_text()):
+    for m in re.finditer(r"ZZPGM\|([^|]+)\|ZZ", base[pno].get_text()):
         markers.setdefault(m.group(1), pno)
 
 all_links = []
@@ -128,7 +150,7 @@ for i, (pg, c) in enumerate(cat_pages):
         b = c["bundles"][bi]
         tgt = l.get("page", -1)
         want = markers[f"bundle:{b['id']}"]
-        txt = doc[tgt].get_text() if 0 <= tgt < npages else ""
+        txt = base[tgt].get_text() if 0 <= tgt < npages else ""
         if tgt != want or f"ZZPGM|bundle:{b['id']}|ZZ" not in txt:
             sample_bad.append((c["slug"], b["id"], tgt, want))
         sampled += 1
@@ -141,6 +163,15 @@ print("\n[5] totals")
 print(f"        total link annotations in PDF: {len(all_links)}")
 new_links = sum(len(v) for v in per_page_chrome.values())
 print(f"        chrome links added (in chrome zones): {new_links}")
+
+print("\n[6] shipped text layer is marker-free")
+zz_pages = [p + 1 for p in range(npages) if "ZZPGM" in doc[p].get_text()]
+if zz_pages:
+    fail(f"'ZZPGM' still present in shipped text on pages: {zz_pages}")
+else:
+    ok("zero 'ZZPGM' in the stamped PDF text layer")
+base_zz = sum(base[p].get_text().count("ZZPGM|") for p in range(npages))
+print(f"        (base PDF still carries {base_zz} markers for the binder pipeline)")
 
 print("\n" + "─" * 40)
 if failures:

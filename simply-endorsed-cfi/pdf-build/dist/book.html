@@ -154,6 +154,14 @@ h4 {
   letter-spacing: 0;
 }
 
+/* Card markers (the en:<id> page markers) sit inside .endorsement-card,
+ * which is break-inside:avoid — an in-flow marker's strut line would grow
+ * every card and cascade into extra pages. Out of flow it paints at its
+ * static position (same page as the card anchor) with zero layout impact. */
+.endorsement-card > .pgm {
+  position: absolute;
+}
+
 /* ── Cover ───────────────────────────────────────────────────────────── */
 
 .cover {
@@ -1435,6 +1443,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-1" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.1|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -1474,6 +1483,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-2" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.2|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -1580,6 +1590,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-3" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.3|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.3</span>
       <h4 class="ec-title">Pre-solo aeronautical knowledge</h4>
@@ -1616,6 +1627,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-4" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.4|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.4</span>
       <h4 class="ec-title">Pre-solo flight training</h4>
@@ -1652,6 +1664,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-6" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.6|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.6</span>
       <h4 class="ec-title">Solo flight (first 90-calendar-day period)</h4>
@@ -1689,6 +1702,7 @@ p {
   </article>
 <p class="p1a-sub-label">Also include if you are using the TSA citizenship logbook endorsement method.</p>
 <article class="endorsement-card" id="A-14" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.14|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.14</span>
       <h4 class="ec-title">Endorsement of U.S. citizenship recommended by the Transportation Security Administration (TSA)</h4>
@@ -1730,6 +1744,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-5" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.5|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.5</span>
       <h4 class="ec-title">Pre-solo flight training at night</h4>
@@ -1772,6 +1787,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-7" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.7|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.7</span>
       <h4 class="ec-title">Solo flight (each additional 90-calendar-day period)</h4>
@@ -1814,6 +1830,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-8" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.8|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.8</span>
       <h4 class="ec-title">Solo takeoffs and landings at another airport within 25 nautical miles (NM)</h4>
@@ -1856,6 +1873,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-9" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.9|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.9</span>
       <h4 class="ec-title">Solo cross-country flight</h4>
@@ -1893,6 +1911,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-10" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.10|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.10</span>
       <h4 class="ec-title">Solo cross-country flight</h4>
@@ -1936,6 +1955,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-11" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.11|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.11</span>
       <h4 class="ec-title">Repeated solo cross-country flights not more than 50 NM from the point of departure</h4>
@@ -1979,6 +1999,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-12" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.12|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.12</span>
       <h4 class="ec-title">Solo flight in Class B airspace</h4>
@@ -2015,6 +2036,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-13" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.13|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.13</span>
       <h4 class="ec-title">Solo flight to, from, or at an airport located in Class B airspace</h4>
@@ -2057,6 +2079,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-15" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.15|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.15</span>
       <h4 class="ec-title">Solo flight in Class B, C, and D airspace</h4>
@@ -2093,6 +2116,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-16" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.16|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.16</span>
       <h4 class="ec-title">Solo flight to, from, or at an airport located in Class B, C, or D airspace or at an airport having an operational control tower</h4>
@@ -2135,6 +2159,7 @@ p {
   </header>
 <p class="p1a-sub-label">Primary endorsements</p>
 <article class="endorsement-card" style="--cat-accent:#f59e0b;--cat-soft:#fef7eb;--cat-line:#fde7c2;--cat-ink:#b37000">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.14</span>
       <h4 class="ec-title">Endorsement of U.S. citizenship recommended by the Transportation Security Administration (TSA)</h4>
@@ -2187,6 +2212,7 @@ p {
     <p class="bundle-desc">Sport pilot aeronautical knowledge test preparation endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-17" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.17|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.17</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -2227,6 +2253,7 @@ p {
     <p class="bundle-desc">Proficiency checks for adding privileges within sport pilot rules.</p>
   </header>
 <article class="endorsement-card" id="A-18" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.18|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.18</span>
       <h4 class="ec-title">Taking flight proficiency check for different category or class of aircraft</h4>
@@ -2262,6 +2289,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-19" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.19|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.19</span>
       <h4 class="ec-title">Passing flight proficiency check for different category or class of aircraft</h4>
@@ -2302,6 +2330,7 @@ p {
     <p class="bundle-desc">Common sport pilot practical test endorsement set.</p>
   </header>
 <article class="endorsement-card" id="A-20" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.20|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.20</span>
       <h4 class="ec-title">Taking sport pilot practical test</h4>
@@ -2337,6 +2366,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-21" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.21|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.21</span>
       <h4 class="ec-title">Passing a sport pilot practical test</h4>
@@ -2372,6 +2402,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-22" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.22|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.22</span>
       <h4 class="ec-title">Passing a sport pilot practical test with a simplified flight controls limitation</h4>
@@ -2408,6 +2439,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Also commonly included for the practical test path.</p>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -2443,6 +2475,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -2483,6 +2516,7 @@ p {
     <p class="bundle-desc">Sport pilot operations in towered or Class B/C/D airspace.</p>
   </header>
 <article class="endorsement-card" id="A-23" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.23|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.23</span>
       <h4 class="ec-title">Class B, C, or D airspace; at an airport located in Class B, C, or D airspace; or to, from, through, or at an airport having an operational control tower</h4>
@@ -2522,6 +2556,7 @@ p {
     <p class="bundle-desc">Operations in a light-sport aircraft with a Vh of 87 knots or less.</p>
   </header>
 <article class="endorsement-card" id="A-24" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.24|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.24</span>
       <h4 class="ec-title">Aircraft that has a maximum speed in level flight with maximum continuous power (V H) less than or equal to 87 Knots Calibrated Airspeed (KCAS)</h4>
@@ -2561,6 +2596,7 @@ p {
     <p class="bundle-desc">Operations in a light-sport aircraft with a Vh above 87 knots.</p>
   </header>
 <article class="endorsement-card" id="A-25" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.25|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.25</span>
       <h4 class="ec-title">Aircraft that has a VH greater than 87 KCAS</h4>
@@ -2600,6 +2636,7 @@ p {
     <p class="bundle-desc">Training endorsement related to night operations in the sport pilot context.</p>
   </header>
 <article class="endorsement-card" id="A-26" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.26|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.26</span>
       <h4 class="ec-title">Flight training at night</h4>
@@ -2639,6 +2676,7 @@ p {
     <p class="bundle-desc">Sport pilot privileges in retractable gear aircraft.</p>
   </header>
 <article class="endorsement-card" id="A-27" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.27|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.27</span>
       <h4 class="ec-title">To act as pilot in command (PIC) in an aircraft with retractable landing gear</h4>
@@ -2678,6 +2716,7 @@ p {
     <p class="bundle-desc">Sport pilot privileges in aircraft with a controllable pitch propeller.</p>
   </header>
 <article class="endorsement-card" id="A-28" style="--cat-accent:#16a34a;--cat-soft:#ecf8f1;--cat-line:#c5e8d2;--cat-ink:#0b7633">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.28|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.28</span>
       <h4 class="ec-title">To act as PIC in an airplane with a manual controllable pitch propeller</h4>
@@ -2724,6 +2763,7 @@ p {
     <p class="bundle-desc">Recreational pilot aeronautical knowledge test preparation.</p>
   </header>
 <article class="endorsement-card" id="A-29" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.29|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.29</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -2764,6 +2804,7 @@ p {
     <p class="bundle-desc">Recreational pilot practical test proficiency endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-30" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.30|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.30</span>
       <h4 class="ec-title">Flight proficiency/practical test</h4>
@@ -2800,6 +2841,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Also commonly included for the practical test path.</p>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -2835,6 +2877,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -2875,6 +2918,7 @@ p {
     <p class="bundle-desc">Recreational pilot operations within 50 NM of the departure airport.</p>
   </header>
 <article class="endorsement-card" id="A-31" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.31|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.31</span>
       <h4 class="ec-title">Recreational pilot to operate within 50 NM of the airport where training was received</h4>
@@ -2914,6 +2958,7 @@ p {
     <p class="bundle-desc">Recreational pilot authorization beyond 50 NM.</p>
   </header>
 <article class="endorsement-card" id="A-32" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.32|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.32</span>
       <h4 class="ec-title">Recreational pilot to act as PIC on a flight that exceeds 50 NM of the departure airport</h4>
@@ -2953,6 +2998,7 @@ p {
     <p class="bundle-desc">Recreational pilot endorsement for limited recent PIC experience.</p>
   </header>
 <article class="endorsement-card" id="A-33" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.33|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.33</span>
       <h4 class="ec-title">Recreational pilot with less than 400 flight hours and no logged PIC time within the preceding 180 calendar days</h4>
@@ -2992,6 +3038,7 @@ p {
     <p class="bundle-desc">Supervised solo for an additional recreational pilot rating.</p>
   </header>
 <article class="endorsement-card" id="A-34" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.34|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.34</span>
       <h4 class="ec-title">Recreational pilot to conduct solo flights for the purpose of obtaining an additional certificate or rating while under the supervision of an authorized flight instructor</h4>
@@ -3032,6 +3079,7 @@ p {
     <p class="bundle-desc">Recreational pilot operations in towered or Class B/C/D airspace.</p>
   </header>
 <article class="endorsement-card" id="A-35" style="--cat-accent:#65a30d;--cat-soft:#f3f8ec;--cat-line:#d9e8c3;--cat-ink:#477605">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.35|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.35</span>
       <h4 class="ec-title">Class B, C, or D airspace; at an airport located in Class B, C, or D airspace; or to, from, through, or at an airport having an operational control tower</h4>
@@ -3078,6 +3126,7 @@ p {
     <p class="bundle-desc">Private pilot aeronautical knowledge test preparation endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-36" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.36|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.36</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -3117,6 +3166,7 @@ p {
     <p class="bundle-desc">Common Part 61 Airplane Single-Engine Land private practical test package.</p>
   </header>
 <article class="endorsement-card" id="A-37" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.37|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.37</span>
       <h4 class="ec-title">Flight proficiency/practical test</h4>
@@ -3152,6 +3202,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Also commonly included for a typical private ASEL checkride package.</p>
 <article class="endorsement-card" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.36</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -3186,6 +3237,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -3221,6 +3273,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3261,6 +3314,7 @@ p {
     <p class="bundle-desc">Common Airplane Single-Engine Land additional category/class package at the private pilot level.</p>
   </header>
 <article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.78</span>
       <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
@@ -3299,6 +3353,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Verify Airplane Single-Engine Land add-on specifics before using the full bundle.</p>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3339,6 +3394,7 @@ p {
     <p class="bundle-desc">Common Part 61 Airplane Multi-Engine Land private practical test package.</p>
   </header>
 <article class="endorsement-card" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.37</span>
       <h4 class="ec-title">Flight proficiency/practical test</h4>
@@ -3374,6 +3430,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Also commonly included for a typical private AMEL checkride package.</p>
 <article class="endorsement-card" style="--cat-accent:#0ea5e9;--cat-soft:#ecf8fd;--cat-line:#c3e9fa;--cat-ink:#0476a9">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.36</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -3408,6 +3465,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -3443,6 +3501,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3483,6 +3542,7 @@ p {
     <p class="bundle-desc">Common Airplane Multi-Engine Land additional category/class package at the private pilot level.</p>
   </header>
 <article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.78</span>
       <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
@@ -3521,6 +3581,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Verify Airplane Multi-Engine Land add-on specifics before using the full bundle.</p>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3568,6 +3629,7 @@ p {
     <p class="bundle-desc">Commercial pilot aeronautical knowledge test preparation endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-38" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.38|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.38</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -3607,6 +3669,7 @@ p {
     <p class="bundle-desc">Common Part 61 Airplane Single-Engine Land commercial practical test package.</p>
   </header>
 <article class="endorsement-card" id="A-39" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.39|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.39</span>
       <h4 class="ec-title">Flight proficiency/practical test</h4>
@@ -3642,6 +3705,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Also commonly included for a typical commercial ASEL checkride package.</p>
 <article class="endorsement-card" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.38</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -3676,6 +3740,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -3711,6 +3776,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3751,6 +3817,7 @@ p {
     <p class="bundle-desc">Common Airplane Single-Engine Land additional category/class package at the commercial pilot level.</p>
   </header>
 <article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.78</span>
       <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
@@ -3789,6 +3856,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Verify Airplane Single-Engine Land add-on specifics before using the full bundle.</p>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3829,6 +3897,7 @@ p {
     <p class="bundle-desc">Common Part 61 Airplane Multi-Engine Land commercial practical test package.</p>
   </header>
 <article class="endorsement-card" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.39</span>
       <h4 class="ec-title">Flight proficiency/practical test</h4>
@@ -3864,6 +3933,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Also commonly included for a typical commercial AMEL checkride package.</p>
 <article class="endorsement-card" style="--cat-accent:#ca8a04;--cat-soft:#fbf6eb;--cat-line:#f2e2c0;--cat-ink:#906200">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.38</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -3898,6 +3968,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.2</span>
       <h4 class="ec-title">Review of deficiencies identified on airman knowledge test</h4>
@@ -3933,6 +4004,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -3973,6 +4045,7 @@ p {
     <p class="bundle-desc">Common Airplane Multi-Engine Land additional category/class package at the commercial pilot level.</p>
   </header>
 <article class="endorsement-card" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.78</span>
       <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
@@ -4011,6 +4084,7 @@ p {
   </article>
 <p class="p1b-supp-label">Supplemental — Verify Airplane Multi-Engine Land add-on specifics before using the full bundle.</p>
 <article class="endorsement-card" style="--cat-accent:#4f46e5;--cat-soft:#f1f0fd;--cat-line:#d3d1f9;--cat-ink:#1d13be">
+    
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.1</span>
       <h4 class="ec-title">Prerequisites for practical test</h4>
@@ -4058,6 +4132,7 @@ p {
     <p class="bundle-desc">Restricted privileges ATP endorsement through an authorized institution.</p>
   </header>
 <article class="endorsement-card" id="A-40" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.40|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.40</span>
       <h4 class="ec-title">Restricted privileges ATP Certificate, Airplane Multiengine Land (AMEL) rating</h4>
@@ -4094,6 +4169,7 @@ p {
     <p class="bundle-desc">ATP Certification Training Program completion endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-41" style="--cat-accent:#1f2937;--cat-soft:#edeeef;--cat-line:#c7cacd;--cat-ink:#151d27">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.41|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.41</span>
       <h4 class="ec-title">ATP Certification Training Program (CTP)</h4>
@@ -4138,6 +4214,7 @@ p {
     <p class="bundle-desc">Instrument rating aeronautical knowledge test preparation.</p>
   </header>
 <article class="endorsement-card" id="A-42" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.42|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.42</span>
       <h4 class="ec-title">Aeronautical knowledge test</h4>
@@ -4178,6 +4255,7 @@ p {
   </header>
 <p class="p1c-group-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-43" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.43|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.43</span>
       <h4 class="ec-title">Flight proficiency/practical test</h4>
@@ -4213,6 +4291,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-44" style="--cat-accent:#64748b;--cat-soft:#f3f4f6;--cat-line:#d8dce2;--cat-ink:#455162">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.44|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.44</span>
       <h4 class="ec-title">Prerequisites for instrument practical tests</h4>
@@ -4262,6 +4341,7 @@ p {
     <p class="bundle-desc">Fundamentals of instruction knowledge test preparation endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-45" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.45|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.45</span>
       <h4 class="ec-title">Fundamentals of instructing knowledge test</h4>
@@ -4303,6 +4383,7 @@ p {
     <p class="bundle-desc">Flight instructor aeronautical knowledge test preparation endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-46" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.46|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.46</span>
       <h4 class="ec-title">Flight instructor aeronautical knowledge test</h4>
@@ -4345,6 +4426,7 @@ p {
   </header>
 <p class="p1c-group-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-47" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.47|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.47</span>
       <h4 class="ec-title">Flight instructor ground and flight proficiency/practical test</h4>
@@ -4381,6 +4463,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-49" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.49|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.49</span>
       <h4 class="ec-title">Spin training</h4>
@@ -4452,6 +4535,7 @@ p {
   </header>
 <p class="p1c-group-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-48" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.48|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.48</span>
       <h4 class="ec-title">Flight instructor certificate with instrument–(category/class) rating/practical test</h4>
@@ -4498,6 +4582,7 @@ p {
     <p class="bundle-desc">Required endorsement for helicopter instructor applicants completing touchdown autorotation training.</p>
   </header>
 <article class="endorsement-card" id="A-50" style="--cat-accent:#dc2626;--cat-soft:#fceeee;--cat-line:#f6c9c9;--cat-ink:#a11414">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.50|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.50</span>
       <h4 class="ec-title">Helicopter Touchdown Autorotation</h4>
@@ -4545,6 +4630,7 @@ p {
     <p class="bundle-desc">Fundamentals of instruction knowledge test preparation for sport pilot instructors.</p>
   </header>
 <article class="endorsement-card" id="A-51" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.51|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.51</span>
       <h4 class="ec-title">Fundamentals of instructing knowledge test</h4>
@@ -4586,6 +4672,7 @@ p {
     <p class="bundle-desc">Sport pilot instructor aeronautical knowledge test preparation.</p>
   </header>
 <article class="endorsement-card" id="A-52" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.52|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.52</span>
       <h4 class="ec-title">Sport pilot flight instructor aeronautical knowledge test</h4>
@@ -4627,6 +4714,7 @@ p {
     <p class="bundle-desc">Additional category/class proficiency checks for sport pilot instructors.</p>
   </header>
 <article class="endorsement-card" id="A-53" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.53|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.53</span>
       <h4 class="ec-title">Flight instructor with a sport pilot rating flight proficiency check for additional category/class</h4>
@@ -4663,6 +4751,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-54" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.54|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.54</span>
       <h4 class="ec-title">Flight instructor with a sport pilot rating proficiency check completion endorsement for additional category or class privilege</h4>
@@ -4704,6 +4793,7 @@ p {
   </header>
 <p class="p1c-group-label">Primary endorsements</p>
 <article class="endorsement-card" id="A-55" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.55|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.55</span>
       <h4 class="ec-title">Flight instructor with a sport pilot rating practical test endorsement</h4>
@@ -4740,6 +4830,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-56" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.56|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.56</span>
       <h4 class="ec-title">Flight instructor with a sport pilot rating practical test completion endorsement</h4>
@@ -4786,6 +4877,7 @@ p {
     <p class="bundle-desc">Instrument reference training requirement for sport pilot instructor applicants.</p>
   </header>
 <article class="endorsement-card" id="A-57" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.57|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.57</span>
       <h4 class="ec-title">Flight instructor with a sport pilot rating to train sport pilots on flight by reference to instruments</h4>
@@ -4826,6 +4918,7 @@ p {
     <p class="bundle-desc">Spin training endorsement for sport pilot instructor applicants in applicable airplanes.</p>
   </header>
 <article class="endorsement-card" id="A-58" style="--cat-accent:#ea580c;--cat-soft:#fdf2ec;--cat-line:#fad5c2;--cat-ink:#aa3c02">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.58|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.58</span>
       <h4 class="ec-title">Spin training</h4>
@@ -4873,6 +4966,7 @@ p {
     <p class="bundle-desc">Night vision goggle qualification and currency endorsements.</p>
   </header>
 <article class="endorsement-card" id="A-88" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.88|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.88</span>
       <h4 class="ec-title">Endorsement required for ground training to act as PIC of an aircraft using night vision goggles (NVG)</h4>
@@ -4908,6 +5002,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-89" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.89|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.89</span>
       <h4 class="ec-title">Endorsement required for flight training and statement of proficiency to act as PIC of an aircraft using NVG</h4>
@@ -4943,6 +5038,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-90" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.90|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.90</span>
       <h4 class="ec-title">Endorsement required to provide training for NVGOs</h4>
@@ -4983,6 +5079,7 @@ p {
     <p class="bundle-desc">Enhanced Flight Vision System training and qualification endorsements.</p>
   </header>
 <article class="endorsement-card" id="A-91" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.91|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.91</span>
       <h4 class="ec-title">Endorsement for EFVS ground training</h4>
@@ -5018,6 +5115,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-92" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.92|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.92</span>
       <h4 class="ec-title">Endorsement for EFVS flight training</h4>
@@ -5053,6 +5151,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-93" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.93|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.93</span>
       <h4 class="ec-title">Endorsement for EFVS ground and flight training</h4>
@@ -5088,6 +5187,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-94" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.94|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.94</span>
       <h4 class="ec-title">Endorsement for EFVS supplementary training</h4>
@@ -5128,6 +5228,7 @@ p {
     <p class="bundle-desc">Specialized endorsements for simplified flight control systems.</p>
   </header>
 <article class="endorsement-card" id="A-95" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.95|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.95</span>
       <h4 class="ec-title">To act as PIC in an aircraft with a simplified flight controls designation</h4>
@@ -5163,6 +5264,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-96" style="--cat-accent:#7c3aed;--cat-soft:#f5effe;--cat-line:#decefb;--cat-ink:#4f0ac4">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.96|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.96</span>
       <h4 class="ec-title">Initial cadre training in an aircraft with simplified flight controls</h4>
@@ -5257,6 +5359,7 @@ p {
     <p class="bundle-desc">Recent experience endorsement for ground instructor privileges.</p>
   </header>
 <article class="endorsement-card" id="A-59" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.59|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.59</span>
       <h4 class="ec-title">Ground instructor who does not meet the recent experience requirements</h4>
@@ -5294,6 +5397,7 @@ p {
     <p class="bundle-desc">Flight review completion and WINGS phase completion endorsements.</p>
   </header>
 <article class="endorsement-card" id="A-69" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.69|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.69</span>
       <h4 class="ec-title">Completion of a flight review</h4>
@@ -5326,6 +5430,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-70" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.70|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.70</span>
       <h4 class="ec-title">Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</h4>
@@ -5364,6 +5469,7 @@ p {
     <p class="bundle-desc">Instrument proficiency check completion endorsement.</p>
   </header>
 <article class="endorsement-card" id="A-71" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.71|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.71</span>
       <h4 class="ec-title">Completion of an instrument proficiency check (IPC)</h4>
@@ -5402,6 +5508,7 @@ p {
     <p class="bundle-desc">Common aircraft-specific operating endorsements.</p>
   </header>
 <article class="endorsement-card" id="A-72" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.72|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.72</span>
       <h4 class="ec-title">To act as PIC in a complex airplane</h4>
@@ -5434,6 +5541,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-73" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.73|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.73</span>
       <h4 class="ec-title">To act as PIC in a high-performance airplane</h4>
@@ -5466,6 +5574,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-74" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.74|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.74</span>
       <h4 class="ec-title">To act as PIC in a pressurized aircraft capable of high-altitude operations</h4>
@@ -5498,6 +5607,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-75" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.75|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.75</span>
       <h4 class="ec-title">To act as PIC in a tailwheel airplane</h4>
@@ -5536,6 +5646,7 @@ p {
     <p class="bundle-desc">Solo privilege before obtaining the category/class rating being sought.</p>
   </header>
 <article class="endorsement-card" id="A-76" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.76|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.76</span>
       <h4 class="ec-title">To act as PIC of an aircraft in solo operations when the pilot does not hold an appropriate category/class rating</h4>
@@ -5575,6 +5686,7 @@ p {
     <p class="bundle-desc">Retest endorsement after a notice of disapproval.</p>
   </header>
 <article class="endorsement-card" id="A-77" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.77|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.77</span>
       <h4 class="ec-title">Retesting after failure of a knowledge or practical test</h4>
@@ -5614,6 +5726,7 @@ p {
     <p class="bundle-desc">Competency endorsement for an additional category or class rating.</p>
   </header>
 <article class="endorsement-card" id="A-78" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.78|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.78</span>
       <h4 class="ec-title">Additional aircraft category or class rating (other than ATP)</h4>
@@ -5654,6 +5767,7 @@ p {
     <p class="bundle-desc">Non-ATP type rating practical test packages.</p>
   </header>
 <article class="endorsement-card" id="A-79" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.79|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.79</span>
       <h4 class="ec-title">Type rating only, already holds the appropriate category or class rating (other than ATP)</h4>
@@ -5686,6 +5800,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-80" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.80|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.80</span>
       <h4 class="ec-title">Type rating concurrently with an additional category or class rating (other than ATP)</h4>
@@ -5724,6 +5839,7 @@ p {
     <p class="bundle-desc">ATP-linked type rating practical test packages.</p>
   </header>
 <article class="endorsement-card" id="A-81" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.81|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.81</span>
       <h4 class="ec-title">Type rating only, already holds the appropriate category or class rating (at the ATP level)</h4>
@@ -5756,6 +5872,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-82" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.82|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.82</span>
       <h4 class="ec-title">Type rating concurrently with an additional category or class rating (at the ATP level)</h4>
@@ -5794,6 +5911,7 @@ p {
     <p class="bundle-desc">Glider and towing-related endorsements grouped together.</p>
   </header>
 <article class="endorsement-card" id="A-83" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.83|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.83</span>
       <h4 class="ec-title">Launch procedures for operating a glider</h4>
@@ -5826,6 +5944,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-84" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.84|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.84</span>
       <h4 class="ec-title">Glider and unpowered ultralight vehicle towing experience</h4>
@@ -5858,6 +5977,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-85" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.85|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.85</span>
       <h4 class="ec-title">Glider and unpowered ultralight vehicle towing ground and flight</h4>
@@ -5896,6 +6016,7 @@ p {
     <p class="bundle-desc">Home-study review and ultralight experience credit endorsements.</p>
   </header>
 <article class="endorsement-card" id="A-86" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.86|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.86</span>
       <h4 class="ec-title">Review of a home-study curriculum</h4>
@@ -5928,6 +6049,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-87" style="--cat-accent:#0d9488;--cat-soft:#ecf6f5;--cat-line:#c3e4e1;--cat-ink:#056b62">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.87|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.87</span>
       <h4 class="ec-title">Aeronautical experience credit— ultralight vehicles</h4>
@@ -5971,6 +6093,7 @@ p {
     <p class="bundle-desc">Common Robinson R22 SFAR 73 endorsement path.</p>
   </header>
 <article class="endorsement-card" id="A-60" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.60|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.60</span>
       <h4 class="ec-title">R-22/R-44 ground training</h4>
@@ -6003,6 +6126,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-61" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.61|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.61</span>
       <h4 class="ec-title">R-22 solo endorsement</h4>
@@ -6036,6 +6160,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-62" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.62|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.62</span>
       <h4 class="ec-title">R-22 PIC endorsement</h4>
@@ -6068,6 +6193,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-63" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.63|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.63</span>
       <h4 class="ec-title">R-22 flight instructor endorsement</h4>
@@ -6100,6 +6226,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-64" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.64|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.64</span>
       <h4 class="ec-title">Flight review in an R-22 helicopter</h4>
@@ -6139,6 +6266,7 @@ p {
   </header>
 <p class="p1cd-xref"><a class="internal chip tag-chip" href="#A-60">A.60</a> R-22/R-44 ground training — full card above under <a class="internal" href="#bundle-r22-track">R22 Track</a>.</p>
 <article class="endorsement-card" id="A-65" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.65|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.65</span>
       <h4 class="ec-title">R-44 solo endorsement</h4>
@@ -6172,6 +6300,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-66" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.66|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.66</span>
       <h4 class="ec-title">R-44 PIC endorsement</h4>
@@ -6204,6 +6333,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-67" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.67|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.67</span>
       <h4 class="ec-title">R-44 flight instructor endorsement</h4>
@@ -6236,6 +6366,7 @@ p {
     </footer>
   </article>
 <article class="endorsement-card" id="A-68" style="--cat-accent:#db2777;--cat-soft:#fceef4;--cat-line:#f6c9dd;--cat-ink:#a01553">
+    <span class="pgm" aria-hidden="true">ZZPGM|en:A.68|ZZ</span>
     <header class="ec-head">
       <span class="id-pill" style="background:#1C2142">A.68</span>
       <h4 class="ec-title">Flight review in an R-44 helicopter</h4>

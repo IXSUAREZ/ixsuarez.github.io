@@ -130,6 +130,13 @@ function renderBlocks(blocks) {
  *
  * Heading level: the card title is an <h4>, so sections should use
  * h1 (section title) → h2 (category banner) → h3 (bundle header) → h4 (cards).
+ *
+ * Every card also carries an invisible `en:<id>` page marker (e.g.
+ * ZZPGM|en:A.6|ZZ) as the first child of the <article> that owns the
+ * id="A-<n>" anchor — the marker marks the canonical card's page for the
+ * navigation-chrome pass and for cross-document link retargeting (binder
+ * merge). Non-canonical re-renders MUST drop it together with the anchor —
+ * see stripCardAnchor().
  */
 function renderEndorsementCard(e, opts) {
   const o = opts || {};
@@ -156,6 +163,7 @@ function renderEndorsementCard(e, opts) {
       : `\n    <div class="ec-related">${o.relatedHtml || ""}</div>`;
 
   return `<article class="endorsement-card" id="${esc(anchor)}" style="${themeVars(e.category)}">
+    ${pgmMarker(`en:${e.id}`)}
     <header class="ec-head">
       <span class="id-pill" style="background:${NAVY}">${esc(e.id)}</span>
       <h4 class="ec-title">${esc(e.title)}</h4>
@@ -183,6 +191,20 @@ function renderEndorsementCard(e, opts) {
       <a class="external" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">Open in ${esc(acVersion)} PDF</a>
     </footer>
   </article>`;
+}
+
+/**
+ * stripCardAnchor(html, id) → card HTML with the id="A-<n>" anchor AND its
+ * en: page marker removed. Sections call this on every non-canonical copy
+ * of a card (bundle re-renders, cross-category supplementals) so the book
+ * keeps exactly one anchor and one ZZPGM|en:<id>|ZZ marker per endorsement
+ * id — the marker always travels with the anchor, never with a re-render.
+ * Pair this with the exact condition that decides the id is stripped.
+ */
+function stripCardAnchor(html, id) {
+  return html
+    .replace(` id="${anchorForEndorsement(id)}"`, "")
+    .replace(pgmMarker(`en:${id}`), "");
 }
 
 /**
@@ -233,6 +255,7 @@ module.exports = {
   explanationBullets,
   renderBlocks,
   renderEndorsementCard,
+  stripCardAnchor,
   renderCategoryHeader,
   renderBundleHeader,
 };

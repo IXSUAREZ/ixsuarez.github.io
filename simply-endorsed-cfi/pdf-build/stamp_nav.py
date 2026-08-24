@@ -103,7 +103,8 @@ def main():
     for pno in range(1, doc.page_count):       # cover (page 0): no chrome
         page = doc[pno]
         _, active_top = model["crumb_for"](pno)
-        draw_top_deck(page, deck_targets, active_top, nav["sourceUrl"])
+        draw_top_deck(page, deck_targets, active_top, nav["sourceUrl"],
+                      ac_label=nav.get("acVersion", "AC 61-65K"))
         draw_rail(page, pno, model, nav, markers)
         draw_dock(page, pno, model)
 

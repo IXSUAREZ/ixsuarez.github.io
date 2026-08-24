@@ -8,7 +8,8 @@
  * the Chromium browser binary comes from ~/Library/Caches/ms-playwright.
  *
  * Usage:  node render-pdf.js
- * Env:    SIMPLY_ENDORSED_OUT overrides the output PDF path (see config.js).
+ * Env:    SIMPLY_ENDORSED_OUT / SIMPLY_ENDORSED_OUT_DIR override the output
+ *         location (see config.js).
  */
 
 const fs = require("fs");
@@ -39,10 +40,12 @@ console.log(`[render] playwright from: ${pwSource}`);
 
 /* ── Paths ─────────────────────────────────────────────────────────────── */
 const BOOK = path.join(__dirname, "dist", "book.html");
-// Shared config (config.json; SIMPLY_ENDORSED_OUT env var overrides the
-// output PDF path for scratch runs). BASE_PATH is the pristine pre-stamp
-// copy consumed by the CFI Binder V34 merge pipeline (the binder stamps its
-// own chrome; stamp_nav.py must never see this file).
+// Shared config (config.js): output filenames derive from the single source
+// of truth for the AC version (APP_META.acVersion → acSlug), output dir from
+// config.json; SIMPLY_ENDORSED_OUT / SIMPLY_ENDORSED_OUT_DIR env vars
+// override for scratch runs. BASE_PATH is the pristine pre-stamp copy
+// consumed by the CFI Binder V34 merge pipeline (the binder stamps its own
+// chrome; stamp_nav.py must never see this file).
 const { QA_DIR, PDF_PATH, BASE_PATH } = require("./config");
 fs.mkdirSync(QA_DIR, { recursive: true });
 

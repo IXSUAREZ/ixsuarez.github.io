@@ -284,9 +284,13 @@ def build_model(nav, markers):
 
 
 # ── chrome drawing ──────────────────────────────────────────────────────
-def draw_top_deck(page, targets, active_label, source_url):
+def draw_top_deck(page, targets, active_label, source_url,
+                  ac_label="AC 61-65K"):
     """Top deck: (label, absolute_page) chips, active_label in blue, plus the
-    AC 61-65K ↗ external source button (right cluster, ends x=548)."""
+    AC external source button (right cluster, ends x=548). `ac_label` is the
+    AC version label — callers pass nav-data.json's acVersion (emitted by
+    make-nav-data.js from APP_META.acVersion, the single source of truth);
+    the default only covers stale nav-data files."""
     x = 36.0
     for label, target in targets:
         w = fitz.get_text_length(label, fontname="hebo",
@@ -298,8 +302,8 @@ def draw_top_deck(page, targets, active_label, source_url):
             {"kind": fitz.LINK_GOTO, "page": target, "to": LINK_TO},
             fill=ACTIVE_BLUE if active else TITAN_DARK, active=active)
         x += w + 6
-    # AC 61-65K external source button (right cluster, ends x=548)
-    label = "AC 61-65K"
+    # AC external source button (right cluster, ends x=548)
+    label = ac_label
     tw = fitz.get_text_length(label, fontname="hebo", fontsize=BTN_FS)
     w = tw + 30
     rect = fitz.Rect(548 - w, TOP_Y0, 548, TOP_Y1)

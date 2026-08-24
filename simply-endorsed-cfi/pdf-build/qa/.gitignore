@@ -1,0 +1,3 @@
+# Fresh renders from render-pages.py are regenerable working artifacts —
+# only the committed baseline/ is diffed against.
+pages/

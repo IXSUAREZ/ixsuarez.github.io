@@ -186,25 +186,30 @@ def build_units(nav, markers, cat_order, p1, p2, p3):
     increase along the returned list.
     """
     units = [{"id": "part-1", "page": p1,
-              "crumb": "PART I · ENDORSEMENT LIBRARY"}]
+              "crumb": "PART I · ENDORSEMENT LIBRARY", "title": "PART I"}]
     for c in cat_order:
         units.append({"id": f"cat:{c['slug']}",
-                      "page": markers[f"cat:{c['slug']}"]})
+                      "page": markers[f"cat:{c['slug']}"],
+                      "title": c.get("code", c.get("label", "")[:10])})
         for b in c["bundles"]:
             units.append({"id": f"bundle:{b['id']}",
-                          "page": markers[f"bundle:{b['id']}"]})
+                          "page": markers[f"bundle:{b['id']}"],
+                          "title": b.get("abbrev", b.get("label", "")[:10])})
     units.append({"id": "part-2", "page": p2,
-                  "crumb": "PART II · WORKFLOWS"})
+                  "crumb": "PART II · WORKFLOWS", "title": "PART II"})
     for w in nav["workflows"]:
-        units.append({"id": f"wf:{w['id']}", "page": markers[f"wf:{w['id']}"]})
+        units.append({"id": f"wf:{w['id']}", "page": markers[f"wf:{w['id']}"],
+                      "title": w.get("abbrev", w.get("label", "")[:10])})
     units.append({"id": "part-3", "page": p3,
-                  "crumb": "PART III · CFI GUIDANCE"})
+                  "crumb": "PART III · CFI GUIDANCE", "title": "PART III"})
     for g in nav["guidance"]:
-        units.append({"id": f"gs:{g['id']}", "page": markers[f"gs:{g['id']}"]})
+        units.append({"id": f"gs:{g['id']}", "page": markers[f"gs:{g['id']}"],
+                      "title": g.get("abbrev", g.get("label", "")[:10])})
         if g["id"] == "lesson-plan":
             for l in nav.get("lessons", []):
                 units.append({"id": f"gs:{l['id']}",
-                              "page": markers[f"gs:{l['id']}"]})
+                              "page": markers[f"gs:{l['id']}"],
+                              "title": l.get("abbrev", l.get("label", "")[:10])})
     units.sort(key=lambda u: u["page"])     # stable: reading order on ties
     return [u for i, u in enumerate(units)
             if i == 0 or u["page"] != units[i - 1]["page"]]
@@ -475,7 +480,8 @@ def draw_dock(page, rel, model, offset=0, goback=insert_raw_goback):
                        x0 + i * (bw + gap) + bw, DOCK_Y1) for i in range(4)]
     # PREV
     if prev_u:
-        nav_button(page, rects[0], "PREV",
+        prev_lbl = f"PREV: {prev_u['title']}" if "title" in prev_u else "PREV"
+        nav_button(page, rects[0], prev_lbl,
                    {"kind": fitz.LINK_GOTO, "page": offset + prev_u["page"],
                     "to": LINK_TO}, chev=-1)
     else:
@@ -486,7 +492,8 @@ def draw_dock(page, rel, model, offset=0, goback=insert_raw_goback):
                 "to": LINK_TO})
     # NEXT
     if next_u:
-        nav_button(page, rects[2], "NEXT",
+        next_lbl = f"NEXT: {next_u['title']}" if "title" in next_u else "NEXT"
+        nav_button(page, rects[2], next_lbl,
                    {"kind": fitz.LINK_GOTO, "page": offset + next_u["page"],
                     "to": LINK_TO}, chev=+1)
     else:

@@ -12,6 +12,62 @@
  * overlay occupies (content ends by X≈543.6pt).
  */
 
+/* ── Embedded fonts ────────────────────────────────────────────────────
+ * Vendored Inter / Inter Tight static TTFs (see fonts/README.md). Without
+ * these @font-face declarations, "Inter" matched nothing and Skia painted
+ * every run as unembedded Type3 glyph paths; with real TTFs Chromium
+ * embeds subset CID Type0 fonts instead. URLs are relative to
+ * dist/book.html (build.js inlines this stylesheet into that file). */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Inter-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/Inter-500.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/Inter-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/Inter-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/Inter-800.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/InterTight-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/InterTight-800.ttf") format("truetype");
+}
+
 /* ── Page & base ─────────────────────────────────────────────────────── */
 
 @page {
@@ -45,6 +101,8 @@ code,
 /* ── Headings (Chromium PDF outline picks up h1-h6) ──────────────────── */
 
 h1.section-title {
+  font-family: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   font-size: 20pt;
   line-height: 1.2;
   margin: 0 0 14pt 0;
@@ -109,6 +167,8 @@ h4 {
 }
 
 .cover-title {
+  font-family: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   font-size: 30pt;
   font-weight: 800;
   color: #1c2142;

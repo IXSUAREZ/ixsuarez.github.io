@@ -48,12 +48,12 @@ const SCOPED_CSS = `<style>
 }
 .ac-idx-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.5pt 6pt;
 }
 .ac-idx-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5pt;
   padding: 2.5pt 5pt;
   background: var(--cat-soft, #f8fafc);
@@ -63,6 +63,7 @@ const SCOPED_CSS = `<style>
   color: var(--cat-ink, #0f172a);
   box-shadow: inset 0 0.5pt 0 rgba(255, 255, 255, 0.85);
   break-inside: avoid;
+  min-width: 0;
 }
 .ac-idx-pill {
   font-family: "JetBrains Mono", monospace;
@@ -82,16 +83,7 @@ const SCOPED_CSS = `<style>
   font-size: 11.0pt; font-weight: 700;
   font-weight: 600;
   color: #0f172a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.ac-idx-cfr {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 9.5pt;
-  font-weight: 600;
-  color: var(--cat-ink, #475569);
-  flex-shrink: 0;
+  line-height: 1.2;
 }
 </style>`;
 
@@ -109,12 +101,10 @@ function renderAcNumberIndex(data, helpers) {
     .map((g) => {
       const cards = g.items
         .map((e) => {
-          const cfr = (e.cfr && e.cfr.length > 0) ? e.cfr[0].replace(/^14\s*CFR\s*/, "") : "";
           const anchor = helpers.anchorForEndorsement(e.id);
           return `<a class="ac-idx-card internal" href="#${anchor}" style="${helpers.themeVars(e.category)}">
             <span class="ac-idx-pill">${helpers.esc(e.id)}</span>
             <span class="ac-idx-text">${helpers.esc(e.title)}</span>
-            <span class="ac-idx-cfr">${helpers.esc(cfr)}</span>
           </a>`;
         })
         .join("\n");

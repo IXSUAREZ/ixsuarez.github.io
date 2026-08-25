@@ -267,7 +267,7 @@ def scrub_pgm_markers(doc):
     Returns the number of redacted marker rects.
     """
     scrubbed = 0
-    for pno in range(doc.page_count):
+    for pno in range(1, doc.page_count):  # Skip page 0 (cover) so image stream remains untouched
         page = doc[pno]
         tokens = [m.group(0)
                   for m in re.finditer(r"ZZPGM\|[^|]+\|ZZ", page.get_text())]

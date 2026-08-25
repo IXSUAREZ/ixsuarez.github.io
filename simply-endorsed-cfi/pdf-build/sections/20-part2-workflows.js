@@ -11,7 +11,9 @@
  *      student-pilot "pre-solo" bundle (contentRenderer: "pre-solo"), in
  *      BROWSE_STRUCTURE category order. Each page: id="wf-<bundle.id>",
  *      numbered endorsement steps linking to Part I cards (#A-<n>),
- *      supplemental chips, and a back-link to the Part I category.
+ *      supplemental chips, and a back-link to the Part I category. The
+ *      pre-solo page renders only the T · I · M sign-off sequence and
+ *      deep-links the full briefing, which lives once in Part I.
  *   3. An "All workflows index" (h3) listing every bundle, grouped by
  *      category, linking to the Part I bundle headers (#bundle-<id>).
  *
@@ -119,62 +121,46 @@ function refChip(ref, helpers) {
   return helpers.cfrChip(ref);
 }
 
-/** The pre-solo "resources" accordion: external links + regulation list. */
-function resourcesHtml(section, helpers) {
-  const links = (section.links || [])
-    .map(
-      (l) =>
-        `<li><a class="external" href="${helpers.esc(l.url)}" target="_blank" rel="noopener noreferrer">${helpers.esc(l.label)}</a></li>`
-    )
-    .join("\n    ");
-  const regs = (section.regs || [])
-    .map((r) => {
-      const m = String(r).match(/^(\d+) CFR ([\d.]+(?:\([a-z0-9]+\))?)\s*[—–-]\s*(.+)$/i);
-      if (m) {
-        return `<li>${helpers.cfrChip(`${m[1]} CFR § ${m[2]}`)} <span class="wf-reg-note">${helpers.esc(m[3])}</span></li>`;
-      }
-      return `<li>${helpers.esc(r)}</li>`;
-    })
-    .join("\n    ");
-  const linksUl = links ? `<ul class="wf-res-links">\n    ${links}\n  </ul>` : "";
-  const regsUl = regs ? `<ul class="wf-regs">\n    ${regs}\n  </ul>` : "";
-  return `<h3 class="wf-h3">${helpers.esc(section.heading)}</h3>\n  ${linksUl}\n  ${regsUl}`;
-}
-
 /**
- * Special case: the pre-solo bundle renders PRE_SOLO_CONTENT — the intro,
- * the T / I / M prerequisite step cards, then the accordion sections via
- * helpers.renderBlocks — instead of endorsement steps.
+ * Special case: the pre-solo bundle renders the operational sign-off
+ * sequence — the T · I · M prerequisites (from PRE_SOLO_CONTENT) followed by
+ * the three endorsement steps deep-linked to their Part I cards — instead of
+ * the standard steps list. The long-form T · I · M briefing (accordion
+ * sections) lives only in Part I, so the body text is not duplicated here.
  */
 function preSoloHtml(data, helpers) {
   const ps = data.PRE_SOLO_CONTENT || {};
-  const timCards = (ps.prerequisites || [])
+  const timSteps = (ps.prerequisites || [])
     .map(
-      (p) => `<div class="wf-step wf-step-tim">
+      (p) => `<li class="wf-step">
       <div class="wf-step-head"><span class="wf-tim-pill">${helpers.esc(p.id)}</span>
       <span class="wf-step-title">${helpers.esc(p.title)}</span></div>
       <p class="wf-step-desc">${helpers.esc(p.description)}</p>
       <div class="wf-refs">${(p.refs || []).map((r) => refChip(r, helpers)).join("\n      ")}</div>
-    </div>`
+    </li>`
     )
     .join("\n");
 
-  const accordions = (ps.accordionSections || [])
-    .map((s) => {
-      if (s.type === "resources") return resourcesHtml(s, helpers);
-      if (!Array.isArray(s.blocks) || !s.blocks.length) return "";
-      return `<h3 class="wf-h3">${helpers.esc(s.heading)}</h3>\n${helpers.renderBlocks(s.blocks)}`;
+  const endorsementSteps = ["A.3", "A.4", "A.6"]
+    .map((id) => {
+      const e = helpers.endorsementById.get(id);
+      if (!e) return "";
+      const anchor = helpers.anchorForEndorsement(e.id);
+      return `<li class="wf-step">
+      <div class="wf-step-head"><span class="id-pill" style="background:${helpers.NAVY}">${helpers.esc(e.id)}</span>
+      <a class="wf-step-link internal" href="#${helpers.esc(anchor)}">${helpers.esc(e.title)}</a></div>
+      <p class="wf-step-desc">${helpers.esc(e.cardExplanation || "")}</p>
+    </li>`;
     })
     .filter(Boolean)
     .join("\n");
 
-  const intro = ps.intro ? `<p class="wf-lead">${helpers.esc(ps.intro)}</p>` : "";
-  return `${intro}
-  <h3 class="wf-h3">Before the first solo — T · I · M</h3>
-  <div class="wf-tim">
-  ${timCards}
-  </div>
-  ${accordions}`;
+  return `<h3 class="wf-h3">The pre-solo sign-off sequence</h3>
+  <ol class="wf-steps">
+  ${timSteps}
+  ${endorsementSteps}
+  </ol>
+  <p class="wf-catlink"><a class="internal" href="#bundle-pre-solo">Read the full T · I · M briefing in Part I →</a></p>`;
 }
 
 /** One flow page for a bundle. */

@@ -4,8 +4,8 @@
  * pipeline.js — one-command runner for the full Simply Endorsed CFI PDF
  * pipeline. Stages, in order:
  *
- *   build → test-render → qa-check → qa-markers → make-nav-data
- *         → render-pdf → stamp_nav → qa-nav
+ *   build → test-render → qa-check → qa-citations → qa-markers
+ *         → make-nav-data → render-pdf → stamp_nav → qa-nav → qa-content
  *
  * Aborts on the first stage that exits non-zero. Every stage's timing and
  * exit code is recorded in dist/build-manifest.json (written on success AND
@@ -37,11 +37,13 @@ const STAGES = [
   { name: "build",         cmd: ["node", ["build.js"]] },
   { name: "test-render",   cmd: ["node", ["test-render.js"]] },
   { name: "qa-check",      cmd: ["node", ["qa-check.js"]] },
+  { name: "qa-citations",  cmd: ["node", ["qa-citations.js"]] },
   { name: "qa-markers",    cmd: ["node", ["qa-markers.js"]] },
   { name: "make-nav-data", cmd: ["node", ["make-nav-data.js"]] },
   { name: "render-pdf",    cmd: ["node", ["render-pdf.js"]] },
   { name: "stamp_nav",     cmd: [PYTHON, ["stamp_nav.py"]] },
   { name: "qa-nav",        cmd: [PYTHON, ["qa-nav.py"]] },
+  { name: "qa-content",    cmd: [PYTHON, ["qa-content.py"]] },
 ];
 
 function gitSha() {

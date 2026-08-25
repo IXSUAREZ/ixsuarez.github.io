@@ -4,6 +4,8 @@
  * sections/13-part1-cat-d.js — Part I category chapters (group D):
  *   1. additional-recurrent  (20 endorsements, 11 bundles)
  *   2. robinson-sfar73       (9 endorsements, 2 bundles)
+ *   3. specialty-operations  (9 endorsements, 3 bundles — moved here from
+ *      12-part1-cat-c.js so physical order matches CATEGORY_ORDER)
  *
  * No Part I divider here — that h1 lives in the divider section owned by
  * another agent. This file emits h2 (category banner) → h3 (bundle header)
@@ -35,7 +37,7 @@
  * tag-overlap within the same category (most overlap first, then AC order).
  */
 
-const CATEGORY_SLUGS = ["additional-recurrent", "robinson-sfar73"];
+const CATEGORY_SLUGS = ["additional-recurrent", "robinson-sfar73", "specialty-operations"];
 
 /** Scoped styles for this section's small custom fragments. */
 const STYLE_BLOCK = `<style>
@@ -207,7 +209,7 @@ function renderCategory(data, helpers, slug) {
 }
 
 module.exports = {
-  title: "Part I — Additional / Recurrent & Robinson SFAR 73",
+  title: "Part I — Additional / Recurrent, Robinson SFAR 73 & Specialty Operations",
 
   render(data, helpers) {
     const chapters = CATEGORY_SLUGS.map((slug) =>

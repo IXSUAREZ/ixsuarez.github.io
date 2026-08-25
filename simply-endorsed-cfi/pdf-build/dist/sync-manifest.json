@@ -1,16 +1,16 @@
 {
   "version": 1,
   "generatedBy": "simply-endorsed-cfi/pdf-build/sync-to-binder.js",
-  "generatedAt": "2026-08-24T22:26:28.447Z",
+  "generatedAt": "2026-08-25T15:56:57.460Z",
   "foreRepo": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR",
   "pairs": [
     {
       "key": "base-pdf",
       "sourcePath": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.base.pdf",
       "destPath": "00_source-library/endorsements/Simply-Endorsed-CFI-AC61-65K.pdf",
-      "bytes": 7947592,
-      "sourceSha256": "9235bb2739b6c4215fca02bdcf94725191273078e32ac2e610f2d5123c3483ca",
-      "destSha256": "9235bb2739b6c4215fca02bdcf94725191273078e32ac2e610f2d5123c3483ca"
+      "bytes": 7830082,
+      "sourceSha256": "0c0932fb9c3cc8786efb1889b54bb08660211d679f9ed32d108956d9d9248cd3",
+      "destSha256": "0c0932fb9c3cc8786efb1889b54bb08660211d679f9ed32d108956d9d9248cd3"
     },
     {
       "key": "nav-data",

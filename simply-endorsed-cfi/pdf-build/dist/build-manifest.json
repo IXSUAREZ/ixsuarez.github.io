@@ -1,75 +1,91 @@
 {
   "pipeline": "simply-endorsed-cfi pdf-build",
-  "gitSha": "e5b52a22f292d5ab0eb8ec86853f21a5fa19ba0d",
+  "gitSha": "7a315dd4f13a2203edda0080905a5a5e4cd629c4",
   "outputPdf": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/SUAREZ.CFI/output/simply-endorsed-cfi-pdf/Simply-Endorsed-CFI-AC61-65K.pdf",
-  "startedAt": "2026-08-24T22:25:31.854Z",
+  "startedAt": "2026-08-25T15:56:07.926Z",
   "stages": [
     {
       "name": "build",
       "command": "node build.js",
-      "startedAt": "2026-08-24T22:25:31.902Z",
-      "finishedAt": "2026-08-24T22:25:31.989Z",
-      "durationMs": 87,
+      "startedAt": "2026-08-25T15:56:07.984Z",
+      "finishedAt": "2026-08-25T15:56:08.068Z",
+      "durationMs": 84,
       "exitCode": 0
     },
     {
       "name": "test-render",
       "command": "node test-render.js",
-      "startedAt": "2026-08-24T22:25:31.989Z",
-      "finishedAt": "2026-08-24T22:25:32.039Z",
+      "startedAt": "2026-08-25T15:56:08.068Z",
+      "finishedAt": "2026-08-25T15:56:08.118Z",
       "durationMs": 50,
       "exitCode": 0
     },
     {
       "name": "qa-check",
       "command": "node qa-check.js",
-      "startedAt": "2026-08-24T22:25:32.040Z",
-      "finishedAt": "2026-08-24T22:25:32.094Z",
-      "durationMs": 54,
+      "startedAt": "2026-08-25T15:56:08.119Z",
+      "finishedAt": "2026-08-25T15:56:08.182Z",
+      "durationMs": 63,
+      "exitCode": 0
+    },
+    {
+      "name": "qa-citations",
+      "command": "node qa-citations.js",
+      "startedAt": "2026-08-25T15:56:08.183Z",
+      "finishedAt": "2026-08-25T15:56:08.225Z",
+      "durationMs": 42,
       "exitCode": 0
     },
     {
       "name": "qa-markers",
       "command": "node qa-markers.js",
-      "startedAt": "2026-08-24T22:25:32.094Z",
-      "finishedAt": "2026-08-24T22:25:32.142Z",
-      "durationMs": 48,
+      "startedAt": "2026-08-25T15:56:08.225Z",
+      "finishedAt": "2026-08-25T15:56:08.268Z",
+      "durationMs": 43,
       "exitCode": 0
     },
     {
       "name": "make-nav-data",
       "command": "node make-nav-data.js",
-      "startedAt": "2026-08-24T22:25:32.142Z",
-      "finishedAt": "2026-08-24T22:25:32.192Z",
-      "durationMs": 50,
+      "startedAt": "2026-08-25T15:56:08.268Z",
+      "finishedAt": "2026-08-25T15:56:08.309Z",
+      "durationMs": 41,
       "exitCode": 0
     },
     {
       "name": "render-pdf",
       "command": "node render-pdf.js",
-      "startedAt": "2026-08-24T22:25:32.192Z",
-      "finishedAt": "2026-08-24T22:25:38.979Z",
-      "durationMs": 6787,
+      "startedAt": "2026-08-25T15:56:08.310Z",
+      "finishedAt": "2026-08-25T15:56:18.856Z",
+      "durationMs": 10546,
       "exitCode": 0
     },
     {
       "name": "stamp_nav",
       "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python stamp_nav.py",
-      "startedAt": "2026-08-24T22:25:38.979Z",
-      "finishedAt": "2026-08-24T22:26:13.436Z",
-      "durationMs": 34457,
+      "startedAt": "2026-08-25T15:56:18.856Z",
+      "finishedAt": "2026-08-25T15:56:48.630Z",
+      "durationMs": 29774,
       "exitCode": 0
     },
     {
       "name": "qa-nav",
       "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python qa-nav.py",
-      "startedAt": "2026-08-24T22:26:13.436Z",
-      "finishedAt": "2026-08-24T22:26:15.868Z",
-      "durationMs": 2432,
+      "startedAt": "2026-08-25T15:56:48.630Z",
+      "finishedAt": "2026-08-25T15:56:50.670Z",
+      "durationMs": 2040,
+      "exitCode": 0
+    },
+    {
+      "name": "qa-content",
+      "command": "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python qa-content.py",
+      "startedAt": "2026-08-25T15:56:50.670Z",
+      "finishedAt": "2026-08-25T15:56:51.318Z",
+      "durationMs": 648,
       "exitCode": 0
     }
   ],
   "status": "ok",
-  "finishedAt": "2026-08-24T22:26:15.868Z",
-  "durationMs": 44014
+  "finishedAt": "2026-08-25T15:56:51.318Z",
+  "durationMs": 43392
 }

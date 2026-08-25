@@ -2,8 +2,9 @@
 
 /**
  * sections/12-part1-cat-c.js — Part I category chapters (no Part divider):
- *   instrument-rating, flight-instructor, sport-pilot-instructor,
- *   specialty-operations  (filtered through CATEGORY_ORDER).
+ *   instrument-rating, flight-instructor, sport-pilot-instructor
+ *   (filtered through CATEGORY_ORDER). specialty-operations lives in
+ *   13-part1-cat-d.js so the book's physical order matches CATEGORY_ORDER.
  *
  * Chapter pattern (per category):
  *   helpers.renderCategoryHeader(slug, count)   — h2 banner, page-breaks itself
@@ -38,7 +39,6 @@ const MY_SLUGS = [
   "instrument-rating",
   "flight-instructor",
   "sport-pilot-instructor",
-  "specialty-operations",
 ];
 
 const MAX_RELATED = 4;
@@ -106,7 +106,7 @@ function relatedHtml(e, data, helpers) {
 
 module.exports = {
   title:
-    "Part I — Instrument Rating, Flight Instructor, Sport Pilot Instructor, Specialty Operations",
+    "Part I — Instrument Rating, Flight Instructor & Sport Pilot Instructor",
 
   render(data, helpers) {
     const { esc } = helpers;

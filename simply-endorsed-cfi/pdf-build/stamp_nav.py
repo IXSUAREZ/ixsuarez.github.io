@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python
 """
 stamp_nav.py — stamps CFI-Binder-style navigation chrome onto every page of
@@ -181,7 +182,12 @@ def main():
     deck_targets = [("CONTENTS", model["toc"]), ("LIBRARY", model["p1"]),
                     ("WORKFLOWS", model["p2"]), ("GUIDANCE", model["p3"])]
 
-    for pno in range(1, doc.page_count):       # cover (page 0): no chrome
+    # Page 0 (Cover): Interactive ENTER DIRECTORY button linking to TOC
+    btn_rect = fitz.Rect(170.0, 650.0, 442.0, 725.0)
+    page0 = doc[0]
+    page0.insert_link({"kind": fitz.LINK_GOTO, "from": btn_rect, "page": 1, "to": fitz.Point(36, 36)})
+
+    for pno in range(1, doc.page_count):       # content pages
         page = doc[pno]
         _, active_top = model["crumb_for"](pno)
         draw_top_deck(page, deck_targets, active_top, nav["sourceUrl"],

@@ -97,6 +97,16 @@ async function main() {
       throw err;
     }
   }
+  // Inject native JPEG cover onto page 0 of PDF_PATH before creating BASE_PATH
+  try {
+    const { execSync } = require("child_process");
+    const pyExe = process.env.PYTHON || "/Users/diegosuarez/Desktop/VIBE CODING PROJECTS/Foreflight Document EDITOR/99_archive/generated-and-cache/pdf-build-venv/bin/python";
+    const injectPy = path.join(__dirname, "inject_cover.py");
+    execSync(`"${pyExe}" "${injectPy}" "${PDF_PATH}"`, { stdio: "inherit" });
+  } catch (err) {
+    console.warn(`[render] cover injection warning: ${err.message}`);
+  }
+
   const mb = (fs.statSync(PDF_PATH).size / (1024 * 1024)).toFixed(2);
   console.log(`[render] wrote ${PDF_PATH} (${mb} MB)`);
   fs.copyFileSync(PDF_PATH, BASE_PATH);

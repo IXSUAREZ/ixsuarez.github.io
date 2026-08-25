@@ -26,21 +26,25 @@ function renderJourneyTracker(data, helpers) {
     { num: "02", name: "Pre-Solo Aeronautical Knowledge Test", refs: "§ 61.87(b)", chips: "A.3" },
     { num: "03", name: "Pre-Solo Flight Training Proficiency", refs: "§ 61.87(c)", chips: "A.4" },
     { num: "04", name: "First Local Solo Authorization (90 Days)", refs: "§ 61.87(n)", chips: "A.6" },
-    { num: "05", name: "Night Solo Training & Authorization", refs: "§ 61.87(o)", chips: "A.8" },
+    { num: "05", name: "Night Solo Training & Authorization", refs: "§ 61.87(o)", chips: "A.5" },
     { num: "06", name: "Solo Cross-Country Flight Training", refs: "§ 61.93(c)(1)", chips: "A.9" },
     { num: "07", name: "Solo Cross-Country Route Planning Review", refs: "§ 61.93(c)(3)", chips: "A.10" },
     { num: "08", name: "Repeated Solo Cross-Country (50 NM)", refs: "§ 61.93(b)(2)", chips: "A.11" },
     { num: "09", name: "Class B Airspace Solo Operation", refs: "§ 61.95(a)", chips: "A.12" },
-    { num: "10", name: "Airman Knowledge Test Recommendation", refs: "§ 61.35(a)", chips: "A.32" },
+    { num: "10", name: "Airman Knowledge Test Recommendation", refs: "§ 61.35(a)", chips: "A.36" },
     { num: "11", name: "AKTR Written Deficiency Review", refs: "§ 61.39(a)(6)(iii)", chips: "A.2" },
-    { num: "12", name: "Practical Test Readiness (60-Day Signoff)", refs: "§ 61.39(a)(6)(i)", chips: "A.1, A.33" },
+    { num: "12", name: "Practical Test Readiness (2-Calendar-Month Signoff)", refs: "§ 61.39(a)(6)(i)", chips: "A.1, A.37" },
   ];
+
+  const linkChips = (str) => str.split(",").map((p) => p.trim()).filter(Boolean)
+    .map((id) => `<a class="internal" href="#${helpers.anchorForEndorsement(id)}" style="color:inherit;text-decoration:none">${id}</a>`)
+    .join(", ");
 
   const rows = stages.map(s => `<tr>
     <td class="jt-stage-num">${s.num}</td>
     <td><strong>${s.name}</strong></td>
     <td>${s.refs}</td>
-    <td class="jt-pills">${s.chips}</td>
+    <td class="jt-pills">${linkChips(s.chips)}</td>
     <td style="width:55pt"></td>
     <td style="width:55pt"></td>
     <td style="width:35pt"></td>
@@ -49,7 +53,7 @@ function renderJourneyTracker(data, helpers) {
   return `<div class="page-break jt-wrap">
     <div class="jt-header">
       <h2 class="jt-title" id="journey-tracker">Appendix — Student Pilot Stage Progression Tracker</h2>
-      <p class="jt-sub">12-Stage progression ledger for student pilot tracking from zero time through practical test checkride recommendation.</p>
+      <p class="jt-sub">12-Stage progression ledger for a student pilot on the Private Pilot (ASEL) path, from zero time through practical test checkride recommendation. Sport, instrument, and commercial paths follow the same pattern with their own category cards.</p>
     </div>
     <div class="jt-meta-grid">
       <div class="jt-meta-field"><span class="jt-meta-lbl">Student Name</span><div class="jt-meta-line"></div></div>

@@ -160,6 +160,35 @@ module.exports = {
       <tr><th>Cover</th><td>Milled cover is clean and chrome-free.</td></tr>
     </table>
   </div>
+  <h2 class="fm-h">The Sign-Off Protocol</h2>
+  <p class="fm-proto-lead">How to write any endorsement in this book — the same five steps, every time.</p>
+  <ol class="fm-proto">
+    <li class="fm-proto-step">
+      <span class="fm-proto-num">1</span>
+      <div class="fm-proto-body"><strong>Confirm you may sign.</strong> The signer badge on every card names who may sign — most are a standard CFI signoff; some require an examiner, DPE/ASI, or approved institution.</div>
+      <a class="fm-proto-link internal" href="#part-1">Part I Library &#x203A;</a>
+    </li>
+    <li class="fm-proto-step">
+      <span class="fm-proto-num">2</span>
+      <div class="fm-proto-body"><strong>Verify prerequisites first.</strong> Confirm training, experience, and documents against the category checklists and the stage-by-stage gotchas in the <a class="internal" href="#journey">Student Journey</a> before you sign anything.</div>
+      <a class="fm-proto-link internal" href="#training-requirements">Checklists &#x203A;</a>
+    </li>
+    <li class="fm-proto-step">
+      <span class="fm-proto-num">3</span>
+      <div class="fm-proto-body"><strong>Write it verbatim.</strong> Copy the model text from the card exactly, filling only the [bracketed blanks]. Date it, sign it, and add your CFI number and certificate expiration.</div>
+      <a class="fm-proto-link internal" href="#ac-number-index">Find any card &#x203A;</a>
+    </li>
+    <li class="fm-proto-step">
+      <span class="fm-proto-num">4</span>
+      <div class="fm-proto-body"><strong>Record it in the register.</strong> § 61.189 requires a 3-year record of every solo sign-off and every knowledge or practical test recommendation — log it before you move on.</div>
+      <a class="fm-proto-link internal" href="#endorsement-register">Register &#x203A;</a>
+    </li>
+    <li class="fm-proto-step">
+      <span class="fm-proto-num">5</span>
+      <div class="fm-proto-body"><strong>Compute the expiration.</strong> 90 calendar days is an exact day count; 2 calendar months ends on the last day of the month. Compute it now and write it in the logbook entry.</div>
+      <a class="fm-proto-link internal" href="#expiration-calculator">Expiration math &#x203A;</a>
+    </li>
+  </ol>
   <h2 class="fm-h">Category Color System</h2>
   <div class="fm-legend-grid">
       ${legendChips}
@@ -222,6 +251,36 @@ module.exports = {
           <span class="toc-btn-stripe toc-stripe-navy"></span>
           <span class="toc-guide-code">A-Z</span>
           <span class="toc-btn-label">AC 61-65K Number Index (A.1 – A.96)</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-app-btn" href="#alias-index">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">ALI</span>
+          <span class="toc-btn-label">Plain-Language &amp; Alias Index (A–Z)</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-app-btn" href="#endorsement-register">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">LED</span>
+          <span class="toc-btn-label">§ 61.189 CFI Endorsement Register (Printable Ledger)</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-app-btn" href="#journey-tracker">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">TRK</span>
+          <span class="toc-btn-label">Student Journey Progression Tracker (Writable)</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-app-btn" href="#expiration-calculator">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">EXP</span>
+          <span class="toc-btn-label">FAR Time Limits &amp; Expiration Computation</span>
+          <span class="toc-btn-arrow">&#x203A;</span>
+        </a>
+        <a class="internal toc-btn toc-app-btn" href="#checkride-manifest">
+          <span class="toc-btn-stripe toc-stripe-navy"></span>
+          <span class="toc-guide-code">DPE</span>
+          <span class="toc-btn-label">Practical Test DPE Applicant Manifests</span>
           <span class="toc-btn-arrow">&#x203A;</span>
         </a>
         <a class="internal toc-btn toc-app-btn" href="#appendix">
@@ -314,6 +373,45 @@ module.exports = {
   color: #0f172a;
   white-space: nowrap;
   background: #f1f5f9;
+}
+/* ── Sign-Off Protocol (5-step panel) ─────────────────────────────────── */
+.fm-proto-lead { font-size: 11pt; color: #475569; margin: 0 0 6pt 0; }
+.fm-proto { list-style: none; margin: 0 0 14pt 0; padding: 0; counter-reset: fm-proto; }
+.fm-proto-step {
+  display: flex;
+  align-items: center;
+  gap: 8pt;
+  margin-bottom: 4.5pt;
+  padding: 6pt 9pt;
+  background: #f8fafc;
+  border: 0.75pt solid #cbd5e1;
+  border-left: 3pt solid #0f172a;
+  border-radius: 4pt;
+  break-inside: avoid;
+}
+.fm-proto-num {
+  flex-shrink: 0;
+  width: 16pt;
+  height: 16pt;
+  border-radius: 50%;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 9.5pt;
+  font-weight: 800;
+  line-height: 16pt;
+  text-align: center;
+}
+.fm-proto-body { flex: 1 1 auto; font-size: 10.5pt; line-height: 1.35; color: #334155; }
+.fm-proto-body a { color: #2563eb; text-decoration: none; }
+.fm-proto-link {
+  flex-shrink: 0;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #2563eb;
+  text-decoration: none;
+  white-space: nowrap;
 }
 .fm-legend-grid {
   display: grid;

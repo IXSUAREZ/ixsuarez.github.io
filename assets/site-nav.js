@@ -13,6 +13,7 @@
     var links = nav.querySelector(".nav-links");
     var dropdown = nav.querySelector(".nav-dropdown");
     var dropToggle = nav.querySelector(".nav-drop-toggle");
+    var browseToggle = document.getElementById("sidebarToggleBtn");
     if (!toggle || !links) return;
 
     function setMenu(open) {
@@ -28,6 +29,34 @@
       if (!dropdown || !dropToggle) return;
       dropdown.classList.toggle("is-open", open);
       dropToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    // Simply Endorsed has an app drawer in addition to the shared site sheet.
+    // Put the drawer action inside the one mobile site-menu sheet so the
+    // header never presents two competing menu controls.
+    if (
+      document.body.classList.contains("simply-endorsed-page") &&
+      browseToggle &&
+      !links.querySelector(".nav-browse-link")
+    ) {
+      var browseLink = document.createElement("button");
+      browseLink.type = "button";
+      browseLink.className = "nav-browse-link";
+      browseLink.setAttribute("aria-controls", "filterRail");
+      browseLink.innerHTML =
+        '<svg class="nav-browse-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+        '<rect x="4" y="4" width="6" height="6" rx="1"></rect>' +
+        '<rect x="14" y="4" width="6" height="6" rx="1"></rect>' +
+        '<rect x="4" y="14" width="6" height="6" rx="1"></rect>' +
+        '<rect x="14" y="14" width="6" height="6" rx="1"></rect>' +
+        '</svg><span>Browse categories</span>';
+      links.insertBefore(browseLink, links.firstChild);
+      browseLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        setMenu(false);
+        browseToggle.click();
+      });
     }
 
     toggle.addEventListener("click", function (event) {

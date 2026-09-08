@@ -3356,7 +3356,10 @@
       });
     } else if (options.returnFocus !== false) {
       window.requestAnimationFrame(() => {
-        if (dom.sidebarToggleBtn) dom.sidebarToggleBtn.focus();
+        const visibleReturnTarget = dom.sidebarToggleBtn && dom.sidebarToggleBtn.offsetParent !== null
+          ? dom.sidebarToggleBtn
+          : document.querySelector(".nav-menu-toggle");
+        if (visibleReturnTarget) visibleReturnTarget.focus();
       });
     }
   }

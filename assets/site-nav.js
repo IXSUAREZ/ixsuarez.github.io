@@ -40,6 +40,25 @@
         event.stopPropagation();
         setDropdown(!dropdown.classList.contains("is-open"));
       });
+      dropToggle.addEventListener("keydown", function (event) {
+        if (event.key !== "ArrowDown") return;
+        event.preventDefault();
+        event.stopPropagation();
+        setDropdown(true);
+        dropdown.querySelector(".nav-drop-panel a").focus();
+      });
+      dropdown.addEventListener("keydown", function (event) {
+        var items = Array.from(dropdown.querySelectorAll(".nav-drop-panel a"));
+        var index = items.indexOf(document.activeElement);
+        if (index < 0 || !["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        var next = event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 :
+          (index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+        items[next].focus();
+      });
+      dropdown.addEventListener("focusout", function (event) {
+        if (event.relatedTarget && !dropdown.contains(event.relatedTarget)) setDropdown(false);
+      });
     }
 
     // Close when a real link is activated

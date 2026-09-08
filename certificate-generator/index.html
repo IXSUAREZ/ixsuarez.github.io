@@ -25,7 +25,7 @@
       name="twitter:description"
       content="Generate a share-ready milestone certificate JPEG with student photo in under a minute."
     >
-    <meta name="theme-color" content="#0D9488">
+    <meta name="theme-color" content="#242725">
     <link rel="icon" type="image/svg+xml" href="/certificate-generator/logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,8 +61,9 @@
       }
     </script>
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  </head>
-  <body class="theme-blue certgen-view">
+  <link rel="stylesheet" href="/assets/premium.css?v=f6972e35bd">
+</head>
+  <body class="theme-blue certgen-view tool-page">
     <!-- Aviation-themed backdrop and coordinate margins -->
     <div class="aviation-backdrop" aria-hidden="true">
       <div class="aviation-grid"></div>
@@ -74,7 +75,7 @@
       <nav class="nav nav--tool" aria-label="Primary">
         <div class="nav-brand">
           <a href="/" class="link-back">&larr; SuarezCFI.com</a>
-          <a href="/" class="wordmark" aria-label="Diego Suarez — SuarezCFI.com home">Diego Suarez</a>
+          <a href="/" class="wordmark" aria-label="Diego Suarez — SuarezCFI.com home">SUAREZ.CFI</a>
           <span class="nav-brand-divider" aria-hidden="true"></span>
           <a href="/certificate-generator/" class="nav-tool-mark" aria-label="Certificate Generator home">
             <svg class="nav-tool-logo" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -98,7 +99,7 @@
         </div>
         <div class="nav-links" id="primary-nav-links">
           <a href="/learn/">Learn</a>
-          <a href="/blog/">Blog</a>
+          <a href="/blog/">Journal</a>
           <div class="nav-dropdown">
             <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
               Tools
@@ -112,7 +113,7 @@
             </div>
           </div>
           <a href="/#contact">Contact</a>
-          <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Book a Discovery Flight</a>
+          <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
         </div>
         <div class="nav-tools">
           <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
@@ -281,6 +282,7 @@
           <aside class="cg-preview-col" aria-label="Certificate preview">
             <div class="cg-preview-sticky">
               <div class="cg-canvas-wrap">
+                <p class="cg-preview-empty">Your certificate preview appears here.<br><span>Choose a milestone to begin.</span></p>
                 <canvas id="cgCanvas" class="cg-canvas" width="1080" height="1920" aria-label="Certificate preview canvas"></canvas>
               </div>
               <div class="cg-preview-actions">
@@ -359,12 +361,12 @@
     <!-- site-footer -->
     <footer class="site-footer">
       <div class="container">
-        <a href="/" class="wordmark">Diego Suarez</a>
+        <a href="/" class="wordmark">SUAREZ.CFI</a>
         <div class="footer-cols">
           <div class="footer-col">
             <p class="footer-col-title">Learn</p>
             <a href="/learn/">Learn</a>
-            <a href="/blog/">Blog</a>
+            <a href="/blog/">Journal</a>
             <a href="/#tools">Free tools</a>
             <a href="/#about">About</a>
             <a href="/#faq">FAQ</a>
@@ -404,7 +406,7 @@
 
     <script src="/assets/cta-tracking.js" defer></script>
 
-    <script src="/assets/site-nav.js" defer></script>
+    <script src="/assets/site-nav.js?v=32319d5a85" defer></script>
     <script src="/simply-endorsed/js/shared-utils.js" defer></script>
     <script src="/certificate-generator/js/certificate-generator.js?v=6" defer></script>
   </body>

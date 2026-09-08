@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="theme-color" content="#242725">
+  <title>{{TITLE}} | SUAREZ.CFI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/design-system.css">
+  <link rel="stylesheet" href="/blog/style.css">
+  <link rel="stylesheet" href="/assets/premium.css?v={{PREMIUM_VERSION}}">
+</head>
+<body class="home-page">
+  <!-- site-nav -->
+{{NAV}}
+  <!-- /site-nav -->
+<main>    <section class="horizon-hero" id="hero" aria-labelledby="hero-heading" data-motion="off">
+      <img class="horizon-sky" src="/assets/premium/sky-horizon.png" alt="" width="1586" height="992" fetchpriority="high" decoding="async">
+      <div class="horizon-shade" aria-hidden="true"></div>
+      <div class="container">
+        <div class="horizon-copy">
+          <p class="horizon-kicker">Bowman Field · Louisville, KY</p>
+          <h1 id="hero-heading"><span>Learn to fly.</span><span>With confidence.</span></h1>
+          <p class="horizon-lede">Personal flight instruction, practical knowledge,<br class="desktop-break"> and tools for every stage of your flying.</p>
+          <div class="horizon-actions">
+            <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery">Book a discovery flight</a>
+            <a href="#tools" class="horizon-tools">Explore pilot tools</a>
+          </div>
+        </div>
+      </div>
+      <div class="horizon-bottom">
+        <p class="horizon-signature">Diego Suarez / Flight Instructor · CFI / AGI</p>
+        <label class="sky-control" for="sky-motion">
+          <span>Sky motion</span>
+          <input type="checkbox" role="switch" id="sky-motion" aria-label="Sky motion">
+          <span class="sky-state" aria-hidden="true">Off</span>
+        </label>
+      </div>
+    </section>
+{{CONTENT}}
+</main>
+<script defer src="/assets/premium-home.js"></script>
+  <!-- site-footer -->
+{{FOOTER}}
+  <!-- /site-footer -->
+  <script defer src="/assets/site-nav.js"></script>
+</body>
+</html>

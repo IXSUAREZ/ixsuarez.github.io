@@ -13,7 +13,9 @@
   /** Native canvas size of every template (px) */
   var CANVAS = { w: 1080, h: 1920 };
 
-  /** Photo placeholder window measured from the templates (px, canvas space) — 4:3 landscape */
+  /** Refined 4:3 photo aperture shared by the monocoque certificate system. */
+  // Original social-card 4:3 photo aperture, now framed by the liquid-glass
+  // template rather than a separate UI-style panel.
   var PHOTO_BOX = { x: 132, y: 483, w: 824, h: 620, r: 24 };
 
   /** Text baseline positions measured from the templates (px, canvas space) */
@@ -158,7 +160,8 @@
       ctx.restore();
     }
 
-    // Text — white with a soft drop shadow, matching the template look
+    // Names sit directly in the lower glass field. There are deliberately no
+    // decorative rules beneath the photo—only the personal accomplishment.
     ctx.fillStyle = "#ffffff";
     ctx.shadowColor = "rgba(0, 0, 0, 0.45)";
     ctx.shadowBlur = 12;
@@ -171,12 +174,12 @@
         startSize: 148,
         minSize: 48,
         maxWidth: TEXT_LAYOUT.studentMaxWidth,
-        letterSpacing: 2,
+        letterSpacing: 1.5,
       });
     }
     if (data.instructorName.trim()) {
       // Slightly gray to set the instructor lines apart from the student's pure white name
-      ctx.fillStyle = "#e3e3e3";
+      ctx.fillStyle = "#c9d1da";
       drawFittedText(ctx, "INSTRUCTED BY", cx, TEXT_LAYOUT.labelBaseline, {
         weight: 500,
         startSize: 76,

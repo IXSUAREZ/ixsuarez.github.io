@@ -4,6 +4,41 @@ Engineer-facing contract for every page and app on this site. If a change
 violates this file, the change is wrong — update the constitution deliberately,
 never by drift.
 
+## Active design contract — Graphite Horizon, September 7, 2026
+
+The user selected option 1 and authorized the redesign across every page and
+app. This section supersedes the older color, type, geometry, navigation, and
+motion rules below. Those sections remain as historical implementation notes.
+
+- `assets/premium.css` is the final shared cascade after each page/app stylesheet.
+  Warm grey (#e9e7e1), graphite (#242725), champagne gold (#bba16a), warm paper,
+  Inter typography, fine borders, and restrained inset highlights form the system.
+- Use the tracked SUAREZ.CFI wordmark and the shared dark header. Public navigation
+  is Training, Learn, Journal, Tools, About, and Fly with Diego. App headers keep
+  their tool identity and working app controls. FOI uses the same finish in a
+  focused dark study shell.
+- Primary actions are tactile gold; secondary actions are silver/paper. Use 5–8px
+  control corners and 10–12px panels, with readable labels and visible focus.
+- Simply Endorsed category assignments and Part 61 category/step meanings remain
+  owned by their existing modules. Do not replace semantic colors with brand gold.
+  FlightRisk low/moderate/high colors also remain unchanged. Certificate editing
+  uses the shared gold finish while preserving certificate artwork/export geometry.
+- The home hero has an original photographic sky asset and slow, transform-only
+  movement. Its native, keyboard-operable Sky motion switch persists the choice;
+  movement pauses offscreen and in hidden tabs and defaults off for reduced motion.
+  No audio. Text and navigation stay stationary.
+- Reusable templates are in `templates/`; the existing blog generator continues
+  to use `blog/_template/index.html`. Run `scripts/apply-premium-theme.py` after
+  changing the shared stylesheet or generating a page to update asset versions.
+- Keep all existing content, tool calculations, saved-progress formats, sources,
+  export dimensions, and app IDs intact. Certificate Generator stays internal and
+  is not linked from public chrome. The template examples are not public routes.
+- Shared navigation/footer remain static HTML from `assets/partials/`; run
+  `scripts/sync-chrome.py --check`. Use `scripts/build-flightrisk.py` to rebuild
+  the React app into the static site without touching other app source or assets.
+
+## Historical design contract (superseded where noted above)
+
 ## 1. Hierarchy: one primary per viewport
 
 Each viewport has exactly ONE primary action (`.btn--primary`). Everything

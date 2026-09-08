@@ -1918,6 +1918,55 @@ function pressCardKey(helpers, endorsementId, key) {
   }));
 }
 
+tests.push(
+  {
+    id: "R_DRAFT_01",
+    name: "A complete restored draft recalculates real totals and a copyable report",
+    tier: 4,
+    feature: 0,
+    fn: async (dom, helpers) => {
+      const experience = Object.fromEntries(Array.from(helpers.document.querySelectorAll('[data-experience]'), input => [input.dataset.experience, '0']));
+      const draft = { version: 1, credentials: ['student'], targets: ['private-asel'], rates: { aircraftWet: '210', instructor: '50' }, experience, events: {}, flags: {} };
+      const restored = initJSDOM({ domOptions: { beforeParse(window) {
+        window.localStorage.setItem('simply-endorsed:part61-scenario', JSON.stringify(draft));
+      } } });
+      try {
+        const doc = restored.document;
+        const number = selector => Number(doc.querySelector(selector).textContent.replace(/[^\d.]/g, ''));
+        if (number('#part61ReviewCost') !== 9400 || number('#part61ReviewHours') !== 40) throw new Error('Restored audit does not show the expected $9,400 and 40 hours');
+        if (doc.querySelector('.part61-success-header').hidden) throw new Error('Calculated draft result is hidden');
+        if (!doc.querySelector('.part61-audit-empty').hidden) throw new Error('Empty state remains after calculation');
+        doc.querySelector('#part61CopyBtn').click();
+        await Promise.resolve();
+        if (!restored.getClipboardText().includes('9,400')) throw new Error('Restored report is not copyable');
+      } finally { restored.dom.window.close(); }
+    }
+  },
+  {
+    id: "R_DRAFT_02",
+    name: "An incomplete restored draft preserves input and never presents a false success",
+    tier: 4,
+    feature: 0,
+    fn: async () => {
+      const draft = { version: 1, credentials: ['student'], targets: ['private-asel'], rates: { aircraftWet: '210', instructor: '50' }, experience: { totalTime: '' }, events: {}, flags: {} };
+      const restored = initJSDOM({ domOptions: { beforeParse(window) {
+        window.localStorage.setItem('simply-endorsed:part61-scenario', JSON.stringify(draft));
+      } } });
+      try {
+        const doc = restored.document;
+        const workbench = doc.querySelector('.part61-workbench');
+        if (workbench.getAttribute('data-active-step') !== '1') throw new Error('Incomplete draft should resume at its inputs');
+        if (doc.querySelector('#part61AircraftWetRate').value !== '210' || doc.querySelector('[data-experience="totalTime"]').value !== '') throw new Error('Draft inputs changed on restore');
+        workbench.setAttribute('data-active-step', '5');
+        for (const selector of ['.part61-success-header', '.part61-review-metrics', '.part61-action-grid']) {
+          if (!doc.querySelector(selector).hidden) throw new Error(`${selector} incorrectly claims a result exists`);
+        }
+        if (doc.querySelector('.part61-audit-empty').hidden) throw new Error('Missing explanation for uncalculated audit');
+      } finally { restored.dom.window.close(); }
+    }
+  }
+);
+
 module.exports = {
   tests
 };

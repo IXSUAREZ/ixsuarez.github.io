@@ -1360,6 +1360,10 @@
   function updateResultPresence() {
     const workbench = qs(".part61-workbench");
     if (workbench) workbench.classList.toggle("has-result", Boolean(state.result));
+    qsa("#part61ReviewShare .part61-success-header, #part61ReviewShare .part61-review-metrics, #part61ReviewShare .part61-action-grid")
+      .forEach((element) => { element.hidden = !state.result; });
+    const empty = qs(".part61-audit-empty");
+    if (empty) empty.hidden = Boolean(state.result);
   }
 
   function renderCalculationError() {
@@ -1997,7 +2001,13 @@
     }
 
     updateResultPresence();
-    setStep(restored ? 5 : 1);
+    setStep(1);
+    if (restored) {
+      // Drafts store inputs, not a computed result. Rebuild a complete draft
+      // before presenting its audit; incomplete drafts resume with their inputs.
+      if (validateRequiredInputs(false)) calculateAndRender();
+      else clearValidation();
+    }
 
     ids.sourceReview.textContent = `Source review date: ${RULES.REVIEW_DATE}`;
   }

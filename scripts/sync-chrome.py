@@ -173,6 +173,8 @@ def render_nav(current_block, page):
     # --- preserve the trailing CTA anchor (single line in every page)
     cta_m = CTA_RE.search(current_block)
     cta = cta_m.group(0).strip() if cta_m else None
+    if cta:
+        cta = cta.replace(">Book a Discovery Flight</a>", ">Fly with Diego</a>")
 
     tool_mark = None
     app_links = []
@@ -380,6 +382,8 @@ def iter_pages():
         if "_template" in rel.parts:
             continue  # blog post skeleton with {{PLACEHOLDER}} slots
         top = rel.parts[0]
+        if "pdf-build" in rel.parts or "templates" in rel.parts:
+            continue
         if top in SKIP_DIRS:
             continue
         yield p

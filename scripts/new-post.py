@@ -63,6 +63,7 @@ def main():
     post.write_text(text, encoding="utf-8")
     print(f"new-post: created blog/{slug}/index.html")
 
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "apply-premium-theme.py")], check=True)
     if run_sync() != 0:
         return fail("sync-chrome --apply failed; fix the errors above and re-run it")
 
@@ -70,10 +71,10 @@ def main():
     # existing post carries aria-current on that link), then re-sync so the
     # slot is validated and preserved like anywhere else.
     filled = post.read_text(encoding="utf-8")
-    if '<a href="/blog/">Blog</a>' in filled:
+    if '<a href="/blog/">Journal</a>' in filled:
         post.write_text(filled.replace(
-            '<a href="/blog/">Blog</a>',
-            '<a href="/blog/" aria-current="page">Blog</a>', 1), encoding="utf-8")
+            '<a href="/blog/">Journal</a>',
+            '<a href="/blog/" aria-current="page">Journal</a>', 1), encoding="utf-8")
         if run_sync() != 0:
             return fail("sync-chrome --apply failed; fix the errors above and re-run it")
 

@@ -25,6 +25,7 @@
   const DRAFT_STORAGE_KEY = "simply-endorsed:part61-scenario";
   const SHARE_PARAM = "s";
   const FLAG_KEYS = ["militaryExperience", "militaryOnly", "faaCommercialAmel", "priorFaa"];
+  const STEP_KEYS = ["goal", "background", "experience", "plan"];
 
   function part61Id(id) {
     return "part61" + id.charAt(0).toUpperCase() + id.slice(1);
@@ -237,19 +238,19 @@
   }
 
   function experienceCompletion() {
-    const fields = flatFieldList();
+    const fields = flatFieldList().filter((field) => isFieldRelevant(field.key, state.targets));
     const filled = fields.filter((field) => {
       const input = qs(`[data-experience="${field.key}"]`);
-      return input && input.value.trim() !== "";
+      return input && input.value.trim() !== "" && Number.isFinite(Number(input.value)) && Number(input.value) >= 0;
     });
     return {
       total: fields.length,
       filled: filled.length,
       groups: RULES.FIELD_GROUPS.map((group) => {
-        const groupFields = group.fields.map(([key, label]) => ({ key, label }));
+        const groupFields = group.fields.map(([key, label]) => ({ key, label })).filter((field) => isFieldRelevant(field.key, state.targets));
         const groupFilled = groupFields.filter((field) => {
           const input = qs(`[data-experience="${field.key}"]`);
-          return input && input.value.trim() !== "";
+          return input && input.value.trim() !== "" && Number.isFinite(Number(input.value)) && Number(input.value) >= 0;
         });
         return {
           title: group.title,
@@ -374,14 +375,14 @@
 
   function renderCredentialOptions() {
     const query = ids.credentialSearch.value.trim().toLowerCase();
-    const options = RULES.CREDENTIAL_OPTIONS
-      .filter((item) => !query || item.label.toLowerCase().includes(query) || item.id.includes(query))
-      .map((item) => {
-        const selected = state.credentials.includes(item.id);
-        return `<button type="button" class="option-button ${selected ? "selected" : ""}" data-credential="${escapeHtml(item.id)}" aria-pressed="${selected ? "true" : "false"}">${escapeHtml(item.label)}</button>`;
-      })
-      .join("");
-    ids.credentialOptions.innerHTML = options || `<div class="empty-state">No matching credential.</div>`;
+    const options = RULES.CREDENTIAL_OPTIONS.filter(item => !query || `${item.label} ${item.id}`.toLowerCase().includes(query));
+    const groups = [
+      ["Pilot certificates", options.filter(o => !o.id.includes("military") && !o.id.includes("instrument") && !o.id.includes("cfi"))],
+      ["Ratings & instructor certificates", options.filter(o => o.id.includes("instrument") || o.id.includes("cfi"))],
+      ["Military experience", options.filter(o => o.id.includes("military"))]
+    ];
+    ids.credentialOptions.innerHTML = groups.filter(([,items]) => items.length).map(([title,items]) => `<section class="part61-credential-group"><h4>${escapeHtml(title)}</h4><div>${items.map(item => `<button type="button" class="option-button" data-credential="${escapeHtml(item.id)}" aria-pressed="${state.credentials.includes(item.id)}"><span>${escapeHtml(item.label)}</span><small>${state.credentials.includes(item.id) ? "Selected" : "Add"}</small></button>`).join("")}</div></section>`).join("") || `<p class="empty-state">No matching certificate or rating.</p>`;
+    qsa("[data-no-certificate]").forEach(button => button.setAttribute("aria-pressed", String(!state.credentials.length)));
   }
 
   function renderSelectedCredentials() {
@@ -396,31 +397,17 @@
   }
 
   function renderExperienceFields() {
-    ids.experienceFields.innerHTML = RULES.FIELD_GROUPS.map((group) => {
+    ids.experienceFields.innerHTML = RULES.FIELD_GROUPS.map((group,index) => {
       const slug = groupSlug(group.title);
-      return `
-      <div class="field-group" data-group-slug="${escapeHtml(slug)}">
-        <div class="field-group-heading">
-          <h3>${escapeHtml(group.title)}</h3>
-          <div class="field-group-actions">
-            <button type="button" class="part61-text-button" data-fill-zero-group="${escapeHtml(slug)}">Fill blanks with 0</button>
-            <span class="group-completion" data-group-completion="${escapeHtml(slug)}">0/${group.fields.length}</span>
-          </div>
-        </div>
-        <div class="field-grid">
-          ${group.fields.map(([key, label, hint]) => `
-            <div class="number-field">
-              <label for="part61Exp-${escapeHtml(key)}">${escapeHtml(label)}</label>
-              <div class="part61-zero-input-row">
-                <input id="part61Exp-${escapeHtml(key)}" type="number" min="0" step="0.1" inputmode="decimal" data-experience="${escapeHtml(key)}" data-group-slug="${escapeHtml(slug)}" placeholder="UNKNOWN"${hint ? ` aria-describedby="part61Hint-${escapeHtml(key)}"` : ""}>
-                <button type="button" class="part61-zero-field-button" data-fill-zero-field="${escapeHtml(key)}" aria-label="Set ${escapeHtml(label)} to 0 hours" title="Set to 0">0</button>
-              </div>
-              ${hint ? `<small class="part61-field-hint" id="part61Hint-${escapeHtml(key)}">${escapeHtml(hint)}</small>` : ""}
-            </div>
-          `).join("")}
-        </div>
-      </div>
-    `;
+      return `<details class="field-group part61-experience-group" data-group-slug="${escapeHtml(slug)}" ${index === 0 ? "open" : ""}>
+        <summary><h3>${escapeHtml(group.title)}</h3><span class="group-completion" data-group-completion="${escapeHtml(slug)}">0/${group.fields.length}</span></summary>
+        <div class="field-grid">${group.fields.map(([key,label,hint]) => `<div class="number-field">
+          <label for="part61Exp-${escapeHtml(key)}">${escapeHtml(label)}</label>
+          <div class="part61-hour-input"><input id="part61Exp-${escapeHtml(key)}" type="number" min="0" step="any" inputmode="decimal" data-experience="${escapeHtml(key)}" data-group-slug="${escapeHtml(slug)}" placeholder="—"><span aria-hidden="true">hr</span></div>
+          ${hint ? `<details class="part61-field-help"><summary>What counts?</summary><p class="part61-field-hint" id="part61Hint-${escapeHtml(key)}">${linkifyCfrText(hint)}</p></details>` : ""}
+        </div>`).join("")}</div>
+        <div class="field-group-actions"><button type="button" class="part61-text-button" data-fill-zero-group="${escapeHtml(slug)}">Set remaining blanks to 0</button></div>
+      </details>`;
     }).join("");
   }
 
@@ -443,7 +430,7 @@
       const relevant = eventGroupIsRelevant(group);
       const checked = group.events.filter((event) => current[event.id]).length;
       return `
-        <details class="part61-event-group" data-event-group="${escapeHtml(group.id)}" ${relevant ? "open" : ""}>
+        <details class="part61-event-group" data-event-group="${escapeHtml(group.id)}" ${relevant ? "" : "hidden"}>
           <summary>
             <span>${escapeHtml(group.label)}${relevant ? "" : " (not in target path)"}</span>
             <span class="group-completion" data-event-group-count="${escapeHtml(group.id)}">${checked}/${group.events.length}</span>
@@ -478,6 +465,7 @@
     ids.targetStages.innerHTML = state.targets.map((target, index) => {
       const isProf = RULES.isProficiencyTarget(target);
       const estimate = state.proficiencyEstimates[target] ?? RULES.PROFICIENCY_DEFAULTS[target] ?? 0;
+      const selected = RULES.TARGET_OPTIONS.find((option) => option.id === target);
       const estimateInputHtml = isProf ? `
         <div class="part61-proficiency-estimate-container">
           <label class="proficiency-estimate-label">
@@ -488,19 +476,18 @@
         </div>
       ` : "";
       return `
-        <div class="part61-stage-card">
+        <article class="part61-stage-card" data-stage-card="${index}">
           <div class="stage-row">
             <span class="stage-number">${index + 1}</span>
-            <select data-stage-index="${index}" aria-label="Stage ${index + 1}">
-              ${RULES.TARGET_OPTIONS.map((option) => `<option value="${escapeHtml(option.id)}" ${option.id === target ? "selected" : ""}>${escapeHtml(option.label)}</option>`).join("")}
-            </select>
-            <button type="button" class="icon-button" data-remove-stage="${index}" aria-label="Remove stage ${index + 1}">x</button>
+            <div class="part61-stage-actions"><button type="button" data-move-stage="${index}" data-move-direction="-1" ${index === 0 ? "disabled" : ""}>Earlier</button><button type="button" data-move-stage="${index}" data-move-direction="1" ${index === state.targets.length - 1 ? "disabled" : ""}>Later</button><button type="button" data-remove-stage="${index}">Remove</button></div>
           </div>
+          <details class="part61-target-picker"><summary>${escapeHtml(selected ? selected.label : target)}</summary><label class="part61-field-label">Search goals<input type="search" data-stage-search="${index}" placeholder="Search certificates, ratings, or training"></label><div class="part61-target-option-list" data-stage-options="${index}">${RULES.TARGET_OPTIONS.map((option) => `<button type="button" class="part61-target-option ${option.id === target ? "selected" : ""}" data-select-target="${escapeHtml(option.id)}" data-stage-index="${index}" aria-pressed="${option.id === target}"><strong>${escapeHtml(option.label)}</strong><span>${option.id === target ? "Selected" : "Select"}</span></button>`).join("")}</div></details>
           ${estimateInputHtml}
-        </div>
+        </article>
       `;
     }).join("");
     updateFieldVisibility();
+    updateContextSummary();
   }
 
   function setExperience(values) {
@@ -540,7 +527,16 @@
     input.classList.toggle("is-invalid", invalid);
     input.setAttribute("aria-invalid", invalid ? "true" : "false");
     const wrapper = input.closest(".number-field, .part61-number-field");
-    if (wrapper) wrapper.classList.toggle("field-invalid", invalid);
+    if (wrapper) {
+      wrapper.classList.toggle("field-invalid", invalid);
+      let message = wrapper.querySelector(".part61-field-error");
+      if (invalid) {
+        if (!message) { message = document.createElement("small"); message.className = "part61-field-error"; wrapper.appendChild(message); }
+        message.id = input.id + "-error";
+        message.textContent = input.value.trim() === "" ? "Enter a value, or 0 if none logged." : "Enter a valid number of 0 or more.";
+        input.setAttribute("aria-describedby", message.id);
+      } else { if (message) message.remove(); input.removeAttribute("aria-describedby"); }
+    }
   }
 
   function fieldIsVisible(input) {
@@ -586,62 +582,28 @@
   }
 
   function validateRequiredInputs(focusFirst) {
-    const missingExperience = [];
-    const invalidRates = [];
-    qsa("[data-experience]").forEach((input) => {
-      const isVisible = input.closest(".number-field") ? input.closest(".number-field").style.display !== "none" : true;
-      const missing = isVisible && input.value.trim() === "";
-      setInvalid(input, missing);
-      if (missing) missingExperience.push(input);
-    });
-    qsa("[data-rate]").forEach((input) => {
-      // Always validate rates regardless of panel visibility — rates are a prerequisite
-      const invalid = parseRate(input.value) === null;
+    const invalidHours = qsa("[data-experience]").filter(input => {
+      const invalid = isFieldRelevant(input.dataset.experience, state.targets) && (input.value.trim() === "" || !Number.isFinite(Number(input.value)) || Number(input.value) < 0);
       setInvalid(input, invalid);
-      if (invalid) invalidRates.push(input);
+      return invalid;
     });
-
-    const noTargets = !state.targets || state.targets.length === 0;
-    const invalid = missingExperience.length || invalidRates.length || noTargets;
-    if (invalid) {
-      const parts = [];
-      if (noTargets) {
-        parts.push(`<p>No target stages added. Go to Step 4 and add at least one training target.</p>`);
+    const invalidRates = qsa("[data-rate]").filter(input => { const invalid = parseRate(input.value) === null; setInvalid(input, invalid); return invalid; });
+    const invalidEstimates = qsa("[data-stage-estimate-index]").filter(input => { const invalid = input.value.trim() === "" || !Number.isFinite(Number(input.value)) || Number(input.value) < 1 || Number(input.value) > 100; setInvalid(input, invalid); return invalid; });
+    const noTargets = !state.targets.length;
+    const valid = !noTargets && !invalidHours.length && !invalidRates.length && !invalidEstimates.length;
+    ids.validationMessage.hidden = valid;
+    ids.validationMessage.innerHTML = valid ? "" : `<strong>${noTargets ? "Choose a training goal." : invalidEstimates.length ? "Check your proficiency estimate." : "A few details need your attention."}</strong><p>${noTargets ? "Add at least one goal to continue." : `${invalidHours.length ? invalidHours.length + " hour fields need a valid value. " : ""}${invalidRates.length ? "Check your hourly rates. " : ""}${invalidEstimates.length ? "Enter an estimate between 1 and 100 hours. " : ""}Enter 0 only when you have none logged.`}</p>`;
+    if (!valid && focusFirst && !qs("#part61EditDialog[open]")) {
+      setStep(noTargets || invalidEstimates.length ? 1 : 3);
+      const first = invalidEstimates[0] || invalidHours[0] || invalidRates[0];
+      if (first) {
+        let parent = first.parentElement;
+        while (parent && parent !== rootEl) { if (parent.tagName === "DETAILS") parent.open = true; parent = parent.parentElement; }
+        first.focus(); first.scrollIntoView({ block: "center", behavior: "smooth" });
       }
-      if (missingExperience.length) {
-        const groups = missingFieldsByGroup(missingExperience);
-        parts.push(`
-          <p>Missing hour fields - enter 0 when a bucket does not apply:</p>
-          <ul>
-            ${groups.map((group) => `
-              <li>
-                <button type="button" class="part61-validation-jump" data-jump-group="${escapeHtml(groupSlug(group.title))}">${escapeHtml(group.title)}</button>
-                ${escapeHtml(group.missing.join(", "))}
-              </li>
-            `).join("")}
-          </ul>
-          <button type="button" class="part61-button part61-button-small" data-fill-zero-all>Fill all blanks with 0</button>
-        `);
-      }
-      if (invalidRates.length) {
-        parts.push(`<p>Missing Cost Assumptions: enter non-negative wet and instructor rates.</p>`);
-      }
-      ids.validationMessage.innerHTML = parts.join("");
-      ids.validationMessage.hidden = false;
-      updateInputCompleteness();
-      if (focusFirst && !noTargets) {
-        const first = missingExperience[0] || invalidRates[0];
-        if (first) {
-          first.scrollIntoView({ behavior: "smooth", block: "center" });
-          first.focus({ preventScroll: true });
-        }
-      }
-      return false;
     }
-    ids.validationMessage.innerHTML = "";
-    ids.validationMessage.hidden = true;
     updateInputCompleteness();
-    return true;
+    return valid;
   }
 
   function clearValidation() {
@@ -662,8 +624,7 @@
   function collectInput() {
     const experience = {};
     qsa("[data-experience]").forEach((input) => {
-      const isVisible = input.closest(".number-field") ? input.closest(".number-field").style.display !== "none" : true;
-      experience[input.dataset.experience] = isVisible ? input.value : "0";
+      experience[input.dataset.experience] = isFieldRelevant(input.dataset.experience, state.targets) ? input.value : "0";
     });
 
     const events = {};
@@ -723,32 +684,17 @@
   }
 
   function updateResponsiveLayout() {
-    const isMobile = window.innerWidth <= 900;
-    const resultsPane = ids.results;
-    if (!resultsPane) return;
-
-    if (isMobile) {
-      if (state.activeStep === 5) {
-        resultsPane.hidden = false;
-        resultsPane.style.display = "";
-        resultsPane.classList.remove("hidden");
-        resultsPane.classList.add("mobile-stacked");
-      } else {
-        resultsPane.hidden = true;
-        resultsPane.style.display = "none";
-        resultsPane.classList.add("hidden");
-        resultsPane.classList.remove("mobile-stacked");
-      }
-    } else {
-      resultsPane.hidden = false;
-      resultsPane.style.display = "";
-      resultsPane.classList.remove("hidden");
-      resultsPane.classList.remove("mobile-stacked");
-    }
+    if (!ids.results) return;
+    const show = state.activeStep === STEP_KEYS.length && Boolean(state.result);
+    ids.results.hidden = !show;
+    ids.results.style.display = show ? "" : "none";
+    ids.results.classList.toggle("hidden", !show);
+    const review = qs("#part61ReviewShare");
+    if (review) review.hidden = state.activeStep !== STEP_KEYS.length || Boolean(state.result);
   }
 
   function setStep(step) {
-    step = Math.max(1, Math.min(5, step));
+    step = Math.max(1, Math.min(STEP_KEYS.length, step));
     state.activeStep = step;
 
     const workbench = qs(".part61-workbench");
@@ -758,6 +704,7 @@
 
     const panels = qsa(".part61-panel");
     panels.forEach((panel) => {
+      if (panel.closest("dialog[open]")) return;
       const stepNum = parseInt(panel.getAttribute("data-step") || panel.dataset.step, 10);
       if (stepNum === step) {
         panel.hidden = false;
@@ -788,7 +735,7 @@
     });
 
     nextBtns.forEach((btn) => {
-      if (step === 5) {
+      if (step === STEP_KEYS.length) {
         btn.hidden = true;
         btn.style.display = "none";
         btn.classList.add("hidden");
@@ -802,8 +749,8 @@
     });
 
     const railItems = qsa("nav.part61-step-rail .part61-rail-item");
-    railItems.forEach((item, index) => {
-      const isActive = (index + 1) === step;
+    railItems.forEach((item) => {
+      const isActive = item.dataset.stepKey === STEP_KEYS[step - 1];
       item.classList.toggle("active", isActive);
       item.classList.toggle("is-active", isActive);
       if (isActive) {
@@ -819,14 +766,15 @@
     window.scrollTo({ top: 0 });
 
     updateResponsiveLayout();
+    updateContextSummary();
   }
 
   function initStepRail() {
     const items = qsa("nav.part61-step-rail .part61-rail-item");
-    items.forEach((item, index) => {
+    items.forEach((item) => {
       item.addEventListener("click", (event) => {
         event.preventDefault();
-        setStep(index + 1);
+        setStep(STEP_KEYS.indexOf(item.dataset.stepKey) + 1);
       });
     });
   }
@@ -871,35 +819,13 @@
 
   function renderHero(result) {
     const blockers = blockerList(result);
-    const rawTotal = sumIfKnown(result.audits.map((audit) => numericValue(audit.summary.rawRequirementSum)));
-    const optimized = result.combined.optimizedHours;
-    const cost = result.combined.estimatedCost;
-    const savings = typeof rawTotal === "number" && typeof optimized === "number"
-      ? Math.max(0, rawTotal - optimized)
-      : null;
-    const ready = !blockers.length;
-    ids.heroBanner.hidden = false;
-    ids.heroBanner.className = `part61-hero-banner ${ready ? "is-ready" : "is-blocked"}`;
-    ids.heroBanner.innerHTML = ready
-      ? `<span class="part61-hero-icon" aria-hidden="true">&#10003;</span><div><b>Draft plan ready.</b> ${linkifyCfrText(firstNextAction(result))}</div>`
-      : `<span class="part61-hero-icon" aria-hidden="true">&#9650;</span><div><b>Needs ${blockers.length} input${blockers.length === 1 ? "" : "s"} resolved.</b> See Unknowns under the Rules &amp; Sources tab before relying on the math.</div>`;
     const hasProf = Boolean(result.combined.hasProficiency);
-    const footnoteHtml = hasProf ? `<div class="proficiency-footnote" style="grid-column: 1 / -1; font-size: 0.82rem; color: var(--text-muted, #666); margin-top: 8px; font-style: italic; text-align: left;">*Proficiency-based estimate — CFI discretion, not a regulatory minimum.</div>` : "";
-    ids.auditDashboard.innerHTML = [
-      dashboardMetric("Optimized Hours", hours(optimized), optimized === "UNKNOWN" ? "red" : "green", hasProf),
-      dashboardMetric("Estimated Cost", money(cost), cost === "UNKNOWN" ? "red" : "amber", hasProf),
-      dashboardMetric("Savings vs Raw Sum", savings !== null ? `${savings.toFixed(1)} hr` : "Depends on missing inputs", savings !== null ? "blue" : "slate", false),
-      footnoteHtml
-    ].join("");
-    const firstVerdict = result.audits[0] ? result.audits[0].verdict : "No route generated.";
-    ids.cfiReadout.innerHTML = linkifyMultilineCfrText(`${firstVerdict}\n\n${cfiReadoutText(result)}`);
-
-    const reviewCostEl = qs("#part61ReviewCost");
-    const reviewHoursEl = qs("#part61ReviewHours");
-    const reviewStatusEl = qs("#part61ReviewStatus");
-    if (reviewCostEl) reviewCostEl.textContent = money(cost);
-    if (reviewHoursEl) reviewHoursEl.textContent = hours(optimized);
-    if (reviewStatusEl) reviewStatusEl.textContent = ready ? "Ready" : `${blockers.length} Blocked`;
+    ids.heroBanner.hidden = false;
+    ids.heroBanner.className = `part61-hero-banner ${blockers.length ? "is-blocked" : "is-ready"}`;
+    ids.heroBanner.innerHTML = `<div><span class="part61-next-label">${blockers.length ? "Needs review" : "Up next"}</span><strong>${escapeHtml(firstNextAction(result))}</strong><p>${blockers.length ? "Review unresolved items under Rules & Sources before using this estimate." : "A training estimate. Required events, endorsements, and readiness still need review."}</p></div>`;
+    ids.auditDashboard.innerHTML = dashboardMetric("Remaining training", hours(result.combined.optimizedHours), "green", hasProf) + dashboardMetric("Estimated cost", money(result.combined.estimatedCost), "amber", hasProf) + (hasProf ? `<p class="proficiency-footnote">Proficiency-based estimate: instructor discretion, not a regulatory hour minimum.</p>` : "");
+    ids.cfiReadout.innerHTML = linkifyMultilineCfrText(cfiReadoutText(result));
+    updateContextSummary();
   }
 
   function renderCounts(audits) {
@@ -1236,18 +1162,7 @@
   }
 
   function renderTraining(audits) {
-    const rows = audits.flatMap((audit) => audit.trainingPlan.map((block) => ({ stage: audit.title, ...block, cost: money(block.cost) })));
-    ids.training.innerHTML = table([
-      { key: "stage", label: "Stage" },
-      { key: "block", label: "Block" },
-      { key: "flightType", label: "Flight Type" },
-      { key: "hours", label: "Hours" },
-      { key: "mode", label: "Dual/Solo/PDPIC" },
-      { key: "cfrRows", label: "CFR Rows Satisfied" },
-      { key: "events", label: "Required Events" },
-      { key: "cost", label: "Cost" },
-      { key: "notes", label: "Notes" }
-    ], rows);
+    ids.training.innerHTML = audits.map(audit => `<section class="part61-training-stage">${audits.length > 1 ? `<h4>${escapeHtml(audit.title)}</h4>` : ""}${audit.trainingPlan.length ? audit.trainingPlan.map(block => `<details class="part61-training-block"><summary><span><strong>${escapeHtml(block.block)}</strong><small><span class="part61-tag ${String(block.mode).toLowerCase().includes("dual") ? "tag-blue" : "tag-purple"}">${escapeHtml(block.mode)}</span> ${escapeHtml(block.flightType)}</small></span><span class="part61-block-total"><strong>${escapeHtml(hours(block.hours))}</strong><small>${escapeHtml(money(block.cost))}</small></span></summary><div class="part61-training-block-body"><dl><dt>Requirements</dt><dd>${linkifyCfrText(block.cfrRows,{linkBare:true})}</dd><dt>Required events</dt><dd>${escapeHtml(block.events || "None listed")}</dd><dt>Planning notes</dt><dd>${escapeHtml(block.notes || "")}</dd></dl></div></details>`).join("") : `<p>No additional training blocks calculated. Review events, endorsements, and readiness with your instructor.</p>`}</section>`).join("");
   }
 
   function renderGates(audits) {
@@ -1360,10 +1275,9 @@
   function updateResultPresence() {
     const workbench = qs(".part61-workbench");
     if (workbench) workbench.classList.toggle("has-result", Boolean(state.result));
-    qsa("#part61ReviewShare .part61-success-header, #part61ReviewShare .part61-review-metrics, #part61ReviewShare .part61-action-grid")
-      .forEach((element) => { element.hidden = !state.result; });
-    const empty = qs(".part61-audit-empty");
-    if (empty) empty.hidden = Boolean(state.result);
+    const share = qs("#part61ShareMenu");
+    if (share) share.hidden = !state.result;
+    updateResponsiveLayout();
   }
 
   function renderCalculationError() {
@@ -1375,14 +1289,14 @@
 
   function calculateAndRender() {
     state.validationAttempted = true;
-    if (!validateRequiredInputs(true)) return;
+    if (!validateRequiredInputs(true)) return false;
     let result;
     try {
       result = CORE.calculateAudit(collectInput());
     } catch (error) {
       console.error("Part 61 audit failed", error);
       renderCalculationError();
-      return;
+      return false;
     }
     state.result = result;
     state.dirty = false;
@@ -1394,11 +1308,9 @@
     renderResults(state.result);
     updateStaleBanner();
     updateRailProgress();
-    if (mq ? window.matchMedia("(max-width: 1100px)").matches : window.innerWidth <= 1100) {
-      U.queueScrollToTarget(ids.results);
-    }
     flashHero();
-    setStep(5);
+    if (!qs("#part61EditDialog[open]")) setStep(STEP_KEYS.length);
+    return true;
   }
 
   function renderResults(result) {
@@ -1476,6 +1388,8 @@
   }
 
   function persistScenario() {
+    const dialog = qs("#part61EditDialog");
+    if (dialog && dialog.open) return;
     U.saveStoredJson(DRAFT_STORAGE_KEY, scenarioSnapshot());
   }
 
@@ -1596,11 +1510,123 @@
     U.copyTextToClipboard(url.toString(), ids.shareBtn, "Link copied");
   }
 
+  function openEditDialog(section) {
+    const dialog = qs("#part61EditDialog");
+    const content = qs("#part61EditDialogContent");
+    if (!dialog || !content || typeof dialog.showModal !== "function") return;
+    const sections = { goal: "part61Target", background: "part61Current", experience: "part61Experience", rates: "part61Costs" };
+    section = Object.prototype.hasOwnProperty.call(sections, section) ? section : "goal";
+    dialog._part61Snapshot = { scenario: scenarioSnapshot(), result: state.result, dirty: state.dirty, placements: [] };
+    moveEditorSection(dialog, content, section, sections[section]);
+    const validation = ids.validationMessage;
+    if (validation) {
+      const marker = document.createComment("part61-editor-validation");
+      validation.parentNode.insertBefore(marker, validation);
+      content.appendChild(validation);
+      dialog._part61Snapshot.validationPlacement = { panel: validation, marker };
+    }
+    dialog.showModal();
+    qs("#part61EditDialogTitle").textContent = {goal:"Edit your goal",background:"Edit pilot background",experience:"Edit experience",rates:"Edit rates"}[section];
+    if (section === "rates") { const details = content.querySelector("details"); if (details) details.open = true; }
+    const first = content.querySelector("summary, input, button, select");
+    if (first) first.focus();
+  }
+
+  function moveEditorSection(dialog, content, section, id) {
+    const saved = dialog._part61Snapshot;
+    if (!saved || saved.placements.some((placement) => placement.section === section)) return;
+    const panel = qs("#" + id);
+    if (!panel) return;
+    const marker = document.createComment("part61-editor-" + section);
+    panel.parentNode.insertBefore(marker, panel);
+    panel.dataset.editSection = section;
+    panel.hidden = false;
+    panel.style.display = "";
+    content.appendChild(panel);
+    saved.placements.push({ panel, marker, section });
+  }
+
+  function restoreEditPlacements(dialog) {
+    const saved = dialog && dialog._part61Snapshot;
+    if (!saved || !saved.placements) return;
+    saved.placements.forEach(({ panel, marker }) => {
+      if (marker.parentNode) {
+        marker.parentNode.insertBefore(panel, marker);
+        marker.remove();
+      }
+      delete panel.dataset.editSection;
+    });
+    const validation = saved.validationPlacement;
+    if (validation && validation.marker.parentNode) {
+      validation.marker.parentNode.insertBefore(validation.panel, validation.marker);
+      validation.marker.remove();
+    }
+  }
+
+  function closeEditDialog(apply) {
+    const dialog = qs("#part61EditDialog");
+    if (!dialog) return;
+    const saved = dialog._part61Snapshot;
+    if (apply && !validateRequiredInputs(false)) {
+      const content = qs("#part61EditDialogContent");
+      moveEditorSection(dialog, content, "experience", "part61Experience");
+      const firstMissing = qsa("[data-experience]").find(input => input.getAttribute("aria-invalid") === "true");
+      const firstInvalidRate = qsa("[data-rate]").find((input) => parseRate(input.value) === null);
+      if (firstInvalidRate) moveEditorSection(dialog, content, "rates", "part61Costs");
+      const firstInvalidEstimate = qsa("[data-stage-estimate-index]").find(input => input.getAttribute("aria-invalid") === "true");
+      if (firstInvalidEstimate) moveEditorSection(dialog, content, "goal", "part61Target");
+      const focusTarget = firstInvalidEstimate || firstMissing || firstInvalidRate;
+      if (focusTarget) {
+        let parent = focusTarget.parentElement;
+        while (parent && parent !== dialog) { if (parent.tagName === "DETAILS") parent.open = true; parent = parent.parentElement; }
+        focusTarget.focus();
+      }
+      return false;
+    }
+    if (apply) {
+      const calculated = calculateAndRender();
+      if (calculated === false) return false;
+      restoreEditPlacements(dialog);
+      dialog._part61Snapshot = null;
+      dialog.close();
+      setStep(4);
+      queueDraftSave();
+      return true;
+    }
+    restoreEditPlacements(dialog);
+    if (saved) {
+      hydrateScenario(saved.scenario);
+      state.result = saved.result;
+      state.dirty = saved.dirty;
+      updateResultPresence();
+      if (state.result) renderResults(state.result);
+      updateStaleBanner();
+    }
+    dialog._part61Snapshot = null;
+    dialog.close();
+    setStep(4);
+    return true;
+  }
+
+  function requestClear(action = "clear") {
+    const dialog = qs("#part61DiscardDialog");
+    const sample = action === "sample";
+    const hasWork = state.result || state.credentials.length || qsa("[data-experience]").some(input => input.value !== "");
+    if (sample && !hasWork) { loadRandomSample(); return; }
+    if (dialog && typeof dialog.showModal === "function") {
+      dialog.dataset.action = sample ? "sample" : "clear";
+      qs("#part61DiscardTitle").textContent = sample ? "Try a sample scenario?" : "Start over?";
+      dialog.querySelector("[data-confirm-discard]").textContent = sample ? "Load sample" : "Start over";
+      dialog.showModal();
+    }
+  }
+
   /* ---------- Clear and reports ---------- */
 
   function clearAll() {
     state.credentials = [];
     state.targets = ["private-asel"];
+    state.proficiencyEstimates = {};
     state.validationAttempted = false;
     state.result = null;
     state.dirty = false;
@@ -1686,11 +1712,19 @@
     U.copyTextToClipboard(studentChecklistText(state.result), ids.copyChecklistBtn);
   }
 
+  function updateContextSummary() {
+    const goals = state.targets.map(id => (RULES.TARGET_OPTIONS.find(o => o.id === id) || {}).label || id).join(" → ");
+    qsa("[data-goal-summary]").forEach(el => el.textContent = goals ? `Working toward ${goals}` : "Choose a training goal");
+    const values = { goal: goals || "Choose a goal", background: state.credentials.length ? state.credentials.map(credentialLabel).join(", ") : "No certificate yet", experience: `${experienceCompletion().filled}/${experienceCompletion().total} hour fields`, rates: `${money(currentRates().aircraftWet)}/hr aircraft · ${money(currentRates().instructor)}/hr instructor` };
+    qsa("[data-edit-summary]").forEach(el => el.textContent = values[el.dataset.editSummary]);
+  }
+
   function rerenderStaticControls() {
     renderCredentialOptions();
     renderSelectedCredentials();
     renderStages();
     updateRailProgress();
+    updateContextSummary();
   }
 
   /* ---------- Events ---------- */
@@ -1732,6 +1766,15 @@
     });
 
     ids.targetStages.addEventListener("input", (event) => {
+      const search = event.target.closest("[data-stage-search]");
+      if (search) {
+        const query = search.value.trim().toLowerCase();
+        const list = qs(`[data-stage-options="${search.dataset.stageSearch}"]`);
+        if (list) Array.from(list.querySelectorAll("[data-select-target]")).forEach((button) => {
+          button.hidden = query !== "" && !button.textContent.toLowerCase().includes(query);
+        });
+        return;
+      }
       const input = event.target.closest("[data-stage-estimate-index]");
       if (!input) return;
       const targetId = input.dataset.targetId;
@@ -1744,10 +1787,27 @@
     });
 
     ids.targetStages.addEventListener("click", (event) => {
+      const target = event.target.closest("[data-select-target]");
+      if (target) {
+        state.targets[Number(target.dataset.stageIndex)] = target.dataset.selectTarget;
+        renderStages(); renderEvents(); updateRailProgress(); markDirty(); queueDraftSave();
+        const picker = qs(`[data-stage-card="${target.dataset.stageIndex}"] .part61-target-picker`); if (picker) picker.querySelector("summary").focus();
+        return;
+      }
+      const move = event.target.closest("[data-move-stage]");
+      if (move) {
+        const from = Number(move.dataset.moveStage);
+        const to = from + Number(move.dataset.moveDirection);
+        if (to >= 0 && to < state.targets.length) {
+          [state.targets[from], state.targets[to]] = [state.targets[to], state.targets[from]];
+          renderStages(); renderEvents(); updateRailProgress(); markDirty(); queueDraftSave();
+        }
+        return;
+      }
       const button = event.target.closest("[data-remove-stage]");
       if (!button) return;
       state.targets.splice(Number(button.dataset.removeStage), 1);
-      if (!state.targets.length) state.targets.push("private-asel");
+      
       renderStages();
       renderEvents();
       updateRailProgress();
@@ -1758,6 +1818,7 @@
     ids.addStageBtn.addEventListener("click", () => {
       state.targets.push("commercial-asel");
       renderStages();
+      const picker = qs(`[data-stage-card="${state.targets.length - 1}"] .part61-target-picker`); if (picker) { picker.open = true; picker.querySelector("input").focus(); }
       renderEvents();
       updateRailProgress();
       markDirty();
@@ -1836,11 +1897,11 @@
 
     ids.draftNotice.addEventListener("click", (event) => {
       if (!event.target.closest("[data-dismiss-draft]")) return;
-      clearAll();
+      requestClear();
     });
 
-    ids.randomSampleBtn.addEventListener("click", loadRandomSample);
-    ids.clearBtn.addEventListener("click", clearAll);
+    ids.randomSampleBtn.addEventListener("click", () => requestClear("sample"));
+    if (ids.clearBtn) ids.clearBtn.addEventListener("click", requestClear);
     ids.copyBtn.addEventListener("click", copyReport);
     if (ids.shareBtn) ids.shareBtn.addEventListener("click", copyShareLink);
     ids.copyCfiBtn.addEventListener("click", (event) => {
@@ -1905,22 +1966,28 @@
       });
     }
 
+    let printOpenDetails = [];
     window.addEventListener("beforeprint", () => {
+      printOpenDetails = qsa("#part61Results details").map(el => [el, el.open]);
+      printOpenDetails.forEach(([el]) => { el.open = true; });
       qsa(".part61-results-tabpanel").forEach((panel) => {
         panel.hidden = false;
       });
       if (ids.readoutDetails) ids.readoutDetails.open = true;
     });
     window.addEventListener("afterprint", () => {
+      printOpenDetails.forEach(([el, open]) => { el.open = open; });
       setResultsTab(state.resultsTab);
     });
 
     // Event delegation for Next/Back buttons
     rootEl.addEventListener("click", (event) => {
+      if (event.target.closest("[data-return-experience]")) { setStep(3); return; }
       const nextBtn = event.target.closest("#part61NextBtn, .part61-next-btn");
       if (nextBtn) {
         const workbench = qs(".part61-workbench");
         const currentStep = workbench ? parseInt(workbench.getAttribute("data-active-step"), 10) || state.activeStep : state.activeStep;
+        if (currentStep === 1 && !state.targets.length) { validateRequiredInputs(true); return; }
         setStep(currentStep + 1);
         return;
       }
@@ -1933,12 +2000,15 @@
       }
     });
 
+    document.addEventListener("click", event => { qsa(".part61-menu[open]").forEach(menu => { if (!menu.contains(event.target)) menu.open = false; }); });
+    rootEl.addEventListener("keydown", event => { if (event.key === "Escape") qsa(".part61-menu[open]").forEach(menu => { menu.open = false; menu.querySelector("summary").focus(); }); });
+
     // Window resize event hook
     window.addEventListener("resize", updateResponsiveLayout);
 
     // Also bind event listeners to the header and results panel copies if they exist in the DOM
     const headerClearBtn = rootEl.querySelector("#part61HeaderClearBtn");
-    if (headerClearBtn) headerClearBtn.addEventListener("click", clearAll);
+    if (headerClearBtn) headerClearBtn.addEventListener("click", requestClear);
 
     const headerCopyBtn = rootEl.querySelector("#part61HeaderCopyBtn");
     if (headerCopyBtn) headerCopyBtn.addEventListener("click", copyReport);
@@ -1962,7 +2032,32 @@
     }
 
     const editInputsBtn = rootEl.querySelector("#part61EditInputsBtn");
-    if (editInputsBtn) editInputsBtn.addEventListener("click", () => setStep(4));
+    if (editInputsBtn) editInputsBtn.addEventListener("click", openEditDialog);
+    rootEl.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-edit-section]");
+      if (button) openEditDialog(button.dataset.editSection);
+    });
+    const editDialog = qs("#part61EditDialog");
+    if (editDialog) {
+      editDialog.addEventListener("click", (event) => { if (event.target.closest("[data-dialog-apply]")) closeEditDialog(true); if (event.target.closest("[data-dialog-cancel]")) closeEditDialog(false); });
+      editDialog.addEventListener("cancel", (event) => { event.preventDefault(); closeEditDialog(false); });
+      editDialog.addEventListener("close", () => {
+        const saved = editDialog._part61Snapshot;
+        if (!saved) return;
+        restoreEditPlacements(editDialog);
+        hydrateScenario(saved.scenario);
+        state.result = saved.result;
+        state.dirty = saved.dirty;
+        updateResultPresence();
+        if (state.result) renderResults(state.result);
+        updateStaleBanner();
+        editDialog._part61Snapshot = null;
+        setStep(4);
+      });
+    }
+    const discardDialog = qs("#part61DiscardDialog");
+    if (discardDialog) discardDialog.addEventListener("click", (event) => { if (event.target.closest("[data-confirm-discard]")) { const sample = discardDialog.dataset.action === "sample"; discardDialog.close(); if (sample) loadRandomSample(); else clearAll(); qsa(".part61-menu").forEach(menu => { menu.open = false; }); } });
+    rootEl.addEventListener("click", (event) => { if (event.target.closest("[data-no-certificate]")) { state.credentials = []; rerenderStaticControls(); markDirty(); queueDraftSave(); } });
   }
 
   function init() {
@@ -1987,7 +2082,7 @@
       workbench.setAttribute = function (name, value) {
         if (name === "data-active-step") {
           let step = parseInt(value, 10);
-          if (isNaN(step) || step < 1 || step > 5) {
+          if (isNaN(step) || step < 1 || step > STEP_KEYS.length) {
             step = state.activeStep;
           }
           origSetAttr(name, String(step));

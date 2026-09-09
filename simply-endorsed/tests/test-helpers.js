@@ -33,6 +33,13 @@ function initJSDOM(options = {}) {
 
   const { window } = dom;
 
+  // jsdom does not implement dialog methods; the wizard uses them for the
+  // explicit Start over / sample confirmation flow.
+  if (window.HTMLDialogElement) {
+    window.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
+    window.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new window.Event('close')); };
+  }
+
   // Mock basic window APIs
   window.scrollTo = (options) => {
     window.scrollX = typeof options === 'object' ? (options.left || 0) : 0;

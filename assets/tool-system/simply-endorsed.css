@@ -3448,7 +3448,7 @@ body.is-sidebar-open {
 }
 
 .quickref-heading {
-  font-family: var(--display, 'Inter Tight', sans-serif);
+  font-family: var(--display, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-strong);

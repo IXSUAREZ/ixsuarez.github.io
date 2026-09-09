@@ -1,6 +1,7 @@
 const { initJSDOM } = require('./test-helpers');
 const { tests: wizardTests } = require('./wizard.test');
-const tests = wizardTests;
+const { tests: engineTests } = require('./engine-fixtures.test');
+const tests = wizardTests.concat(engineTests);
 
 async function runAllTests() {
   console.log('==================================================');
@@ -17,18 +18,21 @@ async function runAllTests() {
     console.log(`[${testNum}/${tests.length}] Running ${testCase.id}: ${testCase.name}...`);
 
     let helpers;
-    try {
-      // Initialize fresh JSDOM for every test case
-      helpers = initJSDOM();
-    } catch (initErr) {
-      console.log(`\x1b[31m[FAIL]\x1b[0m ${testCase.id} - Failed to initialize JSDOM: ${initErr.message}\n`);
-      failed++;
-      continue;
+    if (!testCase.pure) {
+      try {
+        // Initialize fresh JSDOM for every browser-facing test case.
+        helpers = initJSDOM();
+      } catch (initErr) {
+        console.log(`\x1b[31m[FAIL]\x1b[0m ${testCase.id} - Failed to initialize JSDOM: ${initErr.message}\n`);
+        failed++;
+        continue;
+      }
     }
 
     try {
       // Execute the test function
-      await testCase.fn(helpers.dom, helpers);
+      if (testCase.pure) await testCase.fn();
+      else await testCase.fn(helpers.dom, helpers);
       console.log(`\x1b[32m[PASS]\x1b[0m ${testCase.id}\n`);
       passed++;
     } catch (testErr) {

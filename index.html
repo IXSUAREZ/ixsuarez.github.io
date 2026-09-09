@@ -45,6 +45,12 @@
        Paper = in-flow surfaces (read = static, press = hover warms, never lifts).
        ========================================================================== */
 
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -114,7 +120,7 @@
     }
     .hero-copy { position: relative; z-index: 1; max-width: 620px; }
     .premium-hero h1 {
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-weight: 800;
       font-size: clamp(3rem, 7vw, 6rem);
       line-height: 1.02;
@@ -124,11 +130,17 @@
     }
     /* Masked line rises — each line is an overflow:hidden mask + inner span.
        The padding/margin pair keeps descenders (y) from clipping. */
-    .hero-line { display: block; overflow: hidden; padding-bottom: 0.09em; margin-bottom: -0.09em; }
+    .hero-line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.09em;
+      margin-bottom: -0.09em;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    }
     .hero-line-in { display: inline-block; white-space: nowrap; }
     .hero-tagline {
       margin: 20px 0 0;
-      font-family: var(--font-serif);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       font-style: italic;
       font-weight: 500;
       font-size: clamp(1.2rem, 2vw, 1.5rem);
@@ -140,6 +152,11 @@
       color: var(--ink-muted);
       font-size: 1.12rem;
       line-height: 1.6;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+    .horizon-lede,
+    .lede {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif !important;
     }
 
     /* The Cluster — Crown, phone row, message */
@@ -966,8 +983,8 @@
     }
   </style>
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/premium.css?v=25931da4c1">
   <link rel="stylesheet" href="/assets/premium-home.css?v=a3170b2ca4">
+  <link rel="stylesheet" href="/assets/premium.css?v=727ee128ad">
 </head>
 <body class="home-page">
   <!-- Aviation-themed backdrop and coordinate margins -->

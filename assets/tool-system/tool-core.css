@@ -31,9 +31,10 @@
   --category-line: var(--yellow-line);
   --category-ink: var(--accent-ink);
   --warn: #e60000;
-  --warn-soft: #ffeaeb;
-  --display: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --sans: "Inter", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --mono: "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", monospace;
   --radius-xs: 10px;
   --radius-sm: 14px;
@@ -1505,7 +1506,7 @@ body.theme-orange .app-shell {
 }
 
 .nav-tool-name {
-  font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
+  font-family: var(--font-display, var(--display, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif));
   font-weight: 800;
   font-size: 16.5px;
   letter-spacing: -0.01em;

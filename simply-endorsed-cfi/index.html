@@ -67,6 +67,127 @@
     <link rel="stylesheet" href="/assets/tool-system/tool-core.css?v=1">
     <link rel="stylesheet" href="/assets/tool-system/simply-endorsed.css?v=1">
     <style>
+      :root {
+        --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+        --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+        --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+        --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      /* Tool hero subtitle / lede paragraph: Iowan Old Style editorial serif */
+      #selectionDescription,
+      .selection-description,
+      .browse-launcher-copy p:not(.browse-launcher-eyebrow),
+      .seo-lede {
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif !important;
+        font-size: clamp(1.05rem, 2vw, 1.2rem) !important;
+        line-height: 1.55 !important;
+        color: var(--ink-muted, #475569) !important;
+      }
+
+      /* Primary UI / Headings: SF Pro stack */
+      body.simply-endorsed-page,
+      .simply-endorsed-page h1,
+      .simply-endorsed-page h2,
+      .simply-endorsed-page h3,
+      .simply-endorsed-page h4,
+      #selectionTitle,
+      .rail-heading h2,
+      .rail-kicker,
+      .rail-drawer-header,
+      .browse-launcher-eyebrow,
+      .browse-launcher-button,
+      .filters-toggle {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+      }
+
+      /* Search bar: SF Pro stack */
+      .rail-search,
+      .search-field,
+      .search-input,
+      #searchInput,
+      .search-clear,
+      .search-helper,
+      .search-suggestions,
+      .search-suggestion-item {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+      }
+
+      /* Chips, tags, badges: SF Pro stack */
+      .selection-meta,
+      .selection-meta span,
+      .selection-breadcrumbs,
+      .selection-breadcrumbs a,
+      .active-filters-bar,
+      .filter-chip,
+      .filter-chip-remove,
+      .badge,
+      .chip,
+      .tag,
+      .filters-toggle-count,
+      .endorsement-badge,
+      .endorsement-meta,
+      .endorsement-meta span {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Tables: SF Pro stack + tabular numbers */
+      table,
+      th,
+      td,
+      .endorsement-table,
+      .seo-guide-section table {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+      }
+      th, td, td.num, .table-num {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Rules, guidance, references: SF Pro stack */
+      .rule-card,
+      .rule-list,
+      .rule-item,
+      .training-rule,
+      .seo-training-requirement,
+      .seo-requirement-refs,
+      .guidance-view,
+      .cfr-link {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+      }
+
+      /* Numbers: SF Pro stack + tabular nums */
+      .endorsement-id,
+      .seo-endorsement-id,
+      .seo-guide-id,
+      .badge-count,
+      .results-count,
+      #resultsSummary,
+      .results-toolbar,
+      .filters-toggle-count {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Endorsements cards, list, and detail: SF Pro stack */
+      .endorsement-list,
+      .endorsement-card,
+      .endorsement-item,
+      .endorsement-title,
+      .endorsement-text,
+      .endorsement-detail-panel,
+      .endorsement-model,
+      .endorsement-notes,
+      .category-nav,
+      .category-nav button,
+      .category-nav a,
+      .category-item,
+      .category-btn,
+      .seo-endorsement {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+      }
+
       .seo-content {
         max-width: 960px;
         margin: 32px auto 0;
@@ -186,7 +307,7 @@
       }
     </style>
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/premium.css?v=25931da4c1">
+  <link rel="stylesheet" href="/assets/premium.css?v=727ee128ad">
 </head>
   <body class="theme-blue tool-page simply-endorsed-page">
     <!-- Aviation-themed backdrop and coordinate margins -->

@@ -15,8 +15,10 @@
   --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
 
   /* Typography alignment with design system */
-  --font-display: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: "Newsreader", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 
   /* Categories default values */
   --category-accent: var(--accent);
@@ -81,7 +83,13 @@ a:hover { color: var(--ink); }
   position: relative;
   z-index: 1;
 }
-.page-hero h1, .article-header h1 {
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+.page-hero h1,
+body.editorial-page .page-hero h1,
+.article-header h1 {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: 0;
@@ -89,7 +97,15 @@ a:hover { color: var(--ink); }
   color: var(--ink);
 }
 .page-hero h1 { max-width: 880px; margin: 16px auto 0; font-size: 3.85rem; }
-.page-hero p { max-width: 720px; margin: 18px auto 0; color: var(--ink-muted); font-size: 1.08rem; line-height: 1.7; }
+.page-hero p,
+body.editorial-page .page-hero p {
+  max-width: 720px;
+  margin: 18px auto 0;
+  color: var(--ink-muted);
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
 .hero-actions, .cta-btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; position: relative; z-index: 2; }
 .eyebrow, .post-tag {
   display: inline-flex; align-items: center; width: fit-content; gap: 8px;
@@ -168,7 +184,11 @@ a:hover { color: var(--ink); }
 article { max-width: var(--prose); margin: 0 auto; }
 .article-header { margin-bottom: 24px; }
 .article-header h1 { margin: 18px 0 14px; font-size: clamp(2.2rem, 6vw, 3.25rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; }
-.dek {
+.article-header .lede,
+.article-header .dek,
+.dek,
+.prose .lede {
+  font-family: var(--font-editorial);
   color: rgba(11,12,14,0.76);
   font-size: 1.08rem;
   line-height: 1.72;
@@ -244,7 +264,7 @@ article { max-width: var(--prose); margin: 0 auto; }
   border-radius: 18px;
   color: var(--ink);
   box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-sm);
-  font-family: var(--font-serif);
+  font-family: var(--font-editorial);
   font-style: italic;
   font-size: 1.15rem;
   line-height: 1.6;
@@ -272,6 +292,18 @@ article { max-width: var(--prose); margin: 0 auto; }
   font-style: normal;
   text-align: right;
   opacity: 0.85;
+}
+.pullquote,
+.prose .pullquote,
+blockquote.pullquote {
+  margin: 36px 0;
+  padding: 20px 28px;
+  border-left: 3px solid var(--category-accent, var(--accent));
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--navy);
 }
 .cta-box, .see-also, .service-panel { padding: 28px; margin-top: 36px; }
 /* Stacked see-also boxes (guide collections + related reading) read as one card */

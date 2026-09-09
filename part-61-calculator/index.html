@@ -74,7 +74,110 @@
       }
     </script>
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/premium.css?v=25931da4c1">
+  <link rel="stylesheet" href="/assets/tool-system/part61-redesign.css?v=f0cc1b228a">
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+
+    /* Calculator header typography: SF Pro stack */
+    body.tool-page .part61-calculator-header h2,
+    body.tool-page .part61-calculator-header .part61-kicker,
+    .part61-calculator-header,
+    .part61-header-actions,
+    .part61-menu summary,
+    .part61-menu button {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+    }
+
+    /* Hero description / lede paragraph: Iowan Old Style editorial serif */
+    .part61-calculator-header p:not(.part61-kicker),
+    .part61-hero-lede,
+    .part61-editorial-lede {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif !important;
+      font-size: clamp(1.05rem, 2vw, 1.22rem) !important;
+      line-height: 1.55 !important;
+      color: var(--ink-muted, #475569);
+    }
+
+    /* Steps & rail: SF Pro stack */
+    .part61-step-rail,
+    .part61-step-rail .part61-rail-item,
+    .part61-rail-item b,
+    .part61-rail-item span,
+    .part61-panel-heading,
+    .part61-panel-heading h3,
+    .part61-panel-heading p,
+    .part61-kicker,
+    .part61-helper {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+    }
+    .part61-rail-item span {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Numbers: SF Pro stack + tabular nums */
+    .group-completion,
+    #part61HoursCompleteness,
+    #part61InputCompleteness,
+    #part61MobileCompleteness,
+    .part61-number-field,
+    .part61-number-field input,
+    .part61-rate-summary,
+    .part61-rate-grid input,
+    .part61-metric-val,
+    .part61-metric-num,
+    .part61-hours,
+    .part61-value,
+    .part61-calc-stat,
+    .part61-color-legend,
+    .part61-legend-item,
+    .part61-table-num,
+    [data-rate] {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* CTAs & interactive controls: SF Pro stack */
+    .part61-button,
+    .part61-button-primary,
+    .part61-button-secondary,
+    .part61-calculate-button,
+    .part61-next-btn,
+    .part61-back-btn,
+    #part61AddStageBtn,
+    #part61CalculateBtn,
+    #part61MobileCalculateBtn,
+    .part61-filter-button,
+    .part61-results-tabs button,
+    .part61-edit-summary button,
+    .part61-text-button,
+    .option-button,
+    .part61-chip-list,
+    .part61-chip {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+    }
+
+    /* Results, headings, panels, and ledger: SF Pro stack */
+    .part61-result-header h3,
+    .part61-result-section h4,
+    .part61-readout-details summary,
+    .part61-calculation-details summary,
+    .part61-cfi-readout,
+    .part61-callout,
+    #part61Ledger,
+    #part61Training,
+    #part61Endorsements,
+    #part61Gates,
+    #part61Counts,
+    #part61Unknowns,
+    #part61Links {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/premium.css?v=727ee128ad">
 </head>
   <body class="theme-orange is-calculator-view tool-page">
     <!-- Aviation-themed backdrop and coordinate margins -->
@@ -139,46 +242,66 @@
     <div class="app-shell">
       <div class="layout">
         <main class="content-area">
-          <section id="part61CalculatorView" class="part61-calculator" aria-label="Part 61 Endorsement Calculator">
+          <section id="part61CalculatorView" class="part61-calculator part61-redesign" aria-label="Part 61 training calculator">
             <header class="part61-calculator-header">
               <div>
                 <p class="part61-kicker">CFI planning aid</p>
                 <h2>Part 61 Calculator</h2>
-                <p>Transfer route, minimum hours, optimized training blocks, gates, endorsements, and official source links.</p>
+                <p class="part61-hero-lede">Your next rating. A clearer path to get there.</p>
               </div>
               <div class="part61-header-actions" aria-label="Calculator actions">
-                <button type="button" class="part61-button part61-button-secondary" id="part61RandomSampleBtn">Random Scenario</button>
-                <button type="button" class="part61-button part61-button-secondary" id="part61HeaderClearBtn">Clear</button>
-                <button type="button" class="part61-button part61-button-secondary" id="part61HeaderCopyBtn">Copy Report</button>
-                <button type="button" class="part61-button part61-button-secondary" id="part61HeaderShareBtn">Copy Link</button>
-                <button type="button" class="part61-button part61-button-primary" id="part61HeaderPrintBtn">Print</button>
+                <details class="part61-menu"><summary>More</summary><div><button type="button" id="part61RandomSampleBtn">Try a sample scenario</button><button type="button" id="part61HeaderClearBtn">Start over</button></div></details>
+                <details class="part61-menu" id="part61ShareMenu" hidden><summary>Share plan</summary><div>
+                  <button type="button" id="part61CopyBtn">Copy full report</button>
+                  <button type="button" id="part61ShareBtn">Copy link</button>
+                  <button type="button" id="part61CopyCfiBtn">Copy instructor readout</button>
+                  <button type="button" id="part61CopyChecklistBtn">Copy student checklist</button>
+                  <button type="button" id="part61PrintBtn">Print plan</button>
+                </div></details>
               </div>
             </header>
 
             <div class="part61-draft-notice" id="part61DraftNotice" hidden></div>
 
             <div class="part61-workbench" data-active-step="1">
-              <nav class="part61-step-rail" aria-label="Calculator sections">
-                <a href="#part61Current" class="part61-rail-item active"><span>1</span><b>Current</b><i class="part61-rail-status" data-rail-status="current" aria-hidden="true"></i></a>
-                <a href="#part61Costs" class="part61-rail-item"><span>2</span><b>Costs</b><i class="part61-rail-status" data-rail-status="costs" aria-hidden="true"></i></a>
-                <a href="#part61Experience" class="part61-rail-item"><span>3</span><b>Hours</b><i class="part61-rail-status" data-rail-status="experience" aria-hidden="true"></i></a>
-                <a href="#part61Target" class="part61-rail-item"><span>4</span><b>Target</b><i class="part61-rail-status" data-rail-status="target" aria-hidden="true"></i></a>
-                <a href="#part61ReviewShare" class="part61-rail-item"><span>5</span><b>Audit</b><i class="part61-rail-status" data-rail-status="results" aria-hidden="true"></i></a>
+              <nav class="part61-step-rail part61-step-nav" aria-label="Calculator steps">
+                <a href="#part61Target" class="part61-rail-item active" data-step-key="goal"><span>1</span><b>Goal</b><i class="part61-rail-status" data-rail-status="target" aria-hidden="true"></i></a>
+                <a href="#part61Current" class="part61-rail-item" data-step-key="background"><span>2</span><b>Pilot background</b><i class="part61-rail-status" data-rail-status="current" aria-hidden="true"></i></a>
+                <a href="#part61Experience" class="part61-rail-item" data-step-key="experience"><span>3</span><b>Experience</b><i class="part61-rail-status" data-rail-status="experience" aria-hidden="true"></i></a>
+                <a href="#part61ReviewShare" class="part61-rail-item" data-step-key="plan"><span>4</span><b>Your plan</b><i class="part61-rail-status" data-rail-status="results" aria-hidden="true"></i></a>
               </nav>
 
+              <div class="part61-validation-alert" id="part61ValidationMessage" role="alert" hidden></div>
               <section class="part61-input-pane" aria-label="Scenario inputs">
-                <section class="part61-panel" id="part61Current" data-step="1">
+                <section class="part61-panel" id="part61Target" data-step="1" data-step-key="goal">
                   <div class="part61-panel-heading">
-                    <p class="part61-kicker">Step 1</p>
-                    <h3>Current Credentials</h3>
+                    <p class="part61-kicker">Goal</p>
+                    <h3>What do you want to work toward?</h3>
+                  </div>
+                  <p class="part61-helper">Choose a certificate or rating. Add another goal to plan a longer training path.</p>
+                  <div class="part61-stage-list" id="part61TargetStages"></div>
+                  <button type="button" class="part61-button part61-button-secondary part61-button-full" id="part61AddStageBtn">Add another goal</button>
+
+                  <!-- Navigation Buttons for Step 4 -->
+                  <div class="part61-nav-group part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Continue to pilot background</button>
+                  </div>
+                </section>
+
+                <section class="part61-panel" id="part61Current" data-step="2" data-step-key="background">
+                  <div class="part61-panel-heading">
+                    <p class="part61-kicker">Pilot background</p>
+                    <h3>What do you already hold?</h3>
                   </div>
 
+                  <div class="part61-goal-summary" data-goal-summary></div>
+                  <button type="button" class="part61-no-certificate option-button" data-no-certificate aria-pressed="true">No certificate yet</button>
                   <label class="part61-field-label" for="part61CredentialSearch">Search and add credentials or ratings</label>
                   <input id="part61CredentialSearch" class="part61-text-input" type="search" placeholder="Type commercial, AMEL, rotorcraft, military...">
                   <div class="part61-option-list" id="part61CredentialOptions"></div>
                   <div class="part61-chip-list" id="part61SelectedCredentials" aria-live="polite"></div>
 
-                  <div class="part61-flag-grid">
+                  <details class="part61-military-flags"><summary>Military or record details</summary><div class="part61-flag-grid">
                     <label class="part61-check-row">
                       <input type="checkbox" id="part61MilitaryExperience">
                       <span>Military pilot experience involved</span>
@@ -195,20 +318,37 @@
                       <input type="checkbox" id="part61PriorFaa">
                       <span>FAA certificate/rating records available</span>
                     </label>
-                  </div>
+                  </div></details>
 
                   <!-- Navigation Buttons for Step 1 -->
-                  <div class="part61-nav-group single-btn part61-panel-navigation">
-                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Next: Cost Assumptions</button>
+                  <div class="part61-nav-group part61-panel-navigation">
+                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back</button>
+                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Continue</button>
                   </div>
                 </section>
 
-                <section class="part61-panel" id="part61Costs" data-step="2">
+                <section class="part61-panel" id="part61Experience" data-step="3" data-step-key="experience">
                   <div class="part61-panel-heading">
-                    <p class="part61-kicker">Step 2</p>
-                    <h3>Cost Assumptions</h3>
+                    <p class="part61-kicker">Experience</p>
+                    <div class="part61-heading-badge-row">
+                      <h3>Let’s look at your experience.</h3>
+                      <span class="group-completion incomplete" id="part61HoursCompleteness" aria-live="polite" aria-label="Hour fields: 0 of 24 complete">0/24</span>
+                    </div>
                   </div>
-                  <p class="part61-helper">Adjust these for the airplane and instructor used in the scenario. Dual cost is wet rate plus instructor.</p>
+                  <p class="part61-helper">Enter the relevant totals from your logbook. Use 0 for time you have not logged; a blank means you still need to check.</p>
+                  <div class="part61-goal-summary" data-goal-summary></div>
+                  <div id="part61ExperienceFields"></div>
+
+                  <div class="part61-subhead-row">
+                    <h4>Logged Events</h4>
+                    <button type="button" class="part61-text-button" id="part61ClearEventsBtn">Clear events</button>
+                  </div>
+                  <div class="part61-event-groups" id="part61EventChecklist"></div>
+
+<section id="part61Costs" class="part61-cost-section"><details class="part61-cost-details"><summary><span>Cost estimate<small>Review your hourly rates</small></span></summary>                  <div class="part61-rate-summary" id="part61RateSummary" aria-live="polite">
+                    <span>Dual rate: $230/hr</span>
+                    <span>Solo/PDPIC/time-building: $185/hr</span>
+                  </div>                  <p class="part61-helper">Planning assumptions only. Adjust these to your aircraft and instructor. Aircraft wet rate includes fuel; dual adds the instructor rate.</p>
                   <div class="part61-rate-grid">
                     <label class="part61-number-field">
                       <span>Aircraft wet rate</span>
@@ -219,123 +359,29 @@
                       <input id="part61InstructorRate" type="number" min="0" step="1" inputmode="decimal" value="45" data-rate="instructor" aria-label="Instructor hourly rate">
                     </label>
                   </div>
-                  <div class="part61-rate-summary" id="part61RateSummary" aria-live="polite">
-                    <span>Dual rate: $230/hr</span>
-                    <span>Solo/PDPIC/time-building: $185/hr</span>
-                  </div>
-
-                  <!-- Navigation Buttons for Step 2 -->
+</details></section>
+                  <!-- Experience actions -->
                   <div class="part61-nav-group part61-panel-navigation">
-                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Credentials</button>
-                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Next: Flight Experience</button>
+                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back</button>
+                    <button type="button" class="part61-button part61-button-primary part61-calculate-button" id="part61CalculateBtn">Build my plan</button>
                   </div>
                 </section>
 
-                <section class="part61-panel" id="part61Experience" data-step="3">
-                  <div class="part61-panel-heading">
-                    <p class="part61-kicker">Step 3</p>
-                    <div class="part61-heading-badge-row">
-                      <h3>Flight Experience</h3>
-                      <span class="group-completion incomplete" id="part61HoursCompleteness" aria-live="polite" aria-label="Hour fields: 0 of 24 complete">0/24</span>
-                    </div>
-                  </div>
-                  <p class="part61-helper">Fill every hour box before calculating. Enter 0 when a bucket is not applicable or none is logged.</p>
-                  <div id="part61ExperienceFields"></div>
-
-                  <div class="part61-subhead-row">
-                    <h4>Logged Events</h4>
-                    <button type="button" class="part61-text-button" id="part61ClearEventsBtn">Clear events</button>
-                  </div>
-                  <div class="part61-event-groups" id="part61EventChecklist"></div>
-
-                  <!-- Navigation Buttons for Step 3 -->
-                  <div class="part61-nav-group part61-panel-navigation">
-                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Costs</button>
-                    <button type="button" class="part61-button part61-button-primary part61-next-btn">Next: Target Path</button>
-                  </div>
-                </section>
-
-                <section class="part61-panel" id="part61Target" data-step="4">
-                  <div class="part61-panel-heading">
-                    <p class="part61-kicker">Step 4</p>
-                    <h3>Target Path</h3>
-                  </div>
-                  <p class="part61-helper">Add stages in the order the applicant wants to pursue them. The calculator carries optimized hours forward between stages for planning only.</p>
-                  <div class="part61-stage-list" id="part61TargetStages"></div>
-                  <button type="button" class="part61-button part61-button-secondary part61-button-full" id="part61AddStageBtn">Add Stage</button>
-                  <div class="part61-validation-alert" id="part61ValidationMessage" role="alert" aria-live="polite" hidden></div>
-
-                  <!-- Navigation Buttons for Step 4 -->
-                  <div class="part61-nav-group part61-panel-navigation">
-                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Hours</button>
-                    <button type="button" class="part61-button part61-button-primary part61-calculate-button" id="part61CalculateBtn">Calculate Audit</button>
-                  </div>
-                </section>
-
-                <!-- Step 5 (Review & Share Summary Panel) -->
-                <section class="part61-panel" id="part61ReviewShare" data-step="5">
-                  <div class="part61-panel-heading">
-                    <p class="part61-kicker">Step 5</p>
-                    <h3>Review &amp; Share</h3>
-                  </div>
-
-                  <div class="part61-audit-empty">
-                    <h4>Your audit has not been calculated yet.</h4>
-                    <p>Return to Target to review your training path and calculate the audit.</p>
-                  </div>
-
-                  <!-- Show results only after an audit has actually been calculated. -->
-                  <div class="part61-success-header" role="status" hidden>
-                    <div class="part61-success-badge" aria-hidden="true">✓</div>
-                    <div>
-                      <h4>Audit Generated Successfully!</h4>
-                      <p>All target training stages have been cross-checked with FAA CFR Part 61 requirements.</p>
-                    </div>
-                  </div>
-
-                  <!-- Key Metrics Summary Block -->
-                  <div class="part61-review-metrics" hidden>
-                    <div class="part61-metric-card">
-                      <span class="part61-metric-title">Estimated Cost</span>
-                      <span class="part61-metric-value" id="part61ReviewCost">$0.00</span>
-                    </div>
-                    <div class="part61-metric-card">
-                      <span class="part61-metric-title">Remaining Hours</span>
-                      <span class="part61-metric-value" id="part61ReviewHours">0.0 hrs</span>
-                    </div>
-                    <div class="part61-metric-card">
-                      <span class="part61-metric-title">Checklist Progress</span>
-                      <span class="part61-metric-value" id="part61ReviewStatus">Ready</span>
-                    </div>
-                  </div>
-
-                  <!-- Action Grid containing required elements -->
-                  <div class="part61-action-grid" hidden>
-                    <button type="button" class="part61-button part61-button-primary part61-button-full" id="part61CopyBtn">Copy Report</button>
-                    <button type="button" class="part61-button part61-button-secondary" id="part61ShareBtn">Copy Link</button>
-                    <button type="button" class="part61-button part61-button-secondary" id="part61PrintBtn">Print</button>
-                    <button type="button" class="part61-button part61-button-secondary" id="part61CopyCfiBtn">Copy CFI Readout</button>
-                    <button type="button" class="part61-button part61-button-secondary" id="part61CopyChecklistBtn">Copy Student Checklist</button>
-                  </div>
-
-                  <!-- Sequential Step Navigation & Clear -->
-                  <div class="part61-nav-group part61-panel-navigation">
-                    <button type="button" class="part61-button part61-button-secondary part61-back-btn">Back to Target</button>
-                    <button type="button" class="part61-button part61-button-danger" id="part61ClearBtn">Start Over</button>
-                  </div>
+                <section class="part61-panel" id="part61ReviewShare" data-step="4" data-step-key="plan">
+                  <div class="part61-audit-empty"><h3>Your plan starts with your experience.</h3><p>Complete the relevant logbook fields to see your next training, remaining hours, and cost estimate.</p><button type="button" class="part61-button part61-button-primary" data-return-experience>Enter experience</button></div>
                 </section>
               </section>
 
               <section class="part61-results-pane" id="part61Results">
                 <section class="part61-result-header">
                   <div>
-                    <p class="part61-kicker">Generated audit</p>
+                    <p class="part61-kicker">Your training plan</p>
                     <h3 id="part61ResultTitle">Ready for a scenario</h3>
                   </div>
                   <div class="part61-result-header-meta">
-                    <p id="part61InputCompleteness">Input completeness: 0/24</p>
-                    <p id="part61SourceReview">Source review date: 2026-06-30</p>
-                    <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61EditInputsBtn">Edit Inputs</button>
+                    <p id="part61InputCompleteness" hidden>Input completeness: 0/24</p>
+                    
+
                   </div>
                 </section>
 
@@ -343,22 +389,26 @@
 
                 <section class="part61-result-section part61-dashboard-section">
                   <div class="part61-section-title-row">
-                    <h4>Audit Summary</h4>
-                    <div class="part61-result-actions">
-                      <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61CopyChecklistResultsBtn">Copy Student Checklist</button>
-                    </div>
+
+
                   </div>
                   <div id="part61HeroBanner" class="part61-hero-banner" role="status" hidden></div>
                   <div id="part61AuditDashboard" class="part61-dashboard-grid part61-hero-grid"></div>
                   <details class="part61-readout-details" id="part61ReadoutDetails">
                     <summary>
-                      <span>CFI Readout - plain-language narrative</span>
-                      <button type="button" class="part61-button part61-button-secondary part61-button-small" id="part61CopyCfiResultsBtn">Copy CFI Readout</button>
+                      <span>Instructor readout</span>
+
                     </summary>
                     <div id="part61CfiReadout" class="part61-cfi-readout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
                   </details>
                 </section>
 
+                <div class="part61-edit-summary" aria-label="Edit your plan">
+                  <button type="button" data-edit-section="goal"><strong>Goal</strong><small data-edit-summary="goal">Edit training path</small></button>
+                  <button type="button" data-edit-section="background"><strong>Pilot background</strong><small data-edit-summary="background">Edit certificates</small></button>
+                  <button type="button" data-edit-section="experience"><strong>Experience</strong><small data-edit-summary="experience">Edit logbook totals</small></button>
+                  <button type="button" data-edit-section="rates"><strong>Rates</strong><small data-edit-summary="rates">Edit cost assumptions</small></button>
+                </div>
                 <div class="part61-results-tabs" role="tablist" aria-label="Audit detail sections">
                   <button type="button" role="tab" id="part61TabPlan" aria-controls="part61PanelPlan" aria-selected="true" tabindex="0" class="active" data-results-tab="plan">Plan</button>
                   <button type="button" role="tab" id="part61TabEndorsements" aria-controls="part61PanelEndorsements" aria-selected="false" tabindex="-1" data-results-tab="endorsements">Endorsements &amp; Gates</button>
@@ -367,16 +417,16 @@
                 </div>
 
                 <div class="part61-results-tabpanel" id="part61PanelPlan" role="tabpanel" aria-labelledby="part61TabPlan" data-results-panel="plan">
-                  <section class="part61-result-section">
-                    <h4>At a Glance</h4>
+                  <details class="part61-result-section part61-calculation-details">
+                    <summary>How this path was calculated</summary>
                     <div id="part61Verdict" class="part61-callout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
                     <div id="part61Summary"></div>
                     <div id="part61CombinedSummary" class="part61-combined-strip"></div>
                     <div id="combinedSummary" hidden aria-hidden="true"></div>
-                  </section>
+                  </details>
 
                   <section class="part61-result-section">
-                    <h4>Optimized Training Blocks</h4>
+                    <h4>Your training, in order</h4>
                     <div id="part61Training"></div>
                   </section>
                 </div>
@@ -429,6 +479,7 @@
                     </div>
                     <div>
                       <h4>Official Source Links</h4>
+                      <p id="part61SourceReview"></p>
                       <div id="part61Links"></div>
                       <p class="part61-definitions-resource"><a href="/simply-endorsed-cfi/?view=guidance">Open Teaching &amp; Guidance on Simply Endorsed CFI</a></p>
                     </div>
@@ -437,7 +488,13 @@
               </section>
             </div>
 
-            <div class="part61-mobile-bar" id="part61MobileBar">
+            <dialog class="part61-edit-dialog" id="part61EditDialog" aria-labelledby="part61EditDialogTitle">
+              <header><h2 id="part61EditDialogTitle">Edit your plan</h2><button type="button" class="part61-text-button" data-dialog-cancel aria-label="Close editor">Close</button></header>
+              <div id="part61EditDialogContent"></div>
+              <footer><button type="button" class="part61-button part61-button-secondary" data-dialog-cancel>Cancel</button><button type="button" class="part61-button part61-button-primary" data-dialog-apply>Apply changes</button></footer>
+            </dialog>
+            <dialog class="part61-discard-dialog" id="part61DiscardDialog" aria-labelledby="part61DiscardTitle"><h2 id="part61DiscardTitle">Start over?</h2><p>Your current inputs and saved draft will be replaced.</p><form method="dialog"><button value="cancel" class="part61-button part61-button-secondary">Keep plan</button><button type="button" class="part61-button part61-button-primary" data-confirm-discard>Start over</button></form></dialog>
+            <div class="part61-mobile-bar" id="part61MobileBar" hidden>
               <span id="part61MobileCompleteness">0/24 hour fields</span>
               <button type="button" class="part61-button part61-button-primary" id="part61MobileCalculateBtn">Calculate</button>
             </div>
@@ -500,7 +557,7 @@
     <script src="/simply-endorsed/js/privileges-limitations-data.js?v=2"></script>
     <script src="/simply-endorsed/js/part61-calculator-core.js?v=4"></script>
     <script src="/simply-endorsed/js/part61-scenario-generator.js?v=3"></script>
-    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=8d1b834712"></script>
+    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=81200337fc"></script>
     <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
     <script src="/assets/cfr-autolink.js?v=3" defer></script>
     <script src="/assets/cta-tracking.js" defer></script>

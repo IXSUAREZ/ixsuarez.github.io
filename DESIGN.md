@@ -12,7 +12,10 @@ motion rules below. Those sections remain as historical implementation notes.
 
 - `assets/premium.css` is the final shared cascade after each page/app stylesheet.
   Warm grey (#e9e7e1), graphite (#242725), champagne gold (#bba16a), warm paper,
-  Inter typography, fine borders, and restrained inset highlights form the system.
+  SF Pro and Iowan Old Style typography, fine borders, and restrained inset highlights form the system.
+- Typography contract: the site pairs Apple San Francisco / SF Pro with Iowan Old Style:
+  - **Primary UI / numbers / headings**: SF Pro stack (`-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;` via `--font-sans`, `--font-display`, and `--display`). Provides high-legibility precision, machined cockpit feel across all headings (`h1`–`h6`), numerals, buttons, and navigation wordmarks.
+  - **Hero supporting text / editorial serif**: Iowan Old Style stack (`"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;` via `--font-editorial` and `--font-serif`). Used on `.horizon-lede`, `.hero-tagline`, `.hero-supporting`, `.hero-lede`, `.post-header .lede`, `.article-header .lede`, `.page-hero p`, and `.service-hero p` for an authoritative, luxury editorial finish.
 - Use the tracked SUAREZ.CFI wordmark and the shared dark header. Public navigation
   is Training, Learn, Journal, Tools, About, and Fly with Diego. App headers keep
   their tool identity and working app controls. FOI uses the same finish in a

@@ -61,7 +61,7 @@ body.certgen-view {
 
 .cg-page-head h1 {
   margin: 0 0 8px;
-  font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -71,6 +71,7 @@ body.certgen-view {
 .cg-sub {
   margin: 0 0 22px;
   max-width: 60ch;
+  font-family: var(--font-editorial, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif);
   font-size: 0.98rem;
   line-height: 1.55;
   color: var(--ink-muted, #4D5670);
@@ -229,7 +230,7 @@ body.certgen-view {
 
 .cg-panel-heading {
   margin: 0 0 6px;
-  font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.015em;
@@ -347,7 +348,7 @@ body.certgen-view {
 .cg-cert-title {
   display: block;
   overflow: hidden;
-  font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   font-size: 0.86rem;
   font-weight: 700;
   line-height: 1.25;
@@ -1111,7 +1112,7 @@ body.certgen-view {
 
 .cg-cropper-head h2 {
   margin: 0;
-  font-family: var(--font-display, "Inter Tight", "Inter", sans-serif);
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.01em;

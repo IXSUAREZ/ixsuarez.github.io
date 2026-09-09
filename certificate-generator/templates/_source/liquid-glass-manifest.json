@@ -1,0 +1,28 @@
+{
+  "format": "1080x1920 portrait certificate templates",
+  "renderer": "../../scripts/build-template-art.js",
+  "provenance": {
+    "generatedBackdropRole": "Text-free aviation setting only. It never supplies certificate copy, logo, names, or card geometry.",
+    "deterministicLayers": [
+      "Inter Tight certificate title and subtitle",
+      "liquid-glass plaque and 4:3 photo aperture",
+      "Kentucky Flight Training Center supplied logo",
+      "runtime student and instructor text"
+    ],
+    "logoSource": "kftc-logo-transparent.png",
+    "designIntent": "Each milestone retains a distinctive aviation world and a vivid, luminous glass card for social posting."
+  },
+  "photoAperture": { "x": 132, "y": 483, "w": 824, "h": 620, "radius": 24 },
+  "templates": [
+    { "output": "../first-solo.jpg", "backdrop": "backdrops/v2/first-solo.png", "title": "FIRST SOLO", "subtitle": "MILESTONE FLIGHT" },
+    { "output": "../private.jpg", "backdrop": "backdrops/private.png", "title": "PRIVATE PILOT", "subtitle": "CERTIFICATE" },
+    { "output": "../sport.jpg", "backdrop": "backdrops/sport.png", "title": "SPORT PILOT", "subtitle": "CERTIFICATE" },
+    { "output": "../instrument.jpg", "backdrop": "backdrops/instrument.png", "title": "INSTRUMENT", "subtitle": "RATING" },
+    { "output": "../commercial.jpg", "backdrop": "backdrops/v2/commercial.png", "title": "COMMERCIAL", "subtitle": "CERTIFICATE" },
+    { "output": "../multi-engine-rating.png", "backdrop": "backdrops/v2/multi-rating.png", "title": "MULTI-ENGINE", "subtitle": "RATING ADDED" },
+    { "output": "../multi-engine-commercial.png", "backdrop": "backdrops/v2/multi-commercial.png", "title": "MULTI-ENGINE", "subtitle": "COMMERCIAL" },
+    { "output": "../multi-engine-instructor.png", "backdrop": "backdrops/v2/mei.png", "title": "MEI INSTRUCTOR", "subtitle": "MULTI-ENGINE" },
+    { "output": "../cfi.jpg", "backdrop": "backdrops/v2/cfi.png", "title": "CFI", "subtitle": "INSTRUCTOR RATING" },
+    { "output": "../cfii.jpg", "backdrop": "backdrops/v2/cfii.png", "title": "CFII", "subtitle": "INSTRUMENT INSTRUCTOR" }
+  ]
+}

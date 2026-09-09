@@ -4,7 +4,9 @@
 }
 
 .seo-lede {
-  font-size: 1.08rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 1.18rem;
+  line-height: 1.55;
   color: rgba(11, 12, 14, 0.76);
 }
 
@@ -15,11 +17,11 @@
 
 .seo-guide-section h2 {
   margin: 0 0 16px;
-  font-family: var(--font-display);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   font-size: clamp(1.4rem, 2.8vw, 1.95rem);
   line-height: 1.2;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
   color: var(--ink);
 }
 
@@ -62,7 +64,7 @@
 
 .seo-guide-item h3 {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   font-size: 1.15rem;
   line-height: 1.2;
@@ -87,8 +89,10 @@
   border-radius: var(--radius-pill);
   background: var(--accent-soft, rgba(127, 167, 168, 0.18));
   color: var(--navy);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   box-shadow: var(--shadow-sm);
@@ -118,6 +122,7 @@
   border: 1px solid transparent;
   background: var(--navy);
   color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.96rem;
   font-weight: 600;
   text-decoration: none;

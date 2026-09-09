@@ -1,0 +1,13 @@
+/* The complete CloudySky scene is opaque, including when animation is paused. */
+body .horizon-hero { background: #99ccff; --sky-night: 0; }
+.horizon-sky-fallback { position: absolute; inset: 0; z-index: -3; background: url('/assets/premium/sky-day.jpg') center / 100% 100% no-repeat, #99ccff; }
+.horizon-sky-fallback::after { content: ''; position: absolute; inset: 0; background: url('/assets/premium/sky-night.jpg') center / 100% 100% no-repeat, #1a2447; opacity: var(--sky-night); }
+body .horizon-clouds { inset: 0; width: 100%; height: 100%; z-index: -2; mix-blend-mode: normal; opacity: 0 !important; }
+body .horizon-hero.has-cloud-sky .horizon-clouds { opacity: 1 !important; }
+/* Daylight uses graphite text so the reference's blue sky stays undimmed. */
+body .horizon-hero[data-sky-phase="day"] h1,
+.horizon-hero[data-sky-phase="day"] .horizon-lede,
+.horizon-hero[data-sky-phase="day"] .horizon-tools { color: #17252f; }
+.horizon-hero[data-sky-phase="day"] .horizon-kicker,
+.horizon-hero[data-sky-phase="day"] .horizon-signature { color: #263645; }
+.horizon-hero[data-sky-phase="day"] .horizon-tools { border-color: #38444c; }

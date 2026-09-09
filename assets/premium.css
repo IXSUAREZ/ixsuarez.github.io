@@ -583,3 +583,481 @@ body.simply-endorsed-page .nav-links .nav-browse-link { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .horizon-clouds { opacity: 0 !important; }
 }
+
+/* ==========================================================================
+   Simply Endorsed CFI — Mobile Endorsement Categories Modal (<= 900px)
+   Replaces the legacy hanging drawer with a centered, screen-filling modal
+   sharing the dark graphite background and gold accents of the mobile menu,
+   with vibrant per-category color separation.
+   ========================================================================== */
+@media (max-width: 900px) {
+  /* Scrim Backdrop Overlay */
+  body.tool-page #sidebarBackdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 130 !important;
+    background: rgba(12, 15, 13, 0.78) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 240ms ease, visibility 240ms ease !important;
+  }
+
+  body.is-sidebar-open #sidebarBackdrop,
+  body.sidebar-open #sidebarBackdrop {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Centered Mobile Modal Sheet */
+  body.tool-page #filterRail.filter-rail {
+    position: fixed !important;
+    top: 12px !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    height: calc(100dvh - 24px) !important;
+    max-height: calc(100dvh - 24px) !important;
+    z-index: 140 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px 14px 14px !important;
+    border-radius: 14px !important;
+    background: #242725 !important;
+    border: 1px solid #4a5246 !important;
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.65),
+      0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    transform-origin: center center !important;
+    transform: translateY(-10px) scale(0.97) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition:
+      transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 200ms ease,
+      visibility 260ms ease !important;
+  }
+
+  body.is-sidebar-open #filterRail.filter-rail,
+  body.sidebar-open #filterRail.filter-rail,
+  body.tool-page #filterRail.filter-rail.is-open {
+    transform: translateY(0) scale(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Drawer Header */
+  #filterRail .rail-drawer-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin: 0 0 12px !important;
+    padding: 0 2px 12px !important;
+    border-bottom: 1px solid #363d33 !important;
+    flex-shrink: 0 !important;
+  }
+
+  #filterRail .rail-kicker {
+    color: #bba16a !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    margin: 0 0 2px !important;
+  }
+
+  #filterRail .rail-drawer-header h2,
+  #filterRail #railTitle {
+    color: #f0f1e7 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 !important;
+  }
+
+  #filterRail .rail-close {
+    background: #333735 !important;
+    border: 1px solid #5d6657 !important;
+    border-radius: 6px !important;
+    color: #eeede7 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 7px 16px !important;
+    min-height: 36px !important;
+    cursor: pointer !important;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease !important;
+  }
+
+  #filterRail .rail-close:hover,
+  #filterRail .rail-close:focus-visible {
+    background: #3f4540 !important;
+    border-color: #bba16a !important;
+    color: #f5dfaa !important;
+  }
+
+  /* Search Component */
+  #filterRail .rail-search {
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  #filterRail .search-field {
+    background: #1a1d1b !important;
+    border: 1px solid #41483e !important;
+    border-radius: 8px !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 42px !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+    transition: border-color 160ms ease, box-shadow 160ms ease !important;
+  }
+
+  #filterRail .search-field:focus-within {
+    border-color: #bba16a !important;
+    box-shadow: 0 0 0 2px rgba(187, 161, 106, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  #filterRail .search-input,
+  body.tool-page #filterRail input[type="search"].search-input {
+    background: transparent !important;
+    border: 0 !important;
+    color: #f0f1e7 !important;
+    font-size: 14px !important;
+    padding: 0 40px 0 12px !important;
+    width: 100% !important;
+    height: 40px !important;
+    box-shadow: none !important;
+  }
+
+  #filterRail .search-input::placeholder {
+    color: #838a80 !important;
+  }
+
+  #filterRail .search-clear {
+    position: absolute !important;
+    right: 8px !important;
+    color: #a4aaa0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    padding: 4px 8px !important;
+  }
+
+  #filterRail .search-clear:hover {
+    color: #f5dfaa !important;
+  }
+
+  #filterRail .search-helper {
+    color: #8a9186 !important;
+    font-size: 12px !important;
+    margin: 6px 2px 0 !important;
+  }
+
+  /* Navigation Scroll Area */
+  #filterRail .rail-section {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #filterRail .rail-heading {
+    display: none !important;
+  }
+
+  #filterRail .category-nav {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 2px 4px 14px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #424940 transparent !important;
+  }
+
+  /* All Endorsements Button */
+  #filterRail .all-button {
+    background: #2a2e2b !important;
+    border: 1px solid #444b41 !important;
+    border-radius: 9px !important;
+    color: #efeee6 !important;
+    min-height: 50px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+    transition: all 160ms ease !important;
+  }
+
+  #filterRail .all-button::before {
+    content: "" !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 7px !important;
+    background: rgba(187, 161, 106, 0.16) !important;
+    border: 1px solid rgba(187, 161, 106, 0.38) !important;
+    box-shadow: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  #filterRail .all-button .category-count {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 24px !important;
+    height: 22px !important;
+    padding: 0 7px !important;
+    border-radius: 999px !important;
+    background: rgba(187, 161, 106, 0.18) !important;
+    border: 1px solid rgba(187, 161, 106, 0.35) !important;
+    color: #f1dfb0 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+  }
+
+  #filterRail .all-button:hover,
+  #filterRail .all-button.is-active {
+    background: #343936 !important;
+    border-color: #bba16a !important;
+    color: #f5dfaa !important;
+    box-shadow: 0 2px 10px rgba(187, 161, 106, 0.22) !important;
+  }
+
+  /* Guidance Nav Button */
+  #filterRail .guidance-nav-btn {
+    background: #2a2e2b !important;
+    border: 1px solid #444b41 !important;
+    border-radius: 9px !important;
+    color: #efeee6 !important;
+    min-height: 50px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Category Item Cards — Color separation per category */
+  #filterRail .category-nav .nav-group {
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 9px !important;
+    background: color-mix(in srgb, var(--category-accent) 9%, #282c2a) !important;
+    border: 1px solid color-mix(in srgb, var(--category-accent) 26%, #3b423d) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 180ms ease !important;
+  }
+
+  /* Category left edge accent stripe */
+  #filterRail .category-nav .nav-group::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 4px !important;
+    background: var(--category-accent) !important;
+    border-radius: 9px 0 0 9px !important;
+    opacity: 0.95 !important;
+  }
+
+  /* Category Row Button */
+  #filterRail .category-nav .category-button {
+    min-height: 52px !important;
+    padding: 10px 12px 10px 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    background: transparent !important;
+    border: 0 !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    text-align: left !important;
+  }
+
+  #filterRail .category-nav .category-label-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  /* Category Swatch */
+  #filterRail .category-nav .category-swatch {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 7px !important;
+    background: color-mix(in srgb, var(--category-accent) 24%, #1e2220) !important;
+    border: 1px solid color-mix(in srgb, var(--category-accent) 55%, transparent) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+    flex-shrink: 0 !important;
+  }
+
+  #filterRail .category-nav .category-swatch::after {
+    content: "" !important;
+    display: block !important;
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 999px !important;
+    background: var(--category-accent) !important;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--category-accent) 75%, transparent) !important;
+  }
+
+  /* Category Label */
+  #filterRail .category-nav .category-label {
+    color: #f1f2eb !important;
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Category Count Badge on Mobile */
+  #filterRail .category-nav .category-count {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 24px !important;
+    height: 22px !important;
+    padding: 0 7px !important;
+    border-radius: 999px !important;
+    background: color-mix(in srgb, var(--category-accent) 22%, #1e2220) !important;
+    border: 1px solid color-mix(in srgb, var(--category-accent) 45%, transparent) !important;
+    color: color-mix(in srgb, var(--category-accent) 80%, #ffffff) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Category Caret on Mobile */
+  #filterRail .category-nav .category-caret {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: color-mix(in srgb, var(--category-accent) 80%, #a4aaa0) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    flex-shrink: 0 !important;
+    transition: transform 200ms ease !important;
+  }
+
+  #filterRail .category-nav .category-button[aria-expanded="true"] .category-caret {
+    transform: rotate(90deg) !important;
+  }
+
+  /* Open / Active Category Group State */
+  #filterRail .category-nav .nav-group.is-open,
+  #filterRail .category-nav .nav-group.is-active,
+  #filterRail .category-nav .nav-group.is-view-active {
+    background: color-mix(in srgb, var(--category-accent) 15%, #2c312e) !important;
+    border-color: var(--category-accent) !important;
+    box-shadow: 0 4px 18px color-mix(in srgb, var(--category-accent) 24%, transparent) !important;
+  }
+
+  #filterRail .category-nav .nav-group.is-open::before,
+  #filterRail .category-nav .nav-group.is-active::before {
+    width: 5px !important;
+    box-shadow: 0 0 10px var(--category-accent) !important;
+  }
+
+  #filterRail .category-nav .nav-group.is-open .category-label,
+  #filterRail .category-nav .nav-group.is-active .category-label {
+    color: #ffffff !important;
+  }
+
+  /* Subcategory List in Dark Theme */
+  #filterRail .category-nav .subcategory-list[hidden],
+  #filterRail .category-nav .nav-group:not(.is-open) .subcategory-list {
+    display: none !important;
+  }
+
+  #filterRail .category-nav .nav-group.is-open .subcategory-list:not([hidden]) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 8px 10px 12px 16px !important;
+    border-top: 1px solid color-mix(in srgb, var(--category-accent) 25%, #353c37) !important;
+    background: rgba(18, 22, 20, 0.75) !important;
+  }
+
+  #filterRail .category-nav .view-category-link,
+  #filterRail .category-nav .subcategory-link {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    color: #d2d6ce !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    padding: 9px 12px !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    border: 0 !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: all 140ms ease !important;
+    cursor: pointer !important;
+  }
+
+  #filterRail .category-nav .view-category-link:hover,
+  #filterRail .category-nav .subcategory-link:hover {
+    background: color-mix(in srgb, var(--category-accent) 20%, #272d2a) !important;
+    color: #ffffff !important;
+  }
+
+  #filterRail .category-nav .view-category-link.is-active,
+  #filterRail .category-nav .subcategory-link.is-active {
+    background: var(--category-accent) !important;
+    color: var(--category-pill-text, #ffffff) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--category-accent) 40%, transparent) !important;
+  }
+
+  #filterRail .start-here-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 2px 7px !important;
+    border-radius: 999px !important;
+    background: color-mix(in srgb, var(--category-accent) 25%, #1c201e) !important;
+    border: 1px solid color-mix(in srgb, var(--category-accent) 50%, transparent) !important;
+    color: color-mix(in srgb, var(--category-accent) 85%, #ffffff) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+  }
+}

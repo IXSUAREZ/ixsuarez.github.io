@@ -981,7 +981,7 @@
     "recreational-pilot": { accent: "#65a30d", soft: "#f3f8ec", line: "#d9e8c3", ink: "#477605" },
     "private-pilot": { accent: "#0ea5e9", soft: "#ecf8fd", line: "#c3e9fa", ink: "#0476a9" },
     "commercial-pilot": { accent: "#ca8a04", soft: "#fbf6eb", line: "#f2e2c0", ink: "#906200" },
-    atp: { accent: "#1f2937", soft: "#edeeef", line: "#c7cacd", ink: "#151d27" },
+    atp: { accent: "#2563eb", soft: "#eff6ff", line: "#bfdbfe", ink: "#1d4ed8" },
     "instrument-rating": { accent: "#64748b", soft: "#f3f4f6", line: "#d8dce2", ink: "#455162" },
     "flight-instructor": { accent: "#dc2626", soft: "#fceeee", line: "#f6c9c9", ink: "#a11414" },
     "sport-pilot-instructor": { accent: "#ea580c", soft: "#fdf2ec", line: "#fad5c2", ink: "#aa3c02" },

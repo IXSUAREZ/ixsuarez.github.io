@@ -276,10 +276,10 @@
       "label": "ATP",
       "code": "ATP",
       "theme": {
-        "accent": "#1f2937",
-        "soft": "#edeeef",
-        "line": "#c7cacd",
-        "ink": "#151d27"
+        "accent": "#2563eb",
+        "soft": "#eff6ff",
+        "line": "#bfdbfe",
+        "ink": "#1d4ed8"
       },
       "bundles": [
         {

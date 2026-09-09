@@ -948,7 +948,7 @@ body.simply-endorsed-page .nav-links .nav-browse-link { display: none; }
   }
 
   /* Category Count Badge on Mobile */
-  #filterRail .category-nav .category-count {
+  #filterRail .category-nav .nav-group .category-count {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;

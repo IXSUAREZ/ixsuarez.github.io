@@ -126,10 +126,10 @@
       ink: "#906200",
     },
     atp: {
-      accent: "#1f2937",
-      soft: "#edeeef",
-      line: "#c7cacd",
-      ink: "#151d27",
+      accent: "#2563eb",
+      soft: "#eff6ff",
+      line: "#bfdbfe",
+      ink: "#1d4ed8",
     },
     "instrument-rating": {
       accent: "#64748b",

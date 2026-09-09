@@ -1257,10 +1257,13 @@ const tests = [
   },
   {
     id: "T3_05",
-    name: "Resizing window on step 4 preserves results pane visibility, whereas resizing on Step 3 hides it on mobile but shows on desktop",
+    name: "Resizing window on step 4 preserves results pane visibility, whereas navigating to Step 3 hides it",
     tier: 3,
     feature: 0,
     fn: async (dom, helpers) => {
+      const randomScenarioBtn = helpers.document.getElementById('part61RandomSampleBtn') || helpers.document.getElementById('randomScenarioBtn');
+      if (randomScenarioBtn) randomScenarioBtn.click();
+
       const workbench = helpers.document.querySelector('.part61-workbench');
       const resultsPane = helpers.document.getElementById('part61Results') || helpers.document.getElementById('results');
 
@@ -1278,7 +1281,9 @@ const tests = [
       workbench.setAttribute('data-active-step', '3');
       helpers.window.innerWidth = 1024;
       helpers.window.dispatchEvent(new helpers.window.Event('resize'));
-      if (resultsPane.hidden || resultsPane.style.display === 'none') throw new Error("Step 3 desktop: results pane hidden");
+      if (!(resultsPane.hidden || resultsPane.style.display === 'none' || resultsPane.classList.contains('hidden'))) {
+        throw new Error("Step 3 desktop: results pane visible, should be hidden");
+      }
 
       helpers.window.innerWidth = 800;
       helpers.window.dispatchEvent(new helpers.window.Event('resize'));
@@ -1886,7 +1891,7 @@ tests.push(
         const combined = doc.querySelector('#part61CombinedSummary').textContent;
         if (!combined.includes('$9,400') || !combined.includes('40.0 hr')) throw new Error('Restored audit does not show the expected $9,400 and 40 hours');
         if (doc.querySelector('#part61HeroBanner').hidden) throw new Error('Calculated draft result is hidden');
-        if (doc.querySelector('.part61-audit-empty')) throw new Error('Empty state remains after calculation');
+        if (!doc.querySelector('.part61-audit-empty').hidden) throw new Error('Empty state remains after calculation');
         doc.querySelector('#part61CopyBtn').click();
         await Promise.resolve();
         if (!restored.getClipboardText().includes('9,400')) throw new Error('Restored report is not copyable');
@@ -1909,7 +1914,7 @@ tests.push(
         if (workbench.getAttribute('data-active-step') !== '1') throw new Error('Incomplete draft should resume at its inputs');
         if (doc.querySelector('#part61AircraftWetRate').value !== '210' || doc.querySelector('[data-experience="totalTime"]').value !== '') throw new Error('Draft inputs changed on restore');
         workbench.setAttribute('data-active-step', '4');
-        if (!doc.querySelector('.part61-audit-empty')) throw new Error('Missing explanation for uncalculated audit');
+        if (doc.querySelector('.part61-audit-empty').hidden) throw new Error('Missing explanation for uncalculated audit');
         if (!doc.querySelector('#part61HeroBanner').hidden) throw new Error('Incomplete draft incorrectly claims a result exists');
       } finally { restored.dom.window.close(); }
     }

@@ -46,7 +46,7 @@
   const state = {
     activeStep: 1,
     credentials: [],
-    targets: [],
+    targets: ["private-asel"],
     proficiencyEstimates: {},
     rates: {
       aircraftWet: RULES.DEFAULT_RATES.aircraftWet,
@@ -1277,6 +1277,8 @@
     if (workbench) workbench.classList.toggle("has-result", Boolean(state.result));
     const share = qs("#part61ShareMenu");
     if (share) share.hidden = !state.result;
+    const empty = qs(".part61-audit-empty");
+    if (empty) empty.hidden = Boolean(state.result);
     updateResponsiveLayout();
   }
 

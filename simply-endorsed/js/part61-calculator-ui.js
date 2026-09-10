@@ -152,6 +152,8 @@
 
   function updateRateSummary() {
     const rates = currentRates();
+    const summary = qs(".part61-cost-details > summary small");
+    if (summary) summary.textContent = `${money(rates.aircraftWet)}/hr aircraft · ${money(rates.instructor)}/hr instructor`;
     const zeroRate = parseRate(ids.aircraftWetRate.value) === 0 || parseRate(ids.instructorRate.value) === 0;
     ids.rateSummary.innerHTML = `
       <span>Dual rate: ${money(rates.dual)}/hr</span>
@@ -385,7 +387,14 @@
     qsa("[data-no-certificate]").forEach(button => button.setAttribute("aria-pressed", String(!state.credentials.length)));
   }
 
+  let credentialCatalogRequested = false;
   function renderSelectedCredentials() {
+    const catalog = qs("#part61CredentialCatalog");
+    if (catalog) catalog.hidden = !state.credentials.length && !credentialCatalogRequested;
+    qsa("[data-no-certificate]").forEach(button => button.setAttribute("aria-pressed", String(!state.credentials.length && !credentialCatalogRequested)));
+    const holding = qs("[data-has-certificate]");
+    if (holding) { holding.setAttribute("aria-expanded", String(!catalog.hidden)); holding.setAttribute("aria-pressed", String(!catalog.hidden)); }
+
     ids.selectedCredentials.innerHTML = state.credentials.length
       ? state.credentials.map((id) => `
           <span class="chip">
@@ -393,7 +402,7 @@
             <button type="button" aria-label="Remove ${escapeHtml(credentialLabel(id))}" data-remove-credential="${escapeHtml(id)}">x</button>
           </span>
         `).join("")
-      : `<span class="empty-state">No credentials selected.</span>`;
+      : "";
   }
 
   function renderExperienceFields() {
@@ -402,11 +411,11 @@
       return `<details class="field-group part61-experience-group" data-group-slug="${escapeHtml(slug)}" ${index === 0 ? "open" : ""}>
         <summary><h3>${escapeHtml(group.title)}</h3><span class="group-completion" data-group-completion="${escapeHtml(slug)}">0/${group.fields.length}</span></summary>
         <div class="field-grid">${group.fields.map(([key,label,hint]) => `<div class="number-field">
-          <label for="part61Exp-${escapeHtml(key)}">${escapeHtml(label)}</label>
+          <label for="part61Exp-${escapeHtml(key)}">${escapeHtml(({totalTime:"Total flight time",poweredTime:"Time in powered aircraft",airplaneTime:"Airplane time",aselTime:"Single-engine land (ASEL)",amelTime:"Multiengine land (AMEL)",picTotal:"Pilot-in-command (PIC)",picAirplane:"PIC in airplanes",picAsel:"PIC in single-engine land airplanes"})[key] || label)}</label>
           <div class="part61-hour-input"><input id="part61Exp-${escapeHtml(key)}" type="number" min="0" step="any" inputmode="decimal" data-experience="${escapeHtml(key)}" data-group-slug="${escapeHtml(slug)}" placeholder="—"><span aria-hidden="true">hr</span></div>
           ${hint ? `<details class="part61-field-help"><summary>What counts?</summary><p class="part61-field-hint" id="part61Hint-${escapeHtml(key)}">${linkifyCfrText(hint)}</p></details>` : ""}
         </div>`).join("")}</div>
-        <div class="field-group-actions"><button type="button" class="part61-text-button" data-fill-zero-group="${escapeHtml(slug)}">Set remaining blanks to 0</button></div>
+        <div class="field-group-actions"><button type="button" class="part61-text-button" data-fill-zero-group="${escapeHtml(slug)}">Set remaining blanks to 0</button><button type="button" class="part61-text-button" data-next-group="${escapeHtml(slug)}">Next group</button></div>
       </details>`;
     }).join("");
   }
@@ -477,20 +486,23 @@
       ` : "";
       return `
         <article class="part61-stage-card" data-stage-card="${index}">
-          <div class="stage-row">
+          <div class="stage-row" ${state.targets.length === 1 ? "hidden" : ""}>
             <span class="stage-number">${index + 1}</span>
             <div class="part61-stage-actions"><button type="button" data-move-stage="${index}" data-move-direction="-1" ${index === 0 ? "disabled" : ""}>Earlier</button><button type="button" data-move-stage="${index}" data-move-direction="1" ${index === state.targets.length - 1 ? "disabled" : ""}>Later</button><button type="button" data-remove-stage="${index}">Remove</button></div>
           </div>
-          <details class="part61-target-picker"><summary>${escapeHtml(selected ? selected.label : target)}</summary><label class="part61-field-label">Search goals<input type="search" data-stage-search="${index}" placeholder="Search certificates, ratings, or training"></label><div class="part61-target-option-list" data-stage-options="${index}">${RULES.TARGET_OPTIONS.map((option) => `<button type="button" class="part61-target-option ${option.id === target ? "selected" : ""}" data-select-target="${escapeHtml(option.id)}" data-stage-index="${index}" aria-pressed="${option.id === target}"><strong>${escapeHtml(option.label)}</strong><span>${option.id === target ? "Selected" : "Select"}</span></button>`).join("")}</div></details>
+          <details class="part61-target-picker no-cfr-autolink"><summary>${escapeHtml(selected ? selected.label : target)}<span class="part61-all-goals-label">All goals</span></summary><label class="part61-field-label">Search goals<input type="search" data-stage-search="${index}" placeholder="Search certificates, ratings, or training"></label><div class="part61-target-option-list" data-stage-options="${index}">${RULES.TARGET_OPTIONS.map((option) => `<button type="button" class="part61-target-option ${option.id === target ? "selected" : ""}" data-select-target="${escapeHtml(option.id)}" data-stage-index="${index}" aria-pressed="${option.id === target}"><strong>${escapeHtml(option.label)}</strong><span>${option.id === target ? "Selected" : "Select"}</span></button>`).join("")}</div></details>
           ${estimateInputHtml}
         </article>
       `;
     }).join("");
     updateFieldVisibility();
+    resetExperienceShortcut();
+    qsa("[data-common-goal]").forEach(button => { button.hidden = state.targets.length > 1; button.setAttribute("aria-pressed", String(state.targets[0] === button.dataset.commonGoal)); });
     updateContextSummary();
   }
 
   function setExperience(values) {
+    resetExperienceShortcut();
     qsa("[data-experience]").forEach((input) => {
       input.value = values[input.dataset.experience] ?? "";
       setInvalid(input, false);
@@ -763,7 +775,12 @@
     if (workbench) {
       workbench.scrollTop = 0;
     }
-    window.scrollTo({ top: 0 });
+    const heading = step === 4 && state.result ? qs("#part61ResultTitle") : qs(`[data-step="${step}"] h3`);
+    if (heading && !qs("#part61EditDialog[open]")) {
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+      window.requestAnimationFrame(() => heading.scrollIntoView({ block: "start", behavior: "auto" }));
+    }
 
     updateResponsiveLayout();
     updateContextSummary();
@@ -786,8 +803,8 @@
       <div class="summary-block">
         <h4>${linkifyCfrText(audit.title)}</h4>
         <div class="summary-grid">
-          <div class="metric metric-raw"><span>Raw Requirement Sum</span><b>${hours(audit.summary.rawRequirementSum)}</b></div>
-          <div class="metric metric-optimized"><span>Optimized Combined Total</span><b>${hours(audit.summary.optimizedCombinedTotal)}</b></div>
+          <div class="metric metric-raw"><span>Raw Requirement Sum</span><b>${hours(audit.summary.rawRequirementSum)}</b><small>Before overlapping credit. Not hours to fly.</small></div>
+          <div class="metric metric-optimized"><span>Optimized Combined Total</span><b>${hours(audit.summary.optimizedCombinedTotal)}</b><small>Additional time after applying overlap.</small></div>
           <div class="metric metric-dual"><span>Dual Cost</span><b>${money(audit.summary.dualCost)}</b></div>
           <div class="metric metric-solo"><span>Solo/PDPIC Cost</span><b>${money(audit.summary.soloCost)}</b></div>
           <div class="metric metric-cost"><span>Estimated Total Cost</span><b>${money(audit.summary.estimatedTotalCost)}</b></div>
@@ -823,7 +840,9 @@
     ids.heroBanner.hidden = false;
     ids.heroBanner.className = `part61-hero-banner ${blockers.length ? "is-blocked" : "is-ready"}`;
     ids.heroBanner.innerHTML = `<div><span class="part61-next-label">${blockers.length ? "Needs review" : "Up next"}</span><strong>${escapeHtml(firstNextAction(result))}</strong><p>${blockers.length ? "Review unresolved items under Rules & Sources before using this estimate." : "A training estimate. Required events, endorsements, and readiness still need review."}</p></div>`;
-    ids.auditDashboard.innerHTML = dashboardMetric("Remaining training", hours(result.combined.optimizedHours), "green", hasProf) + dashboardMetric("Estimated cost", money(result.combined.estimatedCost), "amber", hasProf) + (hasProf ? `<p class="proficiency-footnote">Proficiency-based estimate: instructor discretion, not a regulatory hour minimum.</p>` : "");
+    ids.auditDashboard.innerHTML = dashboardMetric("Additional training", hours(result.combined.optimizedHours), "green", hasProf) + dashboardMetric("Flight-training estimate", money(result.combined.estimatedCost), "amber", hasProf) + (hasProf ? `<p class="proficiency-footnote">Proficiency-based estimate: instructor discretion, not a regulatory hour minimum.</p>` : "");
+    const assumptions = qs("[data-estimate-assumptions]");
+    if (assumptions) assumptions.textContent = `${money(currentRates().aircraftWet)}/hr aircraft + ${money(currentRates().instructor)}/hr instructor for dual training. Flight training only; other costs and readiness require review.`;
     ids.cfiReadout.innerHTML = linkifyMultilineCfrText(cfiReadoutText(result));
     updateContextSummary();
   }
@@ -867,9 +886,36 @@
     ids.counts.innerHTML = countRows.join("");
   }
 
+  // Screen presentations and print tables share the exact same audit rows.
+  function referenceCards(columns, rows) {
+    if (!columns.some(column => column.key === "endorsement" || column.key === "gate")) return "";
+    const groups = new Map();
+    rows.forEach(row => {
+      if (!groups.has(row.stage)) groups.set(row.stage, []);
+      groups.get(row.stage).push(row);
+    });
+    return `<div class="part61-mobile-reference part61-reference-library">${Array.from(groups, ([stage, items]) => `
+      <section class="part61-reference-stage">
+        <header><h5>${escapeHtml(stage || "Reference")}</h5><span>${items.length} ${items[0].endorsement ? "endorsements" : "prerequisites"}</span></header>
+        ${items.map(row => `<details class="part61-reference-card">
+          <summary>${row.item ? `<span class="part61-reference-code">${formatCell(row.item, "item", row)}</span>` : ""}<span class="part61-reference-title"><strong>${escapeHtml(row.endorsement || row.gate)}</strong><small>${escapeHtml(row.useWhen || row.whenNeeded || "Review with your instructor")}</small></span><span class="part61-reference-status">${escapeHtml(row.required || "Review")}</span><span class="part61-disclosure" aria-hidden="true">+</span></summary>
+          <dl>${columns.filter(column => !["stage", "endorsement", "gate"].includes(column.key)).map(column => `<div><dt>${escapeHtml(column.label)}</dt><dd>${formatCell(row[column.key], column.key, row)}</dd></div>`).join("")}</dl>
+        </details>`).join("")}
+      </section>`).join("")}</div>`;
+  }
+
+  function ledgerCards(rows) {
+    return `<div class="part61-ledger-cards">${rows.map(row => {
+      const body = `<div class="part61-ledger-body"><dl class="part61-ledger-numbers">${[["Required",row.required],["Pilot has",row.has],["Credit applied",row.credit],["Remaining",row.remaining]].map(([label,value]) => `<div><dt>${label}</dt><dd>${formatCell(value ?? "—", "number", row)}</dd></div>`).join("")}</dl><div class="part61-ledger-explanation"><div><h6>Why this applies</h6><p>${linkifyMultilineCfrText(row.why || "No explanation provided.")}</p></div><div><h6>How credit overlaps</h6><p>${linkifyMultilineCfrText(row.overlapLogic || "Standard overlap rules apply.")}</p></div></div><div class="part61-ledger-source">${formatCell(row.cfr, "cfr", row)}</div></div>`;
+      const heading = `<span class="part61-ledger-title"><strong>${escapeHtml(row.requirement)}</strong>${tagMarkup(row)}</span><span class="part61-ledger-progress">${formatProgressCell(row)}</span>`;
+      return row.kind === "total" ? `<article class="part61-ledger-total"><div>${heading}</div>${body}</article>` : `<details class="part61-ledger-card ${rowClass(row)}"><summary>${heading}<span class="part61-disclosure" aria-hidden="true">+</span></summary>${body}</details>`;
+    }).join("")}</div>`;
+  }
+
   function table(columns, rows, totalClass) {
     if (!rows || !rows.length) return `<div class="empty-state">No rows generated.</div>`;
     return `
+      ${totalClass ? ledgerCards(rows) : referenceCards(columns, rows)}
       <div class="table-wrap">
         <table>
           <thead>
@@ -1162,7 +1208,7 @@
   }
 
   function renderTraining(audits) {
-    ids.training.innerHTML = audits.map(audit => `<section class="part61-training-stage">${audits.length > 1 ? `<h4>${escapeHtml(audit.title)}</h4>` : ""}${audit.trainingPlan.length ? audit.trainingPlan.map(block => `<details class="part61-training-block"><summary><span><strong>${escapeHtml(block.block)}</strong><small><span class="part61-tag ${String(block.mode).toLowerCase().includes("dual") ? "tag-blue" : "tag-purple"}">${escapeHtml(block.mode)}</span> ${escapeHtml(block.flightType)}</small></span><span class="part61-block-total"><strong>${escapeHtml(hours(block.hours))}</strong><small>${escapeHtml(money(block.cost))}</small></span></summary><div class="part61-training-block-body"><dl><dt>Requirements</dt><dd>${linkifyCfrText(block.cfrRows,{linkBare:true})}</dd><dt>Required events</dt><dd>${escapeHtml(block.events || "None listed")}</dd><dt>Planning notes</dt><dd>${escapeHtml(block.notes || "")}</dd></dl></div></details>`).join("") : `<p>No additional training blocks calculated. Review events, endorsements, and readiness with your instructor.</p>`}</section>`).join("");
+    ids.training.innerHTML = audits.map(audit => `<section class="part61-training-stage">${audits.length > 1 ? `<h4>${escapeHtml(audit.title)}</h4>` : ""}${audit.trainingPlan.length ? audit.trainingPlan.map((block, index) => `<details class="part61-training-block"><summary><span class="part61-training-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><span><strong>${escapeHtml(block.block)}</strong><small><span class="part61-tag ${String(block.mode).toLowerCase().includes("dual") ? "tag-blue" : "tag-purple"}">${escapeHtml(block.mode)}</span> ${escapeHtml(block.flightType)}</small></span><span class="part61-block-total"><strong>${escapeHtml(hours(block.hours))}</strong><small>${escapeHtml(money(block.cost))}</small></span></summary><div class="part61-training-block-body"><dl><dt>Requirements</dt><dd>${linkifyCfrText(block.cfrRows,{linkBare:true})}</dd><dt>Required events</dt><dd>${escapeHtml(block.events || "None listed")}</dd><dt>Planning notes</dt><dd>${escapeHtml(block.notes || "")}</dd></dl></div></details>`).join("") : `<p>No additional training blocks calculated. Review events, endorsements, and readiness with your instructor.</p>`}</section>`).join("");
   }
 
   function renderGates(audits) {
@@ -1401,7 +1447,7 @@
     const when = savedAt ? new Date(savedAt) : null;
     const label = when && !Number.isNaN(when.getTime()) ? when.toLocaleString() : "an earlier session";
     ids.draftNotice.innerHTML = `
-      <span>Restored your draft from ${escapeHtml(label)}.</span>
+      <span>Draft restored · ${escapeHtml(label)}</span>
       <button type="button" class="part61-text-button" data-dismiss-draft>Start fresh</button>
     `;
     ids.draftNotice.hidden = false;
@@ -1731,7 +1777,56 @@
 
   /* ---------- Events ---------- */
 
+  function resetExperienceShortcut() {
+    const fields = ids.experienceFields;
+    if (fields) fields.hidden = false;
+    qsa(".part61-experience-entry, .part61-overlap-note, [data-review-missing]").forEach(el => el.hidden = false);
+    qsa(".part61-zero-review, .part61-zero-confirm").forEach(el => el.hidden = true);
+  }
+
+  function focusExperienceGroup(group) {
+    if (!group) return;
+    group.open = true;
+    const target = group.querySelector("input[aria-invalid='true']") || group.querySelector("summary");
+    if (target) { target.focus(); target.scrollIntoView({block:"center"}); }
+  }
+
+  function confirmZeroExperience() {
+    qsa("[data-experience]").filter(input => isFieldRelevant(input.dataset.experience, state.targets)).forEach(input => { input.value = "0"; setInvalid(input, false); });
+    updateInputCompleteness(); updateContextSummary(); markDirty(); queueDraftSave();
+    ids.experienceFields.hidden = true;
+    qsa(".part61-experience-entry, .part61-overlap-note, [data-review-missing]").forEach(el => el.hidden = true);
+    qs(".part61-zero-confirm").hidden = true;
+    qs(".part61-zero-review").hidden = false;
+    qs(".part61-zero-review button").focus();
+  }
+
   function bindEvents() {
+    rootEl.addEventListener("click", event => {
+      const common = event.target.closest("[data-common-goal]");
+      if (common) { state.targets[0] = common.dataset.commonGoal; renderStages(); renderEvents(); markDirty(); queueDraftSave(); qs(`[data-common-goal="${common.dataset.commonGoal}"]`).focus(); }
+      if (event.target.closest("[data-has-certificate]")) { credentialCatalogRequested = true; renderSelectedCredentials(); ids.credentialSearch.focus(); }
+      if (event.target.closest("[data-zero-experience]")) {
+        const hasEntries = qsa("[data-experience]").some(input => isFieldRelevant(input.dataset.experience, state.targets) && input.value.trim() !== "" && Number(input.value) !== 0);
+        if (hasEntries) { qs(".part61-zero-confirm").hidden = false; qs("[data-confirm-zero]").focus(); }
+        else confirmZeroExperience();
+      }
+      if (event.target.closest("[data-confirm-zero]")) confirmZeroExperience();
+      if (event.target.closest("[data-cancel-zero]")) { qs(".part61-zero-confirm").hidden = true; qs("[data-zero-experience]").focus(); }
+      if (event.target.closest("[data-enter-experience]")) { resetExperienceShortcut(); focusExperienceGroup(qsa(".part61-experience-group").find(group => !group.hidden && group.style.display !== "none")); }
+      const next = event.target.closest("[data-next-group]");
+      if (next) {
+        const groups = qsa(".part61-experience-group").filter(group => !group.hidden && group.style.display !== "none");
+        const index = groups.indexOf(next.closest(".part61-experience-group"));
+        if (groups[index + 1]) { groups[index].open = false; focusExperienceGroup(groups[index + 1]); }
+        else { const cost = qs(".part61-cost-details"); cost.open = true; cost.querySelector("summary").focus(); cost.scrollIntoView({block:"center"}); }
+      }
+      if (event.target.closest("[data-review-missing]")) {
+        resetExperienceShortcut();
+        if (!validateRequiredInputs(true)) focusExperienceGroup(qsa(".part61-experience-group").find(group => group.querySelector("[aria-invalid='true']")));
+      }
+    });
+
     ids.credentialSearch.addEventListener("input", renderCredentialOptions);
     ids.credentialOptions.addEventListener("click", (event) => {
       const button = event.target.closest("[data-credential]");
@@ -2059,7 +2154,7 @@
     }
     const discardDialog = qs("#part61DiscardDialog");
     if (discardDialog) discardDialog.addEventListener("click", (event) => { if (event.target.closest("[data-confirm-discard]")) { const sample = discardDialog.dataset.action === "sample"; discardDialog.close(); if (sample) loadRandomSample(); else clearAll(); qsa(".part61-menu").forEach(menu => { menu.open = false; }); } });
-    rootEl.addEventListener("click", (event) => { if (event.target.closest("[data-no-certificate]")) { state.credentials = []; rerenderStaticControls(); markDirty(); queueDraftSave(); } });
+    rootEl.addEventListener("click", (event) => { if (event.target.closest("[data-no-certificate]")) { credentialCatalogRequested = false; state.credentials = []; rerenderStaticControls(); markDirty(); queueDraftSave(); } });
   }
 
   function init() {

@@ -1061,3 +1061,26 @@ body.simply-endorsed-page .nav-links .nav-browse-link { display: none; }
     letter-spacing: 0.02em !important;
   }
 }
+
+/* The shared footer owns its layout independently of page containers. */
+body footer:has(.footer-cols) { box-sizing:border-box; width:100%; min-width:0; text-align:center; padding:52px 0 36px; }
+body footer:has(.footer-cols) > .container { box-sizing:border-box; width:100%; max-width:1040px; margin-inline:auto; padding-inline:32px; min-width:0; }
+body footer:has(.footer-cols) .footer-cols { width:100%; max-width:none; margin:32px 0; }
+body footer:has(.footer-cols) .footer-col { min-width:0; }
+body footer:has(.footer-cols) .footer-col a { overflow-wrap:anywhere; line-height:1.5; }
+body footer:has(.footer-cols) .footer-social { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:24px 0; }
+body footer:has(.footer-cols) .social-link { box-sizing:border-box; min-height:44px; display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; font-size:13px; }
+body footer:has(.footer-cols) .fine { max-width:75ch; margin:12px auto; overflow-wrap:anywhere; }
+@media(max-width:640px) {
+ body footer:has(.footer-cols) { padding:36px 0 max(28px,env(safe-area-inset-bottom)); }
+ body footer:has(.footer-cols) > .container { width:100%; padding-inline:24px; }
+ body footer:has(.footer-cols) .wordmark { font-size:20px; letter-spacing:.16em; }
+ body footer:has(.footer-cols) .footer-cols { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 20px; text-align:left; }
+ body footer:has(.footer-cols) .footer-col:last-child { grid-column:1 / -1; }
+ body footer:has(.footer-cols) .footer-col { gap:0; }
+ body footer:has(.footer-cols) .footer-col-title { margin-bottom:8px; }
+ body footer:has(.footer-cols) .footer-col a { min-height:44px; display:flex; align-items:center; padding-block:8px; font-size:14px; }
+ body footer:has(.footer-cols) .footer-social { justify-content:flex-start; }
+ body footer:has(.footer-cols) .fine { text-align:left; font-size:12px; line-height:1.7; }
+ body footer:has(.footer-cols) .footer-designer { font-size:17px; }
+}

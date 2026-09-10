@@ -80,7 +80,7 @@
       }
     </script>
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/tool-system/part61-redesign.css?v=f0cc1b228a">
+  <link rel="stylesheet" href="/assets/tool-system/part61-redesign.css?v=f7b053188a">
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
@@ -183,7 +183,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
     }
   </style>
-  <link rel="stylesheet" href="/assets/premium.css?v=fd46a82437">
+  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
 </head>
   <body class="theme-orange is-calculator-view tool-page">
     <!-- Aviation-themed backdrop and coordinate margins -->
@@ -285,7 +285,11 @@
                     <h3>What do you want to work toward?</h3>
                   </div>
                   <p class="part61-helper">Choose a certificate or rating. Add another goal to plan a longer training path.</p>
-                  <div class="part61-stage-list" id="part61TargetStages"></div>
+                  <div class="part61-common-goals" aria-label="Popular training goals">
+<button type="button" data-common-goal="private-asel">Private<span>Start flying</span></button>
+<button type="button" data-common-goal="instrument-airplane">Instrument<span>Fly by instruments</span></button>
+<button type="button" data-common-goal="commercial-asel">Commercial<span>Fly professionally</span></button>
+</div><div class="part61-stage-list" id="part61TargetStages"></div>
                   <button type="button" class="part61-button part61-button-secondary part61-button-full" id="part61AddStageBtn">Add another goal</button>
 
                   <!-- Navigation Buttons for Step 4 -->
@@ -302,9 +306,9 @@
 
                   <div class="part61-goal-summary" data-goal-summary></div>
                   <button type="button" class="part61-no-certificate option-button" data-no-certificate aria-pressed="true">No certificate yet</button>
-                  <label class="part61-field-label" for="part61CredentialSearch">Search and add credentials or ratings</label>
+                  <button type="button" class="part61-has-certificate option-button" data-has-certificate aria-expanded="false" aria-controls="part61CredentialCatalog">I hold a certificate or rating</button><div id="part61CredentialCatalog" hidden><label class="part61-field-label" for="part61CredentialSearch">Search and add credentials or ratings</label>
                   <input id="part61CredentialSearch" class="part61-text-input" type="search" placeholder="Type commercial, AMEL, rotorcraft, military...">
-                  <div class="part61-option-list" id="part61CredentialOptions"></div>
+                  <div class="part61-option-list" id="part61CredentialOptions"></div></div>
                   <div class="part61-chip-list" id="part61SelectedCredentials" aria-live="polite"></div>
 
                   <details class="part61-military-flags"><summary>Military or record details</summary><div class="part61-flag-grid">
@@ -343,7 +347,15 @@
                   </div>
                   <p class="part61-helper">Enter the relevant totals from your logbook. Use 0 for time you have not logged; a blank means you still need to check.</p>
                   <div class="part61-goal-summary" data-goal-summary></div>
-                  <div id="part61ExperienceFields"></div>
+                  <div class="part61-experience-entry" aria-label="Enter flight experience">
+<button type="button" class="part61-button" data-zero-experience>I haven’t logged any flight time</button>
+<button type="button" class="part61-button" data-enter-experience>Enter my logbook totals</button>
+</div>
+<div class="part61-zero-review" hidden role="status"><strong>No flight time logged</strong><p>Relevant hour totals are set to 0. Review your events and hourly rates below, then build your plan.</p><button type="button" data-enter-experience>Review or edit totals</button></div>
+<div class="part61-zero-confirm" hidden><p>You already have entries. Replace the relevant hour totals with 0? Other saved hours and events will stay as entered.</p><button type="button" data-confirm-zero>Replace relevant totals with 0</button><button type="button" data-cancel-zero>Keep my entries</button></div>
+<p class="part61-overlap-note">Hours can overlap. One flight may count toward total, airplane, and cross-country time. Enter each logbook total as recorded; don’t add these categories together.</p>
+<div id="part61ExperienceFields"></div>
+<button type="button" class="part61-text-button" data-review-missing>Review missing entries</button>
 
                   <div class="part61-subhead-row">
                     <h4>Logged Events</h4>
@@ -399,14 +411,8 @@
 
                   </div>
                   <div id="part61HeroBanner" class="part61-hero-banner" role="status" hidden></div>
-                  <div id="part61AuditDashboard" class="part61-dashboard-grid part61-hero-grid"></div>
-                  <details class="part61-readout-details" id="part61ReadoutDetails">
-                    <summary>
-                      <span>Instructor readout</span>
+                  <div id="part61AuditDashboard" class="part61-dashboard-grid part61-hero-grid"></div><p class="part61-estimate-assumptions" data-estimate-assumptions></p>
 
-                    </summary>
-                    <div id="part61CfiReadout" class="part61-cfi-readout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
-                  </details>
                 </section>
 
                 <div class="part61-edit-summary" aria-label="Edit your plan">
@@ -415,9 +421,20 @@
                   <button type="button" data-edit-section="experience"><strong>Experience</strong><small data-edit-summary="experience">Edit logbook totals</small></button>
                   <button type="button" data-edit-section="rates"><strong>Rates</strong><small data-edit-summary="rates">Edit cost assumptions</small></button>
                 </div>
+                  <section class="part61-result-section">
+                    <h4>Your training, in order</h4>
+                    <div id="part61Training"></div>
+                  </section>
+<details class="part61-instructor-details"><summary>Instructor details<span>Requirements, endorsements &amp; sources</span></summary>                  <details class="part61-readout-details" id="part61ReadoutDetails">
+                    <summary>
+                      <span>Instructor readout</span>
+
+                    </summary>
+                    <div id="part61CfiReadout" class="part61-cfi-readout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
+                  </details>
                 <div class="part61-results-tabs" role="tablist" aria-label="Audit detail sections">
-                  <button type="button" role="tab" id="part61TabPlan" aria-controls="part61PanelPlan" aria-selected="true" tabindex="0" class="active" data-results-tab="plan">Plan</button>
-                  <button type="button" role="tab" id="part61TabEndorsements" aria-controls="part61PanelEndorsements" aria-selected="false" tabindex="-1" data-results-tab="endorsements">Endorsements &amp; Gates</button>
+                  <button type="button" role="tab" id="part61TabPlan" aria-controls="part61PanelPlan" aria-selected="true" tabindex="0" class="active" data-results-tab="plan">Plan logic</button>
+                  <button type="button" role="tab" id="part61TabEndorsements" aria-controls="part61PanelEndorsements" aria-selected="false" tabindex="-1" data-results-tab="endorsements">Endorsements</button>
                   <button type="button" role="tab" id="part61TabLedger" aria-controls="part61PanelLedger" aria-selected="false" tabindex="-1" data-results-tab="ledger">CFR Ledger</button>
                   <button type="button" role="tab" id="part61TabRules" aria-controls="part61PanelRules" aria-selected="false" tabindex="-1" data-results-tab="rules">Rules &amp; Sources</button>
                 </div>
@@ -431,27 +448,24 @@
                     <div id="combinedSummary" hidden aria-hidden="true"></div>
                   </details>
 
-                  <section class="part61-result-section">
-                    <h4>Your training, in order</h4>
-                    <div id="part61Training"></div>
-                  </section>
+
                 </div>
 
                 <div class="part61-results-tabpanel" id="part61PanelEndorsements" role="tabpanel" aria-labelledby="part61TabEndorsements" data-results-panel="endorsements" hidden>
                   <section class="part61-result-section">
-                    <h4>Required Endorsements</h4>
+                    <h4>Endorsements</h4><p class="part61-section-intro">Instructor signoffs for your path. Open an item for its source, signer, and conditions.</p>
                     <div id="part61Endorsements"></div>
                   </section>
 
                   <section class="part61-result-section">
-                    <h4>Documents / Exams / Gates</h4>
+                    <h4>Before your practical test</h4><p class="part61-section-intro">Documents, exams, and eligibility to review alongside your training.</p>
                     <div id="part61Gates"></div>
                   </section>
                 </div>
 
                 <div class="part61-results-tabpanel" id="part61PanelLedger" role="tabpanel" aria-labelledby="part61TabLedger" data-results-panel="ledger" hidden>
                   <section class="part61-result-section">
-                    <h4>Full CFR Ledger</h4>
+                    <h4>Requirements &amp; credit</h4><p class="part61-section-intro">See what is required, what counts, and what remains. Overlapping requirements are not added together.</p>
                     <div class="part61-filter-controls" aria-label="Table filters">
                       <button type="button" class="part61-filter-button active" data-filter="all">All Rows</button>
                       <button type="button" class="part61-filter-button" data-filter="remaining">Remaining Only</button>
@@ -491,6 +505,7 @@
                     </div>
                   </section>
                 </div>
+              </details>
               </section>
             </div>
 
@@ -563,7 +578,7 @@
     <script src="/simply-endorsed/js/privileges-limitations-data.js?v=2"></script>
     <script src="/simply-endorsed/js/part61-calculator-core.js?v=4"></script>
     <script src="/simply-endorsed/js/part61-scenario-generator.js?v=3"></script>
-    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=2ae757effa"></script>
+    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=95f76dd968"></script>
     <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
     <script src="/assets/cfr-autolink.js?v=3" defer></script>
     <script src="/assets/cta-tracking.js" defer></script>

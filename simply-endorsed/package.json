@@ -4,7 +4,8 @@
   "description": "E2E headless tests for Simply Endorsed CFI Part 61 Wizard",
   "main": "index.html",
   "scripts": {
-    "test": "node tests/run-tests.js"
+    "test": "node tests/run-tests.js",
+    "test:workspace": "node tests/workspace.test.js"
   },
   "devDependencies": {
     "jsdom": "^24.1.0"

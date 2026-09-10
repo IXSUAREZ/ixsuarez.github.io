@@ -111,11 +111,8 @@ function initJSDOM(options = {}) {
         'js/guidance-content.js',
         'js/training-requirements-data.js',
         'js/privileges-limitations-data.js',
-        'js/part61-rules-data.js',
-        'js/part61-calculator-core.js',
-        'js/part61-scenario-generator.js',
-        'js/part61-calculator-ui.js',
-        'js/app.js'
+        'js/workspace-model.js',
+        'js/workspace.js'
       ]
     : [
         'js/shared-utils.js',
@@ -136,8 +133,11 @@ function initJSDOM(options = {}) {
     });
   }
 
-  for (const script of scripts) {
-    loadScript(script);
+  if (loadFullApp) {
+    // One script realm preserves shared top-level guidance definitions.
+    window.eval(scripts.map(script => fs.readFileSync(path.resolve(__dirname, '..', script), 'utf8')).join('\n'));
+  } else {
+    for (const script of scripts) loadScript(script);
   }
 
   return {

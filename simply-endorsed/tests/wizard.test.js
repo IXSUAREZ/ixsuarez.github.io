@@ -1672,87 +1672,48 @@ const tests = [
   // ==========================================
   {
     id: "T6_BROWSE_CARD_01",
-    name: "A.2 closes when it is the only expanded card from URL state",
-    tier: 6,
-    feature: 6,
+    name: "Legacy expanded=A.2 opens the shared detail and the return control clears it",
+    tier: 6, feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/?expanded=A.2');
+      const h = initFullApp('http://localhost/simply-endorsed-cfi/?expanded=A.2');
       try {
-        let state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || !state.hasInlineDetails || state.expandedParam !== 'A.2') {
-          throw new Error(`Expected A.2 to start expanded from URL state, got ${JSON.stringify(state)}`);
-        }
-
-        clickCard(helpers, 'A.2');
-        state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'false') {
-          throw new Error(`Expected A.2 aria-expanded to be false after close click, got ${state.ariaExpanded}`);
-        }
-        if (state.labelText !== 'Open') {
-          throw new Error(`Expected A.2 label to return to Open, got ${state.labelText}`);
-        }
-        if (state.hasInlineDetails) {
-          throw new Error('Expected A.2 inline details to be removed after close click');
-        }
-        if (state.expandedParam !== null) {
-          throw new Error(`Expected expanded URL parameter to be removed, got ${state.expandedParam}`);
-        }
-      } finally {
-        helpers.window.close();
-      }
+        if (!h.document.querySelector('#se-detail-title')) throw new Error('Legacy detail missing');
+        h.document.querySelector('[data-action="close-detail"]').click();
+        if (h.document.querySelector('.se-detail') || new h.window.URLSearchParams(h.window.location.search).has('expanded')) throw new Error('Detail did not close');
+      } finally { h.window.close(); }
     }
   },
   {
     id: "T6_BROWSE_CARD_02",
-    name: "A.2 opens and closes by repeated click",
-    tier: 6,
-    feature: 6,
+    name: "Library opens a shared endorsement detail and returns to the list",
+    tier: 6, feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/');
+      const h = initFullApp('http://localhost/simply-endorsed-cfi/?view=library');
       try {
-        let state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'false' || state.hasInlineDetails || state.expandedParam !== null) {
-          throw new Error(`Expected A.2 to start closed, got ${JSON.stringify(state)}`);
-        }
-
-        clickCard(helpers, 'A.2');
-        state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || !state.hasInlineDetails || state.expandedParam !== 'A.2') {
-          throw new Error(`Expected A.2 to open on first click, got ${JSON.stringify(state)}`);
-        }
-
-        clickCard(helpers, 'A.2');
-        state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'false' || state.labelText !== 'Open' || state.hasInlineDetails || state.expandedParam !== null) {
-          throw new Error(`Expected A.2 to close on second click, got ${JSON.stringify(state)}`);
-        }
-      } finally {
-        helpers.window.close();
-      }
+        const link=h.document.querySelector('a.se-endorsement-row[href*="expanded=A.2"]');
+        if (!link) throw new Error('A.2 library link missing');
+        link.click();
+        if (!h.document.querySelector('#se-detail-title') || new h.window.URLSearchParams(h.window.location.search).get('expanded')!=='A.2') throw new Error('A.2 did not open');
+        h.document.querySelector('[data-action="close-detail"]').click();
+        if (h.document.querySelector('.se-detail')) throw new Error('A.2 did not close');
+      } finally { h.window.close(); }
     }
   },
   {
     id: "T6_BROWSE_CARD_03",
-    name: "A.2 opens with Enter and closes with Space",
-    tier: 6,
-    feature: 6,
+    name: "Native endorsement link and return button restore focus to the opener",
+    tier: 6, feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/');
+      const h = initFullApp('http://localhost/simply-endorsed-cfi/?view=library');
       try {
-        pressCardKey(helpers, 'A.2', 'Enter');
-        let state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'true' || state.labelText !== 'Close' || state.expandedParam !== 'A.2') {
-          throw new Error(`Expected Enter to open A.2, got ${JSON.stringify(state)}`);
-        }
-
-        pressCardKey(helpers, 'A.2', ' ');
-        state = getCardState(helpers, 'A.2');
-        if (state.ariaExpanded !== 'false' || state.labelText !== 'Open' || state.expandedParam !== null) {
-          throw new Error(`Expected Space to close A.2, got ${JSON.stringify(state)}`);
-        }
-      } finally {
-        helpers.window.close();
-      }
+        const link=h.document.querySelector('a.se-endorsement-row[href*="expanded=A.2"]');
+        link.focus();link.click();
+        if (h.document.activeElement.id!=='se-detail-title') throw new Error('Detail heading did not receive focus');
+        const back=h.document.querySelector('button[data-action="close-detail"]');
+        if (!back) throw new Error('Native return button missing');
+        back.click();
+        if (!h.document.activeElement.matches('a.se-endorsement-row[href*="expanded=A.2"]')) throw new Error('Focus was not restored to opener');
+      } finally { h.window.close(); }
     }
   },
   {
@@ -1795,9 +1756,9 @@ const tests = [
     tier: 6,
     feature: 6,
     fn: async () => {
-      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/');
+      const helpers = initFullApp('http://localhost/simply-endorsed-cfi/?view=library');
       try {
-        clickCard(helpers, 'A.2');
+        helpers.document.querySelector('a.se-endorsement-row[href*="expanded=A.2"]').click();
         const nextUrl = new helpers.window.URL(helpers.window.location.href);
         if (nextUrl.pathname !== '/simply-endorsed-cfi/') {
           throw new Error(`Expected query-state update to stay on /simply-endorsed-cfi/, got ${nextUrl.pathname}`);

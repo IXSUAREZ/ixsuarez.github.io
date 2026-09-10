@@ -244,3 +244,172 @@ body.tool-page .part61-redesign .part61-result-section { border-left: 0 !importa
 .part61-redesign .part61-dashboard-section { margin-top: 18px; }
 .part61-redesign .part61-section-title-row:empty { display: none; }
 .part61-redesign .part61-cost-details .part61-rate-summary span { background: none !important; color: #746342 !important; border: 0 !important; padding: 0 !important; }
+
+/* Pilot-first flow: progressive entry and a compact, actionable result. */
+.part61-redesign [hidden] { display: none !important; }
+.part61-redesign :is(h3, .part61-experience-group, .part61-cost-details) { scroll-margin-top: 110px; }
+.part61-redesign :is(button,a,input,summary):focus-visible { outline: 3px solid #806225; outline-offset: 3px; }
+.part61-redesign .part61-common-goals { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin-bottom: 16px; }
+.part61-redesign .part61-common-goals button { min-height: 82px; padding: 16px; border: 1px solid #c8c5ba; border-radius: 14px; background: #f7f5ef; color: #30342e; text-align: left; font-size: 18px; font-weight: 600; }
+.part61-redesign .part61-common-goals button span { display: block; font-size: 12px; font-weight: 400; margin-top: 7px; color: #5e6057; }
+.part61-redesign .part61-common-goals button[aria-pressed="true"] { border-color: #90743d; background: #e9dfc6; box-shadow: inset 0 0 0 1px #90743d; }
+.part61-redesign .part61-target-picker > summary { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.part61-redesign .part61-target-picker > summary::after { display: none; }
+.part61-redesign .part61-all-goals-label { flex-shrink: 0; font-size: 13px; color: #6b5325; letter-spacing: 0; }
+.part61-redesign :is(.part61-no-certificate,.part61-has-certificate) { width: 100%; min-height: 56px; margin: 0 0 12px; border: 1px solid #c8c5ba; border-radius: 12px; background: #f7f5ef; color: #30342e; padding: 16px 20px; text-align: left; }
+.part61-redesign .part61-has-certificate[aria-pressed="true"] { background: #e9dfc6; border-color: #90743d; }
+.part61-redesign #part61CredentialCatalog { margin-top: 18px; }
+.part61-redesign .part61-experience-entry { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.part61-redesign .part61-experience-entry button { white-space: normal; min-height: 60px; padding: 14px; background: #f7f5ef; border: 1px solid #c8c5ba; color: #30342e; }
+.part61-redesign :is(.part61-zero-review,.part61-zero-confirm) { padding: 20px; border: 1px solid #b9a475; border-radius: 14px; background: #f1eadb; margin: 16px 0; }
+.part61-redesign :is(.part61-zero-review,.part61-zero-confirm) button { min-height: 44px; padding: 10px 14px; margin-right: 8px; border: 1px solid #a08b5f; border-radius: 9px; background: #faf8f2; color: #51401f; }
+.part61-redesign :is(.part61-overlap-note,.part61-estimate-assumptions) { color: #5e6057; font-size: 13px; line-height: 1.5; margin: 12px 0 20px; }
+.part61-redesign .field-group-actions { justify-content: space-between; flex-wrap: wrap; }
+.part61-redesign :is(.part61-field-help summary,.part61-text-button) { color: #6b5325; font-size: 13px; min-height: 44px; }
+body.tool-page .part61-redesign .part61-calculator-header { padding: 0; margin: 0 0 16px; gap: 12px; }
+.part61-redesign .part61-calculator-header h2 { font-size: 26px; margin: 0; }
+.part61-redesign .part61-calculator-header .part61-kicker { display: none; }
+.part61-redesign .part61-hero-lede { font-size: 15px; margin: 4px 0 0; }
+body.tool-page .part61-redesign .part61-draft-notice { margin: 0 0 12px; padding: 0; min-height: 0; font-size: 12px; gap: 10px; }
+body.tool-page .part61-redesign .part61-step-nav { margin: 0 0 20px; padding: 0 0 10px; }
+.part61-redesign .part61-result-header { padding: 0; margin: 0 0 12px; }
+.part61-redesign .part61-result-header h3 { font-size: clamp(24px,3vw,34px); margin: 0; }
+.part61-redesign .part61-result-header-meta:empty, .part61-redesign .part61-section-title-row:empty { display: none; }
+.part61-redesign .part61-dashboard-section { display: flex; flex-direction: column; margin-top: 0; gap: 10px; }
+.part61-redesign .part61-dashboard-grid { order: 0; margin: 0; gap: 10px; }
+.part61-redesign .dashboard-card { padding: 16px 20px; }
+.part61-redesign .dashboard-card .label { font-size: 12px; letter-spacing: 0; }
+.part61-redesign .dashboard-card .value { font-size: 30px; margin-top: 5px; }
+.part61-redesign .part61-hero-banner { order: 1; padding: 16px 20px; font-size: 16px; border-radius: 14px; }
+.part61-redesign .part61-hero-banner p { font-size: 12px; margin: 5px 0 0; }
+.part61-redesign .part61-estimate-assumptions { order: 2; margin: 0; }
+.part61-redesign .part61-edit-summary { margin: 16px 0; gap: 8px; }
+.part61-redesign .part61-edit-summary button { padding: 12px; min-height: 64px; }
+.part61-redesign .part61-instructor-details { margin-top: 28px; border-top: 1px solid #c8c5ba; }
+.part61-redesign .part61-instructor-details > summary { cursor: pointer; padding: 20px 0; font-size: 18px; font-weight: 600; color: #30342e; }
+.part61-redesign .part61-instructor-details > summary span { display: block; font-size: 13px; font-weight: 400; color: #5e6057; margin-top: 5px; }
+.part61-redesign .part61-mobile-reference { display: none; }
+@media(max-width:600px) {
+ .part61-redesign .part61-common-goals { gap: 6px; }
+ .part61-redesign .part61-common-goals button { padding: 12px 8px; font-size: 16px; }
+ .part61-redesign .part61-common-goals button span { font-size: 11px; }
+ .part61-redesign .part61-experience-entry { grid-template-columns: 1fr; gap: 8px; }
+ .part61-redesign .part61-calculator-header { align-items: flex-start; }
+ .part61-redesign .part61-hero-lede { display: none; }
+ .part61-redesign .part61-header-actions { gap: 6px; }
+ .part61-redesign .part61-menu > summary { padding: 10px 12px; }
+ .part61-redesign .part61-result-header .part61-kicker { margin-bottom: 6px; }
+ .part61-redesign .dashboard-card { padding: 14px; }
+ .part61-redesign .dashboard-card .value { font-size: 28px; }
+ .part61-redesign .part61-mobile-reference { display: grid; gap: 8px; }
+ .part61-redesign .part61-mobile-reference + .table-wrap { display: none; }
+ .part61-redesign .part61-mobile-reference details { border: 1px solid #c8c5ba; background: #f7f5ef; border-radius: 12px; }
+ .part61-redesign .part61-mobile-reference summary { padding: 16px; min-height: 48px; cursor: pointer; font-size: 15px; font-weight: 600; }
+ .part61-redesign .part61-mobile-reference summary span { display: block; color: #5e6057; font-size: 12px; font-weight: 400; margin-top: 6px; }
+ .part61-redesign .part61-mobile-reference dl { padding: 0 16px 16px; margin: 0; }
+ .part61-redesign .part61-mobile-reference dl div { margin-top: 10px; }
+ .part61-redesign .part61-mobile-reference dt { color: #5e6057; font-size: 12px; }
+ .part61-redesign .part61-mobile-reference dd { margin: 3px 0 0; font-size: 14px; overflow-wrap: anywhere; }
+}
+@media print {
+ .part61-redesign .part61-mobile-reference { display: none !important; }
+ .part61-redesign .part61-mobile-reference + .table-wrap { display: block !important; }
+ .part61-redesign .part61-instructor-details { display: block; }
+}
+/* The site already reserves space for its fixed navigation via scroll-padding. */
+.part61-redesign :is(h3,.part61-experience-group,.part61-cost-details) { scroll-margin-top: 8px; }
+.part61-redesign .part61-result-header-meta,
+.part61-redesign .part61-dashboard-section > .part61-section-title-row { display: none; }
+.part61-redesign #part61SelectedCredentials:empty { display: none; }
+
+/* A quiet, structured reference desk: one requirement per row. */
+.part61-redesign .part61-section-intro { max-width:65ch; color:#5e6057; font-size:14px; line-height:1.6; margin:8px 0 24px; }
+body.tool-page .part61-redesign .part61-results-tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; padding:6px; border:1px solid #cdc9be; border-radius:16px; background:#dedcd4; overflow:visible; }
+body.tool-page .part61-redesign .part61-results-tabs button { min-width:0; padding:13px 8px; border:0; border-radius:11px; font-size:14px; white-space:normal; color:#53564f; background:transparent; }
+body.tool-page .part61-redesign .part61-results-tabs button::before { display:none; }
+body.tool-page .part61-redesign .part61-results-tabs button.active { background:#f8f5ed; color:#604a21; box-shadow:0 1px 4px #27282114,inset 0 0 0 1px #b8a57d; }
+.part61-redesign .part61-reference-library { display:block; }
+.part61-redesign :is(.part61-reference-library,.part61-ledger-cards) + .table-wrap { display:none; }
+.part61-redesign .part61-reference-stage { margin-bottom:28px; }
+.part61-redesign .part61-reference-stage > header { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin:0 0 12px; }
+.part61-redesign .part61-reference-stage h5 { margin:0; font-size:14px; font-weight:600; color:#4b5049; }
+.part61-redesign .part61-reference-stage header > span { font-size:12px; color:#62665d; white-space:nowrap; }
+.part61-redesign :is(.part61-reference-card,.part61-ledger-card,.part61-ledger-total) { border:1px solid #cfccc2; border-radius:14px; background:#f8f7f2; margin:8px 0; overflow:hidden; }
+.part61-redesign .part61-reference-card > summary { display:flex; align-items:center; gap:18px; padding:20px; cursor:pointer; list-style:none; }
+.part61-redesign summary::-webkit-details-marker { display:none; }
+.part61-redesign .part61-reference-title { flex:1; min-width:0; }
+.part61-redesign .part61-reference-title strong { display:block; font-size:16px; font-weight:600; line-height:1.4; }
+.part61-redesign .part61-reference-title small { display:block; font-size:13px; line-height:1.5; color:#64675e; margin-top:5px; font-weight:400; }
+.part61-redesign .part61-reference-card summary .part61-reference-status { display:block; font-size:12px; color:#5a513c; max-width:145px; font-weight:500; }
+.part61-redesign .part61-disclosure { flex:0 0 24px; font-size:22px; font-weight:400; text-align:center; color:#75603a; }
+.part61-redesign details[open] > summary > .part61-disclosure { transform:rotate(45deg); }
+.part61-redesign .part61-reference-card dl { display:grid; grid-template-columns:1fr 1fr; gap:20px 28px; border-top:1px solid #dfdcd3; padding:22px; margin:0; }
+.part61-redesign .part61-reference-card dl div { margin:0; min-width:0; }
+.part61-redesign .part61-reference-card dt { color:#65685f; font-size:11px; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px; }
+.part61-redesign .part61-reference-card dd { margin:0; color:#30362f; font-size:14px; line-height:1.65; overflow-wrap:anywhere; }
+.part61-redesign :is(.part61-reference-card,.part61-ledger-cards) a { color:#795b22!important; text-decoration:underline; text-underline-offset:3px; }
+.part61-redesign .part61-ledger-card > summary, .part61-redesign .part61-ledger-total > div:first-child { display:grid; grid-template-columns:minmax(0,1fr) 180px 24px; gap:24px; align-items:center; padding:22px; cursor:pointer; list-style:none; }
+.part61-redesign .part61-ledger-title strong { font-size:16px; font-weight:600; line-height:1.5; display:block; }
+.part61-redesign .part61-ledger-title .tag-row { margin-top:9px; }
+.part61-redesign .part61-ledger-body { padding:0 22px 22px; }
+.part61-redesign .part61-ledger-numbers { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); background:#eeece4; border-radius:10px; padding:18px; gap:18px; margin:0 0 22px; }
+.part61-redesign .part61-ledger-numbers dt { font-size:11px; color:#65685f; margin-bottom:8px; }
+.part61-redesign .part61-ledger-numbers dd { margin:0; font-size:22px; font-weight:600; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.part61-redesign .part61-ledger-explanation { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.part61-redesign .part61-ledger-explanation h6 { font-size:13px; margin:0 0 6px; }
+.part61-redesign .part61-ledger-explanation p { font-size:13px; line-height:1.7; color:#5c6258; margin:0 0 16px; }
+.part61-redesign .part61-ledger-source { border-top:1px solid #dedbd1; padding-top:14px; font-size:12px; }
+.part61-redesign .part61-ledger-total { background:#ebe4d3; border-color:#c7b78f; }
+.part61-redesign .part61-ledger-progress .progress-track { min-width:0; }
+.part61-redesign .part61-training-block summary { display:grid; grid-template-columns:36px minmax(0,1fr) auto; gap:20px; }
+.part61-redesign .part61-training-index { color:#897044; font-size:15px; font-variant-numeric:tabular-nums; align-self:start; padding-top:4px; }
+.part61-redesign .part61-block-total { font-variant-numeric:tabular-nums; }
+@media(max-width:600px) {
+ body.tool-page .part61-redesign .part61-results-tabs { grid-template-columns:1fr 1fr; }
+ .part61-redesign .part61-reference-card > summary { flex-wrap:wrap; gap:10px; padding:16px; }
+ .part61-redesign .part61-reference-title { flex-basis:calc(100% - 96px); }
+ .part61-redesign .part61-reference-card summary .part61-reference-status { max-width:none; flex:1; }
+ .part61-redesign .part61-reference-card dl { grid-template-columns:1fr; padding:16px; gap:16px; }
+ .part61-redesign .part61-ledger-card > summary,.part61-redesign .part61-ledger-total > div:first-child { grid-template-columns:minmax(0,1fr) 24px; padding:16px; gap:14px; }
+ .part61-redesign .part61-ledger-title { grid-column:1; }
+ .part61-redesign .part61-ledger-progress { grid-column:1; grid-row:2; }
+ .part61-redesign .part61-ledger-card summary > .part61-disclosure { grid-column:2; grid-row:1; }
+ .part61-redesign .part61-ledger-body { padding:0 16px 16px; }
+ .part61-redesign .part61-ledger-numbers { grid-template-columns:1fr 1fr; }
+ .part61-redesign .part61-ledger-explanation { grid-template-columns:1fr; gap:0; }
+ .part61-redesign .part61-training-block summary { grid-template-columns:22px minmax(0,1fr) auto; gap:10px; }
+ .part61-redesign .part61-reference-stage > header { flex-wrap:wrap; gap:4px; }
+}
+@media print {
+ .part61-redesign :is(.part61-reference-library,.part61-ledger-cards) { display:none!important; }
+ .part61-redesign :is(.part61-reference-library,.part61-ledger-cards) + .table-wrap { display:block!important; }
+}
+.part61-redesign .part61-ledger-progress .progress-track { display:grid; grid-template-columns:1fr auto; gap:7px 10px; }
+.part61-redesign .part61-ledger-progress .progress-bar-wrap { grid-column:1 / -1; width:100%; }
+.part61-redesign .part61-ledger-progress .progress-text { white-space:normal; }
+@media(max-width:600px) {
+ .part61-redesign .part61-reference-card > summary { display:grid; grid-template-columns:50px minmax(0,1fr) 20px; gap:8px 10px; }
+ .part61-redesign .part61-reference-code { grid-column:1; grid-row:1; }
+ .part61-redesign .part61-reference-title { grid-column:2; grid-row:1; }
+ .part61-redesign .part61-reference-card summary .part61-reference-status { grid-column:2; grid-row:2; margin:0; }
+ .part61-redesign .part61-reference-card summary .part61-disclosure { grid-column:3; grid-row:1; font-size:22px; margin:0; }
+ .part61-redesign .part61-reference-card > summary:not(:has(.part61-reference-code)) .part61-reference-title { grid-column:1 / 3; }
+ .part61-redesign .part61-reference-card > summary:not(:has(.part61-reference-code)) .part61-reference-status { grid-column:1 / 3; }
+}
+.part61-redesign .summary-block { padding:24px; border:1px solid #cfccc2; border-radius:16px; box-shadow:none; }
+.part61-redesign .summary-block > h4 { margin-bottom:20px; }
+.part61-redesign .summary-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+.part61-redesign .summary-grid .metric { grid-column:span 2; border-radius:12px; padding:20px; box-shadow:none; }
+.part61-redesign .summary-grid :is(.metric-raw,.metric-optimized) { grid-column:span 3; }
+.part61-redesign .summary-grid .metric span { font-size:11px; line-height:1.5; letter-spacing:.04em; }
+.part61-redesign .summary-grid .metric b { display:block; font-size:28px; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin:10px 0; }
+.part61-redesign .summary-grid .metric small { display:block; font-size:12px; color:#5e655b; line-height:1.5; }
+.part61-redesign .part61-combined-strip { padding:22px; font-size:14px; line-height:1.7; }
+.part61-redesign .part61-calculation-details > summary { font-size:17px; font-weight:600; }
+@media(max-width:600px) {
+ .part61-redesign .summary-block { padding:16px; }
+ .part61-redesign .summary-grid { grid-template-columns:1fr 1fr; }
+ .part61-redesign .summary-grid .metric { grid-column:span 1; padding:14px; }
+ .part61-redesign .summary-grid .metric-cost { grid-column:1 / -1; }
+ .part61-redesign .summary-grid .metric b { font-size:24px; }
+}

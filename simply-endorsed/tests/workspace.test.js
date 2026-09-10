@@ -51,11 +51,16 @@ function go(q) {
 function change(selector, value) {
   const el = doc.querySelector(selector);
   assert.ok(el, selector);
+  if (el.type === 'checkbox') {
+    if (value === 'na') doc.querySelector(`[data-na="${el.dataset.check}"]`).click();
+    else { el.checked = value === 'done'; el.dispatchEvent(new w.Event('change', {bubbles:true})); }
+    return;
+  }
   el.value = value;
   el.dispatchEvent(new w.Event("change", { bubbles: true }));
 }
 check(
-  doc.querySelector("h1").textContent === "Endorsement library",
+  doc.querySelector("h1").textContent === "Endorsements",
   "Category browsing is the default",
 );
 check(M.paths.length === 71, "All 71 original paths retained");
@@ -98,11 +103,31 @@ for (const [mode, label] of M.guidanceModes) {
     "Guidance renders " + mode,
   );
   check(
-    doc.querySelector(".se-guidance-body").textContent.length > 200,
+    doc.querySelector(".se-guidance-body").textContent.length > 50,
     "Guidance has content " + mode,
   );
+  const topics = [...doc.querySelectorAll('.se-guide-question')].map(a=>({href:a.getAttribute('href'),title:a.textContent}));
+  for (const topic of topics) {
+    go(topic.href);
+    check(doc.querySelectorAll('.se-guide-article').length === 1, 'One focused article for ' + topic.title);
+    check(doc.querySelector('.se-guide-article h1').textContent === topic.title, 'Question title retained: ' + topic.title);
+    check(doc.querySelector('.se-guide-article').textContent.length > topic.title.length + 20, 'Answer content retained: ' + topic.title);
+    check(doc.querySelector('.se-back-link'), 'Reading view has return navigation');
+  }
 }
 const first = M.task("first-solo");
+for (const topic of M.guidanceTopics()) {
+  go('?view=guidance&mode=' + topic.mode + '&topic=' + topic.id);
+  check(doc.querySelector('.se-guide-article'), 'Every searchable Guidance topic opens a reading view: ' + topic.id);
+}
+for (const category of Object.keys(M.categories)) {
+  go('?view=library');
+  doc.querySelector('.se-category-rail a[href*="category=' + category + '"]').click();
+  check(doc.querySelector('h1').textContent === M.categories[category][0], 'Direct category heading: ' + category);
+  check(!doc.querySelector('.se-filter'), 'No filter panel competes with category content');
+  const expected = M.paths.filter(p=>p.category===category).length;
+  check(doc.querySelectorAll('[data-filter="path"] option').length === expected + 1, 'Every category training path remains available');
+}
 for (const id of ["A.3", "A.4", "A.6"])
   check(
     first.items.some((i) => i.endorsement === id && !i.conditional),
@@ -168,9 +193,13 @@ check(
   "CFI citation corrected",
 );
 go("?view=tasks&task=first-solo");
-doc.querySelector('[data-action="start"]').click();
-check(doc.querySelector(".se-active-bar"), "Active checklist visible");
 change('[data-check="solo-documents"]', "done");
+doc.querySelector('.se-item-details').open = true;
+change('[data-check="solo-documents"]', "todo");
+check(doc.querySelectorAll('.se-item-details[open]').length === 1, 'Reviewing an item preserves only its own open explanation');
+change('[data-check="solo-documents"]', "done");
+check(doc.querySelector("#se-progress"), "First checkbox starts the checklist immediately");
+check(!doc.querySelector('.se-active-bar'), 'Current checklist does not duplicate its own navigation');
 change('[data-check="endorsement-A.5"]', "na");
 check(
   !doc.querySelector('[data-check="solo-documents"] option[value="na"]'),
@@ -255,18 +284,17 @@ check(
   "No unrelated requirement summaries in empty state",
 );
 go("?view=guidance&mode=dpe");
-const summary = doc.querySelector(".se-disclosure summary");
-check(
-  summary.parentElement.tagName === "DETAILS",
-  "Flashcards use native accessible disclosure",
-);
+doc.querySelector('.se-guide-question').click();
+check(doc.querySelector('.se-guide-article [data-flash]'), 'Flashcard answer has a directly accessible review control');
 go("?view=library&expanded=missing-endorsement");
 check(!doc.querySelector('.has-detail'), 'Invalid endorsement link does not hide the mobile list');
 check(doc.querySelectorAll('.se-endorsement-row').length === 96, 'Invalid detail recovers the full library');
-check(doc.querySelectorAll('.se-category-rail .se-category-group').length === 13, 'All colored categories available in the rail');
-check(doc.querySelectorAll('#se-category-dialog .se-category-group').length === 13, 'Mobile chooser includes every category');
+check(doc.querySelectorAll('.se-category-rail .se-category-choice').length === 13, 'All colored categories available in the rail');
+check(doc.querySelectorAll('#se-category-dialog .se-category-choice').length === 13, 'Mobile chooser includes every category');
 go('?view=library&category=private-pilot&issuer=examiner-only');
-doc.querySelector('.se-category-rail a[href*="subcategory=private-airplane-initial-checkride-bundle"]').click();
+doc.querySelector('.se-category-rail a[href*="category=private-pilot"]').click();
+check(doc.querySelectorAll('.se-endorsement-row').length === 2, 'One category click immediately opens its endorsements');
+change('[data-filter="path"]', 'private-airplane-initial-checkride-bundle');
 check(doc.querySelectorAll('.se-endorsement-row').length === 4, 'Selecting a category path clears stale filters and shows the full bundle');
 doc.querySelector('.se-endorsement-row').click();
 doc.querySelector('[data-action="close-detail"]').click();

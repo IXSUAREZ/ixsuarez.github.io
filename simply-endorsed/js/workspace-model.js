@@ -334,7 +334,21 @@
     ["dpe", "DPE Prep", "Review endorsement questions"],
     ["lesson", "Lesson Plan", "Teach endorsements and records"],
   ];
+  const guidanceText = value => typeof value === "string" ? value : Array.isArray(value) ? value.map(guidanceText).join(" · ") : value && typeof value === "object" ? Object.values(value).map(guidanceText).join(" · ") : "";
   const guidanceTopics = () => [
+    ...[
+      ["time-limits", "Time limits", window.QUICK_REF_DATA.timeLimits],
+      ["logbook", "Logbook checklist", window.QUICK_REF_DATA.logbookChecklist],
+      ["ac-index", "AC / regulation index", window.QUICK_REF_DATA.acFarTable],
+      ["sfar", "Special regulations", window.QUICK_REF_DATA.sfarList],
+    ].map(([id,label,data])=>({id,label,description:guidanceText(data),mode:"reference"})),
+    ...window.FLASHCARD_DECK.map(x=>({id:x.id,label:x.question,description:x.answer,mode:"dpe"})),
+    ...window.CFI_CAREER_DATA.renewalPathways.map(x=>({id:x.id,label:x.title,description:[x.description,x.notes,x.timeFrame].join(" "),mode:"career"})),
+    ...[
+      ["instructor-currency","Certificate and recent experience",window.CFI_CAREER_DATA.prePostDec2024],
+      ["reinstatement","Reinstating instructional privileges",window.CFI_CAREER_DATA.reinstatement],
+      ["initial-trainer","Who may train an initial CFI?",window.CFI_CAREER_DATA.initialCfiTrainer],
+    ].map(([id,label,data])=>({id,label,description:guidanceText(data),mode:"career"})),
     ...window.JOURNEY_STAGES.map((x) => ({
       id: x.id,
       label: x.label,

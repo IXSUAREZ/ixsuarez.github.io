@@ -116,6 +116,9 @@ for (const [mode, label] of M.guidanceModes) {
   }
 }
 const first = M.task("first-solo");
+go('?view=tasks');
+doc.querySelector('.se-task-card[href*="task=new-student"]').click();
+check(doc.querySelector('h1').textContent === 'New student' && doc.querySelector('[data-check]'), 'New student opens the intake checklist directly');
 for (const topic of M.guidanceTopics()) {
   go('?view=guidance&mode=' + topic.mode + '&topic=' + topic.id);
   check(doc.querySelector('.se-guide-article'), 'Every searchable Guidance topic opens a reading view: ' + topic.id);

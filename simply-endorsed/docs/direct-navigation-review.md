@@ -21,7 +21,7 @@ The Ferrari Luce / LoveFrom reference informs clear control purposes, immediate 
 | Preserve existing endorsements and paths | Tests retain all 96 detail views and all 71 browsing paths, including full primary and supplemental packages. |
 | Responsive navigation and reading | Browser review at 1440px, 834px, 390px and 320px. No horizontal document overflow in the checked flows. Guidance-to-endorsement return restores the originating link's focus. Active checklist and return-link rectangles were checked for overlap. |
 
-Validation: 1,543 workspace assertions and 93 existing integration/calculator tests pass. Existing regulatory facts and model wording remain in their source datasets; this revision changes how they are reached and presented.
+Validation: 1,544 workspace assertions and 93 existing integration/calculator tests pass. The New student shortcut opens its intake checklist directly. Existing regulatory facts and model wording remain in their source datasets; this revision changes how they are reached and presented.
 
 ## Local review captures
 

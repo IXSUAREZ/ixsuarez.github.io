@@ -76,7 +76,7 @@
     `<div class="se-links">${arr.map((x) => a(typeof x === "string" ? x : x.id + " · " + x.label, { detail: typeof x === "string" ? x : x.id }, "se-link")).join("")}</div>`;
   function focusDestination() {
     const destination = state.detail ? document.getElementById("se-detail-title") : !query && state.topic ? document.getElementById("topic-" + state.topic)?.querySelector("summary, h2") : null;
-    (destination || document.getElementById("se-title"))?.focus({ preventScroll: !!state.topic });
+    (destination || document.getElementById("se-title"))?.focus({ preventScroll: !!state.topic && !state.detail });
   }
   function navigate(changes) {
     query = "";

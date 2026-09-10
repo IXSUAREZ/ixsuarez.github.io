@@ -294,6 +294,14 @@ check(!doc.querySelector('.has-detail'), 'Invalid endorsement link does not hide
 check(doc.querySelectorAll('.se-endorsement-row').length === 96, 'Invalid detail recovers the full library');
 check(doc.querySelectorAll('.se-category-rail .se-category-choice').length === 13, 'All colored categories available in the rail');
 check(doc.querySelectorAll('#se-category-dialog .se-category-choice').length === 13, 'Mobile chooser includes every category');
+check(doc.querySelectorAll('#se-category-dialog .se-subcategory').length === 71, 'Full-screen chooser includes all 71 subcategories');
+for (const category of Object.keys(M.categories)) {
+  const group = doc.querySelector('#se-category-dialog [data-category="' + category + '"]');
+  check(group.tagName === 'DETAILS' && group.querySelector('summary'), 'Category has a native expandable control: ' + category);
+  check(group.querySelectorAll('.se-subcategory').length === M.paths.filter(p=>p.category===category).length, 'Every subcategory appears in its parent: ' + category);
+}
+doc.querySelector('#se-category-dialog a[href*="subcategory=first-solo"]').click();
+check(doc.querySelector('h1').textContent === 'First Solo', 'Choosing a nested subcategory opens that exact path');
 go('?view=library&category=private-pilot&issuer=examiner-only');
 doc.querySelector('.se-category-rail a[href*="category=private-pilot"]').click();
 check(doc.querySelectorAll('.se-endorsement-row').length === 2, 'One category click immediately opens its endorsements');

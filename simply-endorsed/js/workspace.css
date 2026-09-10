@@ -987,3 +987,10 @@ body:has(#se-category-dialog[open]) { overflow:hidden; }
 #se-workspace .se-active-bar ~ .se-browse-shell .se-main { scroll-margin-top:96px; }
 #se-workspace .se-category-rail .se-category-all { background:transparent; }
 #se-workspace .se-category-rail .se-category-all[aria-current] { background:#e9e5da; }
+#se-workspace .se-category-group { align-self:start; }
+#se-workspace .se-category-group .se-category-choice { display:flex; justify-content:space-between; border-left:0; border-radius:0; }
+#se-workspace .se-category-group summary::after { margin-left:auto; }
+#se-workspace .se-category-group summary::-webkit-details-marker { display:none; }
+#se-workspace #se-category-dialog .se-category-group .se-category-choice { border-left:0; }
+#se-workspace .se-subcategories a { font-weight:400; }
+#se-workspace .se-subcategories .se-category-overview { font-weight:650; }

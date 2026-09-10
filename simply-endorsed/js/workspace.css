@@ -869,3 +869,46 @@ body.simply-endorsed-page > header.nav-wrap {
 #se-workspace .se-app-header nav{flex-wrap:wrap}
 @media(max-width:600px){#se-workspace .se-app-header nav{grid-template-columns:repeat(auto-fit,minmax(min(100%,6rem),1fr))}}
 #se-workspace .se-app-header form button{flex-shrink:0}
+/* Familiar category navigation, with the review workspace alongside it. */
+#se-workspace .se-browse-shell.with-categories { display:grid; grid-template-columns:260px minmax(0,1fr); gap:28px; align-items:start; }
+#se-workspace .se-category-rail { position:sticky; top:16px; max-height:calc(100vh - 32px); overflow:auto; padding:16px; background:#f0efec; border:1px solid #dcdad4; border-radius:16px; }
+#se-workspace .se-category-nav { display:grid; gap:7px; }
+#se-workspace .se-category-nav a { display:flex; align-items:center; min-height:44px; padding:10px 12px; text-decoration:none; line-height:1.4; font-size:14px; }
+#se-workspace .se-category-all { font-weight:700; border-radius:9px; background:#e2dfd7; }
+#se-workspace .se-category-group { border:1px solid #d8d5ce; border-left:4px solid var(--category-color); border-radius:9px; background:#faf9f6; overflow:hidden; }
+#se-workspace .se-category-group summary { display:flex; align-items:center; gap:10px; min-height:48px; padding:11px; cursor:pointer; font-size:14px; font-weight:700; line-height:1.4; }
+#se-workspace .se-category-group summary::after { content:'+'; }
+#se-workspace .se-category-group[open] summary::after { content:'−'; }
+#se-workspace .se-category-group summary span { margin-left:auto; font-size:12px; opacity:.75; }
+#se-workspace .se-category-group a { border-top:1px solid #e3e0d9; }
+#se-workspace .se-category-group a:hover,#se-workspace .se-category-group a[aria-current] { background:#e9e5da; text-decoration:underline; }
+#se-workspace .se-category-overview { font-weight:650; }
+#se-workspace .se-category-launcher { display:none; }
+#se-workspace .se-legacy-selects>label { display:none; }
+#se-workspace .se-legacy-selects { display:block; }
+#se-workspace #se-category-dialog { padding:20px; border:1px solid #4e5055; border-radius:18px; width:min(440px,calc(100vw - 32px)); max-height:85dvh; background:#202226; color:#f7f6f2; }
+#se-workspace #se-category-dialog::backdrop { background:rgb(0 0 0 / 60%); }
+#se-workspace .se-dialog-heading { display:flex; align-items:center; gap:12px; justify-content:space-between; margin-bottom:16px; }
+#se-workspace .se-dialog-heading h2 { margin:0; font-size:21px; }
+#se-workspace #se-category-dialog .se-category-group { background:#292c30; border-color:#44474c; border-left-color:var(--category-color); }
+#se-workspace #se-category-dialog a { color:#fff; border-color:#44474c; }
+#se-workspace #se-category-dialog .se-category-all,#se-workspace #se-category-dialog a:hover,#se-workspace #se-category-dialog a[aria-current] { background:#3b3e43; }
+#se-workspace #se-category-dialog button { background:#35383d; color:white; }
+#se-workspace .with-categories .se-layout { min-width:0; width:100%; }
+#se-workspace .se-active-bar + .se-browse-shell .se-category-rail { top:90px; max-height:calc(100vh - 106px); }
+#se-workspace .se-dialog-heading { position:sticky; top:-20px; background:#202226; padding:12px 0; z-index:1; }
+#se-workspace #se-category-dialog:not([open]) { display:none; }
+@media(max-width:1199px) {
+  #se-workspace .se-browse-shell.with-categories { grid-template-columns:220px minmax(0,1fr); gap:20px; }
+  #se-workspace .with-categories .se-layout.has-detail { grid-template-columns:1fr; }
+  #se-workspace .with-categories .has-detail .se-main { display:none; }
+}
+@media(max-width:767px) {
+  #se-workspace .se-browse-shell.with-categories { display:block; }
+  #se-workspace .se-category-rail { display:none; }
+  #se-workspace .se-category-launcher { display:flex; width:100%; margin:0 0 20px; align-items:center; justify-content:center; background:#24262a; color:#fff; border-color:#24262a; }
+}
+@media(max-width:380px) {
+  #se-workspace .se-app-header nav { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  #se-workspace .se-app-header nav a { padding:10px 6px; font-size:14px; }
+}

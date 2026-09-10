@@ -55,8 +55,8 @@ function change(selector, value) {
   el.dispatchEvent(new w.Event("change", { bubbles: true }));
 }
 check(
-  doc.querySelector("h1").textContent === "What are you working on?",
-  "Tasks are the default",
+  doc.querySelector("h1").textContent === "Endorsement library",
+  "Category browsing is the default",
 );
 check(M.paths.length === 71, "All 71 original paths retained");
 check(w.ENDORSEMENTS.length === 96, "All 96 endorsements retained");
@@ -260,6 +260,26 @@ check(
   summary.parentElement.tagName === "DETAILS",
   "Flashcards use native accessible disclosure",
 );
+go("?view=library&expanded=missing-endorsement");
+check(!doc.querySelector('.has-detail'), 'Invalid endorsement link does not hide the mobile list');
+check(doc.querySelectorAll('.se-endorsement-row').length === 96, 'Invalid detail recovers the full library');
+check(doc.querySelectorAll('.se-category-rail .se-category-group').length === 13, 'All colored categories available in the rail');
+check(doc.querySelectorAll('#se-category-dialog .se-category-group').length === 13, 'Mobile chooser includes every category');
+go('?view=library&category=private-pilot&issuer=examiner-only');
+doc.querySelector('.se-category-rail a[href*="subcategory=private-airplane-initial-checkride-bundle"]').click();
+check(doc.querySelectorAll('.se-endorsement-row').length === 4, 'Selecting a category path clears stale filters and shows the full bundle');
+doc.querySelector('.se-endorsement-row').click();
+doc.querySelector('[data-action="close-detail"]').click();
+check(!w.location.search.includes('expanded'), 'Closing an endorsement clears its URL state');
+check(doc.activeElement.classList.contains('se-endorsement-row'), 'Closing detail restores the list opener');
+go('?view=library&q=first+solo');
+doc.querySelector('.se-search-result[href*="expanded="]').click();
+doc.querySelector('[data-action="close-detail"]').click();
+check(w.location.search.includes('q=first+solo'), 'Returning from a search result preserves the search');
+check(doc.querySelector('.se-search-result'), 'Returning restores result list');
+doc.querySelector('[data-action="clear-search"]').click();
+check(!w.location.search.includes('q='), 'Clearing search removes the reload query');
+check(doc.querySelector('.se-category-rail'), 'Clearing search restores category navigation');
 check(!x.errors.length, x.errors.map((e) => e.stack).join("\n"));
 x.close();
 console.log(

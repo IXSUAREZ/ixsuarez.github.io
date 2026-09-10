@@ -20,7 +20,8 @@
   let active = null,
     query = "",
     flashReady = new Set(),
-    returnFocus = null;
+    returnFocus = null,
+    detailReturn = null;
   const parse = () => {
     const p = new URLSearchParams(location.search);
     return {
@@ -32,12 +33,12 @@
               p.has("category") ||
               p.has("subcategory")
             ? "library"
-            : "tasks",
+            : p.get("view") === "tasks" || p.has("task") ? "tasks" : "library",
       task: p.get("task") || "",
       group: p.get("group") || "",
       category: p.get("category") || "all",
       path: p.get("subcategory") || "",
-      detail: (p.get("expanded") || "").split(",")[0],
+      detail: window.ENDORSEMENTS.some(e => e.id === (p.get("expanded") || "").split(",")[0]) ? (p.get("expanded") || "").split(",")[0] : "",
       mode: p.get("mode") || "journey",
       topic: p.get("topic") || "",
       issuer: p.get("issuer") || "all",
@@ -73,14 +74,16 @@
     `<p class="se-source">${linkText(refs)} · <a href="${E(M.source)}" target="_blank" rel="noopener">FAA AC 61-65K ↗</a></p>`;
   const endorsementLinks = (arr) =>
     `<div class="se-links">${arr.map((x) => a(typeof x === "string" ? x : x.id + " · " + x.label, { detail: typeof x === "string" ? x : x.id }, "se-link")).join("")}</div>`;
+  function focusDestination() {
+    const destination = state.detail ? document.getElementById("se-detail-title") : !query && state.topic ? document.getElementById("topic-" + state.topic)?.querySelector("summary") : null;
+    (destination || document.getElementById("se-title"))?.focus();
+  }
   function navigate(changes) {
     query = "";
     history.pushState({}, "", url(changes));
     state = parse();
     render();
-    document
-      .getElementById(state.detail ? "se-detail-title" : "se-title")
-      ?.focus();
+    focusDestination();
   }
   function modelText(e) {
     const match = e.verbatimText.match(/I (?:certify|have reviewed)/);
@@ -165,7 +168,7 @@
         return `${header}<article class="se-check-item ${status === "done" ? "is-done" : ""}"><div><span class="se-status">${status === "done" ? "✓ Reviewed" : status === "na" ? "— Not applicable" : i.conditional ? "◇ Applicability unresolved" : "○ To do"}</span><h3>${E(i.action)}</h3><p>${linkText(i.why)}</p>${source(i.refs)}${i.endorsement ? endorsementLinks([i.endorsement]) : ""}</div><label class="se-status-control">Review status<select data-check="${E(i.id)}" ${running && (!["completion", "review"].includes(i.id) || !remaining) ? "" : "disabled"} aria-label="${E(i.action)} review status"><option value="todo" ${status === "todo" ? "selected" : ""}>To do</option><option value="done" ${status === "done" ? "selected" : ""}>Done</option>${i.conditional ? `<option value="na" ${status === "na" ? "selected" : ""}>Not applicable</option>` : ""}</select>${running && remaining && ["completion", "review"].includes(i.id) ? '<span class="se-small">Review all earlier items first.</span>' : ""}</label></article>`;
       })
       .join("");
-    return `<div class="se-heading">${a("← All tasks", { task: "", group: "", detail: "" })}<p class="se-eyebrow">${E(M.categories[t.category]?.[0] || "Student pilot")}</p><h1 id="se-title" tabindex="-1">${E(t.label)}</h1><p>${E(t.description || "Review the complete workflow and resolve each applicable requirement.")}</p></div>${t.items.some((i) => i.endorsement) ? `<div class="se-package"><p>Endorsements in this review · conditional items are labeled below</p>${endorsementLinks([...new Set(t.items.filter((i) => i.endorsement).map((i) => i.endorsement))])}</div>` : ""}<section class="se-check-controls" aria-label="Temporary checklist"><div class="se-row"><h2>${running ? "Your temporary checklist" : "Start a review"}</h2><button class="se-primary" data-action="${running ? "reset" : "start"}" data-task="${E(t.id)}">${running ? "Start new checklist" : "Use this checklist"}</button></div><p class="se-small">One checklist, kept only while this page stays open. Reloading or starting a new checklist clears it. No student records are saved.</p>${running ? `<div class="se-context"><label>Currently holds<select data-context="held">${options(["Select current certificate", "Student pilot", "Sport pilot", "Recreational pilot", "Private pilot", "Commercial pilot", "ATP", "Flight instructor", "Other / verify"], active.context.held)}</select></label><label>Aircraft category / class<select data-context="aircraft">${options(["Select aircraft", "Airplane single-engine land", "Airplane multiengine land", "Airplane single-engine sea", "Airplane multiengine sea", "Rotorcraft helicopter", "Rotorcraft gyroplane", "Glider", "Powered-lift", "Other / verify"], active.context.aircraft)}</select></label></div><p class="se-small">Goal: ${E(t.label)}. Context is for your review; all items remain visible. Resolve exemptions and aircraft-specific conditions below.</p><div id="se-progress" role="status">${progress()}</div>` : active ? `<p class="se-notice">Starting this checklist replaces your active ${E(M.task(active.taskId).label)} review. ${a("Return to active checklist", { view: "tasks", task: active.taskId, detail: "" })}</p>` : ""}</section><div class="se-checklist">${items}</div>${["new-student", "pre-solo"].includes(t.id) ? preSolo() : ""}${a("Related guidance", { view: "guidance", mode: "journey", topic: t.id, detail: "" }, "se-link")}`;
+    return `<div class="se-heading">${a("← All tasks", { task: "", group: "", detail: "" })}<p class="se-eyebrow">${E(M.categories[t.category]?.[0] || "Student pilot")}</p><h1 id="se-title" tabindex="-1">${E(t.label)}</h1><p>${E(t.description || "Review the complete workflow and resolve each applicable requirement.")}</p></div>${t.items.some((i) => i.endorsement) ? `<div class="se-package"><p>Endorsements in this review · conditional items are labeled below</p>${endorsementLinks([...new Set(t.items.filter((i) => i.endorsement).map((i) => i.endorsement))])}</div>` : ""}<section class="se-check-controls" aria-label="Temporary checklist"><div class="se-row"><h2>${running ? "Your temporary checklist" : "Start a review"}</h2><button class="se-primary" data-action="${running ? "reset" : "start"}" data-task="${E(t.id)}">${running ? "Start new checklist" : "Use this checklist"}</button></div><p class="se-small">One checklist, kept only while this page stays open. Reloading or starting a new checklist clears it. No student records are saved.</p>${running ? `<div class="se-context"><label>Currently holds<select data-context="held">${options(["Select current certificate", "Student pilot", "Sport pilot", "Recreational pilot", "Private pilot", "Commercial pilot", "ATP", "Flight instructor", "Other / verify"], active.context.held)}</select></label><label>Aircraft category / class<select data-context="aircraft">${options(["Select aircraft", "Airplane single-engine land", "Airplane multiengine land", "Airplane single-engine sea", "Airplane multiengine sea", "Rotorcraft helicopter", "Rotorcraft gyroplane", "Glider", "Powered-lift", "Other / verify"], active.context.aircraft)}</select></label></div><p class="se-small">Goal: ${E(t.label)}. Context is for your review; all items remain visible. Resolve exemptions and aircraft-specific conditions below.</p><div id="se-progress" role="status">${progress()}</div>` : active ? `<p class="se-notice">Starting this checklist replaces your active ${E(M.task(active.taskId).label)} review. ${a("Return to active checklist", { view: "tasks", task: active.taskId, detail: "" })}</p>` : ""}</section><div class="se-checklist">${items}</div>${["new-student", "pre-solo"].includes(t.id) ? preSolo() : ""}${a("Related guidance", { view: "guidance", mode: "journey", topic: window.JOURNEY_STAGES.some(s => s.id === t.id) ? t.id : "", detail: "" }, "se-link")}`;
   }
   function options(values, chosen) {
     return values
@@ -184,6 +187,10 @@
           (!active.answers[i.id] || active.answers[i.id] === "todo"),
       ).length;
     return `<strong>${done} of ${items.length} reviewed</strong><progress value="${done}" max="${items.length}" aria-label="Checklist review progress"></progress><span>${alternativeUnresolved(M.task(active.taskId)) ? "Resolve the applicable alternative: " + M.task(active.taskId).oneOf.join(" or ") : unresolved ? unresolved + " condition" + (unresolved === 1 ? "" : "s") + " unresolved" : done === items.length ? "Review complete · actual endorsements must be issued separately" : "Continue reviewing the remaining items"}</span>`;
+  }
+  function categoryNavigation() {
+    const selected = M.paths.find(p => p.id === state.path)?.category || state.category;
+    return `<nav class="se-category-nav" aria-label="Endorsement categories">${a("All endorsements · 96", {view:"library",category:"all",path:"",detail:"",issuer:"all",validity:"all"}, "se-category-all")}${Object.entries(M.categories).map(([id,[label,color]]) => `<details class="se-category-group" style="--category-color:${color}" ${selected === id ? "open" : ""}><summary>${E(label)}<span>${window.ENDORSEMENTS.filter(e=>e.category===id).length}</span></summary><div>${a("All " + label.toLowerCase() + " endorsements", {view:"library",category:id,path:"",detail:"",issuer:"all",validity:"all"},"se-category-overview")}${M.paths.filter(p=>p.category===id).map(p=>`<a data-route href="${E(url({view:"library",category:id,path:p.id,detail:"",issuer:"all",validity:"all"}))}" ${state.path===p.id?'aria-current="page"':''}>${E(p.label)}</a>`).join("")}</div></details>`).join("")}</nav>`;
   }
   function library() {
     const p = M.paths.find((x) => x.id === state.path);
@@ -205,7 +212,7 @@
             ? e.perFlight
             : e.expiration === state.validity)),
     );
-    return `<div class="se-heading"><p class="se-eyebrow">FAA AC 61-65K · 96 endorsements</p><h1 id="se-title" tabindex="-1">${E(p?.label || M.categories[category]?.[0] || "Endorsement library")}</h1><p>${E(p?.description || "Browse every category, or search for a task to see its complete workflow.")}</p></div><div class="se-library-controls"><label>Category<select data-filter="category"><option value="all">All categories</option>${Object.entries(
+    return `<div class="se-heading"><p class="se-eyebrow">FAA AC 61-65K · 96 endorsements</p><h1 id="se-title" tabindex="-1">${E(p?.label || M.categories[category]?.[0] || "Endorsement library")}</h1><p>${E(p?.description || "Browse every category, or search for a task to see its complete workflow.")}</p></div><div class="se-library-controls se-legacy-selects"><label>Category<select data-filter="category"><option value="all">All categories</option>${Object.entries(
       M.categories,
     )
       .map(
@@ -370,10 +377,11 @@
     const results = M.search(query);
     return `<div class="se-heading"><p class="se-eyebrow">Across your workspace</p><h1 id="se-title" tabindex="-1">Search results</h1><p>${results.length} matches for “${E(query)}”</p></div>${results.length ? results.map((r) => `<a class="se-search-result" data-route href="${E(url(r.type === "Task" ? { view: "tasks", task: r.id, detail: "" } : r.type === "Guidance" ? { view: "guidance", mode: r.mode, topic: r.id, detail: "" } : { view: "library", category: "all", path: "", detail: r.id }))}"><span class="se-eyebrow">${E(r.type)}${r.type === "Task" ? " · Full workflow" : ""}</span><h2>${E(r.type === "Endorsement" ? r.id + " · " : "")}${E(r.title)}</h2><p>${E(r.description.slice(0, 180))}</p></a>`).join("") : `<div class="se-empty"><h2>No matches yet</h2><p>Try “first solo”, “IPC”, an endorsement ID or a regulation.</p><button data-action="clear-search">Clear search</button></div>`}`;
   }
-  function render() {
-    root.innerHTML = `<header class="se-app-header"><a href="?view=tasks" data-route class="se-brand">Simply Endorsed<span>CFI workspace</span></a><nav aria-label="Workspace">${[
-      ["tasks", "Tasks"],
-      ["library", "Library"],
+  function render(preserveDisclosures = false) {
+    const opened = preserveDisclosures ? new Set([...root.querySelectorAll('details[open]')].map(d => d.querySelector('summary')?.textContent)) : null;
+    root.innerHTML = `<header class="se-app-header"><a href="?view=library" data-route class="se-brand">Simply Endorsed<span>CFI workspace</span></a><nav aria-label="Workspace">${[
+      ["library", "Categories"],
+      ["tasks", "Checklists"],
       ["guidance", "Guidance"],
     ]
       .map(
@@ -382,8 +390,15 @@
       )
       .join(
         "",
-      )}</nav><form id="se-search-form" role="search"><label class="se-sr" for="se-search">Search tasks, endorsements and guidance</label><input id="se-search" type="search" autocomplete="off" placeholder="Search tasks, IDs, regulations" value="${E(query)}"><button aria-label="Search workspace" type="submit">Search</button></form></header>${active ? `<div class="se-active-bar"><span><strong>Active checklist</strong> · ${E(M.task(active.taskId).label)}</span>${a("Continue review →", { view: "tasks", task: active.taskId, detail: "" })}</div>` : ""}<div class="se-layout ${state.detail && !query ? "has-detail" : ""}"><main class="se-main" id="se-main">${query ? searchResults() : state.view === "tasks" ? tasks() : state.view === "library" ? library() : guidance()}</main>${query ? "" : detail()}</div><p id="se-feedback" role="status" class="se-feedback"></p>`;
-    if (state.topic && !state.detail && !query)
+      )}</nav><form id="se-search-form" role="search"><label class="se-sr" for="se-search">Search tasks, endorsements and guidance</label><input id="se-search" type="search" autocomplete="off" placeholder="Search tasks, IDs, regulations" value="${E(query)}"><button aria-label="Search workspace" type="submit">Search</button>${query ? '<button data-action="clear-search" type="button" aria-label="Clear search">✕</button>' : ""}</form></header>${active ? `<div class="se-active-bar"><span><strong>Active checklist</strong> · ${E(M.task(active.taskId).label)}</span>${a("Continue review →", { view: "tasks", task: active.taskId, detail: "" })}</div>` : ""}<div class="se-browse-shell ${state.view === "library" && !query ? "with-categories" : ""}">${state.view === "library" && !query ? `<aside class="se-category-rail"><p class="se-eyebrow">Browse endorsements</p>${categoryNavigation()}</aside><button class="se-category-launcher" data-action="categories">☰ Categories · ${E(M.categories[M.paths.find(p=>p.id===state.path)?.category || state.category]?.[0] || "All endorsements")}</button><dialog id="se-category-dialog" aria-labelledby="se-category-title"><div class="se-dialog-heading"><h2 id="se-category-title">Endorsement categories</h2><button data-action="close-categories" aria-label="Close categories">✕</button></div>${categoryNavigation()}</dialog>` : ""}<div class="se-layout ${state.detail && !query ? "has-detail" : ""}"><main class="se-main" id="se-main">${query ? searchResults() : state.view === "tasks" ? tasks() : state.view === "library" ? library() : guidance()}</main>${query ? "" : detail()}</div></div><p id="se-feedback" role="status" class="se-feedback"></p>`;
+    const categoryDialog = document.getElementById("se-category-dialog");
+    categoryDialog?.addEventListener("close", () => {
+      if (!categoryDialog.isConnected) return;
+      const target = [root.querySelector('.se-category-launcher'), document.querySelector('.nav-menu-toggle'), root.querySelector('.se-brand')].find(el => el?.getClientRects().length);
+      target?.focus();
+    });
+    if (opened) root.querySelectorAll('details').forEach(d => { d.open = opened.has(d.querySelector('summary')?.textContent); });
+    if (state.topic && !state.detail && !query && !preserveDisclosures)
       document
         .getElementById("topic-" + state.topic)
         ?.scrollIntoView({ block: "start" });
@@ -398,18 +413,23 @@
       !event.altKey
     ) {
       event.preventDefault();
-      returnFocus = route.getAttribute("href");
+      if (new URL(route.href).searchParams.has("expanded") && !state.detail) {
+        returnFocus = route.getAttribute("href");
+        detailReturn = location.href;
+      } else if (!new URL(route.href).searchParams.has("expanded")) {
+        detailReturn = null;
+      }
       query = "";
       history.pushState({}, "", route.href);
       state = parse();
       render();
-      document
-        .getElementById(state.detail ? "se-detail-title" : "se-title")
-        ?.focus();
+      focusDestination();
       return;
     }
     const b = event.target.closest("button");
     if (!b) return;
+    if (b.dataset.action === "categories") document.getElementById("se-category-dialog").showModal();
+    if (b.dataset.action === "close-categories") document.getElementById("se-category-dialog").close();
     if (b.dataset.action === "start" || b.dataset.action === "reset") {
       active = {
         taskId: b.dataset.task,
@@ -420,12 +440,19 @@
         },
       };
       render();
-      document
-        .getElementById("se-progress")
-        ?.scrollIntoView({ block: "nearest" });
+      const progressPanel = document.getElementById("se-progress");
+      if (progressPanel) {
+        progressPanel.tabIndex = -1;
+        progressPanel.focus({ preventScroll: true });
+        progressPanel.scrollIntoView({ block: "nearest" });
+      }
     }
     if (b.dataset.action === "close-detail") {
-      navigate({ detail: "" });
+      history.replaceState({}, "", detailReturn || url({ detail: "" }));
+      detailReturn = null;
+      state = parse();
+      query = new URLSearchParams(location.search).get("q") || "";
+      render();
       const links = [...root.querySelectorAll("a[data-route]")];
       (
         links.find((x) => x.getAttribute("href") === returnFocus) ||
@@ -434,6 +461,7 @@
     }
     if (b.dataset.action === "clear-search") {
       query = "";
+      history.replaceState({}, "", url({}));
       render();
       document.getElementById("se-search").focus();
     }
@@ -497,7 +525,7 @@
         delete active.answers.review;
       }
       const y = scrollY;
-      render();
+      render(true);
       root
         .querySelector(`[data-check="${i.id}"]`)
         ?.focus({ preventScroll: true });
@@ -509,7 +537,7 @@
       const key = el.dataset.filter;
       navigate(
         key === "category"
-          ? { category: el.value, path: "", detail: "" }
+          ? { category: el.value, path: "", detail: "", issuer: "all", validity: "all" }
           : key === "path"
             ? {
                 path: el.value,
@@ -531,12 +559,16 @@
     history.pushState({}, "", url({ topic: state.topic }));
   });
   addEventListener("popstate", () => {
+    detailReturn = null;
     state = parse();
     query = new URLSearchParams(location.search).get("q") || "";
     render();
-    document
-      .getElementById(state.detail ? "se-detail-title" : "se-title")
-      ?.focus();
+    focusDestination();
+  });
+  // Preserve the site's mobile-menu shortcut after replacing the old filter rail.
+  document.getElementById("sidebarToggleBtn")?.addEventListener("click", () => {
+    if (state.view !== "library" || query) navigate({ view: "library", detail: "" });
+    document.getElementById("se-category-dialog")?.showModal();
   });
   document
     .querySelectorAll('header.nav-wrap a[href="/simply-endorsed-cfi/"]')
@@ -544,7 +576,7 @@
       link.addEventListener("click", (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         e.preventDefault();
-        navigate({ view: "tasks", task: "", group: "", detail: "" });
+        navigate({ view: "library", category: "all", path: "", task: "", group: "", detail: "" });
       }),
     );
   document

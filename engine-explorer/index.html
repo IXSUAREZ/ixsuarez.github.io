@@ -12,25 +12,48 @@
     <style>
       :root { color-scheme: light; }
       html, body { height: 100%; }
-      body.tool-page { padding: 0; overflow: hidden; margin: 0; min-height: 100%; background: #eef0f2; }
+      body.engine-explorer-page { padding: 0; overflow: hidden; margin: 0; min-height: 100%; background: #eef0f2; }
       .engine-explorer-shell { display: flex; flex-direction: column; min-height: 100dvh; padding-top: 116px; box-sizing: border-box; }
-      .engine-explorer-frame { display: block; flex: 0 0 calc(100dvh - 116px); width: 100%; height: calc(100dvh - 116px); min-height: 0; border: 0; background: #eef0f2; }
+      .engine-explorer-main { display: flex; flex: 0 0 calc(100dvh - 116px); min-height: 0; }
+      .engine-explorer-frame { display: block; flex: 1 1 auto; width: 100%; height: 100%; min-height: 0; border: 0; background: #eef0f2; }
+      .engine-tool-logo {
+        box-sizing: border-box;
+        padding: 2px;
+        object-fit: contain;
+        background: #eeede7;
+      }
+      .engine-tool-name { color: #3e3529; }
+      .engine-explorer-title {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
       @media (max-width: 900px) {
         .engine-explorer-shell { padding-top: 96px; }
-        .engine-explorer-frame { flex-basis: calc(100dvh - 96px); height: calc(100dvh - 96px); }
+        .engine-explorer-main { flex-basis: calc(100dvh - 96px); }
       }
     </style>
   </head>
-  <body class="tool-page">
+  <body class="tool-page engine-explorer-page">
     <div class="engine-explorer-shell">
       <!-- site-nav -->
       <header class="nav-wrap" role="banner">
-        <nav class="nav" aria-label="Primary">
-          <a href="/" class="wordmark" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
-          <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
-            <span class="nav-toggle-label">Menu</span>
-            <span class="nav-toggle-icon" aria-hidden="true"></span>
-          </button>
+        <nav class="nav nav--tool" aria-label="Primary">
+          <div class="nav-brand">
+            <a href="/" class="link-back">&larr; SuarezCFI.com</a>
+            <a href="/" class="wordmark" aria-label="Diego Suarez — SuarezCFI.com home">SUAREZ.CFI</a>
+            <span class="nav-brand-divider" aria-hidden="true"></span>
+            <a href="/engine-explorer/" class="nav-tool-mark" aria-current="page" aria-label="Crank and Core Engine Explorer home">
+              <img class="nav-tool-logo engine-tool-logo" src="./app/brand/crank-core-mark.png" width="160" height="160" alt="">
+              <span class="nav-tool-name engine-tool-name">Crank &amp; Core</span>
+            </a>
+          </div>
           <div class="nav-links" id="primary-nav-links">
             <a href="/flight-training-louisville-ky/">Training</a>
             <a href="/learn/">Learn</a>
@@ -49,14 +72,54 @@
             <a href="/#about">About</a>
             <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
           </div>
+          <div class="nav-tools">
+            <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+              <span class="nav-toggle-label">Menu</span>
+              <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </div>
         </nav>
       </header>
       <!-- /site-nav -->
-      <iframe class="engine-explorer-frame" title="Crank &amp; Core interactive engine explorer" src="./app/"></iframe>
+      <main class="engine-explorer-main" id="engine-explorer-main">
+        <h1 class="engine-explorer-title">Crank &amp; Core Engine Explorer</h1>
+        <iframe class="engine-explorer-frame" title="Crank &amp; Core interactive engine explorer" src="./app/"></iframe>
+      </main>
     </div>
     <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
     <script>
       const frame = document.querySelector('.engine-explorer-frame');
+      const embeddedHeaderStyles = `
+        /* The site shell owns product branding; this toolbar is now for app actions only. */
+        html.suarezcfi-embedded-engine .topbar .product-brand { display: none !important; }
+        html.suarezcfi-embedded-engine .topbar {
+          min-height: 60px !important;
+          padding: 8px 24px !important;
+        }
+        html.suarezcfi-embedded-engine .topbar .top-actions { margin-left: auto !important; }
+        @media (max-width: 620px) {
+          html.suarezcfi-embedded-engine .topbar {
+            min-height: 56px !important;
+            padding: 6px 12px !important;
+          }
+        }
+      `;
+
+      function simplifyEmbeddedHeader() {
+        try {
+          const documentInFrame = frame.contentDocument;
+          if (!documentInFrame || documentInFrame.getElementById('suarezcfi-embedded-engine-header')) return;
+          documentInFrame.documentElement.classList.add('suarezcfi-embedded-engine');
+          const style = documentInFrame.createElement('style');
+          style.id = 'suarezcfi-embedded-engine-header';
+          style.textContent = embeddedHeaderStyles;
+          documentInFrame.head.append(style);
+        } catch (error) {
+          // The explorer remains fully usable if a future deployment changes its document boundary.
+        }
+      }
+
+      frame.addEventListener('load', simplifyEmbeddedHeader);
       frame.src = './app/' + window.location.search + window.location.hash;
     </script>
   </body>

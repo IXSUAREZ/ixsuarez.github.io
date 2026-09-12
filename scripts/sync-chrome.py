@@ -75,6 +75,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PARTIALS = ROOT / "assets" / "partials"
 
 SKIP_DIRS = {
+    "aero-lab": "compiled React SPA — chrome owned by its app build",
     "flight-risk-assessment": "compiled React SPA — chrome owned by its app build",
     "foi-cards": "immersive variant — compact chip nav by design, no footer",
 }

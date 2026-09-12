@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-09-11",
+  "configurationTarget": "912 ULS 2; 2.43:1 gearbox with overload clutch; exact accessory and revision matching remains unresolved",
+  "status": "TEACHING_RECONSTRUCTION_AVAILABLE",
+  "model": {
+    "coordinateFrame": "rotax-oem-y-z-x",
+    "builtAt": "2026-09-12T05:33:59.949Z",
+    "modelKind": "teaching-reconstruction",
+    "physicalAndConceptualInstances": 1155,
+    "reconstructed": 1129,
+    "schematic": 26,
+    "manufacturerPartNumberMatches": 947,
+    "assemblyMemberElements": 112,
+    "animatedInstances": 164,
+    "bytes": 131377404,
+    "sha256": "eb572fbc987439ce4073ff1a8108e593ad699078a62fc0c239cb664ea8d2eb38",
+    "bySystem": {
+      "72-20-00": 278,
+      "74-20-00": 152,
+      "72-10-00": 68,
+      "24-20-00": 101,
+      "73-00-00": 178,
+      "75-20-00": 123,
+      "79-20-00": 33,
+      "73-10-00": 98,
+      "80-10-00": 50,
+      "78-10-00": 48,
+      "24-30-00": 26
+    },
+    "completeOemReplica": false,
+    "integration": {
+      "baselineSha256": "8983ed77104ea4a3309cd023aa69a164c501e9be11762fb20ca191501d055158",
+      "generatedSha256": "2536697620b0d387c98ad6019a9ce4fb3f3387cfe05b3f62c8a5bbf9e06e0940",
+      "replacedMeshes": [
+        "crankshaft",
+        "rod-1",
+        "rod-2",
+        "rod-3",
+        "rod-4",
+        "spark-plug-1-0",
+        "spark-plug-1-1",
+        "spark-plug-2-0",
+        "spark-plug-2-1",
+        "spark-plug-3-0",
+        "spark-plug-3-1",
+        "spark-plug-4-0",
+        "spark-plug-4-1"
+      ],
+      "preservedMeshes": 1089,
+      "baselineBinaryPreserved": true
+    },
+    "photoAssemblies": {
+      "baselineSha256": "263ee0bb4c9d5a03f3396c23fa7f28a82c32dcafaa3be5f3ade5251a71b10581",
+      "changedMeshes": [
+        "head-1",
+        "head-2",
+        "head-3",
+        "head-4",
+        "gearbox-case",
+        "gearbox-cover-bolt-0",
+        "gearbox-lock-washer-0",
+        "gearbox-cover-bolt-1",
+        "gearbox-lock-washer-1",
+        "gearbox-cover-bolt-2",
+        "gearbox-lock-washer-2",
+        "gearbox-cover-bolt-3",
+        "gearbox-lock-washer-3",
+        "gearbox-cover-bolt-4",
+        "gearbox-lock-washer-4",
+        "gearbox-cover-bolt-5",
+        "gearbox-lock-washer-5",
+        "gearbox-cover-bolt-6",
+        "gearbox-lock-washer-6",
+        "gearbox-cover-bolt-7",
+        "gearbox-lock-washer-7",
+        "propeller-shaft",
+        "gear-cover-disk",
+        "airbox-shell",
+        "airbox-connecting-hose--1",
+        "airbox-hose-clamp--1-0",
+        "airbox-hose-clamp--1-1",
+        "airbox-drip-tray--1",
+        "airbox-connecting-hose-1",
+        "airbox-hose-clamp-1-0",
+        "airbox-hose-clamp-1-1",
+        "airbox-drip-tray-1",
+        "airbox-preheat-flap",
+        "airbox-selector-shaft",
+        "airbox-selector-lever",
+        "cooling-air-guide",
+        "fuel-pump-outlet-hose",
+        "fuel-pump-outlet-hose-fire-sleeve",
+        "fuel-pump-outlet-hose-sleeve-band-0",
+        "fuel-pump-outlet-hose-sleeve-band-1",
+        "external-alternator",
+        "external-alternator-rear-housing",
+        "external-alternator-stator",
+        "alternator-shaft",
+        "alternator-fan",
+        "alternator-through-bolt-0",
+        "alternator-through-bolt-1",
+        "alternator-through-bolt-2",
+        "alternator-through-bolt-3",
+        "alternator-pulley",
+        "engine-drive-pulley",
+        "engine-pulley-carrier-0",
+        "engine-pulley-carrier-1",
+        "alternator-belt",
+        "alternator-bracket",
+        "alternator-support",
+        "alternator-mount-bolt-0",
+        "alternator-mount-washer-0",
+        "alternator-mount-bolt-1",
+        "alternator-mount-washer-1",
+        "alternator-mount-bolt-2",
+        "alternator-mount-washer-2",
+        "alternator-mount-bolt-3",
+        "alternator-mount-washer-3",
+        "alternator-mount-bolt-4",
+        "alternator-mount-washer-4",
+        "exhaust-1",
+        "exhaust-socket-1",
+        "exhaust-flange-1",
+        "exhaust-stud-1-a",
+        "exhaust-lock-nut-1-a",
+        "exhaust-stud-1-b",
+        "exhaust-lock-nut-1-b",
+        "exhaust-inlet-collar-1",
+        "exhaust-2",
+        "exhaust-socket-2",
+        "exhaust-flange-2",
+        "exhaust-stud-2-a",
+        "exhaust-lock-nut-2-a",
+        "exhaust-stud-2-b",
+        "exhaust-lock-nut-2-b",
+        "exhaust-inlet-collar-2",
+        "exhaust-3",
+        "exhaust-socket-3",
+        "exhaust-flange-3",
+        "exhaust-stud-3-a",
+        "exhaust-lock-nut-3-a",
+        "exhaust-stud-3-b",
+        "exhaust-lock-nut-3-b",
+        "exhaust-inlet-collar-3",
+        "exhaust-4",
+        "exhaust-socket-4",
+        "exhaust-flange-4",
+        "exhaust-stud-4-a",
+        "exhaust-lock-nut-4-a",
+        "exhaust-stud-4-b",
+        "exhaust-lock-nut-4-b",
+        "exhaust-inlet-collar-4",
+        "exhaust-muffler",
+        "exhaust-muffler-inlet-1",
+        "exhaust-spring-1-a",
+        "exhaust-spring-1-b",
+        "exhaust-muffler-inlet-2",
+        "exhaust-spring-2-a",
+        "exhaust-spring-2-b",
+        "exhaust-muffler-inlet-3",
+        "exhaust-spring-3-a",
+        "exhaust-spring-3-b",
+        "exhaust-muffler-inlet-4",
+        "exhaust-spring-4-a",
+        "exhaust-spring-4-b",
+        "exhaust-outlet",
+        "exhaust-muffler-band-left",
+        "exhaust-muffler-band-right"
+      ],
+      "removedOptionalConfigurationMembers": [
+        "prop-round-neck-nut-0",
+        "prop-round-neck-nut-1",
+        "prop-round-neck-nut-2",
+        "prop-round-neck-nut-3",
+        "prop-round-neck-nut-4",
+        "prop-round-neck-nut-5"
+      ],
+      "preservedMeshes": 1041,
+      "baselineBinaryPreserved": true
+    }
+  },
+  "completeReplica": false,
+  "expectedEngineInstances": null,
+  "verifiedEngineMeshes": 0,
+  "catalog": {
+    "document": "IPC 912/914 Edition 05 Revision 01, December 2024",
+    "rows": 836,
+    "uniquePartNumbers": 676,
+    "unnumberedRows": 28,
+    "tablePages": 75,
+    "unparsedRows": 0,
+    "notice": "Catalog rows are not an installed-engine inventory. Alternatives, kits, optional parts, quantities per subassembly and items supplied as required need reconciliation. Restricted components and electronic internals are not fully enumerated."
+  },
+  "documents": [
+    {
+      "file": "IPC_912_914_Ed5_Rev1.pdf",
+      "revision": "IPC Ed05 Rev01, December 2024",
+      "sha256": "e8ea9fba32d2130f8223fcd49ec62da823b7ed2f4f39f68d783e16472bbd83ea"
+    },
+    {
+      "file": "Rotax_912_Series_Operators_Manual_OM-912.pdf",
+      "revision": "OM Ed04 Rev02, June 2025",
+      "sha256": "3aa335bb2403d8bebbb29591cbfbf7fc4b7a99bd3e353b5b331d98284add7193"
+    },
+    {
+      "file": "Rotax_912_Series_Line_Maintenance_Manual_MML-912.pdf",
+      "revision": "MML Ed04 Rev02, June 2025",
+      "sha256": "adbb6f02a34e9c9ffae81f990491a2b1686dd32d211e2cd294854983fc55e457"
+    },
+    {
+      "file": "MMH_912_914_Ed2_Rev1.pdf",
+      "revision": "MMH Ed2 Rev1, November 2025",
+      "sha256": "ecaf2785eacb94391d985194c673e1e3b803a8503c1e0624072a5c62c70a618e"
+    },
+    {
+      "file": "IM_912_2025.pdf",
+      "revision": "IM June 2025",
+      "sha256": "45f70218c0065d5e73e7a8dc5f2a737b0f65bd05da0a25f0944a0174608b2f95"
+    },
+    {
+      "file": "SI_912_028_R1_Advanced_Start.pdf",
+      "revision": "SI-912-028 Revision 1, September 8 2025",
+      "sha256": "ac6838457fbe3b42c2396aa9af633fca69cca085dd62affaea985252dbf16636"
+    },
+    {
+      "file": "SI_912_037_Propeller_Nuts.pdf",
+      "revision": "SI-912-037 Initial issue, October 15 2024",
+      "sha256": "60888a7baa5c759416cfbd9549326a3517b723a0714a7bfbafe044600988e658"
+    },
+    {
+      "file": "SI_912_020_R9_Running_Modifications.pdf",
+      "revision": "SI-912-020 Revision 9, December 30 2016; compensation-tube section used with current IPC",
+      "sha256": "be5e25f10c25487b08417fc709171c6255b7e96ae6f47f9cabfb3b1954df09ff"
+    }
+  ],
+  "findings": [
+    {
+      "id": "catalog-omissions",
+      "source": "https://www.flyrotax.com/assets/imagesDistributors/dis0007/IPC_912_914_Ed5_Rev1-1.pdf#page=11",
+      "detail": "IPC introduction says some restricted components, including crankshaft and crankcase components, are not listed. Catalog-row totals cannot establish full engine completeness."
+    },
+    {
+      "id": "undimensioned-illustrations",
+      "source": "Rotax_912_Series_Operators_Manual_OM-912.pdf",
+      "locator": "Printed page 1-14 / PDF page 26",
+      "detail": "Illustrations are typical sketches, not a source for deriving exact part shapes or dimensions."
+    },
+    {
+      "id": "sealed-electronics",
+      "source": "https://www.flyrotax.com/assets/imagesDistributors/dis0007/IPC_912_914_Ed5_Rev1-1.pdf#page=101",
+      "detail": "The catalog lists ignition module 965445 as an assembly (ULS quantity 2); its circuit board and component-level geometry have not been established."
+    },
+    {
+      "id": "working-community-model",
+      "source": "https://grabcad.com/library/rotax-912",
+      "detail": "Read in a normal browser. Creator claims working parts; users report mismatched dimensions (6 March 2023, 1 August 2024). No independent dimensional audit performed. Not accepted as exact."
+    },
+    {
+      "id": "uls-community-model",
+      "source": "https://grabcad.com/library/rotax-912-uls-1",
+      "detail": "Read in a normal browser. Creator describes converting a 912 iS model to carbureted appearance. ULS internal accuracy and provenance remain unverified."
+    },
+    {
+      "id": "installation-model",
+      "source": "https://www.3dcadbrowser.com/3d-model/rotax-912-engine",
+      "detail": "Listing describes a 912 UL installation/cowling mockup. Not a verified full ULS assembly."
+    },
+    {
+      "id": "art-model",
+      "source": "https://www.turbosquid.com/3d-models/aircraft-engine-rotax-912-3d-model-1645945",
+      "detail": "Real-time art model with editorial restrictions. Exact ULS internals and completeness are unverified."
+    }
+  ],
+  "missing": [
+    {
+      "assembly": "Engine configuration / inventory",
+      "required": "Revision-matched complete BOM; reconcile kits, options, alternatives, per-carburetor quantities, consumables, service tools and restricted parts."
+    },
+    {
+      "assembly": "Crankcase / crankshaft / connecting rods",
+      "required": "Source CAD, bearing locations, machined features, rod length, journals, pivots and dimensions."
+    },
+    {
+      "assembly": "Cylinders / pistons / heads / valve train",
+      "required": "Complete separate-part geometry, passages, wall thicknesses, cam profiles, valve lift and component relationships."
+    },
+    {
+      "assembly": "Gearbox / overload clutch / starter drive",
+      "required": "Correct tooth counts and profiles, splines, bearings, springs, clutch stack and sprag elements for the same revision."
+    },
+    {
+      "assembly": "Carburetors / fuel pump",
+      "required": "Internal and external measured geometry, passages, diaphragms, needles, jets, floats and fasteners."
+    },
+    {
+      "assembly": "Cooling / lubrication",
+      "required": "Pump and regulator internals, tanks, filters, fittings and verified engine accessory boundary."
+    },
+    {
+      "assembly": "Starter / generator",
+      "required": "Armature, windings, stator, rotor, brushes, bearings, housings and exact placement."
+    },
+    {
+      "assembly": "Ignition module 965445 / rectifier-regulator",
+      "required": "Internal BOM, circuit board layout and dimensions, discrete component packages, connectors, cases and placement."
+    },
+    {
+      "assembly": "Exhaust / hoses / wiring / small hardware",
+      "required": "Specific selected configuration, geometry, lengths, routing and complete instance counts."
+    },
+    {
+      "assembly": "Source revision and reuse",
+      "required": "Confirm applicable current IM/MMH/IPC revisions and permission to package CAD for a browser viewer."
+    }
+  ],
+  "acquisitionBoundary": "Public sources were reviewed first. GrabCAD download was attempted and requires sign-in. No account created, purchase made or manufacturer contacted. The user subsequently authorized the best possible reconstruction; original parametric geometry is now supplied and labeled.",
+  "softwareBoundary": "The bundled engine is an original documented teaching reconstruction. Some nominal dimensions are sourced; casting surfaces, selected internals and cam profiles are approximate. CDI internal blocks are conceptual. Manufacturer CAD accuracy and physical-iPad performance are not certified."
+}

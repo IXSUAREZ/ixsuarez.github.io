@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#e3e3e3">
+  <title>912 ULS Factory Reference · Crank &amp; Core</title>
+  <link rel="stylesheet" href="./reference.css?v=1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../#explore" aria-label="Back to the animated Engine Explorer">
+      <img src="../brand/crank-core-mark.png" width="40" height="40" alt="">
+      <span><strong>Crank <i>&amp;</i> Core</strong><small>ENGINE EXPLORER</small></span>
+    </a>
+    <a class="back" href="../#explore">← Animated engine</a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div><p class="eyebrow">MANUFACTURER’S VISUAL REFERENCE</p><h1 id="title">Rotax 912 ULS</h1><p>Inspect the exterior model used in Rotax’s official configurator.</p></div>
+      <a class="source" href="https://configurator.flyrotax.com/view/912%20ULS/2" target="_blank" rel="noopener">Rotax configurator ↗</a>
+    </section>
+    <section class="reference-workspace" aria-label="Factory model and viewing controls">
+      <div class="stage">
+        <iframe id="factory" title="912 ULS exterior reference, hosted on Sketchfab" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+        <div class="loading" id="loading" role="status"><span class="spinner" aria-hidden="true"></span><strong>Loading the hosted engine…</strong><span>This detailed model needs an internet connection.</span></div>
+        <div class="stage-caption"><span id="status" role="status" aria-live="polite">Connecting to the model provider</span><span>Drag to orbit · Scroll or pinch to zoom</span></div>
+      </div>
+      <aside aria-label="Reference views">
+        <p class="eyebrow">LOOK CLOSER</p>
+        <div class="views" role="group" aria-label="Reference camera views">
+          <button data-view="whole" aria-pressed="true" disabled>Whole engine</button>
+          <button data-view="ignition" aria-pressed="false" disabled>Ignition modules</button>
+          <button data-view="exhaust" aria-pressed="false" disabled>Exhaust &amp; head</button>
+          <button data-view="rear" aria-pressed="false" disabled>Rear accessories</button>
+        </div>
+        <div class="view-note" aria-live="polite"><h2 id="view-title">See the assembled engine</h2><p id="view-description">Compare the cylinder heads, castings, carburetors and external connections with the animated teaching model.</p></div>
+        <fieldset><legend>Visible equipment</legend>
+          <label><input id="ignition-only" type="checkbox" disabled> Ignition hardware only</label>
+          <label><input id="hoses" type="checkbox" checked disabled> Fuel and coolant hoses</label>
+          <label><input id="exhaust" type="checkbox" checked disabled> Exhaust system</label>
+          <label><input id="airbox" type="checkbox" disabled> Optional airbox</label>
+        </fieldset>
+        <details class="about"><summary>About this reference</summary>
+          <p>This is the hosted exterior model selected by Rotax’s configurator, published in 2021. This view selects gearbox type 2 and the 0.9 kW starter. Equipment and later engine revisions may differ.</p>
+          <p>Use the animated engine for individual part selection, moving internals and assembly controls. This exterior reference does not expose every individual part or the sealed electronics inside the CDI modules.</p>
+          <p>The hosted model is available to view, but is not offered as downloadable CAD. Its geometry is not included in the teaching model. Model and configurator credit: Rotax / Frontline; hosted by Sketchfab.</p>
+          <p><a href="https://www.flyrotax.com/p/service/technical-documentation" target="_blank" rel="noopener">Rotax technical documentation ↗</a></p>
+        </details>
+        <a class="teach" href="../#explore">Explore the animated parts →</a>
+      </aside>
+    </section>
+  </main>
+  <script src="./reference.js?v=1"></script>
+</body>
+</html>

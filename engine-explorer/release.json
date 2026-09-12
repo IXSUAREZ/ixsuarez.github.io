@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-12",
+  "route": "https://suarezcfi.com/engine-explorer/",
+  "lycoming": {
+    "sha256": "a64e2bcd84fe71527f69b7a4c70f34617988879b6d247649d3d7dab1c3209ec1",
+    "bytes": 79925984,
+    "parts": 961,
+    "animatedInstances": 227,
+    "schematic": 105
+  },
+  "rotax": {
+    "sha256": "8217a66db1bb80c37e676605065861e0e25e5591259f4b545e8e4befa9edbb18",
+    "bytes": 160868108,
+    "physicalAndConceptualInstances": 1168,
+    "animatedInstances": 164,
+    "schematic": 26
+  },
+  "verification": {
+    "lycomingAndSharedCombustion": {
+      "files": 28,
+      "passed": 134
+    },
+    "sharedAndRotax": {
+      "files": 28,
+      "passed": 179
+    },
+    "browserCombustion": {
+      "lycomingChecks": 13,
+      "rotaxChecks": 12,
+      "errors": []
+    },
+    "siteViewportChecks": [
+      {
+        "width": 1440,
+        "height": 1000,
+        "frameTop": 116
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "frameTop": 96,
+        "horizontalOverflow": false,
+        "mobileMenuWorks": true
+      }
+    ],
+    "cover": "Rocker cover 2 isolated and visually matched to the requested red formed cover"
+  },
+  "completeOemReplica": false,
+  "physicalIpadVerified": false,
+  "sourceCommit": "92f1acf"
+}

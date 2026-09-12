@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crank &amp; Core | SuarezCFI</title>
+    <meta name="description" content="Interactive Rotax 912 ULS and Lycoming IO-360-L2A engine explorers from SuarezCFI.">
+    <link rel="canonical" href="https://suarezcfi.com/engine-explorer/">
+    <link rel="stylesheet" href="/assets/design-system.css?v=20260814">
+    <link rel="stylesheet" href="/assets/tool-system/tool-core.css?v=1">
+    <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
+    <style>
+      :root { color-scheme: light; }
+      html, body { height: 100%; }
+      body.tool-page { padding: 0; overflow: hidden; margin: 0; min-height: 100%; background: #eef0f2; }
+      .engine-explorer-shell { display: flex; flex-direction: column; min-height: 100dvh; padding-top: 116px; box-sizing: border-box; }
+      .engine-explorer-frame { display: block; flex: 0 0 calc(100dvh - 116px); width: 100%; height: calc(100dvh - 116px); min-height: 0; border: 0; background: #eef0f2; }
+      @media (max-width: 900px) {
+        .engine-explorer-shell { padding-top: 96px; }
+        .engine-explorer-frame { flex-basis: calc(100dvh - 96px); height: calc(100dvh - 96px); }
+      }
+    </style>
+  </head>
+  <body class="tool-page">
+    <div class="engine-explorer-shell">
+      <!-- site-nav -->
+      <header class="nav-wrap" role="banner">
+        <nav class="nav" aria-label="Primary">
+          <a href="/" class="wordmark" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
+          <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+            <span class="nav-toggle-label">Menu</span>
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+          <div class="nav-links" id="primary-nav-links">
+            <a href="/flight-training-louisville-ky/">Training</a>
+            <a href="/learn/">Learn</a>
+            <a href="/blog/">Journal</a>
+            <div class="nav-dropdown">
+              <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">Tools <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="nav-drop-panel" role="menu">
+                <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
+                <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
+                <a href="/part-61-calculator/" role="menuitem"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
+                <a href="/aero-lab/" role="menuitem"><strong>Aero Lab</strong><span>Interactive wind tunnel</span></a>
+                <a href="/engine-explorer/" role="menuitem" aria-current="page"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
+                <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
+              </div>
+            </div>
+            <a href="/#about">About</a>
+            <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
+          </div>
+        </nav>
+      </header>
+      <!-- /site-nav -->
+      <iframe class="engine-explorer-frame" title="Crank &amp; Core interactive engine explorer" src="./app/"></iframe>
+    </div>
+    <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
+    <script>
+      const frame = document.querySelector('.engine-explorer-frame');
+      frame.src = './app/' + window.location.search + window.location.hash;
+    </script>
+  </body>
+</html>

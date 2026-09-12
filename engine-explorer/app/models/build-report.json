@@ -8,8 +8,8 @@
   "manufacturerPartNumberMatches": 958,
   "assemblyMemberElements": 116,
   "animatedInstances": 164,
-  "bytes": 160868108,
-  "sha256": "8217a66db1bb80c37e676605065861e0e25e5591259f4b545e8e4befa9edbb18",
+  "bytes": 36079912,
+  "sha256": "2d3a5343cef335e102da1adf92c37c02473b6b3c9f17857161550199c850b879",
   "bySystem": {
     "72-20-00": 278,
     "74-20-00": 152,
@@ -226,5 +226,14 @@
       "removedTriangles": 2,
       "retainedTriangles": 1998
     }
-  ]
+  ],
+  "webDelivery": {
+    "format": "KHR_draco_mesh_compression",
+    "sourceBytes": 160868108,
+    "sourceSha256": "8217a66db1bb80c37e676605065861e0e25e5591259f4b545e8e4befa9edbb18",
+    "deliveryBytes": 36079912,
+    "deliverySha256": "2d3a5343cef335e102da1adf92c37c02473b6b3c9f17857161550199c850b879",
+    "selectableMeshNamesPreserved": true,
+    "note": "Delivery encoding only; source model inventory and named mesh topology are retained."
+  }
 }

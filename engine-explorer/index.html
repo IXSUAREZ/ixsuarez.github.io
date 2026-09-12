@@ -90,17 +90,41 @@
     <script>
       const frame = document.querySelector('.engine-explorer-frame');
       const embeddedHeaderStyles = `
-        /* The site shell owns product branding; this toolbar is now for app actions only. */
+        /* The site shell owns branding. Keep the app's utilities compact and out of the collection layout. */
         html.suarezcfi-embedded-engine .topbar .product-brand { display: none !important; }
-        html.suarezcfi-embedded-engine .topbar {
-          min-height: 60px !important;
-          padding: 8px 24px !important;
+        html.suarezcfi-embedded-engine .collection .topbar {
+          position: absolute !important;
+          inset: 0 !important;
+          height: 0 !important;
+          min-height: 0 !important;
+          padding: 0 !important;
+          border: 0 !important;
+          background: transparent !important;
+          backdrop-filter: none !important;
+          pointer-events: none !important;
+          z-index: 20 !important;
         }
-        html.suarezcfi-embedded-engine .topbar .top-actions { margin-left: auto !important; }
+        html.suarezcfi-embedded-engine .collection .topbar .top-actions {
+          position: absolute !important;
+          top: 10px !important;
+          right: 12px !important;
+          margin: 0 !important;
+          pointer-events: auto !important;
+        }
+        html.suarezcfi-embedded-engine .explorer .topbar {
+          min-height: 54px !important;
+          padding: 5px 16px !important;
+        }
+        html.suarezcfi-embedded-engine .explorer .topbar .top-actions { margin-left: auto !important; }
+        html.suarezcfi-embedded-engine .resource-menu > div { z-index: 40 !important; }
         @media (max-width: 620px) {
-          html.suarezcfi-embedded-engine .topbar {
-            min-height: 56px !important;
-            padding: 6px 12px !important;
+          html.suarezcfi-embedded-engine .collection .topbar .top-actions {
+            top: 8px !important;
+            right: 10px !important;
+          }
+          html.suarezcfi-embedded-engine .explorer .topbar {
+            min-height: 52px !important;
+            padding: 4px 10px !important;
           }
         }
       `;

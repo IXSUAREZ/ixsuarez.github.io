@@ -1,11 +1,34 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+<!-- page-metadata: generated from config/site-pages.json -->
+<title>Crank &amp; Core | Rotax &amp; Lycoming 3D Engine Explorer</title>
+<meta name="description" content="Explore Rotax 912 ULS and Lycoming IO-360-L2A engines with interactive 3D teaching models. Study engine parts and systems with Crank &amp; Core by SuarezCFI." />
+<link rel="canonical" href="https://suarezcfi.com/engine-explorer/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://suarezcfi.com/engine-explorer/" />
+<meta property="og:site_name" content="SuarezCFI" />
+<meta property="og:title" content="Crank &amp; Core | Rotax &amp; Lycoming 3D Engine Explorer" />
+<meta property="og:description" content="Explore Rotax 912 ULS and Lycoming IO-360-L2A engines with interactive 3D teaching models. Study engine parts and systems with Crank &amp; Core by SuarezCFI." />
+<meta property="og:image" content="https://suarezcfi.com/assets/identities/engine-explorer/preview.png" />
+<meta property="og:image:secure_url" content="https://suarezcfi.com/assets/identities/engine-explorer/preview.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1200" />
+<meta property="og:image:alt" content="Crank &amp; Core logo" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Crank &amp; Core | Rotax &amp; Lycoming 3D Engine Explorer" />
+<meta name="twitter:description" content="Explore Rotax 912 ULS and Lycoming IO-360-L2A engines with interactive 3D teaching models. Study engine parts and systems with Crank &amp; Core by SuarezCFI." />
+<meta name="twitter:image" content="https://suarezcfi.com/assets/identities/engine-explorer/preview.png" />
+<meta name="twitter:image:alt" content="Crank &amp; Core logo" />
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/identities/engine-explorer/icon-48.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/identities/engine-explorer/icon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/identities/engine-explorer/icon-180.png" />
+<!-- /page-metadata -->
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crank &amp; Core | SuarezCFI</title>
-    <meta name="description" content="Interactive Rotax 912 ULS and Lycoming IO-360-L2A engine explorers from SuarezCFI.">
-    <link rel="canonical" href="https://suarezcfi.com/engine-explorer/">
     <link rel="stylesheet" href="/assets/design-system.css?v=20260814">
     <link rel="stylesheet" href="/assets/tool-system/tool-core.css?v=1">
     <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
@@ -39,7 +62,8 @@
         .engine-explorer-main { flex-basis: calc(100dvh - 96px); }
       }
     </style>
-  </head>
+<link rel="stylesheet" href="/assets/site-discovery.css" />
+</head>
   <body class="tool-page engine-explorer-page">
     <div class="engine-explorer-shell">
       <!-- site-nav -->
@@ -57,19 +81,23 @@
           <div class="nav-links" id="primary-nav-links">
             <a href="/flight-training-louisville-ky/">Training</a>
             <a href="/learn/">Learn</a>
-            <a href="/blog/">Journal</a>
+            <a href="/blog/">Blog</a>
             <div class="nav-dropdown">
-              <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">Tools <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+              <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+                Tools
+                <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
               <div class="nav-drop-panel" role="menu">
-                <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
-                <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
-                <a href="/part-61-calculator/" role="menuitem"><strong>Part 61 Calculator</strong><span>Training-time wizard</span></a>
-                <a href="/aero-lab/" role="menuitem"><strong>Aero Lab</strong><span>Interactive wind tunnel</span></a>
-                <a href="/engine-explorer/" role="menuitem" aria-current="page"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
-                <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
+      <a href="/tools/" role="menuitem"><strong>All pilot tools</strong><span>Explore the full collection</span></a>
+      <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
+      <a href="/part-61-calculator/" role="menuitem"><strong>Part 61 Calculator</strong><span>Training time and cost planner</span></a>
+      <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk assessment</span></a>
+      <a href="/aero-lab/" role="menuitem"><strong>Aero Lab</strong><span>Interactive wind tunnel</span></a>
+      <a href="/engine-explorer/" role="menuitem" aria-current="page"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
+      <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>Fundamentals of Instructing flashcards</span></a>
               </div>
             </div>
-            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
             <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
           </div>
           <div class="nav-tools">
@@ -84,7 +112,8 @@
       <main class="engine-explorer-main" id="engine-explorer-main">
         <h1 class="engine-explorer-title">Crank &amp; Core Engine Explorer</h1>
         <iframe class="engine-explorer-frame" title="Crank &amp; Core interactive engine explorer" src="./app/"></iframe>
-      </main>
+      <details class="source-guide" id="engine-study-guide"><summary>About these engine study models</summary><p>Crank &amp; Core lets you explore the parts and systems of the Rotax 912 ULS and the Lycoming IO-360-L2A used in the Cessna 172S. These are educational reconstructions, not complete OEM replicas or maintenance instructions.</p><p>Start with <a href="/learn/aircraft-systems/">aircraft systems guides</a>, then select an engine to examine its parts. Use the in-app Resources panel for model-specific references and limitations.</p><p>For the underlying teaching concepts, see the FAA <a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">Pilot’s Handbook of Aeronautical Knowledge</a>, Aircraft Systems chapter.</p></details>
+</main>
     </div>
     <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
     <script>

@@ -8,6 +8,7 @@ if (!Array.isArray(cards) || cards.length < 200 || cards.length > 260) throw new
 if (new Set(cards.map(card => card.prompt)).size !== cards.length) throw new Error('Duplicate card prompts found');
 if (new Set(cards.map(card => card.id)).size !== cards.length) throw new Error('Duplicate card ids found');
 if (cards.some(card => !card.id || !card.cardType || card.kind || /item \d+/i.test(card.prompt))) throw new Error('Found an invalid card shape, legacy kind, or generic item prompt');
+if (cards.some(card => !card.officialReference || !/^https:\/\/(www\.faa\.gov|www\.ecfr\.gov)\//.test(card.officialReference) || !card.officialChapter || !card.sourceVerification)) throw new Error('Every card must include an official FAA/eCFR reference, chapter, and verification caveat');
 for (const page of [1,2,3,4,5,6,7,8]) if (!cards.some(card => card.sourcePage === page)) throw new Error(`Missing source-page coverage: ${page}`);
 for (const phrase of required) if (!source.includes(phrase)) throw new Error(`Missing required source concept: ${phrase}`);
 const motivation = cards.filter(card => card.prompt === 'How can motivations vary?');

@@ -133,6 +133,26 @@
   font-size: 14px;
 }
 
+.cf-handoff {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(244, 190, 48, 0.12);
+  border: 1px solid rgba(154, 111, 0, 0.28);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cf-handoff a {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.cf-form--invalid .cf-input[required]:invalid {
+  border-color: #b42318;
+}
+
 .cf-success {
   padding: 20px 22px;
   border-radius: 16px;

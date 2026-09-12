@@ -41,7 +41,7 @@
   function renderWelcome() {
     const { left, review, total } = progressStats();
     const saved = pendingSession();
-    byId('welcomeSummary').innerHTML = `<strong>${total} source-faithful cards</strong> across ${sections().length} FOI topics.<br>${left} left to memorize · ${review} review later`;
+    byId('welcomeSummary').innerHTML = `<strong>${total} study cards</strong> across ${sections().length} FOI topics.<br>${left} left to memorize · ${review} review later`;
     byId('startButton').innerHTML = saved
       ? `Resume pass <span aria-hidden="true">→</span>`
       : `Start remaining cards <span aria-hidden="true">→</span>`;
@@ -79,7 +79,24 @@
     if (!card) return complete();
     const el = byId('flashcard');
     el.classList.remove('flipped','dismiss-left','dismiss-right');
-    byId('cardSection').textContent = card.section;
+    const sectionLabel = byId('cardSection');
+    sectionLabel.textContent = `${card.section} · FOI Quick Review p. ${card.sourcePage}`;
+    const oldReference = sectionLabel.parentElement.querySelector('.faa-reference-link');
+    if (oldReference) oldReference.remove();
+    try {
+      const reference = new URL(card.officialReference);
+      if (reference.protocol === 'https:' && ['www.faa.gov', 'www.ecfr.gov'].includes(reference.hostname)) {
+        const link = document.createElement('a');
+        link.className = 'faa-reference-link';
+        link.href = reference.href;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'FAA reference';
+        sectionLabel.insertAdjacentElement('afterend', link);
+      }
+    } catch (_) {
+      // Invalid or non-FAA references are omitted from the student-facing card.
+    }
     byId('sectionButton').textContent = card.section;
     byId('cardPrompt').textContent = card.prompt;
     byId('cardAnswer').textContent = card.answer;

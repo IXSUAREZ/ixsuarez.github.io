@@ -1,18 +1,51 @@
 /* FOI Cards content inventory
  * Source: FOI Quick Review, v2.14 (updated Apr. 05, 2026).
- * Every card is traceable to a source page for auditability.
+ * Every card is traceable to a source page for auditability. officialReference
+ * points to the relevant FAA Aviation Instructor's Handbook chapter; it is a
+ * topic map and does not assert that every answer is a verbatim transcription.
  */
 (function () {
   const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  const c = (section, prompt, answer, sourcePage, tags = [], cardType) => ({
+  const FAA_AIH_BASE = 'https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/aviation_instructors_handbook/';
+  const sectionReferences = {
+    'Human behavior': ['Chapter 2: Human Behavior', '04_aih_chapter_2.pdf'],
+    'Learning': ['Chapter 3: The Learning Process', '05_aih_chapter_3.pdf'],
+    'Communication': ['Chapter 4: Effective Communication', '06_aih_chapter_4.pdf'],
+    'Teaching': ['Chapter 5: The Teaching Process', '07_aih_chapter_5.pdf'],
+    'Assessment': ['Chapter 6: Assessment', '08_aih_chapter_6.pdf'],
+    'Planning': ['Chapter 7: Planning Instructional Activity', '09_aih_chapter_7.pdf'],
+    'Professionalism': ['Chapter 8: Aviation Instructor Responsibilities and Professionalism', '10_aih_chapter_8.pdf'],
+    'Flight instruction': ['Chapter 9: Techniques of Flight Instruction', '11_aih_chapter_9.pdf'],
+    'ADM and safety': ['Chapter 10: Teaching Practical Risk Management during Flight Instruction', '12_aih_chapter_10.pdf']
+  };
+  const c = (section, prompt, answer, sourcePage, tags = [], cardType) => {
+    const [officialChapter, officialFile] = sectionReferences[section] || [];
+    const specificReference = prompt === 'What is the sterile cockpit rule?'
+      ? 'https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/section-91.113'
+      : prompt === 'What is required before endorsing a first solo?'
+        ? 'https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/section-61.87'
+        : prompt === 'What responsibilities are identified for flight instructors?'
+          ? 'https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/section-61.189'
+          : null;
+    return {
     id: `${sourcePage}-${slug(section)}-${slug(prompt)}`,
     section,
     prompt,
     answer,
     sourcePage,
     tags,
-    cardType: cardType || (tags.includes('mnemonic') ? 'mnemonic' : tags.includes('procedure') ? 'sequence' : tags.includes('list') ? 'list' : /differ|difference|vs\.?/i.test(prompt) ? 'comparison' : 'definition')
-  });
+    cardType: cardType || (tags.includes('mnemonic') ? 'mnemonic' : tags.includes('procedure') ? 'sequence' : tags.includes('list') ? 'list' : /differ|difference|vs\.?/i.test(prompt) ? 'comparison' : 'definition'),
+    officialReference: specificReference || (officialFile ? `${FAA_AIH_BASE}${officialFile}` : 'https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/aviation_instructors_handbook'),
+    officialChapter: prompt === 'What is the sterile cockpit rule?'
+      ? '14 CFR § 91.113(b) see-and-avoid reference'
+      : prompt === 'What is required before endorsing a first solo?'
+        ? '14 CFR § 61.87 solo requirements'
+      : prompt === 'What responsibilities are identified for flight instructors?'
+          ? '14 CFR §§ 61.189 and 61.195 responsibilities reference'
+          : (officialChapter || 'Aviation Instructor\u2019s Handbook topic map'),
+    sourceVerification: 'topic-mapped; verify exact answer wording against the cited chapter'
+    };
+  };
 
   const baseCards = [
     c('Human behavior', 'What is human behavior?', 'The result of attempts to satisfy certain needs.', 1, ['definition']),
@@ -22,7 +55,7 @@
     c('Human behavior', 'What is Maslow’s hierarchy of needs, from basic to highest?', '1. Physiological (biological)\n2. Safety and security\n3. Love/belonging (social)\n4. Self-esteem (egoistic)\n5. Self-actualization (self-fulfillment)', 1, ['mnemonic', 'list']),
     c('Human behavior', 'What are defense mechanisms?', 'Subconscious mechanisms that protect individuals against the realities of unpleasant situations.', 1, ['definition']),
     c('Human behavior', 'What does “Dr, Dr, CPR Fast” stand for?', 'Denial, Repression, Displacement, Rationalization, Compensation, Projection, Reaction Formation, Fantasy.', 1, ['mnemonic']),
-    c('Human behavior', 'What is denial?', 'Refusing to admit a truth; it is a form of repression.', 1),
+    c('Human behavior', 'What is denial?', 'A defense mechanism in which a person refuses to admit an uncomfortable truth; the AIH lists it with repression and other mechanisms that protect against unpleasant situations.', 1),
     c('Human behavior', 'What is repression?', 'Placing uncomfortable thoughts into inaccessible areas of the mind.', 1),
     c('Human behavior', 'What is displacement?', 'Taking anger out on someone else.', 1),
     c('Human behavior', 'What is rationalization?', 'Justifying unacceptable actions.', 1),
@@ -131,16 +164,16 @@
 
     c('Flight instruction', 'What physiological obstacles are identified for flight instructors?', 'Unfamiliar environments and sensations, and motion sickness.', 7),
     c('Flight instruction', 'What does assessment of piloting ability determine?', 'How well a learner is progressing. A good assessment gives the learner something constructive on which to work or build.', 7),
-    c('Flight instruction', 'What is required before endorsing a first solo?', 'The instructor must determine that the learner is qualified and proficient in all maneuvers and procedures required by 14 CFR 61.87, based on consistent proficiency demonstrations.', 7, ['regulation']),
+    c('Flight instruction', 'What is required before endorsing a first solo?', 'Before signing the first-solo endorsement, the authorized instructor must provide the applicable training under 14 CFR 61.87, determine that the student is proficient in the required maneuvers and procedures, and endorse the specific make and model. This card summarizes the training and proficiency decision; it is not an exhaustive solo checklist.', 7, ['regulation']),
     c('Flight instruction', 'What is demonstrated ability based on?', 'Established performance standards, suitably modified for the learner’s experience level and training stage.', 7),
     c('Flight instruction', 'How should instructors correct learner errors?', 'Do not immediately take over for every mistake. When safety permits, let learners progress partway into the error and find a way out.', 7),
     c('Flight instruction', 'How should flight instructors keep learners informed?', 'Update progress as procedures or maneuvers are completed, or summarize it during postflight critiques.', 7),
-    c('Flight instruction', 'What responsibilities are identified for flight instructors?', 'Ensure learner skill set for solo flight; observe limits on solo authorization and solo privileges; administer presolo written exams; handle knowledge tests, practical-test recommendations, retesting after failure, and endorsement accountability; emphasize see-and-avoid and proper checklist use.', 7, ['list']),
+    c('Flight instruction', 'What responsibilities are identified for flight instructors?', 'Examples include ensuring student preparation and proficiency before solo, observing solo-authority limits, administering required pre-solo knowledge testing, and maintaining required endorsement records. Instructor qualification and authorization limits also apply under § 61.195; this card is an overview, not an exhaustive duty checklist.', 7, ['list']),
     c('Flight instruction', 'What are the four demonstration-performance steps?', '1. Instructor explanations.\n2. Instructor demonstrations.\n3. Learner performance with instructor supervision.\n4. Instructor evaluation.', 7, ['procedure']),
     c('Flight instruction', 'What are the five telling-and-doing steps?', '1. Preparation (instructor explanations).\n2. Instructor tells—instructor does.\n3. Learner tells—instructor does.\n4. Learner tells—learner does.\n5. Learner does—instructor evaluates.', 7, ['procedure']),
     c('Flight instruction', 'What is the key difference between demonstration-performance and telling-and-doing?', 'Step three: in telling-and-doing, the learner tells while the instructor does.', 7),
     c('Flight instruction', 'What are the positive exchange-of-controls steps?', '“You have the flight controls.”\n“I have the flight controls.”\n“You have the flight controls.”', 7, ['procedure']),
-    c('Flight instruction', 'What is the sterile cockpit rule?', '14 CFR 121.542 requires air-carrier pilots to refrain from nonessential activities during critical phases of flight. GA pilots can adopt it; for light aircraft, critical phases can be defined as below 2,500 feet AGL or within 10 minutes of landing.', 7, ['regulation']),
+    c('Flight instruction', 'What is the sterile cockpit rule?', '14 CFR 121.542 restricts nonessential activities for required crewmembers during critical phases of flight in covered air-carrier operations. For general aviation, 14 CFR § 91.113(b) requires vigilance so pilots see and avoid other aircraft; instructors may adopt a sterile-flight-deck technique that emphasizes outside scanning while maintaining appropriate instrument checks. The regulations do not impose a blanket 2,500-foot or 10-minute threshold on general aviation.', 7, ['regulation']),
     c('Flight instruction', 'How can instructors use distractions in training?', 'Discuss an unrelated enjoyable topic; have the learner obtain weather via onboard electronics; identify terrain/objects; or identify a forced-landing field. Do not use distractions in initial learning of a new skill.', 7, ['procedure']),
 
     c('ADM and safety', 'What is aeronautical decision-making (ADM)?', 'A systematic approach to the mental process pilots use to consistently determine the best course of action in given circumstances.', 7, ['definition']),

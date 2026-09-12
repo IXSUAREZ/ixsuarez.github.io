@@ -515,10 +515,10 @@
           {
             label: "IPC completion",
             text: "Use the IPC completion endorsement after the pilot satisfactorily completes the instrument proficiency check.",
-            refs: ["14 CFR § 61.57(d)", "AC 61-65K A.61"]
+            refs: ["14 CFR § 61.57(d)", "AC 61-65K A.71"]
           }
         ],
-        relatedEndorsements: ["A.61"]
+        relatedEndorsements: ["A.71"]
       }),
       "additional-recurrent/aircraft-endorsements": card({
         title: "Aircraft endorsement snapshot",

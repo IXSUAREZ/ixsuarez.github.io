@@ -3,7 +3,8 @@ const { tests: wizardTests } = require('./wizard.test');
 const { tests: engineTests } = require('./engine-fixtures.test');
 const { tests: editorTests } = require('./editor.test');
 const { tests: pilotTests } = require('./pilot-flow.test');
-const tests = wizardTests.concat(engineTests, editorTests, pilotTests);
+const { tests: sourceAccuracyTests } = require('./source-accuracy.test');
+const tests = wizardTests.concat(engineTests, editorTests, pilotTests, sourceAccuracyTests);
 
 async function runAllTests() {
   console.log('==================================================');

@@ -153,8 +153,8 @@ const GUIDANCE_SECTIONS = [
       {
         type: "ul",
         value: [
-          "Solo flight in Class B airspace – FAR 61.95(a), AC 61-65 A.12",
-          "Solo flight to/from/at a Class B airport – FAR 61.95(b) & FAR 91.131(b)(1), AC 61-65 A.13",
+          "Solo flight in Class B airspace – FAR 61.95(a), AC 61-65 A.12 (endorsement dated within 90 days before the flight)",
+          "Solo flight to/from/at a Class B airport – FAR 61.95(b) & FAR 91.131(b)(1), AC 61-65 A.13 (endorsement dated within 90 days before the flight)",
         ],
       },
       { type: "h3", value: "TSA U.S. Citizenship Endorsement" },
@@ -860,7 +860,7 @@ window.JOURNEY_STAGES = [
     ],
     regulation: "14 CFR § 61.95(a), § 61.95(b), § 91.131(b)(1)",
     description: "If the student's training requires flight in or to a Class B airport, specific endorsements are required. A.12 covers general Class B airspace; A.13 covers the specific Class B airport.",
-    timeLimit: null,
+    timeLimit: "Endorsement dated within the 90-day period preceding the flight in the specific Class B airspace or at the specific airport",
     gotchas: [
       "Not all students need this — only required if their training involves Class B airspace",
       "A.12 (airspace) and A.13 (airport) are two distinct endorsements",
@@ -1169,8 +1169,8 @@ window.QUICK_REF_DATA = {
     { acRef: "A.9", far: "§ 61.93(c)(1)&(2)", use: "Solo XC training (category-specific authorization)", expiration: "None" },
     { acRef: "A.10", far: "§ 61.93(c)(3)", use: "Solo XC flight planning – per individual flight", expiration: "Per flight" },
     { acRef: "A.11", far: "§ 61.93(b)(2)", use: "Repeated solo XC flights ≤ 50 NM from departure", expiration: "None" },
-    { acRef: "A.12", far: "§ 61.95(a)", use: "Solo flight in Class B airspace", expiration: "None" },
-    { acRef: "A.13", far: "§ 61.95(b), § 91.131(b)(1)", use: "Solo flight to/from/at a Class B airport", expiration: "None" },
+    { acRef: "A.12", far: "§ 61.95(a)", use: "Solo flight in Class B airspace", expiration: "Endorsement dated within 90 days before the flight" },
+    { acRef: "A.13", far: "§ 61.95(b), § 91.131(b)(1)", use: "Solo flight to/from/at a Class B airport", expiration: "Endorsement dated within 90 days before the flight" },
     { acRef: "A.14", far: "49 CFR § 1552.15(c)", use: "TSA U.S. citizenship endorsement", expiration: "None" },
     { acRef: "A.36", far: "§ 61.35(a)(1), 61.103(d), 61.105", use: "Aeronautical knowledge test (Private Pilot)", expiration: "None" },
     { acRef: "A.37", far: "§ 61.103(f), 61.107(b), 61.109", use: "Flight proficiency/practical test (Private Pilot)", expiration: "None" },

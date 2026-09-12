@@ -3073,12 +3073,6 @@
     <priority>0.86</priority>
   </url>
   <url>
-    <loc>https://suarezcfi.com/certificate-generator/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://suarezcfi.com/blog/how-to-choose-a-flight-school-louisville/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -3108,6 +3102,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url><loc>https://suarezcfi.com/aero-lab/</loc></url>
-  <url><loc>https://suarezcfi.com/engine-explorer/</loc></url>
+  <url>
+    <loc>https://suarezcfi.com/aero-lab/</loc>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/engine-explorer/</loc>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/foi-cards/</loc>
+  </url>
+  <url>
+    <loc>https://suarezcfi.com/tools/</loc>
+  </url>
 </urlset>

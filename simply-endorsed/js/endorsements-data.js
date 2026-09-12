@@ -191,7 +191,7 @@
       "category": "student-pilot",
       "explanation": "\u2022\tAllows another nearby airport only after instructor approval.\n\u2022\tHelps account for different runways, traffic, radio workload, and layouts.\n\u2022\tKeeps the student from expanding solo operations without supervision.",
       "whoIssues": "standard-cfi",
-      "expiration": "90-calendar-days",
+      "expiration": "none",
       "perFlight": false,
       "aliases": [
         "25 nm solo",
@@ -203,7 +203,7 @@
         "solo",
         "student pilot"
       ],
-      "cardExplanation": "Allows solo takeoffs and landings at another airport within 25 NM. Expires in 90 calendar days."
+      "cardExplanation": "Allows solo takeoffs and landings at another airport within 25 NM after the required training and instructor endorsement. Section 61.93(b)(1) does not state a standalone 90-day expiration for this authorization."
     },
     {
       "id": "A.9",
@@ -295,7 +295,7 @@
       "sourcePage": "A-9",
       "verbatimText": "I certify that [First name, MI, Last name] has received the required training of 14 CFR \u00a7 61.95(a). I have determined they are proficient to conduct solo flights in [name of Class B] airspace. [List any applicable conditions or limitations.]",
       "category": "student-pilot",
-      "explanation": "\u2022\tClass B is high-workload airspace with heavy traffic and tighter ATC expectations.\n\u2022\tConfirms the student received special training for that environment.\n\u2022\tThe 90-day limit keeps that approval current.",
+      "explanation": "\u2022\tClass B is high-workload airspace with heavy traffic and tighter ATC expectations.\n\u2022\tConfirms the student received special training for that environment.\n\u2022\tThe endorsement must be dated within the 90-day period preceding the flight in that specific Class B airspace area.",
       "whoIssues": "standard-cfi",
       "expiration": "90-calendar-days",
       "perFlight": false,
@@ -309,7 +309,7 @@
         "solo",
         "student pilot"
       ],
-      "cardExplanation": "Allows a student to solo in Class B airspace after required training and proficiency. Expires in 90 calendar days."
+      "cardExplanation": "Allows a student to solo in the specifically endorsed Class B airspace after required training and proficiency. The endorsement must be dated within 90 days before the flight."
     },
     {
       "id": "A.13",
@@ -321,7 +321,7 @@
       "sourcePage": "A-9",
       "verbatimText": "I certify that [First name, MI, Last name] has received the required training of 14 CFR \u00a7 61.95(b)(1). I have determined that they are proficient to conduct solo flight operations at [name of airport]. [List any applicable conditions or limitations.]",
       "category": "student-pilot",
-      "explanation": "\u2022\tA Class B airport can be more demanding than just entering Class B airspace.\n\u2022\tHelps ensure the student can handle taxi complexity, sequencing, and faster traffic.\n\u2022\tPrevents solo operations at major airports without specific approval.",
+      "explanation": "\u2022\tA Class B airport can be more demanding than just entering Class B airspace.\n\u2022\tHelps ensure the student can handle taxi complexity, sequencing, and faster traffic.\n\u2022\tThe endorsement must be dated within the 90-day period preceding the flight at that specific airport.",
       "whoIssues": "standard-cfi",
       "expiration": "90-calendar-days",
       "perFlight": false,
@@ -335,7 +335,7 @@
         "solo",
         "student pilot"
       ],
-      "cardExplanation": "Allows a student to solo to, from, or at a Class B airport. Expires in 90 calendar days."
+      "cardExplanation": "Allows a student to solo to, from, or at the specifically endorsed Class B airport after required training and proficiency. The endorsement must be dated within 90 days before the flight."
     },
     {
       "id": "A.14",
@@ -373,9 +373,9 @@
       "sourcePage": "A-9",
       "verbatimText": "I certify that [First name, MI, Last name] has received the required training of 14 CFR \u00a7 61.94(a). I have determined they are proficient to conduct solo flights in [name of Class B, C, or D] airspace and authorized to operate to, from, through, and at [name of airport]. [List any applicable conditions or limitations.]",
       "category": "student-pilot",
-      "explanation": "\u2022\tControlled airspace adds traffic, radio work, and sequencing demands.\n\u2022\tConfirms a sport or recreational student was specifically trained for that environment.\n\u2022\tThe 90-day limit requires recent review of those skills.",
+      "explanation": "\u2022\tControlled airspace adds traffic, radio work, and sequencing demands.\n\u2022\tConfirms a sport or recreational student was specifically trained for that environment.\n\u2022\tFor the specific airspace or airport, the required ground and flight training must be within the 90-day period preceding the flight; this is a training recency rule, not a stated standalone endorsement expiration.",
       "whoIssues": "standard-cfi",
-      "expiration": "90-calendar-days",
+      "expiration": "none",
       "perFlight": false,
       "aliases": [
         "a.15",
@@ -386,7 +386,7 @@
         "solo",
         "student pilot"
       ],
-      "cardExplanation": "Allows a sport or recreational student to solo in Class B, C, or D airspace. Expires in 90 calendar days."
+      "cardExplanation": "Allows a sport or recreational student to solo in the specifically endorsed Class B, C, or D airspace after the required training. The training for that specific area must be within 90 days before the flight."
     },
     {
       "id": "A.16",
@@ -398,9 +398,9 @@
       "sourcePage": "A-10",
       "verbatimText": "I certify that [First name, MI, Last name] has received the required training of 14 CFR \u00a7 61.94(a)(1). I have determined that they are proficient to conduct solo flight operations at [name of airport located in Class B, C, or D airspace or an airport having an operational control tower]. [List any applicable conditions or limitations.]",
       "category": "student-pilot",
-      "explanation": "\u2022\tTowered airport operations require accurate communication and instruction compliance.\n\u2022\tHelps ensure the student can handle taxi, hold short, runway entries, and pattern flow.\n\u2022\tReduces the risk of confusion in busy airport environments.",
+      "explanation": "\u2022\tTowered airport operations require accurate communication and instruction compliance.\n\u2022\tHelps ensure the student can handle taxi, hold short, runway entries, and pattern flow.\n\u2022\tFor the specific airport, the required ground and flight training must be within the 90-day period preceding the flight; this is a training recency rule, not a stated standalone endorsement expiration.",
       "whoIssues": "standard-cfi",
-      "expiration": "90-calendar-days",
+      "expiration": "none",
       "perFlight": false,
       "aliases": [
         "a.16",
@@ -412,7 +412,7 @@
         "solo",
         "student pilot"
       ],
-      "cardExplanation": "Allows a sport or recreational student to solo to, from, or at a towered airport or an airport in Class B, C, or D airspace. Expires in 90 calendar days."
+      "cardExplanation": "Allows a sport or recreational student to solo to, from, or at the specifically endorsed airport after the required training. The training for that specific airport must be within 90 days before the flight."
     },
     {
       "id": "A.17",
@@ -1714,7 +1714,7 @@
       "sourcePage": "A-20",
       "verbatimText": "No logbook entry reflecting unsatisfactory performance on an IPC is required. I certify that [First name, MI, Last name], [grade of pilot certificate], [certificate number], has satisfactorily completed the instrument proficiency check of 14 CFR \u00a7 61.57(d) in a [M/M] aircraft on [date].",
       "category": "additional-recurrent",
-      "explanation": "\u2022\tInstrument skills are highly perishable when not used regularly.\n\u2022\tAn IPC restores instrument privileges after a lapse in recent experience.\n\u2022\tHelps confirm the pilot can safely return to IFR operations.",
+      "explanation": "\u2022\tInstrument skills are highly perishable when not used regularly.\n\u2022\tA satisfactory IPC may satisfy the instrument recent-experience requirement in 14 CFR § 61.57(d), subject to the applicable aircraft, evaluator, and operating rules.\n\u2022\tHelps document that the pilot completed the required proficiency check before exercising instrument privileges.",
       "whoIssues": "standard-cfi",
       "expiration": "none",
       "perFlight": false,
@@ -1728,7 +1728,7 @@
         "additional recurrent",
         "recurrent"
       ],
-      "cardExplanation": "Shows an IPC is complete and the CFII found the pilot proficient to resume instrument privileges."
+      "cardExplanation": "Shows an IPC is complete. A satisfactory IPC may satisfy the instrument recent-experience requirement in 14 CFR § 61.57(d), subject to the applicable rules."
     },
     {
       "id": "A.72",

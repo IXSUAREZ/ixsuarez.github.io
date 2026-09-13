@@ -75,7 +75,7 @@
       }
     </script>
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/tool-system/part61-redesign.css?v=f7b053188a">
+  <link rel="stylesheet" href="/assets/tool-system/part61-redesign.css?v=fc1af06f74">
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
@@ -334,11 +334,11 @@
                   <div class="part61-panel-heading">
                     <p class="part61-kicker">Experience</p>
                     <div class="part61-heading-badge-row">
-                      <h3>Let’s look at your experience.</h3>
+                      <h3>Logbook totals</h3>
                       <span class="group-completion incomplete" id="part61HoursCompleteness" aria-live="polite" aria-label="Hour fields: 0 of 24 complete">0/24</span>
                     </div>
                   </div>
-                  <p class="part61-helper">Enter the relevant totals from your logbook. Use 0 for time you have not logged; a blank means you still need to check.</p>
+                  <p class="part61-helper">Enter logbook totals. Use 0 for none logged; leave blank when you still need to check.</p>
                   <div class="part61-goal-summary" data-goal-summary></div>
                   <div class="part61-experience-entry" aria-label="Enter flight experience">
 <button type="button" class="part61-button" data-zero-experience>I haven’t logged any flight time</button>
@@ -350,11 +350,14 @@
 <div id="part61ExperienceFields"></div>
 <button type="button" class="part61-text-button" data-review-missing>Review missing entries</button>
 
-                  <div class="part61-subhead-row">
-                    <h4>Logged Events</h4>
-                    <button type="button" class="part61-text-button" id="part61ClearEventsBtn">Clear events</button>
-                  </div>
-                  <div class="part61-event-groups" id="part61EventChecklist"></div>
+                  <details class="part61-logged-events">
+                    <summary>Logged events</summary>
+                    <div class="part61-subhead-row">
+                      <p>Review flights, landings, and training events already completed.</p>
+                      <button type="button" class="part61-text-button" id="part61ClearEventsBtn">Clear events</button>
+                    </div>
+                    <div class="part61-event-groups" id="part61EventChecklist"></div>
+                  </details>
 
 <section id="part61Costs" class="part61-cost-section"><details class="part61-cost-details"><summary><span>Cost estimate<small>Review your hourly rates</small></span></summary>                  <div class="part61-rate-summary" id="part61RateSummary" aria-live="polite">
                     <span>Dual rate: $230/hr</span>
@@ -414,51 +417,15 @@
                   <button type="button" data-edit-section="experience"><strong>Experience</strong><small data-edit-summary="experience">Edit logbook totals</small></button>
                   <button type="button" data-edit-section="rates"><strong>Rates</strong><small data-edit-summary="rates">Edit cost assumptions</small></button>
                 </div>
-                  <section class="part61-result-section">
-                    <h4>Your training, in order</h4>
-                    <div id="part61Training"></div>
-                  </section>
-<details class="part61-instructor-details"><summary>Instructor details<span>Requirements, endorsements &amp; sources</span></summary>                  <details class="part61-readout-details" id="part61ReadoutDetails">
-                    <summary>
-                      <span>Instructor readout</span>
-
-                    </summary>
-                    <div id="part61CfiReadout" class="part61-cfi-readout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
-                  </details>
-                <div class="part61-results-tabs" role="tablist" aria-label="Audit detail sections">
-                  <button type="button" role="tab" id="part61TabPlan" aria-controls="part61PanelPlan" aria-selected="true" tabindex="0" class="active" data-results-tab="plan">Plan logic</button>
-                  <button type="button" role="tab" id="part61TabEndorsements" aria-controls="part61PanelEndorsements" aria-selected="false" tabindex="-1" data-results-tab="endorsements">Endorsements</button>
-                  <button type="button" role="tab" id="part61TabLedger" aria-controls="part61PanelLedger" aria-selected="false" tabindex="-1" data-results-tab="ledger">CFR Ledger</button>
-                  <button type="button" role="tab" id="part61TabRules" aria-controls="part61PanelRules" aria-selected="false" tabindex="-1" data-results-tab="rules">Rules &amp; Sources</button>
-                </div>
-
-                <div class="part61-results-tabpanel" id="part61PanelPlan" role="tabpanel" aria-labelledby="part61TabPlan" data-results-panel="plan">
-                  <details class="part61-result-section part61-calculation-details">
-                    <summary>How this path was calculated</summary>
-                    <div id="part61Verdict" class="part61-callout">Select the pilot's current credentials, enter known hours, choose the target path, then calculate.</div>
-                    <div id="part61Summary"></div>
-                    <div id="part61CombinedSummary" class="part61-combined-strip"></div>
-                    <div id="combinedSummary" hidden aria-hidden="true"></div>
-                  </details>
-
-
-                </div>
-
-                <div class="part61-results-tabpanel" id="part61PanelEndorsements" role="tabpanel" aria-labelledby="part61TabEndorsements" data-results-panel="endorsements" hidden>
-                  <section class="part61-result-section">
-                    <h4>Endorsements</h4><p class="part61-section-intro">Instructor signoffs for your path. Open an item for its source, signer, and conditions.</p>
-                    <div id="part61Endorsements"></div>
-                  </section>
-
-                  <section class="part61-result-section">
-                    <h4>Before your practical test</h4><p class="part61-section-intro">Documents, exams, and eligibility to review alongside your training.</p>
-                    <div id="part61Gates"></div>
-                  </section>
-                </div>
-
-                <div class="part61-results-tabpanel" id="part61PanelLedger" role="tabpanel" aria-labelledby="part61TabLedger" data-results-panel="ledger" hidden>
-                  <section class="part61-result-section">
-                    <h4>Requirements &amp; credit</h4><p class="part61-section-intro">See what is required, what counts, and what remains. Overlapping requirements are not added together.</p>
+                <div class="part61-visible-unknowns" id="part61Unknowns" aria-live="polite"></div>
+                <details class="part61-result-disclosure" data-result-section="training">
+                  <summary>Training breakdown</summary>
+                  <div class="part61-disclosure-body" id="part61Training"></div>
+                </details>
+                <details class="part61-result-disclosure" data-result-section="requirements">
+                  <summary>Requirements &amp; missing events</summary>
+                  <div class="part61-disclosure-body part61-results-tabpanel" id="part61PanelLedger" data-results-panel="ledger">
+                    <p class="part61-section-intro">See what is required, what counts, and what remains. Overlapping requirements are not added together.</p>
                     <div class="part61-filter-controls" aria-label="Table filters">
                       <button type="button" class="part61-filter-button active" data-filter="all">All Rows</button>
                       <button type="button" class="part61-filter-button" data-filter="remaining">Remaining Only</button>
@@ -476,29 +443,43 @@
                       <span class="part61-legend-item part61-legend-slate">Paperwork</span>
                     </div>
                     <div id="part61Ledger"></div>
-                  </section>
-                </div>
 
-                <div class="part61-results-tabpanel" id="part61PanelRules" role="tabpanel" aria-labelledby="part61TabRules" data-results-panel="rules" hidden>
-                  <section class="part61-result-section">
-                    <h4>What Counts / What Does Not</h4>
-                    <div id="part61Counts"></div>
-                  </section>
-
-                  <section class="part61-result-section part61-two-col-results">
-                    <div>
-                      <h4>Unknowns</h4>
-                      <div id="part61Unknowns"></div>
+                    <h4>Before your practical test</h4>
+                    <p class="part61-section-intro">Documents, exams, and eligibility to review alongside your training.</p>
+                    <div id="part61Gates"></div>
+                  </div>
+                </details>
+                <details class="part61-result-disclosure" data-result-section="endorsements">
+                  <summary>Endorsements</summary>
+                  <div class="part61-disclosure-body part61-results-tabpanel" id="part61PanelEndorsements" data-results-panel="endorsements">
+                    <p class="part61-section-intro">Instructor signoffs for your path. Open an item for its source, signer, and conditions.</p>
+                    <div id="part61Endorsements"></div>
+                  </div>
+                </details>
+                <details class="part61-result-disclosure part61-instructor-details" data-result-section="regulations">
+                  <summary>Regulations &amp; calculation details</summary>
+                  <div class="part61-disclosure-body">
+                    <details class="part61-readout-details" id="part61ReadoutDetails">
+                      <summary>Instructor readout</summary>
+                      <div id="part61CfiReadout" class="part61-cfi-readout"></div>
+                    </details>
+                    <div class="part61-results-tabpanel" id="part61PanelPlan" data-results-panel="plan">
+                      <h4>How this path was calculated</h4>
+                      <div id="part61Verdict" class="part61-callout"></div>
+                      <div id="part61Summary"></div>
+                      <div id="part61CombinedSummary" class="part61-combined-strip"></div>
+                      <div id="combinedSummary" hidden aria-hidden="true"></div>
                     </div>
-                    <div>
-                      <h4>Official Source Links</h4>
+                    <div class="part61-results-tabpanel" id="part61PanelRules" data-results-panel="rules">
+                      <h4>What counts / what does not</h4>
+                      <div id="part61Counts"></div>
+                      <h4>Official sources</h4>
                       <p id="part61SourceReview"></p>
                       <div id="part61Links"></div>
                       <p class="part61-definitions-resource"><a href="/simply-endorsed-cfi/?view=guidance">Open Teaching &amp; Guidance on Simply Endorsed CFI</a></p>
                     </div>
-                  </section>
-                </div>
-              </details>
+                  </div>
+                </details>
               </section>
             </div>
 
@@ -571,7 +552,7 @@
     <script src="/simply-endorsed/js/privileges-limitations-data.js?v=2"></script>
     <script src="/simply-endorsed/js/part61-calculator-core.js?v=4"></script>
     <script src="/simply-endorsed/js/part61-scenario-generator.js?v=3"></script>
-    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=95f76dd968"></script>
+    <script src="/simply-endorsed/js/part61-calculator-ui.js?v=27c6e77c73"></script>
     <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
     <script src="/assets/cfr-autolink.js?v=3" defer></script>
     <script src="/assets/cta-tracking.js" defer></script>

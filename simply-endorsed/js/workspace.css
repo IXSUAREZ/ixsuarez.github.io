@@ -994,3 +994,101 @@ body:has(#se-category-dialog[open]) { overflow:hidden; }
 #se-workspace #se-category-dialog .se-category-group .se-category-choice { border-left:0; }
 #se-workspace .se-subcategories a { font-weight:400; }
 #se-workspace .se-subcategories .se-category-overview { font-weight:650; }
+
+/* Lookup mode: compact discovery columns keep the selected endorsement readable. */
+#se-workspace .se-breadcrumb {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  align-items:center;
+  margin:0 0 10px;
+  color:var(--se-muted);
+  font-size:.8125rem;
+}
+#se-workspace .se-breadcrumb strong { color:#3f443f; }
+#se-workspace .se-detail-disclosure {
+  border-top:1px solid var(--se-line);
+  padding:0;
+}
+#se-workspace .se-detail-disclosure:last-child { border-bottom:1px solid var(--se-line); }
+#se-workspace .se-detail-disclosure summary {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:52px;
+  margin:0;
+  padding:12px 0;
+  font-size:1rem;
+  font-weight:700;
+  list-style:none;
+}
+#se-workspace .se-detail-disclosure summary::-webkit-details-marker { display:none; }
+#se-workspace .se-detail-disclosure summary span {
+  flex:0 0 auto;
+  font-size:1.25rem;
+  line-height:1;
+  transition:transform .15s ease;
+}
+#se-workspace .se-detail-disclosure[open] summary span { transform:rotate(180deg); }
+#se-workspace .se-detail-disclosure > div { padding:0 0 20px; }
+#se-workspace .se-detail-disclosure .se-row { margin-top:12px; }
+#se-workspace .se-detail-disclosure .se-row .se-small { margin:0; }
+#se-workspace .se-search-group { margin:0 0 30px; }
+#se-workspace .se-search-group > h2 {
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin:0;
+  padding:0 0 8px;
+  border-bottom:2px solid #d8d5cd;
+  font-size:1.0625rem;
+}
+#se-workspace .se-search-group > h2 span { color:var(--se-muted); font-size:.8125rem; font-weight:600; }
+@media (min-width:1200px) {
+  #se-workspace .se-browse-shell.with-categories { grid-template-columns:minmax(190px,220px) minmax(0,1fr); gap:24px; }
+  #se-workspace .with-categories .se-layout.has-detail { grid-template-columns:minmax(260px,.72fr) minmax(480px,1.5fr); gap:28px; }
+  #se-workspace .with-categories .se-layout.has-detail .se-main { max-width:none; }
+  #se-workspace .with-categories .se-layout.has-detail .se-detail { margin-top:0; }
+}
+@media (min-width:768px) and (max-width:1199px) {
+  #se-workspace .with-categories .se-layout.has-detail { display:block; }
+  #se-workspace .with-categories .has-detail .se-detail { margin-top:0; }
+}
+@media (max-width:767px) {
+  /* The site header already identifies the tool; reserve workspace height for lookup. */
+  #se-workspace .se-brand { display:none; }
+  #se-workspace .se-app-header {
+    gap:6px;
+    margin-bottom:8px;
+    padding:4px 0 8px;
+    border-bottom:0;
+  }
+  #se-workspace .se-app-header nav { gap:2px; }
+  #se-workspace .se-app-header nav a { min-height:44px; padding:8px 7px; font-size:.875rem; }
+  #se-workspace form { gap:4px; }
+  #se-workspace form input,
+  #se-workspace form button { min-height:44px; padding:8px 10px; }
+  #se-workspace .se-category-launcher {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:8px;
+    align-items:center;
+    min-height:44px;
+    margin-bottom:10px;
+    padding:8px 12px;
+    text-align:left;
+  }
+  #se-workspace .se-category-launcher span:first-child { display:none; }
+  #se-workspace .se-category-launcher strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.875rem; font-weight:600; }
+  #se-workspace .se-category-launcher span:last-child { font-size:1.25rem; }
+  #se-workspace .se-detail { margin-top:0; }
+  #se-workspace .se-detail-top button { min-height:44px; padding-inline:0; border:0; background:transparent; text-decoration:underline; }
+  #se-workspace .se-facts { display:grid; grid-template-columns:1fr; gap:10px; }
+  #se-workspace .se-facts p { margin:0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #se-workspace .se-detail-disclosure summary span { transition:none; }
+}
+/* Preserve category accents while giving small endorsement IDs readable contrast. */
+#se-workspace .se-id { color:color-mix(in srgb,var(--category) 72%,#242826); }

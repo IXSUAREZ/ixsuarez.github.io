@@ -68,7 +68,11 @@ const tests = [
       const workbench = helpers.document.querySelector('.part61-workbench');
       const railItems = helpers.document.querySelectorAll('.part61-rail-item');
       if (railItems.length !== 4) throw new Error('Expected four navigation steps');
-      railItems.forEach((item, index) => { item.click(); if (workbench.getAttribute('data-active-step') !== String(index + 1)) throw new Error(`Expected step ${index + 1}`); });
+      railItems.forEach((item, index) => {
+        item.click();
+        const expected = index === 3 ? '3' : String(index + 1);
+        if (workbench.getAttribute('data-active-step') !== expected) throw new Error(`Expected step ${expected}`);
+      });
     }
   },
   {
@@ -747,7 +751,7 @@ const tests = [
   // Feature 2 Boundaries
   {
     id: "T2_F2_06",
-    name: "Clicking rail items for future steps with invalid data does not block navigation",
+    name: "Clicking the incomplete plan rail item returns to the first missing step",
     tier: 2,
     feature: 2,
     fn: async (dom, helpers) => {
@@ -760,8 +764,8 @@ const tests = [
 
       railItems[3].click(); // Click Step 4 rail item
       const activeStep = helpers.document.querySelector('.part61-workbench').getAttribute('data-active-step');
-      if (activeStep !== '4') {
-        throw new Error(`Expected rail click to allow navigation to Step 4 even if invalid, but active step is '${activeStep}'`);
+      if (activeStep !== '3') {
+        throw new Error(`Expected incomplete plan navigation to return to Step 3, but active step is '${activeStep}'`);
       }
     }
   },
@@ -1358,10 +1362,9 @@ const tests = [
       const addStageBtn = helpers.document.getElementById('part61AddStageBtn');
       if (!addStageBtn) throw new Error("Add Stage button not found");
       addStageBtn.click();
-      const targetSelect = helpers.document.querySelector('[data-stage-index="0"]');
-      if (!targetSelect) throw new Error("Target stage select not found");
-      targetSelect.value = 'instrument-airplane';
-      targetSelect.dispatchEvent(new helpers.window.Event('change', { bubbles: true }));
+      const targetSelect = helpers.document.querySelector('[data-stage-card="1"] [data-select-target="instrument-airplane"]');
+      if (!targetSelect) throw new Error("Target stage option not found");
+      targetSelect.click();
 
       const calculateBtn = helpers.document.getElementById('part61CalculateBtn');
       if (!calculateBtn) throw new Error("Calculate button not found");
@@ -1609,11 +1612,11 @@ const tests = [
 
       const workbench = helpers.document.querySelector('.part61-workbench');
       const activeStep = workbench.getAttribute('data-active-step');
-      if (activeStep !== '4') {
-        throw new Error(`Expected step rail click sequence to settle on step 4, but got '${activeStep}'`);
+      if (activeStep !== '3') {
+        throw new Error(`Expected incomplete plan sequence to settle on step 3, but got '${activeStep}'`);
       }
 
-      const activeRailItem = railItems[3];
+      const activeRailItem = railItems[2];
       const isActive = activeRailItem.classList.contains('active') || activeRailItem.classList.contains('is-active');
       if (!isActive) {
         throw new Error("step 4 rail item is not marked active after settling");
@@ -1836,6 +1839,61 @@ function pressCardKey(helpers, endorsementId, key) {
 }
 
 tests.push(
+  {
+    id: "P_DISCLOSURES_EXPORTS",
+    name: "Independent result disclosures preserve state, print fully, and block every stale export",
+    fn: async (dom, helpers) => {
+      const d = helpers.document, w = helpers.window;
+      d.querySelector('[data-zero-experience]').click();
+      d.querySelector('#part61CalculateBtn').click();
+      const sections = [...d.querySelectorAll('#part61Results > [data-result-section]')];
+      if (sections.map(x => x.dataset.resultSection).join(',') !== 'training,requirements,endorsements,regulations') throw new Error('Expected four sibling result disclosures in reading order');
+      if (sections.some(x => x.open)) throw new Error('Result disclosures should start collapsed');
+      if ([...d.querySelectorAll('.part61-results-tabpanel')].some(x => x.hidden)) throw new Error('Content panels must remain available inside their disclosures');
+      sections[0].open = true; sections[2].open = true;
+      w.dispatchEvent(new w.Event('beforeprint'));
+      if (sections.some(x => !x.open)) throw new Error('Print omitted a collapsed result section');
+      w.dispatchEvent(new w.Event('afterprint'));
+      if (sections.map(x => x.open).join(',') !== 'true,false,true,false') throw new Error('Print did not restore independent disclosure state');
+      const input = d.querySelector('#part61AircraftWetRate');
+      input.value = '210'; input.dispatchEvent(new w.Event('input', {bubbles:true}));
+      const exports = [...d.querySelectorAll('#part61CopyBtn,#part61ShareBtn,#part61PrintBtn,#part61CopyCfiBtn,#part61CopyChecklistBtn,#part61HeaderCopyBtn,#part61HeaderShareBtn,#part61HeaderPrintBtn,#part61CopyChecklistResultsBtn,#part61CopyCfiResultsBtn')];
+      if (exports.length < 5 || exports.some(x => !x.disabled)) throw new Error('A stale result export remains enabled');
+      if (d.querySelector('#part61StaleBanner').hidden) throw new Error('Stale notice is hidden');
+      d.querySelector('[data-recalculate]').click();
+      if (exports.some(x => x.disabled)) throw new Error('Fresh result exports remain disabled');
+      if (sections.map(x => x.open).join(',') !== 'true,false,true,false') throw new Error('Recalculation lost disclosure choices');
+    }
+  },
+  {
+    id: "P_FLOW_INCOMPLETE_PLAN",
+    name: "Incomplete plan rail access returns to the first missing input",
+    tier: 4,
+    feature: 0,
+    fn: async () => {
+      const h = initJSDOM();
+      try {
+        const plan = h.document.querySelector('[data-step-key="plan"]');
+        plan.click();
+        if (h.document.querySelector('.part61-workbench').getAttribute('data-active-step') !== '3') throw new Error('Incomplete plan access did not return to experience');
+        if (h.document.querySelector('#part61ValidationMessage').hidden) throw new Error('Incomplete plan access did not explain the next action');
+      } finally { h.dom.window.close(); }
+    }
+  },
+  {
+    id: "P_FLOW_EXPLICIT_GOAL",
+    name: "Adding a goal requires explicit selection",
+    tier: 4,
+    feature: 0,
+    fn: async () => {
+      const h = initJSDOM();
+      try {
+        h.document.querySelector('#part61AddStageBtn').click();
+        const summary = h.document.querySelector('[data-stage-card="1"] .part61-target-picker summary');
+        if (!summary || summary.textContent.indexOf('Choose a goal') === -1) throw new Error('Additional goal was silently preselected');
+      } finally { h.dom.window.close(); }
+    }
+  },
   {
     id: "R_DRAFT_01",
     name: "A complete restored draft recalculates real totals and a copyable report",

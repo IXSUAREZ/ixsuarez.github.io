@@ -21,7 +21,9 @@
     query = "",
     flashReady = new Set(),
     returnFocus = null,
-    detailReturn = null;
+    detailReturn = null,
+    detailReturnScroll = null,
+    detailDisclosures = new Set();
   const parse = () => {
     const p = new URLSearchParams(location.search);
     return {
@@ -101,9 +103,21 @@
       text: (noteAt >= 0 ? tail.slice(0, noteAt) : tail).trim(),
     };
   }
+  function detailDisclosure(id, title, body, extra = "") {
+    return `<details class="se-detail-disclosure" id="detail-${E(id)}" ${detailDisclosures.has(id) ? "open" : ""}><summary>${E(title)}<span aria-hidden="true">⌄</span></summary><div>${body}</div>${extra}</details>`;
+  }
+  function rememberDetailDisclosures() {
+    root.querySelectorAll(".se-detail-disclosure").forEach((item) => {
+      const id = item.id.replace(/^detail-/, "");
+      if (item.open) detailDisclosures.add(id);
+      else detailDisclosures.delete(id);
+    });
+  }
   function detail() {
     const e = window.ENDORSEMENTS.find((x) => x.id === state.detail);
     if (!e) return "";
+    const currentPath = M.paths.find((p) => p.id === state.path);
+    const backTarget = state.view === "tasks" ? "task" : state.view === "guidance" ? "guidance" : currentPath?.label || M.categories[state.category]?.[0] || "results";
     const copy = modelText(e),
       issuer =
         {
@@ -113,13 +127,17 @@
           "approved-institution": "Approved institution",
           "non-instructor": "Qualified non-instructor",
         }[e.whoIssues] || e.whoIssues;
-    return `<aside class="se-detail" aria-label="Endorsement details"><div class="se-detail-top"><button data-action="close-detail">← Back to ${state.view === "tasks" ? "task" : state.view === "guidance" ? "guidance" : "library"}</button><span>${E(e.id)}</span></div><p class="se-eyebrow">${E(M.categories[e.category]?.[0] || "Endorsement")}</p><h2 id="se-detail-title" tabindex="-1">${E(e.title)}</h2><p class="se-source">${linkText(e.cfr.join(" · "))}</p><div class="se-facts"><p><strong>Who signs</strong>${E(issuer)}</p><p><strong>Timing</strong>${E(e.id === "A.5" ? M.facts.night : e.id === "A.6" ? M.facts.soloWindow : e.id === "A.1" ? M.facts.testWindow : e.perFlight ? "Review for each flight" : e.expiration === "none" ? "No standalone expiration stated; other currency requirements may apply" : e.expiration.replaceAll("-", " "))}</p></div><h3>Instructor guidance</h3><div class="se-prose">${e.explanation
+    const timing = e.id === "A.5" ? M.facts.night : e.id === "A.6" ? M.facts.soloWindow : e.id === "A.1" ? M.facts.testWindow : e.perFlight ? "Review for each flight" : e.expiration === "none" ? "No standalone expiration stated; other currency requirements may apply" : e.expiration.replaceAll("-", " ");
+    const guidance = `<div class="se-prose">${e.explanation
       .split("\n")
       .filter(Boolean)
       .map((t) => `<p>${linkText(t.replace(/^•\s*/, ""))}</p>`)
       .join(
         "",
-      )}</div>${copy.note ? `<p class="se-notice">${E(copy.note)}</p>` : ""}<div class="se-row"><h3>${copy.text ? "FAA model wording" : "Provider-issued document"}</h3>${copy.text ? '<button data-action="copy" class="se-primary">Copy model text</button>' : ""}</div><p class="se-small">Replace bracketed fields in your actual logbook entry. Checking this workspace never issues an endorsement.</p>${copy.text ? `<blockquote>${E(copy.text)}</blockquote>` : "<p>Obtain the required document from the approved provider. The AC supplies instructions rather than a reusable instructor signoff here.</p>"}<p class="se-source"><a href="${E(M.source)}#page=${33 + Number(e.sourcePage.split("-")[1])}" target="_blank" rel="noopener">View FAA source · ${E(e.sourcePage)} ↗</a></p></aside>`;
+      )}</div>`;
+    const wording = `${copy.note ? `<p class="se-notice">${E(copy.note)}</p>` : ""}<p class="se-small">Replace bracketed fields in your actual logbook entry. Checking this workspace never issues an endorsement.</p>${copy.text ? `<div class="se-row"><p class="se-small">FAA model text</p><button data-action="copy" class="se-primary">Copy model text</button></div><blockquote>${E(copy.text)}</blockquote>` : "<p>Obtain the required document from the approved provider. The AC supplies instructions rather than a reusable instructor signoff here.</p>"}`;
+    const regulations = `<p class="se-source">${linkText(e.cfr.join(" · "))}</p><p class="se-source"><a href="${E(M.source)}#page=${33 + Number(e.sourcePage.split("-")[1])}" target="_blank" rel="noopener">View FAA source · ${E(e.sourcePage)} ↗</a></p>`;
+    return `<aside class="se-detail" aria-label="Endorsement details"><div class="se-detail-top"><button data-action="close-detail">← Back to ${E(backTarget)}</button><span>${E(e.id)}</span></div><p class="se-eyebrow">${E(M.categories[e.category]?.[0] || "Endorsement")}</p><h2 id="se-detail-title" tabindex="-1">${E(e.title)}</h2><p class="se-source">${linkText(e.cfr.join(" · "))}</p><div class="se-facts"><p><strong>Who signs</strong>${E(issuer)}</p><p><strong>Timing</strong>${E(timing)}</p></div>${detailDisclosure(e.id + "-wording", copy.text ? "FAA model wording" : "Provider-issued document", wording)}${detailDisclosure(e.id + "-guidance", "Instructor guidance", guidance)}${detailDisclosure(e.id + "-sources", "Regulations & sources", regulations)}</aside>`;
   }
   function taskCard(id) {
     const t = M.task(id);
@@ -213,8 +231,9 @@
             ? e.perFlight
             : e.expiration === state.validity)),
     );
-    const paths = M.paths.filter(x => x.category === category);
-    return `<div class="se-library-heading"><h1 id="se-title" tabindex="-1">${E(p?.label || M.categories[category]?.[0] || "Endorsements")}</h1><span class="se-count">${entries.length} endorsements</span></div>${p?.description ? `<p class="se-path-description">${E(p.description)}</p>` : ""}${paths.length ? `<label class="se-path-picker">Training path<select data-filter="path"><option value="">All ${E(M.categories[category]?.[0]?.toLowerCase())} endorsements</option>${paths.map(x=>`<option value="${E(x.id)}" ${p?.id===x.id?"selected":""}>${E(x.label)}</option>`).join("")}</select></label>` : ""}${p ? a("Open complete task checklist →", { view: "tasks", task: p.id, detail: "" }, "se-workflow-link") : ""}${!entries.length ? `<div class="se-empty"><h2>${p?.contentRenderer ? "Start with the prerequisites" : "No endorsements match"}</h2><p>${p?.contentRenderer ? "This path contains preparation guidance. Open its checklist to review it." : "Choose a category or search for an endorsement."}</p>${a("Clear filters", { issuer: "all", validity: "all", path: "", category: "all", detail: "" }, "se-link")}</div>` : `<div class="se-endorsement-list">${entries.map((e) => `<a href="${E(url({ detail: e.id }))}" data-route class="se-endorsement-row ${state.detail === e.id ? "is-selected" : ""}" style="--category:${M.categories[e.category]?.[1]}"><span class="se-id">${E(e.id)}</span><div><h2>${E(e.title)}</h2><p>${E(e.cfr.join(" · "))}</p></div><span aria-hidden="true">↗</span></a>`).join("")}</div>${card ? `<details class="se-disclosure"><summary>${E(card.title)}</summary><p>${E(card.summary)}</p>${card.requirements.map((r) => `<h3>${E(r.label)}</h3><p>${linkText(r.text)}</p>${source(r.refs.join("; "))}`).join("")}</details>` : ""}${privileges(category)}`}`;
+    const categoryLabel = M.categories[category]?.[0] || "Endorsements";
+    const breadcrumb = p ? `<nav class="se-breadcrumb" aria-label="Current category"><span>${E(categoryLabel)}</span><span aria-hidden="true">›</span><strong>${E(p.label)}</strong></nav>` : category !== "all" ? `<nav class="se-breadcrumb" aria-label="Current category"><strong>${E(categoryLabel)}</strong></nav>` : "";
+    return `${breadcrumb}<div class="se-library-heading"><h1 id="se-title" tabindex="-1">${E(p?.label || categoryLabel)}</h1><span class="se-count">${entries.length} endorsements</span></div>${p?.description ? `<p class="se-path-description">${E(p.description)}</p>` : ""}${p ? a("Open complete task checklist →", { view: "tasks", task: p.id, detail: "" }, "se-workflow-link") : ""}${!entries.length ? `<div class="se-empty"><h2>${p?.contentRenderer ? "Start with the prerequisites" : "No endorsements match"}</h2><p>${p?.contentRenderer ? "This path contains preparation guidance. Open its checklist to review it." : "Choose a category or search for an endorsement."}</p>${a("Clear filters", { issuer: "all", validity: "all", path: "", category: "all", detail: "" }, "se-link")}</div>` : `<div class="se-endorsement-list">${entries.map((e) => `<a href="${E(url({ detail: e.id }))}" data-route class="se-endorsement-row ${state.detail === e.id ? "is-selected" : ""}" style="--category:${M.categories[e.category]?.[1]}"><span class="se-id">${E(e.id)}</span><div><h2>${E(e.title)}</h2><p>${E(e.cfr.join(" · "))}</p></div><span aria-hidden="true">↗</span></a>`).join("")}</div>${card ? `<details class="se-disclosure"><summary>${E(card.title)}</summary><p>${E(card.summary)}</p>${card.requirements.map((r) => `<h3>${E(r.label)}</h3><p>${linkText(r.text)}</p>${source(r.refs.join("; "))}`).join("")}</details>` : ""}${privileges(category)}`}`;
   }
   function preSolo() {
     return `<h2 class="se-section-title">Intake guidance & resources</h2>${window.PRE_SOLO_CONTENT.accordionSections.map((s) => topic("intake-" + s.id, s.heading, s.type === "resources" ? `<ul>${s.links.map((l) => `<li><a class="se-link" href="${E(l.url)}" target="_blank" rel="noopener">${E(l.label)} ↗</a></li>`).join("")}</ul>${source(s.regs.join("; "))}` : blocks(s.blocks))).join("")}`;
@@ -313,10 +332,20 @@
 
   function searchResults() {
     const results = M.search(query);
-    return `<div class="se-heading"><p class="se-eyebrow">Across your workspace</p><h1 id="se-title" tabindex="-1">Search results</h1><p>${results.length} matches for “${E(query)}”</p></div>${results.length ? results.map((r) => `<a class="se-search-result" data-route href="${E(url(r.type === "Task" ? { view: "tasks", task: r.id, detail: "" } : r.type === "Guidance" ? { view: "guidance", mode: r.mode, topic: r.id, detail: "" } : { view: "library", category: "all", path: "", detail: r.id }))}"><span class="se-eyebrow">${E(r.type)}${r.type === "Task" ? " · Full workflow" : ""}</span><h2>${E(r.type === "Endorsement" ? r.id + " · " : "")}${E(r.title)}</h2><p>${E(r.description.slice(0, 180))}</p></a>`).join("") : `<div class="se-empty"><h2>No matches yet</h2><p>Try “first solo”, “IPC”, an endorsement ID or a regulation.</p><button data-action="clear-search">Clear search</button></div>`}`;
+    const resultLink = (r) => `<a class="se-search-result" data-route href="${E(url(r.type === "Task" ? { view: "tasks", task: r.id, detail: "" } : r.type === "Guidance" ? { view: "guidance", mode: r.mode, topic: r.id, detail: "" } : { view: "library", category: "all", path: "", detail: r.id }))}"><h2>${E(r.type === "Endorsement" ? r.id + " · " : "")}${E(r.title)}</h2><p>${E(r.description.slice(0, 180))}</p></a>`;
+    const groups = [["Endorsement", "Endorsements"], ["Task", "Checklists"], ["Guidance", "Guidance"]]
+      .map(([type, label]) => {
+        const matches = results.filter((r) => r.type === type);
+        return matches.length ? `<section class="se-search-group"><h2>${E(label)} <span>${matches.length}</span></h2>${matches.map(resultLink).join("")}</section>` : "";
+      })
+      .join("");
+    return `<div class="se-heading"><p class="se-eyebrow">Across your workspace</p><h1 id="se-title" tabindex="-1">Search results</h1><p>${results.length} matches for “${E(query)}”</p></div>${results.length ? groups : `<div class="se-empty"><h2>No matches yet</h2><p>Try “first solo”, “IPC”, an endorsement ID or a regulation.</p><button data-action="clear-search">Clear search</button></div>`}`;
   }
   function render(preserveDisclosures = false) {
+    rememberDetailDisclosures();
     const opened = preserveDisclosures ? new Set([...root.querySelectorAll('details[open]')].map(d => d.id || d.querySelector('summary')?.textContent)) : null;
+    const currentPath = M.paths.find((p) => p.id === state.path);
+    const categoryContext = currentPath ? `${M.categories[currentPath.category]?.[0]} › ${currentPath.label}` : state.category !== "all" ? M.categories[state.category]?.[0] : "All endorsements";
     root.innerHTML = `<header class="se-app-header"><a href="?view=library" data-route class="se-brand">Simply Endorsed</a><nav aria-label="Workspace">${[
       ["library", "Endorsements"],
       ["tasks", "Checklists"],
@@ -328,7 +357,7 @@
       )
       .join(
         "",
-      )}</nav><form id="se-search-form" role="search"><label class="se-sr" for="se-search">Search tasks, endorsements and guidance</label><input id="se-search" type="search" autocomplete="off" placeholder="Search endorsements or a task" value="${E(query)}"><button aria-label="Search workspace" type="submit">Search</button>${query ? '<button data-action="clear-search" type="button" aria-label="Clear search">✕</button>' : ""}</form></header>${active && (state.view !== "tasks" || state.task !== active.taskId || state.detail || query) ? `<div class="se-active-bar"><span><strong>Active checklist</strong> · ${E(M.task(active.taskId).label)}</span>${a("Continue review →", { view: "tasks", task: active.taskId, detail: "" })}</div>` : ""}<div class="se-browse-shell ${state.view === "library" && !query ? "with-categories" : ""}">${state.view === "library" && !query ? `<aside class="se-category-rail"><p class="se-eyebrow">Browse endorsements</p>${categoryNavigation()}</aside><button class="se-category-launcher" data-action="categories">Browse categories</button><dialog id="se-category-dialog" aria-labelledby="se-category-title"><div class="se-dialog-heading"><div><p class="se-eyebrow">Simply Endorsed</p><h2 id="se-category-title">Choose a category</h2></div><button data-action="close-categories" aria-label="Close categories">✕</button></div>${categoryNavigation()}</dialog>` : ""}<div class="se-layout ${state.detail && !query ? "has-detail" : ""}"><main class="se-main" id="se-main">${query ? searchResults() : state.view === "tasks" ? tasks() : state.view === "library" ? library() : guidance()}</main>${query ? "" : detail()}</div></div><p id="se-feedback" role="status" class="se-feedback"></p>`;
+      )}</nav><form id="se-search-form" role="search"><label class="se-sr" for="se-search">Search tasks, endorsements and guidance</label><input id="se-search" type="search" autocomplete="off" placeholder="Search endorsements or a task" value="${E(query)}"><button aria-label="Search workspace" type="submit">Search</button>${query ? '<button data-action="clear-search" type="button" aria-label="Clear search">✕</button>' : ""}</form></header>${active && (state.view !== "tasks" || state.task !== active.taskId || state.detail || query) ? `<div class="se-active-bar"><span><strong>Active checklist</strong> · ${E(M.task(active.taskId).label)}</span>${a("Continue review →", { view: "tasks", task: active.taskId, detail: "" })}</div>` : ""}<div class="se-browse-shell ${state.view === "library" && !query ? "with-categories" : ""}">${state.view === "library" && !query ? `<aside class="se-category-rail"><p class="se-eyebrow">Browse endorsements</p>${categoryNavigation()}</aside><button class="se-category-launcher" data-action="categories" aria-label="Browse categories. Current selection: ${E(categoryContext)}"><span>Browse categories</span><strong>${E(categoryContext)}</strong><span aria-hidden="true">›</span></button><dialog id="se-category-dialog" aria-labelledby="se-category-title"><div class="se-dialog-heading"><div><p class="se-eyebrow">Simply Endorsed</p><h2 id="se-category-title">Choose a category</h2></div><button data-action="close-categories" aria-label="Close categories">✕</button></div>${categoryNavigation()}</dialog>` : ""}<div class="se-layout ${state.detail && !query ? "has-detail" : ""}"><main class="se-main" id="se-main">${query ? searchResults() : state.view === "tasks" ? tasks() : state.view === "library" ? library() : guidance()}</main>${query ? "" : detail()}</div></div><p id="se-feedback" role="status" class="se-feedback"></p>`;
     const categoryDialog = document.getElementById("se-category-dialog");
     categoryDialog?.addEventListener("close", () => {
       if (!categoryDialog.isConnected) return;
@@ -351,9 +380,18 @@
       !event.altKey
     ) {
       event.preventDefault();
-      if (new URL(route.href).searchParams.has("expanded") && !state.detail) {
-        returnFocus = route.getAttribute("href");
-        detailReturn = location.href;
+      if (new URL(route.href).searchParams.has("expanded")) {
+        rememberDetailDisclosures();
+        if (!state.detail) {
+          returnFocus = route.getAttribute("href");
+          detailReturn = location.href;
+          detailReturnScroll = window.scrollY || 0;
+          history.replaceState(
+            { ...(history.state || {}), seWorkspaceScroll: detailReturnScroll },
+            "",
+            location.href,
+          );
+        }
       } else if (!new URL(route.href).searchParams.has("expanded")) {
         detailReturn = null;
       }
@@ -387,6 +425,7 @@
       }
     }
     if (b.dataset.action === "close-detail") {
+      rememberDetailDisclosures();
       history.replaceState({}, "", detailReturn || url({ detail: "" }));
       detailReturn = null;
       state = parse();
@@ -397,6 +436,8 @@
         links.find((x) => x.getAttribute("href") === returnFocus) ||
         document.getElementById("se-title")
       )?.focus();
+      if (detailReturnScroll !== null) window.scrollTo(0, detailReturnScroll);
+      detailReturnScroll = null;
     }
     if (b.dataset.action === "clear-search") {
       query = "";
@@ -484,12 +525,15 @@
       : summary.parentElement.id.slice(6);
     history.pushState({}, "", url({ topic: state.topic }));
   });
-  addEventListener("popstate", () => {
+  addEventListener("popstate", (event) => {
+    rememberDetailDisclosures();
     detailReturn = null;
     state = parse();
     query = new URLSearchParams(location.search).get("q") || "";
     render();
     focusDestination();
+    if (Number.isFinite(event.state?.seWorkspaceScroll))
+      window.scrollTo(0, event.state.seWorkspaceScroll);
   });
   // Preserve the site's mobile-menu shortcut after replacing the old filter rail.
   document.getElementById("sidebarToggleBtn")?.addEventListener("click", () => {

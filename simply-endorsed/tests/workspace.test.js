@@ -32,7 +32,8 @@ function app(search = "") {
     virtualConsole,
   });
   const w = dom.window;
-  w.scrollTo = () => {};
+  w.__lastScrollTo = null;
+  w.scrollTo = (x, y) => { w.__lastScrollTo = [x, y]; };
   w.HTMLElement.prototype.scrollIntoView = () => {};
   // Any accidental answer persistence is an immediate failure, including inherited scripts.
   w.Storage.prototype.setItem = () => {
@@ -128,8 +129,8 @@ for (const category of Object.keys(M.categories)) {
   doc.querySelector('.se-category-rail a[href*="category=' + category + '"]').click();
   check(doc.querySelector('h1').textContent === M.categories[category][0], 'Direct category heading: ' + category);
   check(!doc.querySelector('.se-filter'), 'No filter panel competes with category content');
-  const expected = M.paths.filter(p=>p.category===category).length;
-  check(doc.querySelectorAll('[data-filter="path"] option').length === expected + 1, 'Every category training path remains available');
+  check(!doc.querySelector('[data-filter="path"]'), 'Category lookup does not duplicate the tree with a path dropdown');
+  check(doc.querySelector('.se-breadcrumb').textContent.includes(M.categories[category][0]), 'Category breadcrumb keeps lookup context: ' + category);
 }
 for (const id of ["A.3", "A.4", "A.6"])
   check(
@@ -280,6 +281,32 @@ check(
   !doc.querySelector('[data-action="copy"]'),
   "Provider document instructions are not offered as an instructor signoff",
 );
+go("?view=library&expanded=A.4");
+check(doc.querySelectorAll('.se-detail-disclosure').length === 3, 'Detail separates wording, guidance and sources into independent disclosures');
+check(!doc.querySelector('.se-detail-disclosure').open, 'Detail disclosures start closed');
+const guidanceDisclosure = doc.querySelector('#detail-A\\.4-guidance');
+guidanceDisclosure.open = true;
+guidanceDisclosure.dispatchEvent(new w.Event('toggle'));
+doc.querySelector('.se-endorsement-row[href*="expanded=A.5"]').click();
+doc.querySelector('.se-endorsement-row[href*="expanded=A.4"]').click();
+check(doc.querySelector('#detail-A\\.4-guidance').open, 'Detail disclosure state survives switching endorsements during a visit');
+doc.querySelector('#detail-A\\.4-guidance').open = false;
+doc.querySelector('#detail-A\\.4-guidance').dispatchEvent(new w.Event('toggle'));
+doc.querySelector('.se-endorsement-row[href*="expanded=A.5"]').click();
+doc.querySelector('.se-endorsement-row[href*="expanded=A.4"]').click();
+check(!doc.querySelector('#detail-A\\.4-guidance').open, 'Closing a visited disclosure remains closed after switching away and back');
+doc.getElementById('detail-A.4-guidance').open = true;
+doc.querySelector('.se-category-rail a[href*="category=private-pilot"]').click();
+doc.querySelector('.se-category-rail a[href*="category=student-pilot"]').click();
+doc.querySelector('.se-endorsement-row[href*="expanded=A.4"]').click();
+check(doc.getElementById('detail-A.4-guidance').open, 'Disclosure preferences survive browsing another category');
+check(doc.querySelector('.se-facts').textContent.includes('Who signs') && doc.querySelector('.se-facts').textContent.includes('Timing'), 'Signer and timing remain visible before disclosures open');
+go('?view=library&category=student-pilot&subcategory=first-solo&expanded=A.6');
+check(doc.querySelector('[data-action="close-detail"]').textContent.includes('First Solo'), 'Deep-linked detail returns to its selected path');
+check(doc.querySelector('.se-detail > .se-source').textContent.includes('61.87(n)'), 'CFR stays immediately visible above quick facts');
+w.history.replaceState({seWorkspaceScroll:73}, '', '?view=library');
+w.dispatchEvent(new w.PopStateEvent('popstate', {state:{seWorkspaceScroll:73}}));
+check(w.__lastScrollTo?.[1] === 73, 'Browser history restoration returns to the captured lookup scroll position');
 go("?view=library&category=private-pilot&issuer=examiner-only");
 check(doc.querySelector(".se-empty"), "Filtered empty state");
 check(
@@ -302,16 +329,20 @@ for (const category of Object.keys(M.categories)) {
 }
 doc.querySelector('#se-category-dialog a[href*="subcategory=first-solo"]').click();
 check(doc.querySelector('h1').textContent === 'First Solo', 'Choosing a nested subcategory opens that exact path');
+check(doc.querySelector('.se-breadcrumb').textContent.includes('Student pilot') && doc.querySelector('.se-breadcrumb').textContent.includes('First Solo'), 'Selected subcategory has a contextual breadcrumb');
 go('?view=library&category=private-pilot&issuer=examiner-only');
 doc.querySelector('.se-category-rail a[href*="category=private-pilot"]').click();
 check(doc.querySelectorAll('.se-endorsement-row').length === 2, 'One category click immediately opens its endorsements');
-change('[data-filter="path"]', 'private-airplane-initial-checkride-bundle');
-check(doc.querySelectorAll('.se-endorsement-row').length === 4, 'Selecting a category path clears stale filters and shows the full bundle');
+doc.querySelector('.se-category-rail a[href*="subcategory=private-airplane-initial-checkride-bundle"]').click();
+check(doc.querySelectorAll('.se-endorsement-row').length === 4, 'Selecting a nested category path clears stale filters and shows the full bundle');
 doc.querySelector('.se-endorsement-row').click();
 doc.querySelector('[data-action="close-detail"]').click();
 check(!w.location.search.includes('expanded'), 'Closing an endorsement clears its URL state');
 check(doc.activeElement.classList.contains('se-endorsement-row'), 'Closing detail restores the list opener');
 go('?view=library&q=first+solo');
+check(doc.querySelectorAll('.se-search-group').length >= 2, 'Search groups different result types for lookup');
+check(doc.querySelector('.se-search-group').textContent.includes('Endorsements'), 'Search labels endorsement results');
+check([...doc.querySelectorAll('.se-search-group > h2')].some(h=>h.textContent.includes('Checklists')), 'Search labels checklist workflows separately');
 doc.querySelector('.se-search-result[href*="expanded="]').click();
 doc.querySelector('[data-action="close-detail"]').click();
 check(w.location.search.includes('q=first+solo'), 'Returning from a search result preserves the search');

@@ -273,6 +273,10 @@ body.tool-page .part61-redesign .part61-calculator-header { padding: 0; margin: 
 body.tool-page .part61-redesign .part61-draft-notice { margin: 0 0 12px; padding: 0; min-height: 0; font-size: 12px; gap: 10px; }
 body.tool-page .part61-redesign .part61-step-nav { margin: 0 0 20px; padding: 0 0 10px; }
 .part61-redesign .part61-result-header { padding: 0; margin: 0 0 12px; }
+.part61-redesign .part61-experience-group > summary { min-height: 56px; padding-block: 12px; }
+.part61-redesign .part61-experience-group { margin: 8px 0; }
+.part61-redesign .part61-experience-group .field-grid { gap: 14px 22px; padding-bottom: 16px; }
+.part61-redesign .part61-result-section > summary { cursor: pointer; padding: 16px 0; font-size: 18px; font-weight: 600; }
 .part61-redesign .part61-result-header h3 { font-size: clamp(24px,3vw,34px); margin: 0; }
 .part61-redesign .part61-result-header-meta:empty, .part61-redesign .part61-section-title-row:empty { display: none; }
 .part61-redesign .part61-dashboard-section { display: flex; flex-direction: column; margin-top: 0; gap: 10px; }
@@ -317,7 +321,8 @@ body.tool-page .part61-redesign .part61-step-nav { margin: 0 0 20px; padding: 0 
  .part61-redesign .part61-instructor-details { display: block; }
 }
 /* The site already reserves space for its fixed navigation via scroll-padding. */
-.part61-redesign :is(h3,.part61-experience-group,.part61-cost-details) { scroll-margin-top: 8px; }
+.part61-redesign :is(h3,.part61-experience-group,.part61-cost-details) { scroll-margin-top: 110px; }
+.part61-redesign #part61ResultTitle { scroll-margin-top: 110px; }
 .part61-redesign .part61-result-header-meta,
 .part61-redesign .part61-dashboard-section > .part61-section-title-row { display: none; }
 .part61-redesign #part61SelectedCredentials:empty { display: none; }
@@ -412,4 +417,68 @@ body.tool-page .part61-redesign .part61-results-tabs button.active { background:
  .part61-redesign .summary-grid .metric { grid-column:span 1; padding:14px; }
  .part61-redesign .summary-grid .metric-cost { grid-column:1 / -1; }
  .part61-redesign .summary-grid .metric b { font-size:24px; }
+}
+
+/* CFI review: one clear summary, with independently expandable working details. */
+body.tool-page .part61-redesign .part61-result-disclosure {
+  margin:0;
+  padding:0;
+  border:0;
+  border-top:1px solid #cbc9c0;
+  border-radius:0;
+  background:transparent;
+}
+body.tool-page .part61-redesign .part61-result-disclosure:last-child { border-bottom:1px solid #cbc9c0; }
+.part61-redesign :is(.part61-result-disclosure,.part61-logged-events) > summary {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:56px;
+  padding:15px 0;
+  font-size:16px;
+  font-weight:650;
+  line-height:1.4;
+  color:#30342e;
+  cursor:pointer;
+  list-style:none;
+}
+.part61-redesign :is(.part61-result-disclosure,.part61-logged-events) > summary::after { content:'⌄'; font-size:20px; flex-shrink:0; }
+.part61-redesign :is(.part61-result-disclosure,.part61-logged-events)[open] > summary::after { transform:rotate(180deg); }
+.part61-redesign .part61-disclosure-body { padding:4px 0 24px; }
+.part61-redesign .part61-disclosure-body h4 { margin:20px 0 10px; font-size:17px; }
+.part61-redesign .part61-results-tabpanel { min-width:0; }
+.part61-redesign .part61-visible-unknowns { margin:12px 0; }
+.part61-redesign .part61-logged-events { border-block:1px solid #cbc9c0; margin:12px 0; }
+.part61-redesign .part61-logged-events .part61-subhead-row { padding:0; gap:12px; }
+.part61-redesign .part61-logged-events .part61-subhead-row p { font-size:13px; margin:0; }
+body.tool-page .part61-redesign #part61Experience .part61-panel-heading { margin:0 0 10px; gap:4px; }
+body.tool-page .part61-redesign #part61Experience .part61-panel-heading h3 { font-size:26px; line-height:1.2; margin:0; letter-spacing:-.025em; }
+.part61-redesign #part61Experience .part61-kicker { display:none; }
+.part61-redesign #part61Experience .part61-helper { margin:0 0 10px; }
+.part61-redesign #part61Experience .part61-goal-summary { padding:8px 12px; margin:0 0 10px; }
+.part61-redesign #part61Experience .part61-experience-entry { margin:10px 0; gap:8px; }
+.part61-redesign #part61Experience .part61-experience-entry button { min-height:44px; padding:10px 12px; }
+.part61-redesign #part61Experience .part61-overlap-note { margin:8px 0 12px; }
+.part61-redesign .part61-edit-dialog > header { margin-bottom:16px; padding-bottom:12px; }
+.part61-redesign button:disabled { opacity:.5; cursor:not-allowed; }
+@media(max-width:600px) {
+  .part61-redesign #part61Experience .part61-experience-entry { grid-template-columns:1fr 1fr; }
+  .part61-redesign #part61Experience .part61-experience-entry button { font-size:13px; }
+  .part61-redesign .part61-result-disclosure > summary { font-size:15px; }
+  .part61-redesign .part61-edit-dialog > header { margin-bottom:12px; }
+}
+@media print {
+  .part61-redesign .part61-result-disclosure { border:0; }
+  .part61-redesign .part61-result-disclosure > summary::after { content:none; }
+}
+@media(max-width:900px) {
+  body.tool-page .part61-redesign { gap:8px; }
+  .part61-redesign .part61-hero-lede { display:none; }
+  body.tool-page .part61-redesign .part61-calculator-header { align-items:center; gap:8px; margin:0; }
+  body.tool-page .part61-redesign .part61-calculator-header h2 { font-size:18px; white-space:nowrap; }
+  .part61-redesign .part61-header-actions { flex-direction:row; width:auto; flex:0 0 auto; gap:6px; }
+  .part61-redesign .part61-menu > summary { min-height:44px; padding:10px; border-radius:10px; font-size:12px; }
+  body.tool-page .part61-redesign .part61-draft-notice { margin:0; }
+  body.tool-page .part61-redesign .part61-step-nav { margin-bottom:12px; }
 }

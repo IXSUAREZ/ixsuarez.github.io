@@ -490,7 +490,7 @@
             <span class="stage-number">${index + 1}</span>
             <div class="part61-stage-actions"><button type="button" data-move-stage="${index}" data-move-direction="-1" ${index === 0 ? "disabled" : ""}>Earlier</button><button type="button" data-move-stage="${index}" data-move-direction="1" ${index === state.targets.length - 1 ? "disabled" : ""}>Later</button><button type="button" data-remove-stage="${index}">Remove</button></div>
           </div>
-          <details class="part61-target-picker no-cfr-autolink"><summary>${escapeHtml(selected ? selected.label : target)}<span class="part61-all-goals-label">All goals</span></summary><label class="part61-field-label">Search goals<input type="search" data-stage-search="${index}" placeholder="Search certificates, ratings, or training"></label><div class="part61-target-option-list" data-stage-options="${index}">${RULES.TARGET_OPTIONS.map((option) => `<button type="button" class="part61-target-option ${option.id === target ? "selected" : ""}" data-select-target="${escapeHtml(option.id)}" data-stage-index="${index}" aria-pressed="${option.id === target}"><strong>${escapeHtml(option.label)}</strong><span>${option.id === target ? "Selected" : "Select"}</span></button>`).join("")}</div></details>
+          <details class="part61-target-picker no-cfr-autolink"><summary>${escapeHtml(selected ? selected.label : "Choose a goal") }<span class="part61-all-goals-label">All goals</span></summary><label class="part61-field-label">Search goals<input type="search" data-stage-search="${index}" placeholder="Search certificates, ratings, or training"></label><div class="part61-target-option-list" data-stage-options="${index}">${RULES.TARGET_OPTIONS.map((option) => `<button type="button" class="part61-target-option ${option.id === target ? "selected" : ""}" data-select-target="${escapeHtml(option.id)}" data-stage-index="${index}" aria-pressed="${option.id === target}"><strong>${escapeHtml(option.label)}</strong><span>${option.id === target ? "Selected" : "Select"}</span></button>`).join("")}</div></details>
           ${estimateInputHtml}
         </article>
       `;
@@ -601,10 +601,10 @@
     });
     const invalidRates = qsa("[data-rate]").filter(input => { const invalid = parseRate(input.value) === null; setInvalid(input, invalid); return invalid; });
     const invalidEstimates = qsa("[data-stage-estimate-index]").filter(input => { const invalid = input.value.trim() === "" || !Number.isFinite(Number(input.value)) || Number(input.value) < 1 || Number(input.value) > 100; setInvalid(input, invalid); return invalid; });
-    const noTargets = !state.targets.length;
+    const noTargets = !state.targets.length || state.targets.some((target) => !RULES.TARGET_OPTIONS.some((option) => option.id === target));
     const valid = !noTargets && !invalidHours.length && !invalidRates.length && !invalidEstimates.length;
     ids.validationMessage.hidden = valid;
-    ids.validationMessage.innerHTML = valid ? "" : `<strong>${noTargets ? "Choose a training goal." : invalidEstimates.length ? "Check your proficiency estimate." : "A few details need your attention."}</strong><p>${noTargets ? "Add at least one goal to continue." : `${invalidHours.length ? invalidHours.length + " hour fields need a valid value. " : ""}${invalidRates.length ? "Check your hourly rates. " : ""}${invalidEstimates.length ? "Enter an estimate between 1 and 100 hours. " : ""}Enter 0 only when you have none logged.`}</p>`;
+    ids.validationMessage.innerHTML = valid ? "" : `<strong>${noTargets ? "Choose a training goal." : invalidEstimates.length ? "Check your proficiency estimate." : "A few details need your attention."}</strong><p>${noTargets ? "Choose the new goal before continuing." : `${invalidHours.length ? invalidHours.length + " hour fields need a valid value. " : ""}${invalidRates.length ? "Check your hourly rates. " : ""}${invalidEstimates.length ? "Enter an estimate between 1 and 100 hours. " : ""}Enter 0 only when you have none logged.`}</p>`;
     if (!valid && focusFirst && !qs("#part61EditDialog[open]")) {
       setStep(noTargets || invalidEstimates.length ? 1 : 3);
       const first = invalidEstimates[0] || invalidHours[0] || invalidRates[0];
@@ -791,7 +791,15 @@
     items.forEach((item) => {
       item.addEventListener("click", (event) => {
         event.preventDefault();
-        setStep(STEP_KEYS.indexOf(item.dataset.stepKey) + 1);
+        const requestedStep = STEP_KEYS.indexOf(item.dataset.stepKey) + 1;
+        if (requestedStep === STEP_KEYS.length && !state.result) {
+          if (!validateRequiredInputs(true)) return;
+          ids.validationMessage.hidden = false;
+          ids.validationMessage.innerHTML = "<strong>Build your plan first.</strong><p>Review your experience, then choose <b>Build my plan</b> to generate the results.</p>";
+          setStep(3);
+          return;
+        }
+        setStep(requestedStep);
       });
     });
   }
@@ -1258,6 +1266,7 @@
 
   function renderUnknowns(audits) {
     const unknowns = audits.flatMap((audit) => audit.unknowns.map((item) => `${audit.title}: ${item}`));
+    ids.unknowns.hidden = !unknowns.length;
     ids.unknowns.innerHTML = unknowns.length
       ? `<ul class="list-box">${unknowns.map((item) => `<li>${linkifyCfrText(item)}</li>`).join("")}</ul>`
       : `<div class="empty-state status-good">No blocking unknowns for the generated math.</div>`;
@@ -1274,7 +1283,12 @@
   function setResultsTab(tab, focusTab) {
     if (!RESULTS_TABS.includes(tab)) tab = "plan";
     state.resultsTab = tab;
-    qsa("[data-results-tab]").forEach((button) => {
+    const tabButtons = qsa("[data-results-tab]");
+    if (!tabButtons.length) {
+      qsa(".part61-results-tabpanel").forEach((panel) => { panel.hidden = false; });
+      return;
+    }
+    tabButtons.forEach((button) => {
       const active = button.dataset.resultsTab === tab;
       button.classList.toggle("active", active);
       button.setAttribute("aria-selected", active ? "true" : "false");
@@ -1305,6 +1319,11 @@
     } else {
       ids.staleBanner.innerHTML = "";
     }
+    [ids.copyBtn, ids.shareBtn, ids.printBtn, ids.copyCfiBtn, ids.copyChecklistBtn,
+      ...qsa("#part61HeaderCopyBtn,#part61HeaderShareBtn,#part61HeaderPrintBtn,#part61CopyChecklistResultsBtn,#part61CopyCfiResultsBtn")].filter(Boolean).forEach((button) => {
+      button.disabled = state.dirty;
+      button.setAttribute("aria-disabled", String(button.disabled));
+    });
   }
 
   /* ---------- Calculate ---------- */
@@ -1378,7 +1397,6 @@
     renderUnknowns(audits);
     renderLinks(audits);
     setResultsTab(state.resultsTab);
-    if (ids.readoutDetails) ids.readoutDetails.open = false;
   }
 
   /* ---------- Scenarios, drafts, and sharing ---------- */
@@ -1552,6 +1570,7 @@
   }
 
   function copyShareLink() {
+    if (state.dirty) return;
     const url = new URL(window.location.href);
     url.search = "";
     url.searchParams.set(SHARE_PARAM, encodeScenario());
@@ -1707,7 +1726,6 @@
       ids[key].innerHTML = "";
     });
     setResultsTab("plan");
-    if (ids.readoutDetails) ids.readoutDetails.open = false;
     updateRailProgress();
 
     const reviewCostEl = qs("#part61ReviewCost");
@@ -1749,14 +1767,17 @@
   }
 
   function copyReport() {
+    if (state.dirty) return;
     U.copyTextToClipboard(reportText(), ids.copyBtn);
   }
 
   function copyCfiReadout() {
+    if (state.dirty) return;
     U.copyTextToClipboard(cfiReadoutText(state.result), ids.copyCfiBtn);
   }
 
   function copyStudentChecklist() {
+    if (state.dirty) return;
     U.copyTextToClipboard(studentChecklistText(state.result), ids.copyChecklistBtn);
   }
 
@@ -1913,7 +1934,7 @@
     });
 
     ids.addStageBtn.addEventListener("click", () => {
-      state.targets.push("commercial-asel");
+      state.targets.push("");
       renderStages();
       const picker = qs(`[data-stage-card="${state.targets.length - 1}"] .part61-target-picker`); if (picker) { picker.open = true; picker.querySelector("input").focus(); }
       renderEvents();
@@ -2008,7 +2029,7 @@
       copyCfiReadout();
     });
     ids.copyChecklistBtn.addEventListener("click", copyStudentChecklist);
-    ids.printBtn.addEventListener("click", () => window.print());
+    ids.printBtn.addEventListener("click", () => { if (!state.dirty) window.print(); });
     ids.clearEventsBtn.addEventListener("click", () => {
       setEvents({});
       markDirty();
@@ -2114,7 +2135,7 @@
     if (headerShareBtn) headerShareBtn.addEventListener("click", copyShareLink);
 
     const headerPrintBtn = rootEl.querySelector("#part61HeaderPrintBtn");
-    if (headerPrintBtn) headerPrintBtn.addEventListener("click", () => window.print());
+    if (headerPrintBtn) headerPrintBtn.addEventListener("click", () => { if (!state.dirty) window.print(); });
 
     const copyChecklistResultsBtn = rootEl.querySelector("#part61CopyChecklistResultsBtn");
     if (copyChecklistResultsBtn) copyChecklistResultsBtn.addEventListener("click", copyStudentChecklist);

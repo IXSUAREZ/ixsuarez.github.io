@@ -34,7 +34,7 @@ def sync_head(text,p):
 def tool_cards(home=False):
  out=[]
  for t in M['tools']:
-  if home:out.append(f'<a href="{t["path"]}" class="tool-card paper paper--press" data-cta-id="home-tools-{t["id"]}"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/{t["id"]}/logo.png" width="44" height="44" alt="" /></span><span><strong>{E(t["label"])}</strong> <em>{E(t["summary"])}</em></span></a>')
+  if home:out.append(f'<a href="{t["path"]}" class="tool-card paper paper--press" data-tool="{t["id"]}" data-cta-id="home-tools-{t["id"]}"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/{t["id"]}/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">{E(t["topic"])}</span></span><span class="tool-card-copy"><strong>{E(t["label"])}</strong><span class="tool-description">{E(t["description"])}</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>')
   else:out.append(f'<article class="hub-card tool-directory-card"><img src="/assets/identities/{t["id"]}/logo.png" width="64" height="64" alt="" /><span class="eyebrow">{E(t["topic"])}</span><h2><a href="{t["path"]}" data-cta-id="directory-{t["id"]}">{E(t["label"])}</a></h2><p>{E(t["description"])}</p><a href="{t["path"]}" class="tool-open" aria-label="Open {E(t["label"])}">Open tool →</a></article>')
  return '\n'.join(out)
 def tools_page():

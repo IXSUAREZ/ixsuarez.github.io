@@ -27,6 +27,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/identities/engine-explorer/icon-192.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/identities/engine-explorer/icon-180.png" />
 <!-- /page-metadata -->
+<meta name="theme-color" content="#A65F46" />
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/design-system.css?v=20260814">
@@ -39,13 +40,16 @@
       .engine-explorer-shell { display: flex; flex-direction: column; min-height: 100dvh; padding-top: 116px; box-sizing: border-box; }
       .engine-explorer-main { display: flex; flex-direction: column; flex: 0 0 calc(100dvh - 116px); height: calc(100dvh - 116px); min-height: 0; }
       .engine-explorer-frame { display: block; flex: 1 1 0; width: 100%; height: 0; min-height: 0; border: 0; background: #eef0f2; }
-      .engine-tool-logo {
+      body.engine-explorer-page .nav--tool .engine-tool-logo {
+        display: block;
         box-sizing: border-box;
-        padding: 2px;
+        padding: 0;
         object-fit: contain;
-        background: #eeede7;
+        background: transparent;
+        border-radius: 50%;
+        filter: none;
       }
-      .engine-tool-name { color: #3e3529; }
+      .engine-tool-name { color: #f4eee5; }
       .engine-explorer-title {
         position: absolute;
         width: 1px;
@@ -56,6 +60,10 @@
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
         border: 0;
+      }
+      @media (max-width: 480px) {
+        body.engine-explorer-page .nav--tool .engine-tool-logo { width: 22px; height: 22px; flex-shrink: 0; }
+        body.engine-explorer-page .nav-tool-mark { gap: 5px; }
       }
       @media (max-width: 900px) {
         .engine-explorer-shell { padding-top: 96px; }
@@ -78,7 +86,7 @@
             <a href="/" class="wordmark" aria-label="Diego Suarez — SuarezCFI.com home">SUAREZ.CFI</a>
             <span class="nav-brand-divider" aria-hidden="true"></span>
             <a href="/engine-explorer/" class="nav-tool-mark" aria-current="page" aria-label="Crank and Core Engine Explorer home">
-              <img class="nav-tool-logo engine-tool-logo" src="./app/brand/crank-core-mark.png" width="160" height="160" alt="">
+              <img class="nav-tool-logo engine-tool-logo" src="/assets/identities/engine-explorer/logo.png" width="160" height="160" alt="">
               <span class="nav-tool-name engine-tool-name">Crank &amp; Core</span>
             </a>
           </div>

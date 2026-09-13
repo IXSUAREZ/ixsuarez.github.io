@@ -13,3 +13,31 @@
 .source-guide p {margin:8px 0;}
 @media(max-width:900px){.tools-directory,.tools-dock-row{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:560px){.tools-directory,.tools-dock-row{grid-template-columns:1fr;}.page-identity{width:48px;height:48px;}}
+
+/* The Hangar: the complete collection, visible without a horizontal carousel. */
+body.home-page .tools-dock { padding-block: 80px; }
+body.home-page .tools-dock .section-header { margin-bottom: 32px; }
+body.home-page .tools-dock-row { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; overflow: visible; padding-bottom: 0; }
+body.home-page .tool-card { --tool-accent: #d4bb7d; display: flex; flex-direction: column; align-items: stretch; gap: 24px; min-width: 0; padding: 28px; background: #33372f; border: 1px solid #505649; border-radius: 12px; box-shadow: none; transition: background 160ms ease, border-color 160ms ease; }
+body.home-page .tool-card[data-tool="engine-explorer"] { --tool-accent: #d89b82; }
+body.home-page .tool-card:hover { background: #3b4036; border-color: var(--tool-accent); }
+body.home-page .tool-card:focus-visible { outline: 3px solid #f1d397; outline-offset: 4px; }
+body.home-page .tool-card-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+body.home-page .tool-card .tool-icon, body.home-page .tool-card .tool-icon img { display: block; width: 72px; height: 72px; max-width: 72px; object-fit: contain; transform: none; }
+body.home-page .tool-topic { color: #c1c5b8; font-size: 11px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; text-align: right; }
+body.home-page .tool-card-copy { display: block; }
+body.home-page .tool-card strong { color: #f4f1e8; font-size: 21px; line-height: 1.2; letter-spacing: -.025em; font-weight: 650; }
+body.home-page .tool-description { display: block; margin-top: 12px; color: #cbd0c3; font-size: 15px; line-height: 1.6; }
+body.home-page .tool-card-open { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; margin-top: auto; padding-top: 16px; border-top: 1px solid #505649; color: var(--tool-accent); font-size: 14px; font-weight: 600; }
+body.home-page .tool-card-open span { font-size: 22px; line-height: 1; }
+body.home-page .tools-directory-link { margin: 24px 0 0; padding: 0; text-align: right; }
+body.home-page .tools-directory-link a { display: inline-flex; align-items: center; min-height: 44px; color: #e2cca0; }
+@media(max-width:900px) { body.home-page .tools-dock-row { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) {
+  body.home-page .tools-dock { padding-block: 56px; }
+  body.home-page .tools-dock-row { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  body.home-page .tool-card { padding: 24px; gap: 20px; }
+  body.home-page .tool-card .tool-icon, body.home-page .tool-card .tool-icon img { width: 64px; height: 64px; max-width: 64px; }
+  body.home-page .tools-directory-link { text-align: left; }
+}
+@media(prefers-reduced-motion:reduce) { body.home-page .tool-card { transition: none; } }

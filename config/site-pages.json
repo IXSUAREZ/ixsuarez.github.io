@@ -104,8 +104,9 @@
     "engine-explorer": {
       "label": "Crank & Core",
       "icon": null,
-      "background": "#e4e6e3",
-      "source": "engine-explorer/app/brand/crank-core-mark.png"
+      "background": "#A65F46",
+      "source": "engine-explorer/app/brand/crank-core-mark.png",
+      "previewSource": "engine-explorer/app/brand/crank-core-preview-master.png"
     },
     "foi-cards": {
       "label": "FOI Cards",

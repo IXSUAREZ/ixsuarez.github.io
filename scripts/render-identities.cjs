@@ -22,7 +22,9 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root,'config/site-pages.js
     }
     const logo = await sharp(source,{density:180}).resize(512,512,{fit:'contain',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();
     fs.writeFileSync(path.join(dir,'logo.png'),logo);
-    await sharp({create:{width:1200,height:1200,channels:4,background:identity.background}}).composite([{input:logo,left:344,top:344}]).png().toFile(path.join(dir,'preview.png'));
+    if (identity.previewSource) {
+      await sharp(path.join(root,identity.previewSource)).resize(1200,1200,{fit:'contain'}).png().toFile(path.join(dir,'preview.png'));
+    } else await sharp({create:{width:1200,height:1200,channels:4,background:identity.background}}).composite([{input:logo,left:344,top:344}]).png().toFile(path.join(dir,'preview.png'));
     for (const size of [48,192,180]) {
       const inset = Math.round(size*.12), artSize=size-2*inset;
       const art = await sharp(logo).resize(artSize,artSize).png().toBuffer();

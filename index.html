@@ -937,15 +937,6 @@
       }
       .about-main { grid-template-columns: 1fr; }
       .ledger-body { grid-template-columns: 1fr; }
-      .tools-dock-row {
-        display: flex;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x proximity;
-        gap: 12px;
-        padding-bottom: 10px;
-      }
-      .tool-card { flex: 0 0 220px; scroll-snap-align: start; }
       #contact { padding-bottom: 80px; }
     }
     @media (max-width: 480px) {
@@ -955,7 +946,7 @@
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
   <link rel="stylesheet" href="/assets/premium-home.css?v=a3170b2ca4">
   <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
-<link rel="stylesheet" href="/assets/site-discovery.css" />
+<link rel="stylesheet" href="/assets/site-discovery.css?v=20260913-hangar" />
 </head>
 <body class="home-page">
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -1212,12 +1203,12 @@
           <p>Free tools — built by your instructor.</p>
         </div>
         <div class="tools-dock-row">
-<a href="/simply-endorsed-cfi/" class="tool-card paper paper--press" data-cta-id="home-tools-simply-endorsed-cfi"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/simply-endorsed-cfi/logo.png" width="44" height="44" alt="" /></span><span><strong>Simply Endorsed CFI</strong> <em>FAA endorsement lookup</em></span></a>
-<a href="/part-61-calculator/" class="tool-card paper paper--press" data-cta-id="home-tools-part-61-calculator"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/part-61-calculator/logo.png" width="44" height="44" alt="" /></span><span><strong>Part 61 Calculator</strong> <em>Training time and cost planner</em></span></a>
-<a href="/flight-risk-assessment/" class="tool-card paper paper--press" data-cta-id="home-tools-flight-risk-assessment"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/flight-risk-assessment/logo.png" width="44" height="44" alt="" /></span><span><strong>FlightRisk</strong> <em>PAVE risk assessment</em></span></a>
-<a href="/aero-lab/" class="tool-card paper paper--press" data-cta-id="home-tools-aero-lab"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/aero-lab/logo.png" width="44" height="44" alt="" /></span><span><strong>Aero Lab</strong> <em>Interactive wind tunnel</em></span></a>
-<a href="/engine-explorer/" class="tool-card paper paper--press" data-cta-id="home-tools-engine-explorer"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/engine-explorer/logo.png" width="44" height="44" alt="" /></span><span><strong>Crank &amp; Core</strong> <em>Interactive engine explorer</em></span></a>
-<a href="/foi-cards/" class="tool-card paper paper--press" data-cta-id="home-tools-foi-cards"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/foi-cards/logo.png" width="44" height="44" alt="" /></span><span><strong>FOI Cards</strong> <em>Fundamentals of Instructing flashcards</em></span></a>
+<a href="/simply-endorsed-cfi/" class="tool-card paper paper--press" data-tool="simply-endorsed-cfi" data-cta-id="home-tools-simply-endorsed-cfi"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/simply-endorsed-cfi/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">CFI</span></span><span class="tool-card-copy"><strong>Simply Endorsed CFI</strong><span class="tool-description">Find model endorsements, checklists, and related FAA guidance.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
+<a href="/part-61-calculator/" class="tool-card paper paper--press" data-tool="part-61-calculator" data-cta-id="home-tools-part-61-calculator"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/part-61-calculator/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Training</span></span><span class="tool-card-copy"><strong>Part 61 Calculator</strong><span class="tool-description">Compare training requirements with your experience and build an estimated plan.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
+<a href="/flight-risk-assessment/" class="tool-card paper paper--press" data-tool="flight-risk-assessment" data-cta-id="home-tools-flight-risk-assessment"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/flight-risk-assessment/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Safety</span></span><span class="tool-card-copy"><strong>FlightRisk</strong><span class="tool-description">Work through pilot, aircraft, environment, and external-pressure factors.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
+<a href="/aero-lab/" class="tool-card paper paper--press" data-tool="aero-lab" data-cta-id="home-tools-aero-lab"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/aero-lab/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Aircraft systems</span></span><span class="tool-card-copy"><strong>Aero Lab</strong><span class="tool-description">Explore angle of attack, lift, drag, and qualitative airflow with guided lessons.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
+<a href="/engine-explorer/" class="tool-card paper paper--press" data-tool="engine-explorer" data-cta-id="home-tools-engine-explorer"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/engine-explorer/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Aircraft systems</span></span><span class="tool-card-copy"><strong>Crank &amp; Core</strong><span class="tool-description">Study Rotax 912 ULS and Lycoming IO-360-L2A teaching reconstructions.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
+<a href="/foi-cards/" class="tool-card paper paper--press" data-tool="foi-cards" data-cta-id="home-tools-foi-cards"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/foi-cards/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">CFI</span></span><span class="tool-card-copy"><strong>FOI Cards</strong><span class="tool-description">Practice instructor knowledge with a focused study deck and saved progress.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
 </div>
 <p class="tools-directory-link"><a href="/tools/">Explore all pilot tools →</a></p>
       </div>

@@ -1,0 +1,944 @@
+{
+  "scope": {
+    "reviewedAt": "2026-09-12",
+    "folders": [
+      "learn/medical-and-certificates",
+      "learn/private-pilot",
+      "learn/career-and-cfi",
+      "learn/checkrides-and-testing",
+      "simply-endorsed/blog"
+    ],
+    "pageCount": 157,
+    "method": "Read main content of every scoped index.html; screened repeated eligibility, medical, currency, solo, testing, and hour claims; verified consequential claims against current eCFR and FAA primary sources. A URL in a page was treated as a lead, not proof."
+  },
+  "sources": [
+    {
+      "id": "ecfr-part61",
+      "title": "eCFR Title 14 Part 61, Certification: Pilots, Flight Instructors, and Ground Instructors",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61",
+      "checked": "2026-09-12",
+      "sections": [
+        "61.19",
+        "61.23",
+        "61.39",
+        "61.49",
+        "61.56",
+        "61.57",
+        "61.83",
+        "61.87",
+        "61.103",
+        "61.109",
+        "61.113",
+        "61.153",
+        "61.156",
+        "61.159",
+        "61.160",
+        "61.183",
+        "61.187",
+        "61.189",
+        "61.195"
+      ]
+    },
+    {
+      "id": "ecfr-part65-53",
+      "title": "eCFR §65.53 Eligibility requirements: Aircraft dispatcher",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-65/section-65.53",
+      "checked": "2026-09-12",
+      "sections": [
+        "65.53",
+        "65.57",
+        "65.63"
+      ]
+    },
+    {
+      "id": "ecfr-part68",
+      "title": "eCFR Part 68, Requirements for Operating Certain Small Aircraft Without a Medical Certificate",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-68",
+      "checked": "2026-09-12",
+      "sections": [
+        "68.3",
+        "68.7"
+      ]
+    },
+    {
+      "id": "ecfr-91113",
+      "title": "eCFR §91.113 Right-of-way rules",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/section-91.113",
+      "checked": "2026-09-12",
+      "sections": [
+        "91.113"
+      ]
+    },
+    {
+      "id": "faa-aih",
+      "title": "FAA Aviation Instructors Handbook",
+      "url": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/aviation_instructors_handbook",
+      "checked": "2026-09-12",
+      "sections": [
+        "Chapter 1",
+        "Chapter 3",
+        "Chapter 9"
+      ]
+    },
+    {
+      "id": "faa-acs",
+      "title": "FAA Airman Certification Standards and Practical Test Standards",
+      "url": "https://www.faa.gov/training_testing/testing/acs",
+      "checked": "2026-09-12",
+      "sections": [
+        "private pilot",
+        "commercial pilot",
+        "instrument rating",
+        "flight instructor"
+      ]
+    },
+    {
+      "id": "ac6165k",
+      "title": "FAA Advisory Circular AC 61-65K, Certification: Pilots and Flight and Ground Instructors",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-65K.pdf",
+      "checked": "2026-09-12",
+      "sections": [
+        "endorsement models and notes"
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "path": "learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/index.html",
+      "issue": "Clarify conditional BasicMed eligibility for student solo.",
+      "change": "Eligible student pilots can use BasicMed under61.89(d); prior medical and all other requirements still apply. A draft blanket prohibition was rejected during parent review and never published.",
+      "source": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/section-61.89"
+    },
+    {
+      "path": "learn/medical-and-certificates/basicmed-guide-everything-you-need-to-know/index.html",
+      "issue": "Existing student-only exclusion was incorrect and altitude/airspeed bounds imprecise.",
+      "change": "Removed student exclusion; corrected at-or-below18000ft and not-exceeding250kt wording.",
+      "source": "https://www.faa.gov/licenses_certificates/airmen_certification/basic_med"
+    }
+  ],
+  "limitations": [
+    "This is a bounded regulatory audit, not an exhaustive fact check of every aviation statement, product recommendation, price, salary, or local-school claim.",
+    "Dynamic pages were retained only where the main text clearly qualified variability and directed readers to current employer, provider, BLS, or local sources; those statements are educational comparisons, not current market findings.",
+    "Verified means the identified consequential claim matched the cited source family; it does not mean the whole page or all FAA content was verified."
+  ],
+  "pages": [
+    {
+      "path": "learn/career-and-cfi/aircraft-dispatcher-job-requirements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/airline-pilot-college-degree-preferences/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/aviation-colleges-how-to-compare-programs/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/cfi-recent-experience-requirements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/do-you-need-a-degree-to-become-a-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/fedex-pilot-career-pay-schedule-requirements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed qualification themes and pay language: page gives no fixed hiring or salary number, expressly directs readers to current FedEx hiring and contract materials, and frames ATP/medical/ratings as common themes. No regulatory claim requiring correction."
+    },
+    {
+      "path": "learn/career-and-cfi/how-many-pilot-certificates-are-issued-per-year-private-commercial-atp/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/how-much-do-aircraft-dispatchers-earn/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed pay and certification language: no fixed salary is asserted; page identifies employer, seniority, schedule, and union variation and points certification questions to §65.53/FAA sources. No unsupported regulatory number."
+    },
+    {
+      "path": "learn/career-and-cfi/how-much-do-airline-pilots-get-paid/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed compensation language: no fixed salary is asserted; pay is expressly described as contract, seat, aircraft, seniority, and schedule dependent. Career path references were checked against Part 61 source family."
+    },
+    {
+      "path": "learn/career-and-cfi/how-much-do-pilots-earn-in-the-us/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/how-much-do-pilots-make/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/how-to-become-a-delta-airlines-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed company-specific language: page expressly warns that Delta criteria and pathways change and directs applicants to current Delta hiring information; ATP discussion matches §§61.153, 61.159, and 61.160."
+    },
+    {
+      "path": "learn/career-and-cfi/how-to-become-a-flight-instructor/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.183 eligibility, §61.187 training, §61.195 limitations, and current §61.189/§61.197 instructor recent-experience framework; page uses generally/appropriate privilege qualifiers."
+    },
+    {
+      "path": "learn/career-and-cfi/how-to-get-a-restricted-atp-r-atp-requirements/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.159 1,500-hour unrestricted experience and §61.160 reduced R-ATP pathways for qualifying military/academic backgrounds; page avoids presenting one threshold as universal."
+    },
+    {
+      "path": "learn/career-and-cfi/how-to-get-an-airline-transport-pilot-certificate/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.153 age/eligibility, §61.156 ATP-CTP, §61.159 aeronautical experience, and §61.167 privileges; page's 1,500-hour description is qualified as common unrestricted path."
+    },
+    {
+      "path": "learn/career-and-cfi/how-to-make-cfi-flashcards-that-actually-work/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/is-a-degree-really-needed-to-succeed-as-a-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/is-being-a-pilot-a-good-career-answered-by-a-professional-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed pay, cost, and career statements: page uses qualitative, variable language and does not promise income or employment. FAA certificate references are orientation only."
+    },
+    {
+      "path": "learn/career-and-cfi/low-time-pilot-jobs-and-how-to-build-airplane-hours/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/career-and-cfi/what-is-it-like-to-be-a-southwest-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed company and qualification language: page identifies the Part 121/737 context and expressly says hiring, pay, benefits, and schedules change; no fixed hiring checklist is presented as permanent."
+    },
+    {
+      "path": "learn/checkrides-and-testing/how-to-fly-lazy-eights-smoothly/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.39 prerequisites and FAA ACS as practical-test standard; page presents preparation advice rather than an exhaustive eligibility checklist."
+    },
+    {
+      "path": "learn/checkrides-and-testing/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/are-you-too-old-to-become-a-airline-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/basicmed-guide-everything-you-need-to-know/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "Parent checked student BasicMed allowance in61.89(d), prior-medical requirements and FAA current aircraft/operating limits. Blanket student exclusion is incorrect."
+    },
+    {
+      "path": "learn/medical-and-certificates/becoming-a-color-blind-pilot-is-it-possible/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/can-pilots-wear-hearing-aids-private-and-commercial/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/faa-aircraft-dispatcher-certificate-cost/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§65.53(a) age 21 knowledge-test eligibility, §65.53(b) age 23 certificate issuance, English, tests, and experience/training routes. Page matches."
+    },
+    {
+      "path": "learn/medical-and-certificates/faa-medical-certificate-and-exam-for-pilots-made-easy/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/faa-medical-certificate-requirements-made-easy/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/fit-to-fly-pilot-health-made-simple/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/flight-school-faqs-made-easy-answering-your-top-questions/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/getting-your-pilots-license-as-a-non-us-citizen/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/how-long-does-it-take-to-become-a-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/how-much-does-it-cost-to-become-a-helicopter-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed cost and experience language: no fixed price is asserted; FAA minimum-versus-employability distinction is qualified and §61.109/§61.129/§61.183 links identify the applicable certificate paths."
+    },
+    {
+      "path": "learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.123(a)-(b) commercial eligibility and §61.129(a) Part 61 aeronautical experience, with Part 141 alternative structure. Page uses qualified path wording."
+    },
+    {
+      "path": "learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "Parent checked student BasicMed allowance in61.89(d), prior-medical requirements and FAA current aircraft/operating limits. Blanket student exclusion is incorrect."
+    },
+    {
+      "path": "learn/medical-and-certificates/how-to-get-an-fcc-restricted-radiotelephone-operator-permit/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/lasik-for-pilots-is-it-a-good-idea/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/pilot-height-requirements-myths-vs-reality/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/returning-to-flying-after-years-away/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/sport-pilot-certificates-whats-required-and-is-it-worth-it/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/medical-and-certificates/what-can-you-do-with-each-pilot-license-ppl-cpl-atpl/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/10-gift-ideas-for-aviation-lovers-and-enthusiasts/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/10-tips-for-talking-to-atc/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/12-essential-items-all-pilots-should-have-in-their-gear/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/6-reasons-why-student-pilots-quit/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/aircraft-renters-insurance-everything-you-need-to-know/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/airplane-landing-technique-student-pilots/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/airport-beacons-explained/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/airport-diagrams-explained/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/airport-diversions-10-tips-for-pilots/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/can-you-make-money-flying-with-a-private-pilot-license-pro-rata-cost-sharing/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.113(a), (b), and (c) compensation limits, common-purpose limitation, and pro-rata allowable expenses; page states the pilot must pay at least the share."
+    },
+    {
+      "path": "learn/private-pilot/complete-home-flight-simulator-setup-guide/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/cross-country-flight-plan-made-easy-with-tips-and-examples/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/crosswind-taxi-techniques/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/every-aviation-word-explained/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/everything-you-need-to-know-about-taxiway-lighting/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/faa-medical-certificates-everything-you-need-to-know/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/faa-private-pilot-night-requirements-can-you-fly-airplanes-at-night/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§1.1 definition of night and §61.57(b) three full-stop landings in preceding 90 days for night passenger carrying; page's summary matches."
+    },
+    {
+      "path": "learn/private-pilot/flight-bags-for-pilots-what-to-look-for/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/flight-school-study-tips-simplified-how-to-stay-on-track/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/flight-training-study-material-list-faa-phak-far-aim-documents-etc/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/flying-in-bad-weather-is-it-safe-or-possible/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/four-stroke-engines-everything-you-need-to-know/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/ground-school-vs-flight-school-whats-the-difference/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/high-vs-low-pressure-systems-explained/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-hard-is-it-to-become-a-private-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-long-is-a-private-pilot-license-valid-ppl-currency/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.19 certificate duration; §61.56 flight review interval; §61.57(a)-(b) passenger and night recent experience. Page distinguishes certificate validity from privileges."
+    },
+    {
+      "path": "learn/private-pilot/how-many-hours-it-takes-to-become-a-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-much-does-a-checkride-cost/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed fee and duration language: no fixed price is asserted; removed unsupported 1.5–2-hour estimate and now directs readers to confirm flight and booking time with the examiner/school. §61.39 and ACS context remains advisory."
+    },
+    {
+      "path": "learn/private-pilot/how-much-does-it-cost-to-become-a-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed cost language: no fixed price is asserted; page repeatedly identifies aircraft, instructor, testing, and path variation and distinguishes legal minimums from actual completion cost."
+    },
+    {
+      "path": "learn/private-pilot/how-old-do-you-have-to-be-to-start-pilot-training/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-old-do-you-need-to-be-to-get-your-pilots-license/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-apply-for-flight-scholarships-and-reduce-training-costs/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed scholarship timing and eligibility language: six-to-twelve-month planning is presented as advice, while award rules are expressly stated to vary by program; no FAA eligibility claim is asserted."
+    },
+    {
+      "path": "learn/private-pilot/how-to-avoid-hypoxia-as-a-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-become-a-pilot-step-by-step/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-budget-for-flight-training-without-burning-out/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-convert-a-foreign-pilot-license-to-an-faa-certificate/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-fly-better-steep-turns-step-by-step/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-fly-turns-around-a-point/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-get-a-private-pilot-license-step-by-step/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.103(a)-(b) age/language/eligibility and §61.109(a) airplane minimum experience; page labels minimums and checkride readiness separately."
+    },
+    {
+      "path": "learn/private-pilot/how-to-get-your-private-pilot-license/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.103 eligibility, §61.83 age 17 certificate issuance, §61.87 solo prerequisites, and §61.109 airplane experience. Page matches."
+    },
+    {
+      "path": "learn/private-pilot/how-to-improve-soft-field-landings/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-improve-your-landings/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-land-an-airplane/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-make-the-most-of-your-weekend-ground-school/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-plan-a-cross-country-flight/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-plan-efficient-private-pilot-training/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-practice-slow-flight-step-by-step/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/how-to-reduce-private-pilot-training-costs/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed cost-saving recommendations: all pricing statements are comparative/advisory and local-rate dependent; no fixed cost or FAA minimum is asserted beyond the cited certificate rule family."
+    },
+    {
+      "path": "learn/private-pilot/how-to-talk-to-atc-beginners-guide/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/managing-flight-anxiety-pre-solo-and-exam-nerves-made-easy/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pilot-cv-advertise-your-skills-with-example/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pilot-kneeboards-what-student-pilots-need/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pilot-seat-cushions-fit-comfort-safety/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pilot-shortage-explained-student-pilots/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pilot-training-books-worth-using/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pilot-training-mistakes-you-dont-want-to-make/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/prepare-for-your-first-discovery-flight/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-acs-airman-certification-standards-101/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-checkride-maneuvers-checklist/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-crash-statistics-general-aviation-accidents/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-flight-review-requirements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-glider-a-low-cost-way-to-fly/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed glider cost and qualification language: lower cost is presented as a conditional comparison driven by aircraft/tow/club structure; exact local costs are expressly deferred to current clubs. §61.103 and §61.109(f) context is qualified."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-landing-tips-16-keys-to-success/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-license-requirements-for-dummies/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-practice-exam-35-questions-answers/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-requirements-how-to-get-your-pilots-license/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-roadblocks-and-fixes/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/private-pilot-salary-how-much-do-private-pilots-make/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no fixed dynamic figure or unsupported regulatory conclusion remained after the bounded pass.",
+      "claimsChecked": "Reviewed compensation/privilege language: page gives no salary number, correctly distinguishes private-pilot privileges from paid pilot work, and cites §61.113 for compensation and expense-sharing limits."
+    },
+    {
+      "path": "learn/private-pilot/private-pilots-lessons-what-it-takes-and-how-to-get-started/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/privileges-limits-and-requirements-of-a-private-pilot-license/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/pro-rata-share-explained-a-simple-guide-for-everyone/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/quick-crosswind-calculation-for-pilots/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/rnav-approaches-explained-for-student-pilots/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/situational-awareness-made-easy-a-student-pilots-guide/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/takeoff-procedure-for-student-pilots/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/the-5-types-of-flaps-explained/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/the-benefits-of-a-pilot-license-11-reasons-to-get-one/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/the-essential-guide-to-runway-markings/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/the-essential-guide-to-runway-signs/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/the-hazards-of-aircraft-icing-explained/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/transponder-codes-student-pilots-use/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/types-of-pilot-licenses-explained-student-recreational-private-commercial-atp-and-more/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/v-speeds-explained-vx-vy-va-vs-vfe-vmc-vno-vne-etc/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/what-can-you-do-with-a-private-pilot-license/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/what-is-a-cross-country-flight/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/what-is-a-private-pilot/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/what-to-expect-on-a-discovery-flight/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/why-student-pilots-quit-and-how-to-finish/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "learn/private-pilot/your-first-solo-flight-made-simple-and-stress-free/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/aircraft-endorsements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/cfi-endorsements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/cfi-initial-checkride-endorsements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/commercial-pilot-checkride-endorsements/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "AC 61-65K commercial practical-test models and §61.39/§61.123/§61.129 context; page keeps model endorsement workflow separate from applicant eligibility."
+    },
+    {
+      "path": "simply-endorsed/blog/first-solo-endorsement/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "AC 61-65K student-solo model grouping and §61.87 solo prerequisites; page distinguishes 90-day solo authorization from cross-country and nearby-airport endorsements."
+    },
+    {
+      "path": "simply-endorsed/blog/flight-review-endorsement/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "AC 61-65K flight-review/WINGS model context and §61.56 flight-review rule; page treats BFR as informal terminology and does not claim endorsement alone satisfies every case."
+    },
+    {
+      "path": "simply-endorsed/blog/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/instrument-checkride-endorsements/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "AC 61-65K instrument practical-test models, including two-calendar-month preparation wording; page separates initial checkride endorsements from IPC completion."
+    },
+    {
+      "path": "simply-endorsed/blog/instrument-checkride-vs-ipc/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/ipc-endorsement/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/logbook-audit-checklists/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/private-pilot-checkride-endorsements/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "AC 61-65K private-pilot models and §61.39/§61.103 practical-test context; page states two-calendar-month preparation as model workflow and tells readers to verify the actual record."
+    },
+    {
+      "path": "simply-endorsed/blog/recreational-pilot-endorsements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/retest-after-failure-endorsement/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "§61.49 additional training and instructor endorsement after failure, with AC 61-65K A.77 model context; page distinguishes retest after disapproval from a lapsed recommendation."
+    },
+    {
+      "path": "simply-endorsed/blog/solo-cross-country-endorsement/index.html",
+      "verdict": "verified",
+      "basis": "Consequential claim checked against the cited eCFR/FAA source family; page remains a teaching summary.",
+      "claimsChecked": "AC 61-65K A.9/A.10/A.11 grouping and §61.87 solo authorization context; page distinguishes initial, route-specific, and repeated within-50-NM paths."
+    },
+    {
+      "path": "simply-endorsed/blog/spin-endorsement/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/sport-pilot-endorsements/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/tailwheel-endorsement/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    },
+    {
+      "path": "simply-endorsed/blog/what-is-simply-endorsed/index.html",
+      "verdict": "no_material_issue_found",
+      "basis": "Main content reviewed; no material regulatory error identified in the bounded pass."
+    }
+  ]
+}

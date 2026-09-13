@@ -1,0 +1,353 @@
+# Official source link audit
+
+Audited **389** unique official URLs linked from **522** manifest HTML pages. URL reachability is separate from content accuracy.
+
+- URL occurrences: **1836**
+- Affected pages: **446**
+- Reachable: **55**
+- Confirmed 404/410: **2**
+- Transient/network/403 uncertain: **332**
+
+## Confirmed bad links
+
+- `https://iacra.faa.gov/IACRA/FAQ.aspx` — HTTP 404 — affected pages: /learn/ground-school/faa-written-test-procedures-and-ftn/
+- `https://iacra.faa.gov/IACRA/HelpAndInfo.aspx?id=5` — HTTP 404 — affected pages: /learn/ground-school/how-to-get-an-faa-tracking-number-ftn/
+
+## Uncertain checks
+
+- `https://notams.aim.faa.gov/notamSearch/` — HTTP 403 — retry/inspect manually
+- `https://sapt.faa.gov/` — HTTP no response — retry/inspect manually
+- `https://www.airporttech.tc.faa.gov/Airport-Safety/Wildlife-Hazard-Abatement/Bird-Strike-Reporting` — HTTP 403 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-A/section-61.1` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-A/section-61.23` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-B/section-61.31` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-B/section-61.39` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-B/section-61.51` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-B/section-61.57` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-B/section-61.65` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-B/section-61.75` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-C/section-61.85` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-E/section-61.109` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-F/section-61.129` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-F/section-61.133` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-G/section-61.156` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-G/section-61.157` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-G/section-61.159` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-G/section-61.160` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-G/section-61.167` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-H/section-61.189` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-61/subpart-H/section-61.197` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-65/subpart-C/section-65.53` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-65/subpart-C/section-65.55` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-65/subpart-C/section-65.59` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-65/subpart-C/section-65.61` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-D/part-68` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-E/part-73` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/section-107.31` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-89` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-B/section-91.103` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-B/section-91.109` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-B/section-91.113` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-C/section-91.205` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-C/section-91.207` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-D/section-91.303` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-D/section-91.307` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/chapter-I/subchapter-G/part-117` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-1/section-1.1` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-103/section-103.1` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-103/section-103.7` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-110` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-119` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-121` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-135` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-21/section-21.191` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.101` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.103` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.105` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.107` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.109` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.110` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.113` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.123` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.125` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.127` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.129` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.133` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.153` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.156` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.157` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.159` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.160` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.183` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.185` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.187` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.19` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.195` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.197` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.217` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.23` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.3` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.309` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.31` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.311` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.313` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.315` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.325` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.327` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.329` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.331` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.35` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.39` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.405` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.407` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.409` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.411` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.412` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.419` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.45` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.49` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.52` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.53` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.56` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.57` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.63` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.65` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.66` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.69` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.83` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.85` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.87` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.93` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.94` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.95` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.96` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.97` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.98` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-61/section-61.99` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-65/section-65.53` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-65/subpart-C` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-67` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-68` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.109` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.117` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.121` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.130` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.131` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.155` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.157` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.175` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.203` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.205` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.209` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.211` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.213` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.409` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.411` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.413` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-14/part-91/section-91.509` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-49/part-1552` — HTTP no response — retry/inspect manually
+- `https://www.ecfr.gov/current/title-49/part-1552/section-1552.15` — HTTP 429 — retry/inspect manually
+- `https://www.ecfr.gov/current/title-49/subtitle-B/chapter-XII/subchapter-C/part-1552` — HTTP 429 — retry/inspect manually
+- `https://www.faa.gov/Air_traffic/Publications/atpubs/pcg_html/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/Air_traffic/publications/atpubs/aim_html/chap2_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/Air_traffic/publications/atpubs/aim_html/chap4_section_3.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/Air_traffic/publications/atpubs/aim_html/chap5_section_4.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/initiatives/maintenance_hf/fatigue/faq` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/initiatives/notam/what_is_a_notam` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/initiatives/talpa` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs410/airborne-collision-avoidance-system-acas` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs410/aircraft-wake-turbulence` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/office_org/headquarters_offices/avs/part-65-aircraft-dispatcher-certification-courses` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/about/officeorg/headquartersoffices/ato/aviation-weather-observation-program` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0101.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0305.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0401.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0404.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0504.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0701.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0705.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/ATpubs/AIM/aim0801.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/AIM/aim0201.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/AIM/aim0403.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/LID/0102.htm` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim/aim0402.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim/aim0505.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim/aim0705.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim/aim0801.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_4.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_2.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_4.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_2.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_3.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_4.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_5.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_4.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_6.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap_3.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aip_html/part1_gen_section_3.5.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aip_html/part2_enr_section_1.1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aip_html/part2_enr_section_1.15.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aip_html/part2_enr_section_1.5.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aip_html/part2_enr_section_1.7.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/aip_html/part3_ad_1.1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/atc_html/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/atc_html/chap2_section_7.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/atc_html/chap3_section_2.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/fs_html/chap8_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/notam_html/chap6_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-s.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/pham_html/chap14_section_1.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/atpubs/pham_html/chap31_section_2.html` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/publications/media/PCG_Bsc_w_Chg_1_and_2_dtd_1-22-26.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/technology/DataComm` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/air_traffic/technology/equipadsb/research/airspace` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/aircraft/MOSAIC` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/aircraft/air_cert/aw_cert` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/aircraft/air_cert/continued_operation/ad/gen_resp` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/aircraft/air_cert/design_approvals/product_issues_lists/small_airplane_issues_list_2025q4` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/aircraft/air_cert/design_approvals/small_airplanes/icing_protection` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/aircraft/gen_av/ultralights/amateur_built/kits` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/airport_safety/wildlife/faq` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/airport_safety/wildlife/wildlife-strike-report-1990-2024` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/resources/advisory_circulars/index.cfm/go/document.current/documentNumber/150_5210-24` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/resources/advisory_circulars/index.cfm/go/document.current/documentnumber/150_5200-30` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/runway_safety/diagrams` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/runway_safety/hotspots/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/runway_safety/resources/runway_incursions` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/airports/runway_safety/resources/taxi_to` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/exam_tech/et/31-34/rp` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/exam_tech/et/31-34/sunglasses` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/exam_tech/item49/amd` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/exam_tech/item52/amd` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/exam_tech/item52/et` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/general/appeals/soda` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/app_process/general/classes` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/dec_cons/disp` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/media/ame_guide.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/ame_guide/standards` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/data_research/aviation_data_statistics/civil_airmen_statistics` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-142.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-98E.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-114B.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-78A.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-79A_Chg_2.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Order/FAA_Order_8080.6H.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentLibrary/media/Order/Order_JO_7900.5E.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/documentlibrary/media/advisory_circular/ac_90-89b.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/faq/can-i-get-faa-medical-certificate-if-i-am-colorblind` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/faq/do-i-need-pilot-license-certificate-fly-ultralights` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/faq/pilot-required-report-faa-he-or-she-has-undergone-lasik-or-other-laser-eye-surgery-correct` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/faq/what-are-hourly-requirements-becoming-pilot` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/aircraft_regn_forms` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/clear_titles` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/forming_nnumber` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/media/Aircraft%20Registration%20and%20Recordation%20Processes.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/register_aircraft/index.cfm?print=go` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/reregistration` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/airmen_certification` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/airmen_certification/` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/airmen_certification/basic_med` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/airmen_certification/foreign_license_verification` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/airmen_certification/sport_pilot` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/licenses_certificates/medical_certification` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/airport-operations-and-ranking-reports-using-air-traffic-activity-data-system-atads` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/faa-updates-basicmed-program` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/fact_sheet/2025_General_Aviation_Safety_Fact_Sheet.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/fact_sheets/Fact_Sheet_BVLOS.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/go-arounds-explained` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/leaded-aviation-fuel-and-environment` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/safety-briefing` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/safety-briefing/runway-safety` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/safety-briefing/understanding-ownermechanic-roles-and-responsibilities` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/newsroom/us-department-transportation-issues-proposed-rule-remote-id-drones` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/nextgen/programs/weather/awrp/ifi` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/other_visit/aviation_industry/airline_operators/airline_safety/deicing` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/other_visit/aviation_industry/airline_operators/airline_safety/deicing/FAA_2025-26_Holdover_Tables.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/other_visit/aviation_industry/designees_delegations/individual_designees/dpe` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/amelocator` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/become/knowledge` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/become/practical` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/medical_certification` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/training/airman_education/topics_of_interest/spatial_disorientation` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/training/atp` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/pilots/training/firc/Clarification_Statement.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1034348` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1037214` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1040737` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1042212` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22623` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentid/1030769` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/aircraft_weight_balance_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/aviation_instructors_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-28-aviation-weather-handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-28b-aviation-weather-handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/glider_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/helicopter_flying_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/instrument_flying_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/instrument_procedures_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/pilot_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/risk_management_handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/faa-h-8083-28-aviation-weather-handbook` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-10-weight-and-balance` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-11-aircraft-performance` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-4-principles-flight` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/2022-03/pilot_handbook.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/FAA-H-8083-28B.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/about/office_org/headquarters_offices/ato/METAR_KEY.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/pilots/FAA-H-8083-15B.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/04_afh_ch3.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/06_afh_ch5.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/08_afh_ch7.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/10_afh_ch9.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/20_afh_glossary.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/faa-h-8083-19A.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/glider_handbook/faa-h-8083-13a.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/instrument_procedures_handbook/FAA-H-8083-16B.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/instrument_procedures_handbook/FAA-H-8083-16B_Chapter_4.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/training_testing/testing/acts/ftn.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/sites/faa.gov/files/training_testing/testing/acts/ftn_faqs.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/space/licenses/amateur-rockets` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/training_testing/testing` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/training_testing/testing/acs` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/training_testing/testing/acs/commercial_airplane_acs_7.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/training_testing/testing/acs/private_airplane_acs_6.pdf` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/training_testing/testing/airmen/test_questions` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/training_testing/testing/testing_matrix` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/travelers/fly_safe/turbulence` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/uas/getting_started/register_drone` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/uas/getting_started/remote_id` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/uas/getting_started/remote_id/industry` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/uas/getting_started/temporary_flight_restrictions` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/uas/recreational_flyers` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/uas/recreationalfliers/faa-recognized-community-based-organizations` — HTTP 403 — retry/inspect manually
+- `https://www.faa.gov/unleaded` — HTTP 403 — retry/inspect manually
+
+## Repairs after this snapshot
+
+The two IACRA404 references were replaced with the official IACRA application portal (`https://iacra.faa.gov/IACRA/Default.aspx`). HTTP403/429 and timeouts remain inconclusive; they do not establish that a source is missing.

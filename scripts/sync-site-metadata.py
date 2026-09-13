@@ -67,6 +67,11 @@ def main():
   elif file.exists():text=file.read_text()
   else:raise RuntimeError('Missing route '+p['file'])
   write(p['file'],sync_head(text,p))
+ # Keep independently built application menus linked to the same inventory.
+ app_rel='assets/app-site-navigation.js';app_text=(ROOT/app_rel).read_text()
+ app_items=[{'path':'/tools/','label':'All pilot tools','summary':'Explore the full collection'}]+[{k:t[k] for k in ['path','label','summary']} for t in M['tools']]
+ app_text=re.sub(r'(// app-tool-links:.*?\n).*?(    // /app-tool-links)',lambda x:x[1]+'    var items = '+json.dumps(app_items,ensure_ascii=False,separators=(',',':'))+';\n'+x[2],app_text,flags=re.S)
+ write(app_rel,app_text)
  # Menu inventories are generated; subsequent chrome sync distributes them.
  menu='<a href="/tools/" role="menuitem"><strong>All pilot tools</strong><span>Explore the full collection</span></a>\n'+'\n'.join(f'<a href="{t["path"]}" role="menuitem"><strong>{E(t["label"])}</strong><span>{E(t["summary"])}</span></a>' for t in M['tools'])
  for name in ['nav.html','nav-tool.html']:

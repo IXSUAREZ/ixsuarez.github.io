@@ -28,7 +28,7 @@ def apply():
     changed = 0
     for path in ROOT.rglob("*.html"):
         relative = path.relative_to(ROOT)
-        if any(part.startswith(".") or part in {"node_modules", "_local-only", "flight-risk-assessment", "pdf-build", "templates"} for part in relative.parts):
+        if any(part.startswith(".") or part in {"node_modules", "_local-only", "flight-risk-assessment", "pilotsolve", "pdf-build", "templates"} for part in relative.parts):
             continue
         source = path.read_text(encoding="utf-8")
         if "<body" not in source or ('class="nav' not in source and 'chipnav' not in source and '{{NAV}}' not in source and relative.parts[:2] != ('blog', '_template')):

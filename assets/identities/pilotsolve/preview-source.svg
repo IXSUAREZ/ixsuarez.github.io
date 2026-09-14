@@ -1,0 +1,9 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#e9e7e1"/>
+  <circle cx="600" cy="484" r="300" fill="#dedbd3"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUiPgogIDx0aXRsZT5QaWxvdFNvbHZlIGNhbGN1bGF0b3IgYW5kIGZsaWdodC1wYXRoIG1hcms8L3RpdGxlPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTEyIiBmaWxsPSIjMjQyNzI1Ii8+CiAgPHJlY3QgeD0iNTIiIHk9IjUyIiB3aWR0aD0iNDA4IiBoZWlnaHQ9IjQwOCIgcng9Ijc4IiBmaWxsPSJub25lIiBzdHJva2U9IiM1YTYwNWEiIHN0cm9rZS13aWR0aD0iNCIvPgogIDxnIGZpbGw9IiMwODc5ZmYiPgogICAgPHJlY3QgeD0iMTA0IiB5PSIxMTAiIHdpZHRoPSIxMTIiIGhlaWdodD0iMTEyIiByeD0iMjgiLz4KICAgIDxyZWN0IHg9IjI5NiIgeT0iMTEwIiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjExMiIgcng9IjI4Ii8+CiAgICA8cmVjdCB4PSIxMDQiIHk9IjI5MCIgd2lkdGg9IjExMiIgaGVpZ2h0PSIxMTIiIHJ4PSIyOCIvPgogICAgPHJlY3QgeD0iMjk2IiB5PSIyOTAiIHdpZHRoPSIxMTIiIGhlaWdodD0iMTEyIiByeD0iMjgiLz4KICA8L2c+CiAgPHBhdGggZD0iTTEzOCAzNTBjNTMtMTAgNzMtNTkgMTE3LTg5IDQ0LTMwIDczLTM0IDExOS0yNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRlZWU1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMTkiLz4KICA8cGF0aCBkPSJtMzc0IDIwNyAzNSAyNi00MyA3eiIgZmlsbD0iI2JiYTE2YSIvPgo8L3N2Zz4K" x="312" y="196" width="576" height="576"/>
+  <text x="600" y="885" text-anchor="middle" fill="#242725" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="104" font-weight="700" letter-spacing="-4">PilotSolve</text>
+  <text x="600" y="954" text-anchor="middle" fill="#555a55" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="27" font-weight="600" letter-spacing="7">FLIGHT CALCULATOR</text>
+  <text x="600" y="1118" text-anchor="middle" fill="#242725" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="8">SUAREZ.CFI</text>
+</svg>

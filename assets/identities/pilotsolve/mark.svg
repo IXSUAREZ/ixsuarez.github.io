@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>PilotSolve calculator and flight-path mark</title>
+  <rect width="512" height="512" rx="112" fill="#242725"/>
+  <rect x="52" y="52" width="408" height="408" rx="78" fill="none" stroke="#5a605a" stroke-width="4"/>
+  <g fill="#0879ff">
+    <rect x="104" y="110" width="112" height="112" rx="28"/>
+    <rect x="296" y="110" width="112" height="112" rx="28"/>
+    <rect x="104" y="290" width="112" height="112" rx="28"/>
+    <rect x="296" y="290" width="112" height="112" rx="28"/>
+  </g>
+  <path d="M138 350c53-10 73-59 117-89 44-30 73-34 119-25" fill="none" stroke="#f4eee5" stroke-linecap="round" stroke-width="19"/>
+  <path d="m374 207 35 26-43 7z" fill="#bba16a"/>
+</svg>

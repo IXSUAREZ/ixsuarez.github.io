@@ -2,9 +2,9 @@
   "generated_by": "scripts/audit-site.py",
   "origin": "https://suarezcfi.com",
   "summary": {
-    "manifest_routes": 522,
-    "discovered_html": 524,
-    "audit_rows": 524,
+    "manifest_routes": 523,
+    "discovered_html": 525,
+    "audit_rows": 525,
     "alias_count": 2,
     "failure_count": 0,
     "broken_reference_count": 0,
@@ -20946,6 +20946,19 @@
       ]
     },
     {
+      "route": "/pilotsolve/",
+      "title": "PilotSolve | Mobile Flight Calculator for Pilots",
+      "description": "PilotSolve is a focused, mobile-first flight calculator for pilots working through common aviation calculations.",
+      "kind": "page",
+      "identity": "pilotsolve",
+      "indexable": true,
+      "source_urls": [
+        "https://suarezcfi.com/pilotsolve/"
+      ],
+      "broken_refs": [],
+      "headings": []
+    },
+    {
       "route": "/private-pilot-ground-school/",
       "title": "Private Pilot Ground School in Louisville, KY | SuarezCFI.com",
       "description": "Private pilot ground school and flight training in Louisville with CFI Diego Suarez, covering written-test prep, oral exam readiness, medical timing, cost planning, and practical student-pilot decisions.",
@@ -22093,6 +22106,7 @@
         "Aero Lab",
         "Crank & Core",
         "FOI Cards",
+        "PilotSolve",
         "Put your learning into practice."
       ]
     }

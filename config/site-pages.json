@@ -114,6 +114,13 @@
       "background": "#e2e1eb",
       "source": "assets/identities/foi-source.svg"
     },
+    "pilotsolve": {
+      "label": "PilotSolve",
+      "icon": null,
+      "background": "#e9e7e1",
+      "source": "assets/identities/pilotsolve/mark.svg",
+      "previewSource": "assets/identities/pilotsolve/preview-source.svg"
+    },
     "certificate-generator": {
       "label": "Certificate Generator",
       "icon": null,
@@ -289,6 +296,14 @@
       "summary": "Fundamentals of Instructing flashcards",
       "description": "Practice instructor knowledge with a focused study deck and saved progress.",
       "topic": "CFI"
+    },
+    {
+      "id": "pilotsolve",
+      "label": "PilotSolve",
+      "path": "/pilotsolve/",
+      "summary": "Mobile flight calculator",
+      "description": "Work through common flight calculations in a focused, mobile-first cockpit.",
+      "topic": "Flight planning"
     }
   ],
   "pages": [
@@ -5499,6 +5514,16 @@
       "identity": "foi-cards",
       "title": "FOI Cards | Fundamentals of Instructing Flashcards",
       "description": "Study Fundamentals of Instructing with free FOI flashcards, topic review, and progress saved on your device. Built for instructor study by SuarezCFI.",
+      "indexable": true,
+      "primary_cta": "/ground-school-louisville-ky/"
+    },
+    {
+      "path": "/pilotsolve/",
+      "file": "pilotsolve/index.html",
+      "kind": "page",
+      "identity": "pilotsolve",
+      "title": "PilotSolve | Mobile Flight Calculator for Pilots",
+      "description": "PilotSolve is a focused, mobile-first flight calculator for pilots working through common aviation calculations.",
       "indexable": true,
       "primary_cta": "/ground-school-louisville-ky/"
     },

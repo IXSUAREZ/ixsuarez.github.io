@@ -40,6 +40,15 @@ motion rules below. Those sections remain as historical implementation notes.
   `scripts/sync-chrome.py --check`. Use `scripts/build-flightrisk.py` to rebuild
   the React app into the static site without touching other app source or assets.
 
+## Crank & Core identity — September 13, 2026
+
+The selected identity is the circular opposed-piston mark, in copper `#A65F46`,
+warm ivory `#F4EEE5`, and charcoal `#292D27`. Copper is the Engine Explorer
+brand accent for its icon, sharing preview, collection action, and engine selection.
+Keep model parts, instructional overlays, and semantic state colors unchanged.
+The homepage Hangar presents the existing six public tools equally in a 3/2/1-column
+responsive grid, with all tools available through normal vertical scrolling.
+
 ## Historical design contract (superseded where noted above)
 
 ## 1. Hierarchy: one primary per viewport

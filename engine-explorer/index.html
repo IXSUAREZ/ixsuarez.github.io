@@ -29,7 +29,7 @@
 <!-- /page-metadata -->
 <meta name="theme-color" content="#A65F46" />
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="stylesheet" href="/assets/design-system.css?v=20260814">
     <link rel="stylesheet" href="/assets/tool-system/tool-core.css?v=1">
     <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
@@ -50,6 +50,10 @@
         filter: none;
       }
       .engine-tool-name { color: #f4eee5; }
+      body.engine-explorer-page.is-exploring .nav-wrap,
+      body.engine-explorer-page.is-exploring #engine-study-guide { display: none; }
+      body.engine-explorer-page.is-exploring .engine-explorer-shell { padding-top: 0; height: 100dvh; min-height: 0; }
+      body.engine-explorer-page.is-exploring .engine-explorer-main { flex: 1 1 0; height: 100dvh; min-height: 0; }
       .engine-explorer-title {
         position: absolute;
         width: 1px;
@@ -153,20 +157,11 @@
           margin: 0 !important;
           pointer-events: auto !important;
         }
-        html.suarezcfi-embedded-engine .explorer .topbar {
-          min-height: 54px !important;
-          padding: 5px 16px !important;
-        }
-        html.suarezcfi-embedded-engine .explorer .topbar .top-actions { margin-left: auto !important; }
         html.suarezcfi-embedded-engine .resource-menu > div { z-index: 40 !important; }
         @media (max-width: 620px) {
           html.suarezcfi-embedded-engine .collection .topbar .top-actions {
             top: 8px !important;
             right: 10px !important;
-          }
-          html.suarezcfi-embedded-engine .explorer .topbar {
-            min-height: 52px !important;
-            padding: 4px 10px !important;
           }
         }
       `;
@@ -185,7 +180,32 @@
         }
       }
 
-      frame.addEventListener('load', simplifyEmbeddedHeader);
+      function setPresentation(screen) {
+        const exploring = screen === 'explore';
+        document.body.classList.toggle('is-exploring', exploring);
+        const header = document.querySelector('.nav-wrap');
+        header.inert = exploring;
+        if (exploring) {
+          document.querySelectorAll('.nav-wrap [aria-expanded="true"]').forEach(button => button.setAttribute('aria-expanded', 'false'));
+          document.getElementById('engine-study-guide').open = false;
+        }
+      }
+      window.addEventListener('message', event => {
+        if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
+        if (event.data?.type !== 'crank-core:presentation' || !['collection', 'explore'].includes(event.data.screen)) return;
+        setPresentation(event.data.screen);
+        if (['912-uls-2', 'io-360-l2a'].includes(event.data.engineId)) {
+          const url = new URL(window.location.href);
+          url.searchParams.set('engine', event.data.engineId);
+          url.hash = event.data.screen === 'explore' ? 'explore' : '';
+          if (url.href !== window.location.href) window.history.replaceState(window.history.state, '', url);
+        }
+      });
+      frame.addEventListener('load', () => {
+        simplifyEmbeddedHeader();
+        frame.contentWindow.postMessage({type: 'crank-core:request-presentation'}, window.location.origin);
+      });
+      setPresentation(window.location.hash === '#explore' ? 'explore' : 'collection');
       frame.src = './app/' + window.location.search + window.location.hash;
     </script>
   </body>

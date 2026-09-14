@@ -36,3 +36,60 @@ The supplied screenshot is deliberately the before-state rather than a pixel-for
 ## Final result
 
 final result: passed
+
+
+# Crank & Core copper identity and Hangar review — 2026-09-13
+
+final result: passed
+
+This result covers the branding/layout change and its smoke tests, not engine-model fidelity.
+
+## Visual evidence
+
+- Selected source: second displayed opposed-piston concept, then the user-authorized copper variation.
+- Source visual truth: `engine-explorer/app/brand/crank-core-mark-master.png` (1254 × 1254 RGBA).
+- Preview master: `engine-explorer/app/brand/crank-core-preview-master.png` (1254 × 1254).
+- Shipping exports: logo 512 square; share preview 1200 square; 192/180/48/32 icons.
+- Evidence directory: `../output/crank-core-copper/` relative to this repository.
+- Full views: `tools-desktop-live.jpg`, `tools-tablet.jpg`, `tools-mobile.jpg`, `engine-desktop.jpg`, `engine-mobile.jpg`, `engine-viewer.jpg`.
+- Browser viewports tested: 1440 desktop, 834 tablet, 390 phone; engine navigation also checked at 320. Screenshots record their native browser pixel dimensions; no stretching or rescaling was used for UI inspection.
+- Logo master and desktop engine screenshot were presented together in one comparison tool output. Identity placement was reviewed in the header and the larger homepage card. Site and app/source logo exports match byte-for-byte.
+- The selected reference is an identity, not a full-page mockup. Homepage layout is assessed against the approved six-tool grid brief and existing site typography/palette, not claimed as a pixel match to a nonexistent page mockup.
+
+## Findings and fixes
+
+- P2, resolved: existing shared mobile CSS hid the tool logo. Added an engine-specific display override, kept the logo 22px, and checked 390/320 layouts. At 320 the tool name wraps cleanly to two lines without overlapping Menu.
+- P2, resolved: the old mobile tools rule changed the grid to a horizontal flex scroller. Removed that rule; verified 3/2/1 columns and no document or tool-row overflow.
+- No remaining P0/P1/P2 visual findings in the changed surfaces.
+
+## Required fidelity surfaces
+
+- Typography: existing SF/system stack; readable 21px tool names, 15px descriptions, 14px opening cues. No cropped names or descriptions.
+- Spacing: equally prominent cards with consistent 28px padding, 18px gaps, 72px logo slots; phone padding 24px and logos 64px. All six desktop cards measured 307.2px high.
+- Color: copper #A65F46, ivory #F4EEE5, charcoal #292D27. White on copper 4.83:1; changed card description/topic/action text exceeds 4.5:1. Semantic engine colors are unchanged.
+- Imagery: actual selected raster art, transparent outside the emblem; no recreated mark. Circular silhouette and piston details retained, with normal raster downsampling at small sizes. Final preview text is readable and complete.
+- Copy: all six public tools and existing descriptions/destinations retained, with explicit Open tool cues and existing analytics identifiers.
+
+## Functional and static checks
+
+- All six tool routes return HTTP 200; homepage card click opens Engine Explorer.
+- Keyboard Tab reaches tool links with a visible 3px focus outline.
+- Rotax and Lycoming models both load; Lycoming Explore opens the working viewer.
+- Metadata sync --check: zero drift. Chrome sync --check: all pages in sync.
+- Generator syntax and git diff whitespace checks passed.
+- Exact PNG dimensions and source/site/app equality checked.
+- Live homepage, engine wrapper, logo, and preview match local bytes after the workspace's concurrent site release (9248010c). Live homepage also inspected in browser.
+
+## Evidence limits
+
+- Browser console recorded a MutationObserver observe(Node) TypeError during iframe loading, including a fresh tab. No functional failure appeared in the engine selection/viewer smoke test. The engine JavaScript bundle was not changed by this branding work; the error's origin was not established. This is not a claim of an error-free app audit.
+- No physical iPhone/iPad test or third-party social cache refresh verification.
+- Source public branding and HTML are synchronized; the engine model bundle was not rebuilt or changed.
+
+## Implementation checklist
+
+- [x] Copper identity and square preview exported.
+- [x] Shared site, embedded and standalone-source branding synchronized.
+- [x] Regeneration retains the custom preview and homepage card structure.
+- [x] Responsive grid, links, keyboard focus and engine entry verified.
+- [x] Existing unrelated work preserved.

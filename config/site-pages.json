@@ -131,7 +131,8 @@
       "label": "Certificate Generator",
       "icon": null,
       "background": "#e8e0d6",
-      "source": "certificate-generator/logo.svg"
+      "source": "certificate-generator/logo.svg",
+      "previewSource": "assets/preview-sources/certificate-generator-ios-preview.png"
     },
     "learn-aircraft-ownership": {
       "label": "Aircraft Ownership Guides",

@@ -5,7 +5,8 @@
       "label": "SuarezCFI",
       "icon": "Plane",
       "background": "#e9e7e1",
-      "source": "assets/favicon.svg"
+      "source": "assets/favicon.svg",
+      "previewSource": "assets/og-home-diego-suarez.png"
     },
     "flight-training-louisville-ky": {
       "label": "Flight Training",

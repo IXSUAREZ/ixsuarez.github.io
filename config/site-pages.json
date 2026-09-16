@@ -82,45 +82,50 @@
       "label": "Simply Endorsed CFI",
       "icon": null,
       "background": "#dce6f1",
-      "source": "simply-endorsed-cfi/logo.svg"
+      "source": "simply-endorsed-cfi/logo.svg",
+      "previewSource": "assets/preview-sources/simply-endorsed-cfi-ios-preview.png"
     },
     "part-61-calculator": {
       "label": "CertPath",
       "icon": null,
       "background": "#f0e2d9",
-      "source": "part-61-calculator/logo.svg"
+      "source": "part-61-calculator/logo.svg",
+      "previewSource": "assets/preview-sources/certpath-ios-preview.png"
     },
     "flight-risk-assessment": {
       "label": "FlightRisk",
       "icon": null,
       "background": "#dce8e3",
-      "source": "flight-risk-assessment/logo.svg"
+      "source": "flight-risk-assessment/logo.svg",
+      "previewSource": "assets/preview-sources/flightrisk-ios-preview.png"
     },
     "aero-lab": {
       "label": "Aero Lab",
       "icon": null,
       "background": "#dce9e8",
-      "source": "aero-lab/icons/logo.svg"
+      "source": "aero-lab/icons/logo.svg",
+      "previewSource": "assets/preview-sources/aero-lab-ios-preview.png"
     },
     "engine-explorer": {
       "label": "Crank & Core",
       "icon": null,
       "background": "#A65F46",
       "source": "engine-explorer/app/brand/crank-core-mark.png",
-      "previewSource": "engine-explorer/app/brand/crank-core-preview-master.png"
+      "previewSource": "assets/preview-sources/crank-core-ios-preview.png"
     },
     "foi-cards": {
       "label": "FOI Cards",
       "icon": null,
       "background": "#e2e1eb",
-      "source": "assets/identities/foi-source.svg"
+      "source": "assets/identities/foi-source.svg",
+      "previewSource": "assets/preview-sources/foi-cards-ios-preview.png"
     },
     "pilotsolve": {
       "label": "PilotSolve",
       "icon": null,
       "background": "#e9e7e1",
       "source": "assets/identities/pilotsolve/mark.svg",
-      "previewSource": "assets/identities/pilotsolve/preview-source.svg"
+      "previewSource": "assets/preview-sources/pilotsolve-ios-preview.png"
     },
     "certificate-generator": {
       "label": "Certificate Generator",

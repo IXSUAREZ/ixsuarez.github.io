@@ -370,7 +370,7 @@ FOI_SVG = """
 COVERS = {
     "part-61-calculator": {
         "output_path": "part-61-calculator/icons/og-part-61-calculator.png",
-        "title": "Part 61 Calculator",
+        "title": "CertPath",
         "subtitle": "Free FAA Training Time & Cost Wizard",
         "bg_gradient": "linear-gradient(140deg, #7C2D12 0%, #9A3412 28%, #C2410C 65%, #EA580C 100%)",
         "icon_content": PART_61_SVG,

@@ -84,7 +84,7 @@
       "source": "simply-endorsed-cfi/logo.svg"
     },
     "part-61-calculator": {
-      "label": "Part 61 Calculator",
+      "label": "CertPath",
       "icon": null,
       "background": "#f0e2d9",
       "source": "part-61-calculator/logo.svg"
@@ -259,10 +259,10 @@
     },
     {
       "id": "part-61-calculator",
-      "label": "Part 61 Calculator",
+      "label": "CertPath",
       "path": "/part-61-calculator/",
-      "summary": "Training time and cost planner",
-      "description": "Compare training requirements with your experience and build an estimated plan.",
+      "summary": "FAA rating planner",
+      "description": "Map FAA training requirements to your experience and build an estimated rating plan.",
       "topic": "Training"
     },
     {
@@ -342,8 +342,8 @@
       "file": "part-61-calculator/index.html",
       "kind": "page",
       "identity": "part-61-calculator",
-      "title": "Part 61 Calculator | Free FAA Training Time & Cost Wizard",
-      "description": "The Part 61 Calculator is a free CFI planning aid. Audit a pilot's current credentials and hours against FAA Part 61 requirements, then get optimized training blocks, endorsements, gates, costs, and official source links.",
+      "title": "CertPath | Free FAA Training Planner & Cost Estimate",
+      "description": "CertPath is a free CFI planning aid. Compare your current credentials and flight time with FAA Part 61 requirements, then get a personalized training plan, endorsements, milestones, cost estimate, and official source links.",
       "indexable": true,
       "primary_cta": "/ground-school-louisville-ky/"
     },

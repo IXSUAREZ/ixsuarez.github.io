@@ -20916,8 +20916,8 @@
     },
     {
       "route": "/part-61-calculator/",
-      "title": "Part 61 Calculator | Free FAA Training Time & Cost Wizard",
-      "description": "The Part 61 Calculator is a free CFI planning aid. Audit a pilot's current credentials and hours against FAA Part 61 requirements, then get optimized training blocks, endorsements, gates, costs, and official source links.",
+      "title": "CertPath | Free FAA Training Time & Cost Wizard",
+      "description": "The CertPath is a free CFI planning aid. Audit a pilot's current credentials and hours against FAA Part 61 requirements, then get optimized training blocks, endorsements, gates, costs, and official source links.",
       "kind": "page",
       "identity": "part-61-calculator",
       "indexable": true,
@@ -20935,7 +20935,7 @@
       ],
       "broken_refs": [],
       "headings": [
-        "Part 61 Calculator",
+        "CertPath",
         "What do you want to work toward?",
         "What do you already hold?",
         "Logbook totals",
@@ -22101,7 +22101,7 @@
       "headings": [
         "A tool for your next step.",
         "Simply Endorsed CFI",
-        "Part 61 Calculator",
+        "CertPath",
         "FlightRisk",
         "Aero Lab",
         "Crank & Core",

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   part61.css — Part 61 Calculator app module
+   part61.css — CertPath app module
    Wizard steps, step rail, results pane, theme-orange accent mapping.
    Extracted from the pre-v9 monolithic endorsement-app stylesheet (v9.0.0 decomposition).
    Load AFTER tool-core.css. Requires body.theme-orange.
@@ -2137,7 +2137,7 @@
 }
 
 /* ============================================================
-   Part 61 Calculator — per-step color theming
+   CertPath — per-step color theming
    Mirrors the endorsement CATEGORY_THEMES palette system
    (accent / soft / line / ink) so each step and results section
    carries its own color family, like the endorsement categories.

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
-  <!-- Part 61 Calculator mark: flight-hours dial, bold orange family -->
+  <!-- CertPath mark: flight-hours dial, bold orange family -->
   <circle cx="256" cy="256" r="200" fill="#EA580C"/>
   <circle cx="256" cy="256" r="200" stroke="#7C2D12" stroke-opacity="0.22" stroke-width="8"/>
   <!-- Cardinal tick marks -->

@@ -100,7 +100,7 @@ that maps the `--tool-*` tokens. Registry:
 | Class          | Assignment                                   | Status    |
 | -------------- | -------------------------------------------- | --------- |
 | `theme-blue`   | Simply Endorsed CFI (+ Certificate Generator)| live      |
-| `theme-orange` | Part 61 Calculator                           | live      |
+| `theme-orange` | CertPath                           | live      |
 | `theme-teal`   | reserved (next tool)                         | reserved  |
 | `theme-night`  | reserved (dark app surfaces)                 | reserved  |
 

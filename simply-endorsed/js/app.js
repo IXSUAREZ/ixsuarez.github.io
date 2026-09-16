@@ -2641,7 +2641,7 @@
     } else if (isGuidance) {
       document.title = "Teaching & Guidance - Simply Endorsed CFI";
     } else if (isCalculator) {
-      document.title = "Part 61 Calculator - Simply Endorsed CFI";
+      document.title = "CertPath - Simply Endorsed CFI";
     }
 
     if (!isBrowse) {

@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "node tests/run-tests.js",
-    "test:workspace": "node tests/workspace.test.js"
+    "test:workspace": "node tests/workspace.test.js",
+    "test:certpath": "node tests/certpath-storage.test.js"
   },
   "devDependencies": {
     "jsdom": "^24.1.0"

@@ -1,0 +1,21 @@
+{
+  "name": "certpath-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Private-plan API for CertPath, deployed as a Cloudflare Worker with D1.",
+  "scripts": {
+    "dev": "wrangler dev --var ENVIRONMENT:development",
+    "test": "tsx --test test/**/*.test.ts",
+    "test:local": "node scripts/local-integration.mjs",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260917.1",
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "wrangler": "^4.38.0"
+  }
+}

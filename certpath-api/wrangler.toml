@@ -1,0 +1,11 @@
+name = "certpath-api"
+main = "src/index.ts"
+compatibility_date = "2026-09-17"
+workers_dev = true
+
+# Production D1 database; credentials are stored separately as Worker secrets.
+[[d1_databases]]
+binding = "DB"
+database_name = "certpath-plans"
+database_id = "7ec85eb8-41f9-4308-8428-fa912eb9ee61"
+migrations_dir = "migrations"

@@ -6,3 +6,7 @@ node_modules/
 __pycache__/
 *.pyc
 output/
+
+# Local Worker state and macOS metadata on external volumes
+.wrangler/
+._*

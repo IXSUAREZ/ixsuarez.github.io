@@ -1,0 +1,20 @@
+#part61CalculatorView[data-cp-view] #cp-shell [hidden]{display:none!important}
+#part61CalculatorView[data-cp-view]:not([data-cp-view="calculator"])>.part61-calculator-header,
+#part61CalculatorView[data-cp-view]:not([data-cp-view="calculator"])>.part61-workbench,
+#part61CalculatorView[data-cp-view]:not([data-cp-view="calculator"])>.part61-draft-notice{display:none!important}
+#cp-shell{font-family:var(--font-sans);color:#242725;width:100%;padding:0 8px}
+.cp-nav{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0 24px;border-bottom:1px solid #e4e6e2;margin-bottom:24px}.cp-nav>div{display:flex;gap:8px;flex-wrap:wrap}
+#cp-shell button{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border:1px solid #d7dcd5;border-radius:12px;background:#fff;color:#303930;padding:11px 16px;min-height:44px}
+#cp-shell button:hover{background:#eef2eb}#cp-shell button:focus-visible,#cp-shell input:focus-visible{outline:3px solid #728a66;outline-offset:3px}
+#cp-shell button.cp-primary{background:#354d3b;color:#fff;border-color:#354d3b}#cp-shell button:disabled{opacity:.55;cursor:wait}
+.cp-card{max-width:580px;margin:40px auto 64px;padding:20px 16px}.cp-card h1{font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-1.7px;margin:20px 0}.cp-card h2{font-size:32px;letter-spacing:-1px;margin:12px 0}
+.cp-card p{font-size:16px;line-height:1.65}.cp-intro{text-align:center;max-width:650px}.cp-intro img{display:block;margin:0 auto 32px;object-fit:contain}.cp-eyebrow{font-size:11px!important;letter-spacing:2px;font-weight:700;color:#62735e}.cp-muted{color:#657063;max-width:490px;margin:20px auto 28px}.cp-fine{font-size:12px!important;color:#677064;line-height:1.6}.cp-intro .cp-fine{margin-top:26px}
+#cp-shell label{display:grid;gap:8px;font-size:14px;font-weight:600;margin:20px 0}#cp-shell input{box-sizing:border-box;min-width:0;width:100%;font:inherit;font-size:16px;border:1px solid #cdd4ca;border-radius:10px;padding:13px;color:#242725;background:#fff}.cp-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}.cp-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.cp-actions .cp-primary{flex:1}
+#cp-message{padding:14px 18px;background:#edf3e9;border-radius:12px;font-size:14px;overflow-wrap:anywhere}#cp-message.cp-error{background:#fff1ea;color:#843b23}.cp-inbox{max-width:900px}.cp-placeholders{display:grid;gap:14px;margin:30px 0}.cp-placeholders span{height:68px;border-radius:12px;background:linear-gradient(100deg,#edf0e9,#f8f9f6)}
+#cp-list{display:grid;gap:12px;margin:24px 0}.cp-record{display:grid;text-align:left;gap:6px;overflow-wrap:anywhere}.cp-record span,.cp-record small{font-weight:400;color:#626e5d}.cp-record strong{font-size:17px}
+.cp-saved{padding:20px;background:#f0f4ec;border-radius:16px;margin-bottom:24px}.cp-saved p{margin:6px 0 12px;font-size:13px;overflow-wrap:anywhere}.cp-saved strong{font-size:18px}.cp-owner-view [data-edit-section],.cp-owner-view #part61EditInputsBtn,.cp-owner-view .part61-step-rail,.cp-owner-view .part61-header-actions{display:none!important}
+#cp-delete-dialog{max-width:440px;border:1px solid #ddd;border-radius:18px;padding:28px;color:#242725}#cp-delete-dialog::backdrop{background:#17251d88}
+@media(max-width:540px){#cp-shell{padding:0}.cp-nav{align-items:flex-start}.cp-nav>div{justify-content:flex-end}.cp-nav button{padding:9px!important;font-size:12px!important}.cp-card{margin:20px auto 36px;padding:12px 2px}.cp-fields{grid-template-columns:1fr;gap:0}.cp-fields label{margin:12px 0}.cp-actions>button{flex:1}.cp-intro img{width:84px;height:84px;margin-top:18px}}
+@media print{.cp-nav,#cp-message,.cp-actions,#cp-private-note,#cp-owner-contact{display:none!important}}
+
+#cp-shell h1:focus,#cp-shell h2:focus{outline:none}

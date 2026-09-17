@@ -125,10 +125,10 @@
   // Presentation formatter: passes "UNKNOWN" and other strings through.
   // Distinct from the core's money(), which does numeric rounding - do not merge.
   function money(value) {
-    if (typeof value === "number") {
+    if (typeof value === "number" && Number.isFinite(value)) {
       return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
     }
-    return value || "UNKNOWN";
+    return "UNKNOWN";
   }
 
   function parseRate(value) {
@@ -165,8 +165,8 @@
 
   // Presentation formatter: passes "UNKNOWN" through. Do not merge with core fmtHours().
   function hours(value) {
-    if (typeof value === "number") return `${value.toFixed(1)} hr`;
-    return value || "UNKNOWN";
+    if (typeof value === "number" && Number.isFinite(value)) return `${value.toFixed(1)} hr`;
+    return "UNKNOWN";
   }
 
   function flatFieldList() {
@@ -779,7 +779,7 @@
     if (heading && !qs("#part61EditDialog[open]")) {
       heading.tabIndex = -1;
       heading.focus({ preventScroll: true });
-      window.requestAnimationFrame(() => heading.scrollIntoView({ block: "start", behavior: "auto" }));
+      window.requestAnimationFrame(() => { if (!rootEl.dataset.cpView || rootEl.dataset.cpView === "calculator") heading.scrollIntoView({ block: "start", behavior: "auto" }); });
     }
 
     updateResponsiveLayout();
@@ -984,9 +984,9 @@
 
   function rowClass(row, totalClass) {
     const classes = [];
-    if (row.kind) classes.push(`row-kind-${row.kind}`);
-    if (row.bucketType) classes.push(`row-bucket-${row.bucketType}`);
-    if (row.status) classes.push(`row-status-${row.status}`);
+    if (row.kind) classes.push(`row-kind-${groupSlug(row.kind)}`);
+    if (row.bucketType) classes.push(`row-bucket-${groupSlug(row.bucketType)}`);
+    if (row.status) classes.push(`row-status-${groupSlug(row.status)}`);
     if (totalClass) {
       if (row.kind === "total") {
         classes.push("total-row");
@@ -1274,7 +1274,12 @@
 
   function renderLinks(audits) {
     const map = new Map();
-    audits.flatMap((audit) => audit.links).forEach((link) => map.set(link.url, link));
+    audits.flatMap((audit) => audit.links).forEach((link) => {
+      try {
+        const url = new URL(link.url);
+        if (url.protocol === "https:" && ["www.ecfr.gov", "ecfr.gov", "www.faa.gov", "faa.gov"].includes(url.hostname)) map.set(url.href, { ...link, url: url.href });
+      } catch { /* Ignore invalid source links. */ }
+    });
     ids.links.innerHTML = `<ul class="list-box">${Array.from(map.values()).map((link) => `<li><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></li>`).join("")}</ul>`;
   }
 
@@ -1363,6 +1368,14 @@
     } catch (error) {
       console.error("Part 61 audit failed", error);
       renderCalculationError();
+      return false;
+    }
+    if (window.CertPathStorage) {
+      const input = collectInput();
+      const snapshot = scenarioSnapshot();
+      snapshot.experience = Object.fromEntries(Object.entries(input.experience).map(([key, value]) => [key, Number(value)]));
+      snapshot.rates = { aircraftWet: input.rates.aircraftWet, instructor: input.rates.instructor };
+      window.CertPathStorage.requestSave(snapshot, result);
       return false;
     }
     state.result = result;
@@ -1456,7 +1469,7 @@
   function persistScenario() {
     const dialog = qs("#part61EditDialog");
     if (dialog && dialog.open) return;
-    U.saveStoredJson(DRAFT_STORAGE_KEY, scenarioSnapshot());
+    if (!window.CertPathConfig?.enabled) U.saveStoredJson(DRAFT_STORAGE_KEY, scenarioSnapshot());
   }
 
   const queueDraftSave = U.debounce(persistScenario, 400);
@@ -1573,11 +1586,13 @@
     if (state.dirty) return;
     const url = new URL(window.location.href);
     url.search = "";
+    url.hash = "";
     url.searchParams.set(SHARE_PARAM, encodeScenario());
     U.copyTextToClipboard(url.toString(), ids.shareBtn, "Link copied");
   }
 
   function openEditDialog(section) {
+    if (window.CertPathStorage) { window.CertPathStorage.edit(); return; }
     const dialog = qs("#part61EditDialog");
     const content = qs("#part61EditDialogContent");
     if (!dialog || !content || typeof dialog.showModal !== "function") return;
@@ -1691,6 +1706,7 @@
   /* ---------- Clear and reports ---------- */
 
   function clearAll() {
+    if (window.CertPathStorage) window.CertPathStorage.onReset();
     state.credentials = [];
     state.targets = ["private-asel"];
     state.proficiencyEstimates = {};
@@ -2183,7 +2199,7 @@
     renderEvents();
     setRates(state.rates);
     rerenderStaticControls();
-    const restored = consumeShareParam() || restoreDraft();
+    const restored = consumeShareParam() || (!window.CertPathConfig?.enabled && restoreDraft());
     if (!restored) {
       updateEventGroupCounts();
     }
@@ -2226,4 +2242,18 @@
   }
 
   init();
+  window.CertPathCalculator = {
+    reset: clearAll,
+    step: setStep,
+    present(record) {
+      hydrateScenario(record.scenario);
+      state.result = record.plan;
+      state.dirty = false;
+      updateResultPresence();
+      renderResults(state.result);
+      updateStaleBanner();
+      updateRailProgress();
+      setStep(4);
+    }
+  };
 })();

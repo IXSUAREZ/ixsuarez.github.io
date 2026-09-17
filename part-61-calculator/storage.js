@@ -82,6 +82,42 @@
   };
   compactToolbar();
   window.matchMedia('(max-width: 540px)').addEventListener('change', compactToolbar);
+  // Keep the original calculator controls in place for its scoped bindings.
+  // Navbar actions forward to those controls and mirror their availability.
+  const siteLinks = document.getElementById('primary-nav-links');
+  if (siteLinks && localActions) {
+    document.body.classList.add('cp-navbar-actions');
+    const menu = document.createElement('section');
+    menu.className = 'cp-site-actions';
+    menu.setAttribute('aria-label', 'CertPath actions');
+    const label = document.createElement('p');
+    label.textContent = 'CertPath';
+    menu.append(label);
+    const originals = [...localNav.querySelectorAll('button'),
+      ...moreMenuContents.querySelectorAll('button')].filter((button, i, all) => all.indexOf(button) === i);
+    if (shareMenu) shareMenu.querySelectorAll('button').forEach(button => {
+      if (!originals.includes(button)) originals.push(button);
+    });
+    const pairs = originals.map(original => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = original.dataset.cp === 'home' ? 'CertPath home' : original.textContent;
+      button.addEventListener('click', () => {
+        const nav = siteLinks.closest('.nav');
+        if (nav?.classList.contains('is-open')) nav.querySelector('.nav-menu-toggle').click();
+        original.click();
+      });
+      menu.append(button);
+      return [original, button];
+    });
+    const syncMenu = () => pairs.forEach(([original, button]) => {
+      button.hidden = original.hidden || (shareMenu?.contains(original) && shareMenu.hidden);
+      button.disabled = original.disabled;
+    });
+    syncMenu();
+    new MutationObserver(syncMenu).observe(localActions, {subtree:true,attributes:true,attributeFilter:['hidden','disabled']});
+    siteLinks.prepend(menu);
+  }
   const $ = id => document.getElementById('cp-' + id);
   const action = key => root.querySelector(`[data-cp="${key}"]`);
   const form = $('contact-form');

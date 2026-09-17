@@ -45,9 +45,45 @@
     </section>
     <section id="cp-saved" class="cp-saved" hidden><div><strong id="cp-saved-name"></strong><p id="cp-saved-date"></p><p id="cp-private-note" class="cp-fine">Keep your private link somewhere safe. Anyone with it can view and update this plan.</p></div><div class="cp-actions"><button type="button" data-cp="copy">Copy private plan link</button><button type="button" data-cp="edit">Update my experience</button><button type="button" data-cp="inbox" id="cp-return" hidden>Back to submissions</button><button type="button" data-cp="delete" hidden>Delete submission</button></div><p id="cp-owner-contact"></p></section>
     <dialog id="cp-delete-dialog"><h2>Delete this submission?</h2><p>This removes the saved plan and disables its private link.</p><div class="cp-actions"><button type="button" data-cp="cancel-delete">Cancel</button><button type="button" data-cp="confirm-delete">Delete submission</button></div></dialog>`;
-  root.prepend(shell);
+  const calculatorHeader = root.querySelector('.part61-calculator-header');
+  if (calculatorHeader) calculatorHeader.insertAdjacentElement('afterend', shell);
+  else root.prepend(shell);
+  // Keep CertPath navigation beside the calculator's existing More/share
+  // controls. This removes the duplicate standalone product row while every
+  // control stays in the same local calculator landmark.
+  const localActions = root.querySelector('.part61-header-actions');
+  const localNav = shell.querySelector('.cp-nav');
+  if (localActions && localNav) localActions.prepend(localNav);
+  // A saved plan can expose more controls than a 320px toolbar can carry.
+  // Keep those secondary share controls in the existing More menu at that
+  // breakpoint instead of wrapping a second action row.
+  const moreMenu = localActions && localActions.querySelector('.part61-menu:not(#part61ShareMenu)');
+  const moreMenuContents = moreMenu && moreMenu.querySelector(':scope > div');
+  const shareMenu = root.querySelector('#part61ShareMenu');
+  const optionalNavActions = localNav ? ['view', 'lock'].map(key => localNav.querySelector(`[data-cp="${key}"]`)) : [];
+  const navActionGroup = localNav && localNav.querySelector(':scope > div');
+  const compactToolbar = () => {
+    if (!localActions || !moreMenuContents || !shareMenu) return;
+    if (window.matchMedia('(max-width: 540px)').matches) {
+      if (shareMenu.parentElement !== moreMenuContents) moreMenuContents.append(shareMenu);
+      optionalNavActions.forEach(button => {
+        if (button && button.parentElement !== moreMenuContents) moreMenuContents.append(button);
+      });
+    } else if (shareMenu.parentElement !== localActions) {
+      localActions.append(shareMenu);
+      optionalNavActions.forEach(button => {
+        if (button && navActionGroup && button.parentElement !== navActionGroup) navActionGroup.append(button);
+      });
+    } else {
+      optionalNavActions.forEach(button => {
+        if (button && navActionGroup && button.parentElement !== navActionGroup) navActionGroup.append(button);
+      });
+    }
+  };
+  compactToolbar();
+  window.matchMedia('(max-width: 540px)').addEventListener('change', compactToolbar);
   const $ = id => document.getElementById('cp-' + id);
-  const action = key => shell.querySelector(`[data-cp="${key}"]`);
+  const action = key => root.querySelector(`[data-cp="${key}"]`);
   const form = $('contact-form');
   function message(text, error = false) { $('message').textContent = text; $('message').hidden = !text; $('message').classList.toggle('cp-error', error); }
   function view(name) {
@@ -169,7 +205,7 @@
   });
   let debounce;
   $('search').addEventListener('input', () => { clearTimeout(debounce); searchGeneration++; debounce = setTimeout(() => list(false).catch(e => message(e.message,true)),250); });
-  shell.addEventListener('click', async event => {
+  root.addEventListener('click', async event => {
     const button = event.target.closest('button'); if (!button || busy) return;
     try {
       if (button.dataset.record) {

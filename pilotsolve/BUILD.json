@@ -1,7 +1,7 @@
 {
   "app": "PilotSolve",
-  "cache": "pilotsolve-site-0632087f36d9",
-  "preparedAt": "2026-09-18T22:25:13.899Z",
+  "cache": "pilotsolve-site-fbf1ca87c0f2",
+  "preparedAt": "2026-09-18T23:11:05.896Z",
   "route": "/pilotsolve/",
   "files": [
     "./index.html",
@@ -13,11 +13,11 @@
     "./icon-512.png",
     "./assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
     "./assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
-    "./assets/mobile-J1W1qrIu.js",
+    "./assets/mobile-BN_2MQBA.js",
+    "./assets/preview-B342IIi7.js",
     "./assets/preview-BmIPKyx7.css",
-    "./assets/preview-Boespjif.js",
-    "./assets/prototype-56JECIF5.js",
-    "./assets/prototype-BNCDOS3d.css",
+    "./assets/prototype-BySDLKti.js",
+    "./assets/prototype-C1-DwiAd.css",
     "./assets/roboto-latin-500-normal-7RbcRiD8.woff2"
   ]
 }

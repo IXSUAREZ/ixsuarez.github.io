@@ -6,8 +6,8 @@
   "start_url": "/pilotsolve/",
   "scope": "/pilotsolve/",
   "display": "standalone",
-  "background_color": "#f6f9fe",
-  "theme_color": "#f6f9fe",
+  "background_color": "#080b10",
+  "theme_color": "#080b10",
   "orientation": "portrait-primary",
   "icons": [
     {

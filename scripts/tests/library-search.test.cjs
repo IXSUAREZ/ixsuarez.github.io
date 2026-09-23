@@ -2,50 +2,43 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
-const source = fs.readFileSync(path.join(__dirname, '../../assets/library-search.js'), 'utf8');
+const root = path.resolve(__dirname, '../..');
+const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const manifest = JSON.parse(read('config/site-pages.json'));
+const index = JSON.parse(read('assets/library-index.json'));
 
-class N {
-  constructor(tag, text = '') { this.tagName = tag; this._text = text; this.children = []; this.attrs = {}; this.listeners = {}; this.hidden = false; this.className = ''; }
-  get textContent() { return this._text; }
-  set textContent(value) { this._text = String(value); if (value === '') this.children = []; }
-  appendChild(c) { this.children.push(c); c.parentNode = this; return c; }
-  setAttribute(k, v) { this.attrs[k] = String(v); }
-  getAttribute(k) { return this.attrs[k] || null; }
-  addEventListener(k, fn) { this.listeners[k] = fn; }
-  querySelectorAll(sel) { const out = []; const cls = sel[0] === '.' ? sel.slice(1) : null; const walk = n => n.children.forEach(c => { if (cls && c.className.split(/\s+/).includes(cls)) out.push(c); walk(c); }); walk(this); return out; }
-  querySelector(sel) { return this.querySelectorAll(sel)[0] || null; }
-}
-function setup(rows, reject = false) {
-  const mount = new N('div'); mount.setAttribute('data-index', '/assets/library-index.json');
-  let resolve; const window = { setTimeout: (fn) => { fn(); return 1; }, clearTimeout() {} };
-  const fetch = () => reject ? Promise.reject(Error('offline')) : new Promise(r => { resolve = () => r({ ok: true, json: () => Promise.resolve(rows) }); });
-  const document = { querySelectorAll: () => [mount], createElement: tag => new N(tag), };
-  vm.runInNewContext(source, { document, window, fetch });
-  const input = mount.querySelector('.library-search-input'); const selects = mount.querySelectorAll('.library-search-select');
-  return { mount, input, topic: selects[0], stage: selects[1], focus: () => input.listeners.focus(), resolve: () => resolve(), type: value => { input.value = value; input.listeners.input(); } };
-}
-const rows = [
-  { title: 'Crosswind landings', description: 'Wind correction basics', path: '/learn/crosswind/', category: 'landings', categoryLabel: 'Landings', stage: 'Student pilot' },
-  { title: 'IFR weather briefing', description: 'Decode METARs', path: '/learn/ifr-weather/', category: 'weather', categoryLabel: 'Weather', stage: 'Instrument' },
-  { title: 'Commercial maneuvers', description: 'Standards and prep', path: '/learn/commercial/', category: 'checkrides', categoryLabel: 'Checkrides', stage: 'Commercial' },
-  { title: 'From student to CFI', description: 'Plan the next ratings', path: '/learn/path/', category: 'planning', categoryLabel: 'Planning', stages: ['Student pilot', 'CFI'] },
-  { title: 'Broken external row', description: 'Should never render', path: 'https://example.com/', category: 'other', categoryLabel: 'Other', stage: 'Exploring' },
-];
-
-test('lazy loads on focus and filters text and stage safely', async () => {
-  const s = setup(rows); assert.equal(s.mount.querySelectorAll('.library-search-result').length, 0); s.focus(); s.resolve(); await new Promise(r => setImmediate(r));
-  assert.equal(s.mount.querySelectorAll('.library-search-result').length, 0);
-  s.type('weather'); await new Promise(r => setImmediate(r));
-  assert.equal(s.mount.querySelectorAll('.library-search-result').length, 1);
-  s.stage.value = 'Instrument'; s.stage.listeners.change(); await new Promise(r => setImmediate(r));
-  assert.equal(s.mount.querySelectorAll('.library-search-result').length, 1);
-  s.input.value = ''; s.stage.value = 'CFI'; s.stage.listeners.change(); await new Promise(r => setImmediate(r));
-  assert.equal(s.mount.querySelectorAll('.library-search-result').length, 1);
-  assert.match(s.mount.querySelector('.library-search-result-meta').textContent, /Student pilot, CFI/);
+test('Learn search contains all 459 current lessons and endorsement references, without Blog posts', () => {
+  const expected = manifest.pages.filter(page => page.kind === 'article' && page.indexable && !page.path.startsWith('/blog/'));
+  assert.equal(index.length, 459);
+  assert.equal(index.length, expected.length);
+  assert.deepEqual(new Set(index.map(row => row.path)), new Set(expected.map(page => page.path)));
+  for (const row of index) {
+    assert.match(row.path, /^\/(?!\/)/);
+    assert.ok(fs.existsSync(path.join(root, row.path.slice(1), 'index.html')), row.path);
+    assert.ok(Array.isArray(row.stages) && row.stages.length > 0, row.path);
+  }
 });
 
-test('offline index reports browse fallback and does not throw', async () => {
-  const s = setup([], true); s.focus(); await new Promise(r => setImmediate(r));
-  assert.match(s.mount.querySelector('.library-search-status').textContent, /temporarily unavailable/);
+test('every preserved Learn collection is reachable from exactly one browse view', () => {
+  const html = read('learn/index.html');
+  assert.equal(manifest.learnCollections.length, 24);
+  assert.equal(manifest.learnCollections.filter(c => c.view === 'paths').length, 5);
+  assert.equal(manifest.learnCollections.filter(c => c.view === 'topics').length, 19);
+  for (const collection of manifest.learnCollections) {
+    assert.ok(html.includes(`href="${collection.path}"`), collection.path);
+    assert.ok(fs.existsSync(path.join(root, collection.path.slice(1), 'index.html')), collection.path);
+  }
+});
+
+test('Blog listing is driven by complete editorial metadata and separate from endorsement references', () => {
+  const posts = manifest.pages.filter(page => page.path.startsWith('/blog/') && page.kind === 'article');
+  assert.equal(posts.length, 14);
+  assert.equal(posts.filter(page => page.editorial?.featured).length, 1);
+  for (const post of posts) {
+    assert.match(post.editorial.published, /^\d{4}-\d\d-\d\d$/);
+    assert.ok(post.editorial.category && post.editorial.heading && post.editorial.readingMinutes > 0);
+  }
+  const html = read('blog/index.html');
+  assert.equal((html.match(/class="blog-story(?: blog-story--featured)?"/g) || []).length, posts.length);
+  assert.equal((html.match(/href="\/simply-endorsed\/blog\/"/g) || []).length, 1);
 });

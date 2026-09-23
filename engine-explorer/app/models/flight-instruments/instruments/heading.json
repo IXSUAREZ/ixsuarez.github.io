@@ -1,0 +1,168 @@
+{
+  "id": "heading",
+  "path": "../instruments/heading.glb",
+  "bytes": 1119576,
+  "sha256": "bea3430f2e77ece71bcd5ad1fd596b90de14539adabb5779d047a45f33f6e899",
+  "parts": [
+    {
+      "id": "heading-case",
+      "name": "Heading indicator case and bezel",
+      "instrument": "heading",
+      "system": "structure",
+      "description": "Reconstructed gyro housing; no model-specific exterior dimensional acceptance.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ]
+    },
+    {
+      "id": "heading-outer-gimbal",
+      "name": "Heading vertical-axis ring",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Vertical yaw axis carries the horizontal trunnion frame, following Sperry US1982637."
+    },
+    {
+      "id": "heading-vertical-pivots",
+      "name": "Heading indicator pivot bearings",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "heading-inner-gimbal",
+      "name": "Heading horizontal-trunnion frame",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Horizontal fore-aft trunnions support a transverse horizontal-spin rotor."
+    },
+    {
+      "id": "heading-horizontal-pivots",
+      "name": "Heading indicator pivot bearings",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "heading-rotor",
+      "name": "Heading indicator rotor",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Air-driven bucketed rotor. Rotation is slowed for inspection, not operating RPM."
+    },
+    {
+      "id": "heading-rotor-bearings",
+      "name": "Heading indicator pivot bearings",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "heading-drive-air-nozzle",
+      "name": "Heading indicator drive air nozzle",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Nozzle directs suction-induced airflow onto peripheral rotor buckets. Passage geometry is reconstructed."
+    },
+    {
+      "id": "heading-compass-drum",
+      "name": "Heading compass drum attached to vertical ring",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. The patent compass scale is carried by the vertical ring. The front-facing teaching dial is a separate display adaptation."
+    },
+    {
+      "id": "heading-case-screw-0",
+      "name": "Heading indicator case screw 1",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-case-screw-1",
+      "name": "Heading indicator case screw 2",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-case-screw-2",
+      "name": "Heading indicator case screw 3",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-case-screw-3",
+      "name": "Heading indicator case screw 4",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    }
+  ],
+  "units": "meters",
+  "exactPhysicalGeometryAccepted": false,
+  "sources": [
+    {
+      "id": "sperry-heading-patent",
+      "title": "Directional Gyroscope, US Patent 1,982,637 A",
+      "publisher": "United States Patent Office; inventor Bert G. Carlson, assigned to Sperry Gyroscope Company, Inc.",
+      "url": "https://patents.google.com/patent/US1982637A/en",
+      "type": "Expired primary patent; drawing sheet and descriptive text",
+      "use": "Primary design disclosure, not a parts breakdown or proof that the patented construction exactly matches each AN 5735-1 serial/configuration. The actual specimen patent stamping strengthens family linkage only.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/us1982637a_sperry_directional_gyroscope.pdf",
+      "sha256": "ffe39e6e04589cd74eef69aa9e4c35f3e07bfd62d9f8b199b903b0777c1467b5",
+      "locator": "PDF p. 1 has Figs. 1-5: face, vertical section, orthogonal section, nozzle detail, and single-jet variant. PDF pp. 2-3 describe the assembly and air/erection behavior."
+    }
+  ]
+}

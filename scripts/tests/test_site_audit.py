@@ -20,3 +20,9 @@ class AuditTests(unittest.TestCase):
     parser = audit.PageParser(); parser.feed('<meta http-equiv="refresh" content="0; url=/flight-risk-assessment/">')
     self.assertEqual(parser.refresh, '0; url=/flight-risk-assessment/')
     self.assertIn('/flight-risk-assessment/', parser.refresh)
+
+  def test_pilotsolve_mobile_is_narrowly_classified_as_built_runtime_entry(self):
+    reason = audit.runtime_entry_reason('pilotsolve/mobile.html')
+    self.assertIn('../sources/pilotsolve/scripts/prepare-suarezcfi.mjs', reason)
+    self.assertIsNone(audit.runtime_entry_reason('pilotsolve/another.html'))
+    self.assertIsNone(audit.runtime_entry_reason('learn/index.html'))

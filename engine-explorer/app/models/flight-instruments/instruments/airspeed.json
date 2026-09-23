@@ -1,0 +1,313 @@
+{
+  "id": "airspeed",
+  "path": "../instruments/airspeed.glb",
+  "bytes": 1334440,
+  "sha256": "b2f4677362e6327b7999f15f029e806f602561ee20da9543c34696f86c1cbabb",
+  "parts": [
+    {
+      "id": "airspeed-case",
+      "name": "Airspeed indicator case and bezel",
+      "instrument": "airspeed",
+      "system": "structure",
+      "description": "United reference envelope: 3.248 in typical flange width; case depth shown at the published maximum (2.30 in ASI, 4.0 in altimeter/VSI). Unspecified diameters and features are reconstructed. Internal reference mechanisms come from separate sources; this is not a complete United replica.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "united-instruments-ui8000-airspeed-specification"
+      ]
+    },
+    {
+      "id": "airspeed-needle",
+      "name": "Airspeed indicator indicating element",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "united-8000"
+      ]
+    },
+    {
+      "id": "airspeed-aneroid-stack",
+      "name": "Airspeed indicator corrugated diaphragm stack",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Circular corrugated diaphragm faces lie in the x/y plane and stack along the depth axis."
+    },
+    {
+      "id": "airspeed-capsule-clevis",
+      "name": "Airspeed indicator capsule clevis",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired clevis cheeks and cross-pin transfer membrane displacement to the connecting link. Travel is visually amplified."
+    },
+    {
+      "id": "airspeed-transmission-link",
+      "name": "Airspeed indicator moving transmission link",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Pinned connecting link follows capsule displacement and the sector lever. Kinematic travel is illustrative, not calibrated."
+    },
+    {
+      "id": "airspeed-rocking-shaft",
+      "name": "Airspeed indicator rocking shaft",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Bridge and rocking shaft transfer diaphragm motion to the sector."
+    },
+    {
+      "id": "airspeed-sector-gear",
+      "name": "Airspeed indicator sector gear",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Partial toothed sector keeps the linkage within the .375-radius reconstructed case envelope."
+    },
+    {
+      "id": "airspeed-pinion",
+      "name": "Airspeed indicator handstaff pinion",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Small reduction pinion between sector and centered indicating shaft."
+    },
+    {
+      "id": "airspeed-pointer-shaft",
+      "name": "Airspeed indicator pointer shaft",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Indicating shaft is centered on the dial axis."
+    },
+    {
+      "id": "airspeed-pointer-link",
+      "name": "Airspeed indicator pointer linkage",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Linkage ends at the centered pointer shaft."
+    },
+    {
+      "id": "airspeed-hairspring",
+      "name": "Airspeed indicator hairspring",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Planar spiral hairspring supplies restoring force around the linkage."
+    },
+    {
+      "id": "airspeed-shaft-bearing",
+      "name": "Airspeed indicator shaft bearing",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Jewel-like bearing at the centered shaft."
+    },
+    {
+      "id": "airspeed-pitot-port",
+      "name": "Airspeed pitot port",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Rear pressure connection in the instructional pitot-static layout."
+    },
+    {
+      "id": "airspeed-static-port",
+      "name": "Airspeed static port",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Rear pressure connection in the instructional pitot-static layout."
+    },
+    {
+      "id": "airspeed-movement-bridge",
+      "name": "Airspeed movement support bridge",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired rails and cross-shaft support the capsule-to-sector transmission. Layout follows visual references and Army Figure 4-11; all bridge dimensions and fastener placements are inferred."
+    },
+    {
+      "id": "airspeed-pitot-capsule-line",
+      "name": "Airspeed pitot line to diaphragm",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Total pressure is admitted to the capsule; static pressure acts in the surrounding instrument case."
+    },
+    {
+      "id": "airspeed-static-case-line",
+      "name": "Airspeed static line to case",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Static connection terminates in the airtight case outside the diaphragm."
+    },
+    {
+      "id": "airspeed-long-lever",
+      "name": "Airspeed long lever",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Separate long lever from Army Figure 4-11 joins the diaphragm linkage to the rocking-shaft sector."
+    },
+    {
+      "id": "airspeed-case-screw-0",
+      "name": "Airspeed indicator case screw 1",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "airspeed-case-screw-1",
+      "name": "Airspeed indicator case screw 2",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "airspeed-case-screw-2",
+      "name": "Airspeed indicator case screw 3",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "airspeed-case-screw-3",
+      "name": "Airspeed indicator case screw 4",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    }
+  ],
+  "units": "meters",
+  "exactPhysicalGeometryAccepted": false,
+  "sources": [
+    {
+      "id": "faa-ifh",
+      "title": "Instrument Flying Handbook, FAA-H-8083-15B",
+      "publisher": "FAA",
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf",
+      "type": "primary-handbook",
+      "use": "Instrument-system principles and failure/indication context; handbook edition must be checked against current FAA index before publication.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Instrument systems chapter/sections; verify edition, section, and page for every claim."
+    },
+    {
+      "id": "united-8000",
+      "title": "8000 Series Airspeed Indicators",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/products/airspeed/",
+      "type": "manufacturer-product-page",
+      "use": "Public product description/specification links for the 8000 series only; dimensions limited to published data.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "8000 Series section and linked specification sheets."
+    },
+    {
+      "id": "united-instruments-ui8000-airspeed-specification",
+      "title": "Indicator-Airspeed, United Instruments Spec. No. UI8000 (revision E)",
+      "publisher": "United Instruments, Inc. (OEM specification)",
+      "url": "https://www.unitedinst.com/Documents/UI8000%20(E).pdf?action=view",
+      "type": "primary-reference",
+      "use": "Best OEM exterior-envelope and operating-range source found for an actual United mechanical ASI; pair with Army Figure 4-11 only as generic internal architecture, not as the UI8000's confirmed internals.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/United_UI8000_E_specification.pdf",
+      "sha256": "ef76279b1ef85c8d7c2d792a9025a00511a069991ee09a998c222f891bc25f16",
+      "locator": [
+        "PDF p.1 states the airspeed operating principle: differential between pitot and static pressure produces the pointer indication; calibrated range for part 8000 is 0-200 mph, 8025 is 0-250 mph, and 8030 is 0-300 mph.",
+        "PDF p.7, OEM drawing: dimensioned front/side views, case per MS33549, and pitot/static port thread 1/8-27 ANPT per MIL-P-7105."
+      ]
+    },
+    {
+      "id": "army-instruments",
+      "title": "Aviation Unit Maintenance (AVUM) and Aviation Intermediate Maintenance (AVIM) Manual for General Aircraft Maintenance, Electrical and Instrument Maintenance Procedures and Practices, Volume 4, TM 1-1500-204-23-4",
+      "publisher": "U.S. Department of the Army / LOGSA; hosted by Chinook Helicopter public technical-manual archive",
+      "url": "https://ww.chinook-helicopter.com/Publications/General_Aircraft_Maintenance_Technical_Manuals/TM_1-1500-204-23-4.pdf",
+      "type": "primary-reference",
+      "use": "Best primary-source public mechanical layout for conventional ASI and VSI behavior; not a matched component overhaul manual and not usable for dimensional reconstruction.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/TM-1-1500-204-23-4_aircraft_instruments.pdf",
+      "sha256": "d78ffb973309cb283d9ec3865e8fa4d2605c7997de306da081d0935990c91ce2",
+      "locator": [
+        "PDF p.62, printed p.4-13, Figure 4-11: sectional airspeed-indicator drawing labels static/pitot connections, diaphragm, restraining spring, hairspring, rocking shaft, sector, long lever, handstaff pinion and pointer. Adjacent text describes capsule motion converted to pointer movement by mechanical linkage.",
+        "PDF p.63, printed p.4-14, text: conventional VSI includes two air-enclosing chambers, with a pressure-sensitive diaphragm directly connected to static pressure and an airtight case connected through a thin-walled porcelain capillary; diaphragm motion drives the pointer. This is source text rather than inference.",
+        "PDF p.64, printed p.4-15, Figure 4-12: conventional VSI sectional layout with internal diaphragm/chamber, mechanical linkage and case/capillary path. It is a section/layout view, not an exploded parts drawing.",
+        "PDF p.63, printed p.4-14, Table 4-1 gives ASI test tolerance values for MS28045/MS28021/MS28046 at specified knots. Those are performance limits, not physical dimensions."
+      ]
+    }
+  ]
+}

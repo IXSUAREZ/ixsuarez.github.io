@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/assets/appearance.js"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
 <title>Canard Wings and Forward Control Surfaces | SuarezCFI.com</title>
 <meta name="description" content="Learn what canard wings are, how forward control surfaces affect pitch, lift, stability, stall behavior, and aircraft design tradeoffs." />
@@ -40,8 +41,9 @@
   <meta property="article:published_time" content="2026-04-27" />
   <meta property="article:modified_time" content="2026-04-27" />
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
 <link rel="stylesheet" href="/assets/site-discovery.css" />
+  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
+<link rel="stylesheet" href="/assets/avionics.css">
 </head>
 <body class="cat-systems editorial-page">
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -52,33 +54,26 @@
   <!-- site-nav -->
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
+      <div class="av-destinations" aria-label="Destinations">
+        <a class="av-key" href="/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#House"></use></svg><span>Home</span></a>
+        <a class="av-key" href="/learn/" aria-current="page"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#BookOpen"></use></svg><span>Learn</span></a>
+        <a class="av-key" href="/tools/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Wrench"></use></svg><span>Tools</span></a>
+        <a class="av-key av-wide" href="/discovery-flight-louisville-ky/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Plane"></use></svg><span>Fly with Diego</span></a>
+      </div>
       <a href="/" class="wordmark" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
       <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
-        <span class="nav-toggle-label">Menu</span>
+        <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg><span class="nav-toggle-label">Menu</span>
         <span class="nav-toggle-icon" aria-hidden="true"></span>
       </button>
       <div class="nav-links" id="primary-nav-links">
+        <!-- tool-actions -->
+        <!-- /tool-actions -->
+        <p class="av-menu-heading">Website</p>
         <a href="/flight-training-louisville-ky/">Training</a>
-        <a href="/learn/" aria-current="page">Learn</a>
         <a href="/blog/">Blog</a>
-        <div class="nav-dropdown">
-          <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
-            Tools
-            <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-drop-panel" role="menu">
-  <a href="/tools/" role="menuitem"><strong>All pilot tools</strong><span>Explore the full collection</span></a>
-  <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
-  <a href="/part-61-calculator/" role="menuitem"><strong>CertPath</strong><span>FAA rating planner</span></a>
-  <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk assessment</span></a>
-  <a href="/aero-lab/" role="menuitem"><strong>Aero Lab</strong><span>Interactive wind tunnel</span></a>
-  <a href="/engine-explorer/" role="menuitem"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
-  <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>Fundamentals of Instructing flashcards</span></a>
-  <a href="/pilotsolve/" role="menuitem"><strong>PilotSolve</strong><span>Mobile flight calculator</span></a>
-          </div>
-        </div>
         <a href="/#about">About</a>
-        <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
+        <a href="/#contact">Contact</a>
+        <a href="/discovery-flight-louisville-ky/" class="nav-cta av-compact-link" data-cta-id="nav-book-discovery">Fly with Diego</a>
       </div>
     </nav>
   </header>
@@ -334,6 +329,6 @@
 }
   </script>
   <!-- Primary keyword: canard wings; Secondary keywords: canard aircraft, forward control surfaces, aircraft stability -->
-  <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
+  <script src="/assets/site-nav.js?v=5a4eb82d2f" defer></script>
   </body>
 </html>

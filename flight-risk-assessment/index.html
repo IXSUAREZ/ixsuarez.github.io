@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+<script src="/assets/appearance.js"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
 <title>FlightRisk — SuarezCFI Flight Risk Assessment</title>
 <meta name="description" content="SuarezCFI FlightRisk is a private, on-device Flight Risk Assessment Tool with complete PAVE coverage, explicit completion checks, saved pilot and aircraft setup, and transparent scoring." />
@@ -36,71 +37,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/design-system.css?v=20260814" />
-    <style>
-      /* Tool-nav cluster (SuarezCFI tool-nav context, DESIGN.md §4) — the
-         leading brand group inside the single canonical pill. */
-      .nav--tool { --maxw: 1400px; } /* tool pills run wider than marketing pages */
-      .nav-brand { display: inline-flex; align-items: center; gap: 13px; flex: none; }
-      .link-back {
-        display: inline-flex; align-items: center; gap: 6px;
-        min-height: 44px; padding: 6px 4px;
-        color: var(--ink-muted); font-size: 13.5px; font-weight: 600;
-        text-decoration: none; white-space: nowrap; border-radius: 8px;
-        transition: color 0.2s ease;
-      }
-      .link-back:hover { color: var(--navy); }
-      .nav-brand-divider { width: 1px; height: 26px; background: rgba(13, 19, 48, 0.16); flex: none; }
-      .nav-tool-mark {
-        display: inline-flex; align-items: center; gap: 9px;
-        text-decoration: none; white-space: nowrap; padding: 6px 0;
-      }
-      .nav-tool-mark img { width: 28px; height: 28px; display: block; }
-      .nav-tool-name { font-weight: 700; font-size: 15px; color: var(--navy); letter-spacing: -0.01em; }
-      .nav-tool-chip {
-        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700;
-        letter-spacing: 0.12em; color: var(--navy);
-        background: var(--yellow-soft); border-radius: 999px; padding: 3px 8px;
-      }
-      .nav-sep { width: 1px; height: 22px; background: rgba(13, 19, 48, 0.12); margin: 0 8px; flex: none; }
-      #app-nav-slot:empty { display: none; }
-      #app-nav-slot { display: inline-flex; align-items: center; }
-      .nav-extra-reset {
-        display: inline-flex; align-items: center; gap: 6px;
-        min-height: 44px; padding: 9px 12px; border: none; background: none;
-        color: var(--ink-muted); font: inherit; font-size: 14.5px; font-weight: 500;
-        border-radius: var(--r-pill); cursor: pointer; white-space: nowrap;
-        transition: background 0.2s ease, color 0.2s ease;
-      }
-      .nav-extra-reset:hover { background: rgba(190, 18, 60, 0.08); color: #9f1239; }
-      .nav-extra-reset svg { width: 15px; height: 15px; }
-      .nav-cta .cta-short { display: none; }
-      @media (max-width: 1320px) {
-        .nav-tool-chip { display: none; }
-        .nav-sep { display: none; }
-        .nav-links > a, .nav-drop-toggle { padding-left: 8px; padding-right: 8px; }
-        .nav-cta .cta-long { display: none; }
-        .nav-cta .cta-short { display: inline; }
-      }
-      /* Desktop mid-band only (981–1320px): lighten the pill. On mobile
-         (≤980px) every link must survive for the sheet. */
-      @media (min-width: 981px) and (max-width: 1320px) {
-        .link-back { display: none; }
-        #primary-nav-links > a[href="/learn/"],
-        #primary-nav-links > a[href="/blog/"],
-        #primary-nav-links > a[href="/#contact"] { display: none; }
-      }
-      /* never let the pill's flex layout squeeze the CTA or brand cluster */
-      .nav-links > a.nav-cta, .nav-brand, .nav-extra-reset { flex: none; }
-      .nav-links { min-width: 0; }
-      @media (max-width: 980px) {
-        .nav-sep { display: none; }
-        #app-nav-slot { display: contents; }
-        .nav-extra-reset { width: 100%; justify-content: flex-start; min-height: 48px; padding: 13px 16px; border-radius: 14px; font-size: 16px; }
-      }
-      @media (max-width: 480px) {
-        .nav-tool-name { display: none; }
-      }
-    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -121,10 +57,10 @@
     </script>
     <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
     <script defer src="/assets/cta-tracking.js"></script>
-    <link rel="stylesheet" href="/assets/premium.css?v=e8869804da" />
-    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-Co6B26Jn.js"></script>
-    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-Dw_-J8Cy.css">
-<link rel="stylesheet" href="/assets/site-discovery.css" />
+    <link rel="stylesheet" href="/assets/premium.css?v=20260907" />
+    <link rel="stylesheet" href="/assets/avionics.css" />
+    <script type="module" crossorigin src="/flight-risk-assessment/assets/index-2ROtX6LD.js"></script>
+    <link rel="stylesheet" crossorigin href="/flight-risk-assessment/assets/index-CsvxHyBX.css">
 </head>
   <body class="tool-page flightrisk-view">
     <!-- Aviation-themed backdrop (site design system) -->
@@ -133,48 +69,29 @@
       <div class="aviation-ambience"></div>
     </div>
 
-    <!-- Canonical SuarezCFI TOOL pill nav (DESIGN.md §4): one bar — link-back,
-         wordmark, FlightRisk tool mark, app routes, site links, one CTA.
-         #app-nav-slot receives Reset/status from the React app (portal). -->
+    <!-- One app-specific bottom dock; all global destinations live in Menu. -->
     <header class="nav-wrap" role="banner">
-      <nav class="nav nav--tool" aria-label="Primary">
-        <span class="nav-brand">
-          <a href="/" class="link-back">← SuarezCFI.com</a>
-          <a href="/" class="wordmark" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
-          <span class="nav-brand-divider" aria-hidden="true"></span>
-          <a href="/flight-risk-assessment/" class="nav-tool-mark">
-            <img src="/assets/identities/flight-risk-assessment/logo.png" alt="" width="28" height="28" />
-            <span class="nav-tool-name">FlightRisk</span>
-            <span class="nav-tool-chip">FRAT</span>
-          </a>
-        </span>
-        <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
-          <span class="nav-toggle-label">Menu</span>
-          <span class="nav-toggle-icon" aria-hidden="true"></span>
-        </button>
-        <div class="nav-links" id="primary-nav-links">
-          <a href="/flight-risk-assessment/" data-app-route>Assessment</a>
-          <a href="/flight-risk-assessment/methodology" data-app-route>Methodology</a>
-          <a href="/flight-risk-assessment/guide" data-app-route>Guide</a>
-          <span class="nav-sep" aria-hidden="true"></span>
-          <a href="/learn/">Learn</a>
-          <a href="/blog/">Blog</a>
-          <div class="nav-dropdown">
-            <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
-              Tools
-              <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="nav-drop-panel" role="menu">
-              <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
-              <a href="/flight-risk-assessment/" role="menuitem" aria-current="page"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
-              <a href="/part-61-calculator/" role="menuitem"><strong>CertPath</strong><span>Training-time wizard</span></a>
-              <a href="/engine-explorer/" role="menuitem"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
-              <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
-            </div>
+      <nav class="nav nav--tool" aria-label="FlightRisk navigation">
+        <div class="av-destinations" aria-label="FlightRisk sections">
+          <a class="av-key" href="/flight-risk-assessment/" data-app-route><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#ClipboardList"></use></svg><span>Assessment</span></a>
+          <a class="av-key" href="/flight-risk-assessment/methodology/" data-app-route><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#BookOpen"></use></svg><span>Methodology</span></a>
+          <a class="av-key" href="/flight-risk-assessment/guide/" data-app-route><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Compass"></use></svg><span>Guide</span></a>
+        </div>
+        <div class="nav-tools">
+          <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
+            <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg><span class="nav-toggle-label">Menu</span>
+          </button>
+          <div class="nav-links" id="primary-nav-links">
+            <a href="/">Home</a>
+            <a href="/flight-training-louisville-ky/">Training</a>
+            <a href="/learn/">Learn</a>
+            <a href="/blog/">Blog</a>
+            <a href="/tools/">Tools</a>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+            <a href="/discovery-flight-louisville-ky/" data-cta-id="nav-book-discovery">Fly with Diego</a>
+            <span id="app-nav-slot"></span>
           </div>
-          <a href="/#contact">Contact</a>
-          <span id="app-nav-slot"></span>
-          <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery"><span class="cta-long">Fly with Diego</span><span class="cta-short">Book</span></a>
         </div>
       </nav>
     </header>
@@ -190,7 +107,7 @@
             <p class="footer-col-title">Learn</p>
             <a href="/learn/">Learn</a>
             <a href="/blog/">Blog</a>
-            <a href="/#tools">Free tools</a>
+            <a href="/tools/">Tools</a>
             <a href="/#about">About</a>
             <a href="/#faq">FAQ</a>
           </div>
@@ -227,7 +144,6 @@
     <script>
       document.getElementById('yr').textContent = new Date().getFullYear();
     </script>
-    <script defer src="/assets/site-nav.js?v=b1adaa2de6"></script>
-  <script src="/assets/app-site-navigation.js" defer></script>
-</body>
+    <script defer src="/assets/site-nav.js"></script>
+  </body>
 </html>

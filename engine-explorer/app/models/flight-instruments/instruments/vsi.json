@@ -1,0 +1,280 @@
+{
+  "id": "vsi",
+  "path": "../instruments/vsi.glb",
+  "bytes": 1126788,
+  "sha256": "ce21627e12305a8106adb684c46b7ed498a658e55963c70ee95bf88c797ad973",
+  "parts": [
+    {
+      "id": "vsi-case",
+      "name": "Vertical-speed indicator case and bezel",
+      "instrument": "vsi",
+      "system": "structure",
+      "description": "United reference envelope: 3.248 in typical flange width; case depth shown at the published maximum (2.30 in ASI, 4.0 in altimeter/VSI). Unspecified diameters and features are reconstructed. Internal reference mechanisms come from separate sources; this is not a complete United replica.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "united-instruments-ui7000-rate-of-climb-specification"
+      ]
+    },
+    {
+      "id": "vsi-needle",
+      "name": "Vertical-speed indicator indicating element",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "united-7000"
+      ]
+    },
+    {
+      "id": "vsi-diaphragm-stack",
+      "name": "Vertical-speed indicator corrugated diaphragm stack",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Circular corrugated diaphragm faces lie in the x/y plane and stack along the depth axis."
+    },
+    {
+      "id": "vsi-capsule-clevis",
+      "name": "Vertical-speed indicator capsule clevis",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired clevis cheeks and cross-pin transfer membrane displacement to the connecting link. Travel is visually amplified."
+    },
+    {
+      "id": "vsi-transmission-link",
+      "name": "Vertical-speed indicator moving transmission link",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Pinned connecting link follows capsule displacement and the sector lever. Kinematic travel is illustrative, not calibrated."
+    },
+    {
+      "id": "vsi-rocking-shaft",
+      "name": "Vertical-speed indicator rocking shaft",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Bridge and rocking shaft transfer diaphragm motion to the sector."
+    },
+    {
+      "id": "vsi-sector-gear",
+      "name": "Vertical-speed indicator sector gear",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Partial toothed sector keeps the linkage within the .375-radius reconstructed case envelope."
+    },
+    {
+      "id": "vsi-pinion",
+      "name": "Vertical-speed indicator handstaff pinion",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Small reduction pinion between sector and centered indicating shaft."
+    },
+    {
+      "id": "vsi-pointer-shaft",
+      "name": "Vertical-speed indicator pointer shaft",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Indicating shaft is centered on the dial axis."
+    },
+    {
+      "id": "vsi-pointer-link",
+      "name": "Vertical-speed indicator pointer linkage",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Linkage ends at the centered pointer shaft."
+    },
+    {
+      "id": "vsi-hairspring",
+      "name": "Vertical-speed indicator hairspring",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Planar spiral hairspring supplies restoring force around the linkage."
+    },
+    {
+      "id": "vsi-shaft-bearing",
+      "name": "Vertical-speed indicator shaft bearing",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Jewel-like bearing at the centered shaft."
+    },
+    {
+      "id": "vsi-rear-static-inlet",
+      "name": "VSI rear static inlet line",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Connects the rear static fitting to the diaphragm/capillary branch point."
+    },
+    {
+      "id": "vsi-direct-static-line",
+      "name": "VSI direct static to diaphragm",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Unrestricted static path enters the diaphragm. The case receives static through a separate calibrated capillary."
+    },
+    {
+      "id": "vsi-calibrated-capillary",
+      "name": "VSI porcelain capillary to case",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Thin-walled porcelain capillary vents the surrounding case to the static inlet. The bore size is unverified."
+    },
+    {
+      "id": "vsi-case-screw-0",
+      "name": "Vertical-speed indicator case screw 1",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-case-screw-1",
+      "name": "Vertical-speed indicator case screw 2",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-case-screw-2",
+      "name": "Vertical-speed indicator case screw 3",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-case-screw-3",
+      "name": "Vertical-speed indicator case screw 4",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    }
+  ],
+  "units": "meters",
+  "exactPhysicalGeometryAccepted": false,
+  "sources": [
+    {
+      "id": "faa-ifh",
+      "title": "Instrument Flying Handbook, FAA-H-8083-15B",
+      "publisher": "FAA",
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf",
+      "type": "primary-handbook",
+      "use": "Instrument-system principles and failure/indication context; handbook edition must be checked against current FAA index before publication.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Instrument systems chapter/sections; verify edition, section, and page for every claim."
+    },
+    {
+      "id": "united-7000",
+      "title": "7000 Series Vertical Speed Indicators",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/products/verticalspeed/",
+      "type": "manufacturer-product-page",
+      "use": "Public product description/specification links for the 7000 series. Use 7000 for VSI; 7100 is a different instantaneous VSI series.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "7000 Series section and linked specification sheets; keep separate from 7100 Series."
+    },
+    {
+      "id": "united-instruments-ui7000-rate-of-climb-specification",
+      "title": "Indicator-Rate of Climb, United Instruments Spec. No. UI7000 (revision F)",
+      "publisher": "United Instruments, Inc. (OEM specification)",
+      "url": "https://www.unitedinst.com/Documents/UI7000%20(F).pdf?action=view",
+      "type": "primary-reference",
+      "use": "Best OEM exterior-envelope and performance source found for an actual conventional United mechanical VSI/rate-of-climb family; pair with Army Figure 4-12 only as generic internal architecture, not as the UI7000's confirmed internals.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/United_UI7000_F_specification.pdf",
+      "sha256": "4884219d79791b7a5e0797f8fceb64fbbd3cc683cf510914adfef998b1832321",
+      "locator": [
+        "PDF p.4, OEM drawing: dimensioned face and side views for UI7000-series configurations, with case per MS33549 and 1/8-27 ANPT ports per MIL-P-7105.",
+        "PDF p.1 describes pressure-difference operation, single pointer, range and zero setting; PDF pp.2-3 provide performance/tolerance criteria."
+      ]
+    },
+    {
+      "id": "army-instruments",
+      "title": "Aviation Unit Maintenance (AVUM) and Aviation Intermediate Maintenance (AVIM) Manual for General Aircraft Maintenance, Electrical and Instrument Maintenance Procedures and Practices, Volume 4, TM 1-1500-204-23-4",
+      "publisher": "U.S. Department of the Army / LOGSA; hosted by Chinook Helicopter public technical-manual archive",
+      "url": "https://ww.chinook-helicopter.com/Publications/General_Aircraft_Maintenance_Technical_Manuals/TM_1-1500-204-23-4.pdf",
+      "type": "primary-reference",
+      "use": "Best primary-source public mechanical layout for conventional ASI and VSI behavior; not a matched component overhaul manual and not usable for dimensional reconstruction.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/TM-1-1500-204-23-4_aircraft_instruments.pdf",
+      "sha256": "d78ffb973309cb283d9ec3865e8fa4d2605c7997de306da081d0935990c91ce2",
+      "locator": [
+        "PDF p.62, printed p.4-13, Figure 4-11: sectional airspeed-indicator drawing labels static/pitot connections, diaphragm, restraining spring, hairspring, rocking shaft, sector, long lever, handstaff pinion and pointer. Adjacent text describes capsule motion converted to pointer movement by mechanical linkage.",
+        "PDF p.63, printed p.4-14, text: conventional VSI includes two air-enclosing chambers, with a pressure-sensitive diaphragm directly connected to static pressure and an airtight case connected through a thin-walled porcelain capillary; diaphragm motion drives the pointer. This is source text rather than inference.",
+        "PDF p.64, printed p.4-15, Figure 4-12: conventional VSI sectional layout with internal diaphragm/chamber, mechanical linkage and case/capillary path. It is a section/layout view, not an exploded parts drawing.",
+        "PDF p.63, printed p.4-14, Table 4-1 gives ASI test tolerance values for MS28045/MS28021/MS28046 at specified knots. Those are performance limits, not physical dimensions."
+      ]
+    }
+  ]
+}

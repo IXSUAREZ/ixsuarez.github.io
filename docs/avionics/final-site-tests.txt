@@ -1,0 +1,30 @@
+✔ dark default and blocked storage remain usable (5.171375ms)
+✔ global wins over PilotSolve; valid legacy import preserves payload (1.259875ms)
+✔ system reacts live and storage event synchronizes (1.744333ms)
+✔ solid preference and OS reduced transparency compose (1.797875ms)
+✔ invalid persisted values and malformed JSON fall back safely (0.409459ms)
+✔ certificate dock reflects native disabled steps and delegates each allowed click once (104.027916ms)
+✔ CertPath dock uses native prerequisite handler instead of advancing itself (27.108084ms)
+✔ Simply Endorsed rerender updates active section and restores dock focus (21.365666ms)
+✔ site menu closes on Escape and outside pointer while keeping one set of controls (31.354375ms)
+✔ embedded appearance follows storage events; collection and child each own one navigation layer (28.964958ms)
+✔ configured endpoint sends once and only accepted 2xx responses produce success analytics (12.622375ms)
+✔ configured discovery form uses its inquiry label (0.651209ms)
+✔ failed endpoint response restores fallback and keeps entered values (4.663916ms)
+✔ placeholder uses an explicit email handoff and never claims the message was sent (2.715458ms)
+✔ lazy loads on focus and filters text and stage safely (12.35775ms)
+✔ offline index reports browse fallback and does not throw (2.476417ms)
+✔ automatic daylight renders immediately and ignores old controls or saved Off preferences (3.877ms)
+✔ automatic sunrise and sunset crossfades reach the complete night palette and stars (1.57875ms)
+✔ summer sky stays light across UTC midnight; winter evening is night (4.787916ms)
+✔ animation runs at 30fps, pauses offscreen, and resumes without jumping (0.807667ms)
+✔ reduced motion retains the complete sky and still follows time of day (1.36975ms)
+✔ graphics failure keeps the matching still sky, and context restoration resumes animation (8.03475ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1245.948083

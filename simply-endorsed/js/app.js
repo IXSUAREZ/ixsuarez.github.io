@@ -2050,7 +2050,7 @@
     const renderer = getSubcategoryContentRenderer(subcategory);
     const searchApplies = Boolean(state.query) && renderer !== "pre-solo";
     const parts = [
-      formatItemCount(visibleCount, subcategory) + (visibleCount === 1 ? " matches" : " match") + " your selection",
+      formatItemCount(visibleCount, subcategory) + (visibleCount === 1 ? " result" : " results"),
     ];
 
     if (searchApplies && scopeCount !== visibleCount) {
@@ -2060,10 +2060,10 @@
       parts.push("full bundle");
     }
     if (hasActiveFilters()) {
-      parts.push("filters active");
+      parts.push("Filters active");
     }
     if (searchApplies) {
-      parts.push('search "' + state.query + '"');
+      parts.push('Search: "' + state.query + '"');
     }
 
     dom.resultsSummary.textContent = parts.join(" · ");

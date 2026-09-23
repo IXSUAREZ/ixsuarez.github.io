@@ -1,0 +1,102 @@
+[
+  {
+    "path": "models/lycoming-build-report.json",
+    "matches": true
+  },
+  {
+    "path": "models/rotax-912-uls.json",
+    "matches": true
+  },
+  {
+    "path": "models/lycoming-io-360-l2a.json",
+    "matches": true
+  },
+  {
+    "path": "models/preservation.json",
+    "matches": true
+  },
+  {
+    "path": "models/lycoming-io-360-l2a.glb.gz",
+    "matches": true
+  },
+  {
+    "path": "models/rotax-912-uls.glb.gz",
+    "matches": true
+  },
+  {
+    "path": "models/build-report.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/altimeter.glb",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/turn-coordinator.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/turn-coordinator.glb",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/vsi.glb",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/attitude.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/airspeed.glb",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/attitude.glb",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/airspeed.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/vsi.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/heading.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/heading.glb",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/instruments/altimeter.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/traditional-six-pack/bench.glb.gz",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/traditional-six-pack/README.md",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/traditional-six-pack/manifest.json",
+    "matches": true
+  },
+  {
+    "path": "models/flight-instruments/traditional-six-pack/bench.glb",
+    "matches": true
+  },
+  {
+    "path": "assets/index-BOxk6Ov7.js",
+    "matches": true
+  },
+  {
+    "path": "assets/InstrumentApp-BwiHAWWP.js",
+    "matches": true
+  }
+]

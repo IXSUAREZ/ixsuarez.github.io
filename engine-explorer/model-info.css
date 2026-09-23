@@ -1,0 +1,23 @@
+/* Collection notes float over the model instead of adding a footer strip. */
+body.engine-explorer-page .engine-explorer-main{position:relative}
+body.engine-explorer-page .model-info-trigger{position:absolute;z-index:5;inset-block-start:max(12px,env(safe-area-inset-top));inset-inline-start:max(16px,env(safe-area-inset-left));display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 14px;color:var(--av-ink);background:var(--av-raised);border:1px solid var(--av-line);border-radius:9px;box-shadow:inset 0 1px #ffffff22,0 2px 7px #0002;font:600 13px/1.3 system-ui,sans-serif;cursor:pointer}
+body.engine-explorer-page .model-info-trigger:hover{background:var(--av-panel);border-color:var(--av-cyan)}
+body.engine-explorer-page .model-info-trigger:active{transform:translateY(1px);box-shadow:inset 0 1px 3px #0003}
+body.engine-explorer-page .model-info-trigger svg,body.engine-explorer-page .model-info-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+body.engine-explorer-page.is-exploring .model-info-trigger{display:none}
+body.engine-explorer-page .model-info-dialog{position:fixed;box-sizing:border-box;inline-size:min(560px,calc(100vw - 32px));max-block-size:min(680px,calc(100dvh - 32px));overflow:auto;padding:28px;background:var(--av-panel);color:var(--av-ink);border:1px solid var(--av-line);border-radius:16px;box-shadow:0 24px 70px #0006}
+body.engine-explorer-page .model-info-dialog::backdrop{background:rgba(7,13,18,.58)}
+body.engine-explorer-page .model-info-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-block-end:20px}
+body.engine-explorer-page .model-info-eyebrow{margin:0 0 7px;color:var(--av-cyan);font:700 11px/1.3 system-ui,sans-serif;letter-spacing:.13em}
+body.engine-explorer-page .model-info-dialog h2{margin:0;color:var(--av-ink);font:600 clamp(24px,4vw,30px)/1.15 system-ui,sans-serif;letter-spacing:-.025em}
+body.engine-explorer-page .model-info-dialog p:not(.model-info-eyebrow){margin:0 0 14px;color:var(--av-muted);font:400 16px/1.6 system-ui,sans-serif}
+body.engine-explorer-page .model-info-close{display:grid;place-items:center;flex:none;inline-size:44px;block-size:44px;background:var(--av-raised);color:var(--av-ink);border:1px solid var(--av-line);border-radius:9px;cursor:pointer}
+body.engine-explorer-page .model-info-close:hover{border-color:var(--av-cyan)}
+body.engine-explorer-page .model-info-reading{display:grid;gap:0;margin-block-start:22px;padding-block-start:16px;border-block-start:1px solid var(--av-line)}
+body.engine-explorer-page .model-info-reading h3{margin:0 0 8px;color:var(--av-ink);font:600 14px/1.4 system-ui,sans-serif}
+body.engine-explorer-page .model-info-reading a{display:flex;justify-content:space-between;gap:12px;align-items:center;min-block-size:44px;padding:9px 0;color:var(--av-cyan);font:500 15px/1.4 system-ui,sans-serif;text-decoration:none;border-block-end:1px solid var(--av-line)}
+body.engine-explorer-page .model-info-reading a:last-child{border-block-end:0}
+body.engine-explorer-page .model-info-reading a:hover{text-decoration:underline}
+body.engine-explorer-page .model-info-dialog :is(button,a):focus-visible,body.engine-explorer-page .model-info-trigger:focus-visible{outline:3px solid var(--av-focus);outline-offset:3px}
+@media(max-width:600px){body.engine-explorer-page .model-info-trigger{inset-inline-start:max(10px,env(safe-area-inset-left));padding:10px;inline-size:44px}body.engine-explorer-page .model-info-trigger span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}body.engine-explorer-page .model-info-dialog{inline-size:100%;max-block-size:min(90dvh,780px);margin:auto 0 0;padding:24px 20px 28px;border-radius:18px 18px 0 0}}
+@media(prefers-reduced-motion:reduce){body.engine-explorer-page .model-info-trigger{transition:none}}

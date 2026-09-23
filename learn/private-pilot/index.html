@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/assets/appearance.js"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
 <title>Private Pilot Guides | SuarezCFI.com</title>
 <meta name="description" content="Plain-language guides for student pilots working through private pilot training, solo, cross-country planning, and checkride preparation." />
@@ -37,8 +38,9 @@
   <link rel="stylesheet" href="/assets/design-system.css?v=20260814" />
   <link rel="stylesheet" href="/learn/style.css" />
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
 <link rel="stylesheet" href="/assets/site-discovery.css" />
+  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
+<link rel="stylesheet" href="/assets/avionics.css">
 </head>
 <body class="cat-private-pilot editorial-page">
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -49,33 +51,26 @@
   <!-- site-nav -->
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
+      <div class="av-destinations" aria-label="Destinations">
+        <a class="av-key" href="/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#House"></use></svg><span>Home</span></a>
+        <a class="av-key" href="/learn/" aria-current="page"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#BookOpen"></use></svg><span>Learn</span></a>
+        <a class="av-key" href="/tools/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Wrench"></use></svg><span>Tools</span></a>
+        <a class="av-key av-wide" href="/discovery-flight-louisville-ky/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Plane"></use></svg><span>Fly with Diego</span></a>
+      </div>
       <a href="/" class="wordmark" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
       <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
-        <span class="nav-toggle-label">Menu</span>
+        <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg><span class="nav-toggle-label">Menu</span>
         <span class="nav-toggle-icon" aria-hidden="true"></span>
       </button>
       <div class="nav-links" id="primary-nav-links">
+        <!-- tool-actions -->
+        <!-- /tool-actions -->
+        <p class="av-menu-heading">Website</p>
         <a href="/flight-training-louisville-ky/">Training</a>
-        <a href="/learn/" aria-current="page">Learn</a>
         <a href="/blog/">Blog</a>
-        <div class="nav-dropdown">
-          <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
-            Tools
-            <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-drop-panel" role="menu">
-  <a href="/tools/" role="menuitem"><strong>All pilot tools</strong><span>Explore the full collection</span></a>
-  <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
-  <a href="/part-61-calculator/" role="menuitem"><strong>CertPath</strong><span>FAA rating planner</span></a>
-  <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk assessment</span></a>
-  <a href="/aero-lab/" role="menuitem"><strong>Aero Lab</strong><span>Interactive wind tunnel</span></a>
-  <a href="/engine-explorer/" role="menuitem"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
-  <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>Fundamentals of Instructing flashcards</span></a>
-  <a href="/pilotsolve/" role="menuitem"><strong>PilotSolve</strong><span>Mobile flight calculator</span></a>
-          </div>
-        </div>
         <a href="/#about">About</a>
-        <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
+        <a href="/#contact">Contact</a>
+        <a href="/discovery-flight-louisville-ky/" class="nav-cta av-compact-link" data-cta-id="nav-book-discovery">Fly with Diego</a>
       </div>
     </nav>
   </header>
@@ -94,37 +89,7 @@
         </div>
       </div>
     </section>
-    <section class="container section-intro" aria-labelledby="related-collections-heading">
-      <span class="eyebrow">Related collections</span>
-      <h2 id="related-collections-heading">Study paths that overlap this topic</h2>
-      <p>These focused pages group the most relevant guides across the library without moving any article URLs.</p>
-    </section>
-    <section class="container hub-grid track-grid" aria-label="Related guide collections">
-          <article class="hub-card">
-            <span>20 guides</span>
-            <h2><a href="/learn/checkride-prep/">Checkride Prep Guides</a></h2>
-            <p>Checkride, ACS, oral-prep, endorsement, and practical-test guides for applicants organizing the final phase of training.</p>
-            <ul><li><a href="/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/">How to Prepare for Your Private Pilot Checkride</a></li><li><a href="/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/">10 Tips for Passing Your Private Pilot Checkride</a></li><li><a href="/learn/private-pilot/private-pilot-acs-airman-certification-standards-101/">Private Pilot ACS: Airman Certification Standards 101</a></li></ul>
-          </article>
-          <article class="hub-card">
-            <span>24 guides</span>
-            <h2><a href="/learn/faa-written-test/">FAA Written Test Study Guides</a></h2>
-            <p>FAA knowledge-test guides for student pilots working through written-test procedures, FTN setup, practice exams, study tools, and ground-school topics.</p>
-            <ul><li><a href="/learn/ground-school/checklist-to-ace-your-faa-private-pilot-written-test/">FAA Private Pilot Written Test Checklist</a></li><li><a href="/learn/ground-school/faa-written-test-procedures-and-ftn/">FAA Written Test Procedures and the FTN</a></li><li><a href="/learn/ground-school/how-to-get-an-faa-tracking-number-ftn/">How to Get an FAA Tracking Number</a></li></ul>
-          </article>
-          <article class="hub-card">
-            <span>24 guides</span>
-            <h2><a href="/learn/flight-training-costs/">Flight Training Cost Guides</a></h2>
-            <p>Cost, budgeting, scholarship, loan, renting, ownership, insurance, and training-efficiency guides for pilots planning the financial side of training.</p>
-            <ul><li><a href="/learn/private-pilot/how-much-does-it-cost-to-become-a-pilot/">Pilot Training Cost Factors and Budget Planning</a></li><li><a href="/learn/private-pilot/how-much-does-a-checkride-cost/">Checkride Cost Factors and Budget Planning</a></li><li><a href="/learn/private-pilot/how-to-budget-for-flight-training-without-burning-out/">How to Budget for Flight Training Without Burning Out</a></li></ul>
-          </article>
-          <article class="hub-card">
-            <span>24 guides</span>
-            <h2><a href="/learn/pilot-medicals/">Pilot Medical Certificate Guides</a></h2>
-            <p>Pilot medical, BasicMed, student pilot certificate, Sport Pilot, eligibility, and FAA paperwork guides written with conservative source-linked language.</p>
-            <ul><li><a href="/learn/private-pilot/faa-medical-certificates-everything-you-need-to-know/">FAA Medical Certificates for Student Pilots</a></li><li><a href="/learn/medical-and-certificates/faa-medical-certificate-requirements-made-easy/">FAA Medical Certificate Requirements Made Easy</a></li><li><a href="/learn/medical-and-certificates/faa-medical-certificate-and-exam-for-pilots-made-easy/">FAA Medical Certificate and Exam for Pilots Made Easy</a></li></ul>
-          </article>
-    </section>
+    <div class="container category-article-heading"><span class="eyebrow">Browse guides</span><h2>All guides in this collection</h2></div>
     <section class="container posts-grid" aria-label="Private Pilot articles">
           <a class="post-card" href="/learn/private-pilot/10-gift-ideas-for-aviation-lovers-and-enthusiasts/">
             <span class="post-tag">Private Pilot</span>
@@ -673,6 +638,37 @@
             <span class="post-card-link">Read guide</span>
           </a>
     </section>
+    <section class="container section-intro" aria-labelledby="related-collections-heading">
+      <span class="eyebrow">Related collections</span>
+      <h2 id="related-collections-heading">Study paths that overlap this topic</h2>
+      <p>These focused pages group the most relevant guides across the library without moving any article URLs.</p>
+    </section>
+    <section class="container hub-grid track-grid" aria-label="Related guide collections">
+          <article class="hub-card">
+            <span>20 guides</span>
+            <h2><a href="/learn/checkride-prep/">Checkride Prep Guides</a></h2>
+            <p>Checkride, ACS, oral-prep, endorsement, and practical-test guides for applicants organizing the final phase of training.</p>
+            <ul><li><a href="/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/">How to Prepare for Your Private Pilot Checkride</a></li><li><a href="/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/">10 Tips for Passing Your Private Pilot Checkride</a></li><li><a href="/learn/private-pilot/private-pilot-acs-airman-certification-standards-101/">Private Pilot ACS: Airman Certification Standards 101</a></li></ul>
+          </article>
+          <article class="hub-card">
+            <span>24 guides</span>
+            <h2><a href="/learn/faa-written-test/">FAA Written Test Study Guides</a></h2>
+            <p>FAA knowledge-test guides for student pilots working through written-test procedures, FTN setup, practice exams, study tools, and ground-school topics.</p>
+            <ul><li><a href="/learn/ground-school/checklist-to-ace-your-faa-private-pilot-written-test/">FAA Private Pilot Written Test Checklist</a></li><li><a href="/learn/ground-school/faa-written-test-procedures-and-ftn/">FAA Written Test Procedures and the FTN</a></li><li><a href="/learn/ground-school/how-to-get-an-faa-tracking-number-ftn/">How to Get an FAA Tracking Number</a></li></ul>
+          </article>
+          <article class="hub-card">
+            <span>24 guides</span>
+            <h2><a href="/learn/flight-training-costs/">Flight Training Cost Guides</a></h2>
+            <p>Cost, budgeting, scholarship, loan, renting, ownership, insurance, and training-efficiency guides for pilots planning the financial side of training.</p>
+            <ul><li><a href="/learn/private-pilot/how-much-does-it-cost-to-become-a-pilot/">Pilot Training Cost Factors and Budget Planning</a></li><li><a href="/learn/private-pilot/how-much-does-a-checkride-cost/">Checkride Cost Factors and Budget Planning</a></li><li><a href="/learn/private-pilot/how-to-budget-for-flight-training-without-burning-out/">How to Budget for Flight Training Without Burning Out</a></li></ul>
+          </article>
+          <article class="hub-card">
+            <span>24 guides</span>
+            <h2><a href="/learn/pilot-medicals/">Pilot Medical Certificate Guides</a></h2>
+            <p>Pilot medical, BasicMed, student pilot certificate, Sport Pilot, eligibility, and FAA paperwork guides written with conservative source-linked language.</p>
+            <ul><li><a href="/learn/private-pilot/faa-medical-certificates-everything-you-need-to-know/">FAA Medical Certificates for Student Pilots</a></li><li><a href="/learn/medical-and-certificates/faa-medical-certificate-requirements-made-easy/">FAA Medical Certificate Requirements Made Easy</a></li><li><a href="/learn/medical-and-certificates/faa-medical-certificate-and-exam-for-pilots-made-easy/">FAA Medical Certificate and Exam for Pilots Made Easy</a></li></ul>
+          </article>
+    </section>
   </main>
   <!-- site-footer -->
   <footer>
@@ -758,6 +754,6 @@
   ]
 }
   </script>
-  <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
+  <script src="/assets/site-nav.js?v=5a4eb82d2f" defer></script>
   </body>
 </html>

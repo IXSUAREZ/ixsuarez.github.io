@@ -668,7 +668,7 @@
     if (t) {
       var parts = [t.title, studentName() || "Student"];
       if (instructorName()) parts.push(state.rating + " " + instructorName());
-      dom.previewCaption.textContent = parts.join(" · ");
+      dom.previewCaption.textContent = (canDownload() ? "Ready to download · " : "Preview · ") + parts.join(" · ");
     } else {
       dom.previewCaption.textContent = "Select a certificate to begin";
     }

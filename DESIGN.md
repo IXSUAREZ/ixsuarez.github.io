@@ -4,7 +4,48 @@ Engineer-facing contract for every page and app on this site. If a change
 violates this file, the change is wrong — update the constitution deliberately,
 never by drift.
 
-## Active design contract — Graphite Horizon, September 7, 2026
+## Active design contract — Avionics, September 22, 2026
+
+This user-approved contract supersedes historical styling and navigation below.
+
+- Dark is the new-visitor default; Day and System are equal supported appearances.
+  `assets/appearance.js` runs synchronously in the head. `suarez:appearance` stores
+  `dark | light | system`; existing valid global preference wins over a valid
+  `pilotsolve:app.settings.theme`. No other saved data is rewritten. Solid controls
+  use `suarez:solid-controls`; reduced transparency also forces opaque controls.
+- `assets/avionics.css` is the FINAL cascade after all page styles, including
+  premium.css and site-discovery.css. Semantic --av-* colors drive matte content,
+  tactile 5–6px control corners, shallow highlights and bounded glass overlays.
+  Existing category and risk colors retain their meanings. Day uses darker accents.
+- One bottom navigation panel. Desktop 64px / max860; tablet64px / max640;
+  phone56px control row with12px side margins. Safe area adds space. These are
+  minimum targets: text growth can expand controls. All targets >=44 CSS px.
+- Site: Home, Training, Learn, Blog, Tools, Fly with Diego, Menu. At <=980px,
+  Home, Learn, Tools, Menu. All destinations remain in the menu. Tool adapters
+  preserve native section/wizard semantics and prerequisite/reset handlers.
+- Focus is immediate and distinct from selection; selected destinations use
+  aria-current=page, ordered wizard stages use aria-current=step. Commands never
+  receive a current-page state. Menu supports Escape/outside dismissal and focus return.
+- Dock persists while scrolling and during ordinary input. The visual viewport
+  provides keyboard clearance; self-contained modal editors may cover navigation.
+- Glass belongs only on dock, menus and temporary overlays; article/form/result
+  surfaces are matte. Reduced motion removes new UI transitions. No magnification,
+  decorative loops or counting animation through intermediate calculated results.
+- Keep the existing system-font fallbacks. Dock icons are licensed Lucide paths
+  (`assets/avionics-icons-LICENSE.txt`) and always have visible text labels.
+- THE HOMEPAGE SKY IS PROTECTED: premium-home.js, premium-home.css, all sky assets,
+  shader, timing, solar behavior, fallback, layers and hero bounds remain unchanged.
+  Theme preference affects surrounding interface, not the sky renderer.
+- Preserve all content, routes, calculations, source links, saved formats, backend
+  APIs and certificate/export geometry. Aero Lab retains its desktop/pointer gate.
+  Crank & Core parent owns collection navigation; child owns exploration toolbar.
+- Generate shared HTML using sync-chrome.py; sync-avionics.py injects first-paint
+  appearance and final stylesheet order into pages and future templates. Compiled
+  tools must be edited/rebuilt from the isolated authoring sources, not their bundles.
+- Acceptance evidence and limitations are in docs/avionics and design-qa.md.
+  Public deployment is a separate authorized release; this branch is a local preview.
+
+## Historical design contract — Graphite Horizon, September 7, 2026
 
 The user selected option 1 and authorized the redesign across every page and
 app. This section supersedes the older color, type, geometry, navigation, and

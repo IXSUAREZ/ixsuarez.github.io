@@ -1,112 +1,79 @@
 (function () {
-  "use strict";
-
-  var PAGE_SIZE = 20;
-  var mounts = document.querySelectorAll("#library-search");
-
-  function node(tag, className, text) {
-    var value = document.createElement(tag);
-    if (className) value.className = className;
-    if (text != null) value.textContent = text;
-    return value;
+  'use strict';
+  const mount = document.getElementById('library-search');
+  if (!mount) return;
+  const browse = document.getElementById('library-browse');
+  const pageSize = 20;
+  let rows = [], loaded = false, failed = false, shown = pageSize, timer;
+  const panel = document.createElement('section');
+  panel.className = 'library-search-panel';
+  panel.setAttribute('aria-labelledby', 'library-search-title');
+  panel.innerHTML = '<h2 id="library-search-title">Find a lesson</h2><p class="library-search-intro">Search lessons and endorsement references by question, topic, or training stage.</p><div class="library-search-controls"><label class="library-search-label">Search lessons<input class="library-search-input" type="search" autocomplete="off" placeholder="Try weather, checkride, or radio" aria-controls="library-search-results"></label><label class="library-search-label">Topic<select class="library-search-select" id="library-search-topic" aria-controls="library-search-results"><option value="">All topics</option></select></label><label class="library-search-label">Training stage<select class="library-search-select" id="library-search-stage" aria-controls="library-search-results"><option value="">All stages</option><option>Exploring</option><option>Student pilot</option><option>Instrument</option><option>Commercial</option><option>CFI</option></select></label><button class="library-search-clear" type="button" hidden>Clear filters</button></div><p class="library-search-status" role="status" aria-live="polite"></p><div class="library-search-results" id="library-search-results"></div><button class="library-search-more" type="button" hidden>Show more lessons</button>';
+  mount.appendChild(panel);
+  const input = panel.querySelector('.library-search-input');
+  const topic = panel.querySelector('#library-search-topic');
+  const stage = panel.querySelector('#library-search-stage');
+  const clear = panel.querySelector('.library-search-clear');
+  const status = panel.querySelector('.library-search-status');
+  const results = panel.querySelector('.library-search-results');
+  const more = panel.querySelector('.library-search-more');
+  const safePath = value => typeof value === 'string' && /^\/(?!\/)[^<>"'\\]*$/.test(value);
+  const stages = row => Array.isArray(row.stages) ? row.stages : row.stage ? [row.stage] : [];
+  const active = () => !!(input.value.trim() || topic.value || stage.value);
+  function setView(view) {
+    const paths = document.getElementById('library-paths'), topics = document.getElementById('library-topics');
+    if (!paths || !topics) return;
+    paths.hidden = view !== 'paths'; topics.hidden = view !== 'topics';
+    document.querySelectorAll('[data-library-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.libraryView === view)));
   }
-
-  function internalPath(value) {
-    if (typeof value !== "string") return null;
-    var path = value.trim();
-    if (!path || path.charAt(0) !== "/" || path.indexOf("//") === 0 || /^[/?#]/.test(path.slice(1)) || /[<>"'\\]/.test(path)) return null;
-    return path;
+  document.querySelectorAll('[data-library-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.libraryView)));
+  function fromURL() {
+    const params = new URLSearchParams(window.location.search);
+    input.value = params.get('q') || ''; topic.value = params.get('topic') || ''; stage.value = params.get('stage') || '';
+    shown = pageSize; render();
   }
-
-  function init(mount) {
-    var indexPath = mount.getAttribute("data-index") || "/assets/library-index.json";
-    var state = { rows: [], loaded: false, loading: false, failed: false, exploring: false, query: "", category: "", stage: "", shown: PAGE_SIZE, timer: null };
-
-    var panel = node("section", "library-search-panel");
-    panel.setAttribute("aria-labelledby", "library-search-title");
-    var heading = node("h2", "library-search-title", "Find a lesson");
-    heading.id = "library-search-title";
-    panel.appendChild(heading);
-    panel.appendChild(node("p", "library-search-intro", "Search aviation lessons by topic or training stage."));
-
-    var controls = node("div", "library-search-controls");
-    var label = node("label", "library-search-label", "Search lessons");
-    var input = node("input", "library-search-input");
-    input.type = "search"; input.placeholder = "Try weather, checkride, or radio"; input.autocomplete = "off";
-    input.setAttribute("aria-controls", "library-search-results");
-    label.appendChild(input); controls.appendChild(label);
-
-    function select(labelText, id, options, emptyLabel) {
-      var wrap = node("label", "library-search-label", labelText);
-      var selectEl = node("select", "library-search-select"); selectEl.id = id; selectEl.setAttribute("aria-controls", "library-search-results");
-      options.forEach(function (option) { var item = node("option", "", option.value ? option.label : emptyLabel); item.value = option.value; selectEl.appendChild(item); });
-      wrap.appendChild(selectEl); controls.appendChild(wrap); return selectEl;
-    }
-    var category = select("Topic", "library-search-topic", [{ value: "" }], "All topics");
-    var stage = select("Training stage", "library-search-stage", [{ value: "" }, { value: "Exploring", label: "Exploring" }, { value: "Student pilot", label: "Student pilot" }, { value: "Instrument", label: "Instrument" }, { value: "Commercial", label: "Commercial" }, { value: "CFI", label: "CFI" }], "All stages");
-    panel.appendChild(controls);
-
-    var status = node("p", "library-search-status", ""); status.id = "library-search-status"; status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite"); panel.appendChild(status);
-    var results = node("div", "library-search-results"); results.id = "library-search-results"; panel.appendChild(results);
-    var more = node("button", "library-search-more", "Show more"); more.type = "button"; more.hidden = true; panel.appendChild(more);
-    mount.appendChild(panel);
-
-    function visibleRows() {
-      var needle = state.query.trim().toLowerCase();
-      return state.rows.filter(function (row) {
-        var stages = getStages(row);
-        var haystack = [row.title, row.description, row.category, row.categoryLabel].concat(stages).join(" ").toLowerCase();
-        return (!needle || haystack.indexOf(needle) !== -1) && (!state.category || row.category === state.category || row.categoryLabel === state.category) && (!state.stage || stages.indexOf(state.stage) !== -1);
-      });
-    }
-
-    function render() {
-      results.textContent = "";
-      if (state.failed) { status.textContent = "The lesson search is temporarily unavailable. Browse the lesson topics below."; return; }
-      if (!state.loaded) { status.textContent = "Search or choose a filter to explore the library."; more.hidden = true; return; }
-      if (!state.exploring) { status.textContent = "Search or choose a filter to explore the library."; more.hidden = true; return; }
-      var rows = visibleRows();
-      status.textContent = rows.length + " lesson" + (rows.length === 1 ? "" : "s") + " found";
-      rows.slice(0, state.shown).forEach(function (row) {
-        var path = internalPath(row.path); if (!path) return;
-        var article = node("article", "library-search-result");
-        var link = node("a", "library-search-result-title", row.title || "Untitled lesson"); link.href = path; article.appendChild(link);
-        if (row.description) article.appendChild(node("p", "library-search-result-description", row.description));
-        var resultStages = getStages(row);
-        article.appendChild(node("p", "library-search-result-meta", [row.categoryLabel || row.category, resultStages.join(", ")].filter(Boolean).join(" · ")));
-        results.appendChild(article);
-      });
-      if (!rows.length) results.appendChild(node("p", "library-search-empty", "No lessons match those filters. Try a broader topic or stage."));
-      more.hidden = rows.length <= state.shown;
-    }
-
-    function getStages(row) {
-      var values = Array.isArray(row.stages) ? row.stages : (row.stage ? String(row.stage).split(",") : []);
-      var seen = {};
-      return values.map(function (value) { return typeof value === "string" ? value.trim() : ""; }).filter(function (value) {
-        if (!value || seen[value]) return false; seen[value] = true; return true;
-      });
-    }
-
-    function load() {
-      if (state.loaded || state.loading || state.failed) return;
-      state.loading = true; status.textContent = "Loading lessons…";
-      fetch(indexPath, { headers: { Accept: "application/json" } }).then(function (response) {
-        if (!response.ok) throw Error("index unavailable"); return response.json();
-      }).then(function (rows) {
-        if (!Array.isArray(rows)) throw Error("invalid index");
-        state.rows = rows.filter(function (row) { return row && typeof row === "object" && typeof row.title === "string" && internalPath(row.path); });
-        state.loaded = true; state.loading = false;
-        var categories = {}; state.rows.forEach(function (row) { var value = row.category || row.categoryLabel; if (value) categories[value] = row.categoryLabel || value; });
-        Object.keys(categories).sort().forEach(function (value) { var option = node("option", "", categories[value]); option.value = value; category.appendChild(option); });
-        render();
-      }).catch(function () { state.loading = false; state.failed = true; render(); });
-    }
-
-    function changed() { state.exploring = true; state.query = input.value; state.category = category.value; state.stage = stage.value; state.shown = PAGE_SIZE; window.clearTimeout(state.timer); state.timer = window.setTimeout(function () { load(); render(); }, 150); }
-    input.addEventListener("input", changed); input.addEventListener("focus", load); category.addEventListener("change", changed); stage.addEventListener("change", changed); category.addEventListener("focus", load); stage.addEventListener("focus", load); more.addEventListener("click", function () { state.shown += PAGE_SIZE; render(); });
-    render();
+  function toURL() {
+    const url = new URL(window.location.href);
+    [['q', input.value.trim()], ['topic', topic.value], ['stage', stage.value]].forEach(([key, value]) => value ? url.searchParams.set(key, value) : url.searchParams.delete(key));
+    if (url.href !== window.location.href) window.history.pushState(null, '', url.href);
   }
-
-  for (var i = 0; i < mounts.length; i++) init(mounts[i]);
+  function filtered() {
+    const needle = input.value.trim().toLocaleLowerCase();
+    return rows.filter(row => {
+      const words = [row.title, row.description, row.category, row.categoryLabel, ...stages(row)].join(' ').toLocaleLowerCase();
+      return (!needle || words.includes(needle)) && (!topic.value || row.category === topic.value) && (!stage.value || stages(row).includes(stage.value));
+    });
+  }
+  function resultNode(row) {
+    const article = document.createElement('article'); article.className = 'library-search-result';
+    const link = document.createElement('a'); link.className = 'library-search-result-title'; link.href = row.path; link.textContent = row.title; article.appendChild(link);
+    if (row.description) { const desc = document.createElement('p'); desc.className = 'library-search-result-description'; desc.textContent = row.description; article.appendChild(desc); }
+    const meta = document.createElement('p'); meta.className = 'library-search-result-meta'; meta.textContent = [row.categoryLabel || row.category, stages(row).join(', ')].filter(Boolean).join(' · '); article.appendChild(meta);
+    return article;
+  }
+  function render() {
+    const exploring = active();
+    if (browse) browse.hidden = exploring && !failed;
+    clear.hidden = !exploring; results.replaceChildren(); more.hidden = true;
+    if (failed) { status.textContent = 'The lesson search is temporarily unavailable. Browse the collections below.'; if (browse) browse.hidden = false; return; }
+    if (!loaded) { status.textContent = 'Loading lessons…'; return; }
+    if (!exploring) { status.textContent = rows.length + ' lessons and endorsement references available. Choose a training path or topic below.'; return; }
+    const found = filtered(); status.textContent = found.length + ' result' + (found.length === 1 ? '' : 's') + ' found';
+    found.slice(0, shown).forEach(row => results.appendChild(resultNode(row)));
+    if (!found.length) { const empty = document.createElement('p'); empty.className = 'library-search-empty'; empty.textContent = 'No lessons match those filters. Clear filters or try a broader term.'; results.appendChild(empty); }
+    more.hidden = found.length <= shown;
+  }
+  function changed() { shown = pageSize; window.clearTimeout(timer); timer = window.setTimeout(() => { toURL(); render(); }, 180); }
+  input.addEventListener('input', changed); topic.addEventListener('change', changed); stage.addEventListener('change', changed);
+  clear.addEventListener('click', () => { input.value = ''; topic.value = ''; stage.value = ''; changed(); input.focus(); });
+  more.addEventListener('click', () => { shown += pageSize; render(); });
+  window.addEventListener('popstate', fromURL);
+  fromURL();
+  fetch(mount.dataset.index || '/assets/library-index.json', { headers: { Accept: 'application/json' } }).then(response => { if (!response.ok) throw Error('index unavailable'); return response.json(); }).then(data => {
+    if (!Array.isArray(data)) throw Error('invalid index');
+    rows = data.filter(row => row && typeof row.title === 'string' && safePath(row.path));
+    const categories = {}; rows.forEach(row => { if (row.category) categories[row.category] = row.categoryLabel || row.category; });
+    Object.keys(categories).sort((a,b) => categories[a].localeCompare(categories[b])).forEach(key => { const option = document.createElement('option'); option.value = key; option.textContent = categories[key]; topic.appendChild(option); });
+    loaded = true; fromURL();
+  }).catch(() => { failed = true; render(); });
 })();

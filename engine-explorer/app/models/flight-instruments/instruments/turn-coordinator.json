@@ -1,0 +1,179 @@
+{
+  "id": "turn-coordinator",
+  "path": "../instruments/turn-coordinator.glb",
+  "bytes": 715844,
+  "sha256": "c816d0cc124786c7fedabaf47bbeff4307640fdad9814d6a8f00d1f864343963",
+  "parts": [
+    {
+      "id": "turn-coordinator-case",
+      "name": "Turn coordinator case and bezel",
+      "instrument": "turn-coordinator",
+      "system": "structure",
+      "description": "Reconstructed gyro housing; no model-specific exterior dimensional acceptance.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ]
+    },
+    {
+      "id": "turn-coordinator-turn-gimbal",
+      "name": "Turn coordinator 30-degree canted gimbal",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Gimbal axis lies in the vertical fore-aft plane, inclined 30 degrees. Rotor spin remains transverse, perpendicular to that axis."
+    },
+    {
+      "id": "turn-coordinator-u-frame",
+      "name": "Turn coordinator U-shaped rotor frame",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. U-frame supports transverse rotor bearings; contour reconstructed from the sectional patent."
+    },
+    {
+      "id": "turn-coordinator-rotor",
+      "name": "Turn coordinator rotor",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Electric rotor on the transverse shaft. Rotation is slowed for inspection, not operating RPM."
+    },
+    {
+      "id": "turn-coordinator-rotor-bearings",
+      "name": "Turn coordinator pivot bearings",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "turn-coordinator-gimbal-bearings",
+      "name": "Turn coordinator pivot bearings",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "turn-coordinator-motor-stator",
+      "name": "Turn coordinator four-coil motor stator",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Four-coil electric drive follows the Hall-motor patent arrangement; no pneumatic drive is present."
+    },
+    {
+      "id": "turn-coordinator-drive-board",
+      "name": "Turn coordinator drive circuit board",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Board placement is reconstructed from patent item 73; component package layout is illustrative, not an electrical schematic."
+    },
+    {
+      "id": "turn-coordinator-centering-spring",
+      "name": "Turn coordinator gimbal hairspring",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Planar return spring around the canted gimbal shaft, patent item 37."
+    },
+    {
+      "id": "turn-coordinator-pointer-fork",
+      "name": "Turn coordinator pointer fork",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Fork spring and transmission pin couple the gyro to the indicating shaft; proportions inferred."
+    },
+    {
+      "id": "turn-coordinator-case-screw-0",
+      "name": "Turn coordinator case screw 1",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-case-screw-1",
+      "name": "Turn coordinator case screw 2",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-case-screw-2",
+      "name": "Turn coordinator case screw 3",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-case-screw-3",
+      "name": "Turn coordinator case screw 4",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    }
+  ],
+  "units": "meters",
+  "exactPhysicalGeometryAccepted": false,
+  "sources": [
+    {
+      "id": "tokyo-turn-patent",
+      "title": "US4149418A: Turn coordinator, Tokyo Aircraft Instrument",
+      "publisher": "Original patent assignee / NTSB as named",
+      "url": "https://patents.google.com/patent/US4149418A/en",
+      "type": "primary-reference",
+      "use": "PDF pp.1-2 drawings; 30 degree canted gimbal, rotor and Hall motor, bearing sleeve, centering spring and pointer fork. Undimensioned concept.",
+      "locator": "PDF pp.1-2 drawings; 30 degree canted gimbal, rotor and Hall motor, bearing sleeve, centering spring and pointer fork. Undimensioned concept.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/turn-and-cad/tokyo-US4149418.pdf",
+      "sha256": "d670da7ab3524888130c344d3b77936b340b1f1a6cbbabef45bb99cf3479f65b"
+    }
+  ]
+}

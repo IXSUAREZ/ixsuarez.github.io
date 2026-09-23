@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/assets/appearance.js"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
 <title>Flight Instructor in Louisville, KY | Diego Suarez, CFI</title>
 <meta name="description" content="Learn to fly with Diego Suarez, a CFI at Kentucky Flight Training Center at Bowman Field in Louisville, KY. Request a discovery flight or explore pilot tools." />
@@ -946,8 +947,11 @@
   </style>
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
   <link rel="stylesheet" href="/assets/premium-home.css?v=a3170b2ca4">
-  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
 <link rel="stylesheet" href="/assets/site-discovery.css?v=20260913-hangar" />
+  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
+<link rel="stylesheet" href="/assets/home-avionics.css?v=20260922-visual-fix">
+<link rel="stylesheet" href="/assets/tool-catalog.css">
+<link rel="stylesheet" href="/assets/avionics.css">
 </head>
 <body class="home-page">
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -959,39 +963,33 @@
   <!-- site-nav -->
   <header class="nav-wrap" role="banner">
     <nav class="nav" aria-label="Primary">
-      <a href="/" class="wordmark" aria-label="Diego Suarez — home" aria-current="page">SUAREZ.CFI</a>
+      <div class="av-destinations" aria-label="Destinations">
+        <a class="av-key" href="/" aria-current="page"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#House"></use></svg><span>Home</span></a>
+        <a class="av-key" href="/learn/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#BookOpen"></use></svg><span>Learn</span></a>
+        <a class="av-key" href="/tools/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Wrench"></use></svg><span>Tools</span></a>
+        <a class="av-key av-wide" href="/discovery-flight-louisville-ky/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Plane"></use></svg><span>Fly with Diego</span></a>
+      </div>
+      <a href="/" class="wordmark" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
       <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav-links">
-        <span class="nav-toggle-label">Menu</span>
+        <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg><span class="nav-toggle-label">Menu</span>
         <span class="nav-toggle-icon" aria-hidden="true"></span>
       </button>
       <div class="nav-links" id="primary-nav-links">
+        <!-- tool-actions -->
+        <!-- /tool-actions -->
+        <p class="av-menu-heading">Website</p>
         <a href="/flight-training-louisville-ky/">Training</a>
-        <a href="/learn/">Learn</a>
         <a href="/blog/">Blog</a>
-        <div class="nav-dropdown">
-          <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">
-            Tools
-            <svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-drop-panel" role="menu">
-  <a href="/tools/" role="menuitem"><strong>All pilot tools</strong><span>Explore the full collection</span></a>
-  <a href="/simply-endorsed-cfi/" role="menuitem"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
-  <a href="/part-61-calculator/" role="menuitem"><strong>CertPath</strong><span>FAA rating planner</span></a>
-  <a href="/flight-risk-assessment/" role="menuitem"><strong>FlightRisk</strong><span>PAVE risk assessment</span></a>
-  <a href="/aero-lab/" role="menuitem"><strong>Aero Lab</strong><span>Interactive wind tunnel</span></a>
-  <a href="/engine-explorer/" role="menuitem"><strong>Crank &amp; Core</strong><span>Interactive engine explorer</span></a>
-  <a href="/foi-cards/" role="menuitem"><strong>FOI Cards</strong><span>Fundamentals of Instructing flashcards</span></a>
-  <a href="/pilotsolve/" role="menuitem"><strong>PilotSolve</strong><span>Mobile flight calculator</span></a>
-          </div>
-        </div>
         <a href="/#about">About</a>
-        <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
+        <a href="/#contact">Contact</a>
+        <a href="/discovery-flight-louisville-ky/" class="nav-cta av-compact-link" data-cta-id="nav-book-discovery">Fly with Diego</a>
       </div>
     </nav>
   </header>
   <!-- /site-nav -->
 
   <main id="top">
+    <a class="home-flight-wordmark" href="/" aria-label="Suarez CFI home">SUAREZ.CFI</a>
 
     <section class="horizon-hero" id="hero" aria-labelledby="hero-heading" data-motion="off" data-sky-mode="auto" data-sky-phase="day">
       <div class="horizon-sky-fallback" aria-hidden="true"></div>
@@ -1002,8 +1000,8 @@
           <h1 id="hero-heading"><span>Learn to fly.</span><span>With confidence.</span></h1>
           <p class="horizon-lede">Personal flight instruction, practical knowledge,<br class="desktop-break"> and tools for every stage of your flying.</p>
           <div class="horizon-actions">
-            <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery">Book a discovery flight</a>
-            <a href="#tools" class="horizon-tools">Explore pilot tools</a>
+            <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery"><img class="button-icon" src="/assets/home-plane.svg" width="26" height="26" alt="">Book a discovery flight</a>
+            <a href="#tools" class="horizon-tools"><img class="button-icon" src="/assets/home-book.svg" width="26" height="26" alt="">Explore pilot tools</a>
           </div>
         </div>
       </div>
@@ -1117,6 +1115,18 @@
         <div class="journey-sheet">
           <fieldset class="journey-slider">
             <legend class="visually-hidden">Your training stage</legend>
+            <div class="journey-mobile-picker">
+              <label for="journey-stage-select">Your training stage</label>
+              <select id="journey-stage-select">
+                <option value="js-explore">Just exploring</option>
+                <option value="js-student">Student Pilot</option>
+                <option value="js-private">Private Pilot</option>
+                <option value="js-instrument">Instrument</option>
+                <option value="js-commercial">Commercial</option>
+                <option value="js-cfi">CFI</option>
+              </select>
+            </div>
+            <p class="visually-hidden" id="journey-stage-status" role="status" aria-live="polite">Showing guides for Just exploring.</p>
             <div class="journey-trackwrap">
               <span class="journey-track" aria-hidden="true"></span>
               <input type="radio" name="journey-stage" id="js-explore" checked />
@@ -1206,13 +1216,7 @@
           <p>Free tools — built by your instructor.</p>
         </div>
         <div class="tools-dock-row">
-<a href="/simply-endorsed-cfi/" class="tool-card paper paper--press" data-tool="simply-endorsed-cfi" data-cta-id="home-tools-simply-endorsed-cfi"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/simply-endorsed-cfi/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">CFI</span></span><span class="tool-card-copy"><strong>Simply Endorsed CFI</strong><span class="tool-description">Find model endorsements, checklists, and related FAA guidance.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
-<a href="/part-61-calculator/" class="tool-card paper paper--press" data-tool="part-61-calculator" data-cta-id="home-tools-part-61-calculator"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/part-61-calculator/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Training</span></span><span class="tool-card-copy"><strong>CertPath</strong><span class="tool-description">Map FAA training requirements to your experience and build an estimated rating plan.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
-<a href="/flight-risk-assessment/" class="tool-card paper paper--press" data-tool="flight-risk-assessment" data-cta-id="home-tools-flight-risk-assessment"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/flight-risk-assessment/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Safety</span></span><span class="tool-card-copy"><strong>FlightRisk</strong><span class="tool-description">Work through pilot, aircraft, environment, and external-pressure factors.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
-<a href="/aero-lab/" class="tool-card paper paper--press" data-tool="aero-lab" data-cta-id="home-tools-aero-lab"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/aero-lab/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Aircraft systems</span></span><span class="tool-card-copy"><strong>Aero Lab</strong><span class="tool-description">Explore angle of attack, lift, drag, and qualitative airflow with guided lessons.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
-<a href="/engine-explorer/" class="tool-card paper paper--press" data-tool="engine-explorer" data-cta-id="home-tools-engine-explorer"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/engine-explorer/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Aircraft systems</span></span><span class="tool-card-copy"><strong>Crank &amp; Core</strong><span class="tool-description">Study Rotax 912 ULS and Lycoming IO-360-L2A teaching reconstructions.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
-<a href="/foi-cards/" class="tool-card paper paper--press" data-tool="foi-cards" data-cta-id="home-tools-foi-cards"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/foi-cards/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">CFI</span></span><span class="tool-card-copy"><strong>FOI Cards</strong><span class="tool-description">Practice instructor knowledge with a focused study deck and saved progress.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
-<a href="/pilotsolve/" class="tool-card paper paper--press" data-tool="pilotsolve" data-cta-id="home-tools-pilotsolve"><span class="tool-card-top"><span class="tool-icon" aria-hidden="true"><img src="/assets/identities/pilotsolve/logo.png" width="72" height="72" alt="" /></span><span class="tool-topic">Flight planning</span></span><span class="tool-card-copy"><strong>PilotSolve</strong><span class="tool-description">Work through common flight calculations in a focused, mobile-first cockpit.</span></span><span class="tool-card-open">Open tool<span aria-hidden="true">↗</span></span></a>
+<div class="home-tool-grid"><a class="home-tool-entry" href="/pilotsolve/" data-cta-id="home-tools-pilotsolve"><img src="/assets/identities/pilotsolve/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>PilotSolve</strong><span>Flight calculations</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/flight-risk-assessment/" data-cta-id="home-tools-flight-risk-assessment"><img src="/assets/identities/flight-risk-assessment/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>FlightRisk</strong><span>Flight risk assessment</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/part-61-calculator/" data-cta-id="home-tools-part-61-calculator"><img src="/assets/identities/part-61-calculator/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>CertPath</strong><span>Your training plan</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/simply-endorsed-cfi/" data-cta-id="home-tools-simply-endorsed-cfi"><img src="/assets/identities/simply-endorsed-cfi/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>Simply Endorsed CFI</strong><span>Endorsements &amp; guidance</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/foi-cards/" data-cta-id="home-tools-foi-cards"><img src="/assets/identities/foi-cards/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>FOI Cards</strong><span>Instructor study cards</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/aero-lab/" data-cta-id="home-tools-aero-lab"><img src="/assets/identities/aero-lab/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>Aero Lab</strong><span>Explore aerodynamics</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/engine-explorer/" data-cta-id="home-tools-engine-explorer"><img src="/assets/identities/engine-explorer/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>Crank &amp; Core</strong><span>Inside aircraft engines</span></span><span aria-hidden="true">↗</span></a></div>
 </div>
 <p class="tools-directory-link"><a href="/tools/">Explore all pilot tools →</a></p>
       </div>
@@ -1599,6 +1603,27 @@
     })();
   </script>
   <script>
+    // The compact control uses a labeled native picker; the radios remain the
+    // single stage state for CSS, pointer, and keyboard behavior at all sizes.
+    (function () {
+      var slider = document.querySelector('.journey-slider');
+      var picker = document.getElementById('journey-stage-select');
+      if (!slider || !picker) return;
+      picker.addEventListener('change', function () {
+        var radio = document.getElementById(picker.value);
+        if (!radio || radio.name !== 'journey-stage') return;
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      slider.addEventListener('change', function (event) {
+        if (event.target.name !== 'journey-stage') return;
+        picker.value = event.target.id;
+        var status = document.getElementById('journey-stage-status');
+        if (status) status.textContent = 'Showing guides for ' + picker.selectedOptions[0].textContent + '.';
+      });
+    })();
+  </script>
+  <script>
     // Journey detent slider — one subtle pitch while the plane glides to its
     // stop. Pure decoration: state lives in CSS. Skipped under reduced motion
     // (the plane snaps instantly, level).
@@ -1733,7 +1758,7 @@
       }, true);
     })();
   </script>
-  <script src="/assets/site-nav.js?v=b1adaa2de6" defer></script>
+  <script src="/assets/site-nav.js?v=5a4eb82d2f" defer></script>
 
   <!-- The STRIP — the v12 app chrome. Seven stage dots, Next anchor;
        mobile adds the compact Crown + phone. JS (strip behavior at the

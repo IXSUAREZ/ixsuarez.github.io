@@ -82,12 +82,7 @@ body::after {
 /* One focus ring domain-wide: 2px solid yellow-deep, 3px offset.
    Class-scoped focus styles inside tool apps (app.css) win on specificity,
    so accent-colored focus may survive on in-app surfaces only. */
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {
   outline: 2px solid var(--yellow-deep);
   outline-offset: 3px;
 }
@@ -167,74 +162,9 @@ textarea:focus-visible {
 }
 
 /* Shared Button Styles */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 0 28px;
-  border-radius: var(--r-pill);
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  transition: transform 220ms cubic-bezier(0.34, 1.35, 0.64, 1), box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  font-family: var(--font-sans);
-}
-
-.btn svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.18s var(--ease-premium);
-}
-
-.btn--primary {
-  background: linear-gradient(180deg, var(--yellow-bright) 0%, var(--yellow) 100%);
-  color: var(--navy);
-  font-weight: 700;
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-.btn--primary:hover {
-  background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
-  box-shadow: 0 2px 6px rgba(13, 19, 48, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.btn--primary:hover svg {
-  transform: translateX(2px);
-}
 
 /* Dual-shadow press: ::before carries the collapsed "contact" shadow at
    opacity 0; on :active the resting shadow fades out as it fades in (≤90ms). */
-.btn--primary { position: relative; }
-.btn--primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 1px 3px rgba(13, 19, 48, 0.16);
-  opacity: 0;
-  transition: opacity 90ms ease;
-  pointer-events: none;
-}
-.btn--primary:active {
-  box-shadow: 0 2px 8px rgba(13, 19, 48, 0), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.btn--primary:active::before { opacity: 1; }
-
-.btn--secondary {
-  color: var(--ink);
-  background: var(--paper-bg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--r-pill);
-}
-
-.btn--secondary:hover {
-  border-color: var(--yellow-line);
-  box-shadow: var(--shadow-md);
-}
 
 /* Animations */
 .reveal-arm {
@@ -251,7 +181,7 @@ textarea:focus-visible {
 }
 
 @keyframes premium-float {
-  0%, 100% { translate: 0 0; }
+  0%,100% { translate: 0 0; }
   50% { translate: 0 -12px; }
 }
 
@@ -265,7 +195,7 @@ textarea:focus-visible {
   html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after {
+  *,*::before,*::after {
     animation: none !important;
     transition: none !important;
   }
@@ -282,80 +212,15 @@ textarea:focus-visible {
 /* Press = 2px travel on pills (90ms in; release rides the base transition's
    ~220ms with a slight overshoot). scale(0.97) survives ONLY on small square
    icon keys (e.g. .conversion-bar__call below). */
-.btn:active {
-  transform: translateY(2px);
-  transition-duration: 90ms;
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--yellow-deep);
-  outline-offset: 3px;
-}
 
 /* Tertiary: quiet text-and-arrow action */
-.btn--tertiary {
-  background: none;
-  border: none;
-  box-shadow: none;
-  color: var(--navy);
-  min-height: 44px;
-  padding: 0 8px;
-  font-weight: 600;
-}
-.btn--tertiary:hover {
-  color: var(--ink);
-  transform: none;
-}
-.btn--tertiary svg {
-  transition: transform 0.22s var(--ease-premium);
-}
-.btn--tertiary:hover svg {
-  transform: translateX(3px);
-}
 
 /* Full-width stacked CTAs on small screens */
-@media (max-width: 640px) {
-  .cta-stack .btn,
-  .hero-ctas .btn {
-    width: 100%;
-    min-height: 52px;
-    justify-content: center;
-    font-size: 16px;
-  }
-}
 
 /* ==========================================================================
    Canonical site navigation — floating liquid-glass pill
    Used on every page of suarezcfi.com (site-nav.js drives behavior).
    ========================================================================== */
-
-.nav-wrap {
-  position: fixed;
-  top: 14px;
-  left: 0;
-  right: 0;
-  z-index: var(--z-nav);
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.nav {
-  pointer-events: auto;
-  position: relative;
-  width: min(var(--maxw), calc(100% - 28px));
-  border-radius: var(--r-pill);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 9px 10px 9px 24px;
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
-}
 
 .wordmark {
   font-family: var(--font-signature);
@@ -371,288 +236,26 @@ textarea:focus-visible {
 /* Compress-on-scroll — site-nav.js toggles .nav--compact past ~40px.
    Reduced-motion: the global reduced-motion block above already strips
    these transitions, so the state change is instant for those users. */
-.nav {
-  transition: padding 0.3s var(--ease-premium);
-}
 .wordmark {
   transition: font-size 0.3s var(--ease-premium), color 0.2s ease;
 }
-.nav--compact {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-.nav--compact .wordmark {
-  font-size: 22px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-  font-weight: 500;
-  font-size: 14.5px;
-  color: var(--ink);
-}
-
-.nav-links > a,
-.nav-drop-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  padding: 9px 12px;
-  border-radius: var(--r-pill);
-  color: var(--ink);
-  text-decoration: none;
-  font: inherit;
-  font-weight: 500;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  white-space: nowrap;
-}
-
-.nav-links > a:hover,
-.nav-drop-toggle:hover {
-  background: var(--yellow-soft);
-  color: var(--navy);
-}
-
-.nav-links > a[aria-current="page"] {
-  background: var(--yellow-soft);
-  color: var(--navy);
-  font-weight: 600;
-}
 
 /* Tools dropdown */
-.nav-dropdown {
-  position: relative;
-}
-
-.nav-caret {
-  width: 13px;
-  height: 13px;
-  transition: transform 0.22s var(--ease-premium);
-}
-
-.nav-drop-toggle[aria-expanded="true"] .nav-caret,
-.nav-dropdown:hover .nav-caret {
-  transform: rotate(180deg);
-}
-
-.nav-drop-panel {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-6px);
-  min-width: 264px;
-  padding: 8px;
-  border-radius: 20px;
-  background: var(--glass-bg-strong);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, transform 0.24s var(--ease-premium), visibility 0s linear 0.24s;
-}
-
-.nav-dropdown.is-open .nav-drop-panel {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  transition-delay: 0s;
-}
-
-@media (hover: hover) and (min-width: 981px) {
-  .nav-dropdown:hover .nav-drop-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-    transition-delay: 0s;
-  }
-}
-
-.nav-drop-panel a {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 11px 14px;
-  border-radius: 13px;
-  text-decoration: none;
-  color: var(--ink);
-  transition: background 0.18s ease;
-}
-.nav-drop-panel a:hover { background: var(--yellow-soft); }
-.nav-drop-panel a strong { font-size: 14.5px; font-weight: 600; color: var(--navy); }
-.nav-drop-panel a span { font-size: 12.5px; color: var(--ink-muted); }
 
 /* Primary CTA — specificity beats .nav-links > a without !important */
-.nav-links > a.nav-cta {
-  background: linear-gradient(180deg, var(--yellow-bright) 0%, var(--yellow) 100%);
-  color: var(--navy);
-  font-weight: 700;
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-.nav-links > a.nav-cta:hover {
-  background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
-  box-shadow: 0 2px 6px rgba(13, 19, 48, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-.nav-links > a.nav-cta:active {
-  transform: translateY(2px);
-}
 
 /* Hamburger — morphs to X via aria-expanded */
-.nav-menu-toggle {
-  display: none;
-  align-items: center;
-  gap: 9px;
-  padding: 10px 16px;
-  min-height: 44px;
-  border: 1px solid var(--glass-edge);
-  border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, 0.5);
-  color: var(--navy);
-  font: inherit;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.nav-toggle-icon {
-  position: relative;
-  width: 16px;
-  height: 12px;
-}
-.nav-toggle-icon::before,
-.nav-toggle-icon::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 16px;
-  height: 2px;
-  border-radius: 2px;
-  background: currentColor;
-  transition: transform 0.28s var(--ease-premium), top 0.28s var(--ease-premium);
-}
-.nav-toggle-icon::before { top: 1px; }
-.nav-toggle-icon::after { top: 9px; }
-.nav-menu-toggle[aria-expanded="true"] .nav-toggle-icon::before {
-  top: 5px;
-  transform: rotate(45deg);
-}
-.nav-menu-toggle[aria-expanded="true"] .nav-toggle-icon::after {
-  top: 5px;
-  transform: rotate(-45deg);
-}
 
 /* Mobile sheet */
 @media (max-width: 980px) {
-  .nav { padding-left: 20px; }
-  .nav-menu-toggle { display: inline-flex; }
-
-  .nav-links {
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 0;
-    right: 0;
-    max-height: calc(100dvh - 100px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2px;
-    padding: 10px;
-    border-radius: 24px;
-    background: linear-gradient(165deg, rgba(255,255,255,0.99) 0%, rgba(255,255,255,0.96) 100%);
-    -webkit-backdrop-filter: blur(22px) saturate(1.7);
-    backdrop-filter: blur(22px) saturate(1.7);
-    border: 1px solid var(--glass-edge);
-    box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-lg);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.24s ease, transform 0.28s var(--ease-premium), visibility 0s linear 0.28s;
-  }
-
-  .nav.is-open .nav-links {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition-delay: 0s;
-  }
-
-  .nav-links > a,
-  .nav-drop-toggle {
-    width: 100%;
-    min-height: 48px;
-    padding: 13px 16px;
-    font-size: 16px;
-    border-radius: 14px;
-  }
 
   /* Staggered entrance */
-  .nav-links > * {
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity 0.3s ease, transform 0.3s var(--ease-premium);
-  }
-  .nav.is-open .nav-links > * { opacity: 1; transform: none; }
-  .nav.is-open .nav-links > *:nth-child(1) { transition-delay: 0.04s; }
-  .nav.is-open .nav-links > *:nth-child(2) { transition-delay: 0.07s; }
-  .nav.is-open .nav-links > *:nth-child(3) { transition-delay: 0.10s; }
-  .nav.is-open .nav-links > *:nth-child(4) { transition-delay: 0.13s; }
-  .nav.is-open .nav-links > *:nth-child(5) { transition-delay: 0.16s; }
-  .nav.is-open .nav-links > *:nth-child(6) { transition-delay: 0.19s; }
-  .nav.is-open .nav-links > *:nth-child(7) { transition-delay: 0.22s; }
 
   /* Dropdown becomes an in-flow expandable section */
-  .nav-drop-panel {
-    position: static;
-    transform: none;
-    min-width: 0;
-    margin: 2px 0 4px 14px;
-    padding: 2px 0 2px 12px;
-    border: none;
-    border-left: 2px solid var(--yellow-line);
-    border-radius: 0;
-    background: none;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    box-shadow: none;
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    transition: none;
-  }
-  .nav-dropdown.is-open .nav-drop-panel { display: flex; transform: none; }
-  .nav-drop-panel a { min-height: 44px; justify-content: center; }
-
-  .nav-cta {
-    margin-top: 6px;
-    text-align: center;
-    justify-content: center;
-    min-height: 52px;
-  }
-
-  body.nav-open { overflow: hidden; }
 }
 
 @media (max-width: 480px) {
-  .nav { width: calc(100% - 20px); padding-left: 16px; }
   .wordmark { font-size: 24px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-links > * { transition: none; opacity: 1; transform: none; }
-  .nav-toggle-icon::before,
-  .nav-toggle-icon::after { transition: none; }
 }
 
 /* ==========================================================================

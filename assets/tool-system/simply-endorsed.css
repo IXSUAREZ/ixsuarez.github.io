@@ -417,6 +417,33 @@
     max-height: none;
   }
 }
+
+/* The lookup field and endorsement hierarchy stay legible in both appearances. */
+body.tool-page .filter-rail .search-field {
+  min-height: 48px;
+  border-color: var(--av-line);
+  background: var(--av-bg);
+  color: var(--av-ink);
+}
+body.tool-page .filter-rail .search-input {
+  min-height: 44px;
+  font-size: 1rem;
+  color: var(--av-ink);
+  background: transparent;
+}
+body.tool-page .filter-rail .search-input::placeholder { color: var(--av-muted); }
+body.tool-page .filter-rail .search-field:focus-within { outline: 2px solid var(--av-cyan); outline-offset: 2px; }
+body.tool-page #resultsSummary { color: var(--av-muted); font-variant-numeric: tabular-nums; }
+body.tool-page .endorsement-card { border-color: var(--av-line); background: var(--av-panel); color: var(--av-ink); }
+body.tool-page .endorsement-card:hover,
+body.tool-page .endorsement-card.is-selected,
+body.tool-page .endorsement-card.is-expanded { background: var(--av-raised); border-color: var(--av-cyan); }
+body.tool-page .endorsement-card .endorsement-head h2 { color: var(--av-ink); font-size: 1rem; }
+body.tool-page .endorsement-card .endorsement-id-pill { font-variant-numeric: tabular-nums; }
+body.tool-page .endorsement-card .card-viewmore { background: var(--av-raised); color: var(--av-cyan); border-color: var(--av-line); }
+body.tool-page .endorsement-card .reference-strip,
+body.tool-page .endorsement-card .reference-item,
+body.tool-page .endorsement-card .verbatim-block { background: var(--av-bg); color: var(--av-ink); border-color: var(--av-line); }
 @media (max-width: 900px) {
 
   .selection-summary {

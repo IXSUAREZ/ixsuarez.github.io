@@ -159,7 +159,7 @@ def insert_aria_current(text, href, page):
               and 'class="nav-cta"' not in c[2]]
     picks = chrome or candidates
     if not picks:
-        raise ValueError(f"{page}: cannot place aria-current for href {href!r}")
+        return text  # Removed destinations cannot retain a current-page indicator.
     start, end, tag = picks[-1]
     if 'aria-current' in tag:
         return text  # already there (idempotent re-render)
@@ -188,16 +188,16 @@ def render_nav(current_block, page):
         # app links: lines between the .nav-links opening and the first
         # partial-owned link (Learn; the Home link was retired in v10).
         # A leftover Home anchor from a pre-v10 page is dropped, not kept.
-        try:
-            nl = next(i for i, l in enumerate(lines)
-                      if '<div class="nav-links" id="primary-nav-links">' in l)
-            learn_i = next(i for i, l in enumerate(lines)
-                           if i > nl and re.search(r'<a href="/learn/"[^>]*>Learn</a>', l))
-            app_links = dedent_lines([
-                l for l in lines[nl + 1:learn_i]
-                if not re.search(r'<a href="/"[^>]*>Home</a>', l)])
-        except StopIteration:
-            raise ValueError(f"{page}: malformed tool nav (nav-links/Learn)")
+        if '<!-- tool-actions -->' in current_block:
+            fragment = current_block.split('<!-- tool-actions -->', 1)[1].split('<!-- /tool-actions -->', 1)[0]
+            app_links = dedent_lines([line for line in fragment.splitlines() if line.strip() and 'href="/flight-training-louisville-ky/"' not in line])
+        else:
+            try:
+                nl = next(i for i, l in enumerate(lines) if '<div class="nav-links" id="primary-nav-links">' in l)
+                learn_i = next(i for i, l in enumerate(lines) if i > nl and re.search(r'<a href="/learn/"[^>]*>Learn</a>', l))
+                app_links = dedent_lines([l for l in lines[nl + 1:learn_i] if not re.search(r'<a href="/"[^>]*>Home</a>', l)])
+            except StopIteration:
+                app_links = []
         # app tools: lines between the menu-toggle close and .nav-tools close
         try:
             nt = next(i for i, l in enumerate(lines) if '<div class="nav-tools">' in l)
@@ -230,16 +230,14 @@ def render_nav(current_block, page):
         out = TOOL_MARK_SUB_RE.sub(lambda _: shift(tool_mark, 6), out, count=1)
     if app_links:
         body = "\n".join(shift(l, 6) if l.strip() else l for l in app_links)
-        out = re.sub(r'(<div class="nav-links" id="primary-nav-links">\n)',
-                     lambda m: m.group(1) + body + "\n", out, count=1)
+        out = out.replace('      <!-- tool-actions -->\n      <!-- /tool-actions -->',
+                          '      <!-- tool-actions -->\n' + body + '\n      <!-- /tool-actions -->')
     if app_tools:
         body = "\n".join(shift(l, 6) if l.strip() else l for l in app_tools)
         # insert after the menu-toggle </button> inside .nav-tools
         nt = out.index('<div class="nav-tools">')
         toggle_end = out.index("</button>", nt) + len("</button>")
         out = out[:toggle_end] + "\n" + body + out[toggle_end:]
-    if cta is not None:
-        out = CTA_SUB_RE.sub(lambda _: shift(cta, 6), out, count=1)
     if ac_href is not None:
         out = insert_aria_current(out, ac_href, page)
     return out

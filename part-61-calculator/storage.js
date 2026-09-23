@@ -15,13 +15,10 @@
     <nav class="cp-nav" aria-label="CertPath navigation"><button type="button" data-cp="home">CertPath</button><div><button type="button" data-cp="view" hidden>View my plan</button><button type="button" data-cp="inbox">Submissions</button><button type="button" data-cp="lock" hidden>Lock submissions</button></div></nav>
     <p id="cp-message" role="status" hidden></p>
     <section id="cp-intro" class="cp-card cp-intro">
-      <img src="/assets/identities/part-61-calculator/logo.png" alt="CertPath" width="104" height="104">
-      <p class="cp-eyebrow">YOUR NEXT CHAPTER IN FLIGHT</p>
-      <h1>A clearer path to your next rating.</h1>
-      <p>Start with where you are. See what comes next.</p>
-      <p class="cp-muted">Choose your goal, tell us about your flight experience, and save a personalized training plan to review with Diego.</p>
+      <img src="/assets/identities/part-61-calculator/logo.png" alt="" width="84" height="84">
+      <h1>CertPath</h1>
+      <p class="cp-intro-summary">Choose your goal and add your flight experience to see your training requirements and estimated cost.</p>
       <button type="button" class="cp-primary" data-cp="start">Start your path</button>
-      <p class="cp-fine">A planning aid, not a logbook or an instructor’s eligibility determination.</p>
     </section>
     <section id="cp-contact" class="cp-card" hidden>
       <p class="cp-eyebrow">ONE LAST STEP</p><h2>Save your path.</h2>

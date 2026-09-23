@@ -5,237 +5,292 @@
       "label": "SuarezCFI",
       "icon": "Plane",
       "background": "#e9e7e1",
+      "source": "assets/identities/home/icon-master.png",
       "previewSource": "assets/og-home-diego-suarez.png"
     },
     "flight-training-louisville-ky": {
       "label": "Flight Training",
       "icon": "PlaneTakeoff",
-      "background": "#e6e9df"
+      "background": "#e6e9df",
+      "source": "assets/identities/flight-training-louisville-ky/icon-master.png"
     },
     "discovery-flight-louisville-ky": {
       "label": "Discovery Flight",
       "icon": "Sunrise",
-      "background": "#e8dfc9"
+      "background": "#e8dfc9",
+      "source": "assets/identities/discovery-flight-louisville-ky/icon-master.png"
     },
     "ground-school-louisville-ky": {
       "label": "Ground Instruction",
       "icon": "BookOpen",
-      "background": "#dee7e5"
+      "background": "#dee7e5",
+      "source": "assets/identities/ground-school-louisville-ky/icon-master.png"
     },
     "private-pilot-ground-school": {
       "label": "Private Pilot Ground School",
       "icon": "BookOpenCheck",
-      "background": "#e1e6d9"
+      "background": "#e1e6d9",
+      "source": "assets/identities/private-pilot-ground-school/icon-master.png"
     },
     "faa-written-test-prep": {
       "label": "FAA Written Test Prep",
       "icon": "PencilRuler",
-      "background": "#eee4d4"
+      "background": "#eee4d4",
+      "source": "assets/identities/faa-written-test-prep/icon-master.png"
     },
     "checkride-oral-prep": {
       "label": "Checkride Oral Prep",
       "icon": "MessagesSquare",
-      "background": "#e8e0ea"
+      "background": "#e8e0ea",
+      "source": "assets/identities/checkride-oral-prep/icon-master.png"
     },
     "bowman-field-klou": {
       "label": "Bowman Field",
       "icon": "MapPin",
-      "background": "#dee7e8"
+      "background": "#dee7e8",
+      "source": "assets/identities/bowman-field-klou/icon-master.png"
     },
     "remote-ground-instruction": {
       "label": "Remote Ground Instruction",
       "icon": "Monitor",
-      "background": "#e0e6ed"
+      "background": "#e0e6ed",
+      "source": "assets/identities/remote-ground-instruction/icon-master.png"
     },
     "learn-to-fly-louisville": {
       "label": "Learn to Fly",
       "icon": "Compass",
-      "background": "#e7e3d6"
+      "background": "#e7e3d6",
+      "source": "assets/identities/learn-to-fly-louisville/icon-master.png"
     },
     "flight-instructor-louisville": {
       "label": "Flight Instructor",
       "icon": "UserRoundCheck",
-      "background": "#e7e0d8"
+      "background": "#e7e0d8",
+      "source": "assets/identities/flight-instructor-louisville/icon-master.png"
     },
     "southern-indiana-flight-training": {
       "label": "Southern Indiana Training",
       "icon": "MapPinned",
-      "background": "#e0e6d8"
+      "background": "#e0e6d8",
+      "source": "assets/identities/southern-indiana-flight-training/icon-master.png"
     },
     "learn": {
       "label": "Learn Aviation",
       "icon": "Library",
-      "background": "#e9e4d9"
+      "background": "#e9e4d9",
+      "source": "assets/identities/learn/icon-master.png"
     },
     "blog": {
       "label": "Aviation Blog",
       "icon": "Newspaper",
-      "background": "#e6e2db"
+      "background": "#e6e2db",
+      "source": "assets/identities/blog/icon-master.png"
     },
     "tools": {
       "label": "Pilot Tools",
       "icon": "PanelsTopLeft",
-      "background": "#e0e7e3"
+      "background": "#e0e7e3",
+      "source": "assets/identities/tools/icon-master.png"
     },
     "simply-endorsed-cfi": {
       "label": "Simply Endorsed CFI",
       "icon": null,
-      "background": "#dce6f1"
+      "background": "#dce6f1",
+      "source": "assets/identities/simply-endorsed-cfi/icon-master.png",
+      "previewSource": "assets/preview-sources/simply-endorsed-cfi-ios-preview.png"
     },
     "part-61-calculator": {
       "label": "CertPath",
       "icon": null,
-      "background": "#f0e2d9"
+      "background": "#f0e2d9",
+      "source": "assets/identities/part-61-calculator/icon-master.png",
+      "previewSource": "assets/preview-sources/certpath-ios-preview.png"
     },
     "flight-risk-assessment": {
       "label": "FlightRisk",
       "icon": null,
-      "background": "#dce8e3"
+      "background": "#dce8e3",
+      "source": "assets/identities/flight-risk-assessment/icon-master.png",
+      "previewSource": "assets/preview-sources/flightrisk-ios-preview.png"
     },
     "aero-lab": {
       "label": "Aero Lab",
       "icon": null,
-      "background": "#dce9e8"
+      "background": "#dce9e8",
+      "source": "assets/identities/aero-lab/icon-master.png",
+      "previewSource": "assets/preview-sources/aero-lab-ios-preview.png"
     },
     "engine-explorer": {
       "label": "Crank & Core",
       "icon": null,
-      "background": "#A65F46"
+      "background": "#A65F46",
+      "source": "assets/identities/engine-explorer/icon-master.png",
+      "previewSource": "assets/preview-sources/crank-core-ios-preview.png"
     },
     "foi-cards": {
       "label": "FOI Cards",
       "icon": null,
-      "background": "#e2e1eb"
+      "background": "#e2e1eb",
+      "source": "assets/identities/foi-cards/icon-master.png",
+      "previewSource": "assets/preview-sources/foi-cards-ios-preview.png"
     },
     "pilotsolve": {
       "label": "PilotSolve",
       "icon": null,
-      "background": "#e9e7e1"
+      "background": "#e9e7e1",
+      "source": "assets/identities/pilotsolve/icon-master.png",
+      "previewSource": "assets/preview-sources/pilotsolve-ios-preview.png"
     },
     "certificate-generator": {
       "label": "Certificate Generator",
       "icon": null,
-      "background": "#e8e0d6"
+      "background": "#e8e0d6",
+      "source": "assets/identities/certificate-generator/icon-master.png",
+      "previewSource": "assets/preview-sources/certificate-generator-ios-preview.png"
     },
     "learn-aircraft-ownership": {
       "label": "Aircraft Ownership Guides",
       "icon": "KeyRound",
-      "background": "#e1e7dd"
+      "background": "#e1e7dd",
+      "source": "assets/identities/learn-aircraft-ownership/icon-master.png"
     },
     "learn-aircraft-systems": {
       "label": "Aircraft Systems Guides",
       "icon": "Cog",
-      "background": "#dee6eb"
+      "background": "#dee6eb",
+      "source": "assets/identities/learn-aircraft-systems/icon-master.png"
     },
     "learn-airspace-and-atc": {
       "label": "Airspace and ATC Guides",
       "icon": "RadioTower",
-      "background": "#e9e1d9"
+      "background": "#e9e1d9",
+      "source": "assets/identities/learn-airspace-and-atc/icon-master.png"
     },
     "learn-airspace-radio-communications": {
       "label": "Airspace and Radio Communication Guides",
       "icon": "Radio",
-      "background": "#e5e1e9"
+      "background": "#e5e1e9",
+      "source": "assets/identities/learn-airspace-radio-communications/icon-master.png"
     },
     "learn-career-and-cfi": {
       "label": "Career and CFI Guides",
       "icon": "GraduationCap",
-      "background": "#e0e8e3"
+      "background": "#e0e8e3",
+      "source": "assets/identities/learn-career-and-cfi/icon-master.png"
     },
     "learn-cfi": {
       "label": "CFI Guides",
       "icon": "Presentation",
-      "background": "#e1e7dd"
+      "background": "#e1e7dd",
+      "source": "assets/identities/learn-cfi/icon-master.png"
     },
     "learn-checkride-prep": {
       "label": "Checkride Prep Guides",
       "icon": "BadgeCheck",
-      "background": "#dee6eb"
+      "background": "#dee6eb",
+      "source": "assets/identities/learn-checkride-prep/icon-master.png"
     },
     "learn-checkrides-and-testing": {
       "label": "Checkrides and Testing Guides",
       "icon": "ClipboardCheck",
-      "background": "#e9e1d9"
+      "background": "#e9e1d9",
+      "source": "assets/identities/learn-checkrides-and-testing/icon-master.png"
     },
     "learn-commercial-pilot": {
       "label": "Commercial Pilot Guides",
       "icon": "BriefcaseBusiness",
-      "background": "#e5e1e9"
+      "background": "#e5e1e9",
+      "source": "assets/identities/learn-commercial-pilot/icon-master.png"
     },
     "learn-drones-and-remote-pilot": {
       "label": "Drones and Remote Pilot Guides",
       "icon": "Drone",
-      "background": "#e0e8e3"
+      "background": "#e0e8e3",
+      "source": "assets/identities/learn-drones-and-remote-pilot/icon-master.png"
     },
     "learn-faa-written-test": {
       "label": "FAA Written Test Study Guides",
       "icon": "ListChecks",
-      "background": "#e1e7dd"
+      "background": "#e1e7dd",
+      "source": "assets/identities/learn-faa-written-test/icon-master.png"
     },
     "learn-flight-training-costs": {
       "label": "Flight Training Cost Guides",
       "icon": "Wallet",
-      "background": "#dee6eb"
+      "background": "#dee6eb",
+      "source": "assets/identities/learn-flight-training-costs/icon-master.png"
     },
     "learn-ground-school": {
       "label": "Ground School Guides",
       "icon": "BookOpen",
-      "background": "#e9e1d9"
+      "background": "#e9e1d9",
+      "source": "assets/identities/learn-ground-school/icon-master.png"
     },
     "learn-ifr-procedures": {
       "label": "IFR Procedures Guides",
       "icon": "Radar",
-      "background": "#e5e1e9"
+      "background": "#e5e1e9",
+      "source": "assets/identities/learn-ifr-procedures/icon-master.png"
     },
     "learn-instrument-rating": {
       "label": "Instrument Rating Guides",
       "icon": "Navigation",
-      "background": "#e0e8e3"
+      "background": "#e0e8e3",
+      "source": "assets/identities/learn-instrument-rating/icon-master.png"
     },
     "learn-landings-and-takeoffs": {
       "label": "Landings and Takeoffs Guides",
       "icon": "PlaneLanding",
-      "background": "#e1e7dd"
+      "background": "#e1e7dd",
+      "source": "assets/identities/learn-landings-and-takeoffs/icon-master.png"
     },
     "learn-medical-and-certificates": {
       "label": "Medical and Certificates Guides",
       "icon": "HeartPulse",
-      "background": "#dee6eb"
+      "background": "#dee6eb",
+      "source": "assets/identities/learn-medical-and-certificates/icon-master.png"
     },
     "learn-multi-engine-rating": {
       "label": "Multi-Engine Rating Guides",
       "icon": "Layers",
-      "background": "#e9e1d9"
+      "background": "#e9e1d9",
+      "source": "assets/identities/learn-multi-engine-rating/icon-master.png"
     },
     "learn-pilot-careers": {
       "label": "Pilot Career Guides",
       "icon": "Route",
-      "background": "#e5e1e9"
+      "background": "#e5e1e9",
+      "source": "assets/identities/learn-pilot-careers/icon-master.png"
     },
     "learn-pilot-gear-and-tools": {
       "label": "Pilot Gear and Tools Guides",
       "icon": "Headphones",
-      "background": "#e0e8e3"
+      "background": "#e0e8e3",
+      "source": "assets/identities/learn-pilot-gear-and-tools/icon-master.png"
     },
     "learn-pilot-medicals": {
       "label": "Pilot Medical Certificate Guides",
       "icon": "Stethoscope",
-      "background": "#e1e7dd"
+      "background": "#e1e7dd",
+      "source": "assets/identities/learn-pilot-medicals/icon-master.png"
     },
     "learn-private-pilot": {
       "label": "Private Pilot Guides",
       "icon": "Plane",
-      "background": "#dee6eb"
+      "background": "#dee6eb",
+      "source": "assets/identities/learn-private-pilot/icon-master.png"
     },
     "learn-weather-and-safety": {
       "label": "Weather and Safety Guides",
       "icon": "CloudSun",
-      "background": "#e9e1d9"
+      "background": "#e9e1d9",
+      "source": "assets/identities/learn-weather-and-safety/icon-master.png"
     },
     "learn-weather-for-student-pilots": {
       "label": "Weather Guides for Student Pilots",
       "icon": "CloudDrizzle",
-      "background": "#e5e1e9"
+      "background": "#e5e1e9",
+      "source": "assets/identities/learn-weather-for-student-pilots/icon-master.png"
     }
   },
   "tools": [
@@ -532,7 +587,7 @@
       "file": "blog/index.html",
       "kind": "page",
       "identity": "blog",
-      "title": "Flight Training Blog \u2014 Diego Suarez | Louisville, KY",
+      "title": "Flight Training Blog — Diego Suarez | Louisville, KY",
       "description": "Flight training articles for Louisville students: Private Pilot costs, timelines, medical certificates, aircraft comparisons, and local procedures at Bowman Field (KLOU).",
       "indexable": true,
       "primary_cta": "/discovery-flight-louisville-ky/"
@@ -542,10 +597,17 @@
       "file": "blog/private-pilot-cost-louisville-ky/index.html",
       "kind": "article",
       "identity": "blog",
-      "title": "Private Pilot Cost in Louisville, KY \u2014 2026 Breakdown | Diego Suarez",
+      "title": "Private Pilot Cost in Louisville, KY — 2026 Breakdown | Diego Suarez",
       "description": "2026 Louisville Private Pilot cost breakdown: plan around $18k-$24k using realistic hours, local wet rates, instruction, supplies, and checkride fees.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Training & Costs",
+        "published": "2026-04-22",
+        "readingMinutes": 10,
+        "featured": true,
+        "heading": "How Much Does a Private Pilot Certificate Actually Cost in Louisville?"
+      }
     },
     {
       "path": "/blog/private-pilot-timeline-louisville/",
@@ -555,17 +617,31 @@
       "title": "How Long Does a Private Pilot License Take in Louisville? | Diego Suarez",
       "description": "The FAA minimum is 40 hours, but national-average planning is closer to 75 hours. Here's a conservative Louisville timeline for Part 61 students.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Training & Costs",
+        "published": "2026-04-22",
+        "readingMinutes": 9,
+        "featured": false,
+        "heading": "How Long Does a Private Pilot License Take in Louisville?"
+      }
     },
     {
       "path": "/blog/discovery-flight-bowman-field/",
       "file": "blog/discovery-flight-bowman-field/index.html",
       "kind": "article",
       "identity": "blog",
-      "title": "Your First Discovery Flight at Bowman Field \u2014 What to Expect | Diego Suarez",
+      "title": "Your First Discovery Flight at Bowman Field — What to Expect | Diego Suarez",
       "description": "What happens on a discovery flight at Bowman Field (KLOU), from arrival to debrief, with local training context for Louisville student pilots.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Getting Started",
+        "published": "2026-04-22",
+        "readingMinutes": 8,
+        "featured": false,
+        "heading": "Your First Discovery Flight at Bowman Field"
+      }
     },
     {
       "path": "/blog/faa-private-pilot-written-test-study-guide/",
@@ -573,9 +649,16 @@
       "kind": "article",
       "identity": "blog",
       "title": "How to Study for the FAA Private Pilot Written Test | Diego Suarez",
-      "description": "A structured study plan for the FAA Private Pilot knowledge test \u2014 what to study, in what order, and how to pass the first try. Written by an FAA Certificated Flight Instructor based in Louisville.",
+      "description": "A structured study plan for the FAA Private Pilot knowledge test — what to study, in what order, and how to pass the first try. Written by an FAA Certificated Flight Instructor based in Louisville.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Written Test",
+        "published": "2026-04-22",
+        "readingMinutes": 11,
+        "featured": false,
+        "heading": "How to Study for the FAA Private Pilot Written Test"
+      }
     },
     {
       "path": "/blog/faa-endorsements-explained/",
@@ -585,47 +668,82 @@
       "title": "AC 61-65K Endorsement Lookup | FAA Endorsements List",
       "description": "A plain-English FAA endorsements list for student pilots, from pre-solo and solo cross-country to knowledge tests, checkrides, flight reviews, and IPCs. Companion to Simply Endorsed CFI.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "FAA Endorsements",
+        "published": "2026-05-13",
+        "readingMinutes": 8,
+        "featured": false,
+        "heading": "Every FAA Endorsement a Student Pilot Should Understand"
+      }
     },
     {
       "path": "/blog/basicmed-vs-third-class-medical/",
       "file": "blog/basicmed-vs-third-class-medical/index.html",
       "kind": "article",
       "identity": "blog",
-      "title": "BasicMed vs. Third-Class Medical vs. Sport Pilot \u2014 Which Medical Do You Need? | Diego Suarez",
+      "title": "BasicMed vs. Third-Class Medical vs. Sport Pilot — Which Medical Do You Need? | Diego Suarez",
       "description": "Three medical pathways, different rules, different airplanes. Here's how to pick the right one for your flying goals, with Louisville-area AME notes and a straightforward decision tree.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Medical & Certificates",
+        "published": "2026-04-22",
+        "readingMinutes": 9,
+        "featured": false,
+        "heading": "BasicMed vs. Third-Class Medical vs. Sport Pilot: Which One Do You Need?"
+      }
     },
     {
       "path": "/blog/bristell-ng5-lsa-vs-cessna-172-for-student-pilots/",
       "file": "blog/bristell-ng5-lsa-vs-cessna-172-for-student-pilots/index.html",
       "kind": "article",
       "identity": "blog",
-      "title": "Bristell NG5 LSA vs. Cessna 172 \u2014 Which Is Right for Your Training? | Diego Suarez",
-      "description": "Two very different training aircraft at Bowman Field. Here's how the Bristell NG5 LSA and Cessna 172 compare for student pilots \u2014 handling, cost, certificate paths, and what I've seen in the cockpit.",
+      "title": "Bristell NG5 LSA vs. Cessna 172 — Which Is Right for Your Training? | Diego Suarez",
+      "description": "Two very different training aircraft at Bowman Field. Here's how the Bristell NG5 LSA and Cessna 172 compare for student pilots — handling, cost, certificate paths, and what I've seen in the cockpit.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Aircraft",
+        "published": "2026-04-22",
+        "readingMinutes": 10,
+        "featured": false,
+        "heading": "Bristell NG5 LSA vs. Cessna 172: Which Aircraft Is Right for Your Training?"
+      }
     },
     {
       "path": "/blog/flying-klou-bowman-field-guide/",
       "file": "blog/flying-klou-bowman-field-guide/index.html",
       "kind": "article",
       "identity": "blog",
-      "title": "Flying at Bowman Field (KLOU) \u2014 A Local Pilot's Guide | Diego Suarez",
+      "title": "Flying at Bowman Field (KLOU) — A Local Pilot's Guide | Diego Suarez",
       "description": "Bowman Field KLOU guide with current runways, tower hours, frequencies, Louisville Class C airspace, Derby procedures, and practical local guidance. Updated April 2026.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Airport & Airspace",
+        "published": "2026-04-22",
+        "readingMinutes": 11,
+        "featured": false,
+        "heading": "Flying at Bowman Field (KLOU): A Local Pilot's Guide to Louisville's Historic Airport"
+      }
     },
     {
       "path": "/blog/path-to-cfi-louisville/",
       "file": "blog/path-to-cfi-louisville/index.html",
       "kind": "article",
       "identity": "blog",
-      "title": "From Commercial Pilot to CFI \u2014 The Real Path | Diego Suarez",
+      "title": "From Commercial Pilot to CFI — The Real Path | Diego Suarez",
       "description": "What it takes to go from Commercial Pilot to CFI: FOI/FIA tests, right-seat training, lesson plans, checkride, cost reality, and Louisville lessons learned.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "For Instructors",
+        "published": "2026-04-22",
+        "readingMinutes": 11,
+        "featured": false,
+        "heading": "From Commercial Pilot to CFI: The Real Path"
+      }
     },
     {
       "path": "/learn/",
@@ -5352,7 +5470,7 @@
       "file": "flight-risk-assessment/index.html",
       "kind": "page",
       "identity": "flight-risk-assessment",
-      "title": "FlightRisk \u2014 SuarezCFI Flight Risk Assessment",
+      "title": "FlightRisk — SuarezCFI Flight Risk Assessment",
       "description": "SuarezCFI FlightRisk is a private, on-device Flight Risk Assessment Tool with complete PAVE coverage, explicit completion checks, saved pilot and aircraft setup, and transparent scoring.",
       "indexable": true,
       "primary_cta": "/ground-school-louisville-ky/"
@@ -5362,7 +5480,7 @@
       "file": "flight-risk-assessment/methodology/index.html",
       "kind": "page",
       "identity": "flight-risk-assessment",
-      "title": "FlightRisk Methodology \u2014 SuarezCFI",
+      "title": "FlightRisk Methodology — SuarezCFI",
       "description": "See how the SuarezCFI FlightRisk assessment uses transparent PAVE scoring, completion checks, and safety overrides.",
       "indexable": true,
       "primary_cta": "/ground-school-louisville-ky/"
@@ -5372,7 +5490,7 @@
       "file": "flight-risk-assessment/guide/index.html",
       "kind": "page",
       "identity": "flight-risk-assessment",
-      "title": "How to Use FlightRisk \u2014 SuarezCFI",
+      "title": "How to Use FlightRisk — SuarezCFI",
       "description": "A practical guide to completing the SuarezCFI FlightRisk assessment before every flight.",
       "indexable": true,
       "primary_cta": "/ground-school-louisville-ky/"
@@ -5413,7 +5531,7 @@
       "kind": "page",
       "identity": "southern-indiana-flight-training",
       "title": "Southern Indiana Flight Training near Louisville | SuarezCFI.com",
-      "description": "Flight training for Southern Indiana \u2014 New Albany, Jeffersonville, Clarksville, Sellersburg \u2014 with CFI Diego Suarez at Bowman Field (KLOU), minutes away.",
+      "description": "Flight training for Southern Indiana — New Albany, Jeffersonville, Clarksville, Sellersburg — with CFI Diego Suarez at Bowman Field (KLOU), minutes away.",
       "indexable": true,
       "primary_cta": "/ground-school-louisville-ky/"
     },
@@ -5423,7 +5541,7 @@
       "kind": "page",
       "identity": "certificate-generator",
       "title": "Certificate Generator | Free Flight Training Milestone Certificates",
-      "description": "Free tool for CFIs: generate a share-ready milestone certificate JPEG \u2014 first solo, private, sport, instrument, commercial, multi-engine, or instructor rating \u2014 with student photo, in under a minute.",
+      "description": "Free tool for CFIs: generate a share-ready milestone certificate JPEG — first solo, private, sport, instrument, commercial, multi-engine, or instructor rating — with student photo, in under a minute.",
       "indexable": false,
       "primary_cta": "/ground-school-louisville-ky/"
     },
@@ -5433,9 +5551,16 @@
       "kind": "article",
       "identity": "blog",
       "title": "How to Choose a Flight School in Louisville Without Regret | Diego Suarez",
-      "description": "An honest framework for choosing flight training in the Louisville area \u2014 Part 61 vs. 141, instructor fit, questions to ask, red flags, and the discovery flight test drive.",
+      "description": "An honest framework for choosing flight training in the Louisville area — Part 61 vs. 141, instructor fit, questions to ask, red flags, and the discovery flight test drive.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Getting Started",
+        "published": "2026-08-04",
+        "readingMinutes": 10,
+        "featured": false,
+        "heading": "How to Choose a Flight School in Louisville Without Regret"
+      }
     },
     {
       "path": "/blog/faa-written-test-center-louisville/",
@@ -5445,7 +5570,14 @@
       "title": "Where to Take the FAA Written Test Near Louisville (PSI Testing Centers) | Diego Suarez",
       "description": "How Louisville student pilots take the FAA knowledge test: the PSI testing center process, FAA Tracking Number, instructor endorsement, what to bring, cost, and test-day rules.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Written Test",
+        "published": "2026-08-04",
+        "readingMinutes": 8,
+        "featured": false,
+        "heading": "Where to Take the FAA Written Test Near Louisville"
+      }
     },
     {
       "path": "/blog/medexpress-faa-medical-walkthrough/",
@@ -5455,7 +5587,14 @@
       "title": "MedXPress, Step by Step: Your FAA Medical Application Before the AME Visit | Diego Suarez",
       "description": "A student-pilot walkthrough of the FAA MedXPress application (form 8500-8): what to gather, section-by-section guidance, the confirmation number, and what happens at the AME exam.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Medical & Certificates",
+        "published": "2026-08-04",
+        "readingMinutes": 9,
+        "featured": false,
+        "heading": "MedXPress, Step by Step: Your FAA Medical Application Before the AME Visit"
+      }
     },
     {
       "path": "/blog/kentucky-derby-tfr-flying/",
@@ -5465,7 +5604,14 @@
       "title": "Flying During Kentucky Derby Week: TFRs and What KLOU Pilots Need to Know | Diego Suarez",
       "description": "What Louisville pilots and student pilots need to know about Kentucky Derby TFRs over Churchill Downs, FAA special procedures at KLOU and KSDF, and checking current NOTAMs each year.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Airport & Airspace",
+        "published": "2026-08-04",
+        "readingMinutes": 7,
+        "featured": false,
+        "heading": "Flying During Kentucky Derby Week: TFRs and What KLOU Pilots Need to Know"
+      }
     },
     {
       "path": "/blog/landing-practice-bowman-field/",
@@ -5473,9 +5619,16 @@
       "kind": "article",
       "identity": "blog",
       "title": "Landing Practice at Bowman Field: How Pattern Work Builds Better Pilots | Diego Suarez",
-      "description": "A Louisville-focused guide to pattern work, landing practice, and runway awareness at Bowman Field (KLOU) \u2014 runways, winds, stabilized approaches, and what students actually work on.",
+      "description": "A Louisville-focused guide to pattern work, landing practice, and runway awareness at Bowman Field (KLOU) — runways, winds, stabilized approaches, and what students actually work on.",
       "indexable": true,
-      "primary_cta": "/discovery-flight-louisville-ky/"
+      "primary_cta": "/discovery-flight-louisville-ky/",
+      "editorial": {
+        "category": "Airport & Airspace",
+        "published": "2026-08-04",
+        "readingMinutes": 9,
+        "featured": false,
+        "heading": "Landing Practice at Bowman Field: How Pattern Work Builds Better Pilots"
+      }
     },
     {
       "path": "/aero-lab/",
@@ -5526,6 +5679,200 @@
       "description": "Explore free pilot tools for FAA endorsements, training plans, flight risk, instructor study, aerodynamics, and aircraft engines from SuarezCFI.",
       "indexable": true,
       "primary_cta": "/discovery-flight-louisville-ky/"
+    }
+  ],
+  "learnCollections": [
+    {
+      "path": "/learn/private-pilot/",
+      "title": "Private Pilot",
+      "count": 91,
+      "summary": "Plain-language guides for student pilots working through private pilot training, solo, cross-country planning, and checkride preparation.",
+      "identity": "learn-private-pilot",
+      "view": "paths"
+    },
+    {
+      "path": "/learn/instrument-rating/",
+      "title": "Instrument Rating",
+      "count": 36,
+      "summary": "Plain-language instrument rating guides for IFR procedures, approach briefing, holding, currency, and instrument training decisions.",
+      "identity": "learn-instrument-rating",
+      "view": "paths"
+    },
+    {
+      "path": "/learn/commercial-pilot/",
+      "title": "Commercial Pilot",
+      "count": 30,
+      "summary": "Commercial pilot training and career-path guides for pilots planning CPL requirements, time building, advanced maneuvers, and next-step ratings.",
+      "identity": "learn-commercial-pilot",
+      "view": "paths"
+    },
+    {
+      "path": "/learn/multi-engine-rating/",
+      "title": "Multi-Engine Rating",
+      "count": 24,
+      "summary": "Multi-engine rating study and planning guides for pilots comparing single-engine and multi-engine training, commercial-path timing, Vmc, costs.",
+      "identity": "learn-multi-engine-rating",
+      "view": "paths"
+    },
+    {
+      "path": "/learn/cfi/",
+      "title": "CFI",
+      "count": 3,
+      "summary": "Conservative CFI-path study guides for pilots organizing instructor training, flashcards, recent-experience rules, and long-term teaching goals.",
+      "identity": "learn-cfi",
+      "view": "paths"
+    },
+    {
+      "path": "/learn/faa-written-test/",
+      "title": "FAA Written Test Study Guides",
+      "count": 24,
+      "summary": "FAA knowledge-test guides for student pilots working through written-test procedures, FTN setup, practice exams, study tools, and ground-school.",
+      "identity": "learn-faa-written-test",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/checkride-prep/",
+      "title": "Checkride Prep Guides",
+      "count": 20,
+      "summary": "Checkride, ACS, oral-prep, endorsement, and practical-test guides for applicants organizing the final phase of training.",
+      "identity": "learn-checkride-prep",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/flight-training-costs/",
+      "title": "Flight Training Cost Guides",
+      "count": 24,
+      "summary": "Cost, budgeting, scholarship, loan, renting, ownership, insurance, and training-efficiency guides for pilots planning the financial side of training.",
+      "identity": "learn-flight-training-costs",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/pilot-medicals/",
+      "title": "Pilot Medical Certificate Guides",
+      "count": 24,
+      "summary": "Pilot medical, BasicMed, student pilot certificate, Sport Pilot, eligibility, and FAA paperwork guides written with conservative source-linked.",
+      "identity": "learn-pilot-medicals",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/weather-for-student-pilots/",
+      "title": "Weather Guides for Student Pilots",
+      "count": 30,
+      "summary": "Student-pilot weather guides for METARs, TAFs, density altitude, crosswinds, turbulence, thunderstorms, icing, fog, and go/no-go decisions.",
+      "identity": "learn-weather-for-student-pilots",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/airspace-radio-communications/",
+      "title": "Airspace and Radio Communication Guides",
+      "count": 30,
+      "summary": "Airspace, ATC, radio, CTAF, transponder, ADS-B, runway-sign, and airport-diagram guides for pilots learning airport operations.",
+      "identity": "learn-airspace-radio-communications",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/landings-and-takeoffs/",
+      "title": "Landings and Takeoffs Guides",
+      "count": 24,
+      "summary": "Landing, takeoff, crosswind, short-field, soft-field, go-around, bounced-landing, slip, and traffic-pattern guides for student pilots.",
+      "identity": "learn-landings-and-takeoffs",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/ifr-procedures/",
+      "title": "IFR Procedures Guides",
+      "count": 30,
+      "summary": "IFR procedure guides for approach charts, approach briefings, holding, IFR clearances, ILS, VOR, RNAV, minimums, and instrument currency.",
+      "identity": "learn-ifr-procedures",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/pilot-careers/",
+      "title": "Pilot Career Guides",
+      "count": 30,
+      "summary": "Pilot career, commercial, airline, dispatcher, CFI-path, low-time job, ATP, R-ATP, pay, and aviation-college guides for pilots planning next steps.",
+      "identity": "learn-pilot-careers",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/ground-school/",
+      "title": "Ground School",
+      "count": 42,
+      "summary": "Study guides for FAA knowledge areas, written test prep, instrument concepts, navigation, chart reading, and ground-school problem areas.",
+      "identity": "learn-ground-school",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/checkrides-and-testing/",
+      "title": "Checkrides and Testing",
+      "count": 2,
+      "summary": "Practical checkride, oral exam, endorsement, ACS, and FAA testing articles for applicants who want a cleaner path to the finish line.",
+      "identity": "learn-checkrides-and-testing",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/medical-and-certificates/",
+      "title": "Medical and Certificates",
+      "count": 21,
+      "summary": "Conservative, source-linked explanations of FAA medical pathways, BasicMed, certificates, eligibility, and paperwork questions.",
+      "identity": "learn-medical-and-certificates",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/airspace-and-atc/",
+      "title": "Airspace and ATC",
+      "count": 35,
+      "summary": "Airspace classes, radio procedures, airport signs, runway safety, ATC communication, and traffic-pattern lessons for safer flying.",
+      "identity": "learn-airspace-and-atc",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/weather-and-safety/",
+      "title": "Weather and Safety",
+      "count": 42,
+      "summary": "Weather theory, in-flight decision making, emergency procedures, accident prevention, and safety habits for pilots in training.",
+      "identity": "learn-weather-and-safety",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/aircraft-systems/",
+      "title": "Aircraft Systems",
+      "count": 170,
+      "summary": "Aircraft systems, aerodynamics, performance, instruments, engines, propellers, stability, and aircraft-control lessons.",
+      "identity": "learn-aircraft-systems",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/aircraft-ownership/",
+      "title": "Aircraft Ownership",
+      "count": 9,
+      "summary": "Aircraft buying, insurance, registration, financing, rental, operating cost, and ownership decision guides.",
+      "identity": "learn-aircraft-ownership",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/career-and-cfi/",
+      "title": "Career and CFI",
+      "count": 20,
+      "summary": "Career, commercial pilot, dispatcher, airline, CFI, and aviation-business articles for pilots thinking beyond the first certificate.",
+      "identity": "learn-career-and-cfi",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/",
+      "title": "Drones and Remote Pilot",
+      "count": 7,
+      "summary": "FAA drone, Remote ID, recreational flyer, CBO, VLOS, and Part 107 articles with official references.",
+      "identity": "learn-drones-and-remote-pilot",
+      "view": "topics"
+    },
+    {
+      "path": "/learn/pilot-gear-and-tools/",
+      "title": "Pilot Gear and Tools",
+      "count": 2,
+      "summary": "Pilot gear, headset, app, simulator, kneeboard, and tool-selection guides written as durable buying frameworks.",
+      "identity": "learn-pilot-gear-and-tools",
+      "view": "topics"
     }
   ]
 }

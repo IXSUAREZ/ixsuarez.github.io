@@ -69,3 +69,5 @@ def apply():
 
 if __name__ == "__main__":
     apply()
+    import subprocess, sys
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "sync-avionics.py")], check=True)

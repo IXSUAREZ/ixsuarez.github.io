@@ -1,0 +1,325 @@
+{
+  "id": "altimeter",
+  "path": "../instruments/altimeter.glb",
+  "bytes": 2367328,
+  "sha256": "b94f78b962a754689b0dc66cd76cf05f65dd9681efffa9c237f41a7d05166312",
+  "parts": [
+    {
+      "id": "altimeter-case",
+      "name": "Altimeter case and bezel",
+      "instrument": "altimeter",
+      "system": "structure",
+      "description": "United reference envelope: 3.248 in typical flange width; case depth shown at the published maximum (2.30 in ASI, 4.0 in altimeter/VSI). Unspecified diameters and features are reconstructed. Internal reference mechanisms come from separate sources; this is not a complete United replica.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "united-instruments-5934-altimeter-specification-d116799"
+      ]
+    },
+    {
+      "id": "altimeter-needle",
+      "name": "Altimeter indicating element",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "united-5934"
+      ]
+    },
+    {
+      "id": "altimeter-aneroid-stack",
+      "name": "Altimeter corrugated diaphragm stack",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Circular corrugated diaphragm faces lie in the x/y plane and stack along the depth axis."
+    },
+    {
+      "id": "altimeter-capsule-clevis",
+      "name": "Altimeter capsule clevis",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Paired clevis cheeks and cross-pin transfer membrane displacement to the connecting link. Travel is visually amplified."
+    },
+    {
+      "id": "altimeter-transmission-link",
+      "name": "Altimeter moving transmission link",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pinned connecting link follows capsule displacement and the sector lever. Kinematic travel is illustrative, not calibrated."
+    },
+    {
+      "id": "altimeter-rocking-shaft",
+      "name": "Altimeter rocking shaft",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Bridge and rocking shaft transfer diaphragm motion to the sector."
+    },
+    {
+      "id": "altimeter-sector-gear",
+      "name": "Altimeter sector gear",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Partial toothed sector keeps the linkage within the .375-radius reconstructed case envelope."
+    },
+    {
+      "id": "altimeter-pinion",
+      "name": "Altimeter handstaff pinion",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Small reduction pinion between sector and centered indicating shaft."
+    },
+    {
+      "id": "altimeter-pointer-shaft",
+      "name": "Altimeter pointer shaft",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Indicating shaft is centered on the dial axis."
+    },
+    {
+      "id": "altimeter-pointer-link",
+      "name": "Altimeter pointer linkage",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Linkage ends at the centered pointer shaft."
+    },
+    {
+      "id": "altimeter-hairspring",
+      "name": "Altimeter hairspring",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Planar spiral hairspring supplies restoring force around the linkage."
+    },
+    {
+      "id": "altimeter-shaft-bearing",
+      "name": "Altimeter shaft bearing",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Jewel-like bearing at the centered shaft."
+    },
+    {
+      "id": "altimeter-front-mechanism-plate",
+      "name": "Altimeter front skeletal mechanism plate",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Open circular supporting plate reconstructed from Kollsman Figure 2-2. Cutouts and thickness are inferred, not dimensioned."
+    },
+    {
+      "id": "altimeter-rear-mechanism-plate",
+      "name": "Altimeter rear skeletal mechanism plate",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Open circular supporting plate reconstructed from Kollsman Figure 2-2. Cutouts and thickness are inferred, not dimensioned."
+    },
+    {
+      "id": "altimeter-plate-pillar-0",
+      "name": "Altimeter plate pillar 1",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pillar supports the separated mechanism plates; dimensions inferred."
+    },
+    {
+      "id": "altimeter-plate-pillar-1",
+      "name": "Altimeter plate pillar 2",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pillar supports the separated mechanism plates; dimensions inferred."
+    },
+    {
+      "id": "altimeter-plate-pillar-2",
+      "name": "Altimeter plate pillar 3",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pillar supports the separated mechanism plates; dimensions inferred."
+    },
+    {
+      "id": "altimeter-reduction-wheels",
+      "name": "Altimeter pointer reduction wheels",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Spoked wheels arranged ahead of the capsules following the exploded mechanism; counts, tooth profiles and exact mesh remain inferred."
+    },
+    {
+      "id": "altimeter-compensating-lever",
+      "name": "Altimeter capsule compensating lever",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Lever/compensator assembly reconstructed from the Kollsman exploded mechanism; thermal properties are not modeled."
+    },
+    {
+      "id": "altimeter-case-screw-0",
+      "name": "Altimeter case screw 1",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-case-screw-1",
+      "name": "Altimeter case screw 2",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-case-screw-2",
+      "name": "Altimeter case screw 3",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-case-screw-3",
+      "name": "Altimeter case screw 4",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    }
+  ],
+  "units": "meters",
+  "exactPhysicalGeometryAccepted": false,
+  "sources": [
+    {
+      "id": "faa-ifh",
+      "title": "Instrument Flying Handbook, FAA-H-8083-15B",
+      "publisher": "FAA",
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf",
+      "type": "primary-handbook",
+      "use": "Instrument-system principles and failure/indication context; handbook edition must be checked against current FAA index before publication.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Instrument systems chapter/sections; verify edition, section, and page for every claim."
+    },
+    {
+      "id": "united-5934",
+      "title": "5934 Series Altimeters",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/products/altimeters/",
+      "type": "manufacturer-product-page",
+      "use": "Public product description/specification links for the 5934 series only; dimensions limited to published data.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "5934 Series section and linked specification sheets."
+    },
+    {
+      "id": "kollsman-overhaul",
+      "title": "Sensitive Altimeter, TM 55-6610-247-40, GS Maintenance Manual Including Repair Parts and Special Tools List",
+      "publisher": "U.S. Department of the Army; public courtesy copy hosted by Liberated Manuals",
+      "url": "https://www.liberatedmanuals.com/TM-55-6610-247-40.pdf",
+      "type": "primary-reference",
+      "use": "Highest-confidence model-specific source in this set for an actual conventional sensitive altimeter's part organization and mechanism layout. Envelope dimensions remain unknown.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/TM-55-6610-247-40_Kollsman_sensitive_altimeter.pdf",
+      "sha256": "bc2f42df6d943fbb9e86409fed3864d80830a9acaa8733afa21cda2bf6294a6b",
+      "locator": [
+        "PDF p.11, printed p.2-4, Figure 2-1: exploded outer case, bezel/window, dial/pointers, pressure case, adjustment and mounting pieces; numbered callouts link to the repair-parts list.",
+        "PDF p.12, printed p.2-5, Figure 2-2: exploded mechanism assembly, including plates, aneroid/diaphragm-linked pieces, shafts, gears, springs, jewel/bearing parts and adjustment elements; manual disassembly instructions and parts list provide complementary naming.",
+        "PDF p.7, printed p.1-2, Table 1-1: 35,000-ft indication range and 28.1-31.0 inHg barometric setting range. These are operating ranges, not physical dimensions.",
+        "PDF pp.15-17 contain further mechanism assembly, calibration and adjustment detail. The manual states 0.003-inch end-play settings for mechanism wheels/shafts and a 0.005-inch-thick shim; these are assembly/fit values, not an overall envelope or complete component dimension set. It also specifies a standard 1/8-inch IPT static fitting in the leak-test procedure."
+      ]
+    },
+    {
+      "id": "united-instruments-5934-altimeter-specification-d116799",
+      "title": "Customer Acceptance Specification, Indicator-Altimeter, United Instruments Spec. No. UI5934, drawing/document d116799",
+      "publisher": "United Instruments, Inc. (OEM specification)",
+      "url": "https://www.unitedinst.com/Products/SpecificationsSheets/d116799.aspx?type=view",
+      "type": "primary-reference",
+      "use": "Strong exterior-envelope source for an actual United UI5934 altimeter; pair only as an explicitly cross-manufacturer envelope reference if modeling Kollsman internals.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/United_d116799_specification.pdf",
+      "sha256": "98184d49039c079f7fa601b4d429d6371b455f838484bc924b61655a998e9081",
+      "locator": [
+        "PDF p.1, drawing: dimensioned front and side views, pointer/barometric configurations, and port locations. The case is specified per MS33549 and the port 1/8-27 ANPT per MIL-P-7105.",
+        "PDF p.1 explicitly dimensions 3.248 in typical across the case/front view and 4.0 in maximum case depth. These are stated OEM drawing dimensions, not measurements inferred from pixels.",
+        "PDF pp.2-8 include pressure-altitude/pressure-difference and test/acceptance information, not internal exploded mechanism parts."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+# Avionics visual regression review — 2026-09-22
+
+Local preview: [open the repaired training-stage section](http://127.0.0.1:8938/#journey). This review responds to the reported white stage sheet and misaligned dark card. It checks the implemented website against the approved Garmin-control/Apple-HIG direction; it is not a claim of Apple certification or physical-device accessibility conformance.
+
+## Findings and repairs
+
+| Priority | Observed trigger | Repair and verification |
+|---|---|---|
+| P1 | Homepage training selector in Dark showed pale text on a white sheet, then a dark stage card with text against its edge. | One matte, semantic sheet and inset stage card now share the active palette. Labels, selection, focus, and link have separate readable states. [Before](screenshots/audit-before-journey.png) · [Desktop after](screenshots/audit-journey-after-dark.png). |
+| P1 | At 390px and narrower, six unlabeled dots left the training stages hard to identify. | A labeled native picker appears below 700px. It updates the existing radio state and same content, and an accessible status announces the chosen stage; no destination or training copy changed. Tested switching to CFI and Student Pilot. [390px Dark](screenshots/audit-journey-after-phone-dark.png) · [320px Dark](screenshots/audit-journey-after-320-dark.png). |
+| P1 | Certificate Generator’s five-key dock broke Certificate, Names, Photo, and Review into single-letter lines at 320px. | Visible compact labels fit at 320px; each key retains its full accessible name and a 44px target. [Before](screenshots/audit-320-certificate.png) · [After](screenshots/audit-320-certificate-after.png). |
+| P1 | Simply Endorsed’s phone category chooser in Day had charcoal category cards with dark text. | The live `#se-category-dialog` now uses semantic Day/Dark surfaces and foregrounds while preserving category-color edge markers. Escape closes it and returns focus to Browse categories. [Day after](screenshots/audit-endorsed-categories-phone-day.png). |
+| P2 | The homepage contact area retained a bright legacy mat and white inputs in Dark. | Matte outer/form surfaces now follow appearance tokens; all actions remain reachable while scrolling above the dock. [Before](screenshots/audit-contact-before.png) · [Dark phone after](screenshots/audit-contact-after-phone-dark.png). |
+| P2 | CertPath’s Background and Experience keys wrapped awkwardly on phones. | Phone labels are Profile and Hours, with full Background and Experience accessible names; the native step controls still own prerequisite checks. [Phone before](screenshots/audit-phone-certpath-before.png) · [320px after](screenshots/audit-320-certpath.png). |
+| P2 | Dark article/category accents used the legacy pale wash with low-contrast category ink. | Dark category wash, line, and ink now use the matte palette; category accent stripes keep their original meaning. [Dark article](screenshots/audit-phone-article-dark.png) · [Day article](screenshots/audit-phone-article-day.png). |
+| P2 | Crank & Core flashed a light-grey model-loading surface in Dark. | Its pinned-runtime presentation overlay themes the loading surface and spinner without changing engine logic or model files. [Dark loading after](screenshots/audit-crank-loading-dark-fixed.png). |
+| P3 | Mobile browser theme color stayed dark in Day. | Shared appearance now updates `meta[name="theme-color"]` when the preference or system appearance changes. Confirmed `#e8edf0` in Day and `#101418` in Dark. |
+
+## Review flow and evidence
+
+1. Homepage: inspected hero, About, training stages, tools, FAQ, contact, and footer in the local browser. The [final Dark hero](screenshots/audit-home-final-desktop-dark.png) retains the original animated sky. The stage and contact fixes above correct the two homepage surface breaks. The six-stage desktop selector remains operable; at phone size, the labeled picker selects the same stage.
+2. Editorial and service families: captured the service landing, discovery page, Learn library, Instrument hub, long BasicMed article, blog, and tools directory at 390px Dark. Checked BasicMed in Day too, and key families at 834px Day. [Phone family sheet](screenshots/audit-phone-families-a.jpg) · [Tablet family sheet](screenshots/audit-tablet-families.jpg).
+3. Tools: captured Simply Endorsed, CertPath, FlightRisk, Aero Lab's phone guidance, Crank & Core, FOI Cards, PilotSolve, and Certificate Generator at 390px Dark. Rechecked the affected category chooser in Day and the two wizard docks at 320px. [Tool family sheet](screenshots/audit-phone-families-b.jpg). Aero Lab intentionally retains its desktop gate; PilotSolve owns its own native tool panel; Crank & Core shows one collection dock and its native exploration toolbar when exploring.
+4. Navigation and appearance: verified Dark/Day changes, menu focus and Escape dismissal, category-dialog focus return, 44px compact key height, 320px reflow without horizontal document overflow, and content reachable below the fixed dock. Contact form submission and external links were not exercised.
+
+The changes implement the approved HIG adaptations: content stays matte while the dock and temporary menu float; named native selection replaces mystery dots on phones; state and focus use readable color plus border/shape; compact labels keep full accessible names; and new stage/loading motion stops under reduced-motion settings. These correspond to [Apple’s design principles](https://developer.apple.com/design/human-interface-guidelines/design-principles), [Color](https://developer.apple.com/design/human-interface-guidelines/color), [Layout](https://developer.apple.com/design/human-interface-guidelines/layout), [Motion](https://developer.apple.com/design/human-interface-guidelines/motion), and [Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility). The project-specific applicability matrix remains [here](hig-applicability.md).
+
+## Coverage and test boundary
+
+- `scripts/audit-avionics.py`: **523/523 canonical routes**, 551 HTML files, zero failures. This is static route/resource/chrome coverage, not a claim that every article was individually rendered and inspected.
+- Protected sky JS/CSS and three sky images match baseline hashes; the homepage `#hero` subtree matches baseline. The sky behavior was not edited.
+- Shared Node tests: **22/22 pass**; Python audit unit tests: **3/3 pass**. PilotSolve offline-worker tests: **2/2 pass** after refreshing cache `pilotsolve-site-8095442a1028`; its 18 listed precache URLs return HTTP 200 locally.
+- Browser screenshots cover 390px Dark page and tool families, 834px Day representatives, the affected 320px screens, and desktop homepage. All inspected documents reported zero horizontal overflow. A current-run visual inspection can detect the defects above but cannot establish full WCAG 2.2 AA compliance.
+
+Physical iPhone Safari, installed PilotSolve PWA, VoiceOver, true 200% browser text zoom, and automated full-page contrast analysis remain separate release checks. No public deployment was made.

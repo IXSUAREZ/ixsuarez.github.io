@@ -1,0 +1,29 @@
+{
+  "method": "fixed solar time 2026-09-22T17:00:00Z and stable reduced-motion frame; QA server only",
+  "baselineSize": [
+    1440,
+    1024
+  ],
+  "currentSize": [
+    1440,
+    1024
+  ],
+  "crop": [
+    900,
+    180,
+    1400,
+    700
+  ],
+  "meanPixelDifference": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "identical": true,
+  "heroCanvasBoundsBoth": {
+    "x": 0,
+    "y": 0,
+    "width": 1440,
+    "height": 824
+  }
+}

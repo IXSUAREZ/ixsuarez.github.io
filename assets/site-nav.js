@@ -1,151 +1,24 @@
-/* SuarezCFI — canonical site navigation behavior
-   Drives the shared .nav-wrap pill on every page:
-   mobile sheet toggle, hamburger morph (CSS via aria-expanded),
-   Tools dropdown, scroll-lock, Escape/outside-click close. */
-(function () {
-  "use strict";
-
-  function initNav(nav) {
-    if (nav.dataset.navReady === "true") return;
-    nav.dataset.navReady = "true";
-
-    var toggle = nav.querySelector(".nav-menu-toggle");
-    var links = nav.querySelector(".nav-links");
-    var dropdown = nav.querySelector(".nav-dropdown");
-    var dropToggle = nav.querySelector(".nav-drop-toggle");
-    var browseToggle = document.getElementById("sidebarToggleBtn");
-    if (!toggle || !links) return;
-
-    function setMenu(open) {
-      nav.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.classList.toggle("nav-open", open);
-      var label = toggle.querySelector(".nav-toggle-label");
-      if (label) label.textContent = open ? "Close" : "Menu";
-      if (!open) setDropdown(false);
-    }
-
-    function setDropdown(open) {
-      if (!dropdown || !dropToggle) return;
-      dropdown.classList.toggle("is-open", open);
-      dropToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    }
-
-    // Simply Endorsed has an app drawer in addition to the shared site sheet.
-    // Put the drawer action inside the one mobile site-menu sheet so the
-    // header never presents two competing menu controls.
-    if (
-      document.body.classList.contains("simply-endorsed-page") &&
-      browseToggle &&
-      !links.querySelector(".nav-browse-link")
-    ) {
-      var browseLink = document.createElement("button");
-      browseLink.type = "button";
-      browseLink.className = "nav-browse-link";
-      browseLink.setAttribute("aria-controls", browseToggle.getAttribute("aria-controls") || "filterRail");
-      browseLink.innerHTML =
-        '<svg class="nav-browse-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
-        '<rect x="4" y="4" width="6" height="6" rx="1"></rect>' +
-        '<rect x="14" y="4" width="6" height="6" rx="1"></rect>' +
-        '<rect x="4" y="14" width="6" height="6" rx="1"></rect>' +
-        '<rect x="14" y="14" width="6" height="6" rx="1"></rect>' +
-        '</svg><span>Browse categories</span>';
-      links.insertBefore(browseLink, links.firstChild);
-      browseLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        setMenu(false);
-        browseToggle.click();
-      });
-    }
-
-    toggle.addEventListener("click", function (event) {
-      event.stopPropagation();
-      setMenu(!nav.classList.contains("is-open"));
-    });
-
-    if (dropToggle) {
-      dropToggle.addEventListener("click", function (event) {
-        event.stopPropagation();
-        setDropdown(!dropdown.classList.contains("is-open"));
-      });
-      dropToggle.addEventListener("keydown", function (event) {
-        if (event.key !== "ArrowDown") return;
-        event.preventDefault();
-        event.stopPropagation();
-        setDropdown(true);
-        dropdown.querySelector(".nav-drop-panel a").focus();
-      });
-      dropdown.addEventListener("keydown", function (event) {
-        var items = Array.from(dropdown.querySelectorAll(".nav-drop-panel a"));
-        var index = items.indexOf(document.activeElement);
-        if (index < 0 || !["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
-        event.preventDefault();
-        var next = event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 :
-          (index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
-        items[next].focus();
-      });
-      dropdown.addEventListener("focusout", function (event) {
-        if (event.relatedTarget && !dropdown.contains(event.relatedTarget)) setDropdown(false);
-      });
-    }
-
-    // Close when a real link is activated
-    links.addEventListener("click", function (event) {
-      if (event.target.closest("a")) setMenu(false);
-    });
-
-    // Escape closes, focus returns to the control
-    document.addEventListener("keydown", function (event) {
-      if (event.key !== "Escape") return;
-      if (dropdown && dropdown.classList.contains("is-open")) {
-        setDropdown(false);
-        dropToggle.focus();
-      } else if (nav.classList.contains("is-open")) {
-        setMenu(false);
-        toggle.focus();
-      }
-    });
-
-    // Outside click closes
-    document.addEventListener("click", function (event) {
-      if (!nav.contains(event.target)) setMenu(false);
-      else if (dropdown && !dropdown.contains(event.target) && window.innerWidth > 980) {
-        setDropdown(false);
-      }
-    });
-
-    // Leaving the mobile breakpoint resets transient state
-    var mq = window.matchMedia("(min-width: 981px)");
-    (mq.addEventListener ? mq.addEventListener.bind(mq, "change") : mq.addListener.bind(mq))(function () {
-      setMenu(false);
-      document.body.classList.remove("nav-open");
-    });
-
-    // Compress the pill once the page scrolls past ~40px — an
-    // IntersectionObserver sentinel at document y=40, so no scroll listener
-    // and no rAF (CSS transitions live in design-system.css; stripped
-    // automatically under reduced motion). Without IO the pill simply stays
-    // full-size.
-    if ("IntersectionObserver" in window) {
-      var sentinel = document.createElement("div");
-      sentinel.setAttribute("aria-hidden", "true");
-      sentinel.style.cssText =
-        "position:absolute;top:40px;left:0;width:1px;height:1px;pointer-events:none;";
-      document.body.appendChild(sentinel);
-      new IntersectionObserver(function (entries) {
-        nav.classList.toggle("nav--compact", !entries[0].isIntersecting);
-      }).observe(sentinel);
-    }
-  }
-
-  function initAll() {
-    document.querySelectorAll(".nav").forEach(initNav);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initAll);
-  } else {
-    initAll();
-  }
+/* Shared bottom navigation. App adapters retain native prerequisite handlers. */
+(function(){'use strict';
+function init(nav){
+ if(nav.dataset.navReady)return;nav.dataset.navReady='true';
+ var toggle=nav.querySelector('.nav-menu-toggle'),links=nav.querySelector('.nav-links');if(!toggle||!links)return;
+ function close(focus){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');if(focus)toggle.focus()}
+ toggle.addEventListener('click',function(){var open=!nav.classList.contains('is-open');nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));if(open){var first=links.querySelector('a,button,input');if(first)first.focus()}});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('is-open')){e.preventDefault();close(true)}});
+ document.addEventListener('pointerdown',function(e){if(!nav.contains(e.target))close(links.contains(document.activeElement))});
+ nav.addEventListener('focusout',function(e){if(e.relatedTarget&&!nav.contains(e.relatedTarget))close(false)});
+ links.addEventListener('click',function(e){if(e.target.closest('a'))close(false)});
+ nav.querySelectorAll('.nav-drop-toggle').forEach(function(t){t.addEventListener('click',function(){var d=t.closest('.nav-dropdown'),open=!d.classList.contains('is-open');d.classList.toggle('is-open',open);t.setAttribute('aria-expanded',String(open))})});
+ // These are ordinary disclosure links, not an application menu requiring arrow navigation.
+ links.querySelectorAll('[role="menu"],[role="menuitem"]').forEach(function(el){el.removeAttribute('role')});
+ nav.querySelectorAll('a[href]').forEach(function(a){var u=new URL(a.href,location.href);if(u.hash)return;var match=u.pathname===location.pathname||(a.closest('.av-destinations')&&u.pathname==='/learn/'&&location.pathname.indexOf('/learn/')===0);if(match)a.setAttribute('aria-current','page')});
+ var section=document.createElement('fieldset');section.className='av-appearance';section.innerHTML='<legend>Appearance</legend><div class="av-appearance-options"><button type="button" data-appearance="dark">Dark</button><button type="button" data-appearance="light">Day</button><button type="button" data-appearance="system">System</button></div><label class="av-solid"><input type="checkbox"> Solid controls</label>';links.appendChild(section);
+ function sync(){var api=window.SuarezAppearance;if(!api)return;section.querySelectorAll('[data-appearance]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.appearance===api.getPreference()))});section.querySelector('input').checked=api.getSolid()}
+ section.addEventListener('click',function(e){var b=e.target.closest('[data-appearance]');if(b&&window.SuarezAppearance)window.SuarezAppearance.setPreference(b.dataset.appearance)});section.querySelector('input').addEventListener('change',function(e){if(window.SuarezAppearance)window.SuarezAppearance.setSolid(e.target.checked)});window.addEventListener('suarez:appearance',sync);sync();
+ // Existing extra tool actions live in Menu, leaving one stable control row.
+ var tools=nav.querySelector('.nav-tools');if(tools){var extras=Array.from(tools.children).filter(function(el){return el!==toggle&&el!==links&&!el.contains(links)});if(extras.length){var actions=document.createElement('section');actions.className='av-menu-actions';actions.setAttribute('aria-label','Tool actions');extras.forEach(function(el){actions.appendChild(el)});links.insertBefore(actions,section)}}
+ var resize=function(){document.documentElement.style.setProperty('--dock-clearance',(nav.getBoundingClientRect().height+36)+'px')};if(window.ResizeObserver)new ResizeObserver(resize).observe(nav);resize();
+}
+function ready(){document.querySelectorAll('.nav').forEach(init)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready);else ready();
 })();

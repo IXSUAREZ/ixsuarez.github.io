@@ -1,0 +1,179 @@
+{
+  "groups": [
+    {
+      "id": "flight",
+      "name": "Flight planning"
+    },
+    {
+      "id": "training",
+      "name": "Training and instruction"
+    },
+    {
+      "id": "systems",
+      "name": "Aircraft systems"
+    }
+  ],
+  "tools": [
+    {
+      "id": "pilotsolve",
+      "name": "PilotSolve",
+      "path": "/pilotsolve/",
+      "group": "flight",
+      "short": "Flight calculations",
+      "description": "Work through common flight calculations with clear inputs, units, and results.",
+      "compatibility": "Phone, tablet & desktop · Offline support",
+      "features": [
+        "Flight calculators with unit controls",
+        "Trip planning and aircraft profiles"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/pilotsolve-overview.png",
+          "alt": "PilotSolve overview"
+        },
+        {
+          "src": "/assets/tool-previews/pilotsolve-detail.png",
+          "alt": "PilotSolve working interface"
+        }
+      ]
+    },
+    {
+      "id": "flight-risk-assessment",
+      "name": "FlightRisk",
+      "path": "/flight-risk-assessment/",
+      "group": "flight",
+      "short": "Flight risk assessment",
+      "description": "Work through pilot, aircraft, environment, and external-pressure factors.",
+      "compatibility": "Phone, tablet & desktop",
+      "features": [
+        "A structured PAVE assessment",
+        "Risk summary with methodology and guidance"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/flight-risk-assessment-overview.png",
+          "alt": "FlightRisk overview"
+        },
+        {
+          "src": "/assets/tool-previews/flight-risk-assessment-detail.png",
+          "alt": "FlightRisk working interface"
+        }
+      ]
+    },
+    {
+      "id": "part-61-calculator",
+      "name": "CertPath",
+      "path": "/part-61-calculator/",
+      "group": "training",
+      "short": "Your training plan",
+      "description": "Map FAA training requirements to your experience and build an estimated rating plan.",
+      "compatibility": "Phone, tablet & desktop",
+      "features": [
+        "A guided four-stage training planner",
+        "Experience and estimated cost breakdowns"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/part-61-calculator-overview.png",
+          "alt": "CertPath overview"
+        },
+        {
+          "src": "/assets/tool-previews/part-61-calculator-detail.png",
+          "alt": "CertPath working interface"
+        }
+      ]
+    },
+    {
+      "id": "simply-endorsed-cfi",
+      "name": "Simply Endorsed CFI",
+      "path": "/simply-endorsed-cfi/",
+      "group": "training",
+      "short": "Endorsements & guidance",
+      "description": "Find model endorsements, checklists, and related FAA guidance.",
+      "compatibility": "Phone, tablet & desktop",
+      "features": [
+        "Search model endorsements by topic",
+        "Related checklists and source guidance"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/simply-endorsed-cfi-overview.png",
+          "alt": "Simply Endorsed CFI overview"
+        },
+        {
+          "src": "/assets/tool-previews/simply-endorsed-cfi-detail.png",
+          "alt": "Simply Endorsed CFI working interface"
+        }
+      ]
+    },
+    {
+      "id": "foi-cards",
+      "name": "FOI Cards",
+      "path": "/foi-cards/",
+      "group": "training",
+      "short": "Instructor study cards",
+      "description": "Practice instructor knowledge with a focused study deck and saved progress.",
+      "compatibility": "Phone, tablet & desktop",
+      "features": [
+        "Study by FOI section",
+        "Review cards and track memorized material"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/foi-cards-overview.png",
+          "alt": "FOI Cards overview"
+        },
+        {
+          "src": "/assets/tool-previews/foi-cards-detail.png",
+          "alt": "FOI Cards working interface"
+        }
+      ]
+    },
+    {
+      "id": "aero-lab",
+      "name": "Aero Lab",
+      "path": "/aero-lab/",
+      "group": "systems",
+      "short": "Explore aerodynamics",
+      "description": "Explore angle of attack, lift, drag, and qualitative airflow with guided lessons.",
+      "compatibility": "Desktop with a pointer required",
+      "features": [
+        "Interactive airflow visualization",
+        "Guided lessons and source explanations"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/aero-lab-overview.png",
+          "alt": "Aero Lab overview"
+        },
+        {
+          "src": "/assets/tool-previews/aero-lab-detail.png",
+          "alt": "Aero Lab working interface"
+        }
+      ]
+    },
+    {
+      "id": "engine-explorer",
+      "name": "Crank & Core",
+      "path": "/engine-explorer/",
+      "group": "systems",
+      "short": "Inside aircraft engines",
+      "description": "Study Rotax 912 ULS and Lycoming IO-360-L2A teaching reconstructions.",
+      "compatibility": "Desktop recommended · Touch controls available",
+      "features": [
+        "Explore engines and their components",
+        "Study guides and component inspection"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/tool-previews/engine-explorer-overview.png",
+          "alt": "Crank & Core overview"
+        },
+        {
+          "src": "/assets/tool-previews/engine-explorer-detail.png",
+          "alt": "Crank & Core working interface"
+        }
+      ]
+    }
+  ]
+}

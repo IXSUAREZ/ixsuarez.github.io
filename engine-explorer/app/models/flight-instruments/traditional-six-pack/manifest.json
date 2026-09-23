@@ -1,0 +1,2189 @@
+{
+  "individualAssets": [
+    {
+      "id": "airspeed",
+      "path": "../instruments/airspeed.glb",
+      "bytes": 1334440,
+      "sha256": "b2f4677362e6327b7999f15f029e806f602561ee20da9543c34696f86c1cbabb",
+      "parts": 22
+    },
+    {
+      "id": "attitude",
+      "path": "../instruments/attitude.glb",
+      "bytes": 1121368,
+      "sha256": "176059934ff344d3d25ffc2daa0253a2ed887fcdfa8f2f5aba1f9367177e2aca",
+      "parts": 18
+    },
+    {
+      "id": "altimeter",
+      "path": "../instruments/altimeter.glb",
+      "bytes": 2367328,
+      "sha256": "b94f78b962a754689b0dc66cd76cf05f65dd9681efffa9c237f41a7d05166312",
+      "parts": 23
+    },
+    {
+      "id": "turn-coordinator",
+      "path": "../instruments/turn-coordinator.glb",
+      "bytes": 715844,
+      "sha256": "c816d0cc124786c7fedabaf47bbeff4307640fdad9814d6a8f00d1f864343963",
+      "parts": 14
+    },
+    {
+      "id": "heading",
+      "path": "../instruments/heading.glb",
+      "bytes": 1119576,
+      "sha256": "bea3430f2e77ece71bcd5ad1fd596b90de14539adabb5779d047a45f33f6e899",
+      "parts": 13
+    },
+    {
+      "id": "vsi",
+      "path": "../instruments/vsi.glb",
+      "bytes": 1126788,
+      "sha256": "ce21627e12305a8106adb684c46b7ed498a658e55963c70ee95bf88c797ad973",
+      "parts": 19
+    }
+  ],
+  "schemaVersion": 3,
+  "kind": "instrument-system",
+  "id": "traditional-six-pack-v1",
+  "title": "Traditional Six-Pack Reference Bench",
+  "geometryStatus": "reconstructed",
+  "exactPhysicalGeometryAccepted": false,
+  "releaseStatus": "development-reference",
+  "asset": {
+    "path": "bench.glb",
+    "sha256": "a224cc458c42081d65da19a37d7fbb8a1a7bd0c6464c1d5c0ff56c24601c1538",
+    "bytes": 8278348
+  },
+  "authoring": [
+    {
+      "path": "src/flight-instruments/geometry.ts",
+      "sha256": "6f264acc03e87b22b6d7b6f529b984f0b80722fb6e79ba304c5489c761ebe20a"
+    },
+    {
+      "path": "src/flight-instruments/mechanisms.ts",
+      "sha256": "2c8e189f18b078ee0795fca15bb4e06c675ddf6c2987d7a5fb0506cd622bd475"
+    },
+    {
+      "path": "src/flight-instruments/connectionGeometry.ts",
+      "sha256": "b206176b073bb32917de24015473c8738ed9e2ee4dc37a911c4d71246a4fea61"
+    },
+    {
+      "path": "src/flight-instruments/materials.ts",
+      "sha256": "044a4944f70256dd3943a26b906c4ac6d8a7f9e92f7e388fa4eca4672cfa9f30"
+    },
+    {
+      "path": "src/flight-instruments/scene.ts",
+      "sha256": "dabe737df46fb837f1e06af6971c041e2fb1fa59a346cb4cfdfd16b6a6a672d9"
+    },
+    {
+      "path": "src/flight-instruments/simulation.ts",
+      "sha256": "dd3c9f2a4d95addedd623ff6491af8066faad655d54d9e99ebb788efaf1b9e76"
+    },
+    {
+      "path": "src/flight-instruments/scenarios.ts",
+      "sha256": "8dede646745fb3589a065adda3e25804ff36ea7e6dcd83ec27acf23ad56fe848"
+    },
+    {
+      "path": "src/flight-instruments/dialArtwork.ts",
+      "sha256": "29de274b14062475893967100d04b20ff6580718425f61a87d319af8d6c10174"
+    },
+    {
+      "path": "src/flight-instruments/dialScales.ts",
+      "sha256": "7fd9f79959ec5e759e2c94097eeb797f21c64553ec45b492dd748858d02c7eb3"
+    },
+    {
+      "path": "src/flight-instruments/mechanismMotion.ts",
+      "sha256": "e2c388c458f404bbd6bdd8907b071338b764fbe766579f6ea742bf94dbc21fc4"
+    },
+    {
+      "path": "src/flight-instruments/instrumentLessons.ts",
+      "sha256": "b7f17b1d217a288390dd59d0079a0ae615eb916c37f48dec42eeddef2456fefe"
+    },
+    {
+      "path": "src/flight-instruments/InstrumentReadout.tsx",
+      "sha256": "236d8fb2e93e601732547068d45bf0669a18ebfd6f47a7b0a3d97a128f635e86"
+    }
+  ],
+  "studies": [
+    "six-pack",
+    "pitot-static",
+    "gyroscopic"
+  ],
+  "parts": [
+    {
+      "id": "bench-panel",
+      "name": "Traditional six-pack instrument panel",
+      "system": "structure",
+      "description": "Educational reconstruction of a generic six-instrument teaching bench; it is not a specific aircraft panel.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "faa-phak-8"
+      ]
+    },
+    {
+      "id": "bench-frame",
+      "name": "Teaching bench frame",
+      "system": "structure",
+      "description": "Original generic supporting frame, not aircraft hardware.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "faa-phak-8"
+      ]
+    },
+    {
+      "id": "electrical-bus",
+      "name": "Electrical supply branch",
+      "system": "electrical",
+      "description": "Teaching representation of electrical supply to the turn coordinator.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "mci-1394t100-sil"
+      ]
+    },
+    {
+      "id": "airspeed-case",
+      "name": "Airspeed indicator case and bezel",
+      "instrument": "airspeed",
+      "system": "structure",
+      "description": "United reference envelope: 3.248 in typical flange width; case depth shown at the published maximum (2.30 in ASI, 4.0 in altimeter/VSI). Unspecified diameters and features are reconstructed. Internal reference mechanisms come from separate sources; this is not a complete United replica.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "united-instruments-ui8000-airspeed-specification"
+      ]
+    },
+    {
+      "id": "airspeed-needle",
+      "name": "Airspeed indicator indicating element",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "united-8000"
+      ]
+    },
+    {
+      "id": "attitude-case",
+      "name": "Attitude indicator case and bezel",
+      "instrument": "attitude",
+      "system": "structure",
+      "description": "Reconstructed gyro housing; no model-specific exterior dimensional acceptance.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ]
+    },
+    {
+      "id": "attitude-needle",
+      "name": "Attitude indicator indicating element",
+      "instrument": "attitude",
+      "system": "structure",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "sigma-5000b"
+      ]
+    },
+    {
+      "id": "altimeter-case",
+      "name": "Altimeter case and bezel",
+      "instrument": "altimeter",
+      "system": "structure",
+      "description": "United reference envelope: 3.248 in typical flange width; case depth shown at the published maximum (2.30 in ASI, 4.0 in altimeter/VSI). Unspecified diameters and features are reconstructed. Internal reference mechanisms come from separate sources; this is not a complete United replica.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "united-instruments-5934-altimeter-specification-d116799"
+      ]
+    },
+    {
+      "id": "altimeter-needle",
+      "name": "Altimeter indicating element",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "united-5934"
+      ]
+    },
+    {
+      "id": "turn-coordinator-case",
+      "name": "Turn coordinator case and bezel",
+      "instrument": "turn-coordinator",
+      "system": "structure",
+      "description": "Reconstructed gyro housing; no model-specific exterior dimensional acceptance.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ]
+    },
+    {
+      "id": "turn-coordinator-needle",
+      "name": "Turn coordinator indicating element",
+      "instrument": "turn-coordinator",
+      "system": "structure",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "mci-1394t100-sil"
+      ]
+    },
+    {
+      "id": "heading-case",
+      "name": "Heading indicator case and bezel",
+      "instrument": "heading",
+      "system": "structure",
+      "description": "Reconstructed gyro housing; no model-specific exterior dimensional acceptance.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ]
+    },
+    {
+      "id": "heading-needle",
+      "name": "Heading indicator indicating element",
+      "instrument": "heading",
+      "system": "structure",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "sigma-4000b"
+      ]
+    },
+    {
+      "id": "vsi-case",
+      "name": "Vertical-speed indicator case and bezel",
+      "instrument": "vsi",
+      "system": "structure",
+      "description": "United reference envelope: 3.248 in typical flange width; case depth shown at the published maximum (2.30 in ASI, 4.0 in altimeter/VSI). Unspecified diameters and features are reconstructed. Internal reference mechanisms come from separate sources; this is not a complete United replica.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "united-instruments-ui7000-rate-of-climb-specification"
+      ]
+    },
+    {
+      "id": "vsi-needle",
+      "name": "Vertical-speed indicator indicating element",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "description": "Readable teaching indicator driven from the shared demonstration state.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-ifh",
+        "united-7000"
+      ]
+    },
+    {
+      "id": "asi-capsule",
+      "name": "Airspeed capsule visualization",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "description": "Schematic pressure-difference capsule visualization; not a physical interior reconstruction.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "united-8000"
+      ]
+    },
+    {
+      "id": "aneroid-capsule",
+      "name": "Aneroid capsule visualization",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "description": "Schematic functional visualization of a pressure-responsive capsule; not a physical interior reconstruction.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "united-5934"
+      ]
+    },
+    {
+      "id": "vsi-restriction",
+      "name": "Calibrated-leak visualization",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "description": "Two-volume and narrow-path schematic; not a physical interior reconstruction.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "united-7000"
+      ]
+    },
+    {
+      "id": "attitude-gyro",
+      "name": "Attitude gyro axis visualization",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "description": "Schematic gyroscopic reference visualization; no gear train or manufacturer-specific interior is asserted.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "sigma-5000b"
+      ]
+    },
+    {
+      "id": "heading-gyro",
+      "name": "Heading gyro axis visualization",
+      "instrument": "heading",
+      "system": "vacuum",
+      "description": "Schematic directional-gyro reference visualization; no gear train or manufacturer-specific interior is asserted.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "sigma-4000b"
+      ]
+    },
+    {
+      "id": "turn-gyro",
+      "name": "Turn coordinator gyro axis visualization",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "description": "Schematic turn-rate gyro visualization; no manufacturer-specific interior is asserted.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "mci-1394t100-sil"
+      ]
+    },
+    {
+      "id": "airspeed-aneroid-stack",
+      "name": "Airspeed indicator corrugated diaphragm stack",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Circular corrugated diaphragm faces lie in the x/y plane and stack along the depth axis."
+    },
+    {
+      "id": "airspeed-capsule-clevis",
+      "name": "Airspeed indicator capsule clevis",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired clevis cheeks and cross-pin transfer membrane displacement to the connecting link. Travel is visually amplified."
+    },
+    {
+      "id": "airspeed-transmission-link",
+      "name": "Airspeed indicator moving transmission link",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Pinned connecting link follows capsule displacement and the sector lever. Kinematic travel is illustrative, not calibrated."
+    },
+    {
+      "id": "airspeed-rocking-shaft",
+      "name": "Airspeed indicator rocking shaft",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Bridge and rocking shaft transfer diaphragm motion to the sector."
+    },
+    {
+      "id": "airspeed-sector-gear",
+      "name": "Airspeed indicator sector gear",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Partial toothed sector keeps the linkage within the .375-radius reconstructed case envelope."
+    },
+    {
+      "id": "airspeed-pinion",
+      "name": "Airspeed indicator handstaff pinion",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Small reduction pinion between sector and centered indicating shaft."
+    },
+    {
+      "id": "airspeed-pointer-shaft",
+      "name": "Airspeed indicator pointer shaft",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Indicating shaft is centered on the dial axis."
+    },
+    {
+      "id": "airspeed-pointer-link",
+      "name": "Airspeed indicator pointer linkage",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Linkage ends at the centered pointer shaft."
+    },
+    {
+      "id": "airspeed-hairspring",
+      "name": "Airspeed indicator hairspring",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Planar spiral hairspring supplies restoring force around the linkage."
+    },
+    {
+      "id": "airspeed-shaft-bearing",
+      "name": "Airspeed indicator shaft bearing",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Jewel-like bearing at the centered shaft."
+    },
+    {
+      "id": "airspeed-pitot-port",
+      "name": "Airspeed pitot port",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Rear pressure connection in the instructional pitot-static layout."
+    },
+    {
+      "id": "airspeed-static-port",
+      "name": "Airspeed static port",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Rear pressure connection in the instructional pitot-static layout."
+    },
+    {
+      "id": "airspeed-movement-bridge",
+      "name": "Airspeed movement support bridge",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired rails and cross-shaft support the capsule-to-sector transmission. Layout follows visual references and Army Figure 4-11; all bridge dimensions and fastener placements are inferred."
+    },
+    {
+      "id": "airspeed-pitot-capsule-line",
+      "name": "Airspeed pitot line to diaphragm",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Total pressure is admitted to the capsule; static pressure acts in the surrounding instrument case."
+    },
+    {
+      "id": "airspeed-static-case-line",
+      "name": "Airspeed static line to case",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Static connection terminates in the airtight case outside the diaphragm."
+    },
+    {
+      "id": "airspeed-long-lever",
+      "name": "Airspeed long lever",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Separate long lever from Army Figure 4-11 joins the diaphragm linkage to the rocking-shaft sector."
+    },
+    {
+      "id": "airspeed-case-screw-0",
+      "name": "Airspeed indicator case screw 1",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "airspeed-case-screw-1",
+      "name": "Airspeed indicator case screw 2",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "airspeed-case-screw-2",
+      "name": "Airspeed indicator case screw 3",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "airspeed-case-screw-3",
+      "name": "Airspeed indicator case screw 4",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Airspeed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-aneroid-stack",
+      "name": "Altimeter corrugated diaphragm stack",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Circular corrugated diaphragm faces lie in the x/y plane and stack along the depth axis."
+    },
+    {
+      "id": "altimeter-capsule-clevis",
+      "name": "Altimeter capsule clevis",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Paired clevis cheeks and cross-pin transfer membrane displacement to the connecting link. Travel is visually amplified."
+    },
+    {
+      "id": "altimeter-transmission-link",
+      "name": "Altimeter moving transmission link",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pinned connecting link follows capsule displacement and the sector lever. Kinematic travel is illustrative, not calibrated."
+    },
+    {
+      "id": "altimeter-rocking-shaft",
+      "name": "Altimeter rocking shaft",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Bridge and rocking shaft transfer diaphragm motion to the sector."
+    },
+    {
+      "id": "altimeter-sector-gear",
+      "name": "Altimeter sector gear",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Partial toothed sector keeps the linkage within the .375-radius reconstructed case envelope."
+    },
+    {
+      "id": "altimeter-pinion",
+      "name": "Altimeter handstaff pinion",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Small reduction pinion between sector and centered indicating shaft."
+    },
+    {
+      "id": "altimeter-pointer-shaft",
+      "name": "Altimeter pointer shaft",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Indicating shaft is centered on the dial axis."
+    },
+    {
+      "id": "altimeter-pointer-link",
+      "name": "Altimeter pointer linkage",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Linkage ends at the centered pointer shaft."
+    },
+    {
+      "id": "altimeter-hairspring",
+      "name": "Altimeter hairspring",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Planar spiral hairspring supplies restoring force around the linkage."
+    },
+    {
+      "id": "altimeter-shaft-bearing",
+      "name": "Altimeter shaft bearing",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Jewel-like bearing at the centered shaft."
+    },
+    {
+      "id": "altimeter-front-mechanism-plate",
+      "name": "Altimeter front skeletal mechanism plate",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Open circular supporting plate reconstructed from Kollsman Figure 2-2. Cutouts and thickness are inferred, not dimensioned."
+    },
+    {
+      "id": "altimeter-rear-mechanism-plate",
+      "name": "Altimeter rear skeletal mechanism plate",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Open circular supporting plate reconstructed from Kollsman Figure 2-2. Cutouts and thickness are inferred, not dimensioned."
+    },
+    {
+      "id": "altimeter-plate-pillar-0",
+      "name": "Altimeter plate pillar 1",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pillar supports the separated mechanism plates; dimensions inferred."
+    },
+    {
+      "id": "altimeter-plate-pillar-1",
+      "name": "Altimeter plate pillar 2",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pillar supports the separated mechanism plates; dimensions inferred."
+    },
+    {
+      "id": "altimeter-plate-pillar-2",
+      "name": "Altimeter plate pillar 3",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Pillar supports the separated mechanism plates; dimensions inferred."
+    },
+    {
+      "id": "altimeter-reduction-wheels",
+      "name": "Altimeter pointer reduction wheels",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Spoked wheels arranged ahead of the capsules following the exploded mechanism; counts, tooth profiles and exact mesh remain inferred."
+    },
+    {
+      "id": "altimeter-compensating-lever",
+      "name": "Altimeter capsule compensating lever",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Lever/compensator assembly reconstructed from the Kollsman exploded mechanism; thermal properties are not modeled."
+    },
+    {
+      "id": "altimeter-case-screw-0",
+      "name": "Altimeter case screw 1",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-case-screw-1",
+      "name": "Altimeter case screw 2",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-case-screw-2",
+      "name": "Altimeter case screw 3",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "altimeter-case-screw-3",
+      "name": "Altimeter case screw 4",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "kollsman-overhaul"
+      ],
+      "description": "Reconstructed from Altimeter mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-diaphragm-stack",
+      "name": "Vertical-speed indicator corrugated diaphragm stack",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Circular corrugated diaphragm faces lie in the x/y plane and stack along the depth axis."
+    },
+    {
+      "id": "vsi-capsule-clevis",
+      "name": "Vertical-speed indicator capsule clevis",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired clevis cheeks and cross-pin transfer membrane displacement to the connecting link. Travel is visually amplified."
+    },
+    {
+      "id": "vsi-transmission-link",
+      "name": "Vertical-speed indicator moving transmission link",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Pinned connecting link follows capsule displacement and the sector lever. Kinematic travel is illustrative, not calibrated."
+    },
+    {
+      "id": "vsi-rocking-shaft",
+      "name": "Vertical-speed indicator rocking shaft",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Bridge and rocking shaft transfer diaphragm motion to the sector."
+    },
+    {
+      "id": "vsi-sector-gear",
+      "name": "Vertical-speed indicator sector gear",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Partial toothed sector keeps the linkage within the .375-radius reconstructed case envelope."
+    },
+    {
+      "id": "vsi-pinion",
+      "name": "Vertical-speed indicator handstaff pinion",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Small reduction pinion between sector and centered indicating shaft."
+    },
+    {
+      "id": "vsi-pointer-shaft",
+      "name": "Vertical-speed indicator pointer shaft",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Indicating shaft is centered on the dial axis."
+    },
+    {
+      "id": "vsi-pointer-link",
+      "name": "Vertical-speed indicator pointer linkage",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Linkage ends at the centered pointer shaft."
+    },
+    {
+      "id": "vsi-hairspring",
+      "name": "Vertical-speed indicator hairspring",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Planar spiral hairspring supplies restoring force around the linkage."
+    },
+    {
+      "id": "vsi-shaft-bearing",
+      "name": "Vertical-speed indicator shaft bearing",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Jewel-like bearing at the centered shaft."
+    },
+    {
+      "id": "vsi-rear-static-inlet",
+      "name": "VSI rear static inlet line",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Connects the rear static fitting to the diaphragm/capillary branch point."
+    },
+    {
+      "id": "vsi-direct-static-line",
+      "name": "VSI direct static to diaphragm",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Unrestricted static path enters the diaphragm. The case receives static through a separate calibrated capillary."
+    },
+    {
+      "id": "vsi-calibrated-capillary",
+      "name": "VSI porcelain capillary to case",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Thin-walled porcelain capillary vents the surrounding case to the static inlet. The bore size is unverified."
+    },
+    {
+      "id": "vsi-case-screw-0",
+      "name": "Vertical-speed indicator case screw 1",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-case-screw-1",
+      "name": "Vertical-speed indicator case screw 2",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-case-screw-2",
+      "name": "Vertical-speed indicator case screw 3",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "vsi-case-screw-3",
+      "name": "Vertical-speed indicator case screw 4",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "army-instruments"
+      ],
+      "description": "Reconstructed from Vertical-speed indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-outer-gimbal",
+      "name": "Attitude outer roll gimbal",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Fore-aft roll axis; the pitch assembly is carried inside this ring."
+    },
+    {
+      "id": "attitude-roll-pivots",
+      "name": "Attitude indicator pivot bearings",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "attitude-inner-gimbal",
+      "name": "Attitude inner pitch gimbal",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Transverse pitch axis with nested vertical-axis rotor."
+    },
+    {
+      "id": "attitude-pitch-pivots",
+      "name": "Attitude indicator pivot bearings",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "attitude-rotor",
+      "name": "Attitude indicator rotor",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Air-driven bucketed rotor. Rotation is slowed for inspection, not operating RPM."
+    },
+    {
+      "id": "attitude-rotor-bearings",
+      "name": "Attitude indicator pivot bearings",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "attitude-drive-air-nozzle",
+      "name": "Attitude indicator drive air nozzle",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Nozzle directs suction-induced airflow onto peripheral rotor buckets. Passage geometry is reconstructed."
+    },
+    {
+      "id": "attitude-rotor-housing",
+      "name": "Attitude rotor housing cutaway",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Reconstructed rotor casing shown with an inspection opening, not a production opening."
+    },
+    {
+      "id": "attitude-pendulous-shutter-0",
+      "name": "Attitude pendulous shutter 1",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-pendulous-shutter-1",
+      "name": "Attitude pendulous shutter 2",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-pendulous-shutter-2",
+      "name": "Attitude pendulous shutter 3",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-pendulous-shutter-3",
+      "name": "Attitude pendulous shutter 4",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-horizon-link",
+      "name": "Attitude horizon display linkage",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Pitch linkage conveys gimbal displacement toward the display; exact production linkage is not claimed."
+    },
+    {
+      "id": "attitude-case-screw-0",
+      "name": "Attitude indicator case screw 1",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-case-screw-1",
+      "name": "Attitude indicator case screw 2",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-case-screw-2",
+      "name": "Attitude indicator case screw 3",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-case-screw-3",
+      "name": "Attitude indicator case screw 4",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-outer-gimbal",
+      "name": "Heading vertical-axis ring",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Vertical yaw axis carries the horizontal trunnion frame, following Sperry US1982637."
+    },
+    {
+      "id": "heading-vertical-pivots",
+      "name": "Heading indicator pivot bearings",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "heading-inner-gimbal",
+      "name": "Heading horizontal-trunnion frame",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Horizontal fore-aft trunnions support a transverse horizontal-spin rotor."
+    },
+    {
+      "id": "heading-horizontal-pivots",
+      "name": "Heading indicator pivot bearings",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "heading-rotor",
+      "name": "Heading indicator rotor",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Air-driven bucketed rotor. Rotation is slowed for inspection, not operating RPM."
+    },
+    {
+      "id": "heading-rotor-bearings",
+      "name": "Heading indicator pivot bearings",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "heading-drive-air-nozzle",
+      "name": "Heading indicator drive air nozzle",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Nozzle directs suction-induced airflow onto peripheral rotor buckets. Passage geometry is reconstructed."
+    },
+    {
+      "id": "heading-compass-drum",
+      "name": "Heading compass drum attached to vertical ring",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. The patent compass scale is carried by the vertical ring. The front-facing teaching dial is a separate display adaptation."
+    },
+    {
+      "id": "heading-case-screw-0",
+      "name": "Heading indicator case screw 1",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-case-screw-1",
+      "name": "Heading indicator case screw 2",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-case-screw-2",
+      "name": "Heading indicator case screw 3",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "heading-case-screw-3",
+      "name": "Heading indicator case screw 4",
+      "instrument": "heading",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-heading-patent"
+      ],
+      "description": "Reconstructed from Heading indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-turn-gimbal",
+      "name": "Turn coordinator 30-degree canted gimbal",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Gimbal axis lies in the vertical fore-aft plane, inclined 30 degrees. Rotor spin remains transverse, perpendicular to that axis."
+    },
+    {
+      "id": "turn-coordinator-u-frame",
+      "name": "Turn coordinator U-shaped rotor frame",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. U-frame supports transverse rotor bearings; contour reconstructed from the sectional patent."
+    },
+    {
+      "id": "turn-coordinator-rotor",
+      "name": "Turn coordinator rotor",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Electric rotor on the transverse shaft. Rotation is slowed for inspection, not operating RPM."
+    },
+    {
+      "id": "turn-coordinator-rotor-bearings",
+      "name": "Turn coordinator pivot bearings",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "turn-coordinator-gimbal-bearings",
+      "name": "Turn coordinator pivot bearings",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "turn-coordinator-motor-stator",
+      "name": "Turn coordinator four-coil motor stator",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Four-coil electric drive follows the Hall-motor patent arrangement; no pneumatic drive is present."
+    },
+    {
+      "id": "turn-coordinator-drive-board",
+      "name": "Turn coordinator drive circuit board",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Board placement is reconstructed from patent item 73; component package layout is illustrative, not an electrical schematic."
+    },
+    {
+      "id": "turn-coordinator-centering-spring",
+      "name": "Turn coordinator gimbal hairspring",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Planar return spring around the canted gimbal shaft, patent item 37."
+    },
+    {
+      "id": "turn-coordinator-pointer-fork",
+      "name": "Turn coordinator pointer fork",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Fork spring and transmission pin couple the gyro to the indicating shaft; proportions inferred."
+    },
+    {
+      "id": "turn-coordinator-case-screw-0",
+      "name": "Turn coordinator case screw 1",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-case-screw-1",
+      "name": "Turn coordinator case screw 2",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-case-screw-2",
+      "name": "Turn coordinator case screw 3",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "turn-coordinator-case-screw-3",
+      "name": "Turn coordinator case screw 4",
+      "instrument": "turn-coordinator",
+      "system": "electrical",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "tokyo-turn-patent"
+      ],
+      "description": "Reconstructed from Turn coordinator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "pitot-source",
+      "name": "Pitot pressure source",
+      "system": "pitot-static",
+      "description": "Schematic total-pressure source for the ASI branch.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "united-8000"
+      ]
+    },
+    {
+      "id": "static-source",
+      "name": "Static pressure source",
+      "system": "pitot-static",
+      "description": "Schematic ambient static-pressure source for the shared instrument manifold.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8"
+      ]
+    },
+    {
+      "id": "pitot-to-asi",
+      "name": "Pitot line to ASI",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "description": "Pressure path from pitot source to the ASI pressure side.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "united-8000"
+      ]
+    },
+    {
+      "id": "static-manifold-detail",
+      "name": "Static manifold",
+      "system": "pitot-static",
+      "description": "Shared static manifold feeding ASI, altimeter, and VSI.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "united-5934",
+        "united-7000"
+      ]
+    },
+    {
+      "id": "static-manifold-feed",
+      "name": "Static source feed",
+      "system": "pitot-static",
+      "description": "Schematic connection from the static source to the shared manifold.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8"
+      ]
+    },
+    {
+      "id": "static-to-asi",
+      "name": "Static line to ASI",
+      "instrument": "airspeed",
+      "system": "pitot-static",
+      "description": "Shared static reference to the ASI case.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "united-8000"
+      ]
+    },
+    {
+      "id": "static-to-altimeter",
+      "name": "Static line to altimeter",
+      "instrument": "altimeter",
+      "system": "pitot-static",
+      "description": "Shared static pressure line to the sensitive altimeter.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "united-5934"
+      ]
+    },
+    {
+      "id": "static-to-vsi",
+      "name": "Static line to VSI",
+      "instrument": "vsi",
+      "system": "pitot-static",
+      "description": "Direct static line to the VSI diaphragm; its case restriction is shown separately in the instrument schematic.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "united-7000"
+      ]
+    },
+    {
+      "id": "ambient-supply",
+      "name": "Ambient air supply",
+      "system": "vacuum",
+      "description": "Vacuum-system inlet air before filtration.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-filter-detail",
+      "name": "Vacuum air filter",
+      "system": "vacuum",
+      "description": "Filtered ambient supply upstream of the parallel gyros.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "ambient-to-filter",
+      "name": "Ambient line to vacuum filter",
+      "system": "vacuum",
+      "description": "Ambient inlet path before filtration.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "filter-to-gyros",
+      "name": "Filtered supply line",
+      "system": "vacuum",
+      "description": "Filtered supply path before it divides into AI and DG branches.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-supply-split",
+      "name": "Vacuum supply split",
+      "system": "vacuum",
+      "description": "Schematic split sending filtered ambient air to AI and DG in parallel.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-ai-branch",
+      "name": "Vacuum branch to attitude indicator",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "description": "One of two parallel pneumatic gyro branches.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "sigma-5000b"
+      ]
+    },
+    {
+      "id": "vacuum-dg-branch",
+      "name": "Vacuum branch to directional gyro",
+      "instrument": "heading",
+      "system": "vacuum",
+      "description": "One of two parallel pneumatic gyro branches.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "sigma-4000b"
+      ]
+    },
+    {
+      "id": "vacuum-suction-manifold-detail",
+      "name": "Vacuum suction manifold",
+      "system": "vacuum",
+      "description": "Combined downstream flow from the AI and DG branches.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-suction-gauge",
+      "name": "Suction gauge",
+      "system": "vacuum",
+      "description": "Schematic gauge sampling suction-side pressure; no aircraft-specific green arc is implied.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-suction-gauge-line",
+      "name": "Suction gauge line",
+      "system": "vacuum",
+      "description": "Connection from the suction manifold to its schematic gauge.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-regulator-detail",
+      "name": "Vacuum relief regulator",
+      "system": "vacuum",
+      "description": "Controlled ambient-air admission on the low-pressure side; it limits suction.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-pump-detail",
+      "name": "Engine-driven vacuum pump",
+      "system": "vacuum",
+      "description": "Schematic suction pump. No pump vane or manufacturer-specific interior is asserted.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "suction-to-pump",
+      "name": "Suction line to vacuum pump",
+      "system": "vacuum",
+      "description": "Downstream low-pressure line from manifold to pump.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "regulator-admission",
+      "name": "Regulator ambient-admission line",
+      "system": "vacuum",
+      "description": "Schematic regulator branch admitting ambient air on the suction side.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-exhaust",
+      "name": "Vacuum pump exhaust",
+      "system": "vacuum",
+      "description": "Downstream exhaust path after the pump.",
+      "evidence": "documented-principle",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    },
+    {
+      "id": "vacuum-exhaust-arrow",
+      "name": "Vacuum exhaust direction",
+      "system": "vacuum",
+      "description": "Schematic directional marker for the downstream pump exhaust.",
+      "evidence": "schematic",
+      "sourceIds": [
+        "faa-phak-8",
+        "rapco-vacuum"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "faa-phak-8",
+      "title": "Pilot's Handbook of Aeronautical Knowledge, Chapter 8: Flight Instruments",
+      "publisher": "FAA",
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/phak/10_phak_ch8.pdf",
+      "type": "primary-handbook",
+      "use": "Operating principles and instructional diagrams for flight instruments; not model-specific geometry.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Chapter 8; inspect the instrument-specific figures and cited text before accepting each claim."
+    },
+    {
+      "id": "faa-ifh",
+      "title": "Instrument Flying Handbook, FAA-H-8083-15B",
+      "publisher": "FAA",
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf",
+      "type": "primary-handbook",
+      "use": "Instrument-system principles and failure/indication context; handbook edition must be checked against current FAA index before publication.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Instrument systems chapter/sections; verify edition, section, and page for every claim."
+    },
+    {
+      "id": "faa-handbooks-index",
+      "title": "Aviation Handbooks & Manuals",
+      "publisher": "FAA",
+      "url": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation",
+      "type": "primary-index",
+      "use": "Check current handbook editions and addenda.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Reference Handbooks list; current listing checked 2026-09-17."
+    },
+    {
+      "id": "united-8000",
+      "title": "8000 Series Airspeed Indicators",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/products/airspeed/",
+      "type": "manufacturer-product-page",
+      "use": "Public product description/specification links for the 8000 series only; dimensions limited to published data.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "8000 Series section and linked specification sheets."
+    },
+    {
+      "id": "united-5934",
+      "title": "5934 Series Altimeters",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/products/altimeters/",
+      "type": "manufacturer-product-page",
+      "use": "Public product description/specification links for the 5934 series only; dimensions limited to published data.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "5934 Series section and linked specification sheets."
+    },
+    {
+      "id": "united-7000",
+      "title": "7000 Series Vertical Speed Indicators",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/products/verticalspeed/",
+      "type": "manufacturer-product-page",
+      "use": "Public product description/specification links for the 7000 series. Use 7000 for VSI; 7100 is a different instantaneous VSI series.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "7000 Series section and linked specification sheets; keep separate from 7100 Series."
+    },
+    {
+      "id": "united-publications",
+      "title": "United Instruments Publications",
+      "publisher": "United Instruments",
+      "url": "https://www.unitedinst.com/publications/",
+      "type": "manufacturer-publications-index",
+      "use": "Identifies paid manuals as possible future sources; no paid document has been obtained or reviewed.",
+      "access": "public-index-paid-documents",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "Publications table; identifies manual titles and purchase status only."
+    },
+    {
+      "id": "sigma-5000b",
+      "title": "5000B Series Attitude Gyro with Warning Flag",
+      "publisher": "Sigma-Tek",
+      "url": "https://www.sigma-tek.com/pages/prod_description/PD_ATT_warning_flag.html",
+      "type": "manufacturer-product-page",
+      "use": "Model-specific public description lead for 5000B-38; verify reachability and any specification before relying on it.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": "not-confirmed-timeout",
+      "locator": "Product description page; detailed passage/dimensions not verified (request timed out)."
+    },
+    {
+      "id": "sigma-4000b",
+      "title": "4000B Series Directional Gyro",
+      "publisher": "Sigma-Tek",
+      "url": "https://www.sigma-tek.com/pages/prod_description/PD_DG_standard.html",
+      "type": "manufacturer-product-page",
+      "use": "Model-specific public description lead for 4000B-30; verify reachability and any specification before relying on it.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": "not-confirmed-timeout",
+      "locator": "Product description page; detailed passage/dimensions not verified (request timed out)."
+    },
+    {
+      "id": "mci-1394t100-sil",
+      "title": "SIL 1394T100-B-01, Rev. 5/30/06",
+      "publisher": "Mid-Continent Instruments and Avionics",
+      "url": "https://assets.mcico.com/assets/products/ServiceInformationLetters/SIL_1394T100-B-01_rev5-30-06.pdf",
+      "type": "manufacturer-service-letter",
+      "use": "Preferred T100-specific reference for electric turn-coordinator description; inspect exact passages before making model-specific mechanism claims.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "T100-B-01 Rev. 5/30/06; exact passage/page still requires review."
+    },
+    {
+      "id": "mci-1394t100-installation",
+      "title": "1394T100-3B / 7B / 14RB Installation Manual",
+      "publisher": "Mid-Continent Instruments and Avionics",
+      "url": "https://assets.mcico.com/assets/products/InstallationManuals/1394T100-3B_7B_14RB_im.pdf",
+      "type": "manufacturer-installation-manual",
+      "use": "Quarantined conflict-check source; do not use suspect power values or ±180°/s two-minute-turn statement as facts without authoritative correction.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "1394T100-3B/7B/14RB manual; conflicting statements quarantined; exact page still requires review."
+    },
+    {
+      "id": "rapco-vacuum",
+      "title": "Vacuum System Installation Information",
+      "publisher": "RAPCO",
+      "url": "https://www.rapcoinc.com/pdf/Informational%20Tips/Vac%20installation%20for%20web.pdf",
+      "type": "manufacturer-technical-information",
+      "use": "Vacuum-system installation context; not proof of a specific aircraft's installed components.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "PDF installation-information figures/text; page-specific claims not yet recorded."
+    },
+    {
+      "id": "rapco-vac-kit",
+      "title": "Recommended Vacuum Kit Drawing",
+      "publisher": "RAPCO",
+      "url": "https://www.rapcoinc.com/pdf/Informational%20Tips/Recomended%20Vac%20Kit%20Drawing.pdf",
+      "type": "manufacturer-kit-drawing",
+      "use": "Vacuum-system kit context; aircraft/configuration applicability remains unestablished.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "http_status": 200,
+      "locator": "PDF drawing; kit/installation applicability not yet established."
+    },
+    {
+      "id": "kollsman-overhaul",
+      "title": "Sensitive Altimeter, TM 55-6610-247-40, GS Maintenance Manual Including Repair Parts and Special Tools List",
+      "publisher": "U.S. Department of the Army; public courtesy copy hosted by Liberated Manuals",
+      "url": "https://www.liberatedmanuals.com/TM-55-6610-247-40.pdf",
+      "type": "primary-reference",
+      "use": "Highest-confidence model-specific source in this set for an actual conventional sensitive altimeter's part organization and mechanism layout. Envelope dimensions remain unknown.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/TM-55-6610-247-40_Kollsman_sensitive_altimeter.pdf",
+      "sha256": "bc2f42df6d943fbb9e86409fed3864d80830a9acaa8733afa21cda2bf6294a6b",
+      "locator": [
+        "PDF p.11, printed p.2-4, Figure 2-1: exploded outer case, bezel/window, dial/pointers, pressure case, adjustment and mounting pieces; numbered callouts link to the repair-parts list.",
+        "PDF p.12, printed p.2-5, Figure 2-2: exploded mechanism assembly, including plates, aneroid/diaphragm-linked pieces, shafts, gears, springs, jewel/bearing parts and adjustment elements; manual disassembly instructions and parts list provide complementary naming.",
+        "PDF p.7, printed p.1-2, Table 1-1: 35,000-ft indication range and 28.1-31.0 inHg barometric setting range. These are operating ranges, not physical dimensions.",
+        "PDF pp.15-17 contain further mechanism assembly, calibration and adjustment detail. The manual states 0.003-inch end-play settings for mechanism wheels/shafts and a 0.005-inch-thick shim; these are assembly/fit values, not an overall envelope or complete component dimension set. It also specifies a standard 1/8-inch IPT static fitting in the leak-test procedure."
+      ]
+    },
+    {
+      "id": "united-instruments-5934-altimeter-specification-d116799",
+      "title": "Customer Acceptance Specification, Indicator-Altimeter, United Instruments Spec. No. UI5934, drawing/document d116799",
+      "publisher": "United Instruments, Inc. (OEM specification)",
+      "url": "https://www.unitedinst.com/Products/SpecificationsSheets/d116799.aspx?type=view",
+      "type": "primary-reference",
+      "use": "Strong exterior-envelope source for an actual United UI5934 altimeter; pair only as an explicitly cross-manufacturer envelope reference if modeling Kollsman internals.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/United_d116799_specification.pdf",
+      "sha256": "98184d49039c079f7fa601b4d429d6371b455f838484bc924b61655a998e9081",
+      "locator": [
+        "PDF p.1, drawing: dimensioned front and side views, pointer/barometric configurations, and port locations. The case is specified per MS33549 and the port 1/8-27 ANPT per MIL-P-7105.",
+        "PDF p.1 explicitly dimensions 3.248 in typical across the case/front view and 4.0 in maximum case depth. These are stated OEM drawing dimensions, not measurements inferred from pixels.",
+        "PDF pp.2-8 include pressure-altitude/pressure-difference and test/acceptance information, not internal exploded mechanism parts."
+      ]
+    },
+    {
+      "id": "united-instruments-ui7000-rate-of-climb-specification",
+      "title": "Indicator-Rate of Climb, United Instruments Spec. No. UI7000 (revision F)",
+      "publisher": "United Instruments, Inc. (OEM specification)",
+      "url": "https://www.unitedinst.com/Documents/UI7000%20(F).pdf?action=view",
+      "type": "primary-reference",
+      "use": "Best OEM exterior-envelope and performance source found for an actual conventional United mechanical VSI/rate-of-climb family; pair with Army Figure 4-12 only as generic internal architecture, not as the UI7000's confirmed internals.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/United_UI7000_F_specification.pdf",
+      "sha256": "4884219d79791b7a5e0797f8fceb64fbbd3cc683cf510914adfef998b1832321",
+      "locator": [
+        "PDF p.4, OEM drawing: dimensioned face and side views for UI7000-series configurations, with case per MS33549 and 1/8-27 ANPT ports per MIL-P-7105.",
+        "PDF p.1 describes pressure-difference operation, single pointer, range and zero setting; PDF pp.2-3 provide performance/tolerance criteria."
+      ]
+    },
+    {
+      "id": "united-instruments-ui8000-airspeed-specification",
+      "title": "Indicator-Airspeed, United Instruments Spec. No. UI8000 (revision E)",
+      "publisher": "United Instruments, Inc. (OEM specification)",
+      "url": "https://www.unitedinst.com/Documents/UI8000%20(E).pdf?action=view",
+      "type": "primary-reference",
+      "use": "Best OEM exterior-envelope and operating-range source found for an actual United mechanical ASI; pair with Army Figure 4-11 only as generic internal architecture, not as the UI8000's confirmed internals.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/United_UI8000_E_specification.pdf",
+      "sha256": "ef76279b1ef85c8d7c2d792a9025a00511a069991ee09a998c222f891bc25f16",
+      "locator": [
+        "PDF p.1 states the airspeed operating principle: differential between pitot and static pressure produces the pointer indication; calibrated range for part 8000 is 0-200 mph, 8025 is 0-250 mph, and 8030 is 0-300 mph.",
+        "PDF p.7, OEM drawing: dimensioned front/side views, case per MS33549, and pitot/static port thread 1/8-27 ANPT per MIL-P-7105."
+      ]
+    },
+    {
+      "id": "army-instruments",
+      "title": "Aviation Unit Maintenance (AVUM) and Aviation Intermediate Maintenance (AVIM) Manual for General Aircraft Maintenance, Electrical and Instrument Maintenance Procedures and Practices, Volume 4, TM 1-1500-204-23-4",
+      "publisher": "U.S. Department of the Army / LOGSA; hosted by Chinook Helicopter public technical-manual archive",
+      "url": "https://ww.chinook-helicopter.com/Publications/General_Aircraft_Maintenance_Technical_Manuals/TM_1-1500-204-23-4.pdf",
+      "type": "primary-reference",
+      "use": "Best primary-source public mechanical layout for conventional ASI and VSI behavior; not a matched component overhaul manual and not usable for dimensional reconstruction.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/TM-1-1500-204-23-4_aircraft_instruments.pdf",
+      "sha256": "d78ffb973309cb283d9ec3865e8fa4d2605c7997de306da081d0935990c91ce2",
+      "locator": [
+        "PDF p.62, printed p.4-13, Figure 4-11: sectional airspeed-indicator drawing labels static/pitot connections, diaphragm, restraining spring, hairspring, rocking shaft, sector, long lever, handstaff pinion and pointer. Adjacent text describes capsule motion converted to pointer movement by mechanical linkage.",
+        "PDF p.63, printed p.4-14, text: conventional VSI includes two air-enclosing chambers, with a pressure-sensitive diaphragm directly connected to static pressure and an airtight case connected through a thin-walled porcelain capillary; diaphragm motion drives the pointer. This is source text rather than inference.",
+        "PDF p.64, printed p.4-15, Figure 4-12: conventional VSI sectional layout with internal diaphragm/chamber, mechanical linkage and case/capillary path. It is a section/layout view, not an exploded parts drawing.",
+        "PDF p.63, printed p.4-14, Table 4-1 gives ASI test tolerance values for MS28045/MS28021/MS28046 at specified knots. Those are performance limits, not physical dimensions."
+      ]
+    },
+    {
+      "id": "ntsb-wpr11fa316-airspeed-indicator-teardown",
+      "title": "Airspeed Indicator Information, WPR11FA316",
+      "publisher": "National Transportation Safety Board, Office of Aviation Safety, Western Pacific Region",
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=.PDF&FileName=Airspeed+Indicator+Information-Master.PDF&ID=40398817",
+      "type": "primary-reference",
+      "use": "Primary evidence that a real conventional aircraft ASI has a separate diaphragm/case gasket and the shown teardown relationships; use alongside the Army layout drawing, not as a scale drawing.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/NTSB_airspeed_indicator_teardown.pdf",
+      "sha256": "2ac58cc937a15aceba4167db9591e5092a5c13d8fbdb5102c5d0676119f1e3ab",
+      "locator": [
+        "PDF p.2 documents actual functional/leak test and removal/replacement of a failed diaphragm/case gasket.",
+        "PDF p.3, Figure 1: actual unit exploded-view drawing with gasket identified; PDF pp.4-5 show actual leak test and removed gasket.",
+        "The report states a bezel leak check at 18,000 ft and documents that a new diaphragm/case gasket eliminated the observed leak."
+      ]
+    },
+    {
+      "id": "faa-ac-65-15a-airframe-handbook",
+      "title": "AC 65-15A, Airframe & Powerplant Mechanics - Airframe Handbook",
+      "publisher": "Federal Aviation Administration",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_65-15A.pdf",
+      "type": "primary-reference",
+      "use": "FAA cross-check for conventional mechanism terminology; not a physical reconstruction source.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/FAA_AC_65-15A_airframe_handbook.pdf",
+      "sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+      "locator": [
+        "Flight-instrument section describes a metallic ASI diaphragm, link, rocking shaft, sector with hairspring and pinion/tapered pointer shaft.",
+        "Describes VSI diaphragm and connecting linkage inside sealed case. This is mechanism overview, not model-specific part evidence."
+      ]
+    },
+    {
+      "id": "patent-us-2196932-pressure-responsive-indicating-instrument",
+      "title": "Pressure Responsive Indicating Instrument, U.S. Patent 2,196,932",
+      "publisher": "United States Patent Office; PDF hosted by Google Patents patent-images storage",
+      "url": "https://patents.google.com/patent/US2196932A/en",
+      "type": "primary-reference",
+      "use": "Secondary mechanism detail only; keep separate from the actual NTSB unit and generic Army drawing.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/US2196932A_pressure_indicator_patent.pdf",
+      "sha256": "048c229ae462511fd82abb7fa1be02f264672c3a51e5f3ab4ae6d9d165faa010",
+      "locator": [
+        "Patent specification describes an airspeed diaphragm, apertured boss and pitot conduit, U-shaped diaphragm member, connecting rod, L-shaped spring element, rock-shaft and pointer drive; drawings include front, side, longitudinal and transverse sections (Figures 1-6)."
+      ]
+    },
+    {
+      "id": "patent-us-2285521-vertical-speed-indicator",
+      "title": "Vertical Speed Indicator, U.S. Patent 2,285,521",
+      "publisher": "United States Patent Office; PDF hosted by Google Patents patent-images storage",
+      "url": "https://patents.google.com/patent/US2285521A/en",
+      "type": "primary-reference",
+      "use": "Mechanism concept only; because it includes a particular temperature-compensation design, do not treat the added components as universal conventional VSI parts.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/US2285521A_vertical_speed_indicator_patent.pdf",
+      "sha256": "b738981194be3c821354ec88b33b88180c5fba92aa8b147c2839488b5369b433",
+      "locator": [
+        "Patent text and illustrations support an insulated chamber, restricted capillary, differential-pressure-responsive diaphragm, pointer linkage, and temperature-compensation features."
+      ]
+    },
+    {
+      "id": "patent-us-2537240-air-speed-indicator",
+      "title": "Air Speed Indicator, U.S. Patent 2,537,240",
+      "publisher": "United States Patent Office; PDF hosted by Google Patents patent-images storage",
+      "url": "https://patents.google.com/patent/US2537240A/en",
+      "type": "primary-reference",
+      "use": "Optional comparison for a more complex Mach/safe-speed instrument only; exclude the added mechanism from a conventional ASI reconstruction.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/US2537240A_airspeed_indicator_patent.pdf",
+      "sha256": "2a5e6cb7c54d1a1f0777ca070a50dc614db1b3991343d58c2fdb5ef963d4fe7e",
+      "locator": [
+        "Patent text describes pressure diaphragm, links, jack/rocking shaft, sector gear, pinion, pointer and hairspring."
+      ]
+    },
+    {
+      "id": "patent-us-5016473-altimeter",
+      "title": "Altimeter, U.S. Patent 5,016,473",
+      "publisher": "United States Patent Office; PDF hosted by Google Patents patent-images storage",
+      "url": "https://patents.google.com/patent/US5016473A/en",
+      "type": "primary-reference",
+      "use": "Only source found here with an explicit overall altimeter diameter and internal aneroid movement value; useful as a separately labeled patented compact design, not for the Kollsman model.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/pressure/pdfs/US5016473A_altimeter_patent_design.pdf",
+      "sha256": "da78f1b7bea01779a7980df433cbc8528e0fedc5fae36da9b052cf5cd0faf62a",
+      "locator": [
+        "Patent text states a 2-inch example overall diameter and a four-aneroid-element mechanism. It states 2.5 mm deformation for each element over the stated pressure range and a 5 mm deformation for each opposing cap assembly. These dimensions apply only to this patent design."
+      ]
+    },
+    {
+      "id": "ntsb-sigma-gyro",
+      "title": "Addendum to the Systems Group Chairman Factual Report from the Laboratory Examination of Instrument Fragments",
+      "publisher": "National Transportation Safety Board, Office of Aviation Safety",
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=.PDF&FileName=Systems+Group+-+Addendum+1+-+Laboratory+Examination+of+Instrument+Fragments-Redacted.PDF&ID=40422224",
+      "type": "Primary NTSB lab report with excerpts from the Sigma-Tek OEM overhaul manual and photographs of an inspected intact reference instrument",
+      "use": "Not an OEM overhaul manual; only selected OEM manual excerpts are reproduced. Photographed intact reference is a family reference, not an exploded drawing.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/ntsb_5000b_gyro_fragment_lab_report.pdf",
+      "sha256": "d0a8cdb5c7079416ce1a3f18def1e9b6f047874dd4816daccfd0c053ce8ddcef",
+      "locator": "PDF pp. 3-4: intact face, back-side support housing, and removed instrument showing gyro housing and pitch-mask arm. PDF p. 5: OEM supply and performance values. PDF p. 3 states the OEM manual is used for part orientation and titles."
+    },
+    {
+      "id": "stuttgart-sperry-specimen",
+      "title": "KK06-09 Kurskreisel AN5731-1: specimen record",
+      "publisher": "University of Stuttgart, PAS / DaRUS Digital Gyroscope Collection",
+      "url": "https://darus.uni-stuttgart.de/dataverse/kk06-09",
+      "type": "Institutional collection record for a physical instrument specimen",
+      "use": "No internal drawing or detailed component measurements in this record.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/university_stuttgart_kk06-09_vacuum_dg_specimen_record.pdf",
+      "sha256": "c9adc5046a8da6c83082222cf72ecc2e601035baea7f61759537e1e735e75612",
+      "locator": []
+    },
+    {
+      "id": "stuttgart-sperry-open-specimen",
+      "title": "KK26-10 Kurskreisel AN5731-1: open Sperry AN 5735-1 specimen and image collection",
+      "publisher": "University of Stuttgart, PAS / DaRUS Digital Gyroscope Collection",
+      "url": "https://darus.uni-stuttgart.de/dataverse/kk26-10",
+      "type": "Institutional physical-object metadata and openly listed 2D digitization image dataset",
+      "use": "The 2D image files were not copied locally in this packet; use the public dataset and its CC BY-SA 4.0 terms. The available photos are physical-object evidence, not an OEM dimensioned assembly drawing.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/university_stuttgart_kk26-10_specimen_record.pdf",
+      "sha256": "f1a76c34b5f9ed390ec1acb0b583c82795f6aa49f1fed778254b8426e4af4498",
+      "locator": []
+    },
+    {
+      "id": "sperry-heading-patent",
+      "title": "Directional Gyroscope, US Patent 1,982,637 A",
+      "publisher": "United States Patent Office; inventor Bert G. Carlson, assigned to Sperry Gyroscope Company, Inc.",
+      "url": "https://patents.google.com/patent/US1982637A/en",
+      "type": "Expired primary patent; drawing sheet and descriptive text",
+      "use": "Primary design disclosure, not a parts breakdown or proof that the patented construction exactly matches each AN 5735-1 serial/configuration. The actual specimen patent stamping strengthens family linkage only.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/us1982637a_sperry_directional_gyroscope.pdf",
+      "sha256": "ffe39e6e04589cd74eef69aa9e4c35f3e07bfd62d9f8b199b903b0777c1467b5",
+      "locator": "PDF p. 1 has Figs. 1-5: face, vertical section, orthogonal section, nozzle detail, and single-jet variant. PDF pp. 2-3 describe the assembly and air/erection behavior."
+    },
+    {
+      "id": "sperry-horizon-patent",
+      "title": "Gyroscopic Horizon Indicator, US Patent 1,939,825 A",
+      "publisher": "United States Patent Office; F. C. Narvesen et al., assigned to Sperry Gyroscope Company, Inc.",
+      "url": "https://patents.google.com/patent/US1939825A/en",
+      "type": "Expired primary patent; drawing sheets, section views, and description",
+      "use": "Patent design is not evidence of the exact gimbal, erection, or bearing implementation in a later commercial attitude indicator.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/us1939825a_sperry_gyroscopic_horizon_indicator.pdf",
+      "sha256": "1e91b7dc8fd391203869f014f07184b8e3df899783861cb9b0e70800dca4f024",
+      "locator": "Drawing sheets are PDF pp. 1 and 4. Figures 1-10 include front/rear views, orthogonal sections, trunnion routing, rotor-case sections, and nozzle details."
+    },
+    {
+      "id": "US2183133A-CARLSON-HORIZON-LINKAGE",
+      "title": "Artificial Horizon, US Patent 2,183,133 A",
+      "publisher": "United States Patent Office; inventor Bert G. Carlson",
+      "url": "https://patents.google.com/patent/US2183133A/en",
+      "type": "Expired primary patent; mechanism drawings and description",
+      "use": "Not evidence of the linkage used in the Sigma-Tek 5000B or the AN 5735-1 DG.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/us2183133a_carlson_artificial_horizon_linkage.pdf",
+      "sha256": "1a074337b66afbcf9f1bec7394183afcdcd664ec4cb7d39af354befd92eb7a08",
+      "locator": "PDF p. 1: Figs. 1-4, including plan, side, face, and enlarged linkage section. PDF pp. 2-3: mechanism description and claims."
+    },
+    {
+      "id": "tokyo-turn-patent",
+      "title": "US4149418A: Turn coordinator, Tokyo Aircraft Instrument",
+      "publisher": "Original patent assignee / NTSB as named",
+      "url": "https://patents.google.com/patent/US4149418A/en",
+      "type": "primary-reference",
+      "use": "PDF pp.1-2 drawings; 30 degree canted gimbal, rotor and Hall motor, bearing sleeve, centering spring and pointer fork. Undimensioned concept.",
+      "locator": "PDF pp.1-2 drawings; 30 degree canted gimbal, rotor and Hall motor, bearing sleeve, centering spring and pointer fork. Undimensioned concept.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/turn-and-cad/tokyo-US4149418.pdf",
+      "sha256": "d670da7ab3524888130c344d3b77936b340b1f1a6cbbabef45bb99cf3479f65b"
+    },
+    {
+      "id": "brittain-turn-patent",
+      "title": "US3355943A: Turn coordinator, Brittain",
+      "publisher": "Original patent assignee / NTSB as named",
+      "url": "https://patents.google.com/patent/US3355943A/en",
+      "type": "primary-reference",
+      "use": "Alternative pneumatic concept; not used as electric production hardware.",
+      "locator": "Alternative pneumatic concept; not used as electric production hardware.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/turn-and-cad/brittain-US3355943.pdf",
+      "sha256": "cf4930c5bb86c8e3528b9502560aea03559e3fcc2508048f32f6091332806f22"
+    },
+    {
+      "id": "ntsb-mci-turn",
+      "title": "NTSB / Mid-Continent: 1394T100-7Z teardown",
+      "publisher": "Original patent assignee / NTSB as named",
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=.PDF&FileName=Reports+from+Parties+to+the+Investigation-Mid-Continent+Instruments+and+Avionics+and+FAA+Concurring+Statement-Redacted.PDF&ID=40407172",
+      "type": "primary-reference",
+      "use": "PDF pp.3-5 actual gimbal, rotor and balance screw photos; p.4 reports 4.5 inch circumference. Damaged unit; distinct from Tokyo patent.",
+      "locator": "PDF pp.3-5 actual gimbal, rotor and balance screw photos; p.4 reports 4.5 inch circumference. Damaged unit; distinct from Tokyo patent.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/turn-and-cad/mci-1394T100-ntsb-teardown.pdf",
+      "sha256": "c59f4128acb032885eb69d73ad1c5dda97cb0bcc5992343d324472507449eec6"
+    }
+  ],
+  "supportedDomain": {
+    "altitudeFt": [
+      -1500,
+      20000
+    ],
+    "trueAirspeedKt": [
+      0,
+      200
+    ],
+    "simulation": "idealized instructional model; transient constants are not measured OEM performance"
+  },
+  "limitations": [
+    "Pressure-instrument flange widths and maximum case depths follow separately identified United reference envelopes; unspecified features are inferred.",
+    "Internal assemblies reconstruct source layouts with inferred proportions; mechanism and housing references may be different manufacturers.",
+    "Full internal geometry, selected hardware dimensions, and calibration remain held.",
+    "The exported GLB is a static authoring snapshot; interactive behavior is provided by the application."
+  ]
+}

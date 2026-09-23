@@ -1,0 +1,10 @@
+✔ shared first-paint assets are served from PilotSolve cache without network (6.688667ms)
+✔ app requests remain controlled and unrelated paths remain untouched (1.915833ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.157583

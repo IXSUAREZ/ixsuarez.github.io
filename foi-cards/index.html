@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+<script src="/assets/appearance.js"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
 <title>FOI Cards | Fundamentals of Instructing Flashcards</title>
 <meta name="description" content="Study Fundamentals of Instructing with free FOI flashcards, topic review, and progress saved on your device. Built for instructor study by SuarezCFI." />
@@ -33,65 +34,70 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260909a">
+    <link rel="stylesheet" href="styles.css?v=20260922-garmin-dock-2">
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
-  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
 <link rel="stylesheet" href="/assets/site-discovery.css" />
+  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
+<link rel="stylesheet" href="/assets/avionics.css">
 </head>
   <body class="foi-page">
     <main class="app-shell" id="app" aria-live="polite">
-      <header class="chipnav-wrap">
-        <nav class="chipnav" aria-label="Site">
-          <a class="chipnav-back" href="/">&larr; SuarezCFI.com</a>
-          <a class="chipnav-wordmark" href="/" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
-          <div class="chipnav-actions">
-            <button class="chipnav-reset" type="button" id="resetButton">Reset</button>
-            <button class="chipnav-menu" type="button" id="chipnavMenuToggle" aria-expanded="false" aria-controls="chipnavSheet">
-              Menu
-              <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
+      <header class="chipnav-wrap nav-wrap">
+        <nav class="chipnav nav nav--tool" aria-label="Site and study navigation">
+          <a class="chipnav-wordmark nav-brand" href="/" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
+          <div class="av-destinations" aria-label="Study and site destinations">
+            <button class="av-key" type="button" id="dockSections" aria-haspopup="dialog" aria-expanded="false" aria-controls="sectionSheet"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#ListChecks"></use></svg><span>Sections</span></button>
+            <a class="av-key" href="/tools/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Wrench"></use></svg><span>All tools</span></a>
           </div>
-        <a href="/tools/" class="chipnav-back">All tools</a></nav>
-        <div class="chipnav-sheet" id="chipnavSheet" hidden>
+          <div class="nav-tools">
+            <button class="nav-menu-toggle" type="button" id="chipnavMenuToggle" aria-expanded="false" aria-controls="chipnavSheet">
+              <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg>
+              <span class="nav-toggle-label">Menu</span>
+            </button>
+            <div class="nav-links chipnav-sheet" id="chipnavSheet">
           <a href="/">Home</a>
           <a href="/learn/">Learn</a>
           <a href="/blog/">Blog</a>
-          <p class="chipnav-sheet-label">Tools</p>
+          <a href="/tools/">Tools</a>
+          <p class="chipnav-sheet-label">Explore tools</p>
           <a href="/simply-endorsed-cfi/"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
           <a href="/flight-risk-assessment/"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
           <a href="/part-61-calculator/"><strong>CertPath</strong><span>Training-time wizard</span></a>
           <a href="/foi-cards/" aria-current="page"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
           <a href="/#contact">Contact</a>
           <a class="chipnav-cta" href="/flight-training-louisville-ky/" data-cta-id="foi-nav-plan">Plan Training</a>
+              <button class="chipnav-reset" type="button" id="resetButton">Reset study progress</button>
+            </div>
+          </div>
         </div>
       </header>
       <section class="welcome" id="welcomeScreen">
         <p class="eyebrow">Mobile FOI study deck</p>
         <img src="/assets/identities/foi-cards/logo.png" class="page-identity" width="64" height="64" alt="" /><h1>FOI Cards</h1>
-        <p class="intro">Tap to reveal. Swipe right when you know it. Swipe left when you want to see it again.</p>
+        <p class="intro">Study one card at a time. Flip to see the answer, then choose Review, Next, or Memorized. Swipes are optional.</p>
         <div class="summary" id="welcomeSummary"></div>
         <button class="primary-button" type="button" id="startButton">Start remaining cards <span aria-hidden="true">→</span></button>
         <p class="resume-hint" id="startHint"></p>
         <button class="secondary-button hidden" type="button" id="startFreshButton">Start a new pass</button>
-        <p class="source-note">Based on <em>FOI Quick Review</em>, v2.14 · Updated Apr. 05, 2026. Progress stays on this phone.</p>
+        <p class="source-note">Based on <em>FOI Quick Review</em>, v2.14 · Updated Apr. 05, 2026. Progress stays in this browser.</p>
       </section>
       <section class="study hidden" id="studyScreen" aria-label="Flashcards">
         <div class="study-meta">
-          <button class="section-button" type="button" id="sectionButton" aria-label="Choose a section"></button>
+          <button class="section-button" type="button" id="sectionButton" aria-label="Choose a section" hidden></button>
           <span id="cardProgress">1 of 1</span>
         </div>
         <div class="pass-meta" aria-live="polite">
           <span id="passProgress">This pass: 1 of 1</span>
           <span id="remainingProgress">0 left to memorize · 0 review later</span>
         </div>
-        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Current study pass" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
         <div class="card-stage" id="cardStage">
           <article class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Tap to flip card">
             <div class="card-inner">
               <div class="card-face card-front">
                 <p class="card-label" id="cardSection"></p>
                 <h2 id="cardPrompt"></h2>
-                <p class="tap-hint">Use Flip below, or tap the card</p>
+                <p class="tap-hint">Use Flip below or select this card</p>
               </div>
               <div class="card-face card-back">
                 <p class="card-label">Answer</p>
@@ -146,31 +152,7 @@
     </section>
     <script src="cards.js?v=20260710c"></script>
     <script src="app.js?v=20260710d"></script>
-    <script>
-      /* Compact site-nav sheet toggle (independent of flashcard logic) */
-      (function () {
-        var toggle = document.getElementById('chipnavMenuToggle');
-        var sheet = document.getElementById('chipnavSheet');
-        if (!toggle || !sheet) return;
-        function setOpen(open) {
-          sheet.hidden = !open;
-          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        }
-        toggle.addEventListener('click', function (event) {
-          event.stopPropagation();
-          setOpen(sheet.hidden);
-        });
-        sheet.addEventListener('click', function (event) {
-          if (event.target.closest('a')) setOpen(false);
-        });
-        document.addEventListener('click', function (event) {
-          if (!sheet.hidden && !event.target.closest('.chipnav-wrap')) setOpen(false);
-        });
-        document.addEventListener('keydown', function (event) {
-          if (event.key === 'Escape' && !sheet.hidden) { setOpen(false); toggle.focus(); }
-        });
-      })();
-    </script>
+    <script src="/assets/site-nav.js?v=5a4eb82d2f"></script>
     <script src="/assets/cta-tracking.js" defer></script>
   </body>
 </html>

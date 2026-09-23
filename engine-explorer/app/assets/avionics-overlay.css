@@ -1,0 +1,164 @@
+/* Crank & Core keeps its model and simulation colors; these tokens style the UI. */
+:root[data-suarez-theme="dark"]{--cc-bg:#101418;--cc-panel:#1b2228;--cc-raised:#26313a;--cc-ink:#edf3f7;--cc-muted:#afc0ca;--cc-line:#4b5b68;--cc-accent:#71ddeb;--cc-stage:#171d23;--cc-dock:rgba(24,32,39,.94)}
+:root[data-suarez-theme="light"]{--cc-bg:#e8edf0;--cc-panel:#f8fafb;--cc-raised:#fff;--cc-ink:#182630;--cc-muted:#4c606e;--cc-line:#9cabb5;--cc-accent:#006878;--cc-stage:#dde5e9;--cc-dock:rgba(239,245,248,.96)}
+:root{--ink:var(--cc-ink);--muted:var(--cc-muted);--line:var(--cc-line);--glass:var(--cc-raised);--gold:var(--cc-accent);--brand-copper:var(--cc-accent);--brand-copper-dark:var(--cc-accent);color:var(--cc-ink);background:var(--cc-bg)}
+html,body{width:100%;height:100%;margin:0;padding:0!important;background:var(--cc-bg);color:var(--cc-ink)}
+body .app,body .fi-app.fi-collection{background:var(--cc-bg);color:var(--cc-ink)}
+body .viewport,body .collection .viewport,body .fi-app.fi-collection .viewport,body .app.explorer{background:var(--cc-stage)}
+body .viewport{background-image:radial-gradient(circle at 50% 42%,var(--cc-raised),var(--cc-stage) 68%)}
+body button,body select,body input{color:var(--cc-ink);border-color:var(--cc-line);background:var(--cc-raised);border-radius:6px;box-shadow:inset 0 1px #ffffff18,0 2px 2px #0003;backdrop-filter:none;transition:background-color .12s,border-color .12s,box-shadow .12s}
+body button:hover:not(:disabled){background:var(--cc-panel);border-color:var(--cc-accent);color:var(--cc-ink)}
+body button[aria-pressed=true],body button[aria-expanded=true]{background:var(--cc-raised);border-color:var(--cc-accent);color:var(--cc-accent);box-shadow:inset 0 -3px var(--cc-accent)}
+body button:focus-visible,body a:focus-visible,body input:focus-visible,body select:focus-visible,body summary:focus-visible{outline:3px solid var(--av-focus,var(--cc-accent));outline-offset:2px}
+body a,body .eyebrow,body .fi-eyebrow,body .kicker,body .fi-card-index,body .fi-range output{color:var(--cc-accent)}
+body :is(.topbar,.preset-bar,.sidebar,.inspector,.learning-guide,.explorer-panel,.explorer-panel-header,.resource-menu>div,.source-gate,.fi-evidence-card,.fi-study-picker button,.fi-instrument-grid button,.fi-inspection-tabs,.fi-live-face,.fi-lesson,.category-picker,.audit-dialog){background:var(--cc-panel);color:var(--cc-ink);border-color:var(--cc-line);backdrop-filter:none}
+body :is(.product-wordmark h1,.collection-intro h2,.engine-context strong,.fi-collection-intro h2,.fi-collection-footer strong,.fi-focus-title h2,.explorer-panel h2,.fi-controls h3,.fi-resources h3){color:var(--cc-ink)}
+body :is(.product-descriptor,.product-wordmark p,.collection-intro>p:last-child,.collection-specs span,.fi-study-picker span,.fi-instrument-grid button>span:last-child,.fi-controls p,.fi-resources p,.fi-note,.explorer-resources p,.fi-readout,.engine-context>span,.fi-collection-intro>p:not(.kicker),.fi-collection-footer>div>span:last-child,.fi-evidence-card span,.fi-part-row span,.fi-breadcrumb){color:var(--cc-muted)}
+body .engine-title{color:var(--cc-line)}
+body .engine-choice,body .fi-explore,body .fi-demo-button{background:var(--cc-accent)!important;border-color:var(--cc-accent)!important;color:var(--cc-bg)!important;border-radius:6px}
+body .engine-switcher button[aria-pressed="true"],body .fi-study-picker button[aria-pressed=true],body .fi-instrument-grid button.is-active,body .category-picker button[aria-pressed=true],body .fi-inspection-tabs button[aria-pressed=true]{border-color:var(--cc-accent)!important;background:var(--cc-raised)!important;color:var(--cc-accent)!important}
+body .app.explorer{--gutter:16px;--panel-width:320px}
+body .app.explorer .workspace .viewport .canvas-host{inset:0 12px 72px}
+body .app.explorer.panel-open.panel-left .workspace .viewport .canvas-host{left:calc(var(--panel-width) + 28px)}
+body .app.explorer.panel-open.panel-right .workspace .viewport .canvas-host{right:calc(var(--panel-width) + 28px)}
+body .app.explorer .explorer-panel{top:max(76px,calc(env(safe-area-inset-top) + 64px));bottom:calc(88px + env(safe-area-inset-bottom));right:12px;background:var(--cc-panel);border-color:var(--cc-line);border-radius:10px;box-shadow:0 10px 28px #0006}
+body .app.explorer.panel-left .explorer-panel{left:12px;right:auto}
+body .explorer-panel-header{background:var(--cc-raised);border-color:var(--cc-line)}
+body .explorer-panel-body :is(.sidebar,.inspector,.learning-guide){background:transparent}
+body .app.explorer .explorer-panel .tool-content{background:transparent}
+body .app.explorer .explorer-panel .tool-content input[type=range],body .fi-range input,body .fi-toggle input{accent-color:var(--cc-accent)}
+body .explorer-corner{left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));right:12px;max-width:max-content;padding:5px 12px 5px 5px;background:var(--cc-panel);border:1px solid var(--cc-line);border-radius:7px;text-shadow:none}
+body .engine-back{min-height:44px;background:var(--cc-raised);color:var(--cc-ink)}
+body .engine-context{text-shadow:none}
+body .edge-controls{z-index:30}
+body .explorer-dock{position:absolute;bottom:calc(10px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:stretch;gap:5px;width:min(760px,calc(100% - 24px));height:68px;padding:6px;background:var(--cc-dock);border:1px solid var(--cc-line);border-radius:10px;box-shadow:0 8px 28px #0008;backdrop-filter:blur(14px);pointer-events:auto}
+body .dock-destinations,body .dock-quick{display:flex;gap:5px;min-width:0}
+body .dock-destinations{flex:1;overflow-x:auto;scrollbar-width:none}
+body .dock-destinations::-webkit-scrollbar{display:none}
+body .dock-quick{padding-left:5px;border-left:1px solid var(--cc-line)}
+body .explorer-dock .rail-button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:56px;min-height:54px;width:auto;flex:1;padding:4px 6px;border:1px solid var(--cc-line);border-radius:5px;background:var(--cc-raised);color:var(--cc-ink);box-shadow:inset 0 1px #ffffff18,0 2px 2px #0004}
+body .explorer-dock .rail-button span{font-size:11px;line-height:1;font-weight:600;white-space:nowrap}
+body .explorer-dock .rail-button[aria-expanded=true]{color:var(--cc-accent);border-color:var(--cc-accent);box-shadow:inset 0 -3px var(--cc-accent)}
+body .explorer-menu{position:relative;flex:0 0 68px}
+body .explorer-menu>summary{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:54px;list-style:none;cursor:pointer;background:var(--cc-raised);border:1px solid var(--cc-line);border-radius:5px;color:var(--cc-ink);font-size:11px;font-weight:600}
+body .explorer-menu>summary::-webkit-details-marker{display:none}
+body .explorer-menu[open]>summary{color:var(--cc-accent);border-color:var(--cc-accent)}
+body .explorer-menu-panel{position:absolute;bottom:calc(100% + 12px);right:-6px;display:grid;gap:12px;width:min(340px,calc(100vw - 24px));max-height:calc(100dvh - 120px);overflow:auto;padding:14px;background:var(--cc-dock);border:1px solid var(--cc-line);border-radius:9px;box-shadow:0 8px 28px #0008;backdrop-filter:blur(14px)}
+body .explorer-menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+body .explorer-menu-actions button{justify-content:flex-start;min-height:44px;font-size:13px}
+body .explorer-appearance{border-top:1px solid var(--cc-line);padding-top:10px}
+body .explorer-appearance p{margin:0 0 8px;color:var(--cc-muted);font-size:12px}
+body .explorer-appearance>div{display:flex;gap:5px}
+body .explorer-appearance button{min-height:44px;flex:1;font-size:12px}
+body .explorer-appearance label{display:flex;align-items:center;gap:9px;min-height:44px;margin-top:6px;font-size:13px}
+body .explorer-appearance input{width:20px;height:20px;accent-color:var(--cc-accent)}
+[data-suarez-solid="true"] body :is(.explorer-dock,.explorer-menu-panel){background:var(--cc-panel);backdrop-filter:none}
+body .fi-readout{bottom:100px;color:var(--cc-muted)}body .fi-readout b{color:var(--cc-ink)}
+body .fi-evidence-link{bottom:82px;color:var(--cc-muted)}
+body aside.fi-live-face{background:var(--cc-panel);border-color:var(--cc-line)}
+@media(max-width:699px){body .app.explorer{--gutter:8px;--panel-width:100%}body .app.explorer .workspace .viewport .canvas-host,body .app.explorer.panel-open.panel-left .workspace .viewport .canvas-host,body .app.explorer.panel-open.panel-right .workspace .viewport .canvas-host{inset:0 2px calc(var(--sheet) + 64px)}body .app.explorer.panel-open{--sheet:43%}body .app.explorer.panel-open.sheet-expanded{--sheet:78%}body .app.explorer .explorer-panel,body .app.explorer.panel-left .explorer-panel{top:auto;left:0;right:0;bottom:calc(72px + env(safe-area-inset-bottom));width:100%;height:var(--sheet);border-radius:10px 10px 0 0;padding-bottom:0}body .explorer-dock{height:56px;padding:5px;bottom:calc(5px + env(safe-area-inset-bottom))}body .explorer-dock .rail-button{min-height:44px;min-width:49px}body .explorer-dock .rail-button span,body .explorer-menu>summary{font-size:10px}body .explorer-menu{flex-basis:53px}body .explorer-menu>summary{height:44px}body .dock-quick .rail-button{min-width:44px}body .fi-readout{bottom:70px;left:8px;right:8px;gap:8px;font-size:9px}body .fi-evidence-link{bottom:62px}body .collection .engine-choice{border-radius:6px}}
+@media(max-height:599px) and (orientation:landscape){body .app.explorer .explorer-panel{top:max(56px,env(safe-area-inset-top));bottom:calc(66px + env(safe-area-inset-bottom))}body .explorer-dock{height:54px}body .explorer-dock .rail-button,body .explorer-menu>summary{height:40px;min-height:40px}}
+@media(prefers-reduced-motion:reduce){body .explorer-dock *,body .explorer-menu-panel{transition:none!important;animation:none!important}}
+@media(max-width:699px){body .dock-quick{display:none}body .dock-destinations{overflow:visible}body .explorer-dock .rail-button{min-width:44px}}
+/* Follow the visual viewport while on-screen keyboards resize it. */
+body .explorer-dock{bottom:calc(10px + env(safe-area-inset-bottom) + var(--av-keyboard-inset,0px))}
+@media(max-width:699px){body .explorer-dock{bottom:calc(5px + env(safe-area-inset-bottom) + var(--av-keyboard-inset,0px))}body .app.explorer .explorer-panel,body .app.explorer.panel-left .explorer-panel{bottom:calc(72px + env(safe-area-inset-bottom) + var(--av-keyboard-inset,0px))}}
+body .fi-evidence-link{bottom:132px}body .fi-readout{bottom:98px}
+@media(max-width:699px){body .fi-evidence-link{bottom:112px}body .fi-readout{bottom:82px;left:8px;right:8px;gap:8px}}
+/* Collection controls must stay legible against the matte stage in both themes. */
+body .collection .engine-switcher button,
+body .fi-app .fi-study-picker button,
+body .fi-app .fi-instrument-grid button,
+body .category-picker button,
+body .resource-menu>summary,
+body .fi-resource-launch {
+  background:var(--cc-raised);
+  color:var(--cc-ink);
+  border:1px solid var(--cc-line);
+  border-radius:6px;
+  box-shadow:inset 0 1px #ffffff18,0 2px 2px #0004;
+}
+body .collection .engine-switcher button :is(strong,span),
+body .fi-app .fi-study-picker button strong,
+body .fi-app .fi-instrument-grid button strong {color:inherit}
+body .fi-app .fi-study-picker button span,
+body .fi-app .fi-instrument-grid button>span:last-child,
+body .fi-library-heading {color:var(--cc-muted)}
+body .resource-menu[open]>summary {background:var(--cc-raised);color:var(--cc-accent);border-color:var(--cc-accent)}
+body .resource-menu>div {background:var(--cc-panel);border-color:var(--cc-line);border-radius:7px}
+body .resource-menu>div button {background:var(--cc-raised);color:var(--cc-ink);border-color:var(--cc-line);border-radius:5px}
+body .collection .engine-choice,body .fi-explore {border-radius:6px!important}
+
+/* Baseline application rails remain mounted for their native React handlers. */
+body .app.explorer .edge-rail{visibility:hidden;pointer-events:none}
+body .explorer-dock[hidden]{display:none!important}
+body .explorer-dock{z-index:100}
+body .explorer-dock .rail-button[hidden]{display:none!important}
+body .explorer-menu-actions button:disabled{opacity:.55;cursor:not-allowed}
+body .explorer-menu .av-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7}
+body .explorer-menu-heading{margin:0 0 8px;color:var(--av-muted);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+body .explorer-menu-actions{display:grid;gap:4px}
+body .explorer-menu-actions button{min-height:44px;text-align:left}
+body .explorer-menu-actions button:focus-visible,body .explorer-menu summary:focus-visible{outline:2px solid var(--av-cyan);outline-offset:2px}
+/* Keep the model-loading state in the active appearance while the pinned
+   baseline runtime prepares geometry. */
+body .collection .loading-model,body .loading-model{background:var(--av-panel);color:var(--av-ink)}
+body .loading-model .spinner{border-color:var(--av-line);border-top-color:var(--av-cyan)}
+@media(prefers-reduced-motion:reduce){body .loading-model .spinner{animation:none}}
+/* The published collection stage is taller than a short embedded iframe.
+   Lift its native call to action into the visible canvas without changing it. */
+@media (min-width:621px) and (max-height:850px){
+  body .collection .engine-choice{bottom:100px}
+  body .collection .collection-specs{bottom:110px}
+}
+
+/* The schematic appears promptly, settles, and dissolves into the ready model. */
+body .loading-model>:not(.cc-blueprint-loader){display:none!important}
+body .collection-loading{display:none}
+body .collection:has(.loading-model) .engine-title{visibility:hidden}
+body .loading-model{overflow:hidden;padding:16px;background:var(--av-panel);text-align:center}
+body .collection .canvas-host{transition:opacity .24s ease-out}
+body .collection:has(.loading-model) .canvas-host{opacity:0}
+.cc-loader-exit{position:absolute;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;overflow:hidden;padding:16px;background:var(--av-panel);color:var(--av-ink);text-align:center;pointer-events:none;opacity:1;transition:opacity .22s ease-out}
+.cc-loader-exit.is-fading{opacity:0}
+.cc-blueprint-loader{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-width:0;gap:8px}
+.cc-blueprint-loader .loading-copy{max-width:100%;overflow-wrap:anywhere}
+.engine-blueprint {
+  position: relative;
+  width: min(440px, 88%);
+  height: clamp(130px, 24vh, 210px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.engine-blueprint::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ba875b25, transparent 70%);
+}
+.engine-blueprint svg { position: relative; width: 100%; height: 100%; overflow: visible; }
+.engine-blueprint svg path,.engine-blueprint svg circle { vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; }
+.blueprint-grid { stroke: #b9a58d44; stroke-width: .7; }
+.blueprint-orbit { stroke: #af704d66; stroke-width: 1; stroke-dasharray: 2 7; }
+.blueprint-trace { stroke: #a86139; stroke-width: 1.7; stroke-dasharray: 750; stroke-dashoffset: 750; animation: blueprint-draw .65s ease-out both; }
+.blueprint-part { stroke: var(--av-ink); stroke-width: 1.8; opacity: 0; animation: blueprint-assemble .38s ease-out both; }
+.blueprint-part-a { animation-delay: .08s; }
+.blueprint-part-b { animation-delay: .16s; }
+.blueprint-part-c { animation-delay: .24s; }
+.blueprint-accent { stroke: #b66a37; stroke-width: 2.1; stroke-dasharray: 330; stroke-dashoffset: 330; animation: blueprint-draw .5s .2s ease-out both; }
+.blueprint-tick { stroke: #a9714d; stroke-width: 1.4; }
+.blueprint-scan { display:none }
+.loading-copy { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.loading-eyebrow { color: var(--av-cyan); font: 700 .6rem var(--font-mono); letter-spacing: .2em; }
+.loading-copy strong { color: var(--av-ink); font-size: clamp(1.15rem, 2.3vw, 1.8rem); line-height: 1.16; letter-spacing: -.035em; }
+.loading-copy>span:nth-of-type(2) { color: var(--av-muted); font-size: .77rem; }
+.loading-activity { width: 6px; height: 6px; margin-top: 10px; border-radius:50%; background:var(--av-cyan);box-shadow:-14px 0 var(--av-cyan),14px 0 var(--av-cyan);animation:blueprint-wait 1.5s ease-in-out infinite; }
+@keyframes blueprint-draw { to { stroke-dashoffset: 0; } }
+@keyframes blueprint-assemble { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blueprint-wait { 50% { opacity:.42; } }
+
+@media(max-width:620px){.engine-blueprint{width:min(350px,100%);height:138px}.loading-copy strong{font-size:1.1rem}.loading-copy>span:nth-of-type(2){font-size:.77rem}.loading-activity{margin-top:5px}}
+@media(prefers-reduced-motion:reduce){body .collection .canvas-host,.cc-loader-exit{transition:none}.blueprint-trace,.blueprint-accent{animation:none;stroke-dashoffset:0}.blueprint-part{animation:none;opacity:1}.loading-activity{animation:none}}

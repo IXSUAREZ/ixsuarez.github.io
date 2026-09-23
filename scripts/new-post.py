@@ -67,14 +67,13 @@ def main():
     if run_sync() != 0:
         return fail("sync-chrome --apply failed; fix the errors above and re-run it")
 
-    # Mark Blog as the current section in the freshly synced nav (every
-    # existing post carries aria-current on that link), then re-sync so the
-    # slot is validated and preserved like anywhere else.
+    # Mark Blog as the current section in the freshly synced menu, then
+    # re-sync so the partial-owned aria-current marker is retained.
     filled = post.read_text(encoding="utf-8")
-    if '<a href="/blog/">Journal</a>' in filled:
+    if '<a href="/blog/">Blog</a>' in filled:
         post.write_text(filled.replace(
-            '<a href="/blog/">Journal</a>',
-            '<a href="/blog/" aria-current="page">Journal</a>', 1), encoding="utf-8")
+            '<a href="/blog/">Blog</a>',
+            '<a href="/blog/" aria-current="page">Blog</a>', 1), encoding="utf-8")
         if run_sync() != 0:
             return fail("sync-chrome --apply failed; fix the errors above and re-run it")
 
@@ -83,9 +82,11 @@ def main():
     print(f"  1. Write the article in blog/{slug}/index.html — replace the")
     print("     placeholder sections, FAQ items, and see-also links.")
     print("  2. Adjust the body category class, eyebrow label, and read time.")
-    print(f"  3. Add a card for the post to blog/index.html.")
-    print(f"  4. Add https://suarezcfi.com/blog/{slug}/ to sitemap.xml.")
-    print("  5. python3 scripts/sync-chrome.py --check")
+    print("  3. Add a page record in config/site-pages.json with editorial")
+    print("     category, published date, readingMinutes, heading, and featured flag.")
+    print("  4. Run python3 scripts/sync-site-metadata.py to rebuild the Blog listing")
+    print("     and sitemap from the manifest.")
+    print("  5. Run python3 scripts/sync-chrome.py --check")
     return 0
 
 

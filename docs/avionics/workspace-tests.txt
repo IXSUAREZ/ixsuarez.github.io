@@ -1,0 +1,5 @@
+
+> simply-endorsed-wizard-tests@1.0.0 test:workspace
+> node tests/workspace.test.js
+
+PASS: 1598 workspace assertions (71 paths, 96 details, six guidance modes, checklist lifecycle, condition handling and content regressions).

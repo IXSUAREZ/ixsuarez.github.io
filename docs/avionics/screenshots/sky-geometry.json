@@ -1,0 +1,106 @@
+[
+  {
+    "port": 8940,
+    "width": 834,
+    "height": 1194,
+    "canvas": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 834,
+      "top": 0,
+      "width": 834,
+      "x": 0,
+      "y": 0
+    },
+    "hero": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 834,
+      "top": 0,
+      "width": 834,
+      "x": 0,
+      "y": 0
+    },
+    "phase": "day"
+  },
+  {
+    "port": 8941,
+    "width": 834,
+    "height": 1194,
+    "canvas": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 834,
+      "top": 0,
+      "width": 834,
+      "x": 0,
+      "y": 0
+    },
+    "hero": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 834,
+      "top": 0,
+      "width": 834,
+      "x": 0,
+      "y": 0
+    },
+    "phase": "day"
+  },
+  {
+    "port": 8940,
+    "width": 390,
+    "height": 844,
+    "canvas": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "hero": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "phase": "day"
+  },
+  {
+    "port": 8941,
+    "width": 390,
+    "height": 844,
+    "canvas": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "hero": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "phase": "day"
+  }
+]

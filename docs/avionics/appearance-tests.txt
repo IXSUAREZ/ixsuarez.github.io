@@ -1,0 +1,13 @@
+✔ dark default and blocked storage remain usable (3.947042ms)
+✔ global wins over PilotSolve; valid legacy import preserves payload (1.573791ms)
+✔ system reacts live and storage event synchronizes (1.054292ms)
+✔ solid preference and OS reduced transparency compose (0.474583ms)
+✔ invalid persisted values and malformed JSON fall back safely (0.458792ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102.501583

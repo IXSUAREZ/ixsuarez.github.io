@@ -1,0 +1,223 @@
+{
+  "id": "attitude",
+  "path": "../instruments/attitude.glb",
+  "bytes": 1121368,
+  "sha256": "176059934ff344d3d25ffc2daa0253a2ed887fcdfa8f2f5aba1f9367177e2aca",
+  "parts": [
+    {
+      "id": "attitude-case",
+      "name": "Attitude indicator case and bezel",
+      "instrument": "attitude",
+      "system": "structure",
+      "description": "Reconstructed gyro housing; no model-specific exterior dimensional acceptance.",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ]
+    },
+    {
+      "id": "attitude-outer-gimbal",
+      "name": "Attitude outer roll gimbal",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Fore-aft roll axis; the pitch assembly is carried inside this ring."
+    },
+    {
+      "id": "attitude-roll-pivots",
+      "name": "Attitude indicator pivot bearings",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "attitude-inner-gimbal",
+      "name": "Attitude inner pitch gimbal",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Transverse pitch axis with nested vertical-axis rotor."
+    },
+    {
+      "id": "attitude-pitch-pivots",
+      "name": "Attitude indicator pivot bearings",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "attitude-rotor",
+      "name": "Attitude indicator rotor",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Air-driven bucketed rotor. Rotation is slowed for inspection, not operating RPM."
+    },
+    {
+      "id": "attitude-rotor-bearings",
+      "name": "Attitude indicator pivot bearings",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Paired pivots on the stated support axis; race and jewel sizes inferred."
+    },
+    {
+      "id": "attitude-drive-air-nozzle",
+      "name": "Attitude indicator drive air nozzle",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Nozzle directs suction-induced airflow onto peripheral rotor buckets. Passage geometry is reconstructed."
+    },
+    {
+      "id": "attitude-rotor-housing",
+      "name": "Attitude rotor housing cutaway",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Reconstructed rotor casing shown with an inspection opening, not a production opening."
+    },
+    {
+      "id": "attitude-pendulous-shutter-0",
+      "name": "Attitude pendulous shutter 1",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-pendulous-shutter-1",
+      "name": "Attitude pendulous shutter 2",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-pendulous-shutter-2",
+      "name": "Attitude pendulous shutter 3",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-pendulous-shutter-3",
+      "name": "Attitude pendulous shutter 4",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Four pendulous exhaust shutters establish the gravity-directed erection response. Sizes and stops are inferred from the patent layout."
+    },
+    {
+      "id": "attitude-horizon-link",
+      "name": "Attitude horizon display linkage",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Pitch linkage conveys gimbal displacement toward the display; exact production linkage is not claimed."
+    },
+    {
+      "id": "attitude-case-screw-0",
+      "name": "Attitude indicator case screw 1",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-case-screw-1",
+      "name": "Attitude indicator case screw 2",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-case-screw-2",
+      "name": "Attitude indicator case screw 3",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    },
+    {
+      "id": "attitude-case-screw-3",
+      "name": "Attitude indicator case screw 4",
+      "instrument": "attitude",
+      "system": "vacuum",
+      "evidence": "reconstructed",
+      "sourceIds": [
+        "sperry-horizon-patent"
+      ],
+      "description": "Reconstructed from Attitude indicator mechanism-layout drawings; exact proportions and dimensions are inferred. Generic retaining hardware."
+    }
+  ],
+  "units": "meters",
+  "exactPhysicalGeometryAccepted": false,
+  "sources": [
+    {
+      "id": "sperry-horizon-patent",
+      "title": "Gyroscopic Horizon Indicator, US Patent 1,939,825 A",
+      "publisher": "United States Patent Office; F. C. Narvesen et al., assigned to Sperry Gyroscope Company, Inc.",
+      "url": "https://patents.google.com/patent/US1939825A/en",
+      "type": "Expired primary patent; drawing sheets, section views, and description",
+      "use": "Patent design is not evidence of the exact gimbal, erection, or bearing implementation in a later commercial attitude indicator.",
+      "access": "public",
+      "checked": "2026-09-17",
+      "local_file": "references/flight-instruments/research/gyros/us1939825a_sperry_gyroscopic_horizon_indicator.pdf",
+      "sha256": "1e91b7dc8fd391203869f014f07184b8e3df899783861cb9b0e70800dca4f024",
+      "locator": "Drawing sheets are PDF pp. 1 and 4. Figures 1-10 include front/rear views, orthogonal sections, trunnion routing, rotor-case sections, and nozzle details."
+    }
+  ]
+}

@@ -1284,3 +1284,18 @@ body.certgen-view {
   .cg-shell { padding-top: 96px; }
   .cg-page-head h1 { font-size: 1.7rem; }
 }
+
+/* Readable builder hierarchy without changing the certificate canvas geometry. */
+body.certgen-view .cg-page-head h1,
+body.certgen-view .cg-panel-heading { color: var(--av-ink); }
+body.certgen-view .cg-sub,
+body.certgen-view .cg-panel-copy,
+body.certgen-view .cg-preview-caption { color: var(--av-muted); }
+body.certgen-view .cg-step-btn { min-height: 48px; border-radius: 6px; background: var(--av-panel); color: var(--av-muted); border-color: var(--av-line); }
+body.certgen-view .cg-step.is-active .cg-step-btn { color: var(--av-ink); border-color: var(--av-cyan); background: var(--av-raised); }
+body.certgen-view .cg-step.is-done .cg-step-btn { color: var(--av-ink); }
+body.certgen-view .cg-step-btn:focus-visible,
+body.certgen-view .cg-btn:focus-visible { outline: 2px solid var(--av-cyan); outline-offset: 3px; }
+body.certgen-view .cg-preview-caption { font-family: var(--font-sans, system-ui, sans-serif); font-size: .83rem; letter-spacing: normal; text-transform: none; }
+body.certgen-view .cg-photo-drop,
+body.certgen-view .cg-photo-ready { border-color: var(--av-line); background: var(--av-panel); color: var(--av-ink); }

@@ -661,7 +661,10 @@
 
   function setActiveRailItem(hash) {
     qsa(".part61-rail-item").forEach((item) => {
-      item.classList.toggle("active", item.getAttribute("href") === hash);
+      const active = item.getAttribute("href") === hash;
+      item.classList.toggle("active", active);
+      if (active) item.setAttribute("aria-current", "step");
+      else item.removeAttribute("aria-current");
     });
   }
 

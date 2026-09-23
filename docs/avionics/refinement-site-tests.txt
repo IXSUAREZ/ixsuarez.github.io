@@ -1,0 +1,33 @@
+✔ dark default and blocked storage remain usable (5.379791ms)
+✔ global wins over PilotSolve; valid legacy import preserves payload (1.458833ms)
+✔ system reacts live and storage event synchronizes (0.704833ms)
+✔ solid preference and OS reduced transparency compose (0.498042ms)
+✔ invalid persisted values and malformed JSON fall back safely (1.009042ms)
+✔ certificate dock reflects native disabled steps and delegates each allowed click once (121.044334ms)
+✔ CertPath dock uses native prerequisite handler instead of advancing itself (24.100459ms)
+✔ Simply Endorsed rerender updates active section and restores dock focus (25.491584ms)
+✔ site menu closes on Escape and outside pointer while keeping one set of controls (17.847375ms)
+✔ embedded appearance follows storage events; collection and child each own one navigation layer (27.719334ms)
+✔ configured endpoint sends once and only accepted 2xx responses produce success analytics (12.422208ms)
+✔ configured discovery form uses its inquiry label (0.645083ms)
+✔ failed endpoint response restores fallback and keeps entered values (2.473916ms)
+✔ placeholder uses an explicit email handoff and never claims the message was sent (0.727541ms)
+✔ Learn search contains all 459 current lessons and endorsement references, without Blog posts (16.789334ms)
+✔ every preserved Learn collection is reachable from exactly one browse view (0.427208ms)
+✔ Blog listing is driven by complete editorial metadata and separate from endorsement references (1.078083ms)
+✔ automatic daylight renders immediately and ignores old controls or saved Off preferences (9.993958ms)
+✔ automatic sunrise and sunset crossfades reach the complete night palette and stars (2.000292ms)
+✔ summer sky stays light across UTC midnight; winter evening is night (0.653125ms)
+✔ animation runs at 30fps, pauses offscreen, and resumes without jumping (0.710167ms)
+✔ reduced motion retains the complete sky and still follows time of day (0.569708ms)
+✔ graphics failure keeps the matching still sky, and context restoration resumes animation (3.497417ms)
+✔ catalog keeps direct launches and filters the seven public tools (144.822375ms)
+✔ preview populates current screenshots, wraps keyboard focus and restores the opener (48.790458ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1296.906125

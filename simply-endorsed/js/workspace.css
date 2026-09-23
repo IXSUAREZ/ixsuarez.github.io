@@ -1,13 +1,13 @@
 /* Operational workspace: deliberately scoped away from other SuarezCFI tools. */
 body.simply-endorsed-page {
-  background: #f5f4f1;
-  color: #242826;
+  background: var(--av-bg);
+  color: var(--av-ink);
 }
 #se-workspace {
-  --se-gold: #786025;
-  --se-line: #dedfd8;
-  --se-muted: #5d635f;
-  --se-paper: #fffefa;
+  --se-gold: var(--av-cyan);
+  --se-line: var(--av-line);
+  --se-muted: var(--av-muted);
+  --se-paper: var(--av-panel);
   font-family:
     Inter,
     -apple-system,
@@ -16,7 +16,7 @@ body.simply-endorsed-page {
     sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: #242826;
+  color: var(--av-ink);
   max-width: 1600px;
   margin: 0 auto;
   padding: 20px 40px 70px;
@@ -350,7 +350,7 @@ body.simply-endorsed-page {
   overflow-wrap: anywhere;
 }
 #se-workspace .se-source a {
-  color: #655221;
+  color: var(--av-cyan);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -496,7 +496,9 @@ body.simply-endorsed-page {
   margin: 0;
 }
 #se-workspace .se-endorsement-row.is-selected {
-  background: #eae7dc;
+  background: var(--av-raised);
+  color: var(--av-ink);
+  box-shadow: inset 3px 0 0 var(--av-cyan);
   border-radius: 9px;
 }
 #se-workspace .se-disclosure {
@@ -547,9 +549,9 @@ body.simply-endorsed-page {
   font-size: 0.875rem;
 }
 #se-workspace .se-guidance-nav .is-current {
-  background: #e6e2d6;
-  border-color: #bbb092;
-  color: #624e20;
+  background: var(--av-raised);
+  border-color: var(--av-cyan);
+  color: var(--av-ink);
 }
 #se-workspace .se-guidance-body {
   max-width: 850px;
@@ -871,17 +873,17 @@ body.simply-endorsed-page > header.nav-wrap {
 #se-workspace .se-app-header form button{flex-shrink:0}
 /* Familiar category navigation, with the review workspace alongside it. */
 #se-workspace .se-browse-shell.with-categories { display:grid; grid-template-columns:260px minmax(0,1fr); gap:28px; align-items:start; }
-#se-workspace .se-category-rail { position:sticky; top:16px; max-height:calc(100vh - 32px); overflow:auto; padding:16px; background:#f0efec; border:1px solid #dcdad4; border-radius:16px; }
+#se-workspace .se-category-rail { position:sticky; top:16px; max-height:calc(100vh - 32px); overflow:auto; padding:16px; background:var(--av-panel); border:1px solid var(--av-line); border-radius:16px; }
 #se-workspace .se-category-nav { display:grid; gap:7px; }
 #se-workspace .se-category-nav a { display:flex; align-items:center; min-height:44px; padding:10px 12px; text-decoration:none; line-height:1.4; font-size:14px; }
-#se-workspace .se-category-all { font-weight:700; border-radius:9px; background:#e2dfd7; }
-#se-workspace .se-category-group { border:1px solid #d8d5ce; border-left:4px solid var(--category-color); border-radius:9px; background:#faf9f6; overflow:hidden; }
+#se-workspace .se-category-all { font-weight:700; border-radius:9px; background:var(--av-raised); }
+#se-workspace .se-category-group { border:1px solid var(--av-line); border-left:4px solid var(--category-color); border-radius:9px; background:var(--av-panel); overflow:hidden; }
 #se-workspace .se-category-group summary { display:flex; align-items:center; gap:10px; min-height:48px; padding:11px; cursor:pointer; font-size:14px; font-weight:700; line-height:1.4; }
 #se-workspace .se-category-group summary::after { content:'+'; }
 #se-workspace .se-category-group[open] summary::after { content:'−'; }
 #se-workspace .se-category-group summary span { margin-left:auto; font-size:12px; opacity:.75; }
-#se-workspace .se-category-group a { border-top:1px solid #e3e0d9; }
-#se-workspace .se-category-group a:hover,#se-workspace .se-category-group a[aria-current] { background:#e9e5da; text-decoration:underline; }
+#se-workspace .se-category-group a { border-top:1px solid var(--av-line); }
+#se-workspace .se-category-group a:hover,#se-workspace .se-category-group a[aria-current] { background:var(--av-raised); color:var(--av-ink); text-decoration:underline; }
 #se-workspace .se-category-overview { font-weight:650; }
 #se-workspace .se-category-launcher { display:none; }
 #se-workspace .se-legacy-selects>label { display:none; }
@@ -928,7 +930,7 @@ body.simply-endorsed-page > header.nav-wrap {
 #se-workspace .se-category-rail>.se-eyebrow { padding:0 12px; }
 #se-workspace .se-category-nav { gap:4px; }
 #se-workspace .se-category-choice { border-left:3px solid var(--category-color); border-radius:0 8px 8px 0; justify-content:space-between; gap:12px; font-weight:600; }
-#se-workspace .se-category-choice:hover,#se-workspace .se-category-choice[aria-current] { background:#e9e5da; }
+#se-workspace .se-category-choice:hover,#se-workspace .se-category-choice[aria-current] { background:var(--av-raised); color:var(--av-ink); }
 #se-workspace .se-category-all { margin-bottom:8px; }
 #se-workspace .se-category-launcher { margin-bottom:16px; }
 #se-workspace #se-category-dialog { position:fixed; inset:0; margin:0; box-sizing:border-box; width:100vw; max-width:none; height:100dvh; max-height:none; border:0; border-radius:0; padding:24px max(20px,calc((100vw - 1000px)/2)); overscroll-behavior:contain; }
@@ -986,7 +988,7 @@ body:has(#se-category-dialog[open]) { overflow:hidden; }
 #se-workspace .se-main { scroll-margin-top:16px; }
 #se-workspace .se-active-bar ~ .se-browse-shell .se-main { scroll-margin-top:96px; }
 #se-workspace .se-category-rail .se-category-all { background:transparent; }
-#se-workspace .se-category-rail .se-category-all[aria-current] { background:#e9e5da; }
+#se-workspace .se-category-rail .se-category-all[aria-current] { background:var(--av-raised); color:var(--av-cyan); }
 #se-workspace .se-category-group { align-self:start; }
 #se-workspace .se-category-group .se-category-choice { display:flex; justify-content:space-between; border-left:0; border-radius:0; }
 #se-workspace .se-category-group summary::after { margin-left:auto; }
@@ -1092,3 +1094,16 @@ body:has(#se-category-dialog[open]) { overflow:hidden; }
 }
 /* Preserve category accents while giving small endorsement IDs readable contrast. */
 #se-workspace .se-id { color:color-mix(in srgb,var(--category) 72%,#242826); }
+/* Avionics adapter: source-owned layout, category hues are retained. */
+body.simply-endorsed-page>header.nav-wrap{position:fixed;inset:auto 0 calc(12px + env(safe-area-inset-bottom,0px));margin:0}
+body #se-workspace{padding-top:32px}
+body #se-workspace :is(.se-count,.se-breadcrumb strong,.se-na,.se-item-details summary){color:var(--av-muted)}
+body #se-workspace :is(.se-category-all,.se-category-choice:hover,.se-category-choice[aria-current],.se-guide-directory>a,.se-detail-content,.se-verbatim,.se-active-bar,.se-check-controls){background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
+body #se-workspace .se-category-rail .se-category-all[aria-current]{background:var(--av-raised);color:var(--av-cyan);box-shadow:inset 0 -3px var(--av-cyan)}
+:root[data-suarez-theme="dark"] #se-workspace .se-id{color:color-mix(in srgb,var(--category) 45%,white)}
+body #se-workspace .se-category-group{border-inline-start:3px solid var(--category-color)}
+body #se-workspace .se-category-group summary{border-inline-start:0}
+body #se-workspace .se-check-item.is-done .se-check-label{color:var(--av-green)}
+body #se-workspace .se-check-item.is-na .se-check-label{color:var(--av-muted)}
+body #se-workspace #se-category-dialog,body #se-workspace .se-dialog-heading{background:var(--av-panel);color:var(--av-ink)}
+body #se-workspace #se-category-dialog :is(a,button,.se-eyebrow){color:var(--av-ink)}

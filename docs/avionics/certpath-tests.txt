@@ -1,0 +1,5 @@
+
+> simply-endorsed-wizard-tests@1.0.0 test:certpath
+> node tests/certpath-storage.test.js
+
+PASS: fresh start, contact gate, failure preservation, retry key, save, private reopen, latest-plan update, locked inbox without data fetch

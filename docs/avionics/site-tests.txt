@@ -1,0 +1,25 @@
+✔ dark default and blocked storage remain usable (6.612917ms)
+✔ global wins over PilotSolve; valid legacy import preserves payload (1.45525ms)
+✔ system reacts live and storage event synchronizes (1.628417ms)
+✔ solid preference and OS reduced transparency compose (1.225166ms)
+✔ invalid persisted values and malformed JSON fall back safely (1.019916ms)
+✔ configured endpoint sends once and only accepted 2xx responses produce success analytics (15.407333ms)
+✔ configured discovery form uses its inquiry label (1.437375ms)
+✔ failed endpoint response restores fallback and keeps entered values (2.449625ms)
+✔ placeholder uses an explicit email handoff and never claims the message was sent (1.020875ms)
+✔ lazy loads on focus and filters text and stage safely (14.70075ms)
+✔ offline index reports browse fallback and does not throw (3.387083ms)
+✔ automatic daylight renders immediately and ignores old controls or saved Off preferences (6.910041ms)
+✔ automatic sunrise and sunset crossfades reach the complete night palette and stars (1.757875ms)
+✔ summer sky stays light across UTC midnight; winter evening is night (1.938042ms)
+✔ animation runs at 30fps, pauses offscreen, and resumes without jumping (1.565333ms)
+✔ reduced motion retains the complete sky and still follows time of day (0.658625ms)
+✔ graphics failure keeps the matching still sky, and context restoration resumes animation (5.064208ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 160.796083

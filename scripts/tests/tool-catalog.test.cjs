@@ -1,0 +1,9 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const {JSDOM}=require('../../simply-endorsed/node_modules/jsdom');
+const html=fs.readFileSync('tools/index.html','utf8');
+const script=fs.readFileSync('assets/tool-catalog.js','utf8');
+function setup(){const dom=new JSDOM(html,{url:'https://suarezcfi.com/tools/',runScripts:'outside-only'});const w=dom.window,d=w.document,dialog=d.querySelector('dialog');dialog.showModal=function(){this.open=true};dialog.close=function(){this.open=false;this.dispatchEvent(new w.Event('close'))};w.eval(script);return{dom,w,d,dialog}}
+test('catalog keeps direct launches and filters the seven public tools',()=>{const{dom,d}=setup();assert.equal(d.querySelectorAll('.catalog-card').length,7);d.querySelector('[data-catalog-filter="flight"]').click();assert.equal(d.querySelector('.catalog-count').textContent,'2 free pilot tools');assert.equal([...d.querySelectorAll('[data-catalog-group]')].filter(x=>!x.hidden).length,1);assert.equal(d.querySelectorAll('.catalog-card a[href]').length,7);dom.window.close()});
+test('preview populates current screenshots, wraps keyboard focus and restores the opener',()=>{const{dom,w,d,dialog}=setup();const opener=d.querySelector('[data-tool-preview="pilotsolve"]');opener.click();assert.ok(dialog.open);assert.equal(dialog.querySelectorAll('figure img').length,2);const close=d.querySelector('.preview-close'),open=d.querySelector('#preview-open');assert.equal(d.activeElement,close);close.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(d.activeElement,open);open.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(d.activeElement,close);close.click();assert.equal(d.activeElement,opener);assert.ok(!dialog.open);dom.window.close()});

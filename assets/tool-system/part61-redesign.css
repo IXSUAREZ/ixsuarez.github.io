@@ -482,3 +482,11 @@ body.tool-page .part61-redesign #part61Experience .part61-panel-heading h3 { fon
   body.tool-page .part61-redesign .part61-draft-notice { margin:0; }
   body.tool-page .part61-redesign .part61-step-nav { margin-bottom:12px; }
 }
+/* Avionics semantic adaptation. Engines, validation and step colors are unchanged. */
+body.tool-page .part61-redesign :is(.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-experience-entry button,.part61-target-option,.part61-zero-review,.part61-zero-confirm,.part61-zero-review button,.part61-zero-confirm button,.part61-goal-summary,.part61-ledger-numbers,.part61-ledger-total,.part61-edit-dialog,.part61-discard-dialog){background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line);border-radius:6px}
+body.tool-page .part61-redesign :is(.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-target-option)[aria-pressed="true"]{background:var(--av-raised);color:var(--av-cyan);border-color:var(--av-cyan);box-shadow:inset 0 -3px var(--av-cyan)}
+body.tool-page .part61-redesign :is(.part61-common-goals button span,.part61-all-goals-label,.part61-overlap-note,.part61-estimate-assumptions,.dashboard-card>span){color:var(--av-muted)}
+body.tool-page .part61-redesign :is(.dashboard-card .value,.dashboard-card>b){color:var(--av-green);font-variant-numeric:tabular-nums}
+body.tool-page .part61-redesign .part61-panel-navigation{position:static;background:transparent;backdrop-filter:none}
+body.tool-page .part61-redesign .part61-edit-dialog>footer,body.tool-page .part61-redesign .part61-menu>:is(div,section){background:var(--av-panel);color:var(--av-ink)}
+body.tool-page .part61-redesign .part61-menu button{color:var(--av-ink)}

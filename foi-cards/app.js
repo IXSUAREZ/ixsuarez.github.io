@@ -98,6 +98,8 @@
       // Invalid or non-FAA references are omitted from the student-facing card.
     }
     byId('sectionButton').textContent = card.section;
+    const sectionNav = byId('dockSections');
+    if (sectionNav) sectionNav.setAttribute('aria-label', `Choose a study section. Current section: ${card.section}`);
     byId('cardPrompt').textContent = card.prompt;
     byId('cardAnswer').textContent = card.answer;
     const { left, review, total } = progressStats();
@@ -105,6 +107,8 @@
     byId('passProgress').textContent = `This pass: ${state.index + 1} of ${state.deck.length}`;
     byId('remainingProgress').textContent = `${left} left to memorize · ${review} review later`;
     byId('progressFill').style.width = `${(state.index / state.deck.length) * 100}%`;
+    byId('progressTrack').setAttribute('aria-valuenow', String(Math.round((state.index / state.deck.length) * 100)));
+    byId('progressTrack').setAttribute('aria-valuetext', `${state.index + 1} of ${state.deck.length} cards in this pass`);
     byId('swipeStatus').textContent = 'Flip the card, then choose Review, Next, or Memorized.';
     syncStudyControls(false);
   }
@@ -156,10 +160,21 @@
       button.className = 'section-row';
       button.type = 'button';
       button.innerHTML = `${name}<span>${count} remaining card${count === 1 ? '' : 's'}</span>`;
-      button.onclick = () => { hidden('sectionSheet'); startPass('remaining', section); };
+      button.onclick = () => { closeSections(false); startPass('remaining', section); byId('flashcard').focus(); };
       list.append(button);
     });
     visible('sectionSheet');
+    const sectionNav = byId('dockSections');
+    if (sectionNav) sectionNav.setAttribute('aria-expanded', 'true');
+    list.querySelector('button')?.focus();
+  }
+  function closeSections(returnFocus = true) {
+    hidden('sectionSheet');
+    const sectionNav = byId('dockSections');
+    if (sectionNav) {
+      sectionNav.setAttribute('aria-expanded', 'false');
+      if (returnFocus) sectionNav.focus();
+    }
   }
   function reset() {
     if (window.confirm('Reset all FOI Cards progress and the saved pass on this phone?')) {
@@ -177,15 +192,27 @@
   bindClick('reviewWeakButton', () => startPass('review'));
   bindClick('studyAllButton', () => startPass('remaining'));
   bindClick('homeButton', renderWelcome);
-  bindClick('resetButton', reset);
+  bindClick('resetButton', () => {
+    const menuToggle = byId('chipnavMenuToggle');
+    if (menuToggle && menuToggle.getAttribute('aria-expanded') === 'true') menuToggle.click();
+    reset();
+  });
   bindClick('sectionButton', openSections);
-  bindClick('closeSheet', () => hidden('sectionSheet'));
+  bindClick('dockSections', () => {
+    const menuToggle = byId('chipnavMenuToggle');
+    if (menuToggle && menuToggle.getAttribute('aria-expanded') === 'true') menuToggle.click();
+    openSections();
+  });
+  bindClick('closeSheet', () => closeSections());
   bindClick('flashcard', flip);
   bindClick('flipButton', flip);
   bindClick('reviewButton', () => advance('review'));
   bindClick('nextButton', () => advance());
   bindClick('masteredButton', () => advance('mastered'));
   const flashcard = byId('flashcard');
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !byId('sectionSheet').classList.contains('hidden')) closeSections();
+  });
   if (flashcard) {
     flashcard.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flip(); }

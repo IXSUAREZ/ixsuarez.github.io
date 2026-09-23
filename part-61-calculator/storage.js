@@ -15,7 +15,7 @@
     <nav class="cp-nav" aria-label="CertPath navigation"><button type="button" data-cp="home">CertPath</button><div><button type="button" data-cp="view" hidden>View my plan</button><button type="button" data-cp="inbox">Submissions</button><button type="button" data-cp="lock" hidden>Lock submissions</button></div></nav>
     <p id="cp-message" role="status" hidden></p>
     <section id="cp-intro" class="cp-card cp-intro">
-      <img src="/part-61-calculator/logo.svg" alt="CertPath" width="104" height="104">
+      <img src="/assets/identities/part-61-calculator/logo.png" alt="CertPath" width="104" height="104">
       <p class="cp-eyebrow">YOUR NEXT CHAPTER IN FLIGHT</p>
       <h1>A clearer path to your next rating.</h1>
       <p>Start with where you are. See what comes next.</p>

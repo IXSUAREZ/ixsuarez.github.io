@@ -67,7 +67,7 @@ node foi-cards/verify-content.mjs
 node simply-endorsed/tests/run-tests.js
 ```
 
-Identity export uses `scripts/render-identities.cjs` with Sharp, React, React DOM and Lucide available through Node's module resolution. Preserve the Lucide license. Do not replace approved application logos when regenerating page identities.
+Identity export uses `scripts/render-identities.cjs` with Sharp available through Node's module resolution. Each identity's `assets/identities/<id>/icon-master.png` is the 1024×1024 icon source; the script derives square page logos, touch icons, and standalone tool PNG icons from it. Social previews also derive from the master unless `previewSource` is set. The home page keeps its selected 1200×1200 sky-and-name preview through `config/site-pages.json`. Superseded files and deletion candidates are archived outside the deployable repository under `../_local-only/identity-archive-2026-09-22/` and `../_local-only/identity-archive-2026-09-23/`.
 
 ## Louisville search opportunity
 

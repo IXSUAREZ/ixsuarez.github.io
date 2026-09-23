@@ -1501,7 +1501,7 @@ body.theme-orange .app-shell {
   width: 30px;
   height: 30px;
   flex: none;
-  border-radius: 50%;
+  border-radius: 22%;
   box-shadow: 0 8px 18px -8px var(--tool-glow);
 }
 

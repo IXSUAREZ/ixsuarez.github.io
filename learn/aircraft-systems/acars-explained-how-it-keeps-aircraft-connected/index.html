@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-systems editorial-page">
+<body class="cat-systems editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -90,7 +92,8 @@
     </nav>
   </header>
   <!-- /site-nav -->
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -101,7 +104,17 @@
           <a href="/learn/aircraft-systems/">Aircraft Systems</a>
           <span aria-current="page">ACARS Explained: How Aircraft Send Digital Messages</span>
         </nav>
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">14</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#why-acars-exists"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Why ACARS Exists</span></a></li><li data-level="2"><a href="#how-acars-sends-messages"><span class="journal-chapter-number" aria-hidden="true">02</span><span>How ACARS Sends Messages</span></a></li><li data-level="2"><a href="#what-pilots-use-acars-for"><span class="journal-chapter-number" aria-hidden="true">03</span><span>What Pilots Use ACARS For</span></a></li><li data-level="2"><a href="#maintenance-reporting"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Maintenance Reporting</span></a></li><li data-level="2"><a href="#position-reports-and-tracking"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Position Reports and Tracking</span></a></li><li data-level="2"><a href="#acars-and-safety"><span class="journal-chapter-number" aria-hidden="true">06</span><span>ACARS and Safety</span></a></li><li data-level="2"><a href="#limitations-of-acars"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Limitations of ACARS</span></a></li><li data-level="2"><a href="#acars-cpdlc-and-ads-c"><span class="journal-chapter-number" aria-hidden="true">08</span><span>ACARS, CPDLC, and ADS-C</span></a></li><li data-level="2"><a href="#the-future-of-aircraft-connectivity"><span class="journal-chapter-number" aria-hidden="true">09</span><span>The Future of Aircraft Connectivity</span></a></li><li data-level="2"><a href="#official-references"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Official References</span></a></li><li data-level="2"><a href="#journal-try-a-related-pilot-tool"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Try a related pilot tool</span></a></li><li data-level="2"><a href="#article-cta-heading"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Need help applying this to your training?</span></a></li><li data-level="2"><a href="#guide-collections-heading"><span class="journal-chapter-number" aria-hidden="true">13</span><span>Related guide collections</span></a></li><li data-level="2"><a href="#related-heading"><span class="journal-chapter-number" aria-hidden="true">14</span><span>Related reading</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Aircraft Systems</span>
             <h1>ACARS Explained: How Aircraft Send Digital Messages</h1>
@@ -167,7 +180,7 @@
 <h2 id="official-references">Official References</h2>
 <ul><li><a href="https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentid/1030769">FAA AC 90-117 Data Link Communications</a></li><li><a href="https://www.faa.gov/air_traffic/technology/DataComm">FAA Data Communications Program</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">FAA Pilot&#x27;s Handbook of Aeronautical Knowledge</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook">FAA Airplane Flying Handbook</a></li></ul>
           </div>
-          <aside class="source-guide" id="related-pilot-tool"><h2>Try a related pilot tool</h2><p><a href="/engine-explorer/" data-cta-id="article-related-tool">Explore aircraft engines</a> · <a href="/tools/">All pilot tools</a></p></aside>
+          <aside class="source-guide" id="related-pilot-tool"><h2 id="journal-try-a-related-pilot-tool">Try a related pilot tool</h2><p><a href="/engine-explorer/" data-cta-id="article-related-tool">Explore aircraft engines</a> · <a href="/tools/">All pilot tools</a></p></aside>
 <section class="cta-box" aria-labelledby="article-cta-heading">
             <span class="eyebrow">Ground instruction</span>
             <h2 id="article-cta-heading">Need help applying this to your training?</h2>
@@ -195,6 +208,8 @@
             </ul>
           </section>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

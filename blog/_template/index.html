@@ -54,10 +54,12 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
 <!-- Category class theming: swap cat-student-pilot for the category that fits
      (see the .cat-* definitions in blog/style.css). -->
-<body class="cat-student-pilot editorial-page">
+<body class="cat-student-pilot editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -67,7 +69,8 @@
   <!-- site-nav -->
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -79,7 +82,17 @@
           <span aria-current="page">{{TITLE}}</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">06</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-first-section-heading"><span class="journal-chapter-number" aria-hidden="true">01</span><span>First section heading</span></a></li><li data-level="2"><a href="#journal-second-section-heading"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Second section heading</span></a></li><li data-level="2"><a href="#journal-third-section-heading"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Third section heading</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-a-little-planning-makes-the-first-flight-easier"><span class="journal-chapter-number" aria-hidden="true">05</span><span>A little planning makes the first flight easier.</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Getting Started</span>
             <h1>{{TITLE}}</h1>
@@ -98,13 +111,13 @@
           <div class="prose">
             <p>Lede paragraph — the one thing the reader should take away, stated plainly. This first paragraph renders as the accented lede callout.</p>
 
-            <h2>First section heading</h2>
+            <h2 id="journal-first-section-heading">First section heading</h2>
             <p>Section content.</p>
 
-            <h2>Second section heading</h2>
+            <h2 id="journal-second-section-heading">Second section heading</h2>
             <p>Section content.</p>
 
-            <h2>Third section heading</h2>
+            <h2 id="journal-third-section-heading">Third section heading</h2>
             <p>Section content.</p>
           </div>
 
@@ -125,7 +138,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>A little planning makes the first flight easier.</h2>
+              <h2 id="journal-a-little-planning-makes-the-first-flight-easier">A little planning makes the first flight easier.</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="{{SLUG}}-article-book">Book your discovery flight</a>
@@ -136,7 +149,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/private-pilot-cost-louisville-ky/">Related article title</a></li>
               <li><a href="/blog/private-pilot-timeline-louisville/">Related article title</a></li>
@@ -144,6 +157,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-ground-school editorial-page">
+<body class="cat-ground-school editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -90,7 +92,8 @@
     </nav>
   </header>
   <!-- /site-nav -->
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -101,7 +104,17 @@
           <a href="/learn/ground-school/">Ground School</a>
           <span aria-current="page">How to Fly a Holding Pattern in the Airplane</span>
         </nav>
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">12</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#the-parts-of-a-hold"><span class="journal-chapter-number" aria-hidden="true">01</span><span>The Parts of a Hold</span></a></li><li data-level="2"><a href="#copy-the-clearance-carefully"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Copy the Clearance Carefully</span></a></li><li data-level="2"><a href="#slow-down-before-the-fix"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Slow Down Before the Fix</span></a></li><li data-level="2"><a href="#brief-the-hold-out-loud"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Brief the Hold Out Loud</span></a></li><li data-level="2"><a href="#choose-the-entry-without-getting-stuck"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Choose the Entry Without Getting Stuck</span></a></li><li data-level="2"><a href="#time-enough-to-manage-the-pattern"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Time Enough to Manage the Pattern</span></a></li><li data-level="2"><a href="#use-a-simple-cockpit-flow"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Use a Simple Cockpit Flow</span></a></li><li data-level="2"><a href="#official-references"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Official References</span></a></li><li data-level="2"><a href="#journal-try-a-related-pilot-tool"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Try a related pilot tool</span></a></li><li data-level="2"><a href="#article-cta-heading"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Need help applying this to your training?</span></a></li><li data-level="2"><a href="#guide-collections-heading"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Related guide collections</span></a></li><li data-level="2"><a href="#related-heading"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Related reading</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Ground School</span>
             <h1>How to Fly a Holding Pattern in the Airplane</h1>
@@ -162,7 +175,7 @@
 <h2 id="official-references">Official References</h2>
 <ul><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_3.html">FAA Reference</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation">FAA Reference</a></li><li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/">FAA Aeronautical Information Manual</a></li><li><a href="https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91">14 CFR Part 91 General Operating Rules</a></li><li><a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide">FAA Aeronautical Chart User&#x27;s Guide</a></li></ul>
           </div>
-          <aside class="source-guide" id="related-pilot-tool"><h2>Try a related pilot tool</h2><p><a href="/part-61-calculator/" data-cta-id="article-related-tool">Plan training requirements</a> · <a href="/tools/">All pilot tools</a></p></aside>
+          <aside class="source-guide" id="related-pilot-tool"><h2 id="journal-try-a-related-pilot-tool">Try a related pilot tool</h2><p><a href="/part-61-calculator/" data-cta-id="article-related-tool">Plan training requirements</a> · <a href="/tools/">All pilot tools</a></p></aside>
 <section class="cta-box" aria-labelledby="article-cta-heading">
             <span class="eyebrow">Ground instruction</span>
             <h2 id="article-cta-heading">Need help applying this to your training?</h2>
@@ -190,6 +203,8 @@
             </ul>
           </section>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

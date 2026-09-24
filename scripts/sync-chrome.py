@@ -304,6 +304,11 @@ def render_post_cta(current_block, page):
     # swap in the preserved inner text.
     out = H2_RE.sub(lambda m: m.group(0)[:m.group(0).index(">") + 1]
                     + h2_text + "</h2>", partial, count=1)
+    # Heading anchors are public deep links, including generated reader chapters.
+    # Preserve them when refreshing the CTA's presentation from its partial.
+    heading_id = re.search(r'\bid="([^"]*)"', h2_m.group(0).split('>', 1)[0])
+    if heading_id:
+        out = re.sub(r'<h2\b([^>]*)>', lambda m: '<h2' + re.sub(r'\s+id="[^"]*"', '', m.group(1)) + ' id="' + heading_id.group(1) + '">', out, count=1)
     for cls, cta_id in zip(("btn--primary", "btn--secondary"), ids):
         out = swap_cta_id(out, cls, cta_id)
     return out

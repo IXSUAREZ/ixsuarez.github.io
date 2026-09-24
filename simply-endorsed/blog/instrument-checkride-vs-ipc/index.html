@@ -46,8 +46,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-instrument-rating editorial-page">
+<body class="cat-instrument-rating editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -103,7 +106,17 @@
           <span aria-current="page">Instrument Checkride vs IPC</span>
         </nav>
 
-        <article class="seo-guide-panel">
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">08</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#relevant-endorsements"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Relevant endorsements</span></a></li><li data-level="3"><a href="#journal-instrument-rating-knowledge-test"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Instrument rating knowledge test</span></a></li><li data-level="3"><a href="#journal-instrument-flight-proficiency-practical-test"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Instrument flight proficiency/practical test</span></a></li><li data-level="3"><a href="#journal-instrument-practical-test-prerequisites"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Instrument practical-test prerequisites</span></a></li><li data-level="3"><a href="#journal-ipc-completion"><span class="journal-chapter-number" aria-hidden="true">05</span><span>IPC completion</span></a></li><li data-level="2"><a href="#comparison"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Quick comparison</span></a></li><li data-level="2"><a href="#mistakes"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Common mistakes</span></a></li><li data-level="2"><a href="#journal-open-the-instrument-endorsement-paths"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Open the instrument endorsement paths</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article class="seo-guide-panel">
           <header class="article-header">
             <span class="eyebrow">Instrument guide</span>
             <h1>Instrument Checkride Endorsements vs IPC Endorsement</h1>
@@ -130,28 +143,28 @@
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.42</span>
                 <div>
-                  <h3>Instrument rating knowledge test</h3>
+                  <h3 id="journal-instrument-rating-knowledge-test">Instrument rating knowledge test</h3>
                   <p>Shows the applicant completed the required ground training or review and is ready for the instrument rating knowledge test.</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.43</span>
                 <div>
-                  <h3>Instrument flight proficiency/practical test</h3>
+                  <h3 id="journal-instrument-flight-proficiency-practical-test">Instrument flight proficiency/practical test</h3>
                   <p>Documents required instrument training and readiness for the instrument practical test.</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.44</span>
                 <div>
-                  <h3>Instrument practical-test prerequisites</h3>
+                  <h3 id="journal-instrument-practical-test-prerequisites">Instrument practical-test prerequisites</h3>
                   <p>Combines recent practical-test preparation with review of knowledge-test deficiencies for the instrument practical test.</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.71</span>
                 <div>
-                  <h3>IPC completion</h3>
+                  <h3 id="journal-ipc-completion">IPC completion</h3>
                   <p>Documents satisfactory completion of an instrument proficiency check under the recurrent instrument currency path.</p>
                 </div>
               </article>
@@ -205,7 +218,7 @@
           <p class="seo-guide-note">Reference aid only. Verify the pilot's instrument rating status, currency status, training record, signer authority, current regulations, and current FAA guidance before signing.</p>
 
           <div class="cta-box">
-            <h2>Open the instrument endorsement paths</h2>
+            <h2 id="journal-open-the-instrument-endorsement-paths">Open the instrument endorsement paths</h2>
             <p>Use Simply Endorsed CFI to compare instrument checkride endorsements with the IPC completion endorsement in the searchable AC 61-65K library.</p>
             <div class="cta-btn-group">
               <a href="/simply-endorsed-cfi/?view=tasks&amp;task=instrument-checkride-bundle" class="btn btn--primary">Open instrument checkride path</a>
@@ -213,6 +226,8 @@
             </div>
           </div>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

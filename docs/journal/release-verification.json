@@ -1,0 +1,35 @@
+{
+  "base_commit": "dfd653cf9573153a6a5e34935fd493282ae2914a",
+  "preservation_routes": 500,
+  "preservation_failures": 0,
+  "python_tests_passed": 18,
+  "node_tests_passed": 28,
+  "browser_checks_passed": 20,
+  "integration_visual_routes": 48,
+  "integration_viewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "original_design_visual_routes": 500,
+  "metadata_drift": 0,
+  "chrome_drift": 0,
+  "avionics_drift": 0,
+  "site_audit_failures": 0,
+  "reader_gzip_bytes": 2258,
+  "independent_reviewers": [
+    {
+      "model": "gpt-6-luna",
+      "task": "reader_review",
+      "verdict": "No material implementation bugs found",
+      "method": "Read-only code and preservation evidence review; no independent browser execution"
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "release_review",
+      "verdict": "READY; no severity-1/2 blockers",
+      "method": "Read-only release delta, current Blog integration, authoring hooks, URL/metadata and preservation review"
+    }
+  ],
+  "release_authorized": true,
+  "deployment_verification": "Recorded after publication in local output/journal-live-verification.json"
+}

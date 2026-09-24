@@ -1,0 +1,82 @@
+[
+  {
+    "name": "473 article / 27 library content preservation",
+    "passed": true
+  },
+  {
+    "name": "Script compression budget",
+    "passed": true
+  },
+  {
+    "name": "Complete chapters and one reader per page",
+    "passed": true
+  },
+  {
+    "name": "Chapter links, focus, progress, and browser Back",
+    "passed": true
+  },
+  {
+    "name": "Text size / motion preferences persist across articles",
+    "passed": true
+  },
+  {
+    "name": "Keyboard settings escape and visible focus",
+    "passed": true
+  },
+  {
+    "name": "Theme persistence and menu coexistence",
+    "passed": true
+  },
+  {
+    "name": "Reading text contrast in Day and Dark across all article templates",
+    "passed": true
+  },
+  {
+    "name": "Reader controls clear the dock at narrow and short desktop sizes",
+    "passed": true
+  },
+  {
+    "name": "Mobile chapters collapse and link navigation",
+    "passed": true
+  },
+  {
+    "name": "320px, larger text, wide table and FAQ",
+    "passed": true
+  },
+  {
+    "name": "200% text zoom and native document search",
+    "passed": true
+  },
+  {
+    "name": "Reduced motion wins over saved preference",
+    "passed": true
+  },
+  {
+    "name": "Fast scrolling never leaves invisible content",
+    "passed": true
+  },
+  {
+    "name": "Print keeps article content and hides reading chrome",
+    "passed": true
+  },
+  {
+    "name": "Library search, filters, and no-result state",
+    "passed": true
+  },
+  {
+    "name": "Current Blog category filtering and show-more behavior",
+    "passed": true
+  },
+  {
+    "name": "JavaScript-disabled static chapters and content",
+    "passed": true
+  },
+  {
+    "name": "Storage-blocked fallback",
+    "passed": true
+  },
+  {
+    "name": "No uncaught browser errors",
+    "passed": true
+  }
+]

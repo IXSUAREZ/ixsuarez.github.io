@@ -3,6 +3,7 @@
 from pathlib import Path
 from hashlib import sha256
 import re,argparse
+from journal import enhance
 root=Path(__file__).resolve().parents[1]
 version=sha256((root/'assets/avionics.css').read_bytes()).hexdigest()[:10]
 appearance_version=sha256((root/'assets/appearance.js').read_bytes()).hexdigest()[:10]
@@ -38,8 +39,14 @@ for p in root.rglob('*.html'):
   t=re.sub(r'(/assets/avionics\.css)(?:\?[^"\s]*)?(?=")',lambda m:m.group(1)+'?v='+version,t)
  else:
   t=t.replace('</head>',f'<link rel="stylesheet" href="/assets/avionics.css?v={version}">\n</head>')
+ if 'journal-article' in t or 'journal-library' in t:
+  t=enhance(t)
  if t!=s:
   changed.append(str(rel))
   if not args.check:p.write_text(t)
 print(('Stale' if args.check else 'Updated'),len(changed),'HTML sources')
+if args.check and changed: print('\n'.join(changed))
 if args.check and changed:raise SystemExit(1)
+if not args.check:
+ from journal import apply as apply_journal
+ apply_journal()

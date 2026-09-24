@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-medical editorial-page">
+<body class="cat-medical editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">MedXPress Walkthrough</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">11</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-what-medxpress-is-and-why-you-do-it-before-the-visit"><span class="journal-chapter-number" aria-hidden="true">01</span><span>What MedXPress is — and why you do it before the visit</span></a></li><li data-level="2"><a href="#journal-what-to-gather-before-you-start"><span class="journal-chapter-number" aria-hidden="true">02</span><span>What to gather before you start</span></a></li><li data-level="2"><a href="#journal-creating-the-account"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Creating the account</span></a></li><li data-level="2"><a href="#journal-the-form-section-by-section"><span class="journal-chapter-number" aria-hidden="true">04</span><span>The form, section by section</span></a></li><li data-level="2"><a href="#journal-submit-and-send-the-confirmation-number-to-your-ame"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Submit, and send the confirmation number to your AME</span></a></li><li data-level="2"><a href="#journal-what-happens-at-the-ame-visit"><span class="journal-chapter-number" aria-hidden="true">06</span><span>What happens at the AME visit</span></a></li><li data-level="2"><a href="#journal-if-you-get-deferred-what-that-actually-means"><span class="journal-chapter-number" aria-hidden="true">07</span><span>If you get deferred: what that actually means</span></a></li><li data-level="2"><a href="#journal-timing-it-into-your-training"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Timing it into your training</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-medical-sorted-the-next-step-is-ground-knowledge"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Medical sorted? The next step is ground knowledge.</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Medical &amp; Certificates</span>
             <h1>MedXPress, Step by Step: Your FAA Medical Application Before the AME Visit</h1>
@@ -124,11 +137,11 @@
             <p>Before your first FAA medical exam, there's a homework assignment most new student pilots don't know about: the application itself. It's an online form called MedXPress, and how you fill it out matters. A sloppy or panicked application is how people turn a routine $150 exam into a months-long deferral to Oklahoma City.</p>
             <p>I walk students through this before their first Aviation Medical Examiner (AME) visit around Louisville. Two disclaimers up front, because they matter: I'm an instructor, not a doctor, and nothing here is medical or legal advice. If a question on the form genuinely applies to you, the right resources are your AME <em>before</em> your appointment and AOPA's medical services (if you're a member). The goal of this article is narrower: show you what the form is, what to gather, and how to avoid the unforced errors.</p>
 
-            <h2>What MedXPress is — and why you do it before the visit</h2>
+            <h2 id="journal-what-medxpress-is-and-why-you-do-it-before-the-visit">What MedXPress is — and why you do it before the visit</h2>
             <p>MedXPress (<a href="https://medxpress.faa.gov/medxpress/">medxpress.faa.gov</a>) is the FAA's online version of Form 8500-8, the application for an airman medical certificate. You fill it out at home, submit it electronically, and get a confirmation number. You bring that number to your AME appointment, the AME pulls up your application, reviews it with you, conducts the physical exam, and — if all goes well — prints your medical certificate on the spot.</p>
             <p>The key timing rule: once you submit, your application is valid for <strong>60 days</strong>. Don't fill it out three months before your appointment. But do fill it out a few days ahead, at a desk, unhurried — not in the AME's parking lot on your phone.</p>
 
-            <h2>What to gather before you start</h2>
+            <h2 id="journal-what-to-gather-before-you-start">What to gather before you start</h2>
             <p>Half the battle is having your information in front of you so you're not guessing:</p>
             <ul>
               <li><strong>Your government ID</strong> (driver's license or passport) for the identity fields.</li>
@@ -140,10 +153,10 @@
             </ul>
             <p>If listing three years of medical visits sounds tedious — it is. Do it anyway, from your patient portal records, not from memory. The questions that follow are why.</p>
 
-            <h2>Creating the account</h2>
+            <h2 id="journal-creating-the-account">Creating the account</h2>
             <p>At medxpress.faa.gov you create an account with an email and password, then start a new application. The system will log you out aggressively if you idle, so save as you go. Nothing is sent to the FAA until you deliberately click submit at the end — you can start, stop, and review as many times as you need.</p>
 
-            <h2>The form, section by section</h2>
+            <h2 id="journal-the-form-section-by-section">The form, section by section</h2>
             <p>The early sections are administrative — name, address, contact info, which class of medical you're applying for. Student pilots going for a Private certificate apply for <strong>Third Class</strong>. (If you're not sure whether you need Third Class, or whether BasicMed or the Sport Pilot driver's-license path fits you better, read my <a href="/blog/basicmed-vs-third-class-medical/">BasicMed vs. Third-Class comparison</a> first — it's worth deciding before you book the AME.)</p>
             <p>Then come the questions people stumble on:</p>
             <p><strong>Visits to health professionals in the last 3 years.</strong> This is where your gathered list goes in. The most common first-timer mistake is under-reporting — forgetting the urgent care visit, the dermatologist, the counselor you saw for six sessions in college. The FAA cross-checks; an omission discovered later is a much bigger problem than the visit itself ever was.</p>
@@ -151,10 +164,10 @@
             <p><strong>The medical history yes/no block.</strong> A long list of conditions — vision trouble, heart issues, mental health, seizures, substance history, and more. Here's the thing to internalize: <strong>many "yes" answers are survivable and common.</strong> A history of a resolved condition, a childhood surgery, counseling years ago — these show up on thousands of applications, and many end with a certificate issued, sometimes after documentation. What turns a "yes" into a nightmare is hiding it. Falsifying a federal form is not a paperwork slip; it can end your aviation prospects entirely.</p>
             <p><strong>The honesty principle.</strong> When in doubt, disclose and let the AME sort it out. The FAA's system is set up to evaluate disclosed conditions. It has no mechanism to be understanding about discovered ones.</p>
 
-            <h2>Submit, and send the confirmation number to your AME</h2>
+            <h2 id="journal-submit-and-send-the-confirmation-number-to-your-ame">Submit, and send the confirmation number to your AME</h2>
             <p>After you review and submit, MedXPress gives you a confirmation number. Write it down or save the email, and give it to your AME's office when you book the appointment (many Louisville-area AMEs ask for it in advance). Bring your ID and your confirmation number to the visit. If you wear glasses or contacts, bring them. Bring documentation for anything in your history you flagged "yes" — a letter from your treating doctor about a resolved condition can turn a deferral into an issuance.</p>
 
-            <h2>What happens at the AME visit</h2>
+            <h2 id="journal-what-happens-at-the-ame-visit">What happens at the AME visit</h2>
             <p>The exam itself is less dramatic than people fear. For a Third Class medical, expect:</p>
             <ul>
               <li>Review of your MedXPress application, question by question, with a chance to explain anything.</li>
@@ -166,10 +179,10 @@
             </ul>
             <p>For a healthy young applicant the whole visit often runs 30–45 minutes, and the AME prints the certificate before you leave. Fees vary by examiner — in the Louisville area, budget roughly $100–$200.</p>
 
-            <h2>If you get deferred: what that actually means</h2>
+            <h2 id="journal-if-you-get-deferred-what-that-actually-means">If you get deferred: what that actually means</h2>
             <p>Sometimes the AME can't issue on the spot and must defer the decision to the FAA's Aerospace Medical Certification Division in Oklahoma City. <strong>Deferral is not denial.</strong> It means "the FAA's doctors need to review this, with more documentation." Deferrals commonly resolve with a letter asking for specific records or tests, and many end in issuance — sometimes a special issuance with conditions. The cost is time: months, sometimes. This is why I tell students to do the medical <em>early</em> in training, before they've spent serious money on airplane time, and why complicated histories are worth discussing with an AME informally before the official application.</p>
 
-            <h2>Timing it into your training</h2>
+            <h2 id="journal-timing-it-into-your-training">Timing it into your training</h2>
             <p>The right sequence for most Louisville students: decide which medical path fits (<a href="/blog/basicmed-vs-third-class-medical/">Third Class vs. BasicMed vs. Sport Pilot</a>), do MedXPress carefully, get the medical in hand, <em>then</em> invest heavily in flight hours. The medical is a few hundred dollars and an afternoon — it's the cheapest go/no-go checkpoint in the whole process. Once it's out of the way, the next steps are ground study and a realistic training plan, which is where I can actually help.</p>
           </div>
 
@@ -202,7 +215,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Medical sorted? The next step is ground knowledge.</h2>
+              <h2 id="journal-medical-sorted-the-next-step-is-ground-knowledge">Medical sorted? The next step is ground knowledge.</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="medical-article-ground-school">Book your discovery flight</a>
@@ -213,7 +226,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/basicmed-vs-third-class-medical/">BasicMed vs. Third-Class vs. Sport Pilot — which medical do you need?</a></li>
               <li><a href="/blog/private-pilot-cost-louisville-ky/">Private Pilot cost breakdown for Louisville students</a></li>
@@ -221,6 +234,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

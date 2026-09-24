@@ -46,8 +46,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-systems editorial-page">
+<body class="cat-systems editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -103,7 +106,17 @@
           <span aria-current="page">Aircraft Endorsements</span>
         </nav>
 
-        <article class="seo-guide-panel">
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">08</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#relevant-endorsements"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Relevant endorsements</span></a></li><li data-level="3"><a href="#journal-complex-airplane-endorsement"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Complex airplane endorsement</span></a></li><li data-level="3"><a href="#journal-high-performance-airplane-endorsement"><span class="journal-chapter-number" aria-hidden="true">03</span><span>High-performance airplane endorsement</span></a></li><li data-level="3"><a href="#journal-high-altitude-pressurized-aircraft-endorsement"><span class="journal-chapter-number" aria-hidden="true">04</span><span>High-altitude pressurized aircraft endorsement</span></a></li><li data-level="3"><a href="#journal-tailwheel-airplane-endorsement"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Tailwheel airplane endorsement</span></a></li><li data-level="2"><a href="#comparison"><span class="journal-chapter-number" aria-hidden="true">06</span><span>How to tell which endorsement applies</span></a></li><li data-level="2"><a href="#mistakes"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Common mistakes</span></a></li><li data-level="2"><a href="#journal-open-the-aircraft-endorsement-group"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Open the aircraft endorsement group</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article class="seo-guide-panel">
           <header class="article-header">
             <span class="eyebrow">Aircraft transition guide</span>
             <h1>Aircraft Endorsements: Complex, High-Performance, High-Altitude, and Tailwheel</h1>
@@ -130,28 +143,28 @@
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.72</span>
                 <div>
-                  <h3>Complex airplane endorsement</h3>
+                  <h3 id="journal-complex-airplane-endorsement">Complex airplane endorsement</h3>
                   <p>Required before acting as PIC in a complex airplane under 14 CFR 61.31(e).</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.73</span>
                 <div>
-                  <h3>High-performance airplane endorsement</h3>
+                  <h3 id="journal-high-performance-airplane-endorsement">High-performance airplane endorsement</h3>
                   <p>Required before acting as PIC in a high-performance airplane under 14 CFR 61.31(f).</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.74</span>
                 <div>
-                  <h3>High-altitude pressurized aircraft endorsement</h3>
+                  <h3 id="journal-high-altitude-pressurized-aircraft-endorsement">High-altitude pressurized aircraft endorsement</h3>
                   <p>Required before acting as PIC in a pressurized aircraft capable of high-altitude operations under 14 CFR 61.31(g).</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.75</span>
                 <div>
-                  <h3>Tailwheel airplane endorsement</h3>
+                  <h3 id="journal-tailwheel-airplane-endorsement">Tailwheel airplane endorsement</h3>
                   <p>Required before acting as PIC in a tailwheel airplane under 14 CFR 61.31(i), unless an applicable exception controls.</p>
                 </div>
               </article>
@@ -210,7 +223,7 @@
           <p class="seo-guide-note">Reference aid only. Verify the aircraft configuration, pilot certificate privileges, applicable exceptions, current regulations, and current FAA guidance before signing.</p>
 
           <div class="cta-box">
-            <h2>Open the aircraft endorsement group</h2>
+            <h2 id="journal-open-the-aircraft-endorsement-group">Open the aircraft endorsement group</h2>
             <p>Search the aircraft endorsement group in Simply Endorsed CFI, then compare each model endorsement against the airplane and operation.</p>
             <div class="cta-btn-group">
               <a href="/simply-endorsed-cfi/?view=tasks&amp;task=aircraft-endorsements" class="btn btn--primary">Open aircraft endorsements</a>
@@ -218,6 +231,8 @@
             </div>
           </div>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

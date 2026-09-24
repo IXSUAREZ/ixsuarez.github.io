@@ -46,8 +46,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-currency editorial-page">
+<body class="cat-currency editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -103,7 +106,17 @@
           <span aria-current="page">Flight Review Endorsement</span>
         </nav>
 
-        <article class="seo-guide-panel">
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">04</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#relevant-endorsements"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Relevant endorsements</span></a></li><li data-level="3"><a href="#journal-completion-of-a-flight-review"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Completion of a flight review</span></a></li><li data-level="3"><a href="#journal-completion-of-any-phase-of-an-faa-sponsored-pilot-proficiency-program-wings"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</span></a></li><li data-level="2"><a href="#journal-want-help-applying-this-endorsement-guidance"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Want help applying this endorsement guidance?</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article class="seo-guide-panel">
           <header class="article-header">
             <span class="eyebrow">Additional / recurrent guide</span>
             <h1>Flight Review Endorsement Guide</h1>
@@ -130,14 +143,14 @@
             <article class="seo-guide-item">
               <span class="seo-guide-id">A.69</span>
               <div>
-                <h3>Completion of a flight review</h3>
+                <h3 id="journal-completion-of-a-flight-review">Completion of a flight review</h3>
                 <p>Shows a flight review is complete and the instructor found the pilot able to safely use certificate privileges.</p>
               </div>
             </article>
             <article class="seo-guide-item">
               <span class="seo-guide-id">A.70</span>
               <div>
-                <h3>Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</h3>
+                <h3 id="journal-completion-of-any-phase-of-an-faa-sponsored-pilot-proficiency-program-wings">Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)</h3>
                 <p>Documents completion of a qualifying WINGS phase that can substitute for a flight review.</p>
               </div>
             </article>
@@ -147,7 +160,7 @@
           <p class="seo-guide-note">Reference aid only. An instrument proficiency check is not the same thing as a standard flight review, so verify whether the pilot needs a flight review, WINGS substitution, or IPC under current regulations and FAA guidance.</p>
 
           <div class="cta-box">
-            <h2>Want help applying this endorsement guidance?</h2>
+            <h2 id="journal-want-help-applying-this-endorsement-guidance">Want help applying this endorsement guidance?</h2>
             <p>These guides cover the endorsement flow. If you want help turning that reference into a real training plan, discovery flight, or checkride-prep conversation, reach out.</p>
             <div class="cta-btn-group">
               <a href="https://suarezcfi.com/#contact" class="btn btn--primary">
@@ -158,6 +171,8 @@
             </div>
           </div>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

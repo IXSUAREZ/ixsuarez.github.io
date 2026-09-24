@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-systems editorial-page">
+<body class="cat-systems editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -90,7 +92,8 @@
     </nav>
   </header>
   <!-- /site-nav -->
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -101,7 +104,17 @@
           <a href="/learn/aircraft-systems/">Aircraft Systems</a>
           <span aria-current="page">What Is a Biplane? How This Classic Design Works</span>
         </nav>
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">12</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#why-two-wings"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Why Two Wings?</span></a></li><li data-level="2"><a href="#basic-biplane-anatomy"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Basic Biplane Anatomy</span></a></li><li data-level="2"><a href="#biplane-aerodynamics"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Biplane Aerodynamics</span></a></li><li data-level="2"><a href="#a-short-history"><span class="journal-chapter-number" aria-hidden="true">04</span><span>A Short History</span></a></li><li data-level="2"><a href="#flying-a-biplane"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Flying a Biplane</span></a></li><li data-level="2"><a href="#where-you-still-see-biplanes"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Where You Still See Biplanes</span></a></li><li data-level="2"><a href="#why-student-pilots-should-care"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Why Student Pilots Should Care</span></a></li><li data-level="2"><a href="#related-reading"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Related Reading</span></a></li><li data-level="2"><a href="#official-references"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Official References</span></a></li><li data-level="2"><a href="#journal-try-a-related-pilot-tool"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Try a related pilot tool</span></a></li><li data-level="2"><a href="#article-cta-heading"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Need help applying this to your training?</span></a></li><li data-level="2"><a href="#related-heading"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Related reading</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Aircraft Systems</span>
             <h1>What Is a Biplane? How This Classic Design Works</h1>
@@ -161,7 +174,7 @@
 <h2 id="official-references">Official References</h2>
 <ul><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">FAA Pilot&#x27;s Handbook of Aeronautical Knowledge</a></li><li><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook">FAA Airplane Flying Handbook</a></li></ul>
           </div>
-          <aside class="source-guide" id="related-pilot-tool"><h2>Try a related pilot tool</h2><p><a href="/engine-explorer/" data-cta-id="article-related-tool">Explore aircraft engines</a> · <a href="/tools/">All pilot tools</a></p></aside>
+          <aside class="source-guide" id="related-pilot-tool"><h2 id="journal-try-a-related-pilot-tool">Try a related pilot tool</h2><p><a href="/engine-explorer/" data-cta-id="article-related-tool">Explore aircraft engines</a> · <a href="/tools/">All pilot tools</a></p></aside>
 <section class="cta-box" aria-labelledby="article-cta-heading">
             <span class="eyebrow">Ground instruction</span>
             <h2 id="article-cta-heading">Need help applying this to your training?</h2>
@@ -182,6 +195,8 @@
             </ul>
           </section>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

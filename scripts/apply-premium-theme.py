@@ -77,3 +77,7 @@ if __name__ == "__main__":
     apply()
     import subprocess, sys
     subprocess.run([sys.executable, str(ROOT / "scripts" / "sync-avionics.py")], check=True)
+
+    # Keep reading templates and pages current after the shared cascade.
+    from journal import apply as apply_journal
+    apply_journal()

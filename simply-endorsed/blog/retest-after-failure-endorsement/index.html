@@ -46,8 +46,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-written-prep editorial-page">
+<body class="cat-written-prep editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -103,7 +106,17 @@
           <span aria-current="page">Retest After Failure Endorsement</span>
         </nav>
 
-        <article class="seo-guide-panel">
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">07</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#relevant-endorsements"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Relevant endorsements</span></a></li><li data-level="3"><a href="#journal-retesting-after-failure-of-a-knowledge-or-practical-test"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Retesting after failure of a knowledge or practical test</span></a></li><li data-level="3"><a href="#journal-practical-test-prerequisites"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Practical-test prerequisites</span></a></li><li data-level="3"><a href="#journal-knowledge-test-deficiency-review"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Knowledge-test deficiency review</span></a></li><li data-level="2"><a href="#use-cases"><span class="journal-chapter-number" aria-hidden="true">05</span><span>When to use and when not to use it</span></a></li><li data-level="2"><a href="#mistakes"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Common mistakes</span></a></li><li data-level="2"><a href="#journal-look-up-the-exact-retest-endorsement"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Look up the exact retest endorsement</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article class="seo-guide-panel">
           <header class="article-header">
             <span class="eyebrow">Retest guide</span>
             <h1>Retest After Failure Endorsement (14 CFR 61.49)</h1>
@@ -130,21 +143,21 @@
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.77</span>
                 <div>
-                  <h3>Retesting after failure of a knowledge or practical test</h3>
+                  <h3 id="journal-retesting-after-failure-of-a-knowledge-or-practical-test">Retesting after failure of a knowledge or practical test</h3>
                   <p>Required before retesting after a failed knowledge or practical test. It documents additional ground or flight training, as appropriate, and the instructor's determination that the applicant is proficient to pass.</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.1</span>
                 <div>
-                  <h3>Practical-test prerequisites</h3>
+                  <h3 id="journal-practical-test-prerequisites">Practical-test prerequisites</h3>
                   <p>Review this when a new practical-test attempt still requires a current recommendation and recent preparation window.</p>
                 </div>
               </article>
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.2</span>
                 <div>
-                  <h3>Knowledge-test deficiency review</h3>
+                  <h3 id="journal-knowledge-test-deficiency-review">Knowledge-test deficiency review</h3>
                   <p>Review this when the applicant's Airman Knowledge Test Report deficiencies still need documented review for the practical test path.</p>
                 </div>
               </article>
@@ -174,7 +187,7 @@
           <p class="seo-guide-note">Reference aid only. Verify the notice of disapproval or failed test record, the added training given, practical-test timing, current regulations, and current FAA guidance before signing.</p>
 
           <div class="cta-box">
-            <h2>Look up the exact retest endorsement</h2>
+            <h2 id="journal-look-up-the-exact-retest-endorsement">Look up the exact retest endorsement</h2>
             <p>Open Simply Endorsed CFI directly to the retest-after-disapproval path, then compare the model text against the applicant's actual situation.</p>
             <div class="cta-btn-group">
               <a href="/simply-endorsed-cfi/?view=tasks&amp;task=retest-after-disapproval" class="btn btn--primary">Open A.77 in Simply Endorsed CFI</a>
@@ -182,6 +195,8 @@
             </div>
           </div>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

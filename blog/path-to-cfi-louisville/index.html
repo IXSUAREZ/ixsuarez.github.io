@@ -44,8 +44,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-cfi editorial-page">
+<body class="cat-cfi editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -91,7 +93,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -103,7 +106,17 @@
           <span aria-current="page">Path to CFI Louisville</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">15</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-where-i-started-from"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Where I started from</span></a></li><li data-level="2"><a href="#journal-prerequisites-to-begin-cfi-training"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Prerequisites to begin CFI training</span></a></li><li data-level="2"><a href="#journal-the-written-test-nuance-foi-and-fia"><span class="journal-chapter-number" aria-hidden="true">03</span><span>The written-test nuance: FOI and FIA</span></a></li><li data-level="3"><a href="#journal-foi-fundamentals-of-instructing"><span class="journal-chapter-number" aria-hidden="true">04</span><span>FOI — Fundamentals of Instructing</span></a></li><li data-level="3"><a href="#journal-fia-flight-instructor-airplane"><span class="journal-chapter-number" aria-hidden="true">05</span><span>FIA — Flight Instructor Airplane</span></a></li><li data-level="2"><a href="#journal-the-spin-training-endorsement"><span class="journal-chapter-number" aria-hidden="true">06</span><span>The spin-training endorsement</span></a></li><li data-level="2"><a href="#journal-refining-flight-skills-from-the-right-seat"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Refining flight skills from the right seat</span></a></li><li data-level="2"><a href="#journal-the-lesson-plan-workload"><span class="journal-chapter-number" aria-hidden="true">08</span><span>The lesson-plan workload</span></a></li><li data-level="2"><a href="#journal-the-cfi-initial-checkride"><span class="journal-chapter-number" aria-hidden="true">09</span><span>The CFI initial checkride</span></a></li><li data-level="2"><a href="#journal-time-and-cost-reality"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Time and cost reality</span></a></li><li data-level="2"><a href="#journal-what-the-process-teaches"><span class="journal-chapter-number" aria-hidden="true">11</span><span>What the process teaches</span></a></li><li data-level="2"><a href="#journal-what-i-offer-now"><span class="journal-chapter-number" aria-hidden="true">12</span><span>What I offer now</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">13</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-working-toward-your-own-cfi"><span class="journal-chapter-number" aria-hidden="true">14</span><span>Working toward your own CFI?</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">15</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">For Instructors</span>
             <h1>From Commercial Pilot to CFI: The Real Path</h1>
@@ -124,11 +137,11 @@
             <p>I'm writing this as someone who just went through it — close enough to the work that the hard parts, the overhyped parts, and the useful preparation steps are still concrete.</p>
             <p>If you're a rated pilot thinking about the CFI path, or you're curious about what your instructor had to go through to get there, this is the honest version.</p>
 
-            <h2>Where I started from</h2>
+            <h2 id="journal-where-i-started-from">Where I started from</h2>
             <p>I'm based at Bowman Field (KLOU) in Louisville. Going into CFI training, I held a Commercial Pilot certificate, Instrument Rating, and Advanced Ground Instructor certificate. The CFI certificate was the step that would authorize flight instruction once earned — and now it has.</p>
             <p>The useful thing about writing this soon after the process is that I don't have to pretend it was tidy. CFI training is a mix of flying, teaching, studying, building lesson plans, and learning to stay organized while someone evaluates not just what you know, but how well you can transfer it to another pilot.</p>
 
-            <h2>Prerequisites to begin CFI training</h2>
+            <h2 id="journal-prerequisites-to-begin-cfi-training">Prerequisites to begin CFI training</h2>
             <p>For an airplane CFI, the FAA baseline is in 14 CFR 61.183. In plain language, before the checkride you need:</p>
             <ol>
               <li><strong>Commercial Pilot or ATP certificate</strong> with the right airplane category and class.</li>
@@ -140,14 +153,14 @@
             </ol>
             <p>The medical piece is often misunderstood. A flight instructor is not automatically required to hold a Second-Class Medical just because they're paid to instruct. If the instructor is acting as PIC or a required flight crewmember, they need the appropriate medical qualification — typically at least Third-Class or BasicMed if operating within BasicMed rules. Ground instruction does not require a medical.</p>
 
-            <h2>The written-test nuance: FOI and FIA</h2>
+            <h2 id="journal-the-written-test-nuance-foi-and-fia">The written-test nuance: FOI and FIA</h2>
             <p>Most new CFI candidates encounter two FAA knowledge tests:</p>
 
-            <h3>FOI — Fundamentals of Instructing</h3>
+            <h3 id="journal-foi-fundamentals-of-instructing">FOI — Fundamentals of Instructing</h3>
             <p>FOI is the teaching test: learning process, human behavior, lesson planning, critique, evaluation, professionalism. It is not really about flying. It's about how students learn and how instructors should teach.</p>
             <p>Here's the important nuance: if you already hold a ground instructor certificate issued under Part 61, you are exempt from the FOI knowledge-test requirement. As an Advanced Ground Instructor, I did not need to take FOI as a separate exam. That does <strong>not</strong> mean FOI stops mattering — the CFI oral still tests whether you can teach, evaluate, correct errors, and manage a student. The subject matter remains critical; only the formal exam changes.</p>
 
-            <h3>FIA — Flight Instructor Airplane</h3>
+            <h3 id="journal-fia-flight-instructor-airplane">FIA — Flight Instructor Airplane</h3>
             <p>FIA is the subject-matter test. It reaches across Private, Commercial, aerodynamics, systems, weather, regulations, endorsements, and instructional application. This is the written test that mattered most because it exposed whether I understood the material well enough to <em>explain</em> it, not just answer it.</p>
             <p><strong>Study resources that actually matter:</strong></p>
             <ul>
@@ -160,11 +173,11 @@
             </ul>
             <p>Reading is necessary. Teaching out loud is where the gaps show up.</p>
 
-            <h2>The spin-training endorsement</h2>
+            <h2 id="journal-the-spin-training-endorsement">The spin-training endorsement</h2>
             <p>Before the CFI practical test, airplane CFI applicants need training in stall awareness, spin entry, spins, and spin recovery procedures, plus the required endorsement. This has to be done in an aircraft approved for spins. A Cessna 152 is a common platform; a Cessna 172 can be used only when operated within the approved utility-category limits. The Bristell NG5 is not a spin-training platform.</p>
             <p>The flight itself is usually short — often around 1.0 to 1.5 hours — but it matters. You are not just learning the recovery sequence. You are learning how to explain spins responsibly without turning them into either a mystery or a circus trick. For a future instructor, that distinction matters.</p>
 
-            <h2>Refining flight skills from the right seat</h2>
+            <h2 id="journal-refining-flight-skills-from-the-right-seat">Refining flight skills from the right seat</h2>
             <p>This is where CFI training becomes different from every rating before it. You are not learning to fly from zero. You already know how to fly. You are learning to fly from the right seat while teaching, monitoring, correcting, and staying ready to take the airplane if the student gets behind it.</p>
             <p>The right-seat transition affects four things:</p>
             <ul>
@@ -175,7 +188,7 @@
             </ul>
             <p>The first few hours feel awkward. Then the airplane starts to feel normal again. The goal is not just "can I do the maneuver from the right seat?" — it's "can I teach this maneuver while preserving safety, clarity, and standards?"</p>
 
-            <h2>The lesson-plan workload</h2>
+            <h2 id="journal-the-lesson-plan-workload">The lesson-plan workload</h2>
             <p>The lesson-plan binder is where CFI candidates either get serious or get exposed. A useful CFI binder covers the Areas of Operation and common lessons you expect to teach: fundamentals of flight, systems, performance, weight and balance, airspace, weather, navigation, landings, emergency operations, and the required maneuvers.</p>
             <p>Each lesson plan needs more than a topic name. It should include:</p>
             <ul>
@@ -190,7 +203,7 @@
             </ul>
             <p>The trap is building a binder for the examiner instead of building one you can actually teach from. The DPE may ask for a lesson plan, but your future students are the real reason the binder exists. Every weak lesson plan becomes a weak explanation in the airplane or across the table.</p>
 
-            <h2>The CFI initial checkride</h2>
+            <h2 id="journal-the-cfi-initial-checkride">The CFI initial checkride</h2>
             <p>The CFI initial has a reputation for being one of the hardest FAA checkrides. That reputation is mostly deserved — but not because the maneuvers are exotic. The hard part is that the checkride evaluates you on two levels at once: pilot and teacher.</p>
             <p>What makes it different:</p>
             <ol>
@@ -201,7 +214,7 @@
             </ol>
             <p>The more useful truth is simpler: the CFI initial is demanding, and preparation quality matters more than any rumored statistic. Prepared candidates pass; underprepared candidates get exposed quickly.</p>
 
-            <h2>Time and cost reality</h2>
+            <h2 id="journal-time-and-cost-reality">Time and cost reality</h2>
             <p>Ballpark numbers for going from Commercial pilot to CFI certificate:</p>
             <p><strong>Time:</strong></p>
             <ul>
@@ -224,13 +237,13 @@
             </ul>
             <p>Total: roughly <strong>$6,000–$11,000</strong> depending on aircraft, instructor rates, DPE fee, and how efficiently you build the binder and right-seat proficiency.</p>
 
-            <h2>What the process teaches</h2>
+            <h2 id="journal-what-the-process-teaches">What the process teaches</h2>
             <p>Three things change the most in going through CFI training:</p>
             <p><strong>1. You learn which knowledge was shallow.</strong> If you can answer a test question but cannot teach the concept to a new student, you don't really own it yet.</p>
             <p><strong>2. You learn to let students learn.</strong> A CFI has to resist the urge to fix everything instantly. The art is knowing which errors are productive and which ones need immediate intervention.</p>
             <p><strong>3. You learn that endorsements are a safety system.</strong> A signature is not paperwork decoration. It is a statement that a student received required training and is ready for a specific privilege, test, or operation.</p>
 
-            <h2>What I offer now</h2>
+            <h2 id="journal-what-i-offer-now">What I offer now</h2>
             <p>With the CFI certificate added to the Advanced Ground Instructor certificate, the scope of what I can offer expanded:</p>
             <ul>
               <li><strong>Flight training</strong> for Private and Commercial pilots in airplane single-engine, including logbook endorsements, solo and solo cross-country sign-offs, flight reviews, and checkride recommendations.</li>
@@ -270,7 +283,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Working toward your own CFI?</h2>
+              <h2 id="journal-working-toward-your-own-cfi">Working toward your own CFI?</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="article-book">Book your discovery flight</a>
@@ -281,7 +294,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/faa-private-pilot-written-test-study-guide/">How to study for the FAA Private Pilot written test</a></li>
               <li><a href="/blog/private-pilot-cost-louisville-ky/">Private Pilot cost breakdown for Louisville students</a></li>
@@ -289,6 +302,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

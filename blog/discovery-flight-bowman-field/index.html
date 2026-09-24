@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-student-pilot editorial-page">
+<body class="cat-student-pilot editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">Discovery Flight Bowman Field</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">18</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-what-a-discovery-flight-is-and-isn-t"><span class="journal-chapter-number" aria-hidden="true">01</span><span>What a discovery flight is — and isn&#x27;t</span></a></li><li data-level="2"><a href="#journal-the-training-aircraft"><span class="journal-chapter-number" aria-hidden="true">02</span><span>The training aircraft</span></a></li><li data-level="2"><a href="#journal-minute-by-minute-what-your-discovery-flight-looks-like"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Minute-by-minute: what your discovery flight looks like</span></a></li><li data-level="3"><a href="#journal-arrival-about-15-minutes-before-the-flight"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Arrival (about 15 minutes before the flight)</span></a></li><li data-level="3"><a href="#journal-pre-flight-briefing-about-10-minutes"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Pre-flight briefing (about 10 minutes)</span></a></li><li data-level="3"><a href="#journal-pre-flight-inspection-about-10-minutes"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Pre-flight inspection (about 10 minutes)</span></a></li><li data-level="3"><a href="#journal-engine-start-and-taxi-about-5-minutes"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Engine start and taxi (about 5 minutes)</span></a></li><li data-level="3"><a href="#journal-takeoff-about-1-minute-of-adrenaline"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Takeoff (about 1 minute of adrenaline)</span></a></li><li data-level="3"><a href="#journal-the-actual-flying-30-40-minutes"><span class="journal-chapter-number" aria-hidden="true">09</span><span>The actual flying (30–40 minutes)</span></a></li><li data-level="3"><a href="#journal-pattern-and-landing-about-10-minutes"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Pattern and landing (about 10 minutes)</span></a></li><li data-level="3"><a href="#journal-debrief-about-10-minutes"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Debrief (about 10 minutes)</span></a></li><li data-level="2"><a href="#journal-will-you-actually-fly-the-plane"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Will you actually fly the plane?</span></a></li><li data-level="2"><a href="#journal-what-to-bring-what-to-wear"><span class="journal-chapter-number" aria-hidden="true">13</span><span>What to bring / what to wear</span></a></li><li data-level="2"><a href="#journal-what-not-to-worry-about"><span class="journal-chapter-number" aria-hidden="true">14</span><span>What not to worry about</span></a></li><li data-level="2"><a href="#journal-what-happens-after-the-flight"><span class="journal-chapter-number" aria-hidden="true">15</span><span>What happens after the flight</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">16</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-a-little-planning-makes-the-first-flight-easier"><span class="journal-chapter-number" aria-hidden="true">17</span><span>A little planning makes the first flight easier.</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">18</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Getting Started</span>
             <h1>Your First Discovery Flight at Bowman Field</h1>
@@ -125,12 +138,12 @@
             <p>A discovery flight is how you find out. About an hour in a real airplane at Bowman Field (KLOU), with an instructor in the right seat and you in the left. Hands on the controls from the time the wheels leave the ground. No commitment, no brochure, just a flight.</p>
             <p>This article is what I tell first-timers before their discovery flight, so they walk in knowing what's going to happen and walk out with a clear answer to "is this for me."</p>
 
-            <h2>What a discovery flight is — and isn't</h2>
+            <h2 id="journal-what-a-discovery-flight-is-and-isn-t">What a discovery flight is — and isn't</h2>
             <p><strong>A discovery flight is:</strong> an introductory lesson. Around an hour of airplane time, preceded by a short ground briefing and followed by a debrief. You sit in the left seat. The instructor explains what's happening, demonstrates, then hands over the controls. The flight logs legally in your logbook if you decide to keep going.</p>
             <p><strong>A discovery flight is not:</strong> a scenic tour (though the view is great). It's not a simulator session. It's not a sales pitch — good instructors will answer your questions honestly, including "is flying a smart use of my time and money?" If it feels like a sales pitch, that's information about the instructor, not about flying.</p>
             <p>One more distinction: a discovery flight is not a test. You don't need to perform. Most first-timers fly better than they expect because the airplane is more stable than they expect.</p>
 
-            <h2>The training aircraft</h2>
+            <h2 id="journal-the-training-aircraft">The training aircraft</h2>
             <p>Discovery flights at Bowman Field should be scheduled in an approved training aircraft with an appropriately authorized instructor. The exact airplane can vary by provider, maintenance, weather, insurance, and operator policy, so confirm the aircraft and instructor before booking.</p>
             <ul>
               <li><strong>Visibility.</strong> You should be able to see enough outside to connect the airplane's attitude with what the instruments show.</li>
@@ -140,43 +153,43 @@
             </ul>
             <p>The right aircraft is the one that fits the lesson, is approved for the operation, and is actually available on the schedule.</p>
 
-            <h2>Minute-by-minute: what your discovery flight looks like</h2>
+            <h2 id="journal-minute-by-minute-what-your-discovery-flight-looks-like">Minute-by-minute: what your discovery flight looks like</h2>
 
-            <h3>Arrival (about 15 minutes before the flight)</h3>
+            <h3 id="journal-arrival-about-15-minutes-before-the-flight">Arrival (about 15 minutes before the flight)</h3>
             <p>Park at Bowman Field and come in to the office. I'll meet you, we'll do a short intake — basic info, a signature on a liability release, and a quick conversation about what you'd like out of the flight. "I want to see if I like it" is a great answer. "I want to see if I can handle the controls" is also great. No wrong answers.</p>
             <p>If you showed up anxious, we'll talk about that too. A lot of first-timers do. Anxiety in this context is information, not a problem.</p>
 
-            <h3>Pre-flight briefing (about 10 minutes)</h3>
+            <h3 id="journal-pre-flight-briefing-about-10-minutes">Pre-flight briefing (about 10 minutes)</h3>
             <p>Before we go to the airplane, I'll walk through what's going to happen. The basics of how the airplane flies (lift, drag, thrust, weight — the minimum you need to follow along). What each control does. How I'll hand off and take back controls. What to expect during takeoff and landing. What you'll feel in a turn. How to handle your hands and feet so you're working with the airplane, not against it.</p>
             <p>This briefing is short on purpose. The airplane teaches faster than a whiteboard.</p>
 
-            <h3>Pre-flight inspection (about 10 minutes)</h3>
+            <h3 id="journal-pre-flight-inspection-about-10-minutes">Pre-flight inspection (about 10 minutes)</h3>
             <p>We walk around the airplane together. I show you what I'm checking and why — fuel quantity, oil, control surfaces, tires, general airworthiness. You don't have to memorize anything. The point is to see that we don't just jump in and go; flying is procedural for good reason.</p>
 
-            <h3>Engine start and taxi (about 5 minutes)</h3>
+            <h3 id="journal-engine-start-and-taxi-about-5-minutes">Engine start and taxi (about 5 minutes)</h3>
             <p>You sit in the left seat. I'm in the right. I handle the startup and get us to the runway — you feel the airplane come alive and start moving. Your feet may rest lightly on the rudder pedals so you can feel the steering. Your hands are free.</p>
 
-            <h3>Takeoff (about 1 minute of adrenaline)</h3>
+            <h3 id="journal-takeoff-about-1-minute-of-adrenaline">Takeoff (about 1 minute of adrenaline)</h3>
             <p>I do the takeoff. There's too much happening in the first thirty seconds for a first-timer to manage the controls cleanly, and there's no learning benefit in trying. But you'll feel the acceleration, watch the ground peel away, and notice how quickly we're flying. Bowman Field sits at the edge of residential Louisville, and the departure view is genuinely beautiful.</p>
 
-            <h3>The actual flying (30–40 minutes)</h3>
+            <h3 id="journal-the-actual-flying-30-40-minutes">The actual flying (30–40 minutes)</h3>
             <p>This is the part the flight is built around. Once we're clear of Bowman's traffic pattern, I'll hand the controls over to you.</p>
             <p>You'll start with straight-and-level flight — just holding altitude and heading. That's harder than it sounds and also easier than it sounds. You'll get the feel for it in a few minutes.</p>
             <p>Then climbs and descents. Then turns. We'll fly over Louisville — Churchill Downs is typically visible from our normal practice area, along with the Ohio River, downtown, and whichever bridge you drive across to get to work.</p>
             <p>If you want to try a little steeper turn, we'll do that. If you want to hold altitude and just enjoy cruising, we'll do that. It's your hour.</p>
             <p>The common reaction at this point: "wait, it's actually doing what I'm telling it to do." Yes. Airplanes fly. That's what they do.</p>
 
-            <h3>Pattern and landing (about 10 minutes)</h3>
+            <h3 id="journal-pattern-and-landing-about-10-minutes">Pattern and landing (about 10 minutes)</h3>
             <p>We return to Bowman. I take the controls back for the approach and landing. You'll watch how a real landing happens — the speed management, the descent path, the flare, the touchdown. Most first-timers tell me the landing was their favorite part of the flight, which makes sense: it's where all the energy of the airplane resolves into stillness.</p>
 
-            <h3>Debrief (about 10 minutes)</h3>
+            <h3 id="journal-debrief-about-10-minutes">Debrief (about 10 minutes)</h3>
             <p>Back in the office, we talk about what you felt. What worked, what didn't, what surprised you. I log the flight in your new logbook if you want one — those hours count toward any future certificate you pursue.</p>
             <p>If you want to schedule a follow-up lesson, we can. If you want to go home and think about it, perfect. If you've decided flying isn't for you, you saved yourself thousands of dollars by finding out today.</p>
 
-            <h2>Will you actually fly the plane?</h2>
+            <h2 id="journal-will-you-actually-fly-the-plane">Will you actually fly the plane?</h2>
             <p>Yes. "Hands-on controls" is not a marketing phrase. You'll do straight-and-level, climbs, descents, turns — the same fundamental maneuvers every pilot learns on their first lesson. I'll keep hands close to my own controls the whole time (standard procedure), but the flying is yours.</p>
 
-            <h2>What to bring / what to wear</h2>
+            <h2 id="journal-what-to-bring-what-to-wear">What to bring / what to wear</h2>
             <ul>
               <li><strong>Sunglasses</strong> — the sky is bright and most training aircraft have a lot of glare through the windows. Non-polarized is slightly better for reading glass-panel displays, but any sunglasses beat squinting.</li>
               <li><strong>Comfortable shoes</strong> — you'll use rudder pedals. No flip-flops.</li>
@@ -186,7 +199,7 @@
             </ul>
             <p>That's really the whole list. You don't need a headset (I provide one), a logbook (I provide one if you want to start), or any prior knowledge. You just need to show up.</p>
 
-            <h2>What not to worry about</h2>
+            <h2 id="journal-what-not-to-worry-about">What not to worry about</h2>
             <ul>
               <li><strong>Motion sickness.</strong> A lot of first-timers worry about this and it's almost never a problem on calm-morning discovery flights. If you're prone to car sickness, let me know beforehand — we'll pick a smoother time of day.</li>
               <li><strong>Being bad at it.</strong> You won't be graded. Everyone's first flight has clumsy moments. The airplane forgives far more than a car does.</li>
@@ -194,7 +207,7 @@
               <li><strong>Getting lost.</strong> You're not navigating. We don't leave visual range of Bowman Field.</li>
             </ul>
 
-            <h2>What happens after the flight</h2>
+            <h2 id="journal-what-happens-after-the-flight">What happens after the flight</h2>
             <p>If you want to continue toward a certificate, we can plan next steps — medical certificate, ground knowledge, a realistic training schedule. If you want to stop after one flight, you got a great hour and an honest answer to a question most people never ask. Both outcomes are legitimate.</p>
             <p>Your discovery flight hour also logs toward whatever certificate you eventually pursue — Sport Pilot, Private Pilot, or otherwise. Nothing is wasted.</p>
           </div>
@@ -232,7 +245,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>A little planning makes the first flight easier.</h2>
+              <h2 id="journal-a-little-planning-makes-the-first-flight-easier">A little planning makes the first flight easier.</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="discovery-article-book">Book your discovery flight</a>
@@ -243,7 +256,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/private-pilot-cost-louisville-ky/">Private Pilot cost breakdown for Louisville students</a></li>
               <li><a href="/blog/private-pilot-timeline-louisville/">How long does a Private Pilot License take in Louisville?</a></li>
@@ -251,6 +264,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

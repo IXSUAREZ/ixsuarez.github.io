@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-airspace editorial-page">
+<body class="cat-airspace editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">Flying at Bowman Field (KLOU)</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">14</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-a-short-history"><span class="journal-chapter-number" aria-hidden="true">01</span><span>A short history</span></a></li><li data-level="2"><a href="#journal-airport-layout"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Airport layout</span></a></li><li data-level="2"><a href="#journal-class-d-operations-at-klou"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Class D operations at KLOU</span></a></li><li data-level="2"><a href="#journal-the-big-local-gotcha-louisville-class-c"><span class="journal-chapter-number" aria-hidden="true">04</span><span>The big local gotcha: Louisville Class C</span></a></li><li data-level="2"><a href="#journal-departures-from-klou"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Departures from KLOU</span></a></li><li data-level="3"><a href="#journal-air-devil-departure"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Air Devil Departure</span></a></li><li data-level="2"><a href="#journal-arrivals-and-pattern-work"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Arrivals and pattern work</span></a></li><li data-level="2"><a href="#journal-special-events-and-derby-week"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Special events and Derby week</span></a></li><li data-level="2"><a href="#journal-weather-at-bowman-field"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Weather at Bowman Field</span></a></li><li data-level="2"><a href="#journal-local-habits-not-official-procedures"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Local habits, not official procedures</span></a></li><li data-level="2"><a href="#journal-official-resources"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Official resources</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-need-help-making-bowman-field-feel-less-abstract"><span class="journal-chapter-number" aria-hidden="true">13</span><span>Need help making Bowman Field feel less abstract?</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">14</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Airport &amp; Airspace</span>
             <h1>Flying at Bowman Field (KLOU): A Local Pilot's Guide to Louisville's Historic Airport</h1>
@@ -125,11 +138,11 @@
 
             <p>Bowman Field — KLOU on the chart — is Louisville's historic general aviation airport. It sits close to downtown, underneath and alongside Louisville Muhammad Ali International Airport's Class C structure, and it has enough training, transient, business, and special-event traffic that a little preparation makes the first visit much easier.</p>
 
-            <h2>A short history</h2>
+            <h2 id="journal-a-short-history">A short history</h2>
             <p>The Louisville Regional Airport Authority traces Bowman Field's opening to <strong>1921</strong>. Bowman served as Louisville's main airport before scheduled airline activity moved to what is now Louisville Muhammad Ali International Airport (KSDF). Today, it remains a busy public-use general aviation field with flight training, local operators, maintenance, fuel, hangars, and a strong local pilot community.</p>
             <p>That history is part of the experience. The field still has a classic airport feel: compact ramps, older hangars, a recognizable terminal area, and a mix of student pilots, owners, transient aircraft, and occasional special operations sharing a relatively small surface area.</p>
 
-            <h2>Airport layout</h2>
+            <h2 id="journal-airport-layout">Airport layout</h2>
             <p>Bowman Field's published field elevation is <strong>546 feet MSL</strong>. The airport has two paved asphalt runways:</p>
             <ul>
               <li><strong>Runway 06/24:</strong> 4,358 × 75 feet, asphalt, MIRL.</li>
@@ -139,7 +152,7 @@
             <p>Runway 06/24 is the longer runway and commonly handles much of the traffic flow, but wind, traffic, runway work, and tower sequencing drive the actual runway in use. Runway 15/33 is the crosswind runway and is useful when the wind does not favor 06/24.</p>
             <p>The Chart Supplement lists 100LL, Jet A, and oxygen availability. Confirm parking and service needs with the FBO/operator you intend to use before arriving, as tenant and transient details can change.</p>
 
-            <h2>Class D operations at KLOU</h2>
+            <h2 id="journal-class-d-operations-at-klou">Class D operations at KLOU</h2>
             <p>Bowman is a towered <strong>Class D</strong> airport during published tower hours. The current Chart Supplement lists Class D service and tower operation as <strong>1200–0300Z‡</strong>, which corresponds to <strong>0700–2200 local time</strong> in Louisville during the current daylight-time period. Outside those hours, the airport operates as <strong>Class E</strong>.</p>
             <p>Current published frequencies:</p>
             <ul>
@@ -155,7 +168,7 @@
             <p>For departures, get ATIS before engine start or taxi, contact Ground for taxi instructions, then contact Tower when ready for takeoff. If you are staying in the pattern, say so. If you are departing the area and need Louisville Approach for Class C service, flight following, or an IFR pickup, make that request early enough for tower to coordinate or advise.</p>
             <p>Bowman has intersecting runways and close taxi/runway geometry. The airport diagram identifies hot spots near the runway intersection and Runway 06 at Taxiway A1. Read back all runway hold-short instructions and be deliberate about runway-crossing clearances.</p>
 
-            <h2>The big local gotcha: Louisville Class C</h2>
+            <h2 id="journal-the-big-local-gotcha-louisville-class-c">The big local gotcha: Louisville Class C</h2>
             <p>Current FAA sources chart <strong>Louisville Muhammad Ali International Airport (SDF) as Class C</strong>. That is the airspace to brief around Bowman.</p>
             <p>Near KLOU, the SDF Class C shelf is charted <strong>45/22</strong>, meaning the shelf extends from <strong>2,200 feet MSL up to 4,500 feet MSL</strong> above and around the Bowman area. Bowman also has its own Class D surface area while the tower is operating.</p>
             <p>Practical takeaways:</p>
@@ -166,7 +179,7 @@
               <li>If tower or Louisville Approach gives you an altitude, heading, or routing, that instruction controls.</li>
             </ul>
 
-            <h2>Departures from KLOU</h2>
+            <h2 id="journal-departures-from-klou">Departures from KLOU</h2>
             <p>Departure procedures vary with runway, traffic, weather, and your destination. The reliable procedure is:</p>
             <ul>
               <li>Get ATIS.</li>
@@ -176,26 +189,26 @@
               <li>Coordinate with Louisville Approach when you need Class C service, flight following, or an IFR clearance after departure.</li>
             </ul>
 
-            <h3>Air Devil Departure</h3>
+            <h3 id="journal-air-devil-departure">Air Devil Departure</h3>
             <p>The FAA publishes a special Bowman Field terminal-area graphic notice for the <strong>"Air Devil Departure."</strong> This is not a casual sightseeing route — it is a named VFR departure procedure pilots should specifically request when appropriate, especially in the IFR pickup context described by the notice.</p>
             <p>In plain language, the procedure has pilots request it by name, remain VFR at or below <strong>2,500 feet</strong> initially, and use the heading and climb instructions coordinated by LOU ATC and Louisville Departure. The published weather minimums for the procedure are a <strong>3,000-foot ceiling and 3 miles visibility</strong>. Use the current FAA notice before flying it — don't rely on secondhand descriptions.</p>
 
-            <h2>Arrivals and pattern work</h2>
+            <h2 id="journal-arrivals-and-pattern-work">Arrivals and pattern work</h2>
             <p>Bowman Tower assigns the arrival flow. For a normal VFR arrival, call with enough distance for tower to build you into traffic, then comply with the runway, pattern entry, and sequencing you receive.</p>
             <p>For pattern altitude, the current Chart Supplement does not publish a nonstandard KLOU traffic pattern altitude. FAA standard traffic pattern altitude for propeller aircraft is <strong>1,000 feet AGL</strong> unless otherwise established. At Bowman's 546-foot field elevation, that works out to about <strong>1,550 feet MSL</strong>. If Bowman Tower assigns a different altitude or your aircraft category requires something else, follow that instruction.</p>
             <p>Pattern discipline matters at KLOU because the field combines student pilots, faster singles, transient aircraft, and Class C coordination nearby. Keep radio calls concise, read back runway instructions clearly, and avoid adding extra chatter when the frequency is busy.</p>
 
-            <h2>Special events and Derby week</h2>
+            <h2 id="journal-special-events-and-derby-week">Special events and Derby week</h2>
             <p>The Kentucky Derby changes Louisville flying. The FAA publishes special air traffic procedures for the Derby period, and those procedures are not optional reading if you plan to fly around Louisville that week.</p>
             <p>For <strong>2026</strong>, the FAA Kentucky Derby special procedures apply <strong>April 29 – May 3, 2026</strong> for Louisville Muhammad Ali International (SDF), Bowman Field (LOU), and Clark Regional (JVY). The notice says Class C service is mandatory for VFR arrivals during the event procedures and highlights heavy traffic demand, helicopters, banner tow, and blimp operations near Churchill Downs.</p>
             <p>For Bowman departures during the 2026 Derby procedures, the FAA notice says departing aircraft should contact <strong>Clearance Delivery on 118.90</strong> and <strong>Ground on 121.80</strong>, advise IFR or VFR, and that VFR departures should not expect flight following or an IFR clearance within <strong>50 miles of SDF</strong>.</p>
             <p>Check the FAA Domestic Notice, NOTAMs, TFRs, ATIS, and any local operator guidance before every Derby-week flight. Thunder Over Louisville and VIP movements can also create temporary restrictions or unusual traffic flows.</p>
 
-            <h2>Weather at Bowman Field</h2>
+            <h2 id="journal-weather-at-bowman-field">Weather at Bowman Field</h2>
             <p>Bowman sits in the Ohio River Valley, so local weather can change a training day quickly. Summer convection, winter low ceilings, fog or low stratus, and frontal wind shifts are all normal planning concerns. Morning and evening flights are often smoother than hot afternoons, but the current METAR, TAF, radar, convective outlooks, and instructor judgment matter more than broad seasonal rules.</p>
             <p>The active runway is always a current-wind and tower-sequencing decision. Listen to ATIS before you build a mental picture of the departure.</p>
 
-            <h2>Local habits, not official procedures</h2>
+            <h2 id="journal-local-habits-not-official-procedures">Local habits, not official procedures</h2>
             <p>A few local habits make Bowman easier to work with:</p>
             <ul>
               <li>Be ready before calling Ground or Tower.</li>
@@ -207,7 +220,7 @@
             </ul>
             <p>None of those habits replaces ATC instructions or current FAA publications. They just make you a better neighbor at a busy GA field.</p>
 
-            <h2>Official resources</h2>
+            <h2 id="journal-official-resources">Official resources</h2>
             <ul>
               <li><strong>FAA Chart Supplement Southeast</strong> — current KLOU airport data, frequencies, and hours.</li>
               <li><strong>FAA KLOU Airport Diagram</strong> — runway/taxiway layout and hot spots.</li>
@@ -250,7 +263,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Need help making Bowman Field feel less abstract?</h2>
+              <h2 id="journal-need-help-making-bowman-field-feel-less-abstract">Need help making Bowman Field feel less abstract?</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="klou-article-service">Book your discovery flight</a>
@@ -261,7 +274,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/discovery-flight-bowman-field/">Your first discovery flight at Bowman Field — what to expect</a></li>
               <li><a href="/blog/bristell-ng5-lsa-vs-cessna-172-for-student-pilots/">Bristell NG5 LSA vs. Cessna 172 for student pilots</a></li>
@@ -269,6 +282,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

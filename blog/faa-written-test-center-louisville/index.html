@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-written-prep editorial-page">
+<body class="cat-written-prep editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">FAA Written Test Center Louisville</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">11</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-who-actually-gives-the-test-psi"><span class="journal-chapter-number" aria-hidden="true">01</span><span>Who actually gives the test: PSI</span></a></li><li data-level="2"><a href="#journal-step-1-get-your-faa-tracking-number-ftn"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Step 1: Get your FAA Tracking Number (FTN)</span></a></li><li data-level="2"><a href="#journal-step-2-get-an-instructor-endorsement"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Step 2: Get an instructor endorsement</span></a></li><li data-level="2"><a href="#journal-step-3-schedule-and-pay"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Step 3: Schedule and pay</span></a></li><li data-level="2"><a href="#journal-what-to-bring-on-test-day"><span class="journal-chapter-number" aria-hidden="true">05</span><span>What to bring on test day</span></a></li><li data-level="2"><a href="#journal-what-the-testing-room-is-actually-like"><span class="journal-chapter-number" aria-hidden="true">06</span><span>What the testing room is actually like</span></a></li><li data-level="2"><a href="#journal-after-the-test-the-report-matters-more-than-the-score"><span class="journal-chapter-number" aria-hidden="true">07</span><span>After the test: the report matters more than the score</span></a></li><li data-level="2"><a href="#journal-the-louisville-logistics-summarized"><span class="journal-chapter-number" aria-hidden="true">08</span><span>The Louisville logistics, summarized</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-need-an-endorsement-or-a-study-plan-that-works"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Need an endorsement — or a study plan that works?</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Written Test</span>
             <h1>Where to Take the FAA Written Test Near Louisville</h1>
@@ -123,25 +136,25 @@
           <div class="prose">
             <p>One of the most common points of confusion for new student pilots around Louisville: the FAA written test — officially the airman knowledge test — is not given at the airport, not given by your flight school, and not given by the FAA itself. It's given at a commercial computer testing center, on an appointment you book yourself, after an instructor signs you off. Here's the whole process, start to finish, the way I walk my ground students through it.</p>
 
-            <h2>Who actually gives the test: PSI</h2>
+            <h2 id="journal-who-actually-gives-the-test-psi">Who actually gives the test: PSI</h2>
             <p>FAA airman knowledge tests are administered by <strong>PSI</strong>, the FAA's contracted testing vendor (the centers are also still called CATS centers — Computer Assisted Testing Service — from an earlier branding). PSI runs a nationwide network of testing centers, and there are locations serving the Louisville area.</p>
             <p>Two practical notes. First, testing center locations and hours change, so don't plan around a specific address you found in an old forum post — use PSI's test-center search when you schedule and treat the scheduler as the controlling source. Second, you schedule and pay through PSI's website (<a href="https://faa.psiexams.com/FAA/login">faa.psiexams.com</a>), not by calling the center. The center is just a room full of computers; PSI's system is the front door.</p>
 
-            <h2>Step 1: Get your FAA Tracking Number (FTN)</h2>
+            <h2 id="journal-step-1-get-your-faa-tracking-number-ftn">Step 1: Get your FAA Tracking Number (FTN)</h2>
             <p>Before you can schedule anything, you need an FAA Tracking Number. You get it by creating an account in <strong>IACRA</strong> (iacra.faa.gov), the FAA's airman certification system. It takes about ten minutes and costs nothing.</p>
             <p>One warning I give every student: enter your legal name exactly as it appears on the government ID you'll bring to the test. If your IACRA profile says "Mike" and your driver's license says "Michael," you can be turned away on test day with no refund. The name has to match across IACRA, PSI, your endorsement, and your ID.</p>
 
-            <h2>Step 2: Get an instructor endorsement</h2>
+            <h2 id="journal-step-2-get-an-instructor-endorsement">Step 2: Get an instructor endorsement</h2>
             <p>For the Private Pilot knowledge test (and most others), 14 CFR 61.35 requires an endorsement from an authorized instructor certifying that you've received ground training and are prepared for the test. The testing center will ask to see it. No endorsement, no test.</p>
             <p>Here's the part people don't realize: the endorsement doesn't have to come from your flight instructor. An <strong>Advanced Ground Instructor (AGI)</strong> can sign off the knowledge-test endorsement — that's me, among other people. If you're self-studying and haven't started flying yet, you can knock out the written test before you ever touch an airplane. That's often the smartest order of operations: the written is out of the way, your knowledge test results are valid for 24 calendar months, and everything you study makes your early flight lessons cheaper because you're not paying airplane rates to learn ground material.</p>
             <p>If you finish a formal home-study course, a graduation certificate from that course can also serve as the authorization for some tests — but an instructor endorsement is the most common path, and it comes with an actual human telling you whether you're ready. If you want to know exactly what the endorsement says, my <a href="/blog/faa-endorsements-explained/">endorsements guide</a> covers the knowledge-test endorsement in plain English, and <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a> has the official AC 61-65 wording.</p>
 
-            <h2>Step 3: Schedule and pay</h2>
+            <h2 id="journal-step-3-schedule-and-pay">Step 3: Schedule and pay</h2>
             <p>With an FTN and an endorsement in hand, you schedule at faa.psiexams.com: create the PSI account, search for the FAA test you need (double-check the test code — PAR for Private Pilot Airplane), pick a center and a time, and pay online.</p>
             <p>The fee for most FAA knowledge tests has been running around <strong>$175</strong>. Fees change, so confirm the current amount on psiexams.com when you book. If you fail, you pay again for the retake — one more reason not to schedule until your practice-test scores say you're ready.</p>
             <p>Schedule with margin. Testing center calendars fill up near holidays and school breaks, and if your checkride timeline depends on this test, don't book the last possible week.</p>
 
-            <h2>What to bring on test day</h2>
+            <h2 id="journal-what-to-bring-on-test-day">What to bring on test day</h2>
             <ul>
               <li><strong>Government-issued photo ID</strong> — a driver's license or passport, unexpired, with the name that matches your IACRA and PSI records.</li>
               <li><strong>Your instructor endorsement</strong> — the physical logbook endorsement or a signed graduation certificate, as applicable.</li>
@@ -150,15 +163,15 @@
             </ul>
             <p>What you cannot bring into the room: your phone, smartwatch, notes, books, bags, and food. Lockers are usually provided. Leave the phone in the car if you're the type to forget.</p>
 
-            <h2>What the testing room is actually like</h2>
+            <h2 id="journal-what-the-testing-room-is-actually-like">What the testing room is actually like</h2>
             <p>If you've taken a test at a Pearson or Prometric-style center, it's the same world. You check in, show your ID and endorsement, get scanned or wanded, stash your belongings, and sit at a carrel with a computer and a camera pointed at you. The proctor can't answer questions about content — only about the computer.</p>
             <p>The Private Pilot test is 60 multiple-choice questions with a 2.5-hour limit; 70% is passing. Most prepared students finish in well under two hours. You can flag questions and come back to them, which you should do instead of agonizing — the question you stare at for ten minutes is usually clearer after you've answered the forty easy ones.</p>
 
-            <h2>After the test: the report matters more than the score</h2>
+            <h2 id="journal-after-the-test-the-report-matters-more-than-the-score">After the test: the report matters more than the score</h2>
             <p>You get your result immediately. Whether you pass with a 72 or a 98, the testing center hands you an Airman Knowledge Test Report stamped with <strong>ACS codes</strong> for every question you missed. Keep that document — you need the original for your checkride, and those codes are a to-do list. Your instructor is required to review the deficient areas with you before the practical test, and the examiner can (and does) probe them.</p>
             <p>If you fail: it's not the end of anything. You'll need additional training and a new endorsement before retesting, and you pay the fee again. Annoying, expensive, survivable. Better to avoid it by not scheduling until your practice tests are consistently in the 80s — my <a href="/blog/faa-private-pilot-written-test-study-guide/">written test study guide</a> lays out the study method I use with students.</p>
 
-            <h2>The Louisville logistics, summarized</h2>
+            <h2 id="journal-the-louisville-logistics-summarized">The Louisville logistics, summarized</h2>
             <ol>
               <li>Create an IACRA account, get your FTN, use your exact legal name.</li>
               <li>Study until your practice scores are consistently in the mid-80s or better.</li>
@@ -198,7 +211,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Need an endorsement — or a study plan that works?</h2>
+              <h2 id="journal-need-an-endorsement-or-a-study-plan-that-works">Need an endorsement — or a study plan that works?</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="test-center-article-prep">Book your discovery flight</a>
@@ -209,7 +222,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/faa-private-pilot-written-test-study-guide/">How to study for the FAA Private Pilot written test</a></li>
               <li><a href="/blog/faa-endorsements-explained/">Every FAA endorsement a student pilot should understand</a></li>
@@ -217,6 +230,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

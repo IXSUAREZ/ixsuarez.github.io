@@ -46,8 +46,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-currency editorial-page">
+<body class="cat-currency editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -103,7 +106,17 @@
           <span aria-current="page">IPC Endorsement</span>
         </nav>
 
-        <article class="seo-guide-panel">
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">04</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#ipc-reference"><span class="journal-chapter-number" aria-hidden="true">01</span><span>IPC completion reference</span></a></li><li data-level="3"><a href="#journal-instrument-proficiency-check-completion"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Instrument proficiency check completion</span></a></li><li data-level="2"><a href="#difference"><span class="journal-chapter-number" aria-hidden="true">03</span><span>How IPC endorsements differ from checkride endorsements</span></a></li><li data-level="2"><a href="#journal-look-up-the-exact-ipc-endorsement-language"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Look up the exact IPC endorsement language</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article class="seo-guide-panel">
           <header class="article-header">
             <span class="eyebrow">Instrument recurrent guide</span>
             <h1>IPC Endorsement (Instrument Proficiency Check Endorsement)</h1>
@@ -130,7 +143,7 @@
               <article class="seo-guide-item">
                 <span class="seo-guide-id">A.71</span>
                 <div>
-                  <h3>Instrument proficiency check completion</h3>
+                  <h3 id="journal-instrument-proficiency-check-completion">Instrument proficiency check completion</h3>
                   <p>Use the AC 61-65K IPC completion model text in the Simply Endorsed CFI lookup tool to document successful IPC completion under the current rule path.</p>
                 </div>
               </article>
@@ -145,7 +158,7 @@
           <p class="seo-guide-note">Reference aid only, not legal advice. Verify the current regulation, FAA source wording, and the pilot's exact recent-experience status before logging any IPC completion endorsement.</p>
 
           <div class="cta-box">
-            <h2>Look up the exact IPC endorsement language</h2>
+            <h2 id="journal-look-up-the-exact-ipc-endorsement-language">Look up the exact IPC endorsement language</h2>
             <p>Open the Simply Endorsed CFI tool and search for IPC to confirm the current AC model text and nearby instrument endorsement references.</p>
             <div class="cta-btn-group">
               <a href="/simply-endorsed-cfi/" class="btn btn--primary">Open the Simply Endorsed CFI tool</a>
@@ -153,6 +166,8 @@
             </div>
           </div>
         </article>
+</div>
+<!-- journal:end -->
       </div>
     </div>
   </main>

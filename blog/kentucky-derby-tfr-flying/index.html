@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-airspace editorial-page">
+<body class="cat-airspace editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">Kentucky Derby TFR Flying</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">09</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-the-churchill-downs-tfr"><span class="journal-chapter-number" aria-hidden="true">01</span><span>The Churchill Downs TFR</span></a></li><li data-level="2"><a href="#journal-the-faa-s-derby-special-procedures-notice"><span class="journal-chapter-number" aria-hidden="true">02</span><span>The FAA&#x27;s Derby special procedures notice</span></a></li><li data-level="2"><a href="#journal-thunder-over-louisville-starts-it-all"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Thunder Over Louisville starts it all</span></a></li><li data-level="2"><a href="#journal-what-derby-week-means-for-training-at-bowman-field"><span class="journal-chapter-number" aria-hidden="true">04</span><span>What Derby week means for training at Bowman Field</span></a></li><li data-level="2"><a href="#journal-how-to-check-every-year"><span class="journal-chapter-number" aria-hidden="true">05</span><span>How to check, every year</span></a></li><li data-level="2"><a href="#journal-the-upside"><span class="journal-chapter-number" aria-hidden="true">06</span><span>The upside</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-flying-at-bowman-field-the-other-51-weeks"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Flying at Bowman Field, the other 51 weeks</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Airport &amp; Airspace</span>
             <h1>Flying During Kentucky Derby Week: TFRs and What KLOU Pilots Need to Know</h1>
@@ -124,19 +137,19 @@
             <p>Every spring, the biggest horse race on earth happens about four miles from the departure end of Bowman Field's runways. The Kentucky Derby is great for Louisville and genuinely complicated for Louisville aviation: temporary flight restrictions over Churchill Downs, special FAA procedures at three local airports, a flood of charter and private traffic into KSDF, helicopters and banner tows in the pattern's neighborhood, and — if a VIP attends — restrictions on top of restrictions.</p>
             <p>If you fly or train out of Bowman Field (KLOU), here's how Derby week actually works from the cockpit side. One rule frames everything below: <strong>the specifics change every year.</strong> Dates, TFR dimensions, altitudes, and procedures are republished annually. This article teaches you what to expect and where to check — it does not replace the current NOTAM.</p>
 
-            <h2>The Churchill Downs TFR</h2>
+            <h2 id="journal-the-churchill-downs-tfr">The Churchill Downs TFR</h2>
             <p>Around Derby — typically for the big race days at the end of the meet, and often for the Kentucky Oaks the day before — the FAA establishes a temporary flight restriction over Churchill Downs. In recent years it has been in the neighborhood of a few nautical miles around the track, from the surface up to a few thousand feet, active for a block of hours around the races.</p>
             <p>Don't plan around those numbers. Plan around the process: the exact radius, ceiling, and active times are published in a NOTAM each year, and the NOTAM is the only version that counts. Churchill Downs sits close enough to Bowman Field that a TFR of even modest size changes what a normal training flight looks like — some pattern work and practice-area routes that are routine in March are simply not available during the active window.</p>
             <p>What happens if you bust a TFR? At best, a very uncomfortable conversation with the FAA. At worst, certificate action — and during a nationally televised security event, intercept procedures are not theoretical. This is the one airspace violation with essentially zero slack.</p>
 
-            <h2>The FAA's Derby special procedures notice</h2>
+            <h2 id="journal-the-faa-s-derby-special-procedures-notice">The FAA's Derby special procedures notice</h2>
             <p>Separate from the TFR, the FAA publishes special air traffic procedures for the Derby period each year, covering Louisville Muhammad Ali International (KSDF), Bowman Field (KLOU), and Clark Regional (KJVY). The 2026 version, for example, ran April 29 through May 3 and made Class C service mandatory for VFR arrivals during the event procedures, with explicit warnings about heavy traffic demand, helicopter operations, banner towing, and blimp operations near Churchill Downs.</p>
             <p>That notice also changes how you depart. In the 2026 procedures, Bowman departures were directed to contact Clearance Delivery on 118.90 before Ground, and VFR departures were told not to expect flight following or an IFR clearance within 50 miles of SDF. Next year's numbers and frequencies may differ — the point is that the normal "call Ground, taxi, call Tower" rhythm gets a Derby-week overlay, and you're expected to have read it. My <a href="/blog/flying-klou-bowman-field-guide/">guide to flying at Bowman Field</a> keeps the current event procedures summarized as they're published.</p>
 
-            <h2>Thunder Over Louisville starts it all</h2>
+            <h2 id="journal-thunder-over-louisville-starts-it-all">Thunder Over Louisville starts it all</h2>
             <p>The Derby festival's opening act, Thunder Over Louisville, is one of the largest airshows and fireworks displays in the country, held on the downtown riverfront a couple of weeks before the race. It comes with its own temporary restrictions along the Ohio River, its own surge of transient traffic, and a rehearsal day that also affects the airspace. If you're a student pilot, treat the entire festival stretch — Thunder through Derby — as a period where NOTAMs are required reading before every flight, not just on race day.</p>
 
-            <h2>What Derby week means for training at Bowman Field</h2>
+            <h2 id="journal-what-derby-week-means-for-training-at-bowman-field">What Derby week means for training at Bowman Field</h2>
             <p>Practically, here's what I tell students to expect:</p>
             <ul>
               <li><strong>Some lessons will move or cancel.</strong> If a TFR window overlaps your scheduled pattern work, the lesson becomes a ground session or reschedules. Nobody at KLOU fights this; it's one week a year.</li>
@@ -146,7 +159,7 @@
               <li><strong>Flights that do happen need real briefings.</strong> Current NOTAMs, the event procedures notice, ATIS, and a conversation with your instructor or a briefer. Not your memory of last year.</li>
             </ul>
 
-            <h2>How to check, every year</h2>
+            <h2 id="journal-how-to-check-every-year">How to check, every year</h2>
             <p>Make this the preflight habit for late April and early May:</p>
             <ol>
               <li><strong>NOTAMs and TFRs</strong> — through your EFB (ForeFlight/Garmin Pilot flag them graphically), the FAA's NOTAM search, or a call to Flight Service at 1-800-WX-BRIEF. Search both KLOU and KSDF.</li>
@@ -155,7 +168,7 @@
               <li><strong>Your instructor or operator</strong> — local guidance consolidates fast that week. Ask.</li>
             </ol>
 
-            <h2>The upside</h2>
+            <h2 id="journal-the-upside">The upside</h2>
             <p>Derby week is also when Louisville is most worth flying around. On the unrestricted days between events, the city is dressed up, the riverfront is busy, and evening flights over the Ohio are about as good as local flying gets. The pilots who enjoy that week are the ones who checked the NOTAMs that morning — and the ones who watched the race from a backyard instead of a cockpit, like everyone else.</p>
           </div>
 
@@ -188,7 +201,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Flying at Bowman Field, the other 51 weeks</h2>
+              <h2 id="journal-flying-at-bowman-field-the-other-51-weeks">Flying at Bowman Field, the other 51 weeks</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="derby-article-bowman-field">Book your discovery flight</a>
@@ -199,7 +212,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/flying-klou-bowman-field-guide/">Flying at Bowman Field (KLOU): a local pilot's guide</a></li>
               <li><a href="/blog/discovery-flight-bowman-field/">Your first discovery flight at Bowman Field</a></li>
@@ -207,6 +220,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-systems editorial-page">
+<body class="cat-systems editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">Bristell NG5 vs. Cessna 172</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">16</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-the-two-aircraft-at-a-glance"><span class="journal-chapter-number" aria-hidden="true">01</span><span>The two aircraft at a glance</span></a></li><li data-level="2"><a href="#journal-what-lsa-actually-means"><span class="journal-chapter-number" aria-hidden="true">02</span><span>What LSA actually means</span></a></li><li data-level="2"><a href="#journal-handling-differences-from-the-cockpit"><span class="journal-chapter-number" aria-hidden="true">03</span><span>Handling differences (from the cockpit)</span></a></li><li data-level="3"><a href="#journal-control-response"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Control response</span></a></li><li data-level="3"><a href="#journal-stall-behavior"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Stall behavior</span></a></li><li data-level="3"><a href="#journal-crosswind-handling"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Crosswind handling</span></a></li><li data-level="3"><a href="#journal-power-response"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Power response</span></a></li><li data-level="2"><a href="#journal-panel-and-avionics"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Panel and avionics</span></a></li><li data-level="2"><a href="#journal-cost-comparison"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Cost comparison</span></a></li><li data-level="2"><a href="#journal-which-certificate-path-does-each-fit"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Which certificate path does each fit?</span></a></li><li data-level="2"><a href="#journal-what-students-tell-me-after-switching-between-them"><span class="journal-chapter-number" aria-hidden="true">11</span><span>What students tell me after switching between them</span></a></li><li data-level="2"><a href="#journal-how-to-decide-if-you-haven-t-already"><span class="journal-chapter-number" aria-hidden="true">12</span><span>How to decide (if you haven&#x27;t already)</span></a></li><li data-level="2"><a href="#journal-comparing-aircraft-at-bowman"><span class="journal-chapter-number" aria-hidden="true">13</span><span>Comparing aircraft at Bowman</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">14</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-want-to-choose-the-right-training-path"><span class="journal-chapter-number" aria-hidden="true">15</span><span>Want to choose the right training path?</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">16</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Aircraft</span>
             <h1>Bristell NG5 LSA vs. Cessna 172: Which Aircraft Is Right for Your Training?</h1>
@@ -124,7 +137,7 @@
             <p>At Bowman Field, most training happens in one of two airplanes: a modern Light-Sport Aircraft like the <strong>Bristell NG5</strong>, or the ever-present <strong>Cessna 172 Skyhawk</strong>. They're both capable trainers, but they're very different machines, and the right choice depends on what you want to do with your certificate.</p>
             <p>This is a student-pilot comparison from someone who has flown both at KLOU. No brand loyalty, no affiliate links. Just what each airplane is good at, what each costs, and how to pick between them.</p>
 
-            <h2>The two aircraft at a glance</h2>
+            <h2 id="journal-the-two-aircraft-at-a-glance">The two aircraft at a glance</h2>
             <div class="table-wrap">
               <table>
                 <thead>
@@ -185,28 +198,28 @@
             </div>
             <p>Both aircraft can take a student from zero time to a Private Pilot certificate. The choice between them is less about capability and more about cost structure, certificate target, and what you want in the cockpit.</p>
 
-            <h2>What LSA actually means</h2>
+            <h2 id="journal-what-lsa-actually-means">What LSA actually means</h2>
             <p>The former Light-Sport Aircraft definition used familiar weight, seat, and speed limits. That is no longer the right test for a Sport Pilot operation. The FAA’s MOSAIC rules, effective October 22, 2025 for Sport Pilot privileges, moved the operational aircraft criteria to 14 CFR §61.316 and allow a broader range of aircraft when the applicable requirements and endorsements are met. Start with the FAA’s <a href="https://www.faa.gov/aircraft/MOSAIC" rel="noopener">MOSAIC guidance</a> and verify the exact aircraft before training.</p>
             <p>A Bristell NG5 may be operated under different certification and equipment configurations. Use the specific aircraft’s airworthiness certificate, operating limitations, and operating handbook—not a generic model description—to determine what training and operations are appropriate.</p>
             <p>The Cessna 172 is a standard-category trainer with model-specific equipment and performance. Whether a particular aircraft can be used for a given training or Sport Pilot operation requires verification under the current rule and the operator’s procedures.</p>
 
-            <h2>Handling differences (from the cockpit)</h2>
+            <h2 id="journal-handling-differences-from-the-cockpit">Handling differences (from the cockpit)</h2>
 
-            <h3>Control response</h3>
+            <h3 id="journal-control-response">Control response</h3>
             <p>The Bristell is light on the controls. Small inputs produce immediate, visible results. That's excellent for a beginner because it teaches responsive flying from the first hour — no slop in the feedback loop. The tradeoff: it's less forgiving of over-control. Students tend to pilot-induced-oscillate on their first few landings until they learn to trust smaller inputs.</p>
             <p>The Cessna 172 is heavier in the controls, particularly in roll. You have to mean your inputs. That teaches a different flavor of discipline — you're commanding the airplane, not suggesting to it. Students who started on 172s sometimes feel over-controlled when they move to lighter aircraft; students who started on lighter aircraft sometimes feel hamfisted moving up.</p>
             <p>Neither is better for learning. Both produce good pilots.</p>
 
-            <h3>Stall behavior</h3>
+            <h3 id="journal-stall-behavior">Stall behavior</h3>
             <p>Both airplanes have benign stall behavior — a clear buffet, a recoverable break, no tendency to spin with normal weight-and-balance. The Bristell's stall feels crisper and happens at a lower airspeed. The 172's stall feels more ponderous and starts at a higher airspeed, with more pronounced nose-drop.</p>
 
-            <h3>Crosswind handling</h3>
+            <h3 id="journal-crosswind-handling">Crosswind handling</h3>
             <p>The 172 wins this one convincingly. More mass, more rudder authority, higher published crosswind component. The Bristell is lighter and gets pushed around more by gusts — not dangerous, but students notice it and develop crosswind technique faster because the airplane makes you.</p>
 
-            <h3>Power response</h3>
+            <h3 id="journal-power-response">Power response</h3>
             <p>100 hp vs. 150–180 hp is a real difference. The 172 climbs faster and accelerates faster on go-arounds. The Bristell climbs adequately but is notably slower on hot-day departures from Bowman Field. Both are safe; the 172 just has more margin.</p>
 
-            <h2>Panel and avionics</h2>
+            <h2 id="journal-panel-and-avionics">Panel and avionics</h2>
             <p>The Bristell NG5 typically comes with a full glass panel — primary flight display with airspeed, altitude, heading, attitude, all in one screen — plus a moving-map and engine instruments. Modern, easy to read, and representative of what new airplanes look like today.</p>
             <p>A Cessna 172 at a Bowman-area flight school could have:</p>
             <ul>
@@ -217,17 +230,17 @@
             <p>Most training 172s in Louisville are on the steam-plus-portable end. That's a reasonable learning platform — you learn to interpret individual instruments and build a scan, which is the foundation of instrument flying later.</p>
             <p><strong>For a student:</strong> glass is easier; steam is more educational. Both produce capable pilots. Many career-track students specifically choose steam-gauge training for the discipline and then transition to glass.</p>
 
-            <h2>Cost comparison</h2>
+            <h2 id="journal-cost-comparison">Cost comparison</h2>
             <p>Aircraft rates, fuel policies, instructor rates, and availability change by operator. Request a current written rate sheet for the exact tail number, then compare the total expected aircraft and instructor time—not only the posted wet rate. See the <a href="/blog/private-pilot-cost-louisville-ky/">Private Pilot cost article</a> for a planning framework.</p>
 
-            <h2>Which certificate path does each fit?</h2>
+            <h2 id="journal-which-certificate-path-does-each-fit">Which certificate path does each fit?</h2>
             <p><strong>Sport Pilot → verify the exact aircraft under current §61.316 criteria.</strong> MOSAIC means a Sport Pilot is no longer limited solely to aircraft meeting the former LSA definition; instructor endorsements and operator approval can also matter.</p>
             <p><strong>Private Pilot → either, with tradeoffs.</strong> Both airplanes are legal and good for Private Pilot training. Student preference matters — some students genuinely prefer the light, modern feel of the Bristell; others prefer the weight and feel of the 172.</p>
             <p><strong>Instrument Rating → verify the aircraft and instructor authority.</strong> Instrument training depends on the aircraft equipment, certification, operator policy, and an appropriately authorized instructor. Many students use a 172 or another IFR-equipped standard-category trainer, but the specific airplane matters.</p>
             <p><strong>Commercial, CFI, multi-engine → plan for standard-category and advanced aircraft.</strong> Later training paths may require equipment, category/class, and maneuver capability beyond a light-sport trainer.</p>
             <p><strong>"I don't know yet" → preserve options.</strong> If you genuinely haven't decided, choose the aircraft and provider that keep training consistent while leaving room for later ratings.</p>
 
-            <h2>What students tell me after switching between them</h2>
+            <h2 id="journal-what-students-tell-me-after-switching-between-them">What students tell me after switching between them</h2>
             <ul>
               <li>"The Bristell feels alive." Students new to general aviation often love the responsiveness. It feels like you're really <em>flying</em> — no insulation between you and the airplane.</li>
               <li>"The 172 feels sturdier." True, and that's by design. Heavier airplanes damp out turbulence better and feel more stable in crosswinds.</li>
@@ -236,7 +249,7 @@
               <li>"I prefer the glass panel." Common; students who started flying after 2010 almost universally prefer glass for primary information.</li>
             </ul>
 
-            <h2>How to decide (if you haven't already)</h2>
+            <h2 id="journal-how-to-decide-if-you-haven-t-already">How to decide (if you haven't already)</h2>
             <p>Five questions, in order:</p>
             <ol>
               <li><strong>Sport Pilot or Private Pilot?</strong> If Sport, verify that the exact aircraft and operator policy fit Sport Pilot. If Private, continue.</li>
@@ -246,7 +259,7 @@
               <li><strong>What's available?</strong> The airplane you actually fly consistently matters more than the abstract "right" airplane.</li>
             </ol>
 
-            <h2>Comparing aircraft at Bowman</h2>
+            <h2 id="journal-comparing-aircraft-at-bowman">Comparing aircraft at Bowman</h2>
             <p>The easiest way to decide is to compare actual availability, sit in each airplane if possible, and schedule any introductory lesson only in an approved aircraft with an appropriately authorized instructor. Do not assume a specific model or tail number until the provider confirms it.</p>
           </div>
 
@@ -279,7 +292,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Want to choose the right training path?</h2>
+              <h2 id="journal-want-to-choose-the-right-training-path">Want to choose the right training path?</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="aircraft-article-planning">Book your discovery flight</a>
@@ -290,7 +303,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/private-pilot-cost-louisville-ky/">Private Pilot cost in Louisville: full breakdown</a></li>
               <li><a href="/blog/basicmed-vs-third-class-medical/">BasicMed vs. Third-Class vs. Sport Pilot medical</a></li>
@@ -298,6 +311,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

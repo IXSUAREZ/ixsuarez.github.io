@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-airspace editorial-page">
+<body class="cat-airspace editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">Landing Practice Bowman Field</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">11</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-what-pattern-work-is-actually-for"><span class="journal-chapter-number" aria-hidden="true">01</span><span>What pattern work is actually for</span></a></li><li data-level="2"><a href="#journal-why-bowman-field-is-a-serious-training-environment"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Why Bowman Field is a serious training environment</span></a></li><li data-level="2"><a href="#journal-the-building-blocks-of-a-good-pattern"><span class="journal-chapter-number" aria-hidden="true">03</span><span>The building blocks of a good pattern</span></a></li><li data-level="2"><a href="#journal-runway-6-24-versus-15-33"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Runway 6/24 versus 15/33</span></a></li><li data-level="2"><a href="#journal-stabilized-approaches-when-to-continue-when-to-go-around"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Stabilized approaches: when to continue, when to go around</span></a></li><li data-level="2"><a href="#journal-common-landing-practice-mistakes"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Common landing-practice mistakes</span></a></li><li data-level="2"><a href="#journal-how-to-debrief-a-landing-lesson"><span class="journal-chapter-number" aria-hidden="true">07</span><span>How to debrief a landing lesson</span></a></li><li data-level="2"><a href="#journal-ground-prep-before-your-next-pattern-lesson"><span class="journal-chapter-number" aria-hidden="true">08</span><span>Ground prep before your next pattern lesson</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-show-up-to-your-next-pattern-lesson-already-flown"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Show up to your next pattern lesson already flown.</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Airport &amp; Airspace</span>
             <h1>Landing Practice at Bowman Field: How Pattern Work Builds Better Pilots</h1>
@@ -124,7 +137,7 @@
             <p>Ask any student pilot what consumes the most lesson hours, and the honest answer is landings. The traffic pattern — that rectangular loop around the runway — is where students spend lap after lap learning to put an airplane on the ground the same way every time. At Bowman Field (KLOU), pattern work is especially good training, because Bowman is not a sleepy country strip: it's a towered airport with intersecting runways, a Class C shelf overhead, and real traffic. If you can fly a clean pattern at Bowman, most other airports feel easy.</p>
             <p>This is the guide I give students before their heavy landing-practice phase — what the pattern is for, what makes Bowman's environment distinctive, and how to make each lap teach something instead of just burning Hobbs time.</p>
 
-            <h2>What pattern work is actually for</h2>
+            <h2 id="journal-what-pattern-work-is-actually-for">What pattern work is actually for</h2>
             <p>Pattern work looks repetitive from the outside: take off, fly a rectangle, land, repeat. But each lap is a compressed rehearsal of nearly everything a pilot does on any flight:</p>
             <ul>
               <li><strong>Energy management.</strong> Every landing is a controlled dissipation of altitude and airspeed into a touchdown. The pattern is where you learn to feel that instead of fight it.</li>
@@ -134,7 +147,7 @@
             </ul>
             <p>A lap that teaches something has a purpose: "this one is about airspeed control on final" or "this one is about not rushing the base turn." A lap without a purpose is just noise.</p>
 
-            <h2>Why Bowman Field is a serious training environment</h2>
+            <h2 id="journal-why-bowman-field-is-a-serious-training-environment">Why Bowman Field is a serious training environment</h2>
             <p>Bowman's layout makes students better, faster — as long as they respect it:</p>
             <ul>
               <li><strong>Two intersecting runways.</strong> Runway 06/24 is the longer runway (4,358 × 75 feet) and handles much of the flow; Runway 15/33 (3,580 × 75 feet) is the crosswind runway. They intersect, and the airport diagram marks hot spots near the intersection and at Runway 06/Taxiway A1. Runway awareness is not an abstract concept here.</li>
@@ -145,7 +158,7 @@
             </ul>
             <p>For the full rundown of frequencies, hours, and procedures, my <a href="/blog/flying-klou-bowman-field-guide/">Bowman Field pilot's guide</a> has the details; the <a href="/bowman-field-klou/">KLOU page</a> covers the airport itself. Verify everything against the current Chart Supplement and NOTAMs before you fly — that's a habit, not a disclaimer.</p>
 
-            <h2>The building blocks of a good pattern</h2>
+            <h2 id="journal-the-building-blocks-of-a-good-pattern">The building blocks of a good pattern</h2>
             <p>When I debrief pattern lessons, almost every landing problem traces back to one of five things:</p>
             <ol>
               <li><strong>Airspeed discipline.</strong> On final, speed is life — too fast and you float past your touchdown point, too slow and you're behind the airplane in the worst place to be behind it. The fix is almost never on final; it's a stable downwind and a configured airplane at the abeam point.</li>
@@ -155,15 +168,15 @@
               <li><strong>Runway awareness.</strong> With two runways in play, "cleared to land Runway 24" means verifying you're actually aligned with 24 — and that no one is on the intersecting runway. Line up, confirm the numbers, confirm the clearance.</li>
             </ol>
 
-            <h2>Runway 6/24 versus 15/33</h2>
+            <h2 id="journal-runway-6-24-versus-15-33">Runway 6/24 versus 15/33</h2>
             <p>Which runway you're working changes the character of the practice. On 06/24 you get the longer runway and the more typical flow — good for building fundamentals and consistency. On 15/33 you get a shorter runway and, usually, the reason it's in use: wind that doesn't favor 06/24. Those are the days that build crosswind skills, because the wind is rarely kind enough to blow straight down either runway at Bowman.</p>
             <p>Louisville's wind is variable by season and time of day — calm mornings, gusty spring afternoons, and frontal days when the wind picks a new runway mid-lesson. Tower assigns the active based on wind and traffic; your job is to brief both runways before you start the airplane so a runway change on downwind is a procedure, not a surprise.</p>
 
-            <h2>Stabilized approaches: when to continue, when to go around</h2>
+            <h2 id="journal-stabilized-approaches-when-to-continue-when-to-go-around">Stabilized approaches: when to continue, when to go around</h2>
             <p>The most important landing skill isn't the flare. It's the go-around. The standard I teach: by a defined gate on short final, the airplane should be on speed, on path, configured, and aligned. If it isn't, go around — no debate, no salvage attempt. A go-around at Bowman is free: power, pitch, positive rate, tell Tower, rejoin the pattern, and learn something. A botched landing attempt is the most expensive outcome in training, in every currency.</p>
             <p>Students resist go-arounds because they feel like failure. They aren't. Airline crews go around; it's the single most professional decision available in the pattern. The student who goes around without being told to is a student who's almost ready to solo.</p>
 
-            <h2>Common landing-practice mistakes</h2>
+            <h2 id="journal-common-landing-practice-mistakes">Common landing-practice mistakes</h2>
             <ul>
               <li><strong>Chasing the glidepath with pitch.</strong> Pitch for speed, power for path — students reverse it under stress and end up slow and high, then fast and low, then behind the airplane entirely.</li>
               <li><strong>Rushing the base turn.</strong> A tight, overshooting base-to-final turn with too much bank at low altitude is how stall-spin accidents get discussed in safety seminars. Take the wide, boring turn.</li>
@@ -172,11 +185,11 @@
               <li><strong>Fixating on the touchdown.</strong> The landing isn't over at the mains. Rollout, centerline, and exiting the runway correctly are part of the rep.</li>
             </ul>
 
-            <h2>How to debrief a landing lesson</h2>
+            <h2 id="journal-how-to-debrief-a-landing-lesson">How to debrief a landing lesson</h2>
             <p>The debrief is where the hours turn into skill. My rule with students: <strong>one correction at a time.</strong> A lesson that ends with a list of six things to fix fixes nothing. We pick the one habit that would have most improved the most laps — usually airspeed control or configuration timing — and make it the explicit purpose of the next flight. Write it in the logbook notes. When that one is solid, take the next one.</p>
             <p>Also debrief the good laps. "What made that one work?" is a more useful question than "why was that one bad," because repeatability is the whole game.</p>
 
-            <h2>Ground prep before your next pattern lesson</h2>
+            <h2 id="journal-ground-prep-before-your-next-pattern-lesson">Ground prep before your next pattern lesson</h2>
             <p>The cheapest way to get more out of pattern work is to show up mentally flown. Before the lesson: review the <a href="/bowman-field-klou/">KLOU layout and frequencies</a>, chair-fly the pattern on paper with the day's forecast wind (draw both runways), recite the radio calls you'll make at each point, and brief the go-around out loud. Fifteen minutes of that is worth a surprising fraction of a Hobbs hour. And if you're early in training and haven't flown yet, a <a href="/blog/discovery-flight-bowman-field/">discovery flight</a> is where you'll see your first Bowman landing from the left seat — most people remember it.</p>
           </div>
 
@@ -209,7 +222,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Show up to your next pattern lesson already flown.</h2>
+              <h2 id="journal-show-up-to-your-next-pattern-lesson-already-flown">Show up to your next pattern lesson already flown.</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="landing-article-planning">Book your discovery flight</a>
@@ -220,7 +233,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/flying-klou-bowman-field-guide/">Flying at Bowman Field (KLOU): a local pilot's guide</a></li>
               <li><a href="/blog/discovery-flight-bowman-field/">Your first discovery flight at Bowman Field</a></li>
@@ -228,6 +241,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

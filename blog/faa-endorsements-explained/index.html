@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-cfi editorial-page">
+<body class="cat-cfi editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">FAA Endorsements Explained</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">14</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-what-an-endorsement-actually-does"><span class="journal-chapter-number" aria-hidden="true">01</span><span>What an endorsement actually does</span></a></li><li data-level="2"><a href="#journal-pre-solo-endorsements"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Pre-solo endorsements</span></a></li><li data-level="2"><a href="#journal-first-solo-and-90-day-solo-authority"><span class="journal-chapter-number" aria-hidden="true">03</span><span>First solo and 90-day solo authority</span></a></li><li data-level="2"><a href="#journal-solo-cross-country-endorsements"><span class="journal-chapter-number" aria-hidden="true">04</span><span>Solo cross-country endorsements</span></a></li><li data-level="2"><a href="#journal-knowledge-test-endorsements"><span class="journal-chapter-number" aria-hidden="true">05</span><span>Knowledge test endorsements</span></a></li><li data-level="2"><a href="#journal-practical-test-and-checkride-endorsements"><span class="journal-chapter-number" aria-hidden="true">06</span><span>Practical test and checkride endorsements</span></a></li><li data-level="2"><a href="#journal-retests-after-a-failure"><span class="journal-chapter-number" aria-hidden="true">07</span><span>Retests after a failure</span></a></li><li data-level="2"><a href="#journal-after-the-checkride-flight-reviews-and-ipcs"><span class="journal-chapter-number" aria-hidden="true">08</span><span>After the checkride: flight reviews and IPCs</span></a></li><li data-level="2"><a href="#journal-aircraft-endorsements"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Aircraft endorsements</span></a></li><li data-level="2"><a href="#journal-how-to-use-simply-endorsed-cfi"><span class="journal-chapter-number" aria-hidden="true">10</span><span>How to use Simply Endorsed CFI</span></a></li><li data-level="2"><a href="#journal-common-mistakes"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Common mistakes</span></a></li><li data-level="2"><a href="#journal-bottom-line"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Bottom line</span></a></li><li data-level="2"><a href="#journal-need-an-exact-endorsement-right-now"><span class="journal-chapter-number" aria-hidden="true">13</span><span>Need an exact endorsement right now?</span></a></li><li data-level="3"><a href="#journal-related-endorsement-guides"><span class="journal-chapter-number" aria-hidden="true">14</span><span>Related endorsement guides</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">FAA Endorsements</span>
             <h1>Every FAA Endorsement a Student Pilot Should Understand</h1>
@@ -124,47 +137,47 @@
             <p>An FAA endorsement is a logbook entry or written statement from an authorized instructor. It documents that a pilot received required training, is prepared for a test, or is authorized for a specific operation. For student pilots, endorsements are what turn training milestones into legal privileges: first solo, solo cross-country, knowledge-test eligibility, checkride readiness, and later currency events.</p>
             <p>The FAA's model endorsement language lives in Advisory Circular 61-65K. That circular is the source layer. <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a> is the search layer: a free AC 61-65K endorsement lookup tool that lets you search by endorsement ID, FAR citation, alias, task, or checkride workflow.</p>
 
-            <h2>What an endorsement actually does</h2>
+            <h2 id="journal-what-an-endorsement-actually-does">What an endorsement actually does</h2>
             <p>An endorsement is not a casual note. It is the instructor's certification that a specific regulatory requirement has been met. Some endorsements authorize an action, such as a student solo. Others document readiness, such as a knowledge test or practical test recommendation. Some are tied to time windows, aircraft make and model, route approval, airspace, or a particular training event.</p>
             <p>That is why copying random endorsement wording is risky. The correct question is not only "what text do I need?" It is "which rule applies, what training or review happened, who can sign this, and what limitation or expiration applies?"</p>
 
-            <h2>Pre-solo endorsements</h2>
+            <h2 id="journal-pre-solo-endorsements">Pre-solo endorsements</h2>
             <p>Before first solo, a student pilot normally needs both pre-solo knowledge and pre-solo flight training documented. In the AC 61-65K Appendix A structure, those are commonly searched as A.3 and A.4. The knowledge endorsement connects to the pre-solo knowledge test. The flight-training endorsement connects to proficiency in the specific make and model.</p>
             <p>That distinction matters. A student can be smart on the ground but not yet proficient in the airplane. A student can fly well but still need the written pre-solo knowledge check. Both pieces support the solo decision.</p>
 
-            <h2>First solo and 90-day solo authority</h2>
+            <h2 id="journal-first-solo-and-90-day-solo-authority">First solo and 90-day solo authority</h2>
             <p>The first solo authorization is the endorsement many students remember most. It is normally tied to a specific make and model and expires after the allowed solo period. The common student-solo cluster includes first 90-calendar-day solo authority and additional 90-calendar-day renewals.</p>
             <p>Use the dedicated <a href="/simply-endorsed/blog/first-solo-endorsement/">Student Pilot Solo Endorsement Guide</a> for the full pre-solo, first-solo, renewal, nearby-airport, Class B, and TSA context.</p>
 
-            <h2>Solo cross-country endorsements</h2>
+            <h2 id="journal-solo-cross-country-endorsements">Solo cross-country endorsements</h2>
             <p>Solo cross-country has its own endorsement logic. A student may need an initial solo cross-country endorsement, a route-specific endorsement for a particular flight, or an endorsement for repeated solo cross-country flights within a defined route and distance. These are not interchangeable.</p>
             <p>For the detailed A.9, A.10, and A.11 flow, use the <a href="/simply-endorsed/blog/solo-cross-country-endorsement/">Solo Cross-Country Endorsement Guide</a>.</p>
 
-            <h2>Knowledge test endorsements</h2>
+            <h2 id="journal-knowledge-test-endorsements">Knowledge test endorsements</h2>
             <p>Most FAA knowledge tests require some form of authorization before the applicant can sit for the exam. For private pilot students, this often means a ground instructor, flight instructor, or approved home-study course certifies that the applicant is prepared. The endorsement is not just a scheduling formality; it is the bridge between study and official testing.</p>
             <p>If you are preparing for the written, pair this article with the <a href="/blog/faa-private-pilot-written-test-study-guide/">FAA Private Pilot Written Test Study Guide</a> and use Simply Endorsed CFI when you need the AC 61-65K model text.</p>
 
-            <h2>Practical test and checkride endorsements</h2>
+            <h2 id="journal-practical-test-and-checkride-endorsements">Practical test and checkride endorsements</h2>
             <p>Before a practical test, the applicant's logbook and application package need to show the right training, readiness, and knowledge-test-deficiency review. A common pattern is practical-test preparation within the required timing window, review of missed knowledge-test areas when required, and the certificate-specific practical-test recommendation.</p>
             <p>Private pilot applicants can start with the <a href="/simply-endorsed/blog/private-pilot-checkride-endorsements/">Private Pilot Checkride Endorsements Guide</a>. Commercial, instrument, and CFI applicants have their own endorsement clusters.</p>
 
-            <h2>Retests after a failure</h2>
+            <h2 id="journal-retests-after-a-failure">Retests after a failure</h2>
             <p>If an applicant fails a knowledge or practical test, the next attempt may require added training and a retest endorsement. The point is not paperwork theater. The instructor is certifying that the deficient areas were addressed and that the applicant is prepared to retest.</p>
             <p>For that path, use the <a href="/simply-endorsed/blog/retest-after-failure-endorsement/">Retest After Failure Endorsement Guide</a>.</p>
 
-            <h2>After the checkride: flight reviews and IPCs</h2>
+            <h2 id="journal-after-the-checkride-flight-reviews-and-ipcs">After the checkride: flight reviews and IPCs</h2>
             <p>Endorsements do not stop after the certificate. Pilots continue to see signoffs for flight reviews, WINGS completion, instrument proficiency checks, aircraft transitions, and other privileges. A flight review endorsement is different from an IPC endorsement, and both are different from a practical-test recommendation.</p>
             <p>For recurrent training, start with the <a href="/simply-endorsed/blog/flight-review-endorsement/">Flight Review Endorsement Guide</a> and the <a href="/simply-endorsed/blog/ipc-endorsement/">IPC Endorsement Guide</a>.</p>
 
-            <h2>Aircraft endorsements</h2>
+            <h2 id="journal-aircraft-endorsements">Aircraft endorsements</h2>
             <p>Aircraft-specific endorsements include common transition items such as complex, high-performance, high-altitude, and tailwheel. These are easy to confuse because pilots often talk about them as a group, but each has its own rule basis and training purpose.</p>
             <p>If you are looking for the tailwheel path, use the <a href="/simply-endorsed/blog/tailwheel-endorsement/">FAA Tailwheel Endorsement Guide</a>. For the broader group, use the <a href="/simply-endorsed/blog/aircraft-endorsements/">Aircraft Endorsements Guide</a>.</p>
 
-            <h2>How to use Simply Endorsed CFI</h2>
+            <h2 id="journal-how-to-use-simply-endorsed-cfi">How to use Simply Endorsed CFI</h2>
             <p>When you need the exact model text, open <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a> and search the phrase you actually have in your head: "first solo," "61.87," "A.6," "BFR," "tailwheel," "IPC," or "CFI checkride." The tool returns matching endorsements with ID, FAR context, aliases, explanation, and related paths.</p>
             <p>Use the tool as a fast reference, then verify the pilot's actual certificate path, training record, timing, aircraft, and current FAA guidance before signing anything.</p>
 
-            <h2>Common mistakes</h2>
+            <h2 id="journal-common-mistakes">Common mistakes</h2>
             <ul>
               <li>Using a first-solo endorsement when the flight actually needs a solo cross-country or nearby-airport endorsement.</li>
               <li>Forgetting that some student solo endorsements expire after a defined period.</li>
@@ -173,14 +186,14 @@
               <li>Copying model text without confirming that the instructor is authorized and the applicant actually meets the requirement.</li>
             </ul>
 
-            <h2>Bottom line</h2>
+            <h2 id="journal-bottom-line">Bottom line</h2>
             <p>Endorsements are the paper trail behind pilot privileges. They show what was trained, reviewed, authorized, or recommended. Learn the purpose first, then look up the exact wording. That is the job Simply Endorsed CFI was built for.</p>
           </div>
 
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Need an exact endorsement right now?</h2>
+              <h2 id="journal-need-an-exact-endorsement-right-now">Need an exact endorsement right now?</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="endorsement-article-tool">Book your discovery flight</a>
@@ -191,7 +204,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related endorsement guides</h3>
+            <h3 id="journal-related-endorsement-guides">Related endorsement guides</h3>
             <ul>
               <li><a href="/simply-endorsed/blog/first-solo-endorsement/">Student Pilot Solo Endorsement Guide</a></li>
               <li><a href="/simply-endorsed/blog/solo-cross-country-endorsement/">Solo Cross-Country Endorsement Guide</a></li>
@@ -201,6 +214,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

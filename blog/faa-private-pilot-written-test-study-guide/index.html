@@ -45,8 +45,10 @@
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
 <link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
 <script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
+  <link rel="stylesheet" href="/assets/journal.css?v=00420d4990">
+  <script src="/assets/journal.js?v=27594c91b9" defer></script>
 </head>
-<body class="cat-written-prep editorial-page">
+<body class="cat-written-prep editorial-page journal-article">
   <!-- Aviation-themed backdrop and coordinate margins -->
   <div class="aviation-backdrop" aria-hidden="true">
     <div class="aviation-grid"></div>
@@ -92,7 +94,8 @@
   </header>
   <!-- /site-nav -->
 
-  <main>
+  <div class="journal-progress" data-journal-ui aria-hidden="true"><span></span></div>
+<main>
     <div class="article-wrap">
       <div class="container">
 
@@ -104,7 +107,17 @@
           <span aria-current="page">FAA Private Pilot Written Test</span>
         </nav>
 
-        <article>
+        <!-- journal:start -->
+<div class="journal-layout">
+<aside class="journal-rail" data-journal-ui aria-label="Reading tools">
+<details class="journal-chapters" open><summary>In this article <span aria-hidden="true">19</span></summary><nav aria-label="Article chapters"><ol><li data-level="2"><a href="#journal-what-the-test-actually-is"><span class="journal-chapter-number" aria-hidden="true">01</span><span>What the test actually is</span></a></li><li data-level="2"><a href="#journal-where-to-take-it-in-louisville"><span class="journal-chapter-number" aria-hidden="true">02</span><span>Where to take it in Louisville</span></a></li><li data-level="2"><a href="#journal-the-knowledge-test-endorsement-and-why-it-matters"><span class="journal-chapter-number" aria-hidden="true">03</span><span>The knowledge-test endorsement (and why it matters)</span></a></li><li data-level="2"><a href="#journal-the-study-stack"><span class="journal-chapter-number" aria-hidden="true">04</span><span>The study stack</span></a></li><li data-level="3"><a href="#journal-1-the-source-material-free-official"><span class="journal-chapter-number" aria-hidden="true">05</span><span>1. The source material (free, official)</span></a></li><li data-level="3"><a href="#journal-2-a-test-prep-course-or-software"><span class="journal-chapter-number" aria-hidden="true">06</span><span>2. A test-prep course or software</span></a></li><li data-level="3"><a href="#journal-3-live-ground-instruction-for-the-hard-parts"><span class="journal-chapter-number" aria-hidden="true">07</span><span>3. Live ground instruction for the hard parts</span></a></li><li data-level="2"><a href="#journal-the-four-week-study-plan"><span class="journal-chapter-number" aria-hidden="true">08</span><span>The four-week study plan</span></a></li><li data-level="3"><a href="#journal-week-1-foundations"><span class="journal-chapter-number" aria-hidden="true">09</span><span>Week 1: Foundations</span></a></li><li data-level="3"><a href="#journal-week-2-systems-and-performance"><span class="journal-chapter-number" aria-hidden="true">10</span><span>Week 2: Systems and performance</span></a></li><li data-level="3"><a href="#journal-week-3-weather-navigation-and-airspace"><span class="journal-chapter-number" aria-hidden="true">11</span><span>Week 3: Weather, navigation, and airspace</span></a></li><li data-level="3"><a href="#journal-week-4-regulations-procedures-and-final-review"><span class="journal-chapter-number" aria-hidden="true">12</span><span>Week 4: Regulations, procedures, and final review</span></a></li><li data-level="2"><a href="#journal-the-one-week-cram-plan-if-you-already-know-aviation"><span class="journal-chapter-number" aria-hidden="true">13</span><span>The one-week cram plan (if you already know aviation)</span></a></li><li data-level="2"><a href="#journal-subject-areas-students-routinely-miss"><span class="journal-chapter-number" aria-hidden="true">14</span><span>Subject areas students routinely miss</span></a></li><li data-level="2"><a href="#journal-test-day-logistics"><span class="journal-chapter-number" aria-hidden="true">15</span><span>Test-day logistics</span></a></li><li data-level="2"><a href="#journal-after-you-pass"><span class="journal-chapter-number" aria-hidden="true">16</span><span>After you pass</span></a></li><li data-level="2"><a href="#faq-heading"><span class="journal-chapter-number" aria-hidden="true">17</span><span>Frequently Asked Questions</span></a></li><li data-level="2"><a href="#journal-stuck-on-a-subject-area"><span class="journal-chapter-number" aria-hidden="true">18</span><span>Stuck on a subject area?</span></a></li><li data-level="3"><a href="#journal-related-articles"><span class="journal-chapter-number" aria-hidden="true">19</span><span>Related articles</span></a></li></ol></nav></details>
+<details class="journal-settings" hidden><summary>Reading settings</summary><div class="journal-settings-inner">
+<fieldset><legend>Text size</legend><div class="journal-size-options"><button type="button" data-reader-size="standard" aria-pressed="true">Standard</button><button type="button" data-reader-size="large" aria-pressed="false">Large</button><button type="button" data-reader-size="larger" aria-pressed="false">Larger</button></div></fieldset>
+<label class="journal-motion-label"><input type="checkbox" data-reader-motion checked> Gentle transitions</label>
+<p class="journal-motion-note">Your device’s reduced-motion setting is always respected.</p></div></details>
+<p class="journal-position" hidden>Reading progress <span>0%</span></p>
+</aside>
+<article>
           <header class="article-header">
             <span class="eyebrow">Written Test</span>
             <h1>How to Study for the FAA Private Pilot Written Test</h1>
@@ -124,7 +137,7 @@
             <p>The Private Pilot knowledge test — also called the written, even though you take it on a computer — is the part of flight training most students put off the longest and then regret putting off. It's not hard. It's tedious. The material spans enough ground that with zero plan you can drift for months, and without the written passed, your progress in the airplane starts to stall as checkride season approaches.</p>
             <p>This is the study plan I give my students. I'm an FAA Certificated Flight Instructor and Advanced Ground Instructor based in Louisville — the ground-school endorsement for this test is literally my job. The plan below will get you through the written cleanly, on the first try, and without wasting time on drills that don't matter.</p>
 
-            <h2>What the test actually is</h2>
+            <h2 id="journal-what-the-test-actually-is">What the test actually is</h2>
             <ul>
               <li><strong>60 questions.</strong> Multiple choice, three options each.</li>
               <li><strong>2.5 hours.</strong> Plenty of time; most students finish in 60–90 minutes.</li>
@@ -136,11 +149,11 @@
             </ul>
             <p>The test draws from the FAA's published question bank. The exact wording of questions can vary slightly release to release, but the subject distribution is stable.</p>
 
-            <h2>Where to take it in Louisville</h2>
+            <h2 id="journal-where-to-take-it-in-louisville">Where to take it in Louisville</h2>
             <p>PSI CATS testing centers administer FAA knowledge tests on behalf of the FAA. There is a PSI CATS location in the Louisville area. Confirm the current location and hours when you schedule, as testing center details can change. You schedule directly through PSI's website (psiexams.com), not through the testing center itself.</p>
             <p>The center-day experience: arrive early, ID check, secure your belongings, take the test at a computer terminal. You'll be monitored. No phone, no notes, no personal calculator — the system provides a digital E6B and plotter. Scratch-paper work is allowed; you turn everything in at the end.</p>
 
-            <h2>The knowledge-test endorsement (and why it matters)</h2>
+            <h2 id="journal-the-knowledge-test-endorsement-and-why-it-matters">The knowledge-test endorsement (and why it matters)</h2>
             <p>You can't take the knowledge test without an endorsement. Any of the following works:</p>
             <ul>
               <li><strong>A Certificated Flight Instructor (CFI) endorsement,</strong> or</li>
@@ -151,10 +164,10 @@
             <p>For the exact AC 61-65K knowledge-test wording, use <a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a> as a quick FAA endorsement lookup before you schedule the exam. For the bigger picture around solo, checkride, recurrent, and aircraft signoffs, read the <a href="/blog/faa-endorsements-explained/">FAA endorsements list</a>.</p>
             <p>If you'd like to work through the weak subject areas with someone who can explain them — that's the core of what I do as an FAA Certificated Flight Instructor and Advanced Ground Instructor. Reach out and we can plan around your schedule.</p>
 
-            <h2>The study stack</h2>
+            <h2 id="journal-the-study-stack">The study stack</h2>
             <p>You have three core elements, in this order of importance:</p>
 
-            <h3>1. The source material (free, official)</h3>
+            <h3 id="journal-1-the-source-material-free-official">1. The source material (free, official)</h3>
             <p>These are the FAA-published handbooks. They are the real authority on everything on the test:</p>
             <ul>
               <li><strong>Pilot's Handbook of Aeronautical Knowledge (FAA-H-8083-25C)</strong> — <a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">current FAA handbook page</a></li>
@@ -164,7 +177,7 @@
             </ul>
             <p>All of these are free PDFs on the FAA's website. Print versions run $30–$60 each. For a first read, PDF on a big screen is fine.</p>
 
-            <h3>2. A test-prep course or software</h3>
+            <h3 id="journal-2-a-test-prep-course-or-software">2. A test-prep course or software</h3>
             <p>This is where the efficiency gains live. Test prep software feeds you questions from the actual FAA bank, tracks your performance, and focuses you on weak areas. Without it, you can study the right material for 200 hours and still miss questions whose phrasing trips you up.</p>
             <p>The four options most Louisville students choose:</p>
             <ul>
@@ -175,7 +188,7 @@
             </ul>
             <p>There is no perfect choice. Sheppard Air gets the test passed fastest. King and Sporty's teach you more about flying while also passing the test. Gleim is the budget option. I've seen students succeed with all four.</p>
 
-            <h3>3. Live ground instruction for the hard parts</h3>
+            <h3 id="journal-3-live-ground-instruction-for-the-hard-parts">3. Live ground instruction for the hard parts</h3>
             <p>Certain subjects are hard to self-teach:</p>
             <ul>
               <li>Weight and balance calculations</li>
@@ -186,23 +199,23 @@
             </ul>
             <p>If you're hitting a wall on any of these, an hour of ground with a real instructor is usually faster than six hours of staring at a video. This is where a good ground instructor earns their fee.</p>
 
-            <h2>The four-week study plan</h2>
+            <h2 id="journal-the-four-week-study-plan">The four-week study plan</h2>
             <p>This plan assumes a working adult who can commit 1–1.5 hours per weekday and a few hours on weekends.</p>
 
-            <h3>Week 1: Foundations</h3>
+            <h3 id="journal-week-1-foundations">Week 1: Foundations</h3>
             <p>Read the first third of the <strong>Pilot's Handbook of Aeronautical Knowledge</strong> (Chapters 1–6: aircraft structure, principles of flight, aerodynamics, flight controls, flight instruments, flight manuals). Take 10–15 practice questions per day on introductory subjects. Goal: comfortable with aircraft basics and flight instruments.</p>
 
-            <h3>Week 2: Systems and performance</h3>
+            <h3 id="journal-week-2-systems-and-performance">Week 2: Systems and performance</h3>
             <p>Read <strong>PHAK Chapters 7–11</strong>: aircraft systems, flight manuals, weight and balance, aircraft performance, weather theory. Work through weight and balance problems in your test-prep software until you get 8/10 right consistently. Practice density altitude problems. Goal: can compute a W&amp;B and a takeoff-distance chart without help.</p>
 
-            <h3>Week 3: Weather, navigation, and airspace</h3>
+            <h3 id="journal-week-3-weather-navigation-and-airspace">Week 3: Weather, navigation, and airspace</h3>
             <p>Read <strong>PHAK Chapters 12–15</strong>: weather services, airport operations, airspace, navigation. Study sectional chart symbology — the Chart Users' Guide (free PDF) is the reference. Heavy drill on airspace questions. Airspace is the single subject most students get wrong; commit to doing 30 airspace questions over the week. Goal: can identify every symbol on a sectional and classify every airspace category from memory.</p>
 
-            <h3>Week 4: Regulations, procedures, and final review</h3>
+            <h3 id="journal-week-4-regulations-procedures-and-final-review">Week 4: Regulations, procedures, and final review</h3>
             <p>Read <strong>FAR Part 61</strong> (certification) and <strong>FAR Part 91</strong> (general operating rules). These are required reading — the test leans heavily on both. Read the <strong>AIM</strong> sections on flight operations, communications, and emergency procedures. Take full-length practice tests every other day. Score 85%+ consistently before scheduling the real test. Review every question you miss and trace it to the underlying FAR or handbook section.</p>
             <p>When you hit 85%+ twice in a row cold, schedule the real test within the next 7 days. Knowledge decays. Don't let momentum go cold.</p>
 
-            <h2>The one-week cram plan (if you already know aviation)</h2>
+            <h2 id="journal-the-one-week-cram-plan-if-you-already-know-aviation">The one-week cram plan (if you already know aviation)</h2>
             <p>For students with prior aviation knowledge — a rated pilot getting back in currency, or someone who has been around aviation for years:</p>
             <ul>
               <li><strong>Day 1:</strong> Full-length diagnostic test. Note weak subjects.</li>
@@ -213,7 +226,7 @@
             </ul>
             <p>This works for experienced aviation people. It does not work for someone learning the subject matter for the first time. No shortcuts on a foundation you don't have.</p>
 
-            <h2>Subject areas students routinely miss</h2>
+            <h2 id="journal-subject-areas-students-routinely-miss">Subject areas students routinely miss</h2>
             <p>After watching hundreds of students work through this test, the pattern is consistent:</p>
             <ol>
               <li><strong>Airspace.</strong> Boundaries, altitudes, equipment requirements, cloud clearance, visibility minimums. The airspace table is a memorization exercise and most students under-study it.</li>
@@ -224,7 +237,7 @@
             </ol>
             <p>Spending extra hours on these five areas pays off more than re-reading familiar material.</p>
 
-            <h2>Test-day logistics</h2>
+            <h2 id="journal-test-day-logistics">Test-day logistics</h2>
             <ul>
               <li><strong>Schedule through PSI:</strong> psiexams.com — search "FAA Private Pilot" and pick your date.</li>
               <li><strong>Bring:</strong> Government-issued photo ID, your endorsement (digital or paper).</li>
@@ -236,7 +249,7 @@
             </ul>
             <p>If you score below 70, you can retake after 30 days without additional training, or sooner with additional instruction and a new endorsement.</p>
 
-            <h2>After you pass</h2>
+            <h2 id="journal-after-you-pass">After you pass</h2>
             <p>The knowledge test result is valid for <strong>24 calendar months</strong>. You have two years to complete your practical (flight) checkride. The result logs electronically with the FAA. Your test report — the printout you receive — lists which Areas of Operation you missed. Your CFI will review those with you before the practical test. Don't lose the printout.</p>
           </div>
 
@@ -273,7 +286,7 @@
           <!-- post-cta -->
           <div class="cta-box">
             <div class="cta-sheet">
-              <h2>Stuck on a subject area?</h2>
+              <h2 id="journal-stuck-on-a-subject-area">Stuck on a subject area?</h2>
               <p>If you want to talk first — questions, logistics, medical timing, or whether this is the right first step — start with a quick conversation.</p>
               <div class="cta-btn-group">
                 <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="written-article-service">Book your discovery flight</a>
@@ -284,7 +297,7 @@
           <!-- /post-cta -->
 
           <div class="see-also">
-            <h3>Related articles</h3>
+            <h3 id="journal-related-articles">Related articles</h3>
             <ul>
               <li><a href="/blog/private-pilot-timeline-louisville/">How long does a Private Pilot License take in Louisville?</a></li>
               <li><a href="/blog/basicmed-vs-third-class-medical/">BasicMed vs. Third-Class Medical — which do you need?</a></li>
@@ -292,6 +305,8 @@
             </ul>
           </div>
         </article>
+</div>
+<!-- journal:end -->
 
       </div>
     </div>

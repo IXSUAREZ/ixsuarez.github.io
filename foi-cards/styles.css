@@ -529,61 +529,7 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   .section-sheet { background: var(--av-bg, #101418); }
 }
 
-/* FOI route overrides: this app's older compact header rules are intentionally
-   stronger than the shared generic dock rules. Keep one pinned dock, and keep
-   study controls in the card flow. The shared avionics stylesheet is still
-   loaded last in the document head; these route-scoped rules win by specificity. */
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap {
-  position: fixed;
-  inset: auto 0 calc(12px + env(safe-area-inset-bottom, 0px));
-  z-index: 100;
-  width: 100%;
-  margin: 0;
-  padding-inline: 12px;
-  pointer-events: none;
-}
-
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap > nav.chipnav.nav.nav--tool {
-  position: relative;
-  display: flex;
-  width: min(100%, 860px);
-  min-height: 56px;
-  height: auto;
-  margin: 0 auto;
-  padding: 5px;
-  border: 1px solid var(--av-line, #4b5b68);
-  border-radius: 10px;
-  background: var(--av-glass, rgba(24, 32, 39, .94));
-  color: var(--av-ink, #edf3f7);
-  box-shadow: inset 0 1px #ffffff24;
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
-  backdrop-filter: blur(14px) saturate(1.2);
-  pointer-events: auto;
-}
-
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap .av-key,
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap .nav-menu-toggle {
-  min-height: 44px;
-  border: 1px solid var(--av-line, #4b5b68);
-  border-radius: 5px;
-  background: var(--av-raised, #252e36);
-  color: var(--av-ink, #edf3f7);
-  box-shadow: inset 0 1px #ffffff20, 0 2px 2px #0005;
-}
-
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap .av-key:focus-visible,
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap .nav-menu-toggle:focus-visible {
-  outline: 3px solid var(--av-focus, #9fefff);
-  outline-offset: 2px;
-}
-
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap .av-key[aria-current],
-body.foi-page .app-shell > header.chipnav-wrap.nav-wrap .nav-menu-toggle[aria-expanded="true"] {
-  border-color: var(--av-cyan, #71ddeb);
-  color: var(--av-cyan, #71ddeb);
-  box-shadow: inset 0 -3px var(--av-cyan, #71ddeb), inset 0 1px #ffffff20;
-}
-
+/* Shared avionics owns dock geometry, materials, collapse and focus. */
 body.foi-page .app-shell > section.welcome,
 body.foi-page .app-shell > section.completion {
   color: var(--av-ink, #edf3f7) !important;

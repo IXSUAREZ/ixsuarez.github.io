@@ -4,6 +4,41 @@ Engineer-facing contract for every page and app on this site. If a change
 violates this file, the change is wrong — update the constitution deliberately,
 never by drift.
 
+## Compact tactile interaction system — September 24, 2026
+
+The user-approved glass-and-metal refinement supersedes earlier dock dimensions,
+always-visible labels, 5–6px control corners, and the exemption for app interiors.
+`assets/tactile.js` owns adaptive dock state and progressive native input companions;
+`assets/avionics.css` owns materials, feedback, and accessible fallbacks. Independent
+React apps retain native state and handlers and expose thin adapter attributes.
+
+- Dock: one glass enclosure, desktop maximum 600px and minimum 60px expanded,
+  phone 56px, collapsed 48px. Labels can grow the expanded row. All targets remain
+  at least 44 CSS pixels. The 44px standard is our web product choice.
+- Begin expanded; collapse after 48px down beyond the first 80px; expand after
+  16px up, near the top, hover, or keyboard focus. Menu/focus lock it open; pointer
+  press freezes geometry. Only the main scrolling region counts. Keep bottom
+  clearance at its expanded size. Safe areas and visual viewport remain supported.
+- Collapsed icons retain accessible names and direct actions. Preserve each tool's
+  contextual steps, prerequisites, selected state, browser history, and one dock
+  owner in Crank & Core. Fly with Diego remains in Menu on mobile.
+- Satin controls show immediate 2px press depth and a brief release; activation
+  is never delayed. Focus, selection, busy, and disabled states stay distinct.
+  Risk meaning is authoritative; no generic selection accent overrides it.
+- Angular values offer keyboard arrows, dragging, exact number entry, and +/−.
+  Preserve original bounds, precision, handlers, data formats, and non-wrapping
+  behavior. Wheel scrolling never rotates dials. Linear settings retain ranges.
+- Dark/Day/System and Solid remain. Glass is reserved for navigation/overlays;
+  reading/results stay matte. Reduced motion removes travel, and reduced
+  transparency/no blur/increased contrast receive opaque navigation.
+- Mechanical metal and the scroll thresholds are SUAREZ.CFI design choices;
+  CSS blur is a web adaptation, not Apple's native Liquid Glass API. No haptics.
+- Homepage sky, engine bundles/models, calculations, saved records, export
+  geometry, Aero Lab desktop requirement, and archived Flight Instruments remain.
+
+See [the source-linked applicability and verification record](docs/tactile/design-verification.md)
+and [route coverage](docs/tactile/coverage.json) for the release evidence boundary.
+
 ## Homepage and shared shell refinement — September 24, 2026
 
 This user-approved refinement extends the Avionics contract below. The homepage

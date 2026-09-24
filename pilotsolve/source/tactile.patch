@@ -1,0 +1,191 @@
+--- a/src/PilotApp.tsx
++++ b/src/PilotApp.tsx
+@@ -22,7 +22,7 @@
+ import {UiContext,SelectionControl,UnitCycle,NumericKeypad,NumberField,TextField,unitFor,type Editor} from './ui';
+ import {Icon} from './icons';
+ const nativeInput=(p:InputHTMLAttributes<HTMLInputElement>)=><input {...p}/>;
+-const nativeScroll=({children}:PropsWithChildren)=><div className="pilot-scroll">{children}</div>;
++const nativeScroll=({children}:PropsWithChildren)=><div className="pilot-scroll" data-pilotsolve-scroll>{children}</div>;
+ type AppearancePreference='dark'|'light'|'system';
+ type SharedAppearance={getPreference:()=>AppearancePreference;setPreference:(value:AppearancePreference)=>void;getSolid:()=>boolean;setSolid:(value:boolean)=>void};
+ const sharedAppearance=()=>((window as Window & {SuarezAppearance?:SharedAppearance}).SuarezAppearance);
+@@ -106,7 +106,7 @@
+  {!activeTool&&!selectedCategory&&!['tools','trip','aircraft','loading','timer','calculator','conversions','settings','history','rhumb-route'].includes(route)&&<div className="empty"><h1>Tool not found</h1><button className="primary" onClick={()=>navigate('tools')}>Browse tools</button></div>}
+  </main></Scroll></div>
+  {toast&&<div className="toast" role="status">{toast}</div>}
+- {editor?<NumericKeypad editor={editor} onChange={setEditor} done={()=>setEditor(null)} memory={state.memory}/>:<nav className="bottom-nav" aria-label="PilotSolve navigation">{['tools','trip','aircraft'].map(id=><button key={id} aria-current={tab===id?'page':undefined} onClick={()=>navigate(id)}>{tab===id&&<motion.span className="nav-selection" layoutId="navigation-selection" aria-hidden="true" transition={reduceMotion?{duration:0}:{type:"spring",stiffness:420,damping:34}}/>}<Icon name={id==='aircraft'?'loading':id} filled={tab===id}/><span>{id[0].toUpperCase()+id.slice(1)}</span></button>)}<button aria-label="Menu" aria-haspopup="dialog" aria-expanded={menuOpen} onClick={()=>{dismissKeyboard();setEditor(null);setMenuOpen(true);}}><Icon name="menu"/><span>Menu</span></button></nav>}
++ {editor?<NumericKeypad editor={editor} onChange={setEditor} done={()=>setEditor(null)} memory={state.memory}/>:<nav className="bottom-nav" data-tactile-dock data-dock-scroll="[data-pilotsolve-scroll]" data-dock-menu=".avionics-menu" aria-label="PilotSolve navigation">{['tools','trip','aircraft'].map(id=><button key={id} data-dock-key={id} aria-current={tab===id?'page':undefined} onClick={()=>navigate(id)}>{tab===id&&<motion.span className="nav-selection" layoutId="navigation-selection" aria-hidden="true" transition={reduceMotion?{duration:0}:{type:"spring",stiffness:420,damping:34}}/>}<Icon name={id==='aircraft'?'loading':id} filled={tab===id}/><span data-dock-label>{id[0].toUpperCase()+id.slice(1)}</span></button>)}</nav>}
+  </div></UiContext.Provider>;
+ }
+ function ToolView({tool:t,state,setState,notify,selectTool,openTrip,openHelper}:{tool:Tool;state:AppState;setState:Setter;notify:(s:string)=>void;selectTool:(t:Tool)=>void;openTrip:()=>void;openHelper:(field:Field,source:InputHelper)=>void}){
+@@ -124,7 +124,7 @@
+ 
+  {result.errors.length>0&&missing.length===0&&<div className="warning" role="alert">{result.errors.join(' ')}</div>}
+  {helperField&&<Sheet open onOpenChange={open=>{if(!open)setHelperField(null);}} title={'Calculate '+helperField.label} description={'Choose the values you know. The answer returns to '+t.name+'.'}><div className="helper-picker">{inputHelpers(t,helperField,m.id).map(source=>{const tool=findTool(source.tool)!,mode=tool.modes.find(m=>m.id===source.mode)!;return <button className="tool-row" key={source.tool+source.mode+source.output} onClick={()=>{setHelperField(null);openHelper(helperField,source);}}><span><strong>{tool.name} · {mode.label}</strong><small>Needs {mode.inputs.map(id=>tool.fields.find(f=>f.id===id)!.label).join(', ')}</small></span><Icon name="next" size={16}/></button>;})}</div><button className="secondary wide" onClick={()=>setHelperField(null)}>Cancel</button></Sheet>}
+- <div className="input-group">{m.inputs.map(id=>{const f=field(id),entry=d.fields[id]||{text:'',unit:outUnit(f)};let canonical='';try{if(entry.text)canonical=String(parseValue(entry.text,f.dimension,entry.unit));}catch{}if(entry.link&&Number.isFinite(result.inputs[id]))canonical=String(result.inputs[id]);return <div key={id}>{f.choices?<SelectionControl label={f.label} value={entry.text} options={[{value:"",label:"Choose…"},...f.choices.map(c=>({value:String(c.value),label:c.label}))]} onChange={next=>setInput(f,next,entry.unit)}/>:<><NumberField onCalculate={inputHelpers(t,f,m.id).length?()=>{edit(null);setHelperField(f);}:undefined} label={f.label} value={canonical} dimension={f.dimension} unit={entry.unit} onChange={v=>setInput(f,v===''?'':String(fromCanonical(Number(v),entry.unit,f.dimension)),entry.unit)} help={f.help} unitControl={<UnitCycle dimension={f.dimension} value={entry.unit} label={f.label+' unit'} onChange={unit=>changeUnit(f,unit)}/>}/><div className="unit-options input-origin">{entry.link?<button onClick={()=>setInput(f,canonical?String(fromCanonical(Number(canonical),entry.unit,f.dimension)):'',entry.unit)}>Linked · Unlink</button>:entry.origin?<span>{entry.origin.startsWith('Calculated ·')?entry.origin:`Reused · ${entry.origin}`}</span>:null}</div></>}</div>;})}</div>
++ <div className="input-group">{m.inputs.map(id=>{const f=field(id),entry=d.fields[id]||{text:'',unit:outUnit(f)};let canonical='';try{if(entry.text)canonical=String(parseValue(entry.text,f.dimension,entry.unit));}catch{}if(entry.link&&Number.isFinite(result.inputs[id]))canonical=String(result.inputs[id]);return <div key={id}>{f.choices?<SelectionControl label={f.label} value={entry.text} options={[{value:"",label:"Choose…"},...f.choices.map(c=>({value:String(c.value),label:c.label}))]} onChange={next=>setInput(f,next,entry.unit)}/>:<><NumberField onCalculate={inputHelpers(t,f,m.id).length?()=>{edit(null);setHelperField(f);}:undefined} label={f.label} value={canonical} dimension={f.dimension} unit={entry.unit} min={f.min} max={f.max} onChange={v=>setInput(f,v===''?'':String(fromCanonical(Number(v),entry.unit,f.dimension)),entry.unit)} help={f.help} unitControl={<UnitCycle dimension={f.dimension} value={entry.unit} label={f.label+' unit'} onChange={unit=>changeUnit(f,unit)}/>}/><div className="unit-options input-origin">{entry.link?<button onClick={()=>setInput(f,canonical?String(fromCanonical(Number(canonical),entry.unit,f.dimension)):'',entry.unit)}>Linked · Unlink</button>:entry.origin?<span>{entry.origin.startsWith('Calculated ·')?entry.origin:`Reused · ${entry.origin}`}</span>:null}</div></>}</div>;})}</div>
+  {complete&&m.outputs.slice(1).map(id=>{const f=field(id);return Number.isFinite(result.values[id])?<div className="related-result" key={id}><span>{f.label}</span><strong><AnimatedValue value={formatValue(result.values[id],f.dimension,outUnit(f))}/> <small>{units[f.dimension].find(u=>u.id===outUnit(f))?.label}</small></strong></div>:null;})}
+  {complete&&t.id==='wind-component'&&m.id==='components'&&<WindDiagram crosswind={result.values.crosswind} headwind={result.values.headwind}/>}
+  {complete&&result.notes.map((n,i)=><p className="quiet" key={i}>{n}</p>)}
+--- a/src/ui.tsx
++++ b/src/ui.tsx
+@@ -1,4 +1,4 @@
+-import {createContext,useContext,useId,useRef,useEffect,useState,type InputHTMLAttributes,type ComponentType,type ReactNode} from 'react';
++import {createContext,useContext,useId,useRef,useEffect,useState,type InputHTMLAttributes,type ComponentType,type ReactNode,type PointerEvent as ReactPointerEvent,type CSSProperties} from 'react';
+ import type {Dimension} from './engine/types';
+ import {units,parseValue,formatValue,fromCanonical} from './engine/units';
+ import {Icon} from './icons';
+@@ -6,12 +6,22 @@
+ export type Editor={id:string;label:string;text:string;dimension:Dimension;unit:string;onChange:(canonical:string)=>void;replace?:boolean};
+ export const UiContext=createContext<{editor:Editor|null;edit:(e:Editor|null)=>void;prepareSheet?:()=>void;unitSystem:'us'|'metric';memory?:number|null;Sheet?:ComponentType<SheetProps>;Input:ComponentType<InputHTMLAttributes<HTMLInputElement>>}>({editor:null,edit:()=>{},unitSystem:'us',Input:(p)=><input {...p}/>});
+ export function unitFor(d:Dimension,metric:boolean){const list=units[d];if(d==='duration'||d==='clock')return list.find(u=>u.id==='hms')||list[0];const targets:Partial<Record<Dimension,string[]>>={distance:['km','KM'],altitude:['m','M'],length:['cm','CM'],speed:['kph','KPH','km/h'],temperature:['c','C','°C'],pressure:['mb','MB','hPa'],volume:['l','L'],flow:['lph','LPH','L/h'],weight:['kg','KG'],weightFlow:['kgph','KG/HR','kg/h'],verticalSpeed:['mps','M/S','m/s'],gradient:['m/km','M/KM'],torque:['kgm','KG M','kg·m']};return (metric?list.find(u=>(targets[d]||[]).some(t=>t.toLowerCase()===u.id.toLowerCase()||t.toLowerCase()===u.label.toLowerCase())):null)||list[0];}
+-export function NumberField({label,value,onChange,dimension='scalar',help,unit,unitControl,onCalculate}:{label:string;value:string;onChange:(v:string)=>void;dimension?:Dimension;help?:string;unit?:string;unitControl?:ReactNode;onCalculate?:()=>void}){const ctx=useContext(UiContext);const u=units[dimension].find(u=>u.id===unit)||unitFor(dimension,ctx.unitSystem==='metric');const id=useId();const active=ctx.editor?.id===id;
+-const [actions,setActions]=useState(false);
+-const row=useRef<HTMLDivElement>(null);
+-useEffect(()=>{if(!active)return;let frame=0;const el=row.current,scroll=el?.closest('.pilot-scroll,.mobile-scroll');if(!el||!scroll)return;
+- const reveal=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{const bounds=scroll.getBoundingClientRect(),field=el.getBoundingClientRect();const scale=bounds.width/scroll.clientWidth||1;const result=scroll.querySelector('.result-panel');const sticky=result&&getComputedStyle(result).position==='sticky';const top=bounds.top+(sticky?result!.getBoundingClientRect().height:0)+8;if(field.bottom>bounds.bottom-8)scroll.scrollTop+=(field.bottom-bounds.bottom+8)/scale;else if(field.top<top)scroll.scrollTop-=(top-field.top)/scale;});};
+- const observer=new ResizeObserver(reveal);observer.observe(scroll);reveal();return()=>{observer.disconnect();cancelAnimationFrame(frame);};},[active]);const display=active?ctx.editor!.text:value!==''?formatValue(Number(value),dimension,u.id):'';return <div ref={row} className={'field-row '+(active?'active':'')}><div className="field-label">{onCalculate?<button className="calculate-input" aria-label={"Calculate "+label} onClick={onCalculate}>{label}<Icon name="calculator" size={14}/></button>:label}{help&&<small>{help}</small>}</div><div className="field-value"><button id={id} data-numeric-field className="number-field" aria-label={label} onClick={()=>ctx.edit({id,label,text:display,dimension,unit:u.id,onChange,replace:true})}><strong>{display||'—'}</strong>{!unitControl&&<span>{u.label}</span>}</button>{unitControl}{active&&<div className="field-actions"><button className="field-more" aria-label={'Actions for '+label} aria-expanded={actions} onClick={()=>setActions(!actions)}>⋯</button>{actions&&<div className="field-action-menu"><button onClick={()=>{onChange('');ctx.edit({...ctx.editor!,text:'',replace:true});setActions(false);}}>Clear</button>{ctx.memory!=null&&<button onClick={()=>{onChange(String(ctx.memory));ctx.edit({...ctx.editor!,text:formatValue(ctx.memory!,dimension,u.id),replace:true});setActions(false);}}>Recall</button>}</div>}</div>}</div></div>;}
++export function NumberField({label,value,onChange,dimension='scalar',help,unit,unitControl,onCalculate,min,max}:{label:string;value:string;onChange:(v:string)=>void;dimension?:Dimension;help?:string;unit?:string;unitControl?:ReactNode;onCalculate?:()=>void;min?:number;max?:number}){
++ const ctx=useContext(UiContext),u=units[dimension].find(u=>u.id===unit)||unitFor(dimension,ctx.unitSystem==='metric');
++ const id=useId(),active=ctx.editor?.id===id,row=useRef<HTMLDivElement>(null),drag=useRef<{id:number;y:number;value:number;moved:boolean}|null>(null);
++ const [actions,setActions]=useState(false),[turning,setTurning]=useState(false);
++ useEffect(()=>{if(!active)return;let frame=0;const el=row.current,scroll=el?.closest('.pilot-scroll,.mobile-scroll');if(!el||!scroll)return;const reveal=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{const bounds=scroll.getBoundingClientRect(),field=el.getBoundingClientRect(),scale=bounds.width/scroll.clientWidth||1,result=scroll.querySelector('.result-panel'),sticky=result&&getComputedStyle(result).position==='sticky',top=bounds.top+(sticky?result!.getBoundingClientRect().height:0)+8;if(field.bottom>bounds.bottom-8)scroll.scrollTop+=(field.bottom-bounds.bottom+8)/scale;else if(field.top<top)scroll.scrollTop-=(top-field.top)/scale;});};const observer=new ResizeObserver(reveal);observer.observe(scroll);reveal();return()=>{observer.disconnect();cancelAnimationFrame(frame);};},[active]);
++ const display=active?ctx.editor!.text:value!==''?formatValue(Number(value),dimension,u.id):'';
++ const clamp=(next:number)=>Math.min(max??Infinity,Math.max(min??-Infinity,next));
++ const commit=(next:number)=>{ctx.edit(null);onChange(String(clamp(next)));};
++ const current=Number(value),rotaryValue=Number.isFinite(current)?current:0;
++ const openEntry=()=>ctx.edit({id,label,text:display,dimension,unit:u.id,onChange,replace:true});
++ const rotate=(event:ReactPointerEvent<HTMLSpanElement>)=>{const state=drag.current;if(!state||event.pointerId!==state.id)return;const steps=Math.trunc((state.y-event.clientY)/4);if(!steps)return;if(!state.moved){state.moved=true;setTurning(true);}event.preventDefault();commit(state.value+steps);};
++ const stopRotate=(event?:ReactPointerEvent<HTMLSpanElement>)=>{if(event&&drag.current?.id!==event.pointerId)return;drag.current=null;setTurning(false);};
++ const numeric=<button id={id} data-numeric-field className="number-field" aria-label={label} onClick={openEntry}><strong>{display||'—'}</strong>{!unitControl&&<span>{u.label}</span>}</button>;
++ const adjustments=<div className="angle-adjustments" role="group" aria-label={label+' angle controls'}><button type="button" className="av-control av-step-key" aria-label={'Decrease '+label+' by 1 degree'} onClick={()=>commit(rotaryValue-1)}>−</button><span className={'av-rotary'+(turning?' is-turning':'')} role="slider" aria-orientation="vertical" tabIndex={0} aria-label={label} aria-valuenow={rotaryValue} aria-valuetext={(display||'0')+' '+u.label} aria-valuemin={min} aria-valuemax={max} onClick={event=>event.preventDefault()} onKeyDown={event=>{let next=rotaryValue;if(event.key==='ArrowUp'||event.key==='ArrowRight')next+=1;else if(event.key==='ArrowDown'||event.key==='ArrowLeft')next-=1;else if(event.key==='Home'&&min!==undefined)next=min;else if(event.key==='End'&&max!==undefined)next=max;else return;event.preventDefault();commit(next);}} onPointerDown={event=>{if(event.button!==0)return;drag.current={id:event.pointerId,y:event.clientY,value:rotaryValue,moved:false};event.currentTarget.setPointerCapture(event.pointerId);event.currentTarget.focus({preventScroll:true});event.preventDefault();}} onPointerMove={rotate} onPointerUp={stopRotate} onPointerCancel={stopRotate} onLostPointerCapture={()=>stopRotate()}><span className="av-rotary-marker" style={{'--av-angle':String(rotaryValue)+'deg'} as CSSProperties}/></span><button type="button" className="av-control av-step-key" aria-label={'Increase '+label+' by 1 degree'} onClick={()=>commit(rotaryValue+1)}>+</button></div>;
++ return <div ref={row} className={'field-row '+(active?'active':'')}><div className="field-label">{onCalculate?<button className="calculate-input" aria-label={'Calculate '+label} onClick={onCalculate}>{label}<Icon name="calculator" size={14}/></button>:label}{help&&<small>{help}</small>}</div><div className={'field-value '+(dimension==='angle'?'angle-field-value':'')}>{dimension==='angle'?<><div className="angle-entry-row">{numeric}{unitControl}</div>{adjustments}</>:<>{numeric}{unitControl}</>}{active&&<div className="field-actions"><button className="field-more" aria-label={'Actions for '+label} aria-expanded={actions} onClick={()=>setActions(!actions)}>⋯</button>{actions&&<div className="field-action-menu"><button onClick={()=>{onChange('');ctx.edit({...ctx.editor!,text:'',replace:true});setActions(false);}}>Clear</button>{ctx.memory!=null&&<button onClick={()=>{onChange(String(ctx.memory));ctx.edit({...ctx.editor!,text:formatValue(ctx.memory!,dimension,u.id),replace:true});setActions(false);}}>Recall</button>}</div>}</div>}</div></div>;
++}
+ export function TextField({label,value,onChange,placeholder}:{label:string;value:string;onChange:(v:string)=>void;placeholder?:string}){const {Input,edit}=useContext(UiContext);return <label className="text-field"><span>{label}</span><Input value={value} onFocus={()=>edit(null)} onChange={e=>onChange(e.target.value)} placeholder={placeholder}/></label>;}
+ // Next stays within the same visible form section, never crossing into another leg/station.
+ function nextNumericField(id:string){
+--- a/src/prototype.css
++++ b/src/prototype.css
+@@ -354,12 +354,11 @@
+ .pilot-app .primary{background:var(--blue);border-color:color-mix(in srgb,var(--blue),white 16%);border-radius:7px;box-shadow:inset 0 1px 0 #ffffff2d}
+ .pilot-app .result-panel{background:var(--surface);box-shadow:inset 0 1px 0 #ffffff10,0 2px 7px #0002}
+ .pilot-app .number-field strong,.pilot-app .result-value{color:var(--cyan)}
+-.pilot-app .bottom-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;flex:0 0 auto;min-height:64px;margin:7px 10px max(7px,env(safe-area-inset-bottom));padding:5px;border:1px solid color-mix(in srgb,var(--line),white 10%);border-radius:12px;background:color-mix(in srgb,var(--raised) 86%,transparent);box-shadow:0 8px 22px #0006,inset 0 1px 0 #ffffff20;backdrop-filter:blur(20px) saturate(115%);-webkit-backdrop-filter:blur(20px) saturate(115%)}
++.pilot-app .bottom-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;flex:0 0 auto;min-height:64px;margin:7px 10px max(7px,env(safe-area-inset-bottom));padding:5px;border:1px solid color-mix(in srgb,var(--line),white 10%);border-radius:12px;background:color-mix(in srgb,var(--raised) 86%,transparent);box-shadow:0 8px 22px #0006,inset 0 1px 0 #ffffff20;backdrop-filter:blur(20px) saturate(115%);-webkit-backdrop-filter:blur(20px) saturate(115%)}
+ .pilot-app .bottom-nav button{min-width:0;min-height:52px;padding:4px 2px;gap:2px;background:transparent;border:1px solid transparent;border-radius:7px;color:var(--text);overflow:visible}
+ .pilot-app .bottom-nav button span{font-size:11px;font-weight:700;line-height:1.1;white-space:normal}
+ .pilot-app .bottom-nav button[aria-current=page]{background:color-mix(in srgb,var(--blue) 21%,transparent);border-color:var(--cyan);color:var(--text)}
+ .pilot-app .bottom-nav button[aria-current=page]::after{background:var(--green);bottom:2px;height:2px;width:30px}
+-.pilot-app.standalone:not(.editing) .pilot-header .avionics-menu{display:none}
+ .pilot-app .bottom-nav button:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+ .pilot-app .site-menu-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:14px 0;border-top:1px solid var(--line);margin-top:12px}
+ .pilot-app .site-menu-links .eyebrow{grid-column:1/-1;margin:0 0 2px}
+@@ -375,3 +374,27 @@
+ 
+ html:has(.pilot-app.standalone) body{padding-bottom:0;overflow:hidden}
+ .pilot-app .tool-result-count{margin:8px 0 12px;color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
++
++/* Tactile integration: the shared dock owns scroll-collapse behavior; these
++   app rules keep PilotSolve's keypad and angular inputs legible and direct. */
++.pilot-app [data-tactile-dock]{--dock-expanded:64px}
++.pilot-app .bottom-nav[data-tactile-dock].av-dock-collapsed{min-height:48px;padding-block:1px}
++.pilot-app .bottom-nav[data-tactile-dock].av-dock-collapsed button{min-height:44px;padding-block:0;gap:0}
++.pilot-app .angle-adjustments{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:5px}
++.pilot-app .angle-field-value{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;align-self:center}
++.pilot-app .angle-entry-row{display:flex;align-items:center;gap:4px;min-width:0}
++.pilot-app .angle-entry-row .number-field{flex:1;min-width:0;max-width:none}
++.pilot-app .angle-adjustments .av-step-key{display:grid;place-items:center;min-width:44px;min-height:44px;padding:0;border:1px solid var(--line);border-radius:7px;background:var(--raised);color:var(--cyan);font-size:20px;font-weight:700;line-height:1;box-shadow:var(--shadow)}
++.pilot-app .angle-adjustments .av-step-key:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
++.pilot-app .av-rotary{position:relative;display:grid;place-items:center;flex:0 0 46px;min-height:46px;border:1px solid var(--line);border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff22,transparent 34%),var(--raised);box-shadow:var(--shadow),inset 0 1px 0 #ffffff22;touch-action:none;cursor:ns-resize}
++.pilot-app .av-rotary::before{content:"";position:absolute;inset:7px;border:1px solid color-mix(in srgb,var(--line),transparent 30%);border-radius:50%}
++.pilot-app .av-rotary-marker{position:relative;width:2px;height:15px;background:var(--cyan);border-radius:2px;transform:rotate(var(--av-angle));transform-origin:50% 19px;margin-bottom:17px;transition:transform .12s ease-out}
++.pilot-app .av-rotary-marker::before{content:none}
++.pilot-app .av-rotary.is-turning .av-rotary-marker{transition:none}
++.pilot-app .av-rotary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
++.pilot-app .key-grid button,.pilot-app .calculator-grid button{position:relative;isolation:isolate}
++.pilot-app .key-grid button::after,.pilot-app .calculator-grid button::after{content:"";position:absolute;inset:2px;border-radius:inherit;border-top:1px solid #ffffff22;pointer-events:none}
++.pilot-app .key-grid button:active,.pilot-app .calculator-grid button:active{transform:translateY(1px) scale(.985);box-shadow:inset 0 2px 5px #0005}
++@media (min-width:700px){.pilot-app [data-tactile-dock]{--dock-expanded:60px}}
++@media (min-width:700px){.pilot-app [data-tactile-dock]{width:calc(100% - 20px);max-width:600px;align-self:center}}
++@media (max-width:699px){.pilot-app [data-tactile-dock]{--dock-expanded:56px}.pilot-app .angle-adjustments{gap:4px}}
+--- a/scripts/prepare-suarezcfi.mjs
++++ b/scripts/prepare-suarezcfi.mjs
+@@ -17,13 +17,15 @@
+ // Use the site's metadata generator, but never inject shared CSS, navigation, or footer.
+ const metadataCode=`import importlib.util,sys\nfrom pathlib import Path\nr=Path(sys.argv[1]);s=importlib.util.spec_from_file_location('site_metadata',r/'scripts/sync-site-metadata.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)\np=next(p for p in m.M['pages'] if p['path']=='/pilotsolve/')\nprint(m.sync_head(sys.stdin.read(),p),end='')`;
+ html=execFileSync('python3',['-c',metadataCode,root],{input:html,encoding:'utf8'});
++const tactileVersion=createHash('sha256').update(await readFile(path.join(root,'assets/tactile.js'))).digest('hex').slice(0,10);
++html=html.replace('</head>',`<script src="/assets/tactile.js?v=${tactileVersion}"></script>\n</head>`);
+ await writeFile(path.join(output,'index.html'),html);
+ await writeFile(path.join(output,'mobile.html'),html);
+ await writeFile(path.join(output,'manifest.webmanifest'),JSON.stringify({id:'/pilotsolve/',name:'PilotSolve',short_name:'PilotSolve',description:'E6B flight computer, nav log, fuel, wind, and aircraft loading.',start_url:'/pilotsolve/',scope:'/pilotsolve/',display:'standalone',background_color:'#080b10',theme_color:'#080b10',orientation:'portrait-primary',icons:[{src:'./icon-192.png',sizes:'192x192',type:'image/png',purpose:'any'},{src:'./icon-512.png',sizes:'512x512',type:'image/png',purpose:'any'}]},null,2)+'\n');
+-const shared=['/assets/appearance.js','/assets/avionics.css'];
++const shared=['/assets/appearance.js','/assets/avionics.css','/assets/tactile.js'];
+ const files=['./','./index.html','./mobile.html','./manifest.webmanifest','./icon.svg','./icon-48.png','./apple-touch-icon.png','./icon-192.png','./icon-512.png',...assets.map(a=>'./assets/'+a),...shared];
+ const hash=createHash('sha256').update('shared-assets-fetch-v2');for(const f of files)hash.update(await readFile(f.startsWith('/')?path.join(root,f):path.join(output,f==='./'?'index.html':f)));
+ const cache='pilotsolve-site-'+hash.digest('hex').slice(0,12);
+-await writeFile(path.join(output,'sw.js'),`const CACHE=${JSON.stringify(cache)};const FILES=${JSON.stringify(files)};\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));\nself.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pilotsolve-site-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));\nself.addEventListener('fetch',event=>{const url=new URL(event.request.url);const shared=url.pathname==='/assets/appearance.js'||url.pathname==='/assets/avionics.css';if(event.request.method!=='GET'||url.origin!==self.location.origin||(!url.pathname.startsWith('/pilotsolve/')&&!shared))return;event.respondWith(caches.open(CACHE).then(cache=>cache.match(event.request,{ignoreVary:true})).then(cached=>cached||fetch(event.request).catch(()=>event.request.mode==='navigate'?caches.open(CACHE).then(c=>c.match('./index.html')):Response.error())))});\n`);
++await writeFile(path.join(output,'sw.js'),`const CACHE=${JSON.stringify(cache)};const FILES=${JSON.stringify(files)};\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));\nself.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pilotsolve-site-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));\nself.addEventListener('fetch',event=>{const url=new URL(event.request.url);const shared=url.pathname==='/assets/appearance.js'||url.pathname==='/assets/avionics.css'||url.pathname==='/assets/tactile.js';if(event.request.method!=='GET'||url.origin!==self.location.origin||(!url.pathname.startsWith('/pilotsolve/')&&!shared))return;event.respondWith(caches.open(CACHE).then(cache=>cache.match(event.request,{ignoreVary:true,ignoreSearch:shared})).then(cached=>cached||fetch(event.request).catch(()=>event.request.mode==='navigate'?caches.open(CACHE).then(c=>c.match('./index.html')):Response.error())))});\n`);
+ await writeFile(path.join(output,'BUILD.json'),JSON.stringify({app:'PilotSolve',cache,preparedAt:new Date().toISOString(),route:'/pilotsolve/',files:files.filter(f=>f!=='./')},null,2)+'\n');
+ console.log(`Prepared ${output} · ${cache}. No publication performed.`);
+--- a/scripts/build-offline.mjs
++++ b/scripts/build-offline.mjs
+@@ -4,7 +4,7 @@
+ const root='dist/client';
+ await copyFile(root+'/mobile.html',root+'/index.html');
+ const names=(await readdir(root+'/assets')).filter(x=>!x.startsWith('.')&&/\.(js|css|woff2)$/.test(x));
+-const shared=['/assets/appearance.js','/assets/avionics.css'];
++const shared=['/assets/appearance.js','/assets/avionics.css','/assets/tactile.js'];
+ const files=['./index.html','./mobile.html','./manifest.webmanifest','./icon.svg','./icon-48.png','./apple-touch-icon.png','./icon-192.png','./icon-512.png',...names.map(n=>'./assets/'+n),...shared];
+ const hash=createHash('sha256');for(const f of files)hash.update(await readFile(f.startsWith('/')?resolve('..','..','site',f.slice(1)):root+'/'+f));
+ const version='pilotsolve-'+hash.digest('hex').slice(0,12);
+--- a/tests/site-offline-worker.test.mjs
++++ b/tests/site-offline-worker.test.mjs
+@@ -1,13 +1,16 @@
+ import test from 'node:test';
+ import assert from 'node:assert/strict';
+ import { readFileSync } from 'node:fs';
++import path from 'node:path';
++import { fileURLToPath } from 'node:url';
+ import { runInNewContext } from 'node:vm';
+ 
+-const worker=readFileSync(new URL('../../../site/pilotsolve/sw.js',import.meta.url),'utf8');
++const siteRoot=process.env.PILOTSOLVE_SITE_ROOT||fileURLToPath(new URL('../../../site',import.meta.url));
++const worker=readFileSync(path.join(siteRoot,'pilotsolve/sw.js'),'utf8');
+ function boot(){
+  const handlers={};let networkCalls=0;const cacheHits=[];
+  const cached={from:'PilotSolve offline cache'};
+- const cache={match(request){cacheHits.push(request.url);return Promise.resolve(cached)}};
++ const cache={match(request,options){cacheHits.push({url:request.url,options});return Promise.resolve(cached)}};
+  const context={URL,Promise,Response:{error:()=>({error:true})},self:{location:{origin:'https://suarezcfi.com'},addEventListener(type,fn){handlers[type]=fn}},caches:{open:async()=>cache},fetch(){networkCalls++;return Promise.reject(Error('offline'))}};
+  runInNewContext(worker,context);
+  return {handlers,cached,cacheHits,networkCalls:()=>networkCalls};
+@@ -18,13 +21,26 @@
+  return {...state,response:response&&await response};
+ }
+ test('shared first-paint assets are served from PilotSolve cache without network',async()=>{
+- for(const path of ['/assets/appearance.js','/assets/avionics.css']){
++ for(const path of ['/assets/appearance.js','/assets/avionics.css','/assets/tactile.js']){
+   const state=await request('https://suarezcfi.com'+path);
+   assert.equal(state.response,state.cached,path);
+-  assert.deepEqual(state.cacheHits,['https://suarezcfi.com'+path]);
++  assert.equal(state.cacheHits.length,1);
++  assert.equal(state.cacheHits[0].url,'https://suarezcfi.com'+path);
++  assert.equal(state.cacheHits[0].options.ignoreVary,true);
++  assert.equal(state.cacheHits[0].options.ignoreSearch,true);
+   assert.equal(state.networkCalls(),0,path);
+  }
+ });
++test('versioned shared first-paint assets reuse their cached unversioned entry',async()=>{
++ for(const path of ['/assets/avionics.css?v=versioned','/assets/tactile.js?v=versioned']){
++  const state=await request('https://suarezcfi.com'+path);
++  assert.equal(state.response,state.cached,path);
++  assert.equal(state.cacheHits.length,1);
++  assert.equal(state.cacheHits[0].url,'https://suarezcfi.com'+path);
++  assert.equal(state.cacheHits[0].options.ignoreVary,true);
++  assert.equal(state.cacheHits[0].options.ignoreSearch,true);
++ }
++});
+ test('app requests remain controlled and unrelated paths remain untouched',async()=>{
+  const app=await request('https://suarezcfi.com/pilotsolve/assets/mobile.js');
+  assert.equal(app.response,app.cached);

@@ -3,14 +3,14 @@
   <head>
 <script src="/assets/appearance.js?v=99560b6a9e"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
-<title>Crank &amp; Core | 3D Engines &amp; Flight Instruments</title>
+<title>Crank &amp; Core | 3D Engine Explorer</title>
 <meta name="description" content="Explore engine teaching models and a traditional six-pack instrument bench. Study pitot-static and gyroscopic systems with interactive controls in Crank &amp; Core by SuarezCFI." />
 <link rel="canonical" href="https://suarezcfi.com/engine-explorer/" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://suarezcfi.com/engine-explorer/" />
 <meta property="og:site_name" content="SuarezCFI" />
-<meta property="og:title" content="Crank &amp; Core | 3D Engines &amp; Flight Instruments" />
+<meta property="og:title" content="Crank &amp; Core | 3D Engine Explorer" />
 <meta property="og:description" content="Explore engine teaching models and a traditional six-pack instrument bench. Study pitot-static and gyroscopic systems with interactive controls in Crank &amp; Core by SuarezCFI." />
 <meta property="og:image" content="https://suarezcfi.com/assets/identities/engine-explorer/preview.png" />
 <meta property="og:image:secure_url" content="https://suarezcfi.com/assets/identities/engine-explorer/preview.png" />
@@ -20,7 +20,7 @@
 <meta property="og:image:alt" content="Crank &amp; Core logo" />
 <meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Crank &amp; Core | 3D Engines &amp; Flight Instruments" />
+<meta name="twitter:title" content="Crank &amp; Core | 3D Engine Explorer" />
 <meta name="twitter:description" content="Explore engine teaching models and a traditional six-pack instrument bench. Study pitot-static and gyroscopic systems with interactive controls in Crank &amp; Core by SuarezCFI." />
 <meta name="twitter:image" content="https://suarezcfi.com/assets/identities/engine-explorer/preview.png" />
 <meta name="twitter:image:alt" content="Crank &amp; Core logo" />
@@ -79,7 +79,8 @@
 <link rel="stylesheet" href="/assets/site-discovery.css" />
 <link rel="stylesheet" href="/engine-explorer/model-info.css">
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
-<link rel="stylesheet" href="/assets/avionics.css?v=50c79d6139">
+<script defer src="/assets/tactile.js?v=9c9f44849a"></script>
+<link rel="stylesheet" href="/assets/avionics.css?v=8072a8d9c1">
 </head>
   <body class="tool-page engine-explorer-page">
     <div class="engine-explorer-shell">
@@ -125,24 +126,24 @@
       </header>
       <!-- /site-nav -->
       <main class="engine-explorer-main" id="engine-explorer-main">
-        <h1 class="engine-explorer-title">Engines and Flight Instruments</h1>
+        <h1 class="engine-explorer-title">Engine Explorer</h1>
         <button class="model-info-trigger" id="model-info-trigger" type="button" aria-haspopup="dialog" aria-controls="engine-model-info">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
           <span>About models</span>
         </button>
-        <iframe class="engine-explorer-frame" title="Crank &amp; Core engines and flight instruments explorer" src="./app/"></iframe>
+        <iframe class="engine-explorer-frame" title="Crank &amp; Core engine explorer" ></iframe>
         <dialog class="model-info-dialog" id="engine-model-info" aria-labelledby="model-info-title">
           <div class="model-info-heading">
             <div><p class="model-info-eyebrow">CRANK &amp; CORE · MODEL NOTES</p><h2 id="model-info-title">About these models</h2></div>
             <button type="button" class="model-info-close" aria-label="Close model notes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
           </div>
-          <p>Explore teaching models of the Rotax 912 ULS, Lycoming IO-360-L2A, conventional flight instruments, pitot-static systems, and gyro systems.</p>
+          <p>Explore teaching models of the Rotax 912 ULS and Lycoming IO-360-L2A.</p>
           <p>These are educational reconstructions, not complete OEM replicas or maintenance instructions. The in-app Resources panel has model-specific sources and limitations.</p>
           <div class="model-info-reading"><h3>Further reading</h3><a href="/learn/aircraft-systems/">Aircraft systems guides <span aria-hidden="true">↗</span></a><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak">FAA Pilot’s Handbook of Aeronautical Knowledge <span aria-hidden="true">↗</span></a><a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation">FAA aviation handbooks <span aria-hidden="true">↗</span></a></div>
         </dialog>
 </main>
     </div>
-    <script src="/assets/site-nav.js?v=226fcb9b93" defer></script>
+    <script src="/assets/site-nav.js?v=0b129743ca" defer></script>
     <script>
       const frame = document.querySelector('.engine-explorer-frame');
       const embeddedHeaderStyles = `

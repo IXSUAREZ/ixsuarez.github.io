@@ -1,0 +1,3951 @@
+{
+  "baseline": "6c97779192aad3a245cd0a1b5db7aab0c3e34d3d",
+  "canonicalRoutes": 523,
+  "routes": [
+    {
+      "route": "/",
+      "file": "index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/flight-training-louisville-ky/",
+      "file": "flight-training-louisville-ky/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed-cfi/",
+      "file": "simply-endorsed-cfi/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/part-61-calculator/",
+      "file": "part-61-calculator/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/",
+      "file": "simply-endorsed/blog/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/what-is-simply-endorsed/",
+      "file": "simply-endorsed/blog/what-is-simply-endorsed/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/cfi-endorsements/",
+      "file": "simply-endorsed/blog/cfi-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/first-solo-endorsement/",
+      "file": "simply-endorsed/blog/first-solo-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/solo-cross-country-endorsement/",
+      "file": "simply-endorsed/blog/solo-cross-country-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/private-pilot-checkride-endorsements/",
+      "file": "simply-endorsed/blog/private-pilot-checkride-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/cfi-initial-checkride-endorsements/",
+      "file": "simply-endorsed/blog/cfi-initial-checkride-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/spin-endorsement/",
+      "file": "simply-endorsed/blog/spin-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/retest-after-failure-endorsement/",
+      "file": "simply-endorsed/blog/retest-after-failure-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/commercial-pilot-checkride-endorsements/",
+      "file": "simply-endorsed/blog/commercial-pilot-checkride-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/instrument-checkride-endorsements/",
+      "file": "simply-endorsed/blog/instrument-checkride-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/flight-review-endorsement/",
+      "file": "simply-endorsed/blog/flight-review-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/ipc-endorsement/",
+      "file": "simply-endorsed/blog/ipc-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/instrument-checkride-vs-ipc/",
+      "file": "simply-endorsed/blog/instrument-checkride-vs-ipc/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/tailwheel-endorsement/",
+      "file": "simply-endorsed/blog/tailwheel-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/aircraft-endorsements/",
+      "file": "simply-endorsed/blog/aircraft-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/sport-pilot-endorsements/",
+      "file": "simply-endorsed/blog/sport-pilot-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/recreational-pilot-endorsements/",
+      "file": "simply-endorsed/blog/recreational-pilot-endorsements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/simply-endorsed/blog/logbook-audit-checklists/",
+      "file": "simply-endorsed/blog/logbook-audit-checklists/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/",
+      "file": "blog/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/private-pilot-cost-louisville-ky/",
+      "file": "blog/private-pilot-cost-louisville-ky/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/private-pilot-timeline-louisville/",
+      "file": "blog/private-pilot-timeline-louisville/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/discovery-flight-bowman-field/",
+      "file": "blog/discovery-flight-bowman-field/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/faa-private-pilot-written-test-study-guide/",
+      "file": "blog/faa-private-pilot-written-test-study-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/faa-endorsements-explained/",
+      "file": "blog/faa-endorsements-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/basicmed-vs-third-class-medical/",
+      "file": "blog/basicmed-vs-third-class-medical/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/bristell-ng5-lsa-vs-cessna-172-for-student-pilots/",
+      "file": "blog/bristell-ng5-lsa-vs-cessna-172-for-student-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/flying-klou-bowman-field-guide/",
+      "file": "blog/flying-klou-bowman-field-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/path-to-cfi-louisville/",
+      "file": "blog/path-to-cfi-louisville/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/",
+      "file": "learn/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/",
+      "file": "learn/private-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/",
+      "file": "learn/ground-school/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/checkrides-and-testing/",
+      "file": "learn/checkrides-and-testing/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/",
+      "file": "learn/medical-and-certificates/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/",
+      "file": "learn/airspace-and-atc/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/",
+      "file": "learn/weather-and-safety/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/",
+      "file": "learn/aircraft-systems/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/",
+      "file": "learn/aircraft-ownership/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/",
+      "file": "learn/career-and-cfi/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/",
+      "file": "learn/drones-and-remote-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/pilot-gear-and-tools/",
+      "file": "learn/pilot-gear-and-tools/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/ground-school-louisville-ky/",
+      "file": "ground-school-louisville-ky/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/private-pilot-ground-school/",
+      "file": "private-pilot-ground-school/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/faa-written-test-prep/",
+      "file": "faa-written-test-prep/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/checkride-oral-prep/",
+      "file": "checkride-oral-prep/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/bowman-field-klou/",
+      "file": "bowman-field-klou/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/remote-ground-instruction/",
+      "file": "remote-ground-instruction/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/12-tips-on-how-to-pay-for-flight-school/",
+      "file": "learn/aircraft-ownership/12-tips-on-how-to-pay-for-flight-school/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/affordable-single-engine-aircraft/",
+      "file": "learn/aircraft-ownership/affordable-single-engine-aircraft/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/from-gliders-to-jumbos-how-much-do-airplanes-cost/",
+      "file": "learn/aircraft-ownership/from-gliders-to-jumbos-how-much-do-airplanes-cost/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/how-much-does-a-glider-cost-renting-owning-buying-pilot-license/",
+      "file": "learn/aircraft-ownership/how-much-does-a-glider-cost-renting-owning-buying-pilot-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/flight-school-loans-careful-borrowing/",
+      "file": "learn/aircraft-ownership/flight-school-loans-careful-borrowing/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/owning-vs-renting-the-best-option-for-flight-training-explained/",
+      "file": "learn/aircraft-ownership/owning-vs-renting-the-best-option-for-flight-training-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/how-much-does-a-small-aircraft-cost/",
+      "file": "learn/aircraft-ownership/how-much-does-a-small-aircraft-cost/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/understanding-aircraft-insurance-costs/",
+      "file": "learn/aircraft-ownership/understanding-aircraft-insurance-costs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-ownership/what-to-look-for-when-purchasing-a-used-airplane/",
+      "file": "learn/aircraft-ownership/what-to-look-for-when-purchasing-a-used-airplane/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/4-different-types-of-airspeed-how-to-calculate-each/",
+      "file": "learn/aircraft-systems/4-different-types-of-airspeed-how-to-calculate-each/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/",
+      "file": "learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/arrow-acronym-explained/",
+      "file": "learn/aircraft-systems/arrow-acronym-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/atis-awos-and-asos-explained/",
+      "file": "learn/aircraft-systems/atis-awos-and-asos-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aviates-acronym-explained/",
+      "file": "learn/aircraft-systems/aviates-acronym-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/adverse-yaw-explained-a-pilots-guide-to-better-control/",
+      "file": "learn/aircraft-systems/adverse-yaw-explained-a-pilots-guide-to-better-control/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aerobatic-flying-how-to-get-started/",
+      "file": "learn/aircraft-systems/aerobatic-flying-how-to-get-started/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/understanding-aeronautical-decision-making-adm/",
+      "file": "learn/aircraft-systems/understanding-aeronautical-decision-making-adm/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/affordable-airplane-kits-how-to-compare/",
+      "file": "learn/aircraft-systems/affordable-airplane-kits-how-to-compare/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/everything-you-need-to-know-about-ailerons/",
+      "file": "learn/aircraft-systems/everything-you-need-to-know-about-ailerons/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aircraft-black-boxes-explained/",
+      "file": "learn/aircraft-systems/aircraft-black-boxes-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aircraft-owners-insurance-everything-you-need-to-know/",
+      "file": "learn/aircraft-systems/aircraft-owners-insurance-everything-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aircraft-pressurization-systems-how-they-work-and-when-they-are-required/",
+      "file": "learn/aircraft-systems/aircraft-pressurization-systems-how-they-work-and-when-they-are-required/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aircraft-registration-how-to-register-a-plane/",
+      "file": "learn/aircraft-systems/aircraft-registration-how-to-register-a-plane/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aircraft-trim-explained-with-video/",
+      "file": "learn/aircraft-systems/aircraft-trim-explained-with-video/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aircraft-wing-types-and-classifications/",
+      "file": "learn/aircraft-systems/aircraft-wing-types-and-classifications/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/airplane-lights-what-each-light-does-red-green-strobe-beacon/",
+      "file": "learn/aircraft-systems/airplane-lights-what-each-light-does-red-green-strobe-beacon/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/airplane-size-comparison-how-pilots-measure/",
+      "file": "learn/aircraft-systems/airplane-size-comparison-how-pilots-measure/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/airplane-stability-balanced-flight-easily-explained/",
+      "file": "learn/aircraft-systems/airplane-stability-balanced-flight-easily-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/airplane-weight-balance-explained/",
+      "file": "learn/aircraft-systems/airplane-weight-balance-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/airspeed-and-altitude-control-simplified-tips-for-stable-flying/",
+      "file": "learn/aircraft-systems/airspeed-and-altitude-control-simplified-tips-for-stable-flying/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/airworthiness-requirements-explained/",
+      "file": "learn/aircraft-systems/airworthiness-requirements-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/altimeter-vs-gps-altitude-in-aviation/",
+      "file": "learn/aircraft-systems/altimeter-vs-gps-altitude-in-aviation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/are-old-planes-safe/",
+      "file": "learn/aircraft-systems/are-old-planes-safe/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/aviation-headsets-what-pilots-should-look-for/",
+      "file": "learn/aircraft-systems/aviation-headsets-what-pilots-should-look-for/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/axis-of-aircraft-the-3-pivot-points-of-all-aircraft/",
+      "file": "learn/aircraft-systems/axis-of-aircraft-the-3-pivot-points-of-all-aircraft/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/bird-strike-what-is-it-how-common-how-dangerous/",
+      "file": "learn/aircraft-systems/bird-strike-what-is-it-how-common-how-dangerous/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/bounced-landing-recovery-explained/",
+      "file": "learn/aircraft-systems/bounced-landing-recovery-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/can-pilots-have-tattoos/",
+      "file": "learn/aircraft-systems/can-pilots-have-tattoos/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/can-planes-fly-in-snow-deicing-and-flying-in-snowy-conditions/",
+      "file": "learn/aircraft-systems/can-planes-fly-in-snow-deicing-and-flying-in-snowy-conditions/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-are-canard-wings-how-forward-control-surfaces-change-flight/",
+      "file": "learn/aircraft-systems/what-are-canard-wings-how-forward-control-surfaces-change-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/cessna-182-vs-172-vs-152/",
+      "file": "learn/aircraft-systems/cessna-182-vs-172-vs-152/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/choosing-the-right-pilot-sunglasses/",
+      "file": "learn/aircraft-systems/choosing-the-right-pilot-sunglasses/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/chord-line-in-aviation-what-it-is-and-why-it-is-important/",
+      "file": "learn/aircraft-systems/chord-line-in-aviation-what-it-is-and-why-it-is-important/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/cockpit-cameras-what-pilots-should-look-for/",
+      "file": "learn/aircraft-systems/cockpit-cameras-what-pilots-should-look-for/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/commercial-maneuvers-explained-chandelles-lazy-8s-steep-spirals/",
+      "file": "learn/aircraft-systems/commercial-maneuvers-explained-chandelles-lazy-8s-steep-spirals/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/differences-between-faa-part-91-121-and-135-in-aviation/",
+      "file": "learn/aircraft-systems/differences-between-faa-part-91-121-and-135-in-aviation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/ditching-vs-water-landing-whats-the-difference/",
+      "file": "learn/aircraft-systems/ditching-vs-water-landing-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/faa-mosaic-rule-sport-pilot-flying/",
+      "file": "learn/aircraft-systems/faa-mosaic-rule-sport-pilot-flying/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/flight-instruments-explained-6-pack-vs-glass-cockpit/",
+      "file": "learn/aircraft-systems/flight-instruments-explained-6-pack-vs-glass-cockpit/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/flight-simulator-controllers-joystick-or-yoke/",
+      "file": "learn/aircraft-systems/flight-simulator-controllers-joystick-or-yoke/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/flight-simulator-rudder-pedals-buying-guide/",
+      "file": "learn/aircraft-systems/flight-simulator-rudder-pedals-buying-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/fly-by-wire-explained-a-pilots-guide-to-digital-flight-control/",
+      "file": "learn/aircraft-systems/fly-by-wire-explained-a-pilots-guide-to-digital-flight-control/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/forward-vs-aft-cg-explained/",
+      "file": "learn/aircraft-systems/forward-vs-aft-cg-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/g1000-vs-g1000-nxi-whats-the-difference/",
+      "file": "learn/aircraft-systems/g1000-vs-g1000-nxi-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/ground-de-icing-vs-anti-icing-whats-the-difference/",
+      "file": "learn/aircraft-systems/ground-de-icing-vs-anti-icing-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/guide-to-ground-reference-maneuvers/",
+      "file": "learn/aircraft-systems/guide-to-ground-reference-maneuvers/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/gyroscopic-instruments-3-essential-instruments-and-how-they-work/",
+      "file": "learn/aircraft-systems/gyroscopic-instruments-3-essential-instruments-and-how-they-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/hsi-vs-cdi-whats-the-difference/",
+      "file": "learn/aircraft-systems/hsi-vs-cdi-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/handheld-aviation-radios-what-to-look-for/",
+      "file": "learn/aircraft-systems/handheld-aviation-radios-what-to-look-for/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/heading-indicator-going-in-the-right-direction/",
+      "file": "learn/aircraft-systems/heading-indicator-going-in-the-right-direction/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/historical-covid-aviation-statistics/",
+      "file": "learn/aircraft-systems/historical-covid-aviation-statistics/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-actual-difference-between-hobbs-and-tach-time/",
+      "file": "learn/aircraft-systems/the-actual-difference-between-hobbs-and-tach-time/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-airplane-lift-works/",
+      "file": "learn/aircraft-systems/how-airplane-lift-works/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-do-magnetos-work/",
+      "file": "learn/aircraft-systems/how-do-magnetos-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-does-aircraft-financing-work/",
+      "file": "learn/aircraft-systems/how-does-aircraft-financing-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-does-a-constant-speed-propeller-work/",
+      "file": "learn/aircraft-systems/how-does-a-constant-speed-propeller-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-fast-do-airplanes-fly/",
+      "file": "learn/aircraft-systems/how-fast-do-airplanes-fly/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-hard-is-it-to-become-a-pilot/",
+      "file": "learn/aircraft-systems/how-hard-is-it-to-become-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-high-do-planes-fly-airplane-flight-altitude/",
+      "file": "learn/aircraft-systems/how-high-do-planes-fly-airplane-flight-altitude/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-does-a-jet-engine-work/",
+      "file": "learn/aircraft-systems/how-does-a-jet-engine-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-much-do-airplanes-weigh/",
+      "file": "learn/aircraft-systems/how-much-do-airplanes-weigh/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-working-hours-affect-pilot-performance/",
+      "file": "learn/aircraft-systems/how-working-hours-affect-pilot-performance/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-become-a-pilot-without-loans-or-scholarships/",
+      "file": "learn/aircraft-systems/how-to-become-a-pilot-without-loans-or-scholarships/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-become-a-pilot-a-complete-guide/",
+      "file": "learn/aircraft-systems/how-to-become-a-pilot-a-complete-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-build-flight-time-for-pilots/",
+      "file": "learn/aircraft-systems/how-to-build-flight-time-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/",
+      "file": "learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-calculate-flight-time-pilot-logbooks/",
+      "file": "learn/aircraft-systems/how-to-calculate-flight-time-pilot-logbooks/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-calculate-weight-and-balance-easily/",
+      "file": "learn/aircraft-systems/how-to-calculate-weight-and-balance-easily/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-calculate-your-descent-profile-airplane-pilots/",
+      "file": "learn/aircraft-systems/how-to-calculate-your-descent-profile-airplane-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-choose-a-flight-school/",
+      "file": "learn/aircraft-systems/how-to-choose-a-flight-school/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-get-a-tailwheel-endorsement/",
+      "file": "learn/aircraft-systems/how-to-get-a-tailwheel-endorsement/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-get-an-aircraft-dispatcher-job/",
+      "file": "learn/aircraft-systems/how-to-get-an-aircraft-dispatcher-job/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-keep-your-pilot-logbook-clean-and-professional/",
+      "file": "learn/aircraft-systems/how-to-keep-your-pilot-logbook-clean-and-professional/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-read-pilot-age-and-shortage-claims/",
+      "file": "learn/aircraft-systems/how-to-read-pilot-age-and-shortage-claims/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-recover-from-unusual-attitudes/",
+      "file": "learn/aircraft-systems/how-to-recover-from-unusual-attitudes/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-save-money-on-flight-training/",
+      "file": "learn/aircraft-systems/how-to-save-money-on-flight-training/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-spot-pitot-static-failures-in-flight/",
+      "file": "learn/aircraft-systems/how-to-spot-pitot-static-failures-in-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/how-to-use-a-home-flight-simulator-during-flight-training/",
+      "file": "learn/aircraft-systems/how-to-use-a-home-flight-simulator-during-flight-training/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/ils-explained-with-examples/",
+      "file": "learn/aircraft-systems/ils-explained-with-examples/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/imsafe-checklist-acronym-explained/",
+      "file": "learn/aircraft-systems/imsafe-checklist-acronym-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/in-ear-aviation-headsets-how-to-choose/",
+      "file": "learn/aircraft-systems/in-ear-aviation-headsets-how-to-choose/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/induced-drag-explained/",
+      "file": "learn/aircraft-systems/induced-drag-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/instrument-before-commercial-pros-cons-and-cost/",
+      "file": "learn/aircraft-systems/instrument-before-commercial-pros-cons-and-cost/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/is-it-hard-to-be-a-pilot-the-surprising-truth/",
+      "file": "learn/aircraft-systems/is-it-hard-to-be-a-pilot-the-surprising-truth/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/is-the-impossible-turn-actually-impossible/",
+      "file": "learn/aircraft-systems/is-the-impossible-turn-actually-impossible/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/landing-gear-configurations-types-features-uses/",
+      "file": "learn/aircraft-systems/landing-gear-configurations-types-features-uses/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/left-turning-tendencies-in-airplanes-explained/",
+      "file": "learn/aircraft-systems/left-turning-tendencies-in-airplanes-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-pros-and-cons-of-low-wing-vs-high-wing-aircraft/",
+      "file": "learn/aircraft-systems/the-pros-and-cons-of-low-wing-vs-high-wing-aircraft/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/msl-vs-agl-whats-the-difference/",
+      "file": "learn/aircraft-systems/msl-vs-agl-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/mach-number-explained-what-it-is-and-why-pilots-use-it/",
+      "file": "learn/aircraft-systems/mach-number-explained-what-it-is-and-why-pilots-use-it/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/magnetic-heading-understanding-compasses-and-variation/",
+      "file": "learn/aircraft-systems/magnetic-heading-understanding-compasses-and-variation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/manifold-pressure-vs-rpm-whats-the-difference/",
+      "file": "learn/aircraft-systems/manifold-pressure-vs-rpm-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/mastering-short-field-landings-a-step-by-step-guide/",
+      "file": "learn/aircraft-systems/mastering-short-field-landings-a-step-by-step-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/multi-engine-rating-explained-cost-requirements-privileges/",
+      "file": "learn/aircraft-systems/multi-engine-rating-explained-cost-requirements-privileges/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/narrowbody-vs-widebody-aircraft-whats-the-difference/",
+      "file": "learn/aircraft-systems/narrowbody-vs-widebody-aircraft-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/part-61-vs-part-141-whats-the-difference/",
+      "file": "learn/aircraft-systems/part-61-vs-part-141-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/parts-of-a-wing/",
+      "file": "learn/aircraft-systems/parts-of-a-wing/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/phugoid-motion-in-aviation-what-it-is-and-why-it-matters/",
+      "file": "learn/aircraft-systems/phugoid-motion-in-aviation-what-it-is-and-why-it-matters/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/every-currency-requirement-explained/",
+      "file": "learn/aircraft-systems/every-currency-requirement-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/pilot-flashlights-and-headlamps-buying-guide/",
+      "file": "learn/aircraft-systems/pilot-flashlights-and-headlamps-buying-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/pilot-ranks-stripes-epaulettes-and-what-you-need-to-know/",
+      "file": "learn/aircraft-systems/pilot-ranks-stripes-epaulettes-and-what-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-psychological-aspects-of-flying-managing-stress-and-decision-making-in-the-air/",
+      "file": "learn/aircraft-systems/the-psychological-aspects-of-flying-managing-stress-and-decision-making-in-the-air/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/piston-vs-turboprop-whats-the-difference/",
+      "file": "learn/aircraft-systems/piston-vs-turboprop-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/plane-engine-failure-why-it-happens-and-what-to-do/",
+      "file": "learn/aircraft-systems/plane-engine-failure-why-it-happens-and-what-to-do/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/power-on-stall-how-to-recover/",
+      "file": "learn/aircraft-systems/power-on-stall-how-to-recover/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/pre-flight-checks-do-you-need-a-checklist-before-takeoff/",
+      "file": "learn/aircraft-systems/pre-flight-checks-do-you-need-a-checklist-before-takeoff/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/pressure-altitude-explained-formula-and-examples/",
+      "file": "learn/aircraft-systems/pressure-altitude-explained-formula-and-examples/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/principles-of-flight-the-4-flight-forces-simply-explained/",
+      "file": "learn/aircraft-systems/principles-of-flight-the-4-flight-forces-simply-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/ram-air-turbine-systems-what-pilots-need-to-know/",
+      "file": "learn/aircraft-systems/ram-air-turbine-systems-what-pilots-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/returning-to-flying-after-a-break/",
+      "file": "learn/aircraft-systems/returning-to-flying-after-a-break/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/round-dials-or-glass-cockpits-which-is-the-superior-choice/",
+      "file": "learn/aircraft-systems/round-dials-or-glass-cockpits-which-is-the-superior-choice/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/safety-pilot-explained-how-to-log-your-time-and-stay-legal/",
+      "file": "learn/aircraft-systems/safety-pilot-explained-how-to-log-your-time-and-stay-legal/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/single-engine-vs-multi-engine-which-is-better/",
+      "file": "learn/aircraft-systems/single-engine-vs-multi-engine-which-is-better/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/somatogravic-illusions-how-to-prevent-spatial-disorientation/",
+      "file": "learn/aircraft-systems/somatogravic-illusions-how-to-prevent-spatial-disorientation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-different-types-of-spatial-disorientation/",
+      "file": "learn/aircraft-systems/the-different-types-of-spatial-disorientation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/stall-turn-hammerhead-explained/",
+      "file": "learn/aircraft-systems/stall-turn-hammerhead-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/standard-rate-turns-explained-a-comprehensive-guide/",
+      "file": "learn/aircraft-systems/standard-rate-turns-explained-a-comprehensive-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/standard-weights-aircraft-weight-and-balance/",
+      "file": "learn/aircraft-systems/standard-weights-aircraft-weight-and-balance/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/step-by-step-guide-to-no-flaps-landings-for-pilots/",
+      "file": "learn/aircraft-systems/step-by-step-guide-to-no-flaps-landings-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/taa-vs-complex-commercial-training-credit/",
+      "file": "learn/aircraft-systems/taa-vs-complex-commercial-training-credit/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-tcas-a-comprehensive-guide-to-traffic-collision-avoidance-systems/",
+      "file": "learn/aircraft-systems/what-is-tcas-a-comprehensive-guide-to-traffic-collision-avoidance-systems/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/tail-number-vs-callsign-vs-flight-number-whats-the-difference/",
+      "file": "learn/aircraft-systems/tail-number-vs-callsign-vs-flight-number-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/tailless-aircraft-how-airplanes-fly-without-a-tail/",
+      "file": "learn/aircraft-systems/tailless-aircraft-how-airplanes-fly-without-a-tail/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-5-hazardous-attitudes-in-aviation-and-how-to-spot-them/",
+      "file": "learn/aircraft-systems/the-5-hazardous-attitudes-in-aviation-and-how-to-spot-them/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-8-types-of-illusions-explained-iceflags/",
+      "file": "learn/aircraft-systems/the-8-types-of-illusions-explained-iceflags/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-apu-one-airplane-engine-4-different-roles/",
+      "file": "learn/aircraft-systems/the-apu-one-airplane-engine-4-different-roles/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-airspeed-indicator-how-it-works-and-what-it-does/",
+      "file": "learn/aircraft-systems/the-airspeed-indicator-how-it-works-and-what-it-does/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-difference-between-airbus-and-boeing/",
+      "file": "learn/aircraft-systems/the-difference-between-airbus-and-boeing/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-difference-between-category-class-and-type-of-aircraft/",
+      "file": "learn/aircraft-systems/the-difference-between-category-class-and-type-of-aircraft/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-magnetic-compass-in-aviation-how-it-is-used-in-airplanes/",
+      "file": "learn/aircraft-systems/the-magnetic-compass-in-aviation-how-it-is-used-in-airplanes/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-pitot-static-system-how-it-works/",
+      "file": "learn/aircraft-systems/the-pitot-static-system-how-it-works/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-pros-and-cons-of-a-cadet-pilot-program/",
+      "file": "learn/aircraft-systems/the-pros-and-cons-of-a-cadet-pilot-program/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-role-of-newtons-third-law-in-aviation/",
+      "file": "learn/aircraft-systems/the-role-of-newtons-third-law-in-aviation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-science-of-aircraft-hydroplaning/",
+      "file": "learn/aircraft-systems/the-science-of-aircraft-hydroplaning/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-six-pack-basic-flight-instruments/",
+      "file": "learn/aircraft-systems/the-six-pack-basic-flight-instruments/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-truth-about-accelerated-flight-schools/",
+      "file": "learn/aircraft-systems/the-truth-about-accelerated-flight-schools/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/the-turn-coordinator-explained/",
+      "file": "learn/aircraft-systems/the-turn-coordinator-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/thrust-reversal-explained-how-it-helps-aircraft-stop-safely/",
+      "file": "learn/aircraft-systems/thrust-reversal-explained-how-it-helps-aircraft-stop-safely/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/touch-and-go-landings-for-students/",
+      "file": "learn/aircraft-systems/touch-and-go-landings-for-students/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/turbine-jet-engine-failed-starts-explained/",
+      "file": "learn/aircraft-systems/turbine-jet-engine-failed-starts-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/turbofan-vs-turbojet-whats-the-difference/",
+      "file": "learn/aircraft-systems/turbofan-vs-turbojet-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/types-of-avgas-explained/",
+      "file": "learn/aircraft-systems/types-of-avgas-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-useful-load/",
+      "file": "learn/aircraft-systems/what-is-useful-load/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/vle-vs-vlo-speeds-whats-the-difference/",
+      "file": "learn/aircraft-systems/vle-vs-vlo-speeds-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-are-the-different-types-of-vors-service-volumes/",
+      "file": "learn/aircraft-systems/what-are-the-different-types-of-vors-service-volumes/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-are-temporary-flight-restrictions-tfr-and-how-to-find-them/",
+      "file": "learn/aircraft-systems/what-are-temporary-flight-restrictions-tfr-and-how-to-find-them/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-are-the-typical-aircraft-options-in-flight-schools/",
+      "file": "learn/aircraft-systems/what-are-the-typical-aircraft-options-in-flight-schools/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-do-spoilers-do-how-pilots-use-them/",
+      "file": "learn/aircraft-systems/what-do-spoilers-do-how-pilots-use-them/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-does-a-tomato-flames-mean/",
+      "file": "learn/aircraft-systems/what-does-a-tomato-flames-mean/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-the-angle-of-attack/",
+      "file": "learn/aircraft-systems/what-is-the-angle-of-attack/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-bernoullis-principle-a-simple-guide-for-pilots/",
+      "file": "learn/aircraft-systems/what-is-bernoullis-principle-a-simple-guide-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-drag-a-main-flight-force-explained/",
+      "file": "learn/aircraft-systems/what-is-drag-a-main-flight-force-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-ground-effect/",
+      "file": "learn/aircraft-systems/what-is-ground-effect/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-manifold-pressure/",
+      "file": "learn/aircraft-systems/what-is-manifold-pressure/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-turn-radius-aviation/",
+      "file": "learn/aircraft-systems/what-is-turn-radius-aviation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-zulu-time-aviation-time-explained/",
+      "file": "learn/aircraft-systems/what-is-zulu-time-aviation-time-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-a-biplane-how-this-classic-design-works/",
+      "file": "learn/aircraft-systems/what-is-a-biplane-how-this-classic-design-works/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-a-dutch-roll-and-is-it-dangerous/",
+      "file": "learn/aircraft-systems/what-is-a-dutch-roll-and-is-it-dangerous/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-a-flat-spin/",
+      "file": "learn/aircraft-systems/what-is-a-flat-spin/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-a-stall-when-wings-stop-working/",
+      "file": "learn/aircraft-systems/what-is-a-stall-when-wings-stop-working/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-a-type-rating/",
+      "file": "learn/aircraft-systems/what-is-a-type-rating/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-a-variable-sweep-wing-how-swing-wings-work/",
+      "file": "learn/aircraft-systems/what-is-a-variable-sweep-wing-how-swing-wings-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-an-afterburner-how-does-it-work/",
+      "file": "learn/aircraft-systems/what-is-an-afterburner-how-does-it-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-an-fbo-a-guide-to-fixed-base-operators/",
+      "file": "learn/aircraft-systems/what-is-an-fbo-a-guide-to-fixed-base-operators/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-an-ultralight-airplane-faa-definition-and-examples/",
+      "file": "learn/aircraft-systems/what-is-an-ultralight-airplane-faa-definition-and-examples/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-is-the-minimum-equipment-list-mel/",
+      "file": "learn/aircraft-systems/what-is-the-minimum-equipment-list-mel/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/what-planes-can-you-fly-without-a-pilots-license/",
+      "file": "learn/aircraft-systems/what-planes-can-you-fly-without-a-pilots-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/wingtip-vortices-and-wake-turbulence/",
+      "file": "learn/aircraft-systems/wingtip-vortices-and-wake-turbulence/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/aircraft-systems/women-in-aviation-representation-training/",
+      "file": "learn/aircraft-systems/women-in-aviation-representation-training/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/practical-guide-to-airport-fees/",
+      "file": "learn/airspace-and-atc/practical-guide-to-airport-fees/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/ads-b-airspace-requirements-explained/",
+      "file": "learn/airspace-and-atc/ads-b-airspace-requirements-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/ads-b-equipment-requirements-for-pilots/",
+      "file": "learn/airspace-and-atc/ads-b-equipment-requirements-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/airport-codes-explained-faa-icao-iata/",
+      "file": "learn/airspace-and-atc/airport-codes-explained-faa-icao-iata/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/airspace-classes-explained-class-a-b-c-d-e-g/",
+      "file": "learn/airspace-and-atc/airspace-classes-explained-class-a-b-c-d-e-g/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/class-b-airspace-explained/",
+      "file": "learn/airspace-and-atc/class-b-airspace-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/class-c-airspace-explained/",
+      "file": "learn/airspace-and-atc/class-c-airspace-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/class-d-airspace-explained/",
+      "file": "learn/airspace-and-atc/class-d-airspace-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/class-e-airspace-explained/",
+      "file": "learn/airspace-and-atc/class-e-airspace-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/common-mistakes-pilots-make-at-non-towered-airports/",
+      "file": "learn/airspace-and-atc/common-mistakes-pilots-make-at-non-towered-airports/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/contaminated-runway-landings-explained/",
+      "file": "learn/airspace-and-atc/contaminated-runway-landings-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/faa-transponder-requirements-explained/",
+      "file": "learn/airspace-and-atc/faa-transponder-requirements-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-busiest-airport-rankings-work/",
+      "file": "learn/airspace-and-atc/how-busiest-airport-rankings-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-to-avoid-pilot-deviations-and-runway-incursions/",
+      "file": "learn/airspace-and-atc/how-to-avoid-pilot-deviations-and-runway-incursions/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-to-communicate-with-atc-the-right-way/",
+      "file": "learn/airspace-and-atc/how-to-communicate-with-atc-the-right-way/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-to-listen-to-atc-online-step-by-step-guide/",
+      "file": "learn/airspace-and-atc/how-to-listen-to-atc-online-step-by-step-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-to-operate-near-restricted-areas/",
+      "file": "learn/airspace-and-atc/how-to-operate-near-restricted-areas/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-to-read-a-windsock/",
+      "file": "learn/airspace-and-atc/how-to-read-a-windsock/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/how-to-use-the-icao-aviation-alphabet/",
+      "file": "learn/airspace-and-atc/how-to-use-the-icao-aviation-alphabet/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/light-gun-signals-the-complete-guide-to-atc-lights/",
+      "file": "learn/airspace-and-atc/light-gun-signals-the-complete-guide-to-atc-lights/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/nato-phonetic-alphabet-learn-it-fast-with-these-easy-tips/",
+      "file": "learn/airspace-and-atc/nato-phonetic-alphabet-learn-it-fast-with-these-easy-tips/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/off-airport-landings-what-are-they/",
+      "file": "learn/airspace-and-atc/off-airport-landings-what-are-they/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/pilot-smartwatches-features-that-help/",
+      "file": "learn/airspace-and-atc/pilot-smartwatches-features-that-help/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/runway-lights-explained-colors-spacing-types/",
+      "file": "learn/airspace-and-atc/runway-lights-explained-colors-spacing-types/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/runway-numbers-a-simple-guide-to-what-they-mean/",
+      "file": "learn/airspace-and-atc/runway-numbers-a-simple-guide-to-what-they-mean/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/everything-you-need-to-know-about-soft-field-runways/",
+      "file": "learn/airspace-and-atc/everything-you-need-to-know-about-soft-field-runways/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/squawk-codes-list-and-3-ways-to-remember-them/",
+      "file": "learn/airspace-and-atc/squawk-codes-list-and-3-ways-to-remember-them/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/trsa-airspace-explained-terminal-radar-service-area/",
+      "file": "learn/airspace-and-atc/trsa-airspace-explained-terminal-radar-service-area/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/the-dangers-of-runway-incursion-and-how-to-prevent-them/",
+      "file": "learn/airspace-and-atc/the-dangers-of-runway-incursion-and-how-to-prevent-them/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/transponder-modes-explained-mode-a-mode-c-mode-s-ident/",
+      "file": "learn/airspace-and-atc/transponder-modes-explained-mode-a-mode-c-mode-s-ident/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/understanding-the-traffic-pattern/",
+      "file": "learn/airspace-and-atc/understanding-the-traffic-pattern/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/vfr-flight-following-explained/",
+      "file": "learn/airspace-and-atc/vfr-flight-following-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/what-are-notams-notices-to-airmen-explained/",
+      "file": "learn/airspace-and-atc/what-are-notams-notices-to-airmen-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/what-is-ctaf-common-traffic-advisory-frequency-ctaf-explained/",
+      "file": "learn/airspace-and-atc/what-is-ctaf-common-traffic-advisory-frequency-ctaf-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-and-atc/what-makes-general-aviation-airports-busy/",
+      "file": "learn/airspace-and-atc/what-makes-general-aviation-airports-busy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/aircraft-dispatcher-job-requirements/",
+      "file": "learn/career-and-cfi/aircraft-dispatcher-job-requirements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-much-do-aircraft-dispatchers-earn/",
+      "file": "learn/career-and-cfi/how-much-do-aircraft-dispatchers-earn/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/aviation-colleges-how-to-compare-programs/",
+      "file": "learn/career-and-cfi/aviation-colleges-how-to-compare-programs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/cfi-recent-experience-requirements/",
+      "file": "learn/career-and-cfi/cfi-recent-experience-requirements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/airline-pilot-college-degree-preferences/",
+      "file": "learn/career-and-cfi/airline-pilot-college-degree-preferences/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/do-you-need-a-degree-to-become-a-pilot/",
+      "file": "learn/career-and-cfi/do-you-need-a-degree-to-become-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/fedex-pilot-career-pay-schedule-requirements/",
+      "file": "learn/career-and-cfi/fedex-pilot-career-pay-schedule-requirements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-much-do-airline-pilots-get-paid/",
+      "file": "learn/career-and-cfi/how-much-do-airline-pilots-get-paid/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-to-become-a-delta-airlines-pilot/",
+      "file": "learn/career-and-cfi/how-to-become-a-delta-airlines-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-to-become-a-flight-instructor/",
+      "file": "learn/career-and-cfi/how-to-become-a-flight-instructor/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-to-get-a-restricted-atp-r-atp-requirements/",
+      "file": "learn/career-and-cfi/how-to-get-a-restricted-atp-r-atp-requirements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-to-get-an-airline-transport-pilot-certificate/",
+      "file": "learn/career-and-cfi/how-to-get-an-airline-transport-pilot-certificate/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-to-make-cfi-flashcards-that-actually-work/",
+      "file": "learn/career-and-cfi/how-to-make-cfi-flashcards-that-actually-work/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-many-pilot-certificates-are-issued-per-year-private-commercial-atp/",
+      "file": "learn/career-and-cfi/how-many-pilot-certificates-are-issued-per-year-private-commercial-atp/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/is-being-a-pilot-a-good-career-answered-by-a-professional-pilot/",
+      "file": "learn/career-and-cfi/is-being-a-pilot-a-good-career-answered-by-a-professional-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/is-a-degree-really-needed-to-succeed-as-a-pilot/",
+      "file": "learn/career-and-cfi/is-a-degree-really-needed-to-succeed-as-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/low-time-pilot-jobs-and-how-to-build-airplane-hours/",
+      "file": "learn/career-and-cfi/low-time-pilot-jobs-and-how-to-build-airplane-hours/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-much-do-pilots-make/",
+      "file": "learn/career-and-cfi/how-much-do-pilots-make/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/how-much-do-pilots-earn-in-the-us/",
+      "file": "learn/career-and-cfi/how-much-do-pilots-earn-in-the-us/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/career-and-cfi/what-is-it-like-to-be-a-southwest-pilot/",
+      "file": "learn/career-and-cfi/what-is-it-like-to-be-a-southwest-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/checkrides-and-testing/how-to-fly-lazy-eights-smoothly/",
+      "file": "learn/checkrides-and-testing/how-to-fly-lazy-eights-smoothly/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/",
+      "file": "learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/dji-mini-3-and-4-remote-id-explained/",
+      "file": "learn/drones-and-remote-pilot/dji-mini-3-and-4-remote-id-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/faa-drone-rules-and-why-ga-pilots-should-care/",
+      "file": "learn/drones-and-remote-pilot/faa-drone-rules-and-why-ga-pilots-should-care/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/remote-id-modules-for-drones-everything-you-need-to-know/",
+      "file": "learn/drones-and-remote-pilot/remote-id-modules-for-drones-everything-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/remote-id-module-buying-checklist/",
+      "file": "learn/drones-and-remote-pilot/remote-id-module-buying-checklist/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/remote-id-for-drone-pilots-explained/",
+      "file": "learn/drones-and-remote-pilot/remote-id-for-drone-pilots-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/what-is-visual-line-of-sight-vlos-for-drones/",
+      "file": "learn/drones-and-remote-pilot/what-is-visual-line-of-sight-vlos-for-drones/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/drones-and-remote-pilot/which-cbos-rules-should-you-follow/",
+      "file": "learn/drones-and-remote-pilot/which-cbos-rules-should-you-follow/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/aiming-point-vs-touchdown-point-whats-the-difference/",
+      "file": "learn/ground-school/aiming-point-vs-touchdown-point-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/craft-explained-ifr-made-simple-for-pilots/",
+      "file": "learn/ground-school/craft-explained-ifr-made-simple-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/can-an-airplane-land-itself/",
+      "file": "learn/ground-school/can-an-airplane-land-itself/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/circle-to-land-the-complete-pilots-guide/",
+      "file": "learn/ground-school/circle-to-land-the-complete-pilots-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/whats-the-difference-between-deviation-and-variation/",
+      "file": "learn/ground-school/whats-the-difference-between-deviation-and-variation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/e6b-made-easy-a-beginners-step-by-step-guide/",
+      "file": "learn/ground-school/e6b-made-easy-a-beginners-step-by-step-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/checklist-to-ace-your-faa-private-pilot-written-test/",
+      "file": "learn/ground-school/checklist-to-ace-your-faa-private-pilot-written-test/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-take-faa-tests-if-you-have-reading-or-learning-disabilities/",
+      "file": "learn/ground-school/how-to-take-faa-tests-if-you-have-reading-or-learning-disabilities/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/faa-written-test-procedures-and-ftn/",
+      "file": "learn/ground-school/faa-written-test-procedures-and-ftn/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/flight-computers-for-pilots-e6b-app-electronic/",
+      "file": "learn/ground-school/flight-computers-for-pilots-e6b-app-electronic/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/holding-pattern-entry-wind-correction-timing/",
+      "file": "learn/ground-school/holding-pattern-entry-wind-correction-timing/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/holding-procedures-airplane-holding-patterns-easily-explained/",
+      "file": "learn/ground-school/holding-procedures-airplane-holding-patterns-easily-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-hard-is-it-to-get-an-instrument-rating/",
+      "file": "learn/ground-school/how-hard-is-it-to-get-an-instrument-rating/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-do-pilots-see-at-night/",
+      "file": "learn/ground-school/how-do-pilots-see-at-night/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-brief-an-instrument-approach-step-by-step/",
+      "file": "learn/ground-school/how-to-brief-an-instrument-approach-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-find-faa-testing-centers-all-tests/",
+      "file": "learn/ground-school/how-to-find-faa-testing-centers-all-tests/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-fly-in-a-holding-pattern/",
+      "file": "learn/ground-school/how-to-fly-in-a-holding-pattern/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-fly-a-vor-approach-made-easy/",
+      "file": "learn/ground-school/how-to-fly-a-vor-approach-made-easy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-fly-an-ils-approach/",
+      "file": "learn/ground-school/how-to-fly-an-ils-approach/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-get-an-faa-tracking-number-ftn/",
+      "file": "learn/ground-school/how-to-get-an-faa-tracking-number-ftn/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-get-an-instrument-rating-step-by-step/",
+      "file": "learn/ground-school/how-to-get-an-instrument-rating-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-perform-a-safe-go-around/",
+      "file": "learn/ground-school/how-to-perform-a-safe-go-around/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-read-a-sectional-chart/",
+      "file": "learn/ground-school/how-to-read-a-sectional-chart/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/how-to-read-an-ifr-approach-chart/",
+      "file": "learn/ground-school/how-to-read-an-ifr-approach-chart/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/mastering-ifr-approach-radio-calls-a-simple-guide-for-pilots/",
+      "file": "learn/ground-school/mastering-ifr-approach-radio-calls-a-simple-guide-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/ifr-flight-planning-best-tips-for-pilots/",
+      "file": "learn/ground-school/ifr-flight-planning-best-tips-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/ifr-vs-vfr-in-aviation-understanding-the-differences/",
+      "file": "learn/ground-school/ifr-vs-vfr-in-aviation-understanding-the-differences/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/instrument-currency-requirements-explained-ipc-safety-pilot-etc/",
+      "file": "learn/ground-school/instrument-currency-requirements-explained-ipc-safety-pilot-etc/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/instrument-rating-practice-exam-35-questions-answers/",
+      "file": "learn/ground-school/instrument-rating-practice-exam-35-questions-answers/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/is-ground-school-required-for-private-pilots-a-simplified-guide/",
+      "file": "learn/ground-school/is-ground-school-required-for-private-pilots-a-simplified-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/",
+      "file": "learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/mda-vs-da-made-simple-a-guide-to-ifr-minimums/",
+      "file": "learn/ground-school/mda-vs-da-made-simple-a-guide-to-ifr-minimums/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/online-private-pilot-ground-school-how-to-choose/",
+      "file": "learn/ground-school/online-private-pilot-ground-school-how-to-choose/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/part-101-rules-faa-laws-for-kites-balloons-and-rockets/",
+      "file": "learn/ground-school/part-101-rules-faa-laws-for-kites-balloons-and-rockets/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/power-off-stall-recovery-steps-made-easy/",
+      "file": "learn/ground-school/power-off-stall-recovery-steps-made-easy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/",
+      "file": "learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/self-study-ground-school-is-it-worth-it/",
+      "file": "learn/ground-school/self-study-ground-school-is-it-worth-it/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/surface-analysis-charts-explained/",
+      "file": "learn/ground-school/surface-analysis-charts-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/vasi-vs-papi-understanding-the-differences-and-similarities/",
+      "file": "learn/ground-school/vasi-vs-papi-understanding-the-differences-and-similarities/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/what-do-you-need-to-fly-ifr/",
+      "file": "learn/ground-school/what-do-you-need-to-fly-ifr/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/what-to-do-if-your-radios-fail-on-an-ifr-flight/",
+      "file": "learn/ground-school/what-to-do-if-your-radios-fail-on-an-ifr-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ground-school/why-instrument-rating-ground-school-matters/",
+      "file": "learn/ground-school/why-instrument-rating-ground-school-matters/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/are-you-too-old-to-become-a-airline-pilot/",
+      "file": "learn/medical-and-certificates/are-you-too-old-to-become-a-airline-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/basicmed-guide-everything-you-need-to-know/",
+      "file": "learn/medical-and-certificates/basicmed-guide-everything-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/can-pilots-wear-hearing-aids-private-and-commercial/",
+      "file": "learn/medical-and-certificates/can-pilots-wear-hearing-aids-private-and-commercial/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/becoming-a-color-blind-pilot-is-it-possible/",
+      "file": "learn/medical-and-certificates/becoming-a-color-blind-pilot-is-it-possible/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/",
+      "file": "learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/faa-aircraft-dispatcher-certificate-cost/",
+      "file": "learn/medical-and-certificates/faa-aircraft-dispatcher-certificate-cost/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/faa-medical-certificate-requirements-made-easy/",
+      "file": "learn/medical-and-certificates/faa-medical-certificate-requirements-made-easy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/faa-medical-certificate-and-exam-for-pilots-made-easy/",
+      "file": "learn/medical-and-certificates/faa-medical-certificate-and-exam-for-pilots-made-easy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/fit-to-fly-pilot-health-made-simple/",
+      "file": "learn/medical-and-certificates/fit-to-fly-pilot-health-made-simple/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/flight-school-faqs-made-easy-answering-your-top-questions/",
+      "file": "learn/medical-and-certificates/flight-school-faqs-made-easy-answering-your-top-questions/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/getting-your-pilots-license-as-a-non-us-citizen/",
+      "file": "learn/medical-and-certificates/getting-your-pilots-license-as-a-non-us-citizen/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/how-much-does-it-cost-to-become-a-helicopter-pilot/",
+      "file": "learn/medical-and-certificates/how-much-does-it-cost-to-become-a-helicopter-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/how-long-does-it-take-to-become-a-pilot/",
+      "file": "learn/medical-and-certificates/how-long-does-it-take-to-become-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/",
+      "file": "learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/",
+      "file": "learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/how-to-get-an-fcc-restricted-radiotelephone-operator-permit/",
+      "file": "learn/medical-and-certificates/how-to-get-an-fcc-restricted-radiotelephone-operator-permit/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/lasik-for-pilots-is-it-a-good-idea/",
+      "file": "learn/medical-and-certificates/lasik-for-pilots-is-it-a-good-idea/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/what-can-you-do-with-each-pilot-license-ppl-cpl-atpl/",
+      "file": "learn/medical-and-certificates/what-can-you-do-with-each-pilot-license-ppl-cpl-atpl/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/pilot-height-requirements-myths-vs-reality/",
+      "file": "learn/medical-and-certificates/pilot-height-requirements-myths-vs-reality/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/returning-to-flying-after-years-away/",
+      "file": "learn/medical-and-certificates/returning-to-flying-after-years-away/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/medical-and-certificates/sport-pilot-certificates-whats-required-and-is-it-worth-it/",
+      "file": "learn/medical-and-certificates/sport-pilot-certificates-whats-required-and-is-it-worth-it/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/pilot-gear-and-tools/flight-simulator-throttle-quadrants/",
+      "file": "learn/pilot-gear-and-tools/flight-simulator-throttle-quadrants/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/pilot-gear-and-tools/how-to-choose-aviation-apps-for-pilots/",
+      "file": "learn/pilot-gear-and-tools/how-to-choose-aviation-apps-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/10-gift-ideas-for-aviation-lovers-and-enthusiasts/",
+      "file": "learn/private-pilot/10-gift-ideas-for-aviation-lovers-and-enthusiasts/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/",
+      "file": "learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/",
+      "file": "learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/10-tips-for-talking-to-atc/",
+      "file": "learn/private-pilot/10-tips-for-talking-to-atc/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/12-essential-items-all-pilots-should-have-in-their-gear/",
+      "file": "learn/private-pilot/12-essential-items-all-pilots-should-have-in-their-gear/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/6-reasons-why-student-pilots-quit/",
+      "file": "learn/private-pilot/6-reasons-why-student-pilots-quit/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/the-hazards-of-aircraft-icing-explained/",
+      "file": "learn/private-pilot/the-hazards-of-aircraft-icing-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/aircraft-renters-insurance-everything-you-need-to-know/",
+      "file": "learn/private-pilot/aircraft-renters-insurance-everything-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/airplane-landing-technique-student-pilots/",
+      "file": "learn/private-pilot/airplane-landing-technique-student-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/airport-beacons-explained/",
+      "file": "learn/private-pilot/airport-beacons-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/airport-diagrams-explained/",
+      "file": "learn/private-pilot/airport-diagrams-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/airport-diversions-10-tips-for-pilots/",
+      "file": "learn/private-pilot/airport-diversions-10-tips-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/can-you-make-money-flying-with-a-private-pilot-license-pro-rata-cost-sharing/",
+      "file": "learn/private-pilot/can-you-make-money-flying-with-a-private-pilot-license-pro-rata-cost-sharing/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-much-does-a-checkride-cost/",
+      "file": "learn/private-pilot/how-much-does-a-checkride-cost/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/every-aviation-word-explained/",
+      "file": "learn/private-pilot/every-aviation-word-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/complete-home-flight-simulator-setup-guide/",
+      "file": "learn/private-pilot/complete-home-flight-simulator-setup-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/cross-country-flight-plan-made-easy-with-tips-and-examples/",
+      "file": "learn/private-pilot/cross-country-flight-plan-made-easy-with-tips-and-examples/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/crosswind-taxi-techniques/",
+      "file": "learn/private-pilot/crosswind-taxi-techniques/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/faa-medical-certificates-everything-you-need-to-know/",
+      "file": "learn/private-pilot/faa-medical-certificates-everything-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/faa-private-pilot-night-requirements-can-you-fly-airplanes-at-night/",
+      "file": "learn/private-pilot/faa-private-pilot-night-requirements-can-you-fly-airplanes-at-night/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/flight-bags-for-pilots-what-to-look-for/",
+      "file": "learn/private-pilot/flight-bags-for-pilots-what-to-look-for/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/flight-school-study-tips-simplified-how-to-stay-on-track/",
+      "file": "learn/private-pilot/flight-school-study-tips-simplified-how-to-stay-on-track/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/flight-training-study-material-list-faa-phak-far-aim-documents-etc/",
+      "file": "learn/private-pilot/flight-training-study-material-list-faa-phak-far-aim-documents-etc/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/flying-in-bad-weather-is-it-safe-or-possible/",
+      "file": "learn/private-pilot/flying-in-bad-weather-is-it-safe-or-possible/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/four-stroke-engines-everything-you-need-to-know/",
+      "file": "learn/private-pilot/four-stroke-engines-everything-you-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/ground-school-vs-flight-school-whats-the-difference/",
+      "file": "learn/private-pilot/ground-school-vs-flight-school-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/high-vs-low-pressure-systems-explained/",
+      "file": "learn/private-pilot/high-vs-low-pressure-systems-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-hard-is-it-to-become-a-private-pilot/",
+      "file": "learn/private-pilot/how-hard-is-it-to-become-a-private-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-long-is-a-private-pilot-license-valid-ppl-currency/",
+      "file": "learn/private-pilot/how-long-is-a-private-pilot-license-valid-ppl-currency/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-many-hours-it-takes-to-become-a-pilot/",
+      "file": "learn/private-pilot/how-many-hours-it-takes-to-become-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-old-do-you-have-to-be-to-start-pilot-training/",
+      "file": "learn/private-pilot/how-old-do-you-have-to-be-to-start-pilot-training/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-old-do-you-need-to-be-to-get-your-pilots-license/",
+      "file": "learn/private-pilot/how-old-do-you-need-to-be-to-get-your-pilots-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-apply-for-flight-scholarships-and-reduce-training-costs/",
+      "file": "learn/private-pilot/how-to-apply-for-flight-scholarships-and-reduce-training-costs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-avoid-hypoxia-as-a-pilot/",
+      "file": "learn/private-pilot/how-to-avoid-hypoxia-as-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-become-a-pilot-step-by-step/",
+      "file": "learn/private-pilot/how-to-become-a-pilot-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-budget-for-flight-training-without-burning-out/",
+      "file": "learn/private-pilot/how-to-budget-for-flight-training-without-burning-out/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-convert-a-foreign-pilot-license-to-an-faa-certificate/",
+      "file": "learn/private-pilot/how-to-convert-a-foreign-pilot-license-to-an-faa-certificate/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-fly-better-steep-turns-step-by-step/",
+      "file": "learn/private-pilot/how-to-fly-better-steep-turns-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-fly-turns-around-a-point/",
+      "file": "learn/private-pilot/how-to-fly-turns-around-a-point/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-get-your-private-pilot-license/",
+      "file": "learn/private-pilot/how-to-get-your-private-pilot-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-get-a-private-pilot-license-step-by-step/",
+      "file": "learn/private-pilot/how-to-get-a-private-pilot-license-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-improve-your-landings/",
+      "file": "learn/private-pilot/how-to-improve-your-landings/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-improve-soft-field-landings/",
+      "file": "learn/private-pilot/how-to-improve-soft-field-landings/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-land-an-airplane/",
+      "file": "learn/private-pilot/how-to-land-an-airplane/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-make-the-most-of-your-weekend-ground-school/",
+      "file": "learn/private-pilot/how-to-make-the-most-of-your-weekend-ground-school/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-plan-efficient-private-pilot-training/",
+      "file": "learn/private-pilot/how-to-plan-efficient-private-pilot-training/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-plan-a-cross-country-flight/",
+      "file": "learn/private-pilot/how-to-plan-a-cross-country-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-practice-slow-flight-step-by-step/",
+      "file": "learn/private-pilot/how-to-practice-slow-flight-step-by-step/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/prepare-for-your-first-discovery-flight/",
+      "file": "learn/private-pilot/prepare-for-your-first-discovery-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-reduce-private-pilot-training-costs/",
+      "file": "learn/private-pilot/how-to-reduce-private-pilot-training-costs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-to-talk-to-atc-beginners-guide/",
+      "file": "learn/private-pilot/how-to-talk-to-atc-beginners-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/managing-flight-anxiety-pre-solo-and-exam-nerves-made-easy/",
+      "file": "learn/private-pilot/managing-flight-anxiety-pre-solo-and-exam-nerves-made-easy/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pilot-cv-advertise-your-skills-with-example/",
+      "file": "learn/private-pilot/pilot-cv-advertise-your-skills-with-example/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/types-of-pilot-licenses-explained-student-recreational-private-commercial-atp-and-more/",
+      "file": "learn/private-pilot/types-of-pilot-licenses-explained-student-recreational-private-commercial-atp-and-more/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pilot-kneeboards-what-student-pilots-need/",
+      "file": "learn/private-pilot/pilot-kneeboards-what-student-pilots-need/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pilot-seat-cushions-fit-comfort-safety/",
+      "file": "learn/private-pilot/pilot-seat-cushions-fit-comfort-safety/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pilot-shortage-explained-student-pilots/",
+      "file": "learn/private-pilot/pilot-shortage-explained-student-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pilot-training-books-worth-using/",
+      "file": "learn/private-pilot/pilot-training-books-worth-using/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/how-much-does-it-cost-to-become-a-pilot/",
+      "file": "learn/private-pilot/how-much-does-it-cost-to-become-a-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pilot-training-mistakes-you-dont-want-to-make/",
+      "file": "learn/private-pilot/pilot-training-mistakes-you-dont-want-to-make/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-acs-airman-certification-standards-101/",
+      "file": "learn/private-pilot/private-pilot-acs-airman-certification-standards-101/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-checkride-maneuvers-checklist/",
+      "file": "learn/private-pilot/private-pilot-checkride-maneuvers-checklist/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-crash-statistics-general-aviation-accidents/",
+      "file": "learn/private-pilot/private-pilot-crash-statistics-general-aviation-accidents/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-flight-review-requirements/",
+      "file": "learn/private-pilot/private-pilot-flight-review-requirements/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-glider-a-low-cost-way-to-fly/",
+      "file": "learn/private-pilot/private-pilot-glider-a-low-cost-way-to-fly/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-landing-tips-16-keys-to-success/",
+      "file": "learn/private-pilot/private-pilot-landing-tips-16-keys-to-success/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilots-lessons-what-it-takes-and-how-to-get-started/",
+      "file": "learn/private-pilot/private-pilots-lessons-what-it-takes-and-how-to-get-started/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/privileges-limits-and-requirements-of-a-private-pilot-license/",
+      "file": "learn/private-pilot/privileges-limits-and-requirements-of-a-private-pilot-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-license-requirements-for-dummies/",
+      "file": "learn/private-pilot/private-pilot-license-requirements-for-dummies/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-practice-exam-35-questions-answers/",
+      "file": "learn/private-pilot/private-pilot-practice-exam-35-questions-answers/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-requirements-how-to-get-your-pilots-license/",
+      "file": "learn/private-pilot/private-pilot-requirements-how-to-get-your-pilots-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-roadblocks-and-fixes/",
+      "file": "learn/private-pilot/private-pilot-roadblocks-and-fixes/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/private-pilot-salary-how-much-do-private-pilots-make/",
+      "file": "learn/private-pilot/private-pilot-salary-how-much-do-private-pilots-make/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/pro-rata-share-explained-a-simple-guide-for-everyone/",
+      "file": "learn/private-pilot/pro-rata-share-explained-a-simple-guide-for-everyone/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/quick-crosswind-calculation-for-pilots/",
+      "file": "learn/private-pilot/quick-crosswind-calculation-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/rnav-approaches-explained-for-student-pilots/",
+      "file": "learn/private-pilot/rnav-approaches-explained-for-student-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/the-essential-guide-to-runway-markings/",
+      "file": "learn/private-pilot/the-essential-guide-to-runway-markings/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/the-essential-guide-to-runway-signs/",
+      "file": "learn/private-pilot/the-essential-guide-to-runway-signs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/situational-awareness-made-easy-a-student-pilots-guide/",
+      "file": "learn/private-pilot/situational-awareness-made-easy-a-student-pilots-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/takeoff-procedure-for-student-pilots/",
+      "file": "learn/private-pilot/takeoff-procedure-for-student-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/everything-you-need-to-know-about-taxiway-lighting/",
+      "file": "learn/private-pilot/everything-you-need-to-know-about-taxiway-lighting/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/the-5-types-of-flaps-explained/",
+      "file": "learn/private-pilot/the-5-types-of-flaps-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/the-benefits-of-a-pilot-license-11-reasons-to-get-one/",
+      "file": "learn/private-pilot/the-benefits-of-a-pilot-license-11-reasons-to-get-one/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/transponder-codes-student-pilots-use/",
+      "file": "learn/private-pilot/transponder-codes-student-pilots-use/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/v-speeds-explained-vx-vy-va-vs-vfe-vmc-vno-vne-etc/",
+      "file": "learn/private-pilot/v-speeds-explained-vx-vy-va-vs-vfe-vmc-vno-vne-etc/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/what-can-you-do-with-a-private-pilot-license/",
+      "file": "learn/private-pilot/what-can-you-do-with-a-private-pilot-license/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/what-is-a-cross-country-flight/",
+      "file": "learn/private-pilot/what-is-a-cross-country-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/what-is-a-private-pilot/",
+      "file": "learn/private-pilot/what-is-a-private-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/what-to-expect-on-a-discovery-flight/",
+      "file": "learn/private-pilot/what-to-expect-on-a-discovery-flight/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/why-student-pilots-quit-and-how-to-finish/",
+      "file": "learn/private-pilot/why-student-pilots-quit-and-how-to-finish/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/private-pilot/your-first-solo-flight-made-simple-and-stress-free/",
+      "file": "learn/private-pilot/your-first-solo-flight-made-simple-and-stress-free/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/airmets-vs-sigmets-whats-the-difference/",
+      "file": "learn/weather-and-safety/airmets-vs-sigmets-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/can-planes-fly-in-rain-or-other-severe-weather/",
+      "file": "learn/weather-and-safety/can-planes-fly-in-rain-or-other-severe-weather/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/carburetor-icing-causes-symptoms-and-prevention/",
+      "file": "learn/weather-and-safety/carburetor-icing-causes-symptoms-and-prevention/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/clear-air-turbulence-how-it-happens-and-how-to-handle-it/",
+      "file": "learn/weather-and-safety/clear-air-turbulence-how-it-happens-and-how-to-handle-it/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/causes-of-plane-crashes-how-to-prevent-them/",
+      "file": "learn/weather-and-safety/causes-of-plane-crashes-how-to-prevent-them/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/crosswind-estimate-simple-calculation-methods-for-pilots/",
+      "file": "learn/weather-and-safety/crosswind-estimate-simple-calculation-methods-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/understanding-crosswind-landings-takeoffs-and-landings/",
+      "file": "learn/weather-and-safety/understanding-crosswind-landings-takeoffs-and-landings/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/cumulonimbus-clouds-what-you-as-a-pilot-need-to-know/",
+      "file": "learn/weather-and-safety/cumulonimbus-clouds-what-you-as-a-pilot-need-to-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/deadstick-landings-how-pilots-handle-engine-out-emergencies/",
+      "file": "learn/weather-and-safety/deadstick-landings-how-pilots-handle-engine-out-emergencies/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/how-to-calculate-density-altitude-without-a-math-degree/",
+      "file": "learn/weather-and-safety/how-to-calculate-density-altitude-without-a-math-degree/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/how-to-read-metar-and-taf-reports/",
+      "file": "learn/weather-and-safety/how-to-read-metar-and-taf-reports/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/how-to-read-a-metar/",
+      "file": "learn/weather-and-safety/how-to-read-a-metar/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/how-to-read-a-taf/",
+      "file": "learn/weather-and-safety/how-to-read-a-taf/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/icing-awareness-in-ifr-flying-how-to-stay-safe-in-winter-weather/",
+      "file": "learn/weather-and-safety/icing-awareness-in-ifr-flying-how-to-stay-safe-in-winter-weather/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/is-flying-safer-than-driving-the-truth-about-general-aviation/",
+      "file": "learn/weather-and-safety/is-flying-safer-than-driving-the-truth-about-general-aviation/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/mastering-crosswind-landings-a-step-by-step-guide/",
+      "file": "learn/weather-and-safety/mastering-crosswind-landings-a-step-by-step-guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/microbursts-what-makes-them-so-dangerous/",
+      "file": "learn/weather-and-safety/microbursts-what-makes-them-so-dangerous/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/n4467d-accident-report-important-lessons-from-a-deadly-aviation-incident/",
+      "file": "learn/weather-and-safety/n4467d-accident-report-important-lessons-from-a-deadly-aviation-incident/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/night-vfr-flying-equipment-and-risks/",
+      "file": "learn/weather-and-safety/night-vfr-flying-equipment-and-risks/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/occluded-fronts-what-pilots-need-to-prepare-for/",
+      "file": "learn/weather-and-safety/occluded-fronts-what-pilots-need-to-prepare-for/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/pave-checklist-explained/",
+      "file": "learn/weather-and-safety/pave-checklist-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/pilot-safety-simplified-proficiency-vs-currency-explained/",
+      "file": "learn/weather-and-safety/pilot-safety-simplified-proficiency-vs-currency-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/pressure-altitude-vs-density-altitude-whats-the-difference/",
+      "file": "learn/weather-and-safety/pressure-altitude-vs-density-altitude-whats-the-difference/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/rejected-takeoff-to-stop-or-go/",
+      "file": "learn/weather-and-safety/rejected-takeoff-to-stop-or-go/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/inversions-in-meteorology-how-they-impact-pilots-and-weather/",
+      "file": "learn/weather-and-safety/inversions-in-meteorology-how-they-impact-pilots-and-weather/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/the-6-types-of-altitude-in-aviation-airplane-pilots/",
+      "file": "learn/weather-and-safety/the-6-types-of-altitude-in-aviation-airplane-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/the-7-types-of-fog-every-pilot-should-know/",
+      "file": "learn/weather-and-safety/the-7-types-of-fog-every-pilot-should-know/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/the-difference-between-a-forward-slip-and-a-sideslip/",
+      "file": "learn/weather-and-safety/the-difference-between-a-forward-slip-and-a-sideslip/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/the-effect-of-wind-speed-on-an-airplane/",
+      "file": "learn/weather-and-safety/the-effect-of-wind-speed-on-an-airplane/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/types-of-thunderstorms-in-aviation-from-simple-to-severe/",
+      "file": "learn/weather-and-safety/types-of-thunderstorms-in-aviation-from-simple-to-severe/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/true-course-vs-true-heading-understanding-the-difference-when-flying/",
+      "file": "learn/weather-and-safety/true-course-vs-true-heading-understanding-the-difference-when-flying/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/types-of-turbulence-explained/",
+      "file": "learn/weather-and-safety/types-of-turbulence-explained/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/weather-fronts-explained-cold-warm-stationary-occluded/",
+      "file": "learn/weather-and-safety/weather-fronts-explained-cold-warm-stationary-occluded/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/weather-minimums-for-pilots-rain-snow-clouds/",
+      "file": "learn/weather-and-safety/weather-minimums-for-pilots-rain-snow-clouds/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-air-density-a-simple-guide-for-pilots/",
+      "file": "learn/weather-and-safety/what-is-air-density-a-simple-guide-for-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-fod-foreign-object-damage-aviation-definition/",
+      "file": "learn/weather-and-safety/what-is-fod-foreign-object-damage-aviation-definition/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-special-vfr-svfr-and-how-can-you-use-it/",
+      "file": "learn/weather-and-safety/what-is-special-vfr-svfr-and-how-can-you-use-it/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-turbulence-what-causes-it-and-the-different-types/",
+      "file": "learn/weather-and-safety/what-is-turbulence-what-causes-it-and-the-different-types/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-a-belly-landing-causes-risks-and-recovery/",
+      "file": "learn/weather-and-safety/what-is-a-belly-landing-causes-risks-and-recovery/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-a-speci-and-when-is-it-issued/",
+      "file": "learn/weather-and-safety/what-is-a-speci-and-when-is-it-issued/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/what-is-a-squall-line-pilot-weather-guide-with-visuals/",
+      "file": "learn/weather-and-safety/what-is-a-squall-line-pilot-weather-guide-with-visuals/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-and-safety/why-do-aircraft-crash-aviation-accident-statistics-revealed/",
+      "file": "learn/weather-and-safety/why-do-aircraft-crash-aviation-accident-statistics-revealed/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/instrument-rating/",
+      "file": "learn/instrument-rating/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/commercial-pilot/",
+      "file": "learn/commercial-pilot/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/cfi/",
+      "file": "learn/cfi/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/faa-written-test/",
+      "file": "learn/faa-written-test/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/checkride-prep/",
+      "file": "learn/checkride-prep/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/flight-training-costs/",
+      "file": "learn/flight-training-costs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/pilot-medicals/",
+      "file": "learn/pilot-medicals/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/weather-for-student-pilots/",
+      "file": "learn/weather-for-student-pilots/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/airspace-radio-communications/",
+      "file": "learn/airspace-radio-communications/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/landings-and-takeoffs/",
+      "file": "learn/landings-and-takeoffs/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/ifr-procedures/",
+      "file": "learn/ifr-procedures/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/pilot-careers/",
+      "file": "learn/pilot-careers/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn/multi-engine-rating/",
+      "file": "learn/multi-engine-rating/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/flight-risk-assessment/",
+      "file": "flight-risk-assessment/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/flight-risk-assessment/methodology/",
+      "file": "flight-risk-assessment/methodology/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/flight-risk-assessment/guide/",
+      "file": "flight-risk-assessment/guide/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/discovery-flight-louisville-ky/",
+      "file": "discovery-flight-louisville-ky/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/learn-to-fly-louisville/",
+      "file": "learn-to-fly-louisville/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/flight-instructor-louisville/",
+      "file": "flight-instructor-louisville/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/southern-indiana-flight-training/",
+      "file": "southern-indiana-flight-training/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/certificate-generator/",
+      "file": "certificate-generator/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/how-to-choose-a-flight-school-louisville/",
+      "file": "blog/how-to-choose-a-flight-school-louisville/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/faa-written-test-center-louisville/",
+      "file": "blog/faa-written-test-center-louisville/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/medexpress-faa-medical-walkthrough/",
+      "file": "blog/medexpress-faa-medical-walkthrough/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/kentucky-derby-tfr-flying/",
+      "file": "blog/kentucky-derby-tfr-flying/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/blog/landing-practice-bowman-field/",
+      "file": "blog/landing-practice-bowman-field/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/aero-lab/",
+      "file": "aero-lab/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/engine-explorer/",
+      "file": "engine-explorer/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/foi-cards/",
+      "file": "foi-cards/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/pilotsolve/",
+      "file": "pilotsolve/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    },
+    {
+      "route": "/tools/",
+      "file": "tools/index.html",
+      "exists": true,
+      "runtime": true,
+      "sharedStyle": true
+    }
+  ],
+  "protected": [
+    {
+      "file": "assets/premium-home.js",
+      "unchanged": true
+    },
+    {
+      "file": "assets/premium-home.css",
+      "unchanged": true
+    },
+    {
+      "file": "assets/premium/sky-horizon.png",
+      "unchanged": true
+    },
+    {
+      "file": "assets/premium/sky-day.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "assets/premium/sky-night.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-1GSDKlj9.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-BM1bFKd0.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-BfKF-dLj.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-BqF0ApUG.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-Br5fa2ZT.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-CEWPGk5F.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-CtUj2gM8.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-CwZh6lgu.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-CwpBUSGx.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-CxOjyL4X.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-CyzAT2O5.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-DEFif3WO.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-Llr3ReTc.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-Sp9dCopW.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-e4LhXOIL.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/IgnitionLab-t4IqM3k5.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-BwiHAWWP.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-CaoWxxoQ.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-Co03dQ7U.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-Czv5I7BN.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-D8iIdKvC.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-DVnulUD4.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-DWGZzOg3.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-MbOIJbBJ.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-PbGR8h3T.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-dO35MgVX.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/InstrumentApp-rn4VoRHz.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-7U5PFYkg.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-BBbL6oul.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-BOxk6Ov7.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-BbjDCd0v.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-Bd6BMuYx.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-BnFkiscX.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-DMQiEtu1.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-DSh9E1K3.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-DTJmsmIu.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-DVDE-NZ0.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-DVIC_L6Q.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-Dw26CC5S.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-Dzqn6R9D.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-aicmwaz5.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-u8STES6H.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/index-uGnB7pbu.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/three-BxxSwtIj.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/three-D-010ueG.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/assets/three-DBxnwCtJ.js",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/instruments/airspeed.glb",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/instruments/altimeter.glb",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/instruments/attitude.glb",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/instruments/heading.glb",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/instruments/turn-coordinator.glb",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/instruments/vsi.glb",
+      "unchanged": true
+    },
+    {
+      "file": "engine-explorer/app/models/flight-instruments/traditional-six-pack/bench.glb",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/js/certificate-generator.js",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/cfi.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/cfii.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/commercial.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/first-solo.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/instrument.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/multi-engine-commercial.png",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/multi-engine-instructor.png",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/multi-engine-rating.png",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/multi-engine.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/private.jpg",
+      "unchanged": true
+    },
+    {
+      "file": "certificate-generator/templates/sport.jpg",
+      "unchanged": true
+    }
+  ],
+  "failures": [],
+  "evidenceBoundary": "Static route/asset checks. Visual and interaction evidence is recorded separately."
+}

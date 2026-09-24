@@ -19,7 +19,7 @@ function init(nav){
  section.addEventListener('click',function(e){var b=e.target.closest('[data-appearance]');if(b&&window.SuarezAppearance)window.SuarezAppearance.setPreference(b.dataset.appearance)});section.querySelector('input').addEventListener('change',function(e){if(window.SuarezAppearance)window.SuarezAppearance.setSolid(e.target.checked)});window.addEventListener('suarez:appearance',sync);sync();
  // Existing extra tool actions live in Menu, leaving one stable control row.
  var tools=nav.querySelector('.nav-tools');if(tools){var extras=Array.from(tools.children).filter(function(el){return el!==toggle&&el!==links&&!el.contains(links)});if(extras.length){var actions=document.createElement('section');actions.className='av-menu-actions';actions.setAttribute('aria-label','Tool actions');extras.forEach(function(el){actions.appendChild(el)});links.insertBefore(actions,section)}}
- var resize=function(){document.documentElement.style.setProperty('--dock-clearance',(nav.getBoundingClientRect().height+36)+'px')};if(window.ResizeObserver)new ResizeObserver(resize).observe(nav);resize();
+ var expandedHeight=0;var resize=function(){if(nav.classList.contains('av-dock-collapsed'))return;expandedHeight=Math.max(expandedHeight,nav.getBoundingClientRect().height);document.documentElement.style.setProperty('--dock-clearance',(expandedHeight+36)+'px')};if(window.ResizeObserver)new ResizeObserver(resize).observe(nav);resize();
 }
 function ready(){document.querySelectorAll('.nav').forEach(init)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready);else ready();
 })();

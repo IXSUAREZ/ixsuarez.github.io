@@ -1,0 +1,131 @@
+--- a/aero-lab/src/App.tsx
++++ b/aero-lab/src/App.tsx
+@@ -174,6 +174,8 @@
+       </span>
+       <input
+         aria-label={label}
++        data-av-rotary={unit === "°" ? "" : undefined}
++        data-av-unit={unit}
+         aria-valuetext={`${fmt(value, step < 1 ? 1 : 0)}${unit}`}
+         type="range"
+         min={min}
+--- a/aero-lab/src/components/SiteNavigation.tsx
++++ b/aero-lab/src/components/SiteNavigation.tsx
+@@ -60,20 +60,22 @@
+   return (
+     <>
+       <div className="aero-dock-wrap">
+-        <nav className="aero-dock" aria-label="Suarez CFI navigation" ref={dockRef}>
++        <nav data-tactile-dock="" className="aero-dock" aria-label="Suarez CFI navigation" ref={dockRef}>
+           <div className="aero-dock__destinations">
+             {destinations.map((item) => (
+               <a
++                data-dock-key=""
+                 className={item.mobile ? "aero-dock__mobile" : "aero-dock__wide"}
+                 href={item.href}
+                 key={item.label}
+               >
+                 <item.icon size={19} aria-hidden="true" />
+-                <span>{item.label}</span>
++                <span data-dock-label="">{item.label}</span>
+               </a>
+             ))}
+           </div>
+           <button
++            data-dock-key=""
+             className="aero-dock__menu"
+             ref={menuButtonRef}
+             type="button"
+@@ -81,7 +83,7 @@
+             aria-controls={menuId}
+             onClick={() => setOpen((value) => !value)}
+           >
+-            <Menu size={19} aria-hidden="true" /><span>Menu</span>
++            <Menu size={19} aria-hidden="true" /><span data-dock-label="">Menu</span>
+           </button>
+           <section className="aero-dock__panel" id={menuId} hidden={!open} aria-label="Site links and appearance">
+             <h2>Aero Lab</h2>
+--- a/aero-lab/src/components/GeometryStudio.tsx
++++ b/aero-lab/src/components/GeometryStudio.tsx
+@@ -376,7 +376,7 @@
+       {label}
+       <input
+         aria-label={label}
+-        type="number"
++        type="number" data-av-stepper=""
+         step={step}
+         value={Number(value.toFixed(5))}
+         onChange={(e) => {
+@@ -565,7 +565,7 @@
+               Loop duration (s)
+               <input
+                 aria-label="Loop duration"
+-                type="number"
++                type="number" data-av-stepper=""
+                 min=".1"
+                 max="120"
+                 step=".1"
+--- a/aero-lab/index.html
++++ b/aero-lab/index.html
+@@ -27,6 +27,7 @@
+ <meta name="twitter:description" content="Make the invisible visible. Explore airflow, lift, pressure, and drag." />
+ <meta name="twitter:image" content="https://suarezcfi.com/aero-lab/icons/og-aero-lab.png" />
+ <meta name="twitter:image:alt" content="Aero Lab by Suarez CFI. Make the invisible visible, with an airfoil and colorful airflow logo." />
++<script defer src="/assets/tactile.js"></script>
+ </head>
+ <body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body>
+ </html>
+--- a/flightrisk-app/src/components/assessment/RiskToggleRow.tsx
++++ b/flightrisk-app/src/components/assessment/RiskToggleRow.tsx
+@@ -22,7 +22,7 @@
+     <span
+       aria-hidden
+       className={cn(
+-        'relative inline-flex h-[26px] w-[46px] shrink-0 rounded-full transition-colors duration-200',
++        'av-rocker-track relative inline-flex h-[26px] w-[46px] shrink-0 rounded-full transition-colors duration-200',
+         unanswered
+           ? 'bg-ink-200/50'
+           : checked
+@@ -34,7 +34,7 @@
+     >
+       <motion.span
+         className={cn(
+-          'absolute top-[3px] h-5 w-5 rounded-full shadow-e1',
++          'av-rocker-thumb absolute top-[3px] h-5 w-5 rounded-full shadow-e1',
+           unanswered ? 'bg-white/70' : 'bg-white',
+         )}
+         initial={false}
+--- a/flightrisk-app/src/components/assessment/ExperienceCard.tsx
++++ b/flightrisk-app/src/components/assessment/ExperienceCard.tsx
+@@ -102,7 +102,7 @@
+         </button>
+         <input
+           id={`hrs-${def.field}`}
+-          type="number"
++          type="number" data-native-controls=""
+           inputMode="decimal"
+           min={0}
+           max={9999}
+--- a/flightrisk-app/src/components/assessment/SavedSetupCard.tsx
++++ b/flightrisk-app/src/components/assessment/SavedSetupCard.tsx
+@@ -57,7 +57,7 @@
+               <span className="text-[13px] font-medium text-ink-700">{definition.label}</span>
+               <span className="mt-1.5 flex h-12 items-center rounded-md border border-soft bg-surface-soft px-3">
+                 <input
+-                  type="number"
++                  type="number" data-av-stepper=""
+                   min={0}
+                   inputMode="decimal"
+                   value={value ?? ''}
+--- a/flightrisk-app/index.html
++++ b/flightrisk-app/index.html
+@@ -47,7 +47,8 @@
+     <script defer src="/assets/cta-tracking.js"></script>
+     <link rel="stylesheet" href="/assets/premium.css?v=20260907" />
+     <link rel="stylesheet" href="/assets/avionics.css" />
+-  </head>
++  <script defer src="/assets/tactile.js"></script>
++</head>
+   <body class="tool-page flightrisk-view">
+     <!-- Aviation-themed backdrop (site design system) -->
+     <div class="aviation-backdrop" aria-hidden="true">

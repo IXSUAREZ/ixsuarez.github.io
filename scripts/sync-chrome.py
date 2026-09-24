@@ -143,27 +143,26 @@ def find_unmarked_block(lines, start_re, end_re):
 
 
 def insert_aria_current(text, href, page):
-    """Add aria-current="page" to the best-matching anchor for href."""
+    """Mark the matching dock and menu links without marking brand shortcuts."""
     candidates = []
     for m in A_TAG_RE.finditer(text):
         tag = m.group(0)
         h = HREF_RE.search(tag)
         if h and h.group(1) == href:
             candidates.append((m.start(), m.end(), tag))
-    # Shared chrome anchors only — never the wordmark, back-link, tool mark,
-    # or the marketing CTA. What remains are plain nav links + menuitems.
+    # The same destination can be present in the dock and the disclosure.
+    # Brand shortcuts and app-specific tool marks are not site destinations.
     chrome = [c for c in candidates
               if 'class="wordmark"' not in c[2]
               and 'class="link-back"' not in c[2]
-              and 'class="nav-tool-mark"' not in c[2]
-              and 'class="nav-cta"' not in c[2]]
+              and 'class="nav-tool-mark"' not in c[2]]
     picks = chrome or candidates
     if not picks:
         return text  # Removed destinations cannot retain a current-page indicator.
-    start, end, tag = picks[-1]
-    if 'aria-current' in tag:
-        return text  # already there (idempotent re-render)
-    return text[:end - 1] + ' aria-current="page">' + text[end:]
+    for start, end, tag in reversed(picks):
+        if 'aria-current' not in tag:
+            text = text[:end - 1] + ' aria-current="page">' + text[end:]
+    return text
 
 
 def render_nav(current_block, page):

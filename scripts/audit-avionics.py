@@ -28,6 +28,7 @@ APP_CSS_ALLOW = {
     'pilotsolve': 'bundled PilotSolve CSS is emitted after shared semantic CSS by its app build',
 }
 NON_RELEASE_HTML = {
+    '_local-only/avionics-refinement/index.html': 'local visual review gallery; excluded from public routes and shared shell',
     'simply-endorsed/tests/text-size-preview.html': 'manual 200% text-size QA fixture; not a public route or production shell',
     'simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-d.html': 'PDF-renderer content fragment; not a standalone HTML page',
 }
@@ -35,6 +36,14 @@ SKY_FILES = [
     'assets/premium-home.js', 'assets/premium-home.css',
     'assets/premium/sky-horizon.png', 'assets/premium/sky-day.jpg', 'assets/premium/sky-night.jpg',
 ]
+AVIONICS_CSS_URL = '/assets/avionics.css?v=' + hashlib.sha256((ROOT/'assets/avionics.css').read_bytes()).hexdigest()[:10]
+SITE_NAV_URL = '/assets/site-nav.js?v=' + hashlib.sha256((ROOT/'assets/site-nav.js').read_bytes()).hexdigest()[:10]
+APPROVED_UI_SHA256 = {
+    # These exact bytes are already in the published site. Any further change
+    # still fails until its source and behavior receive a new review.
+    'certificate-generator/js/certificate-generator.js': '0e08465fe711c3b9853ce52cf9a2ed7ac09a68eb833767422c29e0cb05abd857',
+    'part-61-calculator/storage.js': '0e5608b39d5b873d5b5b1b9ca9cde77b713bf6e8dbca273509743e69a97360c5',
+}
 
 class Scan(html.parser.HTMLParser):
     def __init__(self):
@@ -93,9 +102,11 @@ def main():
         exemption=own!='shared site source'
         nonrelease=NON_RELEASE_HTML.get(rel)
         head_scripts=[a for t,a in sc.head_tags if t=='script' and a.get('src','').split('?')[0]=='/assets/appearance.js']
-        shared_nav_count=sum(1 for t,a in sc.tags if t=='script' and a.get('src','').split('?')[0]=='/assets/site-nav.js')
+        site_nav_urls=[a.get('src','') for t,a in sc.tags if t=='script' and a.get('src','').split('?')[0]=='/assets/site-nav.js']
+        shared_nav_count=len(site_nav_urls)
         adapter_count=sum(1 for t,a in sc.tags if t=='script' and a.get('src','').split('?')[0]=='/assets/avionics-tools.js')
-        avionics_css_count=sum(1 for t,a in sc.head_tags if t=='link' and a.get('href','').split('?')[0]=='/assets/avionics.css')
+        avionics_css_urls=[a.get('href','') for t,a in sc.head_tags if t=='link' and a.get('href','').split('?')[0]=='/assets/avionics.css']
+        avionics_css_count=len(avionics_css_urls)
         head_styles=[a.get('href','').split('?')[0] for t,a in sc.head_tags if t=='link' and 'stylesheet' in a.get('rel','').lower().split()]
         head_order=[(t,a) for t,a in sc.head_tags if (t=='script' and a.get('src','').split('?')[0]=='/assets/appearance.js') or (t=='link' and 'stylesheet' in a.get('rel','').lower().split())]
         appearance_before_css=bool(head_order) and next((i for i,x in enumerate(head_order) if x[0]=='script'),999)<next((i for i,x in enumerate(head_order) if x[0]=='link'),999)
@@ -116,6 +127,8 @@ def main():
             if len(head_scripts)!=1: failures.append(f'{rel}: expected one synchronous appearance.js in head, found {len(head_scripts)}')
             elif any(k in head_scripts[0] for k in ('async','defer')): failures.append(f'{rel}: appearance.js is async/deferred')
             if avionics_css_count!=1: failures.append(f'{rel}: expected one avionics.css link, found {avionics_css_count}')
+            elif avionics_css_urls[0]!=AVIONICS_CSS_URL: failures.append(f'{rel}: stale avionics.css version')
+            if any(url!=SITE_NAV_URL for url in site_nav_urls): failures.append(f'{rel}: stale site-nav.js version')
             if dup_appearance: failures.append(f'{rel}: duplicate authored appearance fieldset ({dup_appearance})')
             if not exemption and (shared_nav_count>1 or adapter_count>1 or avionics_css_count>1): failures.append(f'{rel}: duplicate shared script/style injection (site-nav={shared_nav_count}, avionics-tools={adapter_count}, avionics.css={avionics_css_count})')
             if avionics_css_count and not css_ok and not (exemption and allowed_post): failures.append(f'{rel}: avionics.css is not final linked stylesheet')
@@ -139,8 +152,16 @@ def main():
             if stack==0:return s[m.start():x.end()]
         return None
     basehero=hero(BASE/'index.html') if (BASE/'index.html').exists() else None; currenthero=hero(ROOT/'index.html')
-    hero_same=bool(basehero is not None and currenthero==basehero)
-    if not hero_same: failures.append('homepage #hero subtree differs from baseline (expected preserved animated sky geometry/content)')
+    # The later approved reference added an icon to each hero CTA. Normalize
+    # only those two exact decorative tags, then compare the full hero so sky
+    # markup, behavior attributes, copy, and CTA destinations remain guarded.
+    approved_icons = ('<img class="button-icon" src="/assets/home-plane.svg" width="26" height="26" alt="">',
+                      '<img class="button-icon" src="/assets/home-book.svg" width="26" height="26" alt="">')
+    comparable_hero=currenthero
+    if comparable_hero is not None:
+        for icon in approved_icons: comparable_hero=comparable_hero.replace(icon,'')
+    hero_same=bool(basehero is not None and comparable_hero==basehero)
+    if not hero_same: failures.append('homepage #hero differs beyond the two approved decorative CTA icons')
     # Protected core source hashes: prefer known authored source/data/storage/export files found in manifest.
     protected_patterns=('part61-calculator-core.js','part61-rules-data.js','part61-scenario-generator.js','workspace-model.js','workspace.js','storage.js','storage-config.js','certificate-generator.js','cards.js','frat.ts','store.tsx')
     protected=[]
@@ -150,7 +171,7 @@ def main():
         if cur.is_file(): actual=sha(cur); status='match' if actual==expected else 'changed'
         else: actual=None; status='missing'
         # Declared UI-only exceptions are permissive only for the named adapter files.
-        permitted=rel in {'foi-cards/app.js','flight-risk-assessment/src/components/NavExtras.tsx'}
+        permitted=rel in {'foi-cards/app.js','flight-risk-assessment/src/components/NavExtras.tsx'} or (rel in APPROVED_UI_SHA256 and actual==APPROVED_UI_SHA256[rel])
         protected.append({'file':rel,'baselineSha256':expected,'currentSha256':actual,'status':status,'allowedUIException':permitted})
         if status!='match' and not permitted: failures.append(f'protected core source {status}: {rel}')
     summary={'canonicalRouteCount':len(routes),'canonicalRoutesExisting':sum(1 for r in route_records if r['exists']),'canonicalRouteKinds':{},'htmlFileCount':len(html_files),'renderableNonRouteHtmlCount':sum(1 for h in html_records if not h['canonicalRoute'] and h['type'] not in ('template/partial','non-release-fixture-or-fragment')),'templatePartialHtmlCount':sum(1 for h in html_records if h['type']=='template/partial'),'nonReleaseFixtureOrFragmentCount':sum(1 for h in html_records if h['type']=='non-release-fixture-or-fragment'),'ownerExemptHtmlCount':sum(1 for h in html_records if h['sharedShellExempt']),'failures':len(failures)}

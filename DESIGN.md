@@ -31,6 +31,10 @@ This user-approved contract supersedes historical styling and navigation below.
 - Glass belongs only on dock, menus and temporary overlays; article/form/result
   surfaces are matte. Reduced motion removes new UI transitions. No magnification,
   decorative loops or counting animation through intermediate calculated results.
+- Site menu contains every top-level destination, grouped as Explore and Connect;
+  appearance stays in its own control group. Shared controls give immediate pressed
+  feedback. Same-origin page navigation uses a brief crossfade where supported,
+  while ordinary links, browser history and reduced-motion navigation stay native.
 - Keep the existing system-font fallbacks. Dock icons are licensed Lucide paths
   (`assets/avionics-icons-LICENSE.txt`) and always have visible text labels.
 - THE HOMEPAGE SKY IS PROTECTED: premium-home.js, premium-home.css, all sky assets,

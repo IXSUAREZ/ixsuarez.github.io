@@ -3,8 +3,9 @@
 function init(nav){
  if(nav.dataset.navReady)return;nav.dataset.navReady='true';
  var toggle=nav.querySelector('.nav-menu-toggle'),links=nav.querySelector('.nav-links');if(!toggle||!links)return;
- function close(focus){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');if(focus)toggle.focus()}
- toggle.addEventListener('click',function(){var open=!nav.classList.contains('is-open');nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));if(open){var first=links.querySelector('a,button,input');if(first)first.focus()}});
+ links.setAttribute('inert','');
+ function close(focus){nav.classList.remove('is-open');links.setAttribute('inert','');toggle.setAttribute('aria-expanded','false');if(focus)toggle.focus()}
+ toggle.addEventListener('click',function(){var open=!nav.classList.contains('is-open');nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));if(open){links.removeAttribute('inert');var first=links.querySelector('a,button,input');if(first)first.focus()}else links.setAttribute('inert','')});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('is-open')){e.preventDefault();close(true)}});
  document.addEventListener('pointerdown',function(e){if(!nav.contains(e.target))close(links.contains(document.activeElement))});
  nav.addEventListener('focusout',function(e){if(e.relatedTarget&&!nav.contains(e.relatedTarget))close(false)});
@@ -12,7 +13,7 @@ function init(nav){
  nav.querySelectorAll('.nav-drop-toggle').forEach(function(t){t.addEventListener('click',function(){var d=t.closest('.nav-dropdown'),open=!d.classList.contains('is-open');d.classList.toggle('is-open',open);t.setAttribute('aria-expanded',String(open))})});
  // These are ordinary disclosure links, not an application menu requiring arrow navigation.
  links.querySelectorAll('[role="menu"],[role="menuitem"]').forEach(function(el){el.removeAttribute('role')});
- nav.querySelectorAll('a[href]').forEach(function(a){var u=new URL(a.href,location.href);if(u.hash)return;var match=u.pathname===location.pathname||(a.closest('.av-destinations')&&u.pathname==='/learn/'&&location.pathname.indexOf('/learn/')===0);if(match)a.setAttribute('aria-current','page')});
+ nav.querySelectorAll('a[href]').forEach(function(a){var u=new URL(a.href,location.href);if(u.hash)return;var path=u.pathname,here=location.pathname;var match=path===here||(path==='/learn/'&&here.indexOf('/learn/')===0)||(path==='/blog/'&&here.indexOf('/blog/')===0)||(path==='/tools/'&&document.body.classList.contains('tool-page'));if(match)a.setAttribute('aria-current','page')});
  var section=document.createElement('fieldset');section.className='av-appearance';section.innerHTML='<legend>Appearance</legend><div class="av-appearance-options"><button type="button" data-appearance="dark">Dark</button><button type="button" data-appearance="light">Day</button><button type="button" data-appearance="system">System</button></div><label class="av-solid"><input type="checkbox"> Solid controls</label>';links.appendChild(section);
  function sync(){var api=window.SuarezAppearance;if(!api)return;section.querySelectorAll('[data-appearance]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.appearance===api.getPreference()))});section.querySelector('input').checked=api.getSolid()}
  section.addEventListener('click',function(e){var b=e.target.closest('[data-appearance]');if(b&&window.SuarezAppearance)window.SuarezAppearance.setPreference(b.dataset.appearance)});section.querySelector('input').addEventListener('change',function(e){if(window.SuarezAppearance)window.SuarezAppearance.setSolid(e.target.checked)});window.addEventListener('suarez:appearance',sync);sync();

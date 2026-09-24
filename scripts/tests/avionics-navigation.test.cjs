@@ -122,15 +122,18 @@ test('site menu closes on Escape and outside pointer while keeping one set of co
     p.run('navigation'); // The initializer must be idempotent when a page includes it twice.
     const menu = p.document.querySelector('.nav-menu-toggle');
     const links = p.document.querySelector('.nav-links');
+    assert.equal(links.hasAttribute('inert'), true);
     assert.equal(links.querySelectorAll('.av-appearance').length, 1);
     assert.equal(links.querySelectorAll('.tool-action').length, 1);
     assert.equal(links.querySelector('[role="menu"]'), null);
     assert.equal(links.querySelector('[role="menuitem"]'), null);
     menu.click();
     assert.equal(menu.getAttribute('aria-expanded'), 'true');
+    assert.equal(links.hasAttribute('inert'), false);
     assert.equal(p.document.activeElement, links.querySelector('a'));
     p.document.dispatchEvent(new p.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     assert.equal(menu.getAttribute('aria-expanded'), 'false');
+    assert.equal(links.hasAttribute('inert'), true);
     assert.equal(p.document.activeElement, menu);
     menu.click();
     p.document.body.dispatchEvent(new p.window.MouseEvent('pointerdown', { bubbles: true }));
@@ -138,6 +141,17 @@ test('site menu closes on Escape and outside pointer while keeping one set of co
     assert.equal(p.document.activeElement, menu);
     assert.equal(p.errors.length, 0);
   } finally { p.close(); }
+});
+
+test('both shared menu variants keep every primary site destination available', () => {
+  const required = ['/', '/flight-training-louisville-ky/', '/learn/', '/blog/', '/tools/', '/discovery-flight-louisville-ky/'];
+  for (const name of ['nav.html', 'nav-tool.html']) {
+    const partial = fs.readFileSync(path.join(site, 'assets', 'partials', name), 'utf8');
+    const dom = new JSDOM(partial);
+    const links = [...dom.window.document.querySelectorAll('.nav-links a')].map(link => link.getAttribute('href'));
+    for (const href of required) assert.ok(links.includes(href), `${name} missing ${href}`);
+    dom.window.close();
+  }
 });
 
 test('embedded appearance follows storage events; collection and child each own one navigation layer', async () => {

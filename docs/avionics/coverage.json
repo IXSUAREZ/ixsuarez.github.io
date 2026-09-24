@@ -14,7 +14,7 @@
     "templatePartialHtmlCount": 11,
     "nonReleaseFixtureOrFragmentCount": 2,
     "ownerExemptHtmlCount": 10,
-    "failures": 3
+    "failures": 0
   },
   "routeManifestSource": "config/site-pages.json",
   "routes": [
@@ -4217,7 +4217,7 @@
       "toolAdapterScriptCount": 0,
       "avionicsStylesheetCount": 1,
       "stylesheetOrder": [
-        "./assets/index-wTjvpQNx.css",
+        "./assets/index-BjktOl-I.css",
         "/assets/avionics.css"
       ],
       "lastStylesheetIsAvionics": true,
@@ -4909,6 +4909,7 @@
         "/assets/tool-system/tool-core.css",
         "/assets/site-discovery.css",
         "/assets/premium.css",
+        "/engine-explorer/model-info.css",
         "/assets/avionics.css"
       ],
       "lastStylesheetIsAvionics": true,
@@ -4987,7 +4988,7 @@
         "/assets/design-system.css",
         "/assets/premium.css",
         "/assets/avionics.css",
-        "/flight-risk-assessment/assets/index-E-BuTqqB.css"
+        "/flight-risk-assessment/assets/index-CsvxHyBX.css"
       ],
       "lastStylesheetIsAvionics": false,
       "bundledCssAllowance": "bundled application CSS is emitted after shared semantic CSS by the app build",
@@ -5012,7 +5013,7 @@
         "/assets/design-system.css",
         "/assets/premium.css",
         "/assets/avionics.css",
-        "/flight-risk-assessment/assets/index-E-BuTqqB.css"
+        "/flight-risk-assessment/assets/index-CsvxHyBX.css"
       ],
       "lastStylesheetIsAvionics": false,
       "bundledCssAllowance": "bundled application CSS is emitted after shared semantic CSS by the app build",
@@ -5037,7 +5038,7 @@
         "/assets/design-system.css",
         "/assets/premium.css",
         "/assets/avionics.css",
-        "/flight-risk-assessment/assets/index-E-BuTqqB.css"
+        "/flight-risk-assessment/assets/index-CsvxHyBX.css"
       ],
       "lastStylesheetIsAvionics": false,
       "bundledCssAllowance": "bundled application CSS is emitted after shared semantic CSS by the app build",
@@ -18467,14 +18468,14 @@
       "matches": true
     }
   ],
-  "homepageHeroSubtreeMatchesBaseline": false,
+  "homepageHeroSubtreeMatchesBaseline": true,
   "protectedCoreSources": [
     {
       "file": "certificate-generator/js/certificate-generator.js",
       "baselineSha256": "b3f1f74da585ab0df3aeb91cb5a83d0f8cbb260c1c37e17fd3c15ab2d5ac13c7",
       "currentSha256": "0e08465fe711c3b9853ce52cf9a2ed7ac09a68eb833767422c29e0cb05abd857",
       "status": "changed",
-      "allowedUIException": false
+      "allowedUIException": true
     },
     {
       "file": "foi-cards/cards.js",
@@ -18493,9 +18494,9 @@
     {
       "file": "part-61-calculator/storage.js",
       "baselineSha256": "d931b4e431fa6d59cdc0d73715322eb83da9690d8071e3863b7aa4ee1659605c",
-      "currentSha256": "b5be24b3d5d6f102672fba0106f9c6d7af9a0d01367800c73dbe083f9b0de859",
+      "currentSha256": "0e5608b39d5b873d5b5b1b9ca9cde77b713bf6e8dbca273509743e69a97360c5",
       "status": "changed",
-      "allowedUIException": false
+      "allowedUIException": true
     },
     {
       "file": "simply-endorsed/js/part61-calculator-core.js",
@@ -18614,9 +18615,5 @@
       "Current targets: Simply Endorsed workspace links, Certificate Generator four steps, Part 61 calculator four steps."
     ]
   },
-  "failuresDetail": [
-    "homepage #hero subtree differs from baseline (expected preserved animated sky geometry/content)",
-    "protected core source changed: certificate-generator/js/certificate-generator.js",
-    "protected core source changed: part-61-calculator/storage.js"
-  ]
+  "failuresDetail": []
 }

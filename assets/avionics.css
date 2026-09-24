@@ -20,7 +20,7 @@ body :is(input,select,textarea){background:var(--av-bg);color:var(--av-ink);bord
 body.home-page section:not(.horizon-hero),body.home-page #contact,body.home-page .contact-mat{background:var(--av-bg);color:var(--av-ink)}
 body.home-page section:not(.horizon-hero) :is(h1,h2,h3,h4,p,.plan-row-name,.plan-row-desc,.credential-ledger dd,.credential-ledger dt),body.editorial-page :is(h1,h2,h3,h4,p,li),body footer :is(a,p,.wordmark,.fine){color:var(--av-ink)}
 body.home-page :is(.about-panel,.journey-controls,.journey-panel,.faq-sheet,.contact-sheet),body.editorial-page :is(.toc,.see-also,.service-panel,.callout,.cta-box),body.tool-page :is(.selection-summary,.endorsement-detail-panel,.part61-calculator-header,.part61-panel,.part61-step-rail,.part61-results-pane,.cg-card,.endorsement-card,.verbatim-block,.filter-rail),body footer{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
-body.home-page :is(.section-header .eyebrow,.plan-row-num,.plan-pill),body.editorial-page :is(.eyebrow,.post-tag,.post-card-link),body footer .footer-col-title{color:var(--av-cyan)}
+body.home-page :is(.section-header .eyebrow,.plan-row-num),body.editorial-page :is(.eyebrow,.post-tag,.post-card-link),body footer .footer-col-title{color:var(--av-cyan)}
 body.home-page :is(.tool-card,.tool-card:hover){background:var(--av-panel);border-color:var(--av-line)}body.home-page .tool-card :is(strong,em){color:var(--av-ink)}
 body.tool-page :is(input[type="text"],input[type="number"],input[type="search"],select,textarea){background:var(--av-bg);color:var(--av-ink)}
 body.tool-page .part61-calculator .part61-button-primary,body.tool-page .part61-calculator .part61-button-primary:hover{background:var(--av-cyan);color:var(--av-bg);border-color:var(--av-cyan)}
@@ -66,7 +66,6 @@ body .av-icon{display:block;width:19px;height:19px;flex:none;overflow:visible}
 html body.editorial-page .page-hero .eyebrow,html body.editorial-page .hub-card .eyebrow,html body.editorial-page .post-card .post-tag{color:var(--av-cyan)}
 html body :is(.service-proof span,.trust-chip,.proof-chip){background:var(--av-panel);color:var(--av-muted);border-color:var(--av-line);border-radius:5px}
 html body .source-guide{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
-[data-suarez-theme="dark"] .page-identity{background:#e8edf0;border-radius:8px;padding:5px;box-sizing:border-box}
 body.home-page .tool-card :is(.tool-topic,.tool-description){color:var(--av-muted)}
 body.home-page .tools-directory-link a{color:var(--av-cyan)}
 body.certgen-view .cg-panel-kicker{color:var(--av-cyan)}

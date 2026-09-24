@@ -38,7 +38,14 @@ const rootIcons = [
       await sharp(master).resize(1200,1200).png().toFile(preview);
     }
     for (const size of [48,192,180]) {
-      await sharp(master).resize(size,size).png().toFile(path.join(dir,`icon-${size}.png`));
+      if (id === 'home') {
+        // The site favicon is the yellow aircraft mark. Keep the home identity
+        // icon sizes in sync without changing its separate social preview.
+        const source = size === 180 ? 'apple-touch-icon.png' : `favicon-${size}.png`;
+        fs.copyFileSync(path.join(root, 'assets', source), path.join(dir, `icon-${size}.png`));
+      } else {
+        await sharp(master).resize(size,size).png().toFile(path.join(dir,`icon-${size}.png`));
+      }
     }
     for (const target of standaloneIcons[id] || []) {
       const [relativePath, dimension] = target.split(':');

@@ -16,7 +16,7 @@ def head_for(p):
  for k,v in {'type':'article' if p['kind']=='article' else 'website','url':ORIGIN+p['path'],'site_name':'SuarezCFI','title':p['title'],'description':p['description'],'image':img,'image:secure_url':img,'image:type':'image/png','image:width':'1200','image:height':'1200','image:alt':M['identities'][p['identity']]['label']+' logo','locale':'en_US'}.items():lines.append(meta('og:'+k,v,True))
  for k,v in {'card':'summary','title':p['title'],'description':p['description'],'image':img,'image:alt':M['identities'][p['identity']]['label']+' logo'}.items():lines.append(meta('twitter:'+k,v))
  if p['path']=='/':
-  lines += ['<link rel="icon" href="/favicon.ico" sizes="any" />','<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />','<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />']
+  lines += ['<link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico" />','<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />','<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />','<link rel="icon" type="image/svg+xml" sizes="any" href="/assets/favicon.svg" />','<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />']
  else:
   lines += [f'<link rel="icon" type="image/png" sizes="{size}x{size}" href="{base}/icon-{size}.png" />' for size in [48,192]]+[f'<link rel="apple-touch-icon" sizes="180x180" href="{base}/icon-180.png" />']
  return '<!-- page-metadata: generated from config/site-pages.json -->\n'+'\n'.join(lines)+'\n<!-- /page-metadata -->'

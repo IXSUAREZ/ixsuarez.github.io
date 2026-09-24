@@ -3,6 +3,7 @@
 Run after application builds and chrome sync. --check never modifies files.
 """
 import argparse,html,json,re,sys,xml.etree.ElementTree as ET,importlib.util
+from hashlib import sha256
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
 M=json.loads((ROOT/'config/site-pages.json').read_text());ORIGIN=M['origin']
@@ -32,9 +33,10 @@ def sync_head(text,p):
  head=re.sub(r'<title\b[^>]*>.*?</title>','',head,flags=re.S|re.I)
  head=re.sub(r'<(?:meta|link)\b[^>]*>',clean,head,flags=re.I)
  head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',head).strip()
- appearance='<script src="/assets/appearance.js"></script>'
- prefix=appearance+'\n' if appearance in head else ''
- head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',head.replace(appearance,'')).lstrip()
+ appearance=f'<script src="/assets/appearance.js?v={sha256((ROOT/"assets/appearance.js").read_bytes()).hexdigest()[:10]}"></script>'
+ had_appearance=bool(re.search(r'<script src="/assets/appearance\.js(?:\?[^\"]*)?"></script>',head))
+ prefix=appearance+'\n' if had_appearance else ''
+ head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',re.sub(r'<script src="/assets/appearance\.js(?:\?[^\"]*)?"></script>','',head)).lstrip()
  return text[:start]+'\n'+prefix+head_for(p)+'\n'+head+'\n'+text[end:]
 def sync_tools_page(text):
  text=re.sub(r'<main\b[^>]*>.*?</main>',lambda _:tool_catalog.tools_main(),text,flags=re.S)

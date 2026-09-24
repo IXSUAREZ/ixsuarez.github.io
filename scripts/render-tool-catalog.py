@@ -12,7 +12,14 @@ def tools_main():
  filters='<button type="button" data-catalog-filter="all" aria-pressed="true">All tools</button>'+''.join(f'<button type="button" data-catalog-filter="{E(g["id"])}" aria-pressed="false">{E(g["name"])}</button>' for g in d['groups'])
  return f'''<main id="main-content"><section class="page-hero"><div class="container"><span class="eyebrow">Free tools · built by your instructor</span><h1>A tool for your next step.</h1><p>Plan your training, study a concept, or prepare for a flight.</p></div></section><div class="container catalog"><div class="catalog-filters" role="group" aria-label="Filter tools by purpose" hidden>{filters}</div><p class="catalog-count" role="status">7 free pilot tools</p>{groups}<p class="catalog-guide-link">Looking for a lesson? <a href="/learn/">Browse the aviation library →</a></p></div><dialog class="tool-preview-dialog" aria-labelledby="preview-title"><div class="preview-heading"><div class="preview-identity"><img id="preview-icon" alt="" width="64" height="64"><div><p class="preview-kicker">Pilot tools</p><h2 id="preview-title"></h2></div></div><button class="preview-close" type="button" aria-label="Close preview">Close</button></div><p id="preview-description"></p><p id="preview-compatibility"></p><div id="preview-images" class="preview-images"></div><ul id="preview-features"></ul><a class="btn btn--primary" id="preview-open" href="/tools/">Open tool</a></dialog><script type="application/json" id="tool-catalog-data">{json.dumps(d,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></main>'''
 def home_cards():
- return '<div class="home-tool-grid">'+''.join(f'<a class="home-tool-entry" href="{E(t["path"])}" data-cta-id="home-tools-{E(t["id"])}"><img src="/assets/identities/{E(t["id"])}/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>{E(t["name"])}</strong><span>{E(t["short"])}</span></span><span aria-hidden="true">↗</span></a>' for t in data()['tools'])+'</div>'
+ # Keep the home Hangar focused; the directory still renders every public tool.
+ featured={
+  'part-61-calculator':'Map your training requirements and see what comes next.',
+  'flight-risk-assessment':'Review conditions and risks before a flight.',
+  'pilotsolve':'Work through common flight calculations.',
+ }
+ tools={t['id']:t for t in data()['tools']}
+ return '<div class="home-tool-grid">'+''.join(f'<a class="home-tool-entry" href="{E(tools[id]["path"])}" data-cta-id="home-tools-{E(id)}"><img src="/assets/identities/{E(id)}/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>{E(tools[id]["name"])}</strong><span>{E(description)}</span></span><span aria-hidden="true">↗</span></a>' for id,description in featured.items())+'</div>'
 def transform(path):
  s=path.read_text()
  if path.name=='index.html' and path.parent.name=='tools':

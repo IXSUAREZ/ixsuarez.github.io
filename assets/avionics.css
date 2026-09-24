@@ -1,6 +1,6 @@
 /* Avionics controls; protected homepage sky stays owned by premium-home. */
 :root,:root[data-suarez-theme="dark"] {
- --av-bg:#101418;--av-panel:#1b2228;--av-raised:#252e36;--av-ink:#edf3f7;--av-muted:#aebdc9;--av-line:#4b5b68;--av-cyan:#71ddeb;--av-green:#a1e583;--av-magenta:#e6a0ee;--av-warning:#ffca72;--av-error:#ff9b97;--av-glass:rgba(24,32,39,.94);--av-menu-glass:rgba(24,32,39,.985);--av-focus:#9fefff;
+ --av-bg:#0e1721;--av-panel:#17222e;--av-raised:#223344;--av-ink:#f1f5f8;--av-muted:#aebdca;--av-line:#5b7183;--av-cyan:#71ddeb;--av-green:#a1e583;--av-magenta:#e6a0ee;--av-warning:#ffca72;--av-error:#ff9b97;--av-glass:rgba(18,30,42,.94);--av-menu-glass:rgba(18,30,42,.985);--av-focus:#9fefff;
  --bg:var(--av-bg);--ink:var(--av-ink);--ink-muted:var(--av-muted);--text:var(--av-ink);--text-strong:var(--av-ink);--text-muted:var(--av-muted);--text-muted-2:var(--av-muted);--navy:var(--av-ink);--navy-600:var(--av-ink);
  --surface:var(--av-panel);--surface-soft:var(--av-bg);--surface-raised:var(--av-raised);--surface-strong:var(--av-raised);--surface-tint:var(--av-panel);--bg-soft:var(--av-panel);--bg-elevated:var(--av-raised);--paper-bg:var(--av-panel);--glass-bg:var(--av-panel);--glass-bg-strong:var(--av-raised);
  --border:var(--av-line);--border-strong:var(--av-line);--line:var(--av-line);--line-strong:var(--av-line);--hairline:var(--av-line);--workbench-panel:var(--av-panel);--workbench-panel-strong:var(--av-raised);--workbench-border:var(--av-line);--workbench-border-strong:var(--av-line);

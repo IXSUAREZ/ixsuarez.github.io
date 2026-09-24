@@ -4,6 +4,29 @@ Engineer-facing contract for every page and app on this site. If a change
 violates this file, the change is wrong — update the constitution deliberately,
 never by drift.
 
+## Homepage and shared shell refinement — September 24, 2026
+
+This user-approved refinement extends the Avionics contract below. The homepage
+opens with its existing animated sky, with `CFI Diego Suarez`, location, promise,
+and actions centered in the upper sky. The primary action books a discovery
+flight; the secondary action helps visitors find their path. The first section
+after the sky offers three student choices: new to flying, already training,
+and looking for a pilot tool. Instruction options are a compact list. The About
+section shows a short introduction and credentials, with the full story in a
+native disclosure. The Hangar features CertPath, FlightRisk, and PilotSolve,
+then links to the full Tools directory. FAQ precedes a single contact card;
+the email-draft form lives in a disclosure.
+
+The shared site shell uses a platform system sans stack for UI and main copy;
+the editorial serif is reserved for occasional story or quotation text. Dark
+uses deep blue graphite and neutral text, with restrained sky blue and aviation
+amber accents. Day and System remain supported through the existing appearance
+controller, storage keys, and Menu control. Content surfaces are solid; dock
+and menu may use bounded translucency. Keep the compact bottom navigation and
+all semantic status colors. Standalone app interiors retain their interfaces.
+The homepage content reorganization here supersedes earlier preservation and
+seven-tool Hangar instructions; the animated sky implementation stays intact.
+
 ## Active design contract — Avionics, September 22, 2026
 
 This user-approved contract supersedes historical styling and navigation below.

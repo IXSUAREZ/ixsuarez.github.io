@@ -5,6 +5,8 @@ from hashlib import sha256
 import re,argparse
 root=Path(__file__).resolve().parents[1]
 version=sha256((root/'assets/avionics.css').read_bytes()).hexdigest()[:10]
+appearance_version=sha256((root/'assets/appearance.js').read_bytes()).hexdigest()[:10]
+appearance=f'<script src="/assets/appearance.js?v={appearance_version}"></script>'
 parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');args=parser.parse_args()
 changed=[]
 for p in root.rglob('*.html'):
@@ -20,9 +22,9 @@ for p in root.rglob('*.html'):
    if not args.check:p.write_text(t)
   continue
  if not re.search(r'<head[\s>]',s,re.I):continue
- t=re.sub(r'\n?\s*<script src="/assets/appearance.js"></script>','',s)
+ t=re.sub(r'\n?\s*<script src="/assets/appearance.js(?:\?[^\"]*)?"></script>','',s)
  t=re.sub(r'\n?\s*<link rel="stylesheet" href="/assets/avionics.css(?:\?[^"]*)?">','',t)
- t=re.sub(r'(<head[^>]*>)',r'\1\n<script src="/assets/appearance.js"></script>',t,count=1,flags=re.I)
+ t=re.sub(r'(<head[^>]*>)',lambda m:m.group(1)+'\n'+appearance,t,count=1,flags=re.I)
  t=t.replace('</head>',f'<link rel="stylesheet" href="/assets/avionics.css?v={version}">\n</head>')
  if t!=s:
   changed.append(str(rel))

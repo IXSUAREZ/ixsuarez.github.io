@@ -57,3 +57,5 @@ Browser checks use the Codex in-app browser at desktop 1280px, tablet 768px, pho
 Evidence boundary: browser viewport review is not physical-device, VoiceOver/Switch Control, or native iOS keyboard certification. The available browser does not expose media emulation or native zoom control: the 200% keyboard zoom attempt did not change its scale. Reduced-motion/transparency/contrast fallbacks are source/regression inspected, not represented as physical OS-setting tests. Offline behavior is worker-level tested with cached resources; a physical airplane-mode upgrade was not performed. No claim is made that every possible form state on all 523 routes was individually rendered.
 
 Post-publication deployment and live hashes are saved outside the released source in `../tactile-release-verification-20260924.json`.
+
+Final narrow collapse measurement: at a 320px viewport, the collapsed site dock measured exactly 48px; all four visible destination/menu targets measured 44px high and at least 62px wide. A final cascade rule ensures the collapsed state wins over expanded phone breakpoints.

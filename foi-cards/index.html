@@ -38,40 +38,51 @@
   <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
 <link rel="stylesheet" href="/assets/site-discovery.css" />
   <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
-<script defer src="/assets/tactile.js?v=9c9f44849a"></script>
-<link rel="stylesheet" href="/assets/avionics.css?v=50fdae5406">
+<link rel="stylesheet" href="/assets/avionics.css?v=d95142c2b4">
+<script defer src="/assets/tactile.js?v=15de6a8ffa"></script>
 </head>
   <body class="foi-page">
     <main class="app-shell" id="app" aria-live="polite">
+      <!-- site-nav -->
       <header class="chipnav-wrap nav-wrap">
-        <nav class="chipnav nav nav--tool" aria-label="Site and study navigation">
-          <a class="chipnav-wordmark nav-brand" href="/" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
-          <div class="av-destinations" aria-label="Study and site destinations">
-            <button class="av-key" type="button" id="dockSections" aria-haspopup="dialog" aria-expanded="false" aria-controls="sectionSheet"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#ListChecks"></use></svg><span>Sections</span></button>
-            <a class="av-key" href="/tools/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Wrench"></use></svg><span>All tools</span></a>
-          </div>
-          <div class="nav-tools">
-            <button class="nav-menu-toggle" type="button" id="chipnavMenuToggle" aria-expanded="false" aria-controls="chipnavSheet">
-              <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg>
-              <span class="nav-toggle-label">Menu</span>
-            </button>
-            <div class="nav-links chipnav-sheet" id="chipnavSheet">
-          <a href="/">Home</a>
-          <a href="/learn/">Learn</a>
-          <a href="/blog/">Blog</a>
-          <a href="/tools/">Tools</a>
-          <p class="chipnav-sheet-label">Explore tools</p>
-          <a href="/simply-endorsed-cfi/"><strong>Simply Endorsed CFI</strong><span>FAA endorsement lookup</span></a>
-          <a href="/flight-risk-assessment/"><strong>FlightRisk</strong><span>PAVE risk checklist</span></a>
-          <a href="/part-61-calculator/"><strong>CertPath</strong><span>Training-time wizard</span></a>
-          <a href="/foi-cards/" aria-current="page"><strong>FOI Cards</strong><span>CFI flashcards</span></a>
-          <a href="/#contact">Contact</a>
-          <a class="chipnav-cta" href="/flight-training-louisville-ky/" data-cta-id="foi-nav-plan">Plan Training</a>
-              <button class="chipnav-reset" type="button" id="resetButton">Reset study progress</button>
-            </div>
-          </div>
-        </div>
-      </header>
+              <nav class="chipnav nav nav--tool" aria-label="Site and study navigation">
+                <a class="chipnav-wordmark nav-brand" href="/" aria-label="Diego Suarez — home">SUAREZ.CFI</a>
+                <div class="av-destinations" aria-label="Study and site destinations">
+                  <button class="av-key" type="button" id="dockSections" aria-haspopup="dialog" aria-expanded="false" aria-controls="sectionSheet"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#ListChecks"></use></svg><span>Sections</span></button>
+                  <a class="av-key" href="/tools/"><svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Wrench"></use></svg><span>All tools</span></a>
+                </div>
+                <div class="nav-tools">
+                  <button class="nav-menu-toggle" type="button" id="chipnavMenuToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="chipnavSheet">
+                    <svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg>
+                    <span class="nav-toggle-label">Menu</span>
+                  </button>
+                  <div class="nav-links chipnav-sheet" id="chipnavSheet">
+            <!-- tool-actions -->
+            <!-- /tool-actions -->
+            <p class="av-menu-heading">Explore</p>
+            <a href="/">Home</a>
+            <a href="/flight-training-louisville-ky/">Training</a>
+            <a href="/learn/">Learn</a>
+            <a href="/blog/">Blog</a>
+            <a href="/tools/">Tools</a>
+            <p class="av-menu-heading av-menu-heading--section">Connect</p>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+            <a href="/discovery-flight-louisville-ky/" class="nav-cta" data-cta-id="nav-book-discovery">Fly with Diego</a>
+
+      <section class="av-menu-actions" aria-label="Study actions"><h3>Study actions</h3><a class="chipnav-cta" href="/flight-training-louisville-ky/" data-cta-id="foi-nav-plan">Plan Training</a><button class="chipnav-reset" type="button" id="resetButton">Reset study progress</button></section><section class="av-menu-actions" aria-label="Related tools"><h3>Related tools</h3><a href="/simply-endorsed-cfi/">Simply Endorsed CFI</a><a href="/flight-risk-assessment/">FlightRisk</a><a href="/part-61-calculator/">CertPath</a><a href="/foi-cards/" aria-current="page">FOI Cards</a></section>
+      </div>
+                </div>
+              <noscript><style>
+            html body .nav-wrap{position:static!important;pointer-events:auto}
+            html body .nav{display:block!important;width:calc(100% - 24px);max-width:900px}
+            html body .nav .nav-menu-toggle{display:none!important}
+            html body .nav .nav-links{position:static!important;display:flex!important;flex-direction:row;flex-wrap:wrap;width:100%;max-height:none;opacity:1!important;visibility:visible!important;transform:none!important;pointer-events:auto}
+            html body .nav .nav-links>a{width:auto}html body .nav .av-menu-heading{width:100%}
+          </style></noscript>
+      </nav>
+            </header>
+      <!-- /site-nav -->
       <section class="welcome" id="welcomeScreen">
         <p class="eyebrow">Mobile FOI study deck</p>
         <img src="/assets/identities/foi-cards/logo.png" class="page-identity" width="64" height="64" alt="" /><h1>FOI Cards</h1>
@@ -153,7 +164,7 @@
     </section>
     <script src="cards.js?v=20260710c"></script>
     <script src="app.js?v=20260710d"></script>
-    <script src="/assets/site-nav.js?v=0b129743ca"></script>
+    <script src="/assets/site-nav.js?v=a4bbcb5c85"></script>
     <script src="/assets/cta-tracking.js" defer></script>
   </body>
 </html>

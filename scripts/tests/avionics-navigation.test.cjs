@@ -20,6 +20,8 @@ async function page(body, url = 'https://suarezcfi.com/certificate-generator/') 
   const errors = [];
   dom.window.addEventListener('error', event => errors.push(event.error || event.message));
   dom.window.matchMedia = query => ({ matches: false, media: query, addEventListener() {}, removeEventListener() {} });
+  dom.window.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
+  dom.window.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new dom.window.Event('close')); };
   dom.window.ResizeObserver = class { observe() {} disconnect() {} };
   await flush(); // Let jsdom finish DOMContentLoaded before evaluating deferred site scripts.
   return { dom, window: dom.window, document: dom.window.document, errors,
@@ -122,21 +124,22 @@ test('site menu closes on Escape and outside pointer while keeping one set of co
     p.run('navigation'); // The initializer must be idempotent when a page includes it twice.
     const menu = p.document.querySelector('.nav-menu-toggle');
     const links = p.document.querySelector('.nav-links');
-    assert.equal(links.hasAttribute('inert'), true);
+    assert.equal(p.document.querySelector('.liquid-menu').open, false);
     assert.equal(links.querySelectorAll('.av-appearance').length, 1);
     assert.equal(links.querySelectorAll('.tool-action').length, 1);
     assert.equal(links.querySelector('[role="menu"]'), null);
     assert.equal(links.querySelector('[role="menuitem"]'), null);
     menu.click();
     assert.equal(menu.getAttribute('aria-expanded'), 'true');
-    assert.equal(links.hasAttribute('inert'), false);
-    assert.equal(p.document.activeElement, links.querySelector('a'));
-    p.document.dispatchEvent(new p.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    assert.equal(p.document.querySelector('.liquid-menu').open, true);
+    assert.equal(p.document.activeElement, p.document.querySelector('[role="tab"][aria-selected="true"]'));
+    p.document.querySelector('.liquid-menu').dispatchEvent(new p.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     assert.equal(menu.getAttribute('aria-expanded'), 'false');
-    assert.equal(links.hasAttribute('inert'), true);
+    assert.equal(p.document.querySelector('.liquid-menu').open, false);
     assert.equal(p.document.activeElement, menu);
     menu.click();
-    p.document.body.dispatchEvent(new p.window.MouseEvent('pointerdown', { bubbles: true }));
+    p.document.querySelector('.liquid-menu').dispatchEvent(new p.window.MouseEvent('pointerdown', { bubbles: true }));
+    p.document.querySelector('.liquid-menu').dispatchEvent(new p.window.MouseEvent('click', { bubbles: true }));
     assert.equal(menu.getAttribute('aria-expanded'), 'false');
     assert.equal(p.document.activeElement, menu);
     assert.equal(p.errors.length, 0);
@@ -176,4 +179,81 @@ test('embedded appearance follows storage events; collection and child each own 
     assert.equal((app.match(/appearance\.js/g) || []).length, 1);
     assert.equal(host.errors.length + child.errors.length, 0);
   } finally { host.close(); child.close(); }
+});
+
+test('liquid sections rotate with keyboard, trap focus and reset to Explore on reopen', async () => {
+ const p=await page(nav('<button class="tool-action">Save</button>'));
+ try {
+  p.run('appearance');p.run('navigation');
+  const menu=p.document.querySelector('.nav-menu-toggle'),dialog=p.document.querySelector('.liquid-menu');
+  menu.click();
+  const tabs=[...dialog.querySelectorAll('[role="tab"]')];
+  tabs[0].dispatchEvent(new p.window.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));
+  assert.equal(tabs[2].getAttribute('aria-selected'),'true');
+  assert.equal(p.document.querySelector('#liquid-menu-0-panel-explore').hidden,true);
+  const light=dialog.querySelector('[data-appearance="light"]');light.click();
+  assert.equal(p.window.SuarezAppearance.getPreference(),'light');
+  dialog.querySelector('.av-solid input').click();
+  assert.equal(p.window.SuarezAppearance.getSolid(),true);
+  const close=dialog.querySelector('.liquid-close'),last=dialog.querySelector('.av-solid input');
+  last.focus();last.dispatchEvent(new p.window.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));
+  assert.equal(p.document.activeElement,close);
+  close.dispatchEvent(new p.window.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));
+  assert.equal(p.document.activeElement,last);
+  close.click();assert.equal(p.document.activeElement,menu);
+  menu.click();assert.equal(tabs[0].getAttribute('aria-selected'),'true');
+  assert.equal(dialog.querySelectorAll('.tool-action').length,1);
+  for(let i=0;i<8;i++)menu.click();
+  assert.equal(dialog.open,true);
+  assert.equal(dialog.querySelectorAll('.av-appearance').length,1);
+  assert.equal(p.errors.length,0);
+ }finally{p.close()}
+});
+
+test('FOI shared menu preserves study actions and reflows enlarged section labels', async () => {
+  const markup=fs.readFileSync(path.join(site,'assets/partials/nav-foi.html'),'utf8');
+  const p=await page(markup,'https://suarezcfi.com/foi-cards/');
+  try {
+    p.document.documentElement.style.fontSize='32px';
+    let resets=0;
+    p.document.querySelector('#resetButton').addEventListener('click',()=>resets++);
+    p.run('appearance'); p.run('navigation');
+    p.document.querySelector('.nav-menu-toggle').click();
+    const dialog=p.document.querySelector('dialog');
+    assert.ok(dialog.classList.contains('liquid-large-text'));
+    assert.equal(dialog.querySelector('[role="tablist"]').getAttribute('aria-orientation'),'vertical');
+    assert.equal(dialog.querySelectorAll('.liquid-panel:not([hidden]) > a').length,5);
+    assert.ok(dialog.querySelector('#resetButton').closest('[aria-label="Study actions"]'));
+    assert.equal(dialog.querySelector('[data-cta-id="foi-nav-plan"]').getAttribute('href'),'/flight-training-louisville-ky/');
+    dialog.querySelector('#resetButton').click();
+    assert.equal(resets,1);
+    assert.equal(dialog.open,false);
+    assert.equal(p.errors.length,0);
+  } finally {p.close()}
+});
+
+test('contextual action transfers focus to the app dialog without leaving two open modals', async () => {
+  const p=await page(nav('<button id="browse" aria-label="Browse categories"><span></span></button>')+'<dialog id="app-dialog"><button id="category">Category</button></dialog>');
+  try {
+    p.document.querySelector('#browse').addEventListener('click',()=>{p.document.querySelector('#app-dialog').showModal();p.document.querySelector('#category').focus()});
+    p.run('navigation');p.document.querySelector('.nav-menu-toggle').click();
+    assert.match(p.document.querySelector('#browse').textContent,/Browse categories/);
+    p.document.querySelector('#browse').click();await p.settle();
+    assert.equal(p.document.querySelector('.liquid-menu').open,false);
+    assert.equal(p.document.querySelector('#app-dialog').open,true);
+    assert.equal(p.document.activeElement.id,'category');
+    assert.equal(p.document.documentElement.style.overflow,'');
+  } finally {p.close()}
+});
+
+test('reduced motion dismisses immediately without a bloom animation', async () => {
+ const p=await page(nav());
+ try {
+  p.window.matchMedia=()=>({matches:true});p.run('navigation');
+  p.document.querySelector('.nav-menu-toggle').click();
+  p.document.querySelector('.liquid-menu-surface').animate=()=>{throw new Error('Motion must be suppressed')};
+  p.document.querySelector('.liquid-close').click();
+  assert.equal(p.document.querySelector('dialog').open,false);
+  assert.equal(p.errors.length,0);
+ } finally {p.close()}
 });

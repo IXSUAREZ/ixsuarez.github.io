@@ -14,7 +14,7 @@
     function position() { var s = source(); return s ? s.scrollTop : window.scrollY || 0; }
     function locked() {
       var external = nav.dataset.dockMenu && document.querySelector(nav.dataset.dockMenu);
-      return state.pressed || state.hover || nav.contains(document.activeElement) || !!nav.querySelector('[aria-expanded="true"],details[open]') || (external && external.getAttribute('aria-expanded') === 'true');
+      return nav.classList.contains('liquid-dock') || state.pressed || state.hover || nav.contains(document.activeElement) || !!nav.querySelector('[aria-expanded="true"],details[open]') || (external && external.getAttribute('aria-expanded') === 'true');
     }
     function render(compact) {
       if (state.pressed) return;

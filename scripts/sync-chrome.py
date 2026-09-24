@@ -79,7 +79,7 @@ SKIP_DIRS = {
     "pilotsolve": "standalone flight computer — intentionally no shared navigation or footer",
     "aero-lab": "compiled React SPA — chrome owned by its app build",
     "flight-risk-assessment": "compiled React SPA — chrome owned by its app build",
-    "foi-cards": "immersive variant — compact chip nav by design, no footer",
+    "foi-cards": "immersive app; index navigation uses nav-foi.html, no footer",
 }
 
 NAV_OPEN = "<!-- site-nav -->"
@@ -168,6 +168,8 @@ def insert_aria_current(text, href, page):
 
 def render_nav(current_block, page):
     """Render fresh nav markup (column-0) from partial + preserved slots."""
+    if page == "foi-cards/index.html":
+        return load_partial("nav-foi.html")
     variant = "tool" if 'class="nav nav--tool"' in current_block else "site"
     partial = load_partial("nav-tool.html" if variant == "tool" else "nav.html")
     lines = current_block.split("\n")
@@ -316,7 +318,7 @@ def sync_file(path, apply, footer_only=False):
 
     for name, open_m, close_m, start_re, end_re, renderer in (
         ("nav", NAV_OPEN, NAV_CLOSE,
-         re.compile(r'<header class="nav-wrap"'), re.compile(r"</header>"), render_nav),
+         re.compile(r'<header class="(?:chipnav-wrap )?nav-wrap"'), re.compile(r"</header>"), render_nav),
         ("footer", FOOTER_OPEN, FOOTER_CLOSE,
          re.compile(r"<footer[ >]"), re.compile(r"</footer>"), render_footer),
         # post-cta has no auto-detection: start_re/end_re=None means it only
@@ -377,9 +379,9 @@ def iter_pages(footer_only=False):
         if "_template" in rel.parts:
             continue  # blog post skeleton with {{PLACEHOLDER}} slots
         top = rel.parts[0]
-        if "pdf-build" in rel.parts or "templates" in rel.parts:
+        if "pdf-build" in rel.parts or "templates" in rel.parts or "output" in rel.parts:
             continue
-        if top in SKIP_DIRS and not (footer_only and top == "flight-risk-assessment" and rel.as_posix() in {"flight-risk-assessment/index.html", "flight-risk-assessment/guide/index.html", "flight-risk-assessment/methodology/index.html"}):
+        if top in SKIP_DIRS and rel.as_posix() != "foi-cards/index.html" and not (footer_only and top == "flight-risk-assessment" and rel.as_posix() in {"flight-risk-assessment/index.html", "flight-risk-assessment/guide/index.html", "flight-risk-assessment/methodology/index.html"}):
             continue
         yield p
 

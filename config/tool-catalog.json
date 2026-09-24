@@ -26,16 +26,7 @@
         "Flight calculators with unit controls",
         "Trip planning and aircraft profiles"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/pilotsolve-overview.png",
-          "alt": "PilotSolve overview"
-        },
-        {
-          "src": "/assets/tool-previews/pilotsolve-detail.png",
-          "alt": "PilotSolve working interface"
-        }
-      ]
+      "accent": "#7ea9ff"
     },
     {
       "id": "flight-risk-assessment",
@@ -49,16 +40,7 @@
         "A structured PAVE assessment",
         "Risk summary with methodology and guidance"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/flight-risk-assessment-overview.png",
-          "alt": "FlightRisk overview"
-        },
-        {
-          "src": "/assets/tool-previews/flight-risk-assessment-detail.png",
-          "alt": "FlightRisk working interface"
-        }
-      ]
+      "accent": "#76c799"
     },
     {
       "id": "part-61-calculator",
@@ -72,16 +54,7 @@
         "A guided four-stage training planner",
         "Experience and estimated cost breakdowns"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/part-61-calculator-overview.png",
-          "alt": "CertPath overview"
-        },
-        {
-          "src": "/assets/tool-previews/part-61-calculator-detail.png",
-          "alt": "CertPath working interface"
-        }
-      ]
+      "accent": "#ffb46f"
     },
     {
       "id": "simply-endorsed-cfi",
@@ -95,16 +68,7 @@
         "Search model endorsements by topic",
         "Related checklists and source guidance"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/simply-endorsed-cfi-overview.png",
-          "alt": "Simply Endorsed CFI overview"
-        },
-        {
-          "src": "/assets/tool-previews/simply-endorsed-cfi-detail.png",
-          "alt": "Simply Endorsed CFI working interface"
-        }
-      ]
+      "accent": "#8da9ff"
     },
     {
       "id": "foi-cards",
@@ -118,16 +82,7 @@
         "Study by FOI section",
         "Review cards and track memorized material"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/foi-cards-overview.png",
-          "alt": "FOI Cards overview"
-        },
-        {
-          "src": "/assets/tool-previews/foi-cards-detail.png",
-          "alt": "FOI Cards working interface"
-        }
-      ]
+      "accent": "#b8a0ff"
     },
     {
       "id": "aero-lab",
@@ -141,16 +96,7 @@
         "Interactive airflow visualization",
         "Guided lessons and source explanations"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/aero-lab-overview.png",
-          "alt": "Aero Lab overview"
-        },
-        {
-          "src": "/assets/tool-previews/aero-lab-detail.png",
-          "alt": "Aero Lab working interface"
-        }
-      ]
+      "accent": "#70cdd1"
     },
     {
       "id": "engine-explorer",
@@ -164,16 +110,7 @@
         "Explore engines and their components",
         "Study guides and component inspection"
       ],
-      "screenshots": [
-        {
-          "src": "/assets/tool-previews/engine-explorer-overview.png",
-          "alt": "Crank & Core overview"
-        },
-        {
-          "src": "/assets/tool-previews/engine-explorer-detail.png",
-          "alt": "Crank & Core working interface"
-        }
-      ]
+      "accent": "#e9a774"
     }
   ]
 }

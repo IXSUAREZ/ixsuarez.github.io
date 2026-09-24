@@ -248,6 +248,7 @@ var FORMSPREE_ENDPOINT = "";
             window.location.href = "mailto:" + MAILTO_ADDRESS +
               "?subject=" + encodeURIComponent((context === DISCOVERY_CONTEXT ? "Discovery flight inquiry — " : "Website message — ") + name.value + " (" + context + ")") +
               "&body=" + encodeURIComponent("Name: " + name.value + "\nEmail/phone: " + contact.value + "\nPage: " + context + "\n\n" + message.value);
+            if (typeof window.trackContactEvent === "function") window.trackContactEvent("contact_email_handoff", context);
             showMailtoHandoff(mount, context);
             showFallback(fallback);
           } catch (err) {
@@ -273,6 +274,7 @@ var FORMSPREE_ENDPOINT = "";
       };
 
       var fail = function () {
+        if (typeof window.trackContactEvent === "function") window.trackContactEvent("contact_submit_error", context);
         done();
         showError(errorNote, fallback);
       };

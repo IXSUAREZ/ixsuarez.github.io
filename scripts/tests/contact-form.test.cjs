@@ -39,6 +39,7 @@ function setup({ endpoint, response, responseStatus = 200, contextName = 'home' 
     location: { href: 'https://suarezcfi.com/' },
     fetch: endpoint && endpoint !== 'placeholder' ? (...args) => { fetchCalls += 1; return new Promise(resolve => { resolveFetch = () => resolve(response || { ok: true, status: responseStatus }); }); } : undefined,
     trackCtaClick: (...args) => { window.analytics = args; },
+    trackContactEvent: (...args) => { window.contactEvent = args; },
   };
   const document = {
     readyState: 'complete',
@@ -80,6 +81,7 @@ test('failed endpoint response restores fallback and keeps entered values', asyn
   assert.equal(s.form.querySelector('.cf-error').hidden, false);
   assert.equal(s.mount.querySelector('.cf-fallback').hidden, false);
   assert.equal(s.window.analytics, undefined);
+  assert.deepEqual(s.window.contactEvent, ['contact_submit_error', 'home']);
 });
 
 test('placeholder uses an explicit email handoff and never claims the message was sent', () => {
@@ -87,6 +89,7 @@ test('placeholder uses an explicit email handoff and never claims the message wa
   s.submit();
   s.submit();
   assert.match(s.window.location.href, /^mailto:SuarezCFI@gmail.com\?/);
+  assert.deepEqual(s.window.contactEvent, ['contact_email_handoff', 'home']);
   assert.match(s.mount.querySelector('.cf-handoff').children[0].textContent, /Your email app should open/);
   assert.equal(s.mount.querySelector('.cf-success'), null);
   assert.equal(s.mount.querySelector('.cf-submit').textContent, 'Open email draft');

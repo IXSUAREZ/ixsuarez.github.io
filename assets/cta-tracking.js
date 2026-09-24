@@ -1,37 +1,39 @@
 (function () {
-  function textFor(element) {
-    return (element.textContent || "").replace(/\s+/g, " ").trim();
+  // Only static identifiers and page paths belong in event properties.
+  // Never send link text, addresses, phone numbers, URL queries or form values.
+  function emit(name, ctaId) {
+    var props = { cta_id: ctaId, page_path: window.location.pathname };
+    try {
+      if (typeof window.plausible === "function") window.plausible(name, { props: props });
+    } catch (err) { /* Analytics must never interrupt contact actions. */ }
+    try {
+      if (typeof window.gtag === "function") window.gtag("event", name, props);
+    } catch (err) { /* Providers fail independently. */ }
   }
+
+  window.trackContactEvent = function (name, context) {
+    if (["contact_email_handoff", "contact_submit_error"].indexOf(name) === -1) return;
+    emit(name, "contact-form-" + context);
+  };
 
   window.trackCtaClick = function (ctaId, element) {
     if (!ctaId) return;
-
-    var props = {
-      cta_id: ctaId,
-      cta_text: element ? textFor(element) : "",
-      cta_href: element ? element.getAttribute("href") || "" : "",
-      page_path: window.location.pathname
-    };
-
-    if (typeof window.plausible === "function") {
-      window.plausible("cta_click", { props: props });
+    // Retain the existing form success hook without misclassifying it as a click.
+    if (ctaId.indexOf("contact-form-success-") === 0) {
+      emit("contact_submit_success", ctaId);
+      return;
     }
-
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "cta_click", {
-        event_category: "CTA",
-        event_label: ctaId,
-        cta_text: props.cta_text,
-        cta_href: props.cta_href,
-        page_path: props.page_path
-      });
-    }
+    emit("cta_click", ctaId);
+    var href = element ? element.getAttribute("href") || "" : "";
+    if (/^tel:/i.test(href)) emit("contact_phone_click", ctaId);
+    else if (/^sms:/i.test(href)) emit("contact_sms_click", ctaId);
+    else if (/^mailto:/i.test(href)) emit("contact_email_click", ctaId);
   };
 
   document.addEventListener("click", function (event) {
+    if (!event.target || typeof event.target.closest !== "function") return;
     var element = event.target.closest("[data-cta-id]");
-    if (!element) return;
-    window.trackCtaClick(element.getAttribute("data-cta-id"), element);
+    if (element) window.trackCtaClick(element.getAttribute("data-cta-id"), element);
   }, { capture: true });
 
   // Dynamically inject category classes to cards and body

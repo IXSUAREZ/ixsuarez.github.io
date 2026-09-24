@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="/assets/appearance.js"></script>
+<script src="/assets/appearance.js?v=99560b6a9e"></script>
 <!-- page-metadata: generated from config/site-pages.json -->
 <title>Flight Instructor in Louisville, KY | Diego Suarez, CFI</title>
 <meta name="description" content="Learn to fly with Diego Suarez, a CFI at Kentucky Flight Training Center at Bowman Field in Louisville, KY. Request a discovery flight or explore pilot tools." />
@@ -32,7 +32,7 @@
 <!-- /page-metadata -->
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#242725" />
+  <meta name="theme-color" content="#0E1721" />
   <meta name="author" content="Diego Suarez" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -148,9 +148,8 @@
       line-height: 1.6;
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     }
-    .horizon-lede,
     .lede {
-      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif !important;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     }
     /* The Cluster — Crown, phone row, message */
     .hero-cluster { margin-top: 34px; display: flex; flex-direction: column; align-items: flex-start; }
@@ -444,195 +443,6 @@
       .plan-row-desc { display: block; margin: 4px 0 0; }
     }
     /* ==========================================================================
-       Journey — the detent slider: six stops on one hairline track. The plane
-       needle glides to the checked stage; its panel fades in below. State is
-       pure CSS (:checked + :has()) — browsers without :has() get all six
-       panels stacked. The interactive planner lives at /flight-training-louisville-ky/.
-       ========================================================================== */
-    .visually-hidden {
-      position: absolute !important;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      border: 0;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .journey-sheet {
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      border-radius: 20px;
-      padding: clamp(24px, 4vw, 40px);
-    }
-    .journey-slider { border: 0; margin: 0; padding: 0; min-width: 0; }
-    .journey-trackwrap {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      padding-top: 38px; /* the plane's lane above the track */
-    }
-    .journey-slider input[type="radio"] {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .journey-track {
-      position: absolute;
-      left: calc(100% / 12);
-      right: calc(100% / 12);
-      top: 60px; /* dot center: 38px lane + half of the 44px hit area */
-      height: 2px;
-      margin-top: -1px;
-      background: var(--border-strong);
-      pointer-events: none;
-    }
-    .journey-plane {
-      position: absolute;
-      top: 52px;
-      left: calc(100% / 12);
-      width: 30px;
-      height: 30px;
-      color: var(--yellow-deep);
-      filter: drop-shadow(0 4px 10px rgba(245, 196, 0, 0.55));
-      transform: translate(-50%, -100%);
-      transition: left 450ms cubic-bezier(0.22, 1, 0.36, 1), transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: 2;
-      pointer-events: none;
-    }
-    .journey-plane svg { display: block; width: 100%; height: 100%; }
-    .journey-plane.is-gliding { transform: translate(-50%, -100%) rotate(8deg); }
-    /* Drag enhancement (JS pointer capture): the needle tracks the pointer
-       transform-only and banks ≤±10°; on release the nearest radio is checked
-       and the CSS transition glides the needle home. Radios stay the truth. */
-    .journey-trackwrap { touch-action: pan-y; cursor: grab; }
-    .journey-trackwrap.is-dragging { cursor: grabbing; }
-    .journey-plane.is-dragging { transition: none; }
-    @keyframes dot-drop {
-      0% { transform: scale(0.8); }
-      60% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
-    .journey-stop.is-dropped .journey-dot { animation: dot-drop 300ms cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .journey-slider:has(#js-student:checked) .journey-plane { left: 25%; }
-    .journey-slider:has(#js-private:checked) .journey-plane { left: 41.667%; }
-    .journey-slider:has(#js-instrument:checked) .journey-plane { left: 58.333%; }
-    .journey-slider:has(#js-commercial:checked) .journey-plane { left: 75%; }
-    .journey-slider:has(#js-cfi:checked) .journey-plane { left: 91.667%; }
-    .journey-stop {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1; /* stops paint above the track hairline */
-    }
-    .journey-dotbox {
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .journey-dot {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--paper-bg);
-      border: 2px solid var(--border-strong);
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .journey-slider input:checked + .journey-stop .journey-dot {
-      background: var(--navy);
-      border-color: var(--yellow-deep);
-    }
-    .journey-slider input:focus-visible + .journey-stop .journey-dot {
-      outline: 2px solid var(--yellow-deep);
-      outline-offset: 2px;
-    }
-    .journey-stop-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink-muted);
-      transition: color 0.2s ease;
-    }
-    .journey-slider input:checked + .journey-stop .journey-stop-label { color: var(--ink); }
-    @media (max-width: 700px) {
-      .journey-stop-label { display: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .journey-plane.is-gliding { transform: translate(-50%, -100%); }
-    }
-    /* Panels — one per stop. Base flow stacks all six (the no-:has() fallback);
-       :has() browsers share one grid cell and fade the checked stage's panel in. */
-    .journey-panels { display: grid; gap: 30px; margin-top: clamp(24px, 4vw, 36px); }
-    .journey-panel { position: relative; }
-    .journey-panel-eyebrow {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-    }
-    .journey-panel h3 {
-      margin: 10px 0 8px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 28px;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      color: var(--ink);
-    }
-    .journey-panel p {
-      margin: 0;
-      color: var(--ink-muted);
-      font-size: 1.02rem;
-      line-height: 1.6;
-      max-width: 640px;
-    }
-    .journey-panel-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      min-height: 44px;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .journey-panel-link svg { width: 16px; height: 16px; transition: transform 0.22s var(--ease-premium); }
-    .journey-panel-link:hover svg { transform: translateX(2px); }
-    /* Stretched link — the whole panel presses; text stays selectable, the
-       link stays the panel's only tab stop. */
-    .journey-panel-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
-    .journey-panel > *:not(.journey-panel-link) { position: relative; z-index: 2; }
-    @supports selector(:has(*)) {
-      .journey-panels { gap: 0; }
-      .journey-panel {
-        grid-area: 1 / 1;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 200ms ease, visibility 0s linear 200ms;
-      }
-      .journey-slider:has(#js-explore:checked) .journey-panel--explore,
-      .journey-slider:has(#js-student:checked) .journey-panel--student,
-      .journey-slider:has(#js-private:checked) .journey-panel--private,
-      .journey-slider:has(#js-instrument:checked) .journey-panel--instrument,
-      .journey-slider:has(#js-commercial:checked) .journey-panel--commercial,
-      .journey-slider:has(#js-cfi:checked) .journey-panel--cfi {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 200ms ease;
-      }
-    }
-    /* ==========================================================================
        Tools dock — The Hangar: paper-press cards (hover warms, never lifts)
        ========================================================================== */
     .tools-dock-row {
@@ -825,98 +635,6 @@
     footer .footer-social { margin: 0 0 18px; }
     footer .fine { font-size: 13px; margin: 6px 0; }
     /* ==========================================================================
-       The STRIP — persistent app chrome (v12). Mobile: glass bottom bar with
-       dots + compact Crown + phone + sound. Desktop: slim right-edge rail with
-       dots + Next + sound (Crown stays in the locked nav). JS un-hides it.
-       ========================================================================== */
-    .strip {
-      position: fixed;
-      z-index: var(--z-nav);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--glass-bg);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-      backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-      border: 1px solid var(--glass-edge);
-      box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
-    }
-    .strip[hidden] { display: none; }
-    .strip-dots { display: flex; align-items: center; gap: 2px; }
-    .strip-dot {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 34px;
-    }
-    .strip-dot-in {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--border-strong);
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .strip-dot.is-active .strip-dot-in { background: var(--navy); transform: scale(1.35); }
-    .strip-next {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--navy);
-      white-space: nowrap;
-      padding: 8px 4px;
-      border-radius: 8px;
-    }
-    .strip-next:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--yellow-line); text-underline-offset: 3px; }
-    .strip-call {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
-      border-radius: var(--r-pill);
-      color: var(--navy);
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid var(--border);
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .strip-call:hover { background: rgba(255, 255, 255, 0.85); border-color: var(--yellow-line); }
-    .strip-call:active { transform: scale(0.97); }
-    .strip-call svg { width: 20px; height: 20px; }
-    .strip-book { min-height: 52px; flex: 1; justify-content: center; }
-    /* Desktop: slim right-edge rail */
-    @media (min-width: 981px) {
-      .strip {
-        right: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-        flex-direction: column;
-        padding: 14px 10px;
-        border-radius: var(--r-pill);
-        gap: 8px;
-      }
-      .strip-dots { flex-direction: column; gap: 2px; }
-      .strip-dot { width: 34px; height: 22px; }
-      .strip-next { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 2px; font-size: 12.5px; }
-      .strip-book, .strip-call { display: none; }
-    }
-    /* Mobile: bottom bar */
-    @media (max-width: 980px) {
-      .strip {
-        left: 12px;
-        right: 12px;
-        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-        padding: 8px 10px;
-        border-radius: var(--r-pill);
-      }
-      .strip-dots { gap: 0; }
-      .strip-dot { width: 20px; height: 30px; }
-      .strip-dot-in { width: 7px; height: 7px; }
-      .strip-next { display: none; }
-    }
-    @media (max-width: 420px) {
-      .strip-dots { display: none; }
-    }
-    /* ==========================================================================
        Responsive
        ========================================================================== */
     @media (max-width: 780px) {
@@ -950,10 +668,10 @@
 <script defer data-domain="suarezcfi.com" src="https://plausible.io/js/script.js"></script>
   <link rel="stylesheet" href="/assets/premium-home.css?v=a3170b2ca4">
 <link rel="stylesheet" href="/assets/site-discovery.css?v=20260913-hangar" />
-  <link rel="stylesheet" href="/assets/premium.css?v=e8869804da">
-<link rel="stylesheet" href="/assets/home-avionics.css?v=20260922-visual-fix">
+<link rel="stylesheet" href="/assets/home-avionics.css?v=6bb612afe8">
 <link rel="stylesheet" href="/assets/tool-catalog.css">
-<link rel="stylesheet" href="/assets/avionics.css?v=9718ac1b68">
+  <link rel="stylesheet" href="/assets/premium.css?v=956154d8af">
+<link rel="stylesheet" href="/assets/avionics.css?v=50c79d6139">
 </head>
 <body class="home-page">
   <!-- Aviation-themed backdrop and coordinate margins -->
@@ -995,7 +713,7 @@
   <!-- /site-nav -->
 
   <main id="top">
-    <a class="home-flight-wordmark" href="/" aria-label="Suarez CFI home">SUAREZ.CFI</a>
+    <a class="home-flight-wordmark" href="/" aria-label="CFI Diego Suarez home">CFI Diego Suarez</a>
 
     <section class="horizon-hero" id="hero" aria-labelledby="hero-heading" data-motion="off" data-sky-mode="auto" data-sky-phase="day">
       <div class="horizon-sky-fallback" aria-hidden="true"></div>
@@ -1004,10 +722,10 @@
         <div class="horizon-copy">
           <p class="horizon-kicker">Bowman Field · Louisville, KY</p>
           <h1 id="hero-heading"><span>Learn to fly.</span><span>With confidence.</span></h1>
-          <p class="horizon-lede">Personal flight instruction, practical knowledge,<br class="desktop-break"> and tools for every stage of your flying.</p>
+          <p class="horizon-lede">Personal flight instruction, practical knowledge, and tools for every stage of your flying.</p>
           <div class="horizon-actions">
             <a href="/discovery-flight-louisville-ky/" class="btn btn--primary" data-cta-id="home-hero-discovery"><img class="button-icon" src="/assets/home-plane.svg" width="26" height="26" alt="">Book a discovery flight</a>
-            <a href="#tools" class="horizon-tools"><img class="button-icon" src="/assets/home-book.svg" width="26" height="26" alt="">Explore pilot tools</a>
+            <a href="#next-steps" class="horizon-tools" data-cta-id="home-hero-path"><img class="button-icon" src="/assets/home-book.svg" width="26" height="26" alt="">Find your path</a>
           </div>
         </div>
       </div>
@@ -1017,11 +735,41 @@
       </div>
     </section>
 
+    <section id="next-steps" class="next-steps" aria-labelledby="next-steps-heading">
+      <div class="container">
+        <div class="section-header section-header--placard">
+          <span class="eyebrow">Start where you are</span>
+          <h2 id="next-steps-heading">Find your next step.</h2>
+          <p>Choose the next step that fits today. You can explore the rest whenever you’re ready.</p>
+        </div>
+        <div class="next-step-grid">
+          <a class="next-step-card" href="/flight-training-louisville-ky/" data-cta-id="home-path-explore">
+            <span class="next-step-number">01 · New to flying</span>
+            <h3>New to flying</h3>
+            <p>Learn how flight training works at Bowman Field and what to expect as you get started.</p>
+            <span class="next-step-link">Explore flight training <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="next-step-card" href="/learn/private-pilot/" data-cta-id="home-path-student">
+            <span class="next-step-number">02 · Already training</span>
+            <h3>Already training</h3>
+            <p>Use student guides to prepare for lessons, solo, cross-country flights, and your next milestone.</p>
+            <span class="next-step-link">Browse student guides <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="next-step-card" href="/tools/" data-cta-id="home-path-tools">
+            <span class="next-step-number">03 · Pilot tools</span>
+            <h3>Looking for a pilot tool</h3>
+            <p>Explore free planning, safety, and flight calculation tools for your next decision.</p>
+            <span class="next-step-link">Browse all pilot tools <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="services" class="flight-plan" aria-labelledby="services-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-
-          <h2 id="services-heading">A clear path to the left seat.</h2>
+          <span class="eyebrow">Flight instruction</span>
+          <h2 id="services-heading">Flight instruction, one step at a time.</h2>
         </div>
         <nav class="plan-rows" aria-label="Instruction services">
           <a class="plan-row" href="/discovery-flight-louisville-ky/" data-cta-id="home-services-discovery">
@@ -1068,17 +816,26 @@
           <div class="about-main">
             <img src="/assets/diego-1.webp" alt="Diego Suarez smiling while seated on a yellow Bristell aircraft" class="about-photo" width="720" height="720" loading="lazy" decoding="async" />
             <div class="about-copy">
-              <span class="eyebrow">02 · Crew — your instructor · Bowman Field (KLOU)</span>
+              <span class="eyebrow">Your instructor · Bowman Field (KLOU)</span>
               <h2 id="profile-heading">Meet Diego Suarez.</h2>
-              <p class="about-text">Flying wasn’t always my plan. Then I found myself at Bowman Field, learning from instructors who made a complicated world feel possible. I still remember what it was like to be new: excited, full of questions, and unsure whether I belonged in the left seat.</p>
-              <p class="about-text">Today, I’m a flight instructor at Kentucky Flight Training Center. I teach with the same patience my mentors gave me, while holding every student to the judgment and habits that make a capable pilot. We’ll work through the hard parts together, celebrate the milestones, and make sure you understand <em>why</em>—not just <em>how</em>—the airplane flies.</p>
+              <p class="about-text">I’m a flight instructor at Kentucky Flight Training Center at Bowman Field. I help students build sound judgment and understand why the airplane flies, one clear lesson at a time.</p>
+              <p class="about-credential-summary">CFI · AGI · Commercial Pilot · Instrument Rating</p>
+              <details class="about-more">
+                <summary>Read my full story</summary>
+                <div class="about-more-copy">
+                  <p class="about-text">Flying wasn’t always my plan. Then I found myself at Bowman Field, learning from instructors who made a complicated world feel possible. I still remember what it was like to be new: excited, full of questions, and unsure whether I belonged in the left seat.</p>
+                  <p class="about-text">Today, I’m a flight instructor at Kentucky Flight Training Center. I teach with the same patience my mentors gave me, while holding every student to the judgment and habits that make a capable pilot. We’ll work through the hard parts together, celebrate the milestones, and make sure you understand <em>why</em>—not just <em>how</em>—the airplane flies.</p>
+                  <p class="about-signature">“The goal isn’t to make flying feel easy. It’s to help you become the kind of pilot who can think clearly when it isn’t.”</p>
+                </div>
+              </details>
               <div class="profile-avail"><span class="dot" aria-hidden="true"></span> Accepting new students</div>
-              <p class="about-signature">“The goal isn’t to make flying feel easy. It’s to help you become the kind of pilot who can think clearly when it isn’t.”</p>
               <a class="btn btn--tertiary" href="#contact" data-cta-id="home-about-hello">Say hello →</a>
             </div>
           </div>
 
-          <!-- Credential ledger — letterhead line, evidence photos, five ruled rows -->
+          <!-- Full FAA certificate details remain available without dominating the profile. -->
+          <details class="credentials-more">
+            <summary>View FAA certificates and ratings</summary>
           <div class="credential-ledger" aria-label="Diego Suarez FAA credentials">
             <span class="ledger-authority">Certificates &amp; Ratings · Federal Aviation Administration</span>
             <div class="ledger-body">
@@ -1106,110 +863,7 @@
               </dl>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="journey" class="journey-section" aria-labelledby="journey-heading">
-      <div class="container">
-        <div class="section-header section-header--placard">
-          <span class="eyebrow">03 · Enroute — choose your path</span>
-          <h2 id="journey-heading">Where are you on the route?</h2>
-          <p>Set your stage and get a curated flight plan of guides for exactly that leg.</p>
-        </div>
-
-        <div class="journey-sheet">
-          <fieldset class="journey-slider">
-            <legend class="visually-hidden">Your training stage</legend>
-            <div class="journey-mobile-picker">
-              <label for="journey-stage-select">Your training stage</label>
-              <select id="journey-stage-select">
-                <option value="js-explore">Just exploring</option>
-                <option value="js-student">Student Pilot</option>
-                <option value="js-private">Private Pilot</option>
-                <option value="js-instrument">Instrument</option>
-                <option value="js-commercial">Commercial</option>
-                <option value="js-cfi">CFI</option>
-              </select>
-            </div>
-            <p class="visually-hidden" id="journey-stage-status" role="status" aria-live="polite">Showing guides for Just exploring.</p>
-            <div class="journey-trackwrap">
-              <span class="journey-track" aria-hidden="true"></span>
-              <input type="radio" name="journey-stage" id="js-explore" checked />
-              <label class="journey-stop" for="js-explore"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Just exploring</span></label>
-              <input type="radio" name="journey-stage" id="js-student" />
-              <label class="journey-stop" for="js-student"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Student Pilot</span></label>
-              <input type="radio" name="journey-stage" id="js-private" />
-              <label class="journey-stop" for="js-private"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Private Pilot</span></label>
-              <input type="radio" name="journey-stage" id="js-instrument" />
-              <label class="journey-stop" for="js-instrument"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Instrument</span></label>
-              <input type="radio" name="journey-stage" id="js-commercial" />
-              <label class="journey-stop" for="js-commercial"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">Commercial</span></label>
-              <input type="radio" name="journey-stage" id="js-cfi" />
-              <label class="journey-stop" for="js-cfi"><span class="journey-dotbox" aria-hidden="true"><span class="journey-dot"></span></span><span class="journey-stop-label">CFI</span></label>
-              <span class="journey-plane" aria-hidden="true">
-                <!-- top-view silhouette of the hero's low-wing trainer: same airplane, two drawings -->
-                <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1.5c.9 0 1.3.6 1.3 1.5l.3 5.2L30 16.8v2.6l-12.2-2.2.5 5.6 3.9 2.4v2l-4.6-1-1.6-.4-1.6.4-4.6 1v-2l3.9-2.4.5-5.6L2 19.4v-2.6l12.4-8.6.3-5.2c0-.9.4-1.5 1.3-1.5z"/><circle cx="16" cy="6.2" r="1.7" fill="var(--navy)"/></svg>
-              </span>
-            </div>
-
-            <div class="journey-panels">
-              <article class="journey-panel journey-panel--explore">
-                <span class="journey-panel-eyebrow">01 / 06</span>
-                <h3>Just exploring</h3>
-                <p>Curious about flying but haven't started? What training really involves, costs, and feels like at Bowman Field.</p>
-                <a class="journey-panel-link" href="/flight-training-louisville-ky/" data-cta-id="home-journey-explore">
-                  Plan your first step
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
-              </article>
-              <article class="journey-panel journey-panel--student">
-                <span class="journey-panel-eyebrow">02 / 06</span>
-                <h3>Student Pilot</h3>
-                <p>You're in training — what to nail down before solo and your first cross-country.</p>
-                <a class="journey-panel-link" href="/learn/private-pilot/" data-cta-id="home-journey-student">
-                  Student pilot guides
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
-              </article>
-              <article class="journey-panel journey-panel--private">
-                <span class="journey-panel-eyebrow">03 / 06</span>
-                <h3>Private Pilot</h3>
-                <p>Working toward the private pilot checkride — the ACS, maneuvers, and checkride guides.</p>
-                <a class="journey-panel-link" href="/learn/private-pilot/" data-cta-id="home-journey-private">
-                  Private pilot guides
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
-              </article>
-              <article class="journey-panel journey-panel--instrument">
-                <span class="journey-panel-eyebrow">04 / 06</span>
-                <h3>Instrument</h3>
-                <p>New rules and new precision — start here for the instrument rating.</p>
-                <a class="journey-panel-link" href="/learn/instrument-rating/" data-cta-id="home-journey-instrument">
-                  Instrument rating guides
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
-              </article>
-              <article class="journey-panel journey-panel--commercial">
-                <span class="journey-panel-eyebrow">05 / 06</span>
-                <h3>Commercial</h3>
-                <p>Turning flying into a career starts with the commercial certificate — here's the path.</p>
-                <a class="journey-panel-link" href="/learn/commercial-pilot/" data-cta-id="home-journey-commercial">
-                  Commercial pilot guides
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
-              </article>
-              <article class="journey-panel journey-panel--cfi">
-                <span class="journey-panel-eyebrow">06 / 06</span>
-                <h3>CFI</h3>
-                <p>The real path from commercial pilot to certificated flight instructor.</p>
-                <a class="journey-panel-link" href="/learn/career-and-cfi/" data-cta-id="home-journey-cfi">
-                  CFI guides
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
-              </article>
-            </div>
-          </fieldset>
+          </details>
         </div>
       </div>
     </section>
@@ -1217,12 +871,12 @@
     <section id="tools" class="tools-dock" aria-labelledby="tools-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-          <span class="eyebrow">04 · Hangar — free tools</span>
-          <h2 id="tools-heading">The hangar</h2>
-          <p>Free tools — built by your instructor.</p>
+          <span class="eyebrow">Free pilot tools</span>
+          <h2 id="tools-heading">Useful tools for the next decision.</h2>
+          <p>Start with a training plan, a risk check, or a flight calculation.</p>
         </div>
         <div class="tools-dock-row">
-<div class="home-tool-grid"><a class="home-tool-entry" href="/pilotsolve/" data-cta-id="home-tools-pilotsolve"><img src="/assets/identities/pilotsolve/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>PilotSolve</strong><span>Flight calculations</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/flight-risk-assessment/" data-cta-id="home-tools-flight-risk-assessment"><img src="/assets/identities/flight-risk-assessment/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>FlightRisk</strong><span>Flight risk assessment</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/part-61-calculator/" data-cta-id="home-tools-part-61-calculator"><img src="/assets/identities/part-61-calculator/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>CertPath</strong><span>Your training plan</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/simply-endorsed-cfi/" data-cta-id="home-tools-simply-endorsed-cfi"><img src="/assets/identities/simply-endorsed-cfi/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>Simply Endorsed CFI</strong><span>Endorsements &amp; guidance</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/foi-cards/" data-cta-id="home-tools-foi-cards"><img src="/assets/identities/foi-cards/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>FOI Cards</strong><span>Instructor study cards</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/aero-lab/" data-cta-id="home-tools-aero-lab"><img src="/assets/identities/aero-lab/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>Aero Lab</strong><span>Explore aerodynamics</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/engine-explorer/" data-cta-id="home-tools-engine-explorer"><img src="/assets/identities/engine-explorer/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>Crank &amp; Core</strong><span>Inside aircraft engines</span></span><span aria-hidden="true">↗</span></a></div>
+<div class="home-tool-grid"><a class="home-tool-entry" href="/part-61-calculator/" data-cta-id="home-tools-part-61-calculator"><img src="/assets/identities/part-61-calculator/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>CertPath</strong><span>Map your training requirements and see what comes next.</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/flight-risk-assessment/" data-cta-id="home-tools-flight-risk-assessment"><img src="/assets/identities/flight-risk-assessment/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>FlightRisk</strong><span>Review conditions and risks before a flight.</span></span><span aria-hidden="true">↗</span></a><a class="home-tool-entry" href="/pilotsolve/" data-cta-id="home-tools-pilotsolve"><img src="/assets/identities/pilotsolve/logo.png" alt="" width="52" height="52" loading="lazy"><span><strong>PilotSolve</strong><span>Work through common flight calculations.</span></span><span aria-hidden="true">↗</span></a></div>
 </div>
 <p class="tools-directory-link"><a href="/tools/">Explore all pilot tools →</a></p>
       </div>
@@ -1231,7 +885,7 @@
     <section id="faq" aria-labelledby="faq-heading">
       <div class="container">
         <div class="section-header section-header--placard">
-          <span class="eyebrow">05 · Checklist</span>
+          <span class="eyebrow">Common questions</span>
           <h2 id="faq-heading">The checklist.</h2>
           <p>Quick answers to the questions new and returning students ask most often.</p>
         </div>
@@ -1277,16 +931,18 @@
       <div class="container">
         <div class="contact">
           <div class="contact-sheet">
-            <span class="eyebrow">06 · Tower — contact</span>
+            <span class="eyebrow">Get in touch</span>
             <h2 id="contact-heading">Talk to Diego.</h2>
+            <a href="/discovery-flight-louisville-ky/" class="btn btn--primary btn--crown contact-crown" data-cta-id="home-contact-discovery"><span class="btn-crown-label">Book a Discovery Flight</span></a>
             <a href="tel:+15025100508" class="contact-phone" data-cta-id="home-contact-phone">502-510-0508</a>
             <p class="contact-phone-note">Call or text — I usually reply the same day.</p>
-            <div class="contact-form-mount" data-form-context="home">
-              <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email">Email Diego</a> or call <a href="tel:+15025100508" data-cta-id="home-phone">502-510-0508</a>.</p>
-            </div>
-            <p class="contact-crown-note">Ready when you are —</p>
-            <a href="/discovery-flight-louisville-ky/" class="btn btn--primary btn--crown contact-crown" data-cta-id="home-contact-discovery"><span class="btn-crown-label">Book a Discovery Flight</span></a>
-            <p class="contact-alt">Prefer email? <a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-contact-email">SuarezCFI@gmail.com</a></p>
+            <p class="contact-direct">Prefer email? <a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email">SuarezCFI@gmail.com</a></p>
+            <details class="email-draft">
+              <summary>Draft an email</summary>
+              <div class="contact-form-mount" data-form-context="home">
+                <p><a href="mailto:SuarezCFI@gmail.com" data-cta-id="home-email-fallback">Email Diego</a>.</p>
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -1586,7 +1242,7 @@
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!('IntersectionObserver' in window)) return;
-      var selector = '.section-header, .about-panel, .plan-row, .journey-sheet, .tool-card, .faq-sheet, .contact';
+      var selector = '.section-header, .about-panel, .plan-row, .home-tool-entry, .faq-sheet, .contact';
       var els = Array.prototype.slice.call(document.querySelectorAll(selector));
       if (!els.length) return;
       var byParent = new Map();
@@ -1606,49 +1262,6 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
       els.forEach(function (el) { io.observe(el); });
-    })();
-  </script>
-  <script>
-    // The compact control uses a labeled native picker; the radios remain the
-    // single stage state for CSS, pointer, and keyboard behavior at all sizes.
-    (function () {
-      var slider = document.querySelector('.journey-slider');
-      var picker = document.getElementById('journey-stage-select');
-      if (!slider || !picker) return;
-      picker.addEventListener('change', function () {
-        var radio = document.getElementById(picker.value);
-        if (!radio || radio.name !== 'journey-stage') return;
-        radio.checked = true;
-        radio.dispatchEvent(new Event('change', { bubbles: true }));
-      });
-      slider.addEventListener('change', function (event) {
-        if (event.target.name !== 'journey-stage') return;
-        picker.value = event.target.id;
-        var status = document.getElementById('journey-stage-status');
-        if (status) status.textContent = 'Showing guides for ' + picker.selectedOptions[0].textContent + '.';
-      });
-    })();
-  </script>
-  <script>
-    // Journey detent slider — one subtle pitch while the plane glides to its
-    // stop. Pure decoration: state lives in CSS. Skipped under reduced motion
-    // (the plane snaps instantly, level).
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var slider = document.querySelector('.journey-slider');
-      var plane = document.querySelector('.journey-plane');
-      if (!slider || !plane) return;
-      var glideTimer;
-      function land() { plane.classList.remove('is-gliding'); }
-      slider.addEventListener('change', function (e) {
-        if (!e.target || e.target.name !== 'journey-stage') return;
-        plane.classList.add('is-gliding');
-        clearTimeout(glideTimer);
-        glideTimer = setTimeout(land, 450);
-      });
-      plane.addEventListener('transitionend', function (e) {
-        if (e.propertyName === 'left') land();
-      });
     })();
   </script>
   <script>
@@ -1677,168 +1290,8 @@
       io.observe(ledger);
     })();
   </script>
-  <script>
-    // Journey detent slider — pointer drag. Pointer capture on the track: the
-    // plane needle tracks the pointer x (transform-only), banking ≤±10° toward
-    // the drag direction; on release the nearest radio is checked (radios stay
-    // the state truth) and the CSS transition glides the needle home while the
-    // target dot compresses and rebounds. Click/keyboard/no-JS paths untouched.
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var wrap = document.querySelector('.journey-trackwrap');
-      var plane = document.querySelector('.journey-plane');
-      if (!wrap || !plane) return;
-      var stops = ['js-explore', 'js-student', 'js-private', 'js-instrument', 'js-commercial', 'js-cfi']
-        .map(function (id) { return document.getElementById(id); });
-      if (stops.some(function (r) { return !r; })) return;
-      var dragging = false, moved = false, suppressClick = false;
-      var startX = 0, lastX = 0, bank = 0, rect = null;
-
-      function laneMin() { return rect.width / 12; }
-      function laneMax() { return rect.width * 11 / 12; }
-      function clampX(x) { return Math.min(laneMax(), Math.max(laneMin(), x)); }
-
-      wrap.addEventListener('pointerdown', function (e) {
-        if (e.pointerType === 'mouse' && e.button !== 0) return;
-        dragging = true;
-        moved = false;
-        suppressClick = false;
-        startX = lastX = e.clientX;
-        rect = wrap.getBoundingClientRect();
-        /* No pointer capture here: capture retargets the trailing click to the
-           wrap, which kills native label→radio activation for plain taps.
-           Capture begins only once a real drag crosses the threshold. */
-      });
-
-      wrap.addEventListener('pointermove', function (e) {
-        if (!dragging) return;
-        if (!moved) {
-          if (Math.abs(e.clientX - startX) < 5) return;
-          moved = true;
-          bank = 0;
-          wrap.classList.add('is-dragging');
-          plane.classList.add('is-dragging');
-          try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
-        }
-        plane.style.left = clampX(e.clientX - rect.left) + 'px';
-        var target = Math.min(10, Math.max(-10, (e.clientX - lastX) * 1.6));
-        lastX = e.clientX;
-        bank += (target - bank) * 0.35;
-        plane.style.transform = 'translate(-50%, -100%) rotate(' + bank.toFixed(2) + 'deg)';
-      });
-
-      function release(e, commit) {
-        if (!dragging) return;
-        dragging = false;
-        if (!moved) return;
-        moved = false;
-        wrap.classList.remove('is-dragging');
-        plane.classList.remove('is-dragging');
-        if (commit) {
-          var x = clampX(e.clientX - rect.left);
-          var i = Math.min(5, Math.max(0, Math.floor(x / (rect.width / 6))));
-          stops[i].checked = true;
-          stops[i].dispatchEvent(new Event('change', { bubbles: true }));
-          var label = wrap.querySelector('label[for="' + stops[i].id + '"]');
-          if (label) {
-            label.classList.remove('is-dropped');
-            void label.offsetWidth; /* restart the rebound keyframe */
-            label.classList.add('is-dropped');
-          }
-          suppressClick = true;
-        }
-        plane.style.left = '';
-        plane.style.transform = '';
-      }
-
-      wrap.addEventListener('pointerup', function (e) { release(e, true); });
-      wrap.addEventListener('pointercancel', function (e) { release(e, false); });
-      /* After a real drag, swallow the trailing click so it cannot re-check
-         whichever stop the pointer happens to rest over. */
-      wrap.addEventListener('click', function (e) {
-        if (suppressClick) {
-          suppressClick = false;
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      }, true);
-    })();
-  </script>
   <script src="/assets/site-nav.js?v=226fcb9b93" defer></script>
 
-  <!-- The STRIP — the v12 app chrome. Seven stage dots, Next anchor;
-       mobile adds the compact Crown + phone. JS (strip behavior at the
-       bottom of this file) activates it; no-JS hides it entirely. -->
-  <nav class="strip" aria-label="Page stages" hidden>
-    <div class="strip-dots" role="list">
-      <a href="#hero" class="strip-dot is-active" role="listitem" data-stage="hero" aria-label="Ramp — top"><span class="strip-dot-in"></span></a>
-      <a href="#services" class="strip-dot" role="listitem" data-stage="services" aria-label="Flight plan"><span class="strip-dot-in"></span></a>
-      <a href="#about" class="strip-dot" role="listitem" data-stage="about" aria-label="Crew — your instructor"><span class="strip-dot-in"></span></a>
-      <a href="#journey" class="strip-dot" role="listitem" data-stage="journey" aria-label="Enroute — the route"><span class="strip-dot-in"></span></a>
-      <a href="#tools" class="strip-dot" role="listitem" data-stage="tools" aria-label="Hangar — free tools"><span class="strip-dot-in"></span></a>
-      <a href="#faq" class="strip-dot" role="listitem" data-stage="faq" aria-label="Checklist — questions"><span class="strip-dot-in"></span></a>
-      <a href="#contact" class="strip-dot" role="listitem" data-stage="contact" aria-label="Tower — contact"><span class="strip-dot-in"></span></a>
-    </div>
-    <a href="#services" class="strip-next" data-strip-next>Next · The flight plan ↓</a>
-    <a href="/discovery-flight-louisville-ky/" class="btn btn--primary strip-book" data-cta-id="home-strip-book">Book</a>
-    <a href="tel:+15025100508" class="strip-call" aria-label="Call or text Diego" data-cta-id="home-strip-call">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92V21a1 1 0 0 1-1.1 1 19.9 19.9 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.9 19.9 0 0 1 3.2 4.1 1 1 0 0 1 4.2 3h4.1a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.3 1l-1.7 1.7a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4 1a1 1 0 0 1 .75 1z"/></svg>
-    </a>
-  </nav>
-
-  <script>
-    /* The STRIP behavior: IntersectionObserver tracks the active stage;
-       dots + Next are real anchors. */
-    (function () {
-      var strip = document.querySelector('.strip');
-      if (!strip) return;
-      var stages = [
-        { id: 'hero', next: 'The flight plan', href: '#services' },
-        { id: 'services', next: 'Your instructor', href: '#about' },
-        { id: 'about', next: 'The route', href: '#journey' },
-        { id: 'journey', next: 'The hangar', href: '#tools' },
-        { id: 'tools', next: 'The checklist', href: '#faq' },
-        { id: 'faq', next: 'The tower', href: '#contact' },
-        { id: 'contact', next: null, href: null }
-      ];
-      var dots = {};
-      strip.querySelectorAll('.strip-dot').forEach(function (d) { dots[d.getAttribute('data-stage')] = d; });
-      var next = strip.querySelector('[data-strip-next]');
-
-      function setActive(id) {
-        var idx = -1;
-        stages.forEach(function (s, i) {
-          var on = s.id === id;
-          if (on) idx = i;
-          var dot = dots[s.id];
-          if (dot) dot.classList.toggle('is-active', on);
-        });
-        if (idx >= 0 && next) {
-          var s = stages[idx];
-          if (s.next) { next.textContent = 'Next · ' + s.next + ' ↓'; next.setAttribute('href', s.href); }
-          else { next.textContent = 'Book a Discovery Flight ↑'; next.setAttribute('href', '/discovery-flight-louisville-ky/'); }
-        }
-      }
-
-      strip.hidden = false;
-      if ('IntersectionObserver' in window) {
-        var ratios = {};
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) { ratios[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
-          var best = null, bestR = 0;
-          stages.forEach(function (s) {
-            var r = ratios[s.id] || 0;
-            if (r > bestR) { bestR = r; best = s.id; }
-          });
-          if (best) setActive(best);
-        }, { threshold: [0, 0.25, 0.5, 0.75] });
-        stages.forEach(function (s) {
-          var el = document.getElementById(s.id);
-          if (el) io.observe(el);
-        });
-      }
-    })();
-  </script>
     <script defer src="/assets/premium-home.js?v=9d23c4bafc"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ LINK = f'  <link rel="stylesheet" href="/assets/premium.css?v={VERSION}">'
 SCRIPT_VERSIONS = {name: sha256((ROOT / 'assets' / name).read_bytes()).hexdigest()[:10]
                    for name in ('site-nav.js', 'premium-home.js')}
 CALCULATOR_VERSION = sha256((ROOT / 'simply-endorsed/js/part61-calculator-ui.js').read_bytes()).hexdigest()[:10]
+HOME_VERSION = sha256((ROOT / 'assets/home-avionics.css').read_bytes()).hexdigest()[:10]
 
 
 def version_scripts(source):
@@ -52,10 +53,15 @@ def apply():
             return '<body' + attrs + '>'
         updated = re.sub(r'<body([^>]*)>', body, source, count=1)
         updated = re.sub(r'^[ \t]*<link[^>]*href="/assets/premium\.css[^>]*>\n?', '', updated, flags=re.M)
-        updated = updated.replace('</head>', LINK + '\n</head>', 1)
+        avionics_link = re.search(r'<link rel="stylesheet" href="/assets/avionics\.css(?:\?[^\"]*)?">', updated)
+        if avionics_link:
+            updated = updated[:avionics_link.start()] + LINK + '\n' + updated[avionics_link.start():]
+        else:
+            updated = updated.replace('</head>', LINK + '\n</head>', 1)
         updated = version_scripts(updated)
-        updated = re.sub(r'(<meta name="theme-color" content=")[^"]+', r'\g<1>#242725', updated)
-        updated = re.sub(r'(class="(?:chipnav-)?wordmark"[^>]*>)Diego Suarez', r'\g<1>SUAREZ.CFI', updated)
+        if relative == Path('index.html'):
+            updated = re.sub(r'/assets/home-avionics\.css(?:\?[^\"]*)?', f'/assets/home-avionics.css?v={HOME_VERSION}', updated)
+        updated = re.sub(r'(<meta name="theme-color" content=")[^"]+', r'\g<1>#0E1721', updated)
         if updated != source:
             path.write_text(updated, encoding="utf-8")
             changed += 1

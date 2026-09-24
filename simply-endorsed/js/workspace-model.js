@@ -438,7 +438,49 @@
     resetsWhen: facts.night,
     color: "student-pilot",
   });
+  // Presentation metadata only. Regulatory text and task requirements remain above.
+  const categoryPresentation = {
+    "practical-test-prereqs": ["#6356d8", "#b5aaff", "list-checks"],
+    "student-pilot": ["#985511", "#ffc46b", "plane-takeoff"],
+    "sport-pilot": ["#237444", "#88dca0", "compass"],
+    "recreational-pilot": ["#5c701f", "#c5da7a", "compass"],
+    "private-pilot": ["#086a91", "#75d7f4", "badge-check"],
+    "commercial-pilot": ["#886414", "#f1d072", "graduation-cap"],
+    "atp": ["#315ec4", "#9abbff", "layers"],
+    "instrument-rating": ["#4b607b", "#c0d2ed", "compass"],
+    "flight-instructor": ["#a13b48", "#ffabb6", "graduation-cap"],
+    "sport-pilot-instructor": ["#a14d22", "#ffbb93", "graduation-cap"],
+    "additional-recurrent": ["#156e69", "#8ee0d4", "refresh-cw"],
+    "robinson-sfar73": ["#a13977", "#f8a5d7", "compass"],
+    "specialty-operations": ["#7443b7", "#d3b1ff", "layers"],
+  };
+  const taskGuidance = {
+    "new-student": [["journey", "enrollment"]],
+    "pre-solo": [["journey", "pre-solo-ground"]],
+    "first-solo": [["journey", "first-solo"]],
+    "night-solo": [["journey", "pre-solo-flight"]],
+    "solo-renewal": [["journey", "first-solo"]],
+    "another-airport-within-25nm": [["journey", "local-solo"]],
+    "initial-solo-xc": [["journey", "xc-training"], ["journey", "xc-per-flight"]],
+    "repeated-solo-xc-50nm": [["journey", "xc-repeated"]],
+    "class-b-solo": [["journey", "class-b"]],
+    "private-knowledge-test": [["journey", "knowledge-test"]],
+    "private-airplane-initial-checkride-bundle": [["journey", "checkride-prep"]],
+    "private-amel-add-on-checkride-bundle": [["scenarios", "add-multiengine"]],
+    "retest-after-disapproval": [["scenarios", "failed-area"]],
+    "flight-review-and-wings": [["scenarios", "flight-review"]],
+    "instrument-proficiency-check": [["scenarios", "ipc"]],
+    "solo-without-category-class": [["scenarios", "solo-wrong-category"]],
+  };
+  function relatedGuidance(taskId) {
+    const links = [...(taskGuidance[taskId] || []), ["reference", "logbook"], ["reference", "time-limits"]];
+    const topics = guidanceTopics();
+    return links.map(([mode, id]) => topics.find(g => g.mode === mode && g.id === id)).filter(Boolean);
+  }
   window.SEWorkspace = {
+    categoryPresentation,
+    relatedGuidance,
+    taskGuidance,
     categories,
     paths,
     task,

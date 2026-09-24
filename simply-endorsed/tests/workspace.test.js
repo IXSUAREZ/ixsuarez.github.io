@@ -22,7 +22,7 @@ function check(value, message) {
   assert.ok(value, message);
   checks++;
 }
-function app(search = "") {
+function app(search = "", sharedAppearance = false) {
   const errors = [],
     virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", (e) => errors.push(e));
@@ -39,6 +39,12 @@ function app(search = "") {
   w.Storage.prototype.setItem = () => {
     throw new Error("Checklist must not use browser storage");
   };
+  w.__mediaChange = null;
+  w.matchMedia = () => ({addEventListener: (_event, callback) => {w.__mediaChange=callback;}});
+  if (sharedAppearance) {
+    let preference="dark";
+    w.SuarezAppearance={getPreference:()=>preference,setPreference:value=>{preference=value;w.dispatchEvent(new w.Event("suarez:appearance"));}};
+  }
   w.eval(code);
   return { w, doc: w.document, errors, close: () => w.close() };
 }
@@ -61,8 +67,8 @@ function change(selector, value) {
   el.dispatchEvent(new w.Event("change", { bubbles: true }));
 }
 check(
-  doc.querySelector("h1").textContent === "Endorsements",
-  "Category browsing is the default",
+  doc.querySelector("h1").textContent === "What’s the next milestone?",
+  "Tasks are the default",
 );
 check(M.paths.length === 71, "All 71 original paths retained");
 check(w.ENDORSEMENTS.length === 96, "All 96 endorsements retained");
@@ -282,8 +288,8 @@ check(
   "Provider document instructions are not offered as an instructor signoff",
 );
 go("?view=library&expanded=A.4");
-check(doc.querySelectorAll('.se-detail-disclosure').length === 3, 'Detail separates wording, guidance and sources into independent disclosures');
-check(!doc.querySelector('.se-detail-disclosure').open, 'Detail disclosures start closed');
+check(doc.querySelectorAll('.se-detail-disclosure').length === 2, 'Supporting guidance and sources remain independent disclosures');
+check(doc.querySelector('.se-wording blockquote') && !doc.querySelector('.se-wording details'), 'Model wording is immediately visible');
 const guidanceDisclosure = doc.querySelector('#detail-A\\.4-guidance');
 guidanceDisclosure.open = true;
 guidanceDisclosure.dispatchEvent(new w.Event('toggle'));
@@ -350,10 +356,74 @@ check(doc.querySelector('.se-search-result'), 'Returning restores result list');
 doc.querySelector('[data-action="clear-search"]').click();
 check(!w.location.search.includes('q='), 'Clearing search removes the reload query');
 check(doc.querySelector('.se-category-rail'), 'Clearing search restores category navigation');
+go('?view=tasks');
+check(doc.querySelectorAll('.se-task-card').length === 6, 'Six task starting points');
+check(doc.querySelectorAll('.se-quick .se-path').length === 4, 'Four common task shortcuts');
+doc.querySelector('.se-primary-nav a[href*="collection=categories"]').click();
+check(doc.querySelectorAll('.se-category-tile').length === 13, 'Library destination opens all colored categories');
+check(doc.querySelectorAll('.se-category-tile .se-subcategory').length === 71, 'Category landing contains all paths');
+for (const [taskId, associations] of Object.entries(M.taskGuidance)) {
+  check(!!M.task(taskId), 'Guidance association uses a real task: '+taskId);
+  for (const [mode,id] of associations) check(M.guidanceTopics().some(g=>g.mode===mode && g.id===id), 'Guidance topic exists: '+mode+'/'+id);
+}
+for (const id of ['first-solo','night-solo','private-airplane-initial-checkride-bundle','instrument-proficiency-check']) {
+  go('?view=tasks&task='+id);
+  check(doc.querySelectorAll('.se-related details').length >= 3, 'Contextual guidance renders for '+id);
+  for (const link of doc.querySelectorAll('.se-section-nav a')) check(!!doc.querySelector(link.getAttribute('href')), 'Section link resolves: '+link.hash);
+}
+for (const type of ['tasks','guidance']) {
+  go('?view=library&q=solo');
+  const result=doc.querySelector('.se-search-result[href*="view='+type+'"]');
+  check(!!result, 'Search has '+type+' results');
+  const href=result.getAttribute('href');
+  result.click();
+  check(!doc.querySelector('.se-search-group'), 'Search result opens its content');
+  doc.querySelector('[data-action="back-search"]').click();
+  check(w.location.search.includes('q=solo'), 'Search query returns from '+type);
+  check(doc.activeElement.getAttribute('href')===href, 'Search result focus returns from '+type);
+}
+go('?view=tasks&task=first-solo');
+const disclosure=doc.querySelector('.se-related details');
+disclosure.open=true;
+const disclosureId=disclosure.id;
+doc.querySelector('a[href*="expanded=A.3"]').click();
+check(!!doc.querySelector('.se-wording blockquote') && !doc.querySelector('.se-wording').closest('details'), 'Model wording immediately visible');
+doc.querySelector('[data-action="close-detail"]').click();
+check(doc.getElementById(disclosureId).open, 'Context guidance expansion survives detail roundtrip');
 check(!x.errors.length, x.errors.map((e) => e.stack).join("\n"));
 x.close();
-console.log(
+const appearanceApp=app("",true);
+check(appearanceApp.doc.documentElement.dataset.theme==="dark","Current shared API initializes dark");
+appearanceApp.doc.querySelector('[data-appearance="day"]').click();
+check(appearanceApp.w.SuarezAppearance.getPreference()==="light","Day maps to shared light preference");
+check(appearanceApp.doc.documentElement.dataset.theme==="day","Shared light renders Day tokens");
+appearanceApp.doc.querySelector('[data-appearance="system"]').click();
+check(appearanceApp.doc.querySelector('[data-appearance="system"]').getAttribute('aria-pressed')==="true","System selection synchronizes controls");
+appearanceApp.close();
+const responsiveApp=app("?view=tasks&task=first-solo&expanded=A.3");
+responsiveApp.doc.querySelector("#se-main").focus();
+responsiveApp.w.innerWidth=390;
+responsiveApp.w.__mediaChange();
+check(responsiveApp.doc.activeElement.id==="se-detail-title", "Narrow layout moves focus out of hidden main content");
+check(responsiveApp.w.location.search.includes("expanded=A.3"), "Resize retains selected detail");
+responsiveApp.close();
+async function verifyClipboard() {
+  const copyApp = app("?view=tasks&task=first-solo&expanded=A.3");
+  let copied;
+  Object.defineProperty(copyApp.w.navigator, "clipboard", {value:{writeText:async text=>{copied=text;}},configurable:true});
+  copyApp.doc.querySelector('[data-action="copy"]').click();
+  await new Promise(resolve=>setImmediate(resolve));
+  check(copied === "I certify that [First name, MI, Last name] has satisfactorily completed the pre-solo knowledge test of 14 CFR § 61.87(b) for the [make and model (M/M)] aircraft.", "Clipboard receives exact A.3 wording");
+  check(copyApp.doc.querySelector("#se-feedback").textContent.includes("copied"), "Copy success announced");
+  copyApp.w.navigator.clipboard.writeText=async()=>{throw new Error("denied");};
+  copyApp.doc.querySelector('[data-action="copy"]').click();
+  await new Promise(resolve=>setImmediate(resolve));
+  check(copyApp.doc.querySelector("#se-feedback").textContent.includes("manually"), "Clipboard denial gives manual recovery");
+  check(copyApp.doc.querySelector(".se-wording blockquote").textContent===copied, "Manual recovery retains exact selectable wording");
+  copyApp.close();
+}
+verifyClipboard().then(()=>console.log(
   "PASS: " +
     checks +
     " workspace assertions (71 paths, 96 details, six guidance modes, checklist lifecycle, condition handling and content regressions).",
-);
+)).catch(error=>{console.error(error);process.exitCode=1;});

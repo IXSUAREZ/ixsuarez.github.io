@@ -38,8 +38,8 @@ from the partials):
   nav-tool: additionally the .nav-tool-mark anchor (logo + tool name), any
             app-specific links before "Learn" in .nav-links, and any
             app-specific buttons after the menu toggle in .nav-tools.
-  footer:   class="site-footer" on the element, and any tool-specific extra
-            lines between the social links and the credential line.
+  footer:   content inside explicit footer-notes markers. Legacy extras migrate
+            from between social links and credentials; redundant designer credits are removed.
   post-cta: the <h2> inner text and the data-cta-id of each of the two
             anchors (btn--primary / btn--secondary). A missing data-cta-id
             falls back to the partial default for that anchor. Everything
@@ -64,6 +64,7 @@ Pages with no site chrome at all (e.g. frat/, simply-endorsed/ redirect
 stubs) are ignored silently.
 
 Usage:
+  Add --footer-only to sync only footers, including the three FlightRisk wrappers.
   python3 scripts/sync-chrome.py --apply   # add markers + sync all pages
   python3 scripts/sync-chrome.py --check   # CI: exit 1 and list drifted files
 """
@@ -243,33 +244,26 @@ def render_nav(current_block, page):
 
 
 def render_footer(current_block, page):
-    """Render fresh footer markup (column-0) from partial + preserved slots."""
+    """Migrate legacy extras once; subsequently preserve the explicit slot."""
     partial = load_partial("footer.html")
-    if not current_block.strip():
-        return partial  # empty markers: default footer (template scaffolding)
-    opening = current_block.split("\n", 1)[0]
-    site_footer = 'class="site-footer"' in opening
-
-    lines = current_block.split("\n")
-    extras = []
-    try:
-        soc = next(i for i, l in enumerate(lines) if '<div class="social-links' in l)
-        soc_end = next(i for i, l in enumerate(lines) if i > soc and "</div>" in l)
-        cred = next(i for i, l in enumerate(lines)
-                    if i > soc_end and '<p class="fine">FAA Certificated' in l)
-        extras = dedent_lines(lines[soc_end + 1:cred])
-    except StopIteration:
-        raise ValueError(f"{page}: malformed footer (social/credential lines)")
-
-    out = partial
-    if site_footer:
-        out = out.replace("<footer>", '<footer class="site-footer">', 1)
-    if extras:
-        body = "\n".join(shift(l, 4) if l.strip() else l for l in extras)
-        cred_i = out.index('<p class="fine">FAA Certificated')
-        line_start = out.rindex("\n", 0, cred_i) + 1
-        out = out[:line_start] + body + "\n" + out[line_start:]
-    return out
+    slot = re.search(r"<!-- footer-notes -->(.*?)<!-- /footer-notes -->", current_block, re.S)
+    extras = ""
+    if slot:
+        extras = "\n".join(dedent_lines(slot.group(1).strip("\n").split("\n"))).strip()
+    elif current_block.strip():
+        lines = current_block.split("\n")
+        try:
+            soc = next(i for i,l in enumerate(lines) if '<div class="social-links' in l)
+            end = next(i for i,l in enumerate(lines) if i>soc and "</div>" in l)
+            cred = next(i for i,l in enumerate(lines) if i>end and '<p class="fine">FAA Certificated' in l)
+        except StopIteration:
+            raise ValueError(f"{page}: malformed legacy footer; refusing to discard content")
+        content = "\n".join(dedent_lines(lines[end+1:cred])).strip()
+        content = re.sub(r'<p[^>]*class="[^"]*footer-designer[^"]*"[^>]*>.*?</p>', '', content, flags=re.S).strip()
+        if content:
+            extras = '<aside class="site-footer-notes" aria-label="Tool information">\n' + shift(content, 2) + '\n</aside>'
+    body = "\n" + shift(extras, 2) + "\n  " if extras else "\n  "
+    return re.sub(r'(?<=<!-- footer-notes -->).*?(?=<!-- /footer-notes -->)', lambda _:body, partial, flags=re.S)
 
 
 def swap_cta_id(text, cls, cta_id):
@@ -313,7 +307,7 @@ def render_post_cta(current_block, page):
     return out
 
 
-def sync_file(path, apply):
+def sync_file(path, apply, footer_only=False):
     """Return (changed, reasons) for one page; writes when apply=True."""
     text = path.read_text(encoding="utf-8")
     lines = text.split("\n")
@@ -330,6 +324,8 @@ def sync_file(path, apply):
         ("post-cta", POST_CTA_OPEN, POST_CTA_CLOSE,
          None, None, render_post_cta),
     ):
+        if footer_only and name != "footer":
+            continue
         region = find_region(lines, open_m, close_m)
         if region:
             o, close_idx = region
@@ -371,7 +367,7 @@ def sync_file(path, apply):
     return changed, reasons
 
 
-def iter_pages():
+def iter_pages(footer_only=False):
     for p in sorted(ROOT.rglob("*.html")):
         rel = p.relative_to(ROOT)
         if any(part.startswith(".") or part == "node_modules" for part in rel.parts):
@@ -383,21 +379,23 @@ def iter_pages():
         top = rel.parts[0]
         if "pdf-build" in rel.parts or "templates" in rel.parts:
             continue
-        if top in SKIP_DIRS:
+        if top in SKIP_DIRS and not (footer_only and top == "flight-risk-assessment" and rel.as_posix() in {"flight-risk-assessment/index.html", "flight-risk-assessment/guide/index.html", "flight-risk-assessment/methodology/index.html"}):
             continue
         yield p
 
 
 def main():
-    if len(sys.argv) != 2 or sys.argv[1] not in ("--apply", "--check"):
+    args = [a for a in sys.argv[1:] if a != "--footer-only"]
+    footer_only = "--footer-only" in sys.argv[1:]
+    if len(args) != 1 or args[0] not in ("--apply", "--check"):
         print(__doc__)
         return 2
-    apply = sys.argv[1] == "--apply"
+    apply = args[0] == "--apply"
     drifted = []
     errors = []
     synced = 0
-    for path in iter_pages():
-        result = sync_file(path, apply)
+    for path in iter_pages(footer_only=footer_only):
+        result = sync_file(path, apply, footer_only=footer_only)
         if result[0] is None:
             errors.extend(result[1])
             continue

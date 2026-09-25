@@ -1,8 +1,23 @@
 # Polished Aurum implementation status
 
-Release integration checkpoint: `/Users/diegosuarez/Projects/suarez-aurum-release-20260925`, branch `codex/polished-aurum-release-20260925`, incorporating published `origin/main` at `6510b1d`. The local Aurum snapshot is `26edd1a`; the release preserves the newer journal, contact/SEO, compact mobile dock, and its latest glass-tap cleanup. Publication and live-byte verification are handled after this checkpoint; verify the current deployment separately because other site work is ongoing.
+Release integration checkpoint: `/Users/diegosuarez/Projects/suarez-aurum-release-20260925`, branch `codex/polished-aurum-release-20260925`, rebased onto public `origin/main` at `4a20d30`. The older isolated Aurum snapshot is `26edd1a`; this checkout preserves the newer journal, contact/SEO, compact mobile dock and its latest brief-motion behavior. The mobile refinements below are the release candidate; deployment evidence belongs in the release record after publication.
 
-Current merged preview: http://127.0.0.1:8899/ (threaded static server, loopback only). The earlier http://127.0.0.1:8898/ preview and 8896 comparison are historical references.
+Current public-source preview: http://127.0.0.1:8900/ (loopback only). The earlier 8898 isolated preview and 8896 comparison are historical references.
+
+## Public-source mobile refinement, 2026-09-25
+
+- Confirmed the live homepage bytes matched `origin/main` at `75b99da` before editing. Ported only the older isolated preview's compact phone scale and CertPath opaque-surface cleanup into this newer checkout; retained the current collapsible dock and Modern Aviation Journal code.
+- At 390px, homepage hero heading changed from 43.2px to 35.2px, lead from 16px to 15px, and hero actions from 310×50px at 15px to 280×44px at 14px. At 320px Night, body width remains 320px, theme color is `#414141`, and the dock Menu opens and dismisses. FOI entry uses a 44px action; Certificate Generator's first-step title is 32px; PilotSolve and Simply Endorsed entries remain within 390px.
+- Adapted the newer Journal landing-page rule directly: Blog and Learn titles now compute to 31.2px with 16px lead copy at 390px, without horizontal overflow. Article title/body computed 32px/17px in a representative article. Preserved reader size controls and content.
+- Synced page references and standalone cache versions; `audit-aurum.py` passes 523/523 routes, 6/6 supporting documents and 4/4 manifests. `audit-site.py` finds zero broken references across 526 HTML documents. Shared Python tests pass 30/30 and the contrast audit passes 109/109 with minimum text ratio 4.54:1. `sync-avionics.py --check` reports zero stale HTML sources, and Git whitespace check passes. After the high-load interruption, the CertPath storage suite, Simply Endorsed's 1,678 workspace assertions, and all 98 wizard cases were rerun individually and exited successfully. These are current-public-source results; the remaining rendered, native-device and deep-state acceptance gates below remain open.
+
+## Current-public route-wide material census, 2026-09-25
+
+`material-census-public-20260925.json` records a fresh computed-style scan of the exact 523 registered routes in this public-source worktree, at 390×844 with browser-emulated System/Day and System/Night. Each appearance returned 523 HTTP 200 responses, zero navigation errors, zero page-width overflow and zero heuristic obsolete-material flags among 3,162 Day and 3,108 Night visible button-like controls. A separate 21-route/active-family sample at phone and desktop widths in both appearances found zero such flags and no page-width overflow among 743 visible controls. This strengthens initial-state coverage; it does not certify controls hidden behind menus, dynamic app states, keyboard/touch paths, exports, actual browser zoom or semantic color decisions. Those acceptance gates remain open.
+
+## Current dock-motion integration, 2026-09-25
+
+Public `origin/main` advanced to `4a20d30` after the initial draft PR. Reapplied the compact phone typography and CertPath opaque-surface cleanup on that commit, preserving its new dock-motion CSS. Synchronized the shared asset links and standalone caches, then passed the 523+6+4 Aurum wiring audit. Release browser testing found two transition edges: a canceled press could hold the dock open until another scroll, and a tap on the contracting shell could miss its click. The current `assets/site-nav.js` releases cancellation immediately and treats pointer-up inside that moving shell as a tap; the settled Menu key keeps its normal click action. The dock browser runner accepts `DOCK_CHROME_PATH` so it can use the installed Mac Chrome when Playwright's bundled headless binary is unavailable. The final full suite exits successfully, including Day/Night route matrices at 320, 390, 768, 1024 and 1440px across Home, Learn, Blog and Tools, Menu/Escape/focus, motion reversal, reduced motion, Back, and shell taps. The final 523-route Day/Night initial-state census reports zero HTTP failures, horizontal overflow or heuristic old-control flags among 3,162 Day and 3,108 Night visible controls. Actual native zoom/touch and deeper app states remain open.
 
 ## Release integration check, 2026-09-25
 
@@ -35,7 +50,7 @@ Current merged preview: http://127.0.0.1:8899/ (threaded static server, loopback
 - `scripts/audit-aurum.py`: 523/523 registered routes structurally integrated. This is not visual approval.
 - Rendered homepage in Day; CertPath entry in Night; Simply Endorsed entry/menu in both modes; FlightRisk rebuilt Night profile with dark labels on gold; FOI entry and active card; engine collection; Certificate Generator selection with unchanged canvas artwork.
 
-## Incomplete — do not claim full uniformity or release readiness
+## Incomplete acceptance — do not claim full uniformity
 
 - PilotSolve responsive recovery is now verified at desktop:1120px shell/four-column favorites, metallic selected dock,7+8=15 through keypad. Complete final mobile/tablet/zoom/choice-sheet and helper-flow acceptance remains.
 - Crank & Core integration now uses the released editable `engine-explorer/app/assets/avionics-overlay.css` and `.js` around the unchanged pinned runtime; no stale source rebuild was needed. Collection, model, View controls and appearance menu reviewed in Night/Day; System restored. Remaining advanced engine flows and Aero Lab dialogs/geometry workspaces still need acceptance.
@@ -44,7 +59,7 @@ Current merged preview: http://127.0.0.1:8899/ (threaded static server, loopback
 - Complete remaining live app workflows and print/share paths. Certificate JPEG generation rendered the 1080x1920 output with sample names; generator JS and template assets remain byte-unchanged. Native download delivery was not observable through the browser download event.
 - Remove remaining competing material literals; keep required geometry/data/math/operational/category colors. Legacy layout CSS has not all been removed and must not be blindly deleted.
 - 203 unreferenced generated app assets archived with dependency-closure and SHA verification; manifest in `archived-app-assets.json`. Final dynamic-flow acceptance remains required. Cache digests refreshed after the latest shared material correction.
-- Recheck origin/main changes, run final complete validation, deliver accepted local preview. No production publication authorized by this milestone.
+- After this release, keep the remaining visual, accessibility, native-device and deep-state gates open until each has direct evidence.
 
 ## Source ownership and reproducibility
 

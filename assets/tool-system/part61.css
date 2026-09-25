@@ -135,7 +135,7 @@
 .part61-calculator .summary-block {
   position: relative;
   border: 1px solid var(--hairline);
-  background: rgba(255, 255, 255, 0.58);
+  background: var(--g-surface);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.68),
     0 12px 30px rgba(15, 23, 42, 0.04);
@@ -322,7 +322,7 @@
   place-items: center;
   border: 1px solid var(--part61-line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.64);
+  background: var(--g-raised);
   font-family: var(--mono);
   font-size: 0.78rem;
   font-weight: 800;
@@ -335,8 +335,8 @@
 
 .part61-rail-item:hover,
 .part61-rail-item.active {
-  background: rgba(232, 240, 255, 0.72);
-  color: var(--accent-ink);
+  background: var(--g-gold);
+  color: var(--g-key-ink);
 }
 
 .part61-input-pane,
@@ -469,7 +469,7 @@
   padding: 9px 10px;
   border: 1px solid var(--part61-line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.52);
+  background: var(--g-raised);
   color: var(--text);
   font-size: 0.86rem;
   font-weight: 650;
@@ -538,7 +538,7 @@
 .part61-calculator .rate-summary span,
 .part61-calculator .group-completion {
   border: 1px solid var(--part61-line);
-  background: rgba(255, 255, 255, 0.62);
+  background: var(--g-raised);
   color: var(--text-muted);
 }
 
@@ -557,7 +557,7 @@
   gap: 12px;
   margin-top: 12px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.44);
+  background: var(--g-surface);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
@@ -829,7 +829,7 @@
   margin-top: 10px;
   border-radius: 16px;
   padding: 14px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--g-surface);
 }
 
 .part61-calculator .list-box {
@@ -935,7 +935,7 @@
   padding: 10px;
   border: 1px solid var(--part61-line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--g-surface);
 }
 
 .part61-calculator .overlap-block b {
@@ -953,7 +953,7 @@
   overflow-x: auto;
   border: 1px solid var(--part61-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--g-surface);
 }
 
 .part61-calculator table {
@@ -1052,7 +1052,7 @@
 }
 
 .part61-calculator .total-row {
-  background: rgba(232, 240, 255, 0.42);
+  background: var(--g-raised);
   font-weight: 800;
 }
 
@@ -1163,7 +1163,7 @@
 .part61-calculator tr.detail-row > td {
   padding: 0 10px 14px 18px;
   border-bottom: 1px solid rgba(87, 99, 118, 0.12);
-  background: rgba(248, 250, 252, 0.6);
+  background: var(--g-surface);
 }
 
 .part61-calculator .detail-content {
@@ -1293,7 +1293,7 @@
 .part61-event-group {
   border: 1px solid var(--part61-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--g-surface);
   padding: 10px 12px;
 }
 
@@ -1352,7 +1352,7 @@
   width: 26px;
   height: 26px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--g-raised);
   font-size: 0.85rem;
 }
 
@@ -1377,7 +1377,7 @@
 .part61-readout-details {
   border: 1px solid var(--part61-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--g-surface);
   padding: 10px 12px;
 }
 
@@ -1548,7 +1548,7 @@
     margin-top: 6px;
     border: 1px solid var(--part61-line-strong);
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.92);
+    background: var(--g-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
@@ -1735,7 +1735,7 @@
     border: 1px solid var(--part61-line);
     border-left: 4px solid var(--part61-line-strong);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.66);
+    background: var(--g-surface);
     padding: 10px 12px;
   }
 
@@ -1902,7 +1902,7 @@
 
 .part61-metric-card {
   border: 1px solid var(--part61-line);
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--g-surface);
   padding: 12px;
   border-radius: 12px;
   display: flex;
@@ -2036,7 +2036,7 @@
 .part61-rail-item[aria-current="step"] span {
   border-color: var(--p61-step-accent, var(--accent)) !important;
   background: var(--p61-step-accent, var(--accent)) !important;
-  color: #fff !important;
+  color: var(--g-key-ink) !important;
 }
 
 /* The current step palette is defined once in the Aurum block below.
@@ -2079,7 +2079,7 @@
 /* Step rail numbers use the shared accent tokens. */
 .part61-rail-item span {
   border-color: var(--p61-step-line, var(--part61-line));
-  background: var(--p61-step-soft, rgba(255, 255, 255, 0.64));
+  background: var(--p61-step-soft, var(--g-raised));
   color: var(--p61-step-ink, var(--text-muted));
 }
 
@@ -2318,7 +2318,7 @@
 
 .part61-calculator .field-group[data-group-slug] .group-completion.incomplete {
   border-color: var(--grp-line);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--g-raised);
   color: var(--grp-ink);
 }
 
@@ -2460,7 +2460,7 @@ body.theme-orange {
 
 .part61-rail-item span {
   border-color: var(--part61-line-strong);
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--g-raised);
   color: var(--text-muted);
 }
 
@@ -2537,7 +2537,7 @@ body.theme-orange {
   padding: 24px;
   border: 1px solid var(--part61-line);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.90);
+  background: var(--g-surface);
   box-shadow: var(--shadow-md);
 }
 
@@ -2704,7 +2704,7 @@ body.theme-orange {
   padding: 16px;
   border: 1px solid var(--part61-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--g-surface);
   box-shadow: none;
 }
 
@@ -2723,7 +2723,7 @@ body.theme-orange {
   padding: 0;
   border: 1px solid var(--part61-line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.66);
+  background: var(--g-surface);
   overflow: hidden;
 }
 
@@ -2756,7 +2756,7 @@ body.theme-orange {
 .part61-event-group summary .group-completion {
   margin-left: auto;
   border-color: var(--part61-line);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--g-raised);
   color: var(--text-muted);
 }
 
@@ -2787,7 +2787,7 @@ body.theme-orange {
   padding: 14px;
   border: 1px solid var(--part61-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--g-surface);
   box-shadow: var(--shadow-sm);
 }
 

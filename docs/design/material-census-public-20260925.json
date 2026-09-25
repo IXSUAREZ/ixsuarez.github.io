@@ -1,0 +1,6841 @@
+{
+  "checked_at_utc": "2026-09-25T15:38:46.910117+00:00",
+  "public_baseline_commit": "4a20d3036111833cb045b5cb7e3d0dd476e5ecae",
+  "asset_sha256": {
+    "assets/avionics.css": "2f7425d808825987cca466592675cf0a18b8661cb1dc6f68baa60e5568a874cc",
+    "assets/site-nav.js": "7171a640392f48a4a292900045281b46509d2be2d37768e43ac5739c357ecb1b",
+    "assets/home-avionics.css": "3d43f275fc5b809d2055acef3fabf4f66459f5a54d2bc1add43eff537f9e93da",
+    "assets/journal.css": "d77855b69b656b932451f2f332b1321bccb6d3afaa818746e3034b870eaba121",
+    "assets/premium.css": "345cf70ddd555e29dddbe4cfa857cad753173af5c447d0218baf2be56add4f01",
+    "assets/tool-system/part61.css": "9631ea2b7884295939e2460410f10cec6a1d08f908f75b44e5ba0fd2debe51e8"
+  },
+  "base_url": "http://127.0.0.1:8900/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "appearance": "System with browser color-scheme emulated light for Day and dark for Night",
+  "method": "Playwright navigated each registered route, waited for DOMContentLoaded and 25 ms (650 ms for app entry routes), sampled visible button-like DOM nodes, and flagged non-gray/non-gold computed fills or blue/green top edges. This checks initial visible states only; semantic category colors, deeper states, overlays, gradients/text contrast, native touch and actual zoom require separate review.",
+  "selector": "button,input[type=button],input[type=submit],input[type=reset],a.btn,a.button,a[class*=cta],a[class*=button],a[class*=action],a[class*=chip],a[class*=tab],a[class*=control],[role=button],[role=tab],[role=switch],.av-control",
+  "summary": {
+    "day": {
+      "routes": 523,
+      "unique_routes": 523,
+      "visible_controls": 3162,
+      "material_flags": 0,
+      "navigation_errors": 0,
+      "non_200_responses": 0,
+      "page_width_overflow": 0
+    },
+    "night": {
+      "routes": 523,
+      "unique_routes": 523,
+      "visible_controls": 3108,
+      "material_flags": 0,
+      "navigation_errors": 0,
+      "non_200_responses": 0,
+      "page_width_overflow": 0
+    }
+  },
+  "routes": [
+    {
+      "path": "/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/aero-lab/",
+      "day": {
+        "status": 200,
+        "controls": 2,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 2,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/",
+      "day": {
+        "status": 200,
+        "controls": 11,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 11,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/basicmed-vs-third-class-medical/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/bristell-ng5-lsa-vs-cessna-172-for-student-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/discovery-flight-bowman-field/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/faa-endorsements-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/faa-private-pilot-written-test-study-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/faa-written-test-center-louisville/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/flying-klou-bowman-field-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/how-to-choose-a-flight-school-louisville/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/kentucky-derby-tfr-flying/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/landing-practice-bowman-field/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/medexpress-faa-medical-walkthrough/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/path-to-cfi-louisville/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/private-pilot-cost-louisville-ky/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/blog/private-pilot-timeline-louisville/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/bowman-field-klou/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/certificate-generator/",
+      "day": {
+        "status": 200,
+        "controls": 19,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 19,
+        "bad": []
+      }
+    },
+    {
+      "path": "/checkride-oral-prep/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/discovery-flight-louisville-ky/",
+      "day": {
+        "status": 200,
+        "controls": 8,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 8,
+        "bad": []
+      }
+    },
+    {
+      "path": "/engine-explorer/",
+      "day": {
+        "status": 200,
+        "controls": 2,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 2,
+        "bad": []
+      }
+    },
+    {
+      "path": "/faa-written-test-prep/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/flight-instructor-louisville/",
+      "day": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      }
+    },
+    {
+      "path": "/flight-risk-assessment/",
+      "day": {
+        "status": 200,
+        "controls": 41,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 41,
+        "bad": []
+      }
+    },
+    {
+      "path": "/flight-risk-assessment/guide/",
+      "day": {
+        "status": 200,
+        "controls": 1,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 1,
+        "bad": []
+      }
+    },
+    {
+      "path": "/flight-risk-assessment/methodology/",
+      "day": {
+        "status": 200,
+        "controls": 55,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 1,
+        "bad": []
+      }
+    },
+    {
+      "path": "/flight-training-louisville-ky/",
+      "day": {
+        "status": 200,
+        "controls": 15,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 15,
+        "bad": []
+      }
+    },
+    {
+      "path": "/foi-cards/",
+      "day": {
+        "status": 200,
+        "controls": 5,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 5,
+        "bad": []
+      }
+    },
+    {
+      "path": "/ground-school-louisville-ky/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn-to-fly-louisville/",
+      "day": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/12-tips-on-how-to-pay-for-flight-school/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/affordable-single-engine-aircraft/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/flight-school-loans-careful-borrowing/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/from-gliders-to-jumbos-how-much-do-airplanes-cost/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/how-much-does-a-glider-cost-renting-owning-buying-pilot-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/how-much-does-a-small-aircraft-cost/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/owning-vs-renting-the-best-option-for-flight-training-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/understanding-aircraft-insurance-costs/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-ownership/what-to-look-for-when-purchasing-a-used-airplane/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/4-different-types-of-airspeed-how-to-calculate-each/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/acars-explained-how-it-keeps-aircraft-connected/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/adverse-yaw-explained-a-pilots-guide-to-better-control/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aerobatic-flying-how-to-get-started/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/affordable-airplane-kits-how-to-compare/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aircraft-black-boxes-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aircraft-owners-insurance-everything-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aircraft-pressurization-systems-how-they-work-and-when-they-are-required/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aircraft-registration-how-to-register-a-plane/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aircraft-trim-explained-with-video/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aircraft-wing-types-and-classifications/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/airplane-lights-what-each-light-does-red-green-strobe-beacon/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/airplane-size-comparison-how-pilots-measure/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/airplane-stability-balanced-flight-easily-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/airplane-weight-balance-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/airspeed-and-altitude-control-simplified-tips-for-stable-flying/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/airworthiness-requirements-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/altimeter-vs-gps-altitude-in-aviation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/are-old-planes-safe/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/arrow-acronym-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/atis-awos-and-asos-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aviates-acronym-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/aviation-headsets-what-pilots-should-look-for/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/axis-of-aircraft-the-3-pivot-points-of-all-aircraft/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/bird-strike-what-is-it-how-common-how-dangerous/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/bounced-landing-recovery-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/can-pilots-have-tattoos/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/can-planes-fly-in-snow-deicing-and-flying-in-snowy-conditions/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/cessna-182-vs-172-vs-152/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/choosing-the-right-pilot-sunglasses/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/chord-line-in-aviation-what-it-is-and-why-it-is-important/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/cockpit-cameras-what-pilots-should-look-for/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/commercial-maneuvers-explained-chandelles-lazy-8s-steep-spirals/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/differences-between-faa-part-91-121-and-135-in-aviation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/ditching-vs-water-landing-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/every-currency-requirement-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/everything-you-need-to-know-about-ailerons/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/faa-mosaic-rule-sport-pilot-flying/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/flight-instruments-explained-6-pack-vs-glass-cockpit/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/flight-simulator-controllers-joystick-or-yoke/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/flight-simulator-rudder-pedals-buying-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/fly-by-wire-explained-a-pilots-guide-to-digital-flight-control/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/forward-vs-aft-cg-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/g1000-vs-g1000-nxi-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/ground-de-icing-vs-anti-icing-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/guide-to-ground-reference-maneuvers/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/gyroscopic-instruments-3-essential-instruments-and-how-they-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/handheld-aviation-radios-what-to-look-for/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/heading-indicator-going-in-the-right-direction/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/historical-covid-aviation-statistics/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-airplane-lift-works/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-do-magnetos-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-does-a-constant-speed-propeller-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-does-a-jet-engine-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-does-aircraft-financing-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-fast-do-airplanes-fly/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-hard-is-it-to-become-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-high-do-planes-fly-airplane-flight-altitude/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-much-do-airplanes-weigh/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-become-a-pilot-a-complete-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-become-a-pilot-without-loans-or-scholarships/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-build-flight-time-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-calculate-flight-time-pilot-logbooks/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-calculate-weight-and-balance-easily/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-calculate-your-descent-profile-airplane-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-calculate-your-flight-time-pilot-arrival-time/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-choose-a-flight-school/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-get-a-tailwheel-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-get-an-aircraft-dispatcher-job/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-keep-your-pilot-logbook-clean-and-professional/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-read-pilot-age-and-shortage-claims/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-recover-from-unusual-attitudes/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-save-money-on-flight-training/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-spot-pitot-static-failures-in-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-to-use-a-home-flight-simulator-during-flight-training/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/how-working-hours-affect-pilot-performance/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/hsi-vs-cdi-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/ils-explained-with-examples/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/imsafe-checklist-acronym-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/in-ear-aviation-headsets-how-to-choose/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/induced-drag-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/instrument-before-commercial-pros-cons-and-cost/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/is-it-hard-to-be-a-pilot-the-surprising-truth/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/is-the-impossible-turn-actually-impossible/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/landing-gear-configurations-types-features-uses/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/left-turning-tendencies-in-airplanes-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/mach-number-explained-what-it-is-and-why-pilots-use-it/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/magnetic-heading-understanding-compasses-and-variation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/manifold-pressure-vs-rpm-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/mastering-short-field-landings-a-step-by-step-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/msl-vs-agl-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/multi-engine-rating-explained-cost-requirements-privileges/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/narrowbody-vs-widebody-aircraft-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/part-61-vs-part-141-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/parts-of-a-wing/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/phugoid-motion-in-aviation-what-it-is-and-why-it-matters/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/pilot-flashlights-and-headlamps-buying-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/pilot-ranks-stripes-epaulettes-and-what-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/piston-vs-turboprop-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/plane-engine-failure-why-it-happens-and-what-to-do/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/power-on-stall-how-to-recover/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/pre-flight-checks-do-you-need-a-checklist-before-takeoff/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/pressure-altitude-explained-formula-and-examples/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/principles-of-flight-the-4-flight-forces-simply-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/ram-air-turbine-systems-what-pilots-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/returning-to-flying-after-a-break/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/round-dials-or-glass-cockpits-which-is-the-superior-choice/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/safety-pilot-explained-how-to-log-your-time-and-stay-legal/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/single-engine-vs-multi-engine-which-is-better/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/somatogravic-illusions-how-to-prevent-spatial-disorientation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/stall-turn-hammerhead-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/standard-rate-turns-explained-a-comprehensive-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/standard-weights-aircraft-weight-and-balance/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/step-by-step-guide-to-no-flaps-landings-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/taa-vs-complex-commercial-training-credit/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/tail-number-vs-callsign-vs-flight-number-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/tailless-aircraft-how-airplanes-fly-without-a-tail/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-5-hazardous-attitudes-in-aviation-and-how-to-spot-them/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-8-types-of-illusions-explained-iceflags/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-actual-difference-between-hobbs-and-tach-time/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-airspeed-indicator-how-it-works-and-what-it-does/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-apu-one-airplane-engine-4-different-roles/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-difference-between-airbus-and-boeing/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-difference-between-category-class-and-type-of-aircraft/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-different-types-of-spatial-disorientation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-magnetic-compass-in-aviation-how-it-is-used-in-airplanes/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-pitot-static-system-how-it-works/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-pros-and-cons-of-a-cadet-pilot-program/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-pros-and-cons-of-low-wing-vs-high-wing-aircraft/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-psychological-aspects-of-flying-managing-stress-and-decision-making-in-the-air/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-role-of-newtons-third-law-in-aviation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-science-of-aircraft-hydroplaning/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-six-pack-basic-flight-instruments/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-truth-about-accelerated-flight-schools/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/the-turn-coordinator-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/thrust-reversal-explained-how-it-helps-aircraft-stop-safely/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/touch-and-go-landings-for-students/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/turbine-jet-engine-failed-starts-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/turbofan-vs-turbojet-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/types-of-avgas-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/understanding-aeronautical-decision-making-adm/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/vle-vs-vlo-speeds-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-are-canard-wings-how-forward-control-surfaces-change-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-are-temporary-flight-restrictions-tfr-and-how-to-find-them/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-are-the-different-types-of-vors-service-volumes/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-are-the-typical-aircraft-options-in-flight-schools/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-do-spoilers-do-how-pilots-use-them/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-does-a-tomato-flames-mean/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-a-biplane-how-this-classic-design-works/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-a-dutch-roll-and-is-it-dangerous/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-a-flat-spin/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-a-stall-when-wings-stop-working/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-a-type-rating/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-a-variable-sweep-wing-how-swing-wings-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-an-afterburner-how-does-it-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-an-fbo-a-guide-to-fixed-base-operators/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-an-ultralight-airplane-faa-definition-and-examples/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-bernoullis-principle-a-simple-guide-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-drag-a-main-flight-force-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-ground-effect/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-manifold-pressure/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-tcas-a-comprehensive-guide-to-traffic-collision-avoidance-systems/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-the-angle-of-attack/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-the-minimum-equipment-list-mel/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-turn-radius-aviation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-useful-load/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-is-zulu-time-aviation-time-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/what-planes-can-you-fly-without-a-pilots-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/wingtip-vortices-and-wake-turbulence/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/aircraft-systems/women-in-aviation-representation-training/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/ads-b-airspace-requirements-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/ads-b-equipment-requirements-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/airport-codes-explained-faa-icao-iata/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/airspace-classes-explained-class-a-b-c-d-e-g/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/class-b-airspace-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/class-c-airspace-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/class-d-airspace-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/class-e-airspace-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/common-mistakes-pilots-make-at-non-towered-airports/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/contaminated-runway-landings-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/everything-you-need-to-know-about-soft-field-runways/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/faa-transponder-requirements-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-busiest-airport-rankings-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-to-avoid-pilot-deviations-and-runway-incursions/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-to-communicate-with-atc-the-right-way/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-to-listen-to-atc-online-step-by-step-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-to-operate-near-restricted-areas/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-to-read-a-windsock/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/how-to-use-the-icao-aviation-alphabet/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/light-gun-signals-the-complete-guide-to-atc-lights/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/nato-phonetic-alphabet-learn-it-fast-with-these-easy-tips/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/off-airport-landings-what-are-they/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/pilot-smartwatches-features-that-help/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/practical-guide-to-airport-fees/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/runway-lights-explained-colors-spacing-types/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/runway-numbers-a-simple-guide-to-what-they-mean/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/squawk-codes-list-and-3-ways-to-remember-them/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/the-dangers-of-runway-incursion-and-how-to-prevent-them/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/transponder-modes-explained-mode-a-mode-c-mode-s-ident/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/trsa-airspace-explained-terminal-radar-service-area/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/understanding-the-traffic-pattern/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/vfr-flight-following-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/what-are-notams-notices-to-airmen-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/what-is-ctaf-common-traffic-advisory-frequency-ctaf-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-and-atc/what-makes-general-aviation-airports-busy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/airspace-radio-communications/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/aircraft-dispatcher-job-requirements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/airline-pilot-college-degree-preferences/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/aviation-colleges-how-to-compare-programs/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/cfi-recent-experience-requirements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/do-you-need-a-degree-to-become-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/fedex-pilot-career-pay-schedule-requirements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-many-pilot-certificates-are-issued-per-year-private-commercial-atp/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-much-do-aircraft-dispatchers-earn/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-much-do-airline-pilots-get-paid/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-much-do-pilots-earn-in-the-us/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-much-do-pilots-make/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-to-become-a-delta-airlines-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-to-become-a-flight-instructor/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-to-get-a-restricted-atp-r-atp-requirements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-to-get-an-airline-transport-pilot-certificate/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/how-to-make-cfi-flashcards-that-actually-work/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/is-a-degree-really-needed-to-succeed-as-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/is-being-a-pilot-a-good-career-answered-by-a-professional-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/low-time-pilot-jobs-and-how-to-build-airplane-hours/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/career-and-cfi/what-is-it-like-to-be-a-southwest-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/cfi/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/checkride-prep/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/checkrides-and-testing/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/checkrides-and-testing/how-to-fly-lazy-eights-smoothly/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/checkrides-and-testing/how-to-prepare-for-private-pilot-checkride/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/commercial-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/dji-mini-3-and-4-remote-id-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/faa-drone-rules-and-why-ga-pilots-should-care/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/remote-id-for-drone-pilots-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/remote-id-module-buying-checklist/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/remote-id-modules-for-drones-everything-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/what-is-visual-line-of-sight-vlos-for-drones/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/drones-and-remote-pilot/which-cbos-rules-should-you-follow/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/faa-written-test/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/flight-training-costs/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/aiming-point-vs-touchdown-point-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/can-an-airplane-land-itself/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/checklist-to-ace-your-faa-private-pilot-written-test/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/circle-to-land-the-complete-pilots-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/craft-explained-ifr-made-simple-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/e6b-made-easy-a-beginners-step-by-step-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/faa-written-test-procedures-and-ftn/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/flight-computers-for-pilots-e6b-app-electronic/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/holding-pattern-entry-wind-correction-timing/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/holding-procedures-airplane-holding-patterns-easily-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-do-pilots-see-at-night/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-hard-is-it-to-get-an-instrument-rating/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-brief-an-instrument-approach-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-find-faa-testing-centers-all-tests/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-fly-a-vor-approach-made-easy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-fly-an-ils-approach/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-fly-in-a-holding-pattern/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-get-an-faa-tracking-number-ftn/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-get-an-instrument-rating-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-perform-a-safe-go-around/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-read-a-sectional-chart/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-read-an-ifr-approach-chart/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/how-to-take-faa-tests-if-you-have-reading-or-learning-disabilities/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/ifr-flight-planning-best-tips-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/ifr-vs-vfr-in-aviation-understanding-the-differences/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/instrument-currency-requirements-explained-ipc-safety-pilot-etc/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/instrument-rating-practice-exam-35-questions-answers/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/is-ground-school-required-for-private-pilots-a-simplified-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/mastering-ifr-approach-radio-calls-a-simple-guide-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/mda-vs-da-made-simple-a-guide-to-ifr-minimums/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/online-private-pilot-ground-school-how-to-choose/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/part-101-rules-faa-laws-for-kites-balloons-and-rockets/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/power-off-stall-recovery-steps-made-easy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/raim-vs-waas-explained-simply-gps-made-easy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/self-study-ground-school-is-it-worth-it/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/surface-analysis-charts-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/understanding-lpv-lnav-and-vnav-the-easy-way/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/vasi-vs-papi-understanding-the-differences-and-similarities/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/what-do-you-need-to-fly-ifr/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/what-to-do-if-your-radios-fail-on-an-ifr-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/whats-the-difference-between-deviation-and-variation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ground-school/why-instrument-rating-ground-school-matters/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/ifr-procedures/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/instrument-rating/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/landings-and-takeoffs/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/are-you-too-old-to-become-a-airline-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/basicmed-guide-everything-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/becoming-a-color-blind-pilot-is-it-possible/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/can-pilots-wear-hearing-aids-private-and-commercial/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/commercial-pilot-timeline-from-private-to-cpl-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/faa-aircraft-dispatcher-certificate-cost/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/faa-medical-certificate-and-exam-for-pilots-made-easy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/faa-medical-certificate-requirements-made-easy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/fit-to-fly-pilot-health-made-simple/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/flight-school-faqs-made-easy-answering-your-top-questions/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/getting-your-pilots-license-as-a-non-us-citizen/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/how-long-does-it-take-to-become-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/how-much-does-it-cost-to-become-a-helicopter-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/how-to-get-a-commercial-pilot-license-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/how-to-get-a-student-pilot-certificate-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/how-to-get-an-fcc-restricted-radiotelephone-operator-permit/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/lasik-for-pilots-is-it-a-good-idea/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/pilot-height-requirements-myths-vs-reality/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/returning-to-flying-after-years-away/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/sport-pilot-certificates-whats-required-and-is-it-worth-it/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/medical-and-certificates/what-can-you-do-with-each-pilot-license-ppl-cpl-atpl/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/multi-engine-rating/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/pilot-careers/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/pilot-gear-and-tools/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/pilot-gear-and-tools/flight-simulator-throttle-quadrants/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/pilot-gear-and-tools/how-to-choose-aviation-apps-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/pilot-medicals/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/10-gift-ideas-for-aviation-lovers-and-enthusiasts/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/10-inspirational-quotes-about-flying-and-their-meanings/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/10-tips-for-talking-to-atc/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/10-tips-on-passing-your-private-pilot-checkride/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/12-essential-items-all-pilots-should-have-in-their-gear/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/6-reasons-why-student-pilots-quit/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/aircraft-renters-insurance-everything-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/airplane-landing-technique-student-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/airport-beacons-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/airport-diagrams-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/airport-diversions-10-tips-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/can-you-make-money-flying-with-a-private-pilot-license-pro-rata-cost-sharing/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/complete-home-flight-simulator-setup-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/cross-country-flight-plan-made-easy-with-tips-and-examples/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/crosswind-taxi-techniques/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/every-aviation-word-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/everything-you-need-to-know-about-taxiway-lighting/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/faa-medical-certificates-everything-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/faa-private-pilot-night-requirements-can-you-fly-airplanes-at-night/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/flight-bags-for-pilots-what-to-look-for/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/flight-school-study-tips-simplified-how-to-stay-on-track/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/flight-training-study-material-list-faa-phak-far-aim-documents-etc/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/flying-in-bad-weather-is-it-safe-or-possible/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/four-stroke-engines-everything-you-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/ground-school-vs-flight-school-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/high-vs-low-pressure-systems-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-hard-is-it-to-become-a-private-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-long-is-a-private-pilot-license-valid-ppl-currency/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-many-hours-it-takes-to-become-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-much-does-a-checkride-cost/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-much-does-it-cost-to-become-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-old-do-you-have-to-be-to-start-pilot-training/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-old-do-you-need-to-be-to-get-your-pilots-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-apply-for-flight-scholarships-and-reduce-training-costs/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-avoid-hypoxia-as-a-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-become-a-pilot-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-budget-for-flight-training-without-burning-out/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-convert-a-foreign-pilot-license-to-an-faa-certificate/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-fly-better-steep-turns-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-fly-turns-around-a-point/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-get-a-private-pilot-license-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-get-your-private-pilot-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-improve-soft-field-landings/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-improve-your-landings/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-land-an-airplane/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-make-the-most-of-your-weekend-ground-school/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-plan-a-cross-country-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-plan-efficient-private-pilot-training/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-practice-slow-flight-step-by-step/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-reduce-private-pilot-training-costs/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/how-to-talk-to-atc-beginners-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/managing-flight-anxiety-pre-solo-and-exam-nerves-made-easy/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pilot-cv-advertise-your-skills-with-example/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pilot-kneeboards-what-student-pilots-need/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pilot-seat-cushions-fit-comfort-safety/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pilot-shortage-explained-student-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pilot-training-books-worth-using/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pilot-training-mistakes-you-dont-want-to-make/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/prepare-for-your-first-discovery-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-acs-airman-certification-standards-101/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-checkride-maneuvers-checklist/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-crash-statistics-general-aviation-accidents/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-flight-review-requirements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-glider-a-low-cost-way-to-fly/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-landing-tips-16-keys-to-success/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-license-requirements-for-dummies/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-practice-exam-35-questions-answers/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-requirements-how-to-get-your-pilots-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-roadblocks-and-fixes/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilot-salary-how-much-do-private-pilots-make/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/private-pilots-lessons-what-it-takes-and-how-to-get-started/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/privileges-limits-and-requirements-of-a-private-pilot-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/pro-rata-share-explained-a-simple-guide-for-everyone/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/quick-crosswind-calculation-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/rnav-approaches-explained-for-student-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/situational-awareness-made-easy-a-student-pilots-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/takeoff-procedure-for-student-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/the-5-types-of-flaps-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/the-benefits-of-a-pilot-license-11-reasons-to-get-one/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/the-essential-guide-to-runway-markings/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/the-essential-guide-to-runway-signs/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/the-hazards-of-aircraft-icing-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/transponder-codes-student-pilots-use/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/types-of-pilot-licenses-explained-student-recreational-private-commercial-atp-and-more/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/v-speeds-explained-vx-vy-va-vs-vfe-vmc-vno-vne-etc/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/what-can-you-do-with-a-private-pilot-license/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/what-is-a-cross-country-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/what-is-a-private-pilot/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/what-to-expect-on-a-discovery-flight/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/why-student-pilots-quit-and-how-to-finish/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/private-pilot/your-first-solo-flight-made-simple-and-stress-free/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/airmets-vs-sigmets-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/can-planes-fly-in-rain-or-other-severe-weather/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/carburetor-icing-causes-symptoms-and-prevention/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/causes-of-plane-crashes-how-to-prevent-them/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/clear-air-turbulence-how-it-happens-and-how-to-handle-it/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/crosswind-estimate-simple-calculation-methods-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/cumulonimbus-clouds-what-you-as-a-pilot-need-to-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/deadstick-landings-how-pilots-handle-engine-out-emergencies/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/how-to-calculate-density-altitude-without-a-math-degree/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/how-to-read-a-metar/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/how-to-read-a-taf/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/how-to-read-metar-and-taf-reports/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/icing-awareness-in-ifr-flying-how-to-stay-safe-in-winter-weather/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/inversions-in-meteorology-how-they-impact-pilots-and-weather/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/is-flying-safer-than-driving-the-truth-about-general-aviation/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/mastering-crosswind-landings-a-step-by-step-guide/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/microbursts-what-makes-them-so-dangerous/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/n4467d-accident-report-important-lessons-from-a-deadly-aviation-incident/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/night-vfr-flying-equipment-and-risks/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/occluded-fronts-what-pilots-need-to-prepare-for/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/pave-checklist-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/pilot-safety-simplified-proficiency-vs-currency-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/pressure-altitude-vs-density-altitude-whats-the-difference/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/rejected-takeoff-to-stop-or-go/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/the-6-types-of-altitude-in-aviation-airplane-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/the-7-types-of-fog-every-pilot-should-know/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/the-difference-between-a-forward-slip-and-a-sideslip/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/the-effect-of-wind-speed-on-an-airplane/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/true-course-vs-true-heading-understanding-the-difference-when-flying/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/types-of-thunderstorms-in-aviation-from-simple-to-severe/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/types-of-turbulence-explained/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/understanding-crosswind-landings-takeoffs-and-landings/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/weather-fronts-explained-cold-warm-stationary-occluded/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/weather-minimums-for-pilots-rain-snow-clouds/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-a-belly-landing-causes-risks-and-recovery/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-a-speci-and-when-is-it-issued/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-a-squall-line-pilot-weather-guide-with-visuals/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-air-density-a-simple-guide-for-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-fod-foreign-object-damage-aviation-definition/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-special-vfr-svfr-and-how-can-you-use-it/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/what-is-turbulence-what-causes-it-and-the-different-types/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-and-safety/why-do-aircraft-crash-aviation-accident-statistics-revealed/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/learn/weather-for-student-pilots/",
+      "day": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 3,
+        "bad": []
+      }
+    },
+    {
+      "path": "/part-61-calculator/",
+      "day": {
+        "status": 200,
+        "controls": 2,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 2,
+        "bad": []
+      }
+    },
+    {
+      "path": "/pilotsolve/",
+      "day": {
+        "status": 200,
+        "controls": 17,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 17,
+        "bad": []
+      }
+    },
+    {
+      "path": "/private-pilot-ground-school/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/remote-ground-instruction/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed-cfi/",
+      "day": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/",
+      "day": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/aircraft-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/cfi-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/cfi-initial-checkride-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/commercial-pilot-checkride-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/first-solo-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/flight-review-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/instrument-checkride-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/instrument-checkride-vs-ipc/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/ipc-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/logbook-audit-checklists/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/private-pilot-checkride-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/recreational-pilot-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/retest-after-failure-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/solo-cross-country-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/spin-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/sport-pilot-endorsements/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/tailwheel-endorsement/",
+      "day": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 6,
+        "bad": []
+      }
+    },
+    {
+      "path": "/simply-endorsed/blog/what-is-simply-endorsed/",
+      "day": {
+        "status": 200,
+        "controls": 5,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 5,
+        "bad": []
+      }
+    },
+    {
+      "path": "/southern-indiana-flight-training/",
+      "day": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 4,
+        "bad": []
+      }
+    },
+    {
+      "path": "/tools/",
+      "day": {
+        "status": 200,
+        "controls": 10,
+        "bad": []
+      },
+      "night": {
+        "status": 200,
+        "controls": 10,
+        "bad": []
+      }
+    }
+  ]
+}

@@ -166,6 +166,8 @@ html body:is(.journal-article,.journal-library)[data-reader-motion="on"] .articl
   html body.journal-article .seo-guide-item { grid-template-columns: 64px minmax(0,1fr); gap: 16px; }
   html body.journal-article .prose p:has(> code:only-child) { padding: 18px; }
   html body.journal-library .page-hero { padding: 48px 0 32px; }
+  html body.journal-library:is(.blog-index,.learn-index) .page-hero h1 { font-size: clamp(30px, 8vw, 34px); }
+  html body.journal-library .page-hero p { font-size: 16px; }
   html body.journal-library :is(.posts-grid,.hub-grid,.blog-stories) { grid-template-columns: minmax(0,1fr); gap: 0; padding-bottom: 40px; }
   html body.journal-library :is(.post-card--featured,.blog-story--featured) { padding-block: 32px; }
   html body.journal-library .library-search-panel { padding: 22px 18px; }

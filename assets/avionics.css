@@ -738,3 +738,14 @@ html[data-gold-mode] .cf-form.cf-form--invalid input.cf-input[required]:invalid{
  html[data-gold-mode] body .liquid-dock[data-compact-dock="expanded"] .nav-menu-toggle:active{transform:translate(0,0) scale(1)!important}
 }
 @media(forced-colors:active){html[data-gold-mode] body .liquid-dock .liquid-dock-shell,html[data-gold-mode] body .liquid-dock .liquid-dock-shell::after{background:ButtonFace!important;border-color:ButtonText!important;box-shadow:none!important}html body .liquid-dock .liquid-dock-menu-icon{color:ButtonText!important}}
+
+/* Compact phone typography keeps metal controls tappable without enlarging
+   the labels and reading surfaces beyond the available width. */
+@media(max-width:600px){
+ html body .btn{min-block-size:44px;padding:9px 16px;gap:8px;font-size:14px}
+ html body.editorial-page .page-hero h1{font-size:clamp(26px,7vw,30px)}
+ html body.editorial-page .page-hero p{font-size:16px}
+ html body.editorial-page :is(.post-header h1,.article-header h1){font-size:32px}
+ html body.editorial-page :is(.prose,.post-body,.article-body){font-size:16px}
+ html body.editorial-page .prose>p:first-child{font-size:17px}
+}

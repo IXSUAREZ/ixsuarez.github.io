@@ -205,6 +205,95 @@
     if (window.ResizeObserver) new ResizeObserver(resize).observe(nav);
     window.addEventListener('resize', resize); if (window.visualViewport) window.visualViewport.addEventListener('resize', resize);
     resize();
+    compactDock(nav, dialog, toggle, index);
+  }
+  // A single owner for the shared dock; tactile.js deliberately excludes liquid-dock.
+  function compactDock(nav, dialog, menu, index) {
+    var media = matchMedia('(max-width: 1024px)');
+    var reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    var items = document.createElement('div');
+    items.className = 'liquid-dock-items'; items.id = 'liquid-dock-items-' + index;
+    Array.from(nav.children).forEach(function (el) {
+      if (el !== dialog && el.tagName !== 'NOSCRIPT') items.appendChild(el);
+    });
+    var shell = document.createElement('div');
+    shell.className = 'liquid-dock-shell'; shell.setAttribute('aria-hidden', 'true');
+    var show = document.createElement('button');
+    show.type = 'button'; show.className = 'liquid-dock-show';
+    show.setAttribute('data-native-control', '');
+    show.setAttribute('aria-label', 'Show navigation');
+    show.setAttribute('aria-controls', items.id);
+    show.innerHTML = '<svg class="av-icon" aria-hidden="true"><use href="/assets/avionics-icons.svg#Menu"></use></svg>';
+    nav.prepend(shell, items, show);
+    nav.dataset.compactDock = 'expanded';
+    var collapsed = false, pressed = false, last = y(), travel = 0, direction = 0, queued = false;
+    function y() {
+      var root = document.scrollingElement || document.documentElement;
+      return Math.max(0, Math.min(window.scrollY, Math.max(0, root.scrollHeight - root.clientHeight)));
+    }
+    function reset() { last = y(); travel = 0; direction = 0; }
+    function locked() {
+      var focus = document.activeElement;
+      return pressed || dialog.open || (items.contains(focus) && focus.matches(':focus-visible'));
+    }
+    function render(next) {
+      next = !!next && media.matches && !locked();
+      if (collapsed === next) return;
+      collapsed = next;
+      nav.dataset.compactDock = next ? 'collapsed' : 'expanded';
+      items.inert = next;
+      items.setAttribute('aria-hidden', String(next));
+      show.inert = !next;
+      show.setAttribute('aria-hidden', String(!next));
+      show.setAttribute('aria-expanded', String(!next));
+      if (!next && document.activeElement === show) show.blur();
+    }
+    show.inert = true; show.setAttribute('aria-hidden', 'true'); show.setAttribute('aria-expanded', 'true');
+    function motion() {
+      var enabled = !reduced.matches && document.body.dataset.readerMotion !== 'off';
+      try { if (JSON.parse(localStorage.getItem('suarez-cfi-reader-v1') || '{}').motion === false) enabled = false; } catch (_) {}
+      nav.dataset.dockMotion = enabled ? 'on' : 'off';
+    }
+    function measure() {
+      var rect = nav.getBoundingClientRect();
+      nav.style.setProperty('--dock-circle-scale', String(56 / rect.width));
+      nav.style.setProperty('--dock-circle-height', String(56 / rect.height));
+      if (!media.matches) render(false);
+      reset();
+    }
+    function scroll() {
+      queued = false;
+      var current = y(), delta = current - last;
+      if (delta > 0) delta = current - Math.max(80, last);
+      last = current;
+      if (current <= 80) { travel = 0; render(false); return; }
+      if (!media.matches || locked()) { travel = 0; return; }
+      if (!delta) return;
+      var sign = Math.sign(delta);
+      travel = sign === direction ? travel + Math.abs(delta) : Math.abs(delta);
+      direction = sign;
+      if (sign > 0 && travel >= 48) render(true);
+      if (sign < 0 && travel >= 16) render(false);
+    }
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; requestAnimationFrame(scroll); }
+    }, { passive: true });
+    show.addEventListener('click', function (event) {
+      render(false); reset();
+      if (event.detail === 0) (items.querySelector('[aria-current="page"]') || menu).focus({ preventScroll: true });
+    });
+    items.addEventListener('focusin', function () { render(false); reset(); });
+    nav.addEventListener('pointerdown', function () { pressed = true; });
+    function release() { pressed = false; reset(); }
+    window.addEventListener('pointerup', release); window.addEventListener('pointercancel', release);
+    new MutationObserver(function () { if (!nav.isConnected) return; if (dialog.open) render(false); reset(); }).observe(dialog, { attributes: true, attributeFilter: ['open'] });
+    new MutationObserver(motion).observe(document.body, { attributes: true, attributeFilter: ['data-reader-motion'] });
+    window.addEventListener('storage', motion); if (reduced.addEventListener) reduced.addEventListener('change', motion);
+    window.addEventListener('resize', measure); if (media.addEventListener) media.addEventListener('change', measure);
+    window.addEventListener('pageshow', function () { render(false); reset(); });
+    if (window.ResizeObserver) new ResizeObserver(measure).observe(nav);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { render(false); reset(); });
+    measure(); motion();
   }
   function ready() { document.querySelectorAll('.nav').forEach(init); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready); else ready();

@@ -3,6 +3,8 @@
 Selected concept 2: a compact continuous glass pill, active-destination underline,
 and centered 56px menu circle. The shell transforms independently of readable
 controls. Expanded content clearance stays constant, and desktop remains expanded.
+The shell closes over 900ms and opens over 1000ms with symmetric ease-in/out;
+icon fades overlap the movement without changing the scroll thresholds.
 
 ## Scope and compatibility
 
@@ -28,7 +30,7 @@ templates receive the same versions. Offline cache manifests are refreshed.
 
 - 18 Python tests; 27 Node navigation, appearance, tactile, offline and search tests.
 - Site route audit: 526 HTML documents, zero broken references or JSON-LD failures.
-- Chromium and WebKit: nine browser scenario groups pass in each engine.
+- Chromium and WebKit: ten browser scenario groups pass in each engine.
 - Real-browser runner: `scripts/tests/compact-dock-browser.cjs`.
 - Viewports: 320, 390, 600, 768, 834, 1024; 1024x768 landscape; 1440 desktop.
 - Scenarios: thresholds, rapid reversal, press/focus locks, inert/tab order, tap and

@@ -35,7 +35,7 @@ const results = [];
    await page.setViewportSize({width,height:width>600?1194:844});await load();await state('expanded');
    const expanded=await page.locator('.nav').boundingBox();
    assert.ok(expanded.width<=width-24,`viewport ${width}, dock ${expanded.width}`); assert.ok(expanded.height>=56);
-   await shot(width+'-expanded'); await scroll(500);await state('collapsed');await page.waitForTimeout(550);
+   await shot(width+'-expanded'); await scroll(500);await state('collapsed');await page.waitForTimeout(1100);
    const circle=await page.locator('.liquid-dock-show').boundingBox();
    assert.equal(circle.width,56);assert.equal(circle.height,56);assert.ok(Math.abs(circle.x+28-width/2)<1);
    const shell=await page.locator('.liquid-dock-shell').boundingBox();assert.ok(Math.abs(shell.width-56)<1);assert.ok(Math.abs(shell.height-56)<1,'Shell height '+shell.height);
@@ -51,11 +51,25 @@ const results = [];
   await scroll(250);await state('collapsed');await page.waitForTimeout(200);await page.locator('.liquid-dock-show').click();await state('expanded');
   await scroll(270);await state('expanded');await scroll(310);await state('collapsed');
   assert.equal(await page.locator('.liquid-dock-items').evaluate(el=>el.inert),true);
-  await page.keyboard.press('Tab');await page.locator('.liquid-dock-show').focus();await page.keyboard.press('Enter');await state('expanded');
+  await page.keyboard.press('Tab');await page.locator('.liquid-dock-show').focus();assert.equal(await page.locator('.liquid-dock-show').evaluate(el=>getComputedStyle(el).opacity),'1');await page.keyboard.press('Enter');assert.equal(await page.locator('.liquid-dock-items').evaluate(el=>getComputedStyle(el).opacity),'1');await state('expanded');
   assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('aria-current')),'page');
   await scroll(500);await state('expanded');
   await page.evaluate(()=>document.activeElement.blur());await scroll(600);await state('collapsed');
   await scroll(575);await scroll(650);await scroll(625);await state('expanded');
+ });
+ await check('Slow continuous shell motion and smooth reversal',async()=>{
+  await load(); const shell=page.locator('.liquid-dock-shell');
+  const width=async()=> (await shell.boundingBox()).width;
+  const open=await width(); await scroll(500); await page.waitForTimeout(50);
+  const early=await width(); await page.waitForTimeout(300); const middle=await width();
+  assert.ok(early>open*.8,'Closing must not snap during first 150ms');
+  assert.ok(middle<early&&middle>65,'Closing must still be moving at 450ms');
+  await page.waitForTimeout(650);assert.ok(Math.abs(await width()-56)<1);
+  await scroll(470);await page.waitForTimeout(50);const opening=await width();
+  assert.ok(opening<open*.4,'Opening must not snap during first 150ms');
+  await page.waitForTimeout(300);const midway=await width();assert.ok(midway>opening&&midway<open-10);
+  await scroll(550);const reversed=await width();assert.ok(reversed>56&&reversed<open,'Reversal retains intermediate geometry');
+  await page.waitForTimeout(1100);assert.ok(Math.abs(await width()-56)<1);
  });
  await check('Menu locking, Escape focus and appearance persistence',async()=>{
   await load();await page.locator('.nav-menu-toggle').click();assert.ok(await page.locator('.liquid-menu').evaluate(el=>el.open));
@@ -63,7 +77,7 @@ const results = [];
   await page.locator('.av-solid input').check();await shot('mobile-day-menu');await page.keyboard.press('Escape');await page.waitForTimeout(250);await state('expanded');
   assert.equal(await page.evaluate(()=>document.activeElement.classList.contains('nav-menu-toggle')),true);
   await page.reload({waitUntil:'load'});assert.equal(await page.locator('html').getAttribute('data-suarez-theme'),'light');
-  await scroll(500);await page.waitForTimeout(550);await shot('mobile-day-solid-circle');
+  await scroll(500);await page.waitForTimeout(1100);await shot('mobile-day-solid-circle');
   assert.equal(await page.locator('.liquid-dock-shell').evaluate(el=>getComputedStyle(el).backdropFilter),'none');
  });
  await check('Reduced motion and saved reader preference',async()=>{
@@ -87,13 +101,13 @@ const results = [];
   await page.setViewportSize({width:390,height:844});
   for(const route of ['/','/learn/','/blog/','/tools/','/blog/private-pilot-cost-louisville-ky/','/simply-endorsed/blog/first-solo-endorsement/']){
    console.log("ROUTE",route);await load(route);assert.equal(await page.locator('.liquid-dock-items a[href="/learn/"]').count(),1);
-   await scroll(500);await state('collapsed');await page.waitForTimeout(550);await page.locator('.liquid-dock-show').click();await state('expanded');
+   await scroll(500);await state('collapsed');await page.waitForTimeout(1100);await page.locator('.liquid-dock-show').click();await state('expanded');
   }
  });
  await check('Press lock, rapid reversal, live reader motion and viewport contraction',async()=>{
   await load();await page.locator('.av-key').first().dispatchEvent('pointerdown');await scroll(500);await state('expanded');
   await page.evaluate(()=>window.dispatchEvent(new PointerEvent('pointercancel')));await scroll(560);await state('collapsed');
-  await scroll(540);await state('expanded');await scroll(610);await state('collapsed');await page.waitForTimeout(550);
+  await scroll(540);await state('expanded');await scroll(610);await state('collapsed');await page.waitForTimeout(1100);
   await page.setViewportSize({width:390,height:430});await page.waitForTimeout(150);await state('expanded');
   const rect=await page.locator('.nav').boundingBox();assert.ok(rect.y>=0&&rect.y+rect.height<=430);
   await page.setViewportSize({width:390,height:844});await scroll(0);

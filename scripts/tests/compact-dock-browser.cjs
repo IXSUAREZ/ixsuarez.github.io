@@ -54,7 +54,9 @@ const results = [];
   await scroll(250);await state('collapsed');await page.waitForTimeout(200);await page.locator('.nav-menu-toggle').click();await state('expanded');
   await scroll(270);await state('expanded');await scroll(310);await state('collapsed');
   assert.equal(await page.locator('.av-destinations').evaluate(el=>el.inert),true);assert.equal(await page.locator('.nav-menu-toggle').getAttribute('aria-controls'),'liquid-dock-destinations-0');
-  await page.keyboard.press('Tab');await page.locator('.nav-menu-toggle').focus();assert.equal(await page.locator('.nav-menu-toggle').getAttribute('aria-label'),'Show navigation');await page.keyboard.press('Enter');assert.equal(await page.locator('.nav-menu-toggle').getAttribute('aria-label'),'Menu');await state('expanded');
+  // Focus the collapsed key directly: Tab from the previous click can move
+  // into article content and scroll upward, legitimately reopening the dock.
+  await page.locator('.nav-menu-toggle').focus();assert.equal(await page.locator('.nav-menu-toggle').getAttribute('aria-label'),'Show navigation');await page.keyboard.press('Enter');assert.equal(await page.locator('.nav-menu-toggle').getAttribute('aria-label'),'Menu');await state('expanded');
   assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('aria-current')),'page');
   await scroll(500);await state('expanded');
   await page.evaluate(()=>document.activeElement.blur());await scroll(600);await state('collapsed');

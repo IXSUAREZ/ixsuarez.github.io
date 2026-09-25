@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-25",
+  "status": "locally_verified_not_deployed",
+  "branch": "improve/dock-motion-20260925",
+  "baseline": "75b99da6f7790f77b910f8f272a8d3db0bf81bdd",
+  "configured_motion": {
+    "collapse_ms": 240,
+    "expand_ms": 200,
+    "easing": "cubic-bezier(.2,0,0,1)"
+  },
+  "browsers": {
+    "chromium": {
+      "scenario_groups_passed": 14,
+      "scenario_groups": {
+        "Responsive open/circle geometry and no overflow": true,
+        "Thresholds, direction changes, tap and keyboard restoration": true,
+        "Brief motion, stable glyph, and continuous repeated reversals": true,
+        "Destinations fade without tiny dots; visible shell and circle reopen reliably": true,
+        "Menu locking, Escape focus and appearance persistence": true,
+        "Reduced motion and saved reader preference": true,
+        "Toolbar resizing preserves scroll intent; canceled motion releases hit testing": true,
+        "Keyboard viewport and rapid Menu activation retain focus and state": true,
+        "Desktop, rotation, zoom and browser Back": true,
+        "Representative routes preserve usable navigation": true,
+        "Press lock, rapid reversal, live reader motion and viewport contraction": true,
+        "No JavaScript retains expanded destinations": true,
+        "No unexpected browser errors": true,
+        "Day/Night responsive route matrix and usable target sizes": true
+      },
+      "layout_cases_passed": 40,
+      "collapse_settled_ms": 204.00000002384184,
+      "expand_settled_ms": 216.19999992847443,
+      "evidence_directories": [
+        "output/playwright/dock-motion/chromium/tests",
+        "output/playwright/dock-motion/chromium/tests-matrix"
+      ],
+      "browser_version": "153.0.8010.12",
+      "launch_args": [
+        "--use-angle=metal"
+      ]
+    },
+    "webkit": {
+      "scenario_groups_passed": 14,
+      "scenario_groups": {
+        "Responsive open/circle geometry and no overflow": true,
+        "Thresholds, direction changes, tap and keyboard restoration": true,
+        "Brief motion, stable glyph, and continuous repeated reversals": true,
+        "Destinations fade without tiny dots; visible shell and circle reopen reliably": true,
+        "Menu locking, Escape focus and appearance persistence": true,
+        "Reduced motion and saved reader preference": true,
+        "Toolbar resizing preserves scroll intent; canceled motion releases hit testing": true,
+        "Keyboard viewport and rapid Menu activation retain focus and state": true,
+        "Desktop, rotation, zoom and browser Back": true,
+        "Representative routes preserve usable navigation": true,
+        "Day/Night responsive route matrix and usable target sizes": true,
+        "Press lock, rapid reversal, live reader motion and viewport contraction": true,
+        "No JavaScript retains expanded destinations": true,
+        "No unexpected browser errors": true
+      },
+      "layout_cases_passed": 40,
+      "collapse_settled_ms": 211,
+      "expand_settled_ms": 233,
+      "evidence_directories": [
+        "output/playwright/dock-motion/webkit/tests"
+      ]
+    }
+  },
+  "regressions": {
+    "shared_node_tests_passed": 43,
+    "offline_node_tests_passed": 6,
+    "python_tests_passed": 30
+  },
+  "asset_checks": {
+    "registered_routes": 523,
+    "registered_routes_with_current_assets": 523,
+    "supporting_documents": 6,
+    "installable_manifests": 4,
+    "stale_html_sources": 0,
+    "route_audit_documents": 526,
+    "broken_references": 0,
+    "json_ld_failures": 0
+  },
+  "preservation": {
+    "baseline": "75b99da6f7790f77b910f8f272a8d3db0bf81bdd",
+    "html_count": 545,
+    "non_version_html_changes": [],
+    "protected_assets_changed": false,
+    "asset_sha256": {
+      "assets/site-nav.js": "10d3ee81fc2f98dc44be11ddc3196f24c36adb2f659ef5ec4d727476907aea8d",
+      "assets/avionics.css": "24b1b8d3a44811c1d9f9a2f16e4fc79e7fe5fb3058f2dca684140408d98259f7"
+    }
+  },
+  "visual_review": {
+    "webkit": "All 40 expanded dock crops reviewed as a contact sheet; selected phone/tablet/desktop full screenshots also reviewed.",
+    "chromium": "Selected full screenshots plus the final matrix contact sheet reviewed.",
+    "recordings": "output/playwright/dock-motion/index.html"
+  },
+  "limitations": [
+    "No production deployment.",
+    "Physical iOS/Android browser toolbars, keyboards and safe areas not tested.",
+    "VoiceOver and native browser zoom not tested; keyboard behavior and doubled root text were tested.",
+    "Synthetic viewport changes and local frame measurements are not hardware performance guarantees."
+  ],
+  "test_environment": "Shared Playwright browser cache disappeared during checks. Final Chromium uses an isolated task-local runtime. Layout cases use fresh pages and direct DOM geometry; history and interruption remain separately covered. Chromium uses the supported macOS ANGLE Metal backend; the default headless graphics path stalled on desktop homepage captures. The website sky was not disabled or changed."
+}

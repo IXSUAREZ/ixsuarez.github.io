@@ -219,12 +219,19 @@
     var shell = document.createElement('div');
     shell.className = 'liquid-dock-shell'; shell.setAttribute('aria-hidden', 'true');
     nav.prepend(shell, items);
-    var destinations = items.querySelector('.av-destinations');
-    if (!destinations) return;
+    var destinations = items.querySelector('.av-destinations'), menuIcon = menu.querySelector('.av-icon');
+    if (!destinations || !menuIcon) return;
+    // Render the glyph separately from the changing button hit area. Inverse
+    // scale transitions distort a nested icon between their two endpoints.
+    var glyph = menuIcon.cloneNode(true);
+    glyph.classList.add('liquid-dock-menu-icon');
+    glyph.setAttribute('aria-hidden', 'true'); glyph.setAttribute('focusable', 'false');
+    nav.appendChild(glyph);
     destinations.id = destinations.id || 'liquid-dock-destinations-' + index;
     var menuLabel = menu.getAttribute('aria-label');
     nav.dataset.compactDock = 'expanded';
-    var collapsed = false, pressed = false, last = y(), travel = 0, direction = 0, queued = false, shellTapTimer = 0;
+    var collapsed = false, pressed = false, last = y(), travel = 0, direction = 0, queued = false;
+    var paused = [], measuredWidth = 0, measuredHeight = 0, viewportWidth = window.innerWidth, keyboardOpen = false;
     function y() {
       var root = document.scrollingElement || document.documentElement;
       return Math.max(0, Math.min(window.scrollY, Math.max(0, root.scrollHeight - root.clientHeight)));
@@ -232,8 +239,19 @@
     function reset() { last = y(); travel = 0; direction = 0; }
     function locked() {
       var focus = document.activeElement;
-      return pressed || dialog.open || (items.contains(focus) && (focus !== menu || !collapsed) && focus.matches(':focus-visible'));
+      return pressed || keyboardOpen || dialog.open || (items.contains(focus) && (focus !== menu || !collapsed) && focus.matches(':focus-visible'));
     }
+    function settleShell() {
+      // Read actual transition state: no duplicated duration or stale timeout
+      // after a reversal, cancellation, resize, or live Reduce Motion change.
+      var moving = shell.getAnimations().some(function (animation) {
+        return animation.transitionProperty === 'transform' && animation.playState !== 'finished';
+      });
+      shell.style.pointerEvents = collapsed && moving ? 'auto' : 'none';
+    }
+    function scheduleSettle() { requestAnimationFrame(settleShell); }
+    shell.addEventListener('transitionend', scheduleSettle);
+    shell.addEventListener('transitioncancel', scheduleSettle);
     function render(next) {
       next = !!next && media.matches && !locked();
       if (collapsed === next) return;
@@ -241,14 +259,9 @@
       nav.dataset.compactDock = next ? 'collapsed' : 'expanded';
       destinations.inert = next;
       destinations.setAttribute('aria-hidden', String(next));
-      clearTimeout(shellTapTimer);
       shell.style.pointerEvents = next ? 'auto' : 'none';
+      scheduleSettle();
       if (next) {
-        // The wide glass remains tappable while it contracts. Once it reaches
-        // the Menu key, release hit testing to the real button for pointer and
-        // accessibility automation alike.
-        shellTapTimer = setTimeout(function () { shell.style.pointerEvents = 'none'; },
-          reduced.matches || nav.dataset.dockMotion === 'off' ? 0 : 1050);
         menu.setAttribute('aria-label', 'Show navigation');
         menu.setAttribute('aria-controls', destinations.id);
         menu.removeAttribute('aria-haspopup');
@@ -265,9 +278,12 @@
       var enabled = !reduced.matches && document.body.dataset.readerMotion !== 'off';
       try { if (JSON.parse(localStorage.getItem('suarez-cfi-reader-v1') || '{}').motion === false) enabled = false; } catch (_) {}
       nav.dataset.dockMotion = enabled ? 'on' : 'off';
+      scheduleSettle();
     }
     function measure() {
       var rect = nav.getBoundingClientRect();
+      if (Math.abs(rect.width - measuredWidth) < .5 && Math.abs(rect.height - measuredHeight) < .5) return;
+      measuredWidth = rect.width; measuredHeight = rect.height;
       nav.style.setProperty('--dock-circle-scale', String(56 / rect.width));
       nav.style.setProperty('--dock-circle-height', String(56 / rect.height));
       function center(el) {
@@ -282,15 +298,22 @@
         var point = center(key);
         key.style.setProperty('--merge-x', (rect.width / 2 - point.x) + 'px');
         key.style.setProperty('--merge-y', (rect.height / 2 - point.y) + 'px');
+        key.style.setProperty('--recede-x', (Math.sign(rect.width / 2 - point.x) * 12) + 'px');
       });
+      var menuPoint = center(menu), menuRect = menu.getBoundingClientRect(), iconRect = menuIcon.getBoundingClientRect();
+      var sx = menuRect.width / menu.offsetWidth || 1, sy = menuRect.height / menu.offsetHeight || 1;
+      var iconPoint = { x: menuPoint.x + (iconRect.x + iconRect.width / 2 - menuRect.x - menuRect.width / 2) / sx,
+        y: menuPoint.y + (iconRect.y + iconRect.height / 2 - menuRect.y - menuRect.height / 2) / sy };
+      glyph.style.left = (iconPoint.x - iconRect.width / sx / 2) + 'px';
+      glyph.style.top = (iconPoint.y - iconRect.height / sy / 2) + 'px';
+      glyph.style.setProperty('--merge-x', (rect.width / 2 - iconPoint.x) + 'px');
+      glyph.style.setProperty('--merge-y', (rect.height / 2 - iconPoint.y) + 'px');
       var menuStyle = getComputedStyle(menu);
       var menuWidth = parseFloat(menuStyle.width) || menu.offsetWidth;
       var menuHeight = parseFloat(menuStyle.height) || menu.offsetHeight;
       if (menuWidth && menuHeight) {
         menu.style.setProperty('--merge-menu-x', String(56 / menuWidth));
         menu.style.setProperty('--merge-menu-y', String(56 / menuHeight));
-        menu.style.setProperty('--merge-icon-x', String(menuWidth / 56));
-        menu.style.setProperty('--merge-icon-y', String(menuHeight / 56));
       }
       if (!media.matches) render(false);
       reset();
@@ -322,17 +345,38 @@
       if (collapsed) { render(false); reset(); }
     });
     items.addEventListener('focusin', function (event) { if (collapsed && event.target === menu) return; render(false); reset(); });
-    nav.addEventListener('pointerdown', function () { pressed = true; });
-    function release() { pressed = false; reset(); }
+    nav.addEventListener('pointerdown', function () {
+      pressed = true;
+      paused = nav.getAnimations({ subtree: true }).filter(function (animation) { return animation.playState === 'running'; });
+      paused.forEach(function (animation) { animation.pause(); });
+    });
+    function release() {
+      // Keep the hit area stationary until the pointerup/click pair completes.
+      requestAnimationFrame(function () {
+        paused.forEach(function (animation) { if (animation.playState === 'paused') animation.play(); });
+        paused = []; pressed = false; reset(); scheduleSettle();
+      });
+    }
     window.addEventListener('pointerup', release); window.addEventListener('pointercancel', release);
     new MutationObserver(function () { if (!nav.isConnected) return; if (dialog.open) render(false); reset(); }).observe(dialog, { attributes: true, attributeFilter: ['open'] });
     new MutationObserver(motion).observe(document.body, { attributes: true, attributeFilter: ['data-reader-motion'] });
     window.addEventListener('storage', motion); if (reduced.addEventListener) reduced.addEventListener('change', motion);
-    window.addEventListener('resize', measure); if (media.addEventListener) media.addEventListener('change', measure);
+    function viewportResize() {
+      var focus = document.activeElement;
+      var editable = focus && focus.matches('input:not([type="checkbox"]):not([type="radio"]),textarea,[contenteditable="true"]');
+      var nextKeyboard = !!(editable && window.visualViewport && window.innerHeight - window.visualViewport.height > 120);
+      if (nextKeyboard !== keyboardOpen) { keyboardOpen = nextKeyboard; if (keyboardOpen) render(false); reset(); }
+      // Browser toolbars change height during a swipe. They must not reopen
+      // the dock or discard the directional distance accumulated so far.
+      if (window.innerWidth !== viewportWidth) { viewportWidth = window.innerWidth; render(false); measure(); reset(); }
+    }
+    window.addEventListener('resize', viewportResize); if (media.addEventListener) media.addEventListener('change', function () { render(false); measure(); });
+    document.addEventListener('focusout', function () { requestAnimationFrame(viewportResize); });
     window.addEventListener('pageshow', function () { render(false); reset(); });
     if (window.ResizeObserver) new ResizeObserver(measure).observe(nav);
-    new MutationObserver(function () { if (nav.isConnected) requestAnimationFrame(measure); }).observe(destinations, { childList: true, subtree: true });
-    if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { render(false); reset(); });
+    new MutationObserver(function () { measuredWidth = 0; if (nav.isConnected) requestAnimationFrame(measure); }).observe(destinations, { childList: true, subtree: true });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', viewportResize);
+    if (document.fonts) document.fonts.ready.then(function () { measuredWidth = 0; measure(); });
     measure(); motion();
   }
   function ready() { document.querySelectorAll('.nav').forEach(init); }

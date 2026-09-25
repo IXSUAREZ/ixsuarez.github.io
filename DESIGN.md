@@ -4,6 +4,24 @@ Engineer-facing contract for every page and app on this site. If a change
 violates this file, the change is wrong — update the constitution deliberately,
 never by drift.
 
+## Shared liquid dock motion — September 25, 2026
+
+For `.nav.liquid-dock`, this refinement supersedes the older compact-dock motion
+and icon-row descriptions below. Polished Aurum remains the material authority.
+Phones/tablets through 1024 CSS pixels keep the existing expanded pill and centered
+56px Menu circle; desktop stays expanded. Collapse takes 240ms; expansion 200ms,
+with `cubic-bezier(.2,0,0,1)` and continuous interruption/reversal. Destinations fade
+with a 12px inward movement; the Menu glyph stays 21px throughout. A decorative
+opacity layer blends glass into gold. These timings and the circle are web product
+choices, not Apple-prescribed native behavior.
+
+Retain 48px down / 16px up thresholds beyond the first 80px, expanded content
+clearance, 44px minimum usable targets, keyboard/menu/press locks, and accessible
+first-tap expansion. Browser toolbar height changes preserve state and accumulated
+scroll travel; width changes remeasure and expand. Reduced motion is immediate.
+`assets/site-nav.js` is the sole shared-dock scroll owner. App-owned docks retain
+their existing behavior. See `docs/navigation/compact-dock.md` for verification.
+
 ## Compact tactile interaction system — September 24, 2026
 
 The user-approved glass-and-metal refinement supersedes earlier dock dimensions,

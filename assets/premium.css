@@ -855,5 +855,16 @@ body footer:has(.footer-cols) .fine { max-width:75ch; margin:12px auto; overflow
  body footer:has(.footer-cols) .footer-col a { min-height:44px; display:flex; align-items:center; padding-block:8px; font-size:14px; }
  body footer:has(.footer-cols) .footer-social { justify-content:flex-start; }
  body footer:has(.footer-cols) .fine { text-align:left; font-size:12px; line-height:1.7; }
- body footer:has(.footer-cols) .footer-designer { font-size:17px; }
+body footer:has(.footer-cols) .footer-designer { font-size:17px; }
+}
+
+@media(max-width:600px){
+ body.foi-page h1{font-size:clamp(32px,9vw,36px)}
+ body.foi-page .intro{font-size:16px}
+ body.foi-page .app-shell>section:is(.welcome,.completion) .primary-button{min-height:44px;padding:10px 14px;font-size:15px}
+ body.certgen-view .cg-page-head h1{font-size:32px}
+ body.certgen-view .cg-sub{font-size:15px}
+ body.certgen-view .cg-cert-btn{min-height:56px;padding:8px 10px;gap:8px}
+ body.certgen-view .cg-cert-title{font-size:14px}
+ body.certgen-view .cg-cert-sub{font-size:12px}
 }

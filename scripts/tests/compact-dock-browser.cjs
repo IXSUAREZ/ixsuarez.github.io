@@ -12,7 +12,7 @@ const results = [];
  // Use the native Mac graphics backend for the preserved WebGL homepage sky.
  // The default headless renderer stalled during repeated homepage captures.
  const chromiumArgs = process.platform === 'darwin' ? ['--use-angle=metal'] : [];
- const browser = process.env.DOCK_ENGINE === 'webkit' ? await webkit.launch({headless:true}) : await chromium.launch({headless:true,args:chromiumArgs});
+ const browser = process.env.DOCK_ENGINE === 'webkit' ? await webkit.launch({headless:true}) : await chromium.launch({headless:true,args:chromiumArgs,executablePath:process.env.DOCK_CHROME_PATH||undefined});
  const ctx = await browser.newContext({viewport:{width:390,height:844}});
  await ctx.addInitScript(() => {
   // Wait for native cross-document transitions before measuring a new page.
@@ -31,7 +31,7 @@ const results = [];
  async function load(route='/learn/weather-and-safety/how-to-read-a-taf/') {await page.goto(base+route,{waitUntil:'load'});await page.waitForFunction(()=>!!document.querySelector('[data-compact-dock]'));await page.evaluate(async()=>{await document.fonts.ready;await window.__dockTransition;});await page.waitForFunction(()=>{const n=document.querySelector('[data-compact-dock]');return n&&getComputedStyle(n).position==='relative'&&(innerWidth>1024||getComputedStyle(n.querySelector('.liquid-dock-shell')).position==='absolute');});await page.waitForTimeout(250);}
  async function scroll(y) {await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);await page.waitForTimeout(100);}
  async function state(expected) {assert.equal(await page.evaluate(()=>document.querySelector('.nav')?.dataset.compactDock),expected);}
- async function check(name,fn) {const matrix=name.startsWith('Day/Night');if(process.env.DOCK_GROUP==='core'&&matrix)return;if(process.env.DOCK_GROUP==='matrix'&&!matrix&&name!=='No unexpected browser errors')return;try{await fn();results.push({name,pass:true});console.log('PASS',name);}catch(e){results.push({name,pass:false,error:e.message});console.log('FAIL',name,e.message);console.log(await page.evaluate(()=>({url:location.href,ready:document.readyState,width:innerWidth,nav:document.querySelector('.nav')?.outerHTML.slice(0,200),css:document.querySelector('.nav')&&getComputedStyle(document.querySelector('.nav')).cssText}))); }}
+ async function check(name,fn) {const matrix=name.startsWith('Day/Night');if(process.env.DOCK_GROUP==='core'&&matrix)return;if(process.env.DOCK_GROUP==='matrix'&&!matrix&&name!=='No unexpected browser errors')return;try{await fn();results.push({name,pass:true});console.log('PASS',name);}catch(e){results.push({name,pass:false,error:e.message});console.log('FAIL',name,e.stack||e.message);console.log(await page.evaluate(()=>({url:location.href,ready:document.readyState,width:innerWidth,nav:document.querySelector('.nav')?.outerHTML.slice(0,200),css:document.querySelector('.nav')&&getComputedStyle(document.querySelector('.nav')).cssText}))); }}
  async function shot(name){await page.screenshot({path:path.join(out,name+'.png')});}
  await check('Responsive open/circle geometry and no overflow',async()=>{
   for(const width of [320,390,600,768,834,1024]){

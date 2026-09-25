@@ -344,20 +344,45 @@
     shell.addEventListener('click', function () {
       if (collapsed) { render(false); reset(); }
     });
+    var shellPressId = null;
+    shell.addEventListener('pointerdown', function (event) {
+      if (collapsed) shellPressId = event.pointerId;
+    });
+    window.addEventListener('pointerup', function (event) {
+      if (shellPressId !== event.pointerId) return;
+      shellPressId = null;
+      var rect = shell.getBoundingClientRect();
+      if (event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom && collapsed) {
+        // A contracting shell can move away before click is dispatched. Its
+        // pointer-up still counts as a tap; the settled Menu key uses click.
+        render(false); reset();
+      }
+    });
+    window.addEventListener('pointercancel', function () { shellPressId = null; });
     items.addEventListener('focusin', function (event) { if (collapsed && event.target === menu) return; render(false); reset(); });
+    var pressToken = 0;
     nav.addEventListener('pointerdown', function () {
+      pressToken++;
       pressed = true;
       paused = nav.getAnimations({ subtree: true }).filter(function (animation) { return animation.playState === 'running'; });
       paused.forEach(function (animation) { animation.pause(); });
     });
-    function release() {
-      // Keep the hit area stationary until the pointerup/click pair completes.
-      requestAnimationFrame(function () {
-        paused.forEach(function (animation) { if (animation.playState === 'paused') animation.play(); });
-        paused = []; pressed = false; reset(); scheduleSettle();
-      });
+    function finishPress() {
+      paused.forEach(function (animation) { if (animation.playState === 'paused') animation.play(); });
+      paused = []; pressed = false; reset(); scheduleSettle();
     }
-    window.addEventListener('pointerup', release); window.addEventListener('pointercancel', release);
+    window.addEventListener('pointerup', function () {
+      if (!pressed) return;
+      // Keep the hit area stationary until the pointerup/click pair completes.
+      var token = pressToken;
+      requestAnimationFrame(function () { if (pressed && token === pressToken) finishPress(); });
+    });
+    window.addEventListener('pointercancel', function () {
+      // Cancellation has no click to protect. Release before the next scroll
+      // event, even when a busy page delays its next animation frame.
+      pressToken++;
+      if (pressed) finishPress();
+    });
     new MutationObserver(function () { if (!nav.isConnected) return; if (dialog.open) render(false); reset(); }).observe(dialog, { attributes: true, attributeFilter: ['open'] });
     new MutationObserver(motion).observe(document.body, { attributes: true, attributeFilter: ['data-reader-motion'] });
     window.addEventListener('storage', motion); if (reduced.addEventListener) reduced.addEventListener('change', motion);

@@ -7,7 +7,7 @@
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   font-size: 1.18rem;
   line-height: 1.55;
-  color: rgba(11, 12, 14, 0.76);
+  color: var(--g-muted);
 }
 
 .seo-guide-section {
@@ -49,15 +49,15 @@
   grid-template-columns: auto minmax(0, 1fr);
   gap: 16px;
   padding: 20px 22px;
-  border: 1px solid rgba(8, 9, 11, 0.09);
+  border: 1px solid var(--g-line);
   border-radius: 22px;
-  background: rgba(251, 250, 246, 0.68);
+  background: var(--g-surface);
   box-shadow: 0 14px 34px rgba(8, 9, 11, 0.055), inset 0 1px 0 rgba(255,255,255,0.76);
   transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
 .seo-guide-item:hover {
-  border-color: var(--accent-border, rgba(127, 167, 168, 0.32));
+  border-color: var(--g-line);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -85,9 +85,9 @@
   min-width: 64px;
   min-height: 36px;
   padding: 0 14px;
-  border: 1px solid var(--accent-border, rgba(127, 167, 168, 0.32));
+  border: 1px solid var(--g-line);
   border-radius: var(--radius-pill);
-  background: var(--accent-soft, rgba(127, 167, 168, 0.18));
+  background: var(--g-raised);
   color: var(--navy);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.8rem;
@@ -102,10 +102,10 @@
   max-width: var(--prose-maxw);
   margin: 24px 0 0;
   padding: 18px 20px;
-  border: 1px solid rgba(8, 9, 11, 0.10);
-  border-left: 4px solid var(--accent, #7FA7A8);
+  border: 1px solid var(--g-line);
+  border-left: 4px solid var(--g-accent);
   border-radius: 22px;
-  background: rgba(251, 250, 246, 0.72);
+  background: var(--g-surface);
   color: var(--ink-muted);
   font-size: 0.96rem;
   line-height: 1.65;
@@ -119,9 +119,9 @@
   min-height: 50px;
   padding: 0 20px;
   border-radius: var(--radius-pill);
-  border: 1px solid transparent;
-  background: var(--navy);
-  color: #fff;
+  border: 1px solid var(--g-edge);
+  background: var(--g-gold);
+  color: var(--g-key-ink);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.96rem;
   font-weight: 600;
@@ -132,7 +132,7 @@
 
 .seo-btn:hover {
   transform: translateY(-1px);
-  background: var(--navy-600);
+  background: var(--g-gold);
 }
 
 @media (max-width: 720px) {

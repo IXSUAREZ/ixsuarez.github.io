@@ -1,0 +1,107 @@
+{
+  "checked_at_utc": "2026-09-24T22:29:21.398822+00:00",
+  "scope": "Current local regression checkpoint; tests are source/DOM logic checks, not rendered or native export acceptance.",
+  "suites": [
+    {
+      "command": "node --test scripts/tests/*.test.cjs",
+      "passed": 61
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts/tests -p 'test_*.py'",
+      "passed": 10
+    },
+    {
+      "project": "aero-lab source",
+      "command": "npm test",
+      "passed": 14
+    },
+    {
+      "project": "flightrisk-app source",
+      "command": "npm test",
+      "passed": 27
+    },
+    {
+      "project": "pilotsolve source",
+      "command": "npm test",
+      "passed": 36
+    },
+    {
+      "project": "pilotsolve source",
+      "command": "npm run check:runtime",
+      "protected_files": 28,
+      "result": "pass"
+    },
+    {
+      "project": "simply-endorsed",
+      "command": "node tests/run-tests.js",
+      "passed": 98
+    },
+    {
+      "project": "simply-endorsed",
+      "command": "node tests/workspace.test.js",
+      "assertions_passed": 1678
+    },
+    {
+      "project": "simply-endorsed",
+      "command": "node tests/certpath-storage.test.js",
+      "result": "pass",
+      "coverage": "fresh start, gate, failure preservation, retry key, save/reopen/update, locked inbox"
+    }
+  ],
+  "audits": {
+    "route_wiring": {
+      "passed": 523,
+      "total": 523
+    },
+    "canonical_contrast": {
+      "passed": 44,
+      "total": 44,
+      "minimum_text_ratio": 4.75
+    },
+    "unreferenced_generated_assets": 0
+  },
+  "artifact_sha256": {
+    "assets/appearance.js": "cdcd8e82f4190a831cf92a9c41097da4c74d3e057a920671c9fc5076e6006542",
+    "assets/avionics.css": "19a3eccd8c28acc273bce942ba8cf588a2cbc567a2f3273bc44e5c4dc2bb006c",
+    "assets/tactile.js": "15de6a8ffa682a3ee11661f90bb82c44c04f15de1e5995e8e6fe31f3304aa834",
+    "assets/site-nav.js": "59ae778fb3a86dda199fa0e81f53fb824d40014d823571df70bef4b842f9a9d1",
+    "assets/library-search.js": "3356ce2a4af2c2e0297a1816429d84450800dda5a615454aa15c99affb76bfd3",
+    "assets/tool-catalog.js": "2a6526a2ad8f45185ee4ed2458262a6f3bb6312617aa24cf701b82e8dac16e03",
+    "foi-cards/app.js": "6edc18295f3bb11aa9d250ce92b8bf27d9fc5d1178ec2db37ed3978625aee0cb",
+    "foi-cards/styles.css": "9774350b3ddddc6ff636d1727b078c7047b104c9d0dba57621c170f29b0e38a5",
+    "pilotsolve/sw.js": "ed4223be083376dbb3a1d01b1feda5f0d811bdded3893c8fd7a32b4c3f69ac2d",
+    "simply-endorsed/js/workspace.js": "92594839ae7ed9029d2e193d07479106970addb60951a03de8b71eaf5a88d995",
+    "part-61-calculator/storage.js": "0e5608b39d5b873d5b5b1b9ca9cde77b713bf6e8dbca273509743e69a97360c5",
+    "aero-lab/assets/index-C980s7W8.js": "6b916fff79e2a3eeceaff1cb88c95706318eb36e5d41cbdad7904ed7e4513131",
+    "aero-lab/assets/engine-worker-C0NeOMa6.js": "15bb3b61ca0c30095908b1f2d807db48029a2ea8a96eda5fc50dce4095c481c5",
+    "aero-lab/assets/ReferenceCases-Dp5WiJsf.css": "8b0865db539760e6fdadd78f23c599b3c0c3fc21637a3c327efb960ae641c3ab",
+    "aero-lab/assets/ReferenceCases-ya7sL5Bk.js": "3423214b32f250c8cdcee93443f670c346979d13a61517c6ecc20e8d88f8fdb7",
+    "aero-lab/assets/App-FZ8v98Wg.js": "cb72f1381e2306d9d449d35c07fb77fa2a9b3f7a1dda71bd38b936368596e9ac",
+    "aero-lab/assets/index-B2Pyi143.css": "99d04f981c0954980095e4f63367eb6b671f2116891c7f98b31b547abbc227ae",
+    "aero-lab/assets/GeometryStudio-DzphsTdb.css": "7faa1d7404a33c4839e3d6c1e65879c92a9db41ecd88b68554d4fef6d02ff0f8",
+    "aero-lab/assets/GeometryStudio-C4w8bhS7.js": "0e8ee40eeb3af8196109750c96d0eac4c20af8868762193f73e8108f2fa2966c",
+    "flight-risk-assessment/assets/info-Dqx7bB9R.js": "f5ce9e4044b064642fd9efaa24a231f5878ebf516d314c74711dea46d9782597",
+    "flight-risk-assessment/assets/index-Bp18znhh.css": "3919144d8158180f1f4f175995fa9a5ecc2019ab1c00ba25e21fe8ebe4ba832b",
+    "flight-risk-assessment/assets/Guide-BvF0l_Nk.js": "7dd7b62ae5329c3c5277ad9afa40d22b0ab3d3e033cf9bbb1de388aeb697db36",
+    "flight-risk-assessment/assets/index-C3Bpn_gU.js": "90111e28fd68ec2081ddd65cfc4d4e4f050579a0679461e1b544f13cadd2d702",
+    "flight-risk-assessment/assets/Methodology-DTag3ymr.js": "da3a46491b053b5780f5c16f6996a0bc1e1981a85bc57682a3cb4fe780a8a4f6",
+    "flight-risk-assessment/assets/NotFound-B0QG_5Yg.js": "8918ff04b033f8fea97d8488894da3e2aa49a78e29410baa32a94eb4a04f1621",
+    "flight-risk-assessment/assets/paths-Cf2XGz-h.js": "b410b9910d01c25cfa795f3e9b8515967335ec6ea277ecdf6163cdbf2712e6a8",
+    "flight-risk-assessment/assets/users-CmESsce9.js": "635ae703881d5dd839ebb051d856d1d271d5950009bf2689412453866ead1be9",
+    "flight-risk-assessment/assets/Assessment-CVcDUq67.js": "6131d8f474d61ff1f7c96d52cf9ac9f9e7b56f3364fc87417f5f9421d9f98644",
+    "flight-risk-assessment/assets/ScrollTrigger-DKovXMj5.js": "f229d3cb265437572d0305ebaa8d5074374a344e2644ba80f1bc0e511d567048",
+    "pilotsolve/assets/prototype-hdpX_fZf.css": "9220b9b1ff6713b7bcd50ff87b31880f2768f20def9aa8a2166e278dc41ffe21",
+    "pilotsolve/assets/mobile-ByfunKI1.js": "7b18cc5dfde8d36d91a90bd60c2548168592e3ad4833a4b765e2189529074df6",
+    "pilotsolve/assets/prototype-CIkk57bl.js": "853a3a0c9c0e1264161986c0bb97574cd58cd21b164889338cb9f40f57b3c3e4",
+    "pilotsolve/assets/preview-BmIPKyx7.css": "4385cca68cbec1c8612313bc2d4245e111b70b7fd418765c6fdd743b36445be9",
+    "pilotsolve/assets/preview-DEAI0vXg.js": "e3b9b07373f28b19a9b773941f0f1dbd77ad9d18b7ac01be209188eb0cb53264"
+  },
+  "not_proven": [
+    "full visual acceptance matrix",
+    "actual 200% browser zoom",
+    "live OS appearance/reduced-effect changes",
+    "browser-blocked storage",
+    "native download and print delivery",
+    "production release"
+  ]
+}

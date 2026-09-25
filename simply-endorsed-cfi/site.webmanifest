@@ -4,8 +4,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#2563eb",
+  "background_color": "#E3E3E3",
+  "theme_color": "#E3E3E3",
   "shortcuts": [
     {
       "name": "Regulatory Definitions",

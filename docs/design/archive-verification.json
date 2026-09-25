@@ -1,0 +1,138 @@
+{
+  "checked_at": "2026-09-25T00:44:48.920211+00:00",
+  "scope": "Archive byte integrity, absence of retired files, and retired filename references in deployable HTML/JS/CSS/JSON. Tooling, evidence, and config retirement registry excluded. Original source paths may remain as updated layout code. No visual or workflow acceptance implied.",
+  "archives": [
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-handoff-followup/superseded-app-assets.tar.gz",
+      "sha256": "f0c0fb220b955af51e2d1d78a0057b4b351d1bc32b48fc97c63c2995f8e52a78",
+      "files": 5,
+      "uncompressed_bytes": 366248
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-reference-followup/superseded-app-assets.tar.gz",
+      "sha256": "8a154581c2572eb6d5497f3806c7bf51fcda7fa25e506d64bc02db381dd8372f",
+      "files": 21,
+      "uncompressed_bytes": 1426681
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-status-followup/superseded-app-assets.tar.gz",
+      "sha256": "64128f1f2b6858d2af13e31cb649da847a718e65ac8b617b1bbc2ecb2b9fccbc",
+      "files": 5,
+      "uncompressed_bytes": 366212
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-studio-followup/superseded-app-assets.tar.gz",
+      "sha256": "d8243cf01dd241730e7b694a95c7ca67b9cf326d944bfef5f40c0db12acfaf53",
+      "files": 6,
+      "uncompressed_bytes": 373886
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/crank-copper-theme-retirement/legacy-copper-theme.tar.gz",
+      "sha256": "8ca3b4097cd1e7d799e9a4fe5b75c5c98a90d0e21a863e51f4949fbd74affaed",
+      "files": 1,
+      "uncompressed_bytes": 773
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-focus-followup/superseded-app-assets.tar.gz",
+      "sha256": "e44063e66ac193b20a9a7dd8cf85c5cd0abcd98688f70ad408005ad887800669",
+      "files": 9,
+      "uncompressed_bytes": 737396
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-gauge-followup/superseded-app-assets.tar.gz",
+      "sha256": "44e57ea418c583a3ab9e949fc2dbe59c73f5ba4b9de90587e9acedb0ec6cb525",
+      "files": 9,
+      "uncompressed_bytes": 737302
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-guide-badge-followup/superseded-app-assets.tar.gz",
+      "sha256": "39afc68a3aa6802cebc63cff4cc1fdaf18c1b44157162e11305735d1ef2e318e",
+      "files": 18,
+      "uncompressed_bytes": 1475670
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-legacy-server-retirement/legacy-server.tar.gz",
+      "sha256": "877312ae0d56175b4430686c22650dd76c59a364266536fbf2f2db2bf118582e",
+      "files": 1,
+      "uncompressed_bytes": 1722080
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-matrix-followup/superseded-app-assets.tar.gz",
+      "sha256": "fb302800fe2bc7348166ebc395e64e4f755c4b914fa140b631651fc4f69cc60d",
+      "files": 10,
+      "uncompressed_bytes": 837444
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-modal-followup/superseded-app-assets.tar.gz",
+      "sha256": "1ce39c6fa5bea0588b799d0351b57411fa745ac0144f740d9d81afb81a812668",
+      "files": 10,
+      "uncompressed_bytes": 836910
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-override-family-followup/superseded-app-assets.tar.gz",
+      "sha256": "6961f8886f37507fc8916a57f4838e00b4fde90af20f54e12d9735ce7366d835",
+      "files": 9,
+      "uncompressed_bytes": 737839
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-results-followup/superseded-app-assets.tar.gz",
+      "sha256": "5de42b60b74ffbfcf2b7158c7fe67bc6ce9e846d9048958a0ef7cc1506dab461",
+      "files": 10,
+      "uncompressed_bytes": 836870
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-timeline-followup/superseded-app-assets.tar.gz",
+      "sha256": "b6c333e1faacc9e0cf066044e88215ffd0b52ce781bcb17b4cae65adecd92898",
+      "files": 9,
+      "uncompressed_bytes": 737813
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/styles-dfd653c.tar.gz",
+      "sha256": "257a1b9dfc95ed46ad18a49ac85830da37416a0a080602cc478fb5d3d6e95059",
+      "files": 53,
+      "uncompressed_bytes": 2235431
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-calculator-session-followup/superseded-app-assets.tar.gz",
+      "sha256": "5b87feeb82059638415a50341c5d746e717f99d3aa446765b26208a80791d94a",
+      "files": 3,
+      "uncompressed_bytes": 646863
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-loading-readout-followup/superseded-app-assets.tar.gz",
+      "sha256": "00f94cca0baad06836f80495b2e3827f96fe85be46a67d7e00d6a4c5cef99001",
+      "files": 4,
+      "uncompressed_bytes": 715454
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-night-label-followup/superseded-app-assets.tar.gz",
+      "sha256": "9308edd57ea86fbd8028e35234d9b62821c1cb9aaa6f98cdbfc695d2b7ceb011",
+      "files": 3,
+      "uncompressed_bytes": 646862
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-sheet-followup/superseded-app-assets.tar.gz",
+      "sha256": "cc484bb43736930c0959d15d7db52f7e01a90b1f79f0fbb27be550cef09afcec",
+      "files": 4,
+      "uncompressed_bytes": 714978
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-switch-followup/superseded-app-assets.tar.gz",
+      "sha256": "feccad723b41d031e89a331af7598bc148ec7ab581ffb8a2609095bf649c5eee",
+      "files": 4,
+      "uncompressed_bytes": 715140
+    },
+    {
+      "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/superseded-builds/superseded-app-assets.tar.gz",
+      "sha256": "a59d34b1c462a0bae8027c4b6a2fe23ad57147eb5773aa33e27007c17911d2e7",
+      "files": 199,
+      "uncompressed_bytes": 28005357
+    }
+  ],
+  "archive_count": 21,
+  "archived_file_entries": 393,
+  "retired_unique_paths": 340,
+  "integrity_errors": [],
+  "retired_files_remaining": [],
+  "retired_reference_hits": []
+}

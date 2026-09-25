@@ -1,0 +1,40 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 3,
+      "archive": [
+        "pilotsolve/assets/preview-BmIPKyx7.css",
+        "pilotsolve/assets/preview-CNp9GoIX.js"
+      ]
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": []
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "pilotsolve/assets/preview-BmIPKyx7.css": {
+      "sha256": "4385cca68cbec1c8612313bc2d4245e111b70b7fd418765c6fdd743b36445be9",
+      "bytes": 11406
+    },
+    "pilotsolve/assets/preview-CNp9GoIX.js": {
+      "sha256": "862930eafcccf61c1b2ebed08088f6b32132efaa21935d069da4e37edd05dda0",
+      "bytes": 125534
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-2c6d7df088da.json",
+  "archive_location": "/Users/diegosuarez/Projects/suarez-aurum-sources/_archives/pilotsolve-preview-only-20260924/superseded-app-assets.tar.gz"
+}

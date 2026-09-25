@@ -1,0 +1,60 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 5,
+      "archive": []
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": [
+        "aero-lab/assets/App-KfF-5Hqv.js",
+        "aero-lab/assets/GeometryStudio--x2F4EBd.css",
+        "aero-lab/assets/GeometryStudio-DQTlQ7sF.js",
+        "aero-lab/assets/ReferenceCases-DWOsZaFL.js",
+        "aero-lab/assets/index-C9SDuKS0.css",
+        "aero-lab/assets/index-CUBOl76y.js"
+      ]
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "aero-lab/assets/App-KfF-5Hqv.js": {
+      "sha256": "3f7576903ce91d29f1e1a12e433a7a6bc027302ca1ad60cb3f2e0eb39d2e267c",
+      "bytes": 60453
+    },
+    "aero-lab/assets/GeometryStudio--x2F4EBd.css": {
+      "sha256": "b120d67f363b404413685790fa25110188221e0176814fd7efe77c8ffe15063f",
+      "bytes": 8326
+    },
+    "aero-lab/assets/GeometryStudio-DQTlQ7sF.js": {
+      "sha256": "bb554abbf95b4c0cca20fa8fce8890d14967f99cdb781f2a255f83b77d27004f",
+      "bytes": 17554
+    },
+    "aero-lab/assets/ReferenceCases-DWOsZaFL.js": {
+      "sha256": "ed7723d72b913680e210af98ef48ee65f9ad26e562a8cac234cd75b80693507e",
+      "bytes": 12041
+    },
+    "aero-lab/assets/index-C9SDuKS0.css": {
+      "sha256": "b134b2c7ea042d7c650abfd7e971a63d848e480a66c50f3b466c2522aacfb95f",
+      "bytes": 40703
+    },
+    "aero-lab/assets/index-CUBOl76y.js": {
+      "sha256": "d1559affcd1275038a68cda49f5280988efe6f593d73d359b55cb09b36cfae46",
+      "bytes": 234809
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-dd805ab06876.json",
+  "archive_location": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-studio-followup/superseded-app-assets.tar.gz"
+}

@@ -1,0 +1,45 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 5,
+      "archive": [
+        "pilotsolve/assets/mobile-D-j-Bjkv.js",
+        "pilotsolve/assets/preview-DeGW0IOJ.js",
+        "pilotsolve/assets/prototype-BwLH_lGl.js"
+      ]
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": []
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "pilotsolve/assets/mobile-D-j-Bjkv.js": {
+      "sha256": "efda7eabcef0d7d2e45c26ba5f6bc40aa3d4c4e8d02266f6f08ea4b43bedce88",
+      "bytes": 404
+    },
+    "pilotsolve/assets/preview-DeGW0IOJ.js": {
+      "sha256": "1389aad30b4711bab3521aa474af14f1979ff0c1b6e77276c6c8a93ce6c87a0e",
+      "bytes": 125534
+    },
+    "pilotsolve/assets/prototype-BwLH_lGl.js": {
+      "sha256": "853a3a0c9c0e1264161986c0bb97574cd58cd21b164889338cb9f40f57b3c3e4",
+      "bytes": 520925
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-1bf2497b59c8.json",
+  "archive_location": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-calculator-session-followup/superseded-app-assets.tar.gz"
+}

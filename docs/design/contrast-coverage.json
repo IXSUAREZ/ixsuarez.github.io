@@ -1,0 +1,880 @@
+{
+  "scope": "Canonical opaque text, input-border and base metallic-gradient pairs plus Simply Endorsed category text on filled cards and normal/hover Day/Night reading surfaces. Night hover retains the solid surface and adds a gold edge. Includes sRGB glass compositing over black/white bounds, shared error text and text-selection colors. Excludes edge shadows, other app overrides, diagrams, disabled states and full rendered accessibility.",
+  "stylesheet_sha256": "d414d3ec2d3929aade4655ccf9f301a194f4f3c38ad6132fe1c3eee81e31dfbf",
+  "category_palette_sha256": "e4ffa6a6a24591eebe284898554ecf51df5b17c9974b6241200a08a43c4d297d",
+  "category_stylesheet_sha256": "5e4294941da967e8e2d973d7ed53357acc9fbe027ef084c9bdfadaed45c5191c",
+  "checks": [
+    {
+      "mode": "day",
+      "foreground": "--g-ink",
+      "background": "--g-bg",
+      "ratio": 11.64,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-ink",
+      "background": "--g-surface",
+      "ratio": 12.992,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-ink",
+      "background": "--g-raised",
+      "ratio": 13.944,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-ink",
+      "background": "--g-well",
+      "ratio": 10.278,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-muted",
+      "background": "--g-bg",
+      "ratio": 5.458,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-muted",
+      "background": "--g-surface",
+      "ratio": 6.092,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-muted",
+      "background": "--g-raised",
+      "ratio": 6.538,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-muted",
+      "background": "--g-well",
+      "ratio": 4.82,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-accent",
+      "background": "--g-bg",
+      "ratio": 5.375,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-accent",
+      "background": "--g-surface",
+      "ratio": 5.999,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-accent",
+      "background": "--g-raised",
+      "ratio": 6.439,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-accent",
+      "background": "--g-well",
+      "ratio": 4.746,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-key-ink",
+      "background": "--g-mid (text selection)",
+      "ratio": 8.205,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--av-error",
+      "background": "--g-bg",
+      "ratio": 5.49,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--av-error",
+      "background": "--g-surface",
+      "ratio": 6.127,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--av-error",
+      "background": "--g-raised",
+      "ratio": 6.576,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--av-error",
+      "background": "--g-well",
+      "ratio": 4.848,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-ink",
+      "background": "glass over black/white bounds",
+      "ratio": 10.573,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-muted",
+      "background": "glass over black/white bounds",
+      "ratio": 4.958,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-accent",
+      "background": "glass over black/white bounds",
+      "ratio": 4.882,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-control-line",
+      "background": "--g-raised",
+      "ratio": 3.587,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "--g-key-ink",
+      "background": "gold gradient, 101 sRGB samples per segment",
+      "ratio": 6.621,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-ink",
+      "background": "--g-bg",
+      "ratio": 9.281,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-ink",
+      "background": "--g-surface",
+      "ratio": 8.058,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-ink",
+      "background": "--g-raised",
+      "ratio": 6.885,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-ink",
+      "background": "--g-well",
+      "ratio": 10.501,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-muted",
+      "background": "--g-bg",
+      "ratio": 6.618,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-muted",
+      "background": "--g-surface",
+      "ratio": 5.746,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-muted",
+      "background": "--g-raised",
+      "ratio": 4.91,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-muted",
+      "background": "--g-well",
+      "ratio": 7.488,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-accent",
+      "background": "--g-bg",
+      "ratio": 6.979,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-accent",
+      "background": "--g-surface",
+      "ratio": 6.059,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-accent",
+      "background": "--g-raised",
+      "ratio": 5.177,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-accent",
+      "background": "--g-well",
+      "ratio": 7.896,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-key-ink",
+      "background": "--g-mid (text selection)",
+      "ratio": 8.205,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--av-error",
+      "background": "--g-bg",
+      "ratio": 6.717,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--av-error",
+      "background": "--g-surface",
+      "ratio": 5.832,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--av-error",
+      "background": "--g-raised",
+      "ratio": 4.983,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--av-error",
+      "background": "--g-well",
+      "ratio": 7.6,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-ink",
+      "background": "glass over black/white bounds",
+      "ratio": 6.894,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-muted",
+      "background": "glass over black/white bounds",
+      "ratio": 4.916,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-accent",
+      "background": "glass over black/white bounds",
+      "ratio": 5.184,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-control-line",
+      "background": "--g-raised",
+      "ratio": 3.074,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "--g-key-ink",
+      "background": "gold gradient, 101 sRGB samples per segment",
+      "ratio": 6.621,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on practical-test-prereqs",
+      "background": "#6356d8",
+      "ratio": 5.45,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "practical-test-prereqs label",
+      "background": "--g-surface",
+      "ratio": 4.74,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "practical-test-prereqs label",
+      "background": "--g-raised",
+      "ratio": 5.087,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "practical-test-prereqs label",
+      "background": "--g-surface",
+      "ratio": 4.544,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "practical-test-prereqs label",
+      "background": "--g-surface with gold edge",
+      "ratio": 4.544,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on student-pilot",
+      "background": "#985511",
+      "ratio": 5.765,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "student-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.014,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "student-pilot label",
+      "background": "--g-raised",
+      "ratio": 5.381,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "student-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.638,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "student-pilot label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.638,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on sport-pilot",
+      "background": "#237444",
+      "ratio": 5.749,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "sport-pilot label",
+      "background": "--g-surface",
+      "ratio": 4.999,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "sport-pilot label",
+      "background": "--g-raised",
+      "ratio": 5.366,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "sport-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.398,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "sport-pilot label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.398,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on recreational-pilot",
+      "background": "#5c701f",
+      "ratio": 5.537,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "recreational-pilot label",
+      "background": "--g-surface",
+      "ratio": 4.816,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "recreational-pilot label",
+      "background": "--g-raised",
+      "ratio": 5.169,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "recreational-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.775,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "recreational-pilot label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.775,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on private-pilot",
+      "background": "#086a91",
+      "ratio": 6.033,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "private-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.247,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "private-pilot label",
+      "background": "--g-raised",
+      "ratio": 5.632,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "private-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.395,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "private-pilot label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.395,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on commercial-pilot",
+      "background": "#886414",
+      "ratio": 5.413,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "commercial-pilot label",
+      "background": "--g-surface",
+      "ratio": 4.707,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "commercial-pilot label",
+      "background": "--g-raised",
+      "ratio": 5.052,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "commercial-pilot label",
+      "background": "--g-surface",
+      "ratio": 5.911,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "commercial-pilot label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.911,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on atp",
+      "background": "#315ec4",
+      "ratio": 5.951,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "atp label",
+      "background": "--g-surface",
+      "ratio": 5.175,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "atp label",
+      "background": "--g-raised",
+      "ratio": 5.555,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "atp label",
+      "background": "--g-surface",
+      "ratio": 4.611,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "atp label",
+      "background": "--g-surface with gold edge",
+      "ratio": 4.611,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on instrument-rating",
+      "background": "#4b607b",
+      "ratio": 6.445,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "instrument-rating label",
+      "background": "--g-surface",
+      "ratio": 5.605,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "instrument-rating label",
+      "background": "--g-raised",
+      "ratio": 6.016,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "instrument-rating label",
+      "background": "--g-surface",
+      "ratio": 5.774,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "instrument-rating label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.774,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on flight-instructor",
+      "background": "#a13b48",
+      "ratio": 6.492,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "flight-instructor label",
+      "background": "--g-surface",
+      "ratio": 5.646,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "flight-instructor label",
+      "background": "--g-raised",
+      "ratio": 6.06,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "flight-instructor label",
+      "background": "--g-surface",
+      "ratio": 4.96,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "flight-instructor label",
+      "background": "--g-surface with gold edge",
+      "ratio": 4.96,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on sport-pilot-instructor",
+      "background": "#a14d22",
+      "ratio": 5.833,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "sport-pilot-instructor label",
+      "background": "--g-surface",
+      "ratio": 5.073,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "sport-pilot-instructor label",
+      "background": "--g-raised",
+      "ratio": 5.445,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "sport-pilot-instructor label",
+      "background": "--g-surface",
+      "ratio": 5.394,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "sport-pilot-instructor label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.394,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on additional-recurrent",
+      "background": "#156e69",
+      "ratio": 6.058,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "additional-recurrent label",
+      "background": "--g-surface",
+      "ratio": 5.269,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "additional-recurrent label",
+      "background": "--g-raised",
+      "ratio": 5.655,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "additional-recurrent label",
+      "background": "--g-surface",
+      "ratio": 5.808,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "additional-recurrent label",
+      "background": "--g-surface with gold edge",
+      "ratio": 5.808,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on robinson-sfar73",
+      "background": "#a13977",
+      "ratio": 6.237,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "robinson-sfar73 label",
+      "background": "--g-surface",
+      "ratio": 5.424,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "robinson-sfar73 label",
+      "background": "--g-raised",
+      "ratio": 5.822,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "robinson-sfar73 label",
+      "background": "--g-surface",
+      "ratio": 4.792,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "robinson-sfar73 label",
+      "background": "--g-surface with gold edge",
+      "ratio": 4.792,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "category",
+      "foreground": "white text on specialty-operations",
+      "background": "#7443b7",
+      "ratio": 6.503,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day",
+      "foreground": "specialty-operations label",
+      "background": "--g-surface",
+      "ratio": 5.656,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "day hover",
+      "foreground": "specialty-operations label",
+      "background": "--g-raised",
+      "ratio": 6.07,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "foreground": "specialty-operations label",
+      "background": "--g-surface",
+      "ratio": 4.854,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "mode": "dark hover",
+      "foreground": "specialty-operations label",
+      "background": "--g-surface with gold edge",
+      "ratio": 4.854,
+      "required": 4.5,
+      "pass": true
+    }
+  ]
+}

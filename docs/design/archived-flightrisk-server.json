@@ -1,0 +1,10 @@
+{
+  "archive": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-legacy-server-retirement/legacy-server.tar.gz",
+  "files": {
+    "flight-risk-assessment/server/index.js": {
+      "sha256": "28e86524e18766fec039d8e6cb7fd0a36aaec13e17b4084372fb5d2a330ecd97",
+      "bytes": 1722080
+    }
+  },
+  "reason": "Unused embedded old app worker; static-site builder explicitly excludes server output."
+}

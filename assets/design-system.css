@@ -1,40 +1,40 @@
 /* ==========================================================================
-   SuarezCFI — Shared Daylight Liquid Glass Design System
+   SuarezCFI — Shared Polished Aurum Design System
    Common styling variables, backgrounds, animations, and typography tokens.
    ========================================================================== */
 
 :root {
-  --bg: #F4F6FB;
-  --ink: #0D1330;
-  --ink-muted: #4D5670;
-  --navy: #1C2142;
-  --navy-600: #141A35;
-  --yellow: #FFD000;
-  --yellow-bright: #FFDA33;
-  --yellow-deep: #F5C400;
-  --yellow-ink: #7A5F00;
-  --yellow-soft: rgba(255, 208, 0, 0.16);
-  --yellow-line: rgba(255, 208, 0, 0.40);
+  --bg: var(--g-bg, #E3E3E3);
+  --ink: var(--g-ink, #272727);
+  --ink-muted: var(--g-muted, #595959);
+  --navy: var(--g-ink, #272727);
+  --navy-600: var(--g-ink, #272727);
+  --yellow: var(--g-mid, #e3b741);
+  --yellow-bright: var(--g-top, #ffe79a);
+  --yellow-deep: var(--g-edge, #9a701b);
+  --yellow-ink: var(--g-accent, #73551b);
+  --yellow-soft: color-mix(in srgb, var(--g-mid) 18%, transparent);
+  --yellow-line: var(--g-edge, #9a701b);
   --sky: #7EC1FF;
   --green: #10B981;
   --availability-green-rgb: 16, 185, 129;
 
   /* Liquid glass material */
-  --glass-bg: linear-gradient(135deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.42) 100%);
-  --glass-bg-strong: linear-gradient(135deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.93) 100%);
-  --glass-edge: rgba(255, 255, 255, 0.80);
+  --glass-bg: var(--g-glass, #efefef);
+  --glass-bg-strong: var(--g-raised, #f7f7f7);
+  --glass-edge: var(--g-glass-edge, #aaa);
   --glass-spec: inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -1px 0 rgba(255,255,255,0.22);
   --glass-blur: 16px;
-  --glass-ring: 0 0 0 1px rgba(13, 19, 48, 0.04);
+  --glass-ring: 0 0 0 1px rgba(0, 0, 0, 0.04);
 
   /* Paper material — in-flow surfaces (one sheet, two finishes) */
-  --paper-bg: rgba(255, 255, 255, 0.72);
+  --paper-bg: var(--g-surface, #efefef);
   --paper-radius: 20px;
 
-  --shadow-sm: 0 2px 8px rgba(13, 19, 48, 0.05);
-  --shadow-md: 0 14px 40px -12px rgba(13, 19, 48, 0.14);
-  --shadow-lg: 0 30px 70px -18px rgba(13, 19, 48, 0.22);
-  --shadow-yellow: 0 14px 34px -10px rgba(245, 196, 0, 0.65);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 14px 40px -12px rgba(0, 0, 0, 0.14);
+  --shadow-lg: 0 30px 70px -18px rgba(0, 0, 0, 0.22);
+  --shadow-yellow: var(--g-shadow, 0 3px 6px #0003);
 
   --r-card: 30px;
   --r-md: 20px;
@@ -43,8 +43,8 @@
   --maxw: 1180px;
 
   /* Borders */
-  --border: rgba(13, 19, 48, 0.10);
-  --border-strong: rgba(13, 19, 48, 0.18);
+  --border: var(--g-line, #aaa);
+  --border-strong: var(--g-control-line, #828282);
 
   /* Design System v2 — fluid display scale & rhythm */
   --display-xl: clamp(2.9rem, 5.6vw, 4.9rem);
@@ -75,8 +75,8 @@ body::after {
 }
 
 ::selection {
-  background: rgba(255, 208, 0, 0.45);
-  color: var(--ink);
+  background: var(--g-mid, #e3b741);
+  color: var(--g-key-ink, #2b2316);
 }
 
 /* One focus ring domain-wide: 2px solid yellow-deep, 3px offset.
@@ -101,8 +101,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(28, 33, 66, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28, 33, 66, 0.045) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--g-line) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--g-line) 18%, transparent) 1px, transparent 1px);
   background-size: 76px 76px;
   -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
   mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
@@ -112,11 +112,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(44% 38% at 84% -6%, rgba(255, 208, 0, 0.55), transparent 70%),
-    radial-gradient(38% 34% at 4% 4%, rgba(126, 193, 255, 0.42), transparent 70%),
-    radial-gradient(42% 38% at 96% 58%, rgba(255, 184, 0, 0.26), transparent 70%),
-    radial-gradient(40% 36% at 0% 86%, rgba(143, 203, 255, 0.30), transparent 70%),
-    radial-gradient(34% 28% at 50% 110%, rgba(255, 208, 0, 0.32), transparent 70%);
+    radial-gradient(44% 38% at 84% -6%, color-mix(in srgb, var(--g-mid) 18%, transparent), transparent 70%),
+    radial-gradient(38% 34% at 4% 4%, color-mix(in srgb, var(--g-line) 16%, transparent), transparent 70%),
+    radial-gradient(42% 38% at 96% 58%, color-mix(in srgb, var(--g-mid) 12%, transparent), transparent 70%),
+    radial-gradient(40% 36% at 0% 86%, color-mix(in srgb, var(--g-line) 16%, transparent), transparent 70%),
+    radial-gradient(34% 28% at 50% 110%, color-mix(in srgb, var(--g-mid) 14%, transparent), transparent 70%);
 }
 
 /* Glass Material Utility */
@@ -288,7 +288,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 .social-link:hover {
-  background: rgba(255,255,255,0.85);
+  background: var(--g-raised, #f7f7f7);
   color: var(--navy);
   border-color: var(--yellow-line);
   box-shadow: var(--shadow-md);
@@ -446,12 +446,12 @@ footer .footer-col a:hover { color: var(--navy); }
   height: 52px;
   border-radius: var(--r-pill);
   color: var(--navy);
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--g-glass);
   border: 1px solid var(--border);
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .conversion-bar__call:hover {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--g-raised);
   border-color: var(--yellow-line);
 }
 .conversion-bar__call:active { transform: scale(0.97); }

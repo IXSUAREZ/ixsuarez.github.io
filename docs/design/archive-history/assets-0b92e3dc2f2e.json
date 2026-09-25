@@ -1,0 +1,45 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 3,
+      "archive": [
+        "pilotsolve/assets/mobile-CUf-5Yi6.js",
+        "pilotsolve/assets/prototype-CAVt1yWr.js",
+        "pilotsolve/assets/prototype-Cv6bjZxl.css"
+      ]
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": []
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "pilotsolve/assets/mobile-CUf-5Yi6.js": {
+      "sha256": "85429d43120a5cc923e6abc33938f1c516f86d3445146d05c880409d1160a937",
+      "bytes": 404
+    },
+    "pilotsolve/assets/prototype-CAVt1yWr.js": {
+      "sha256": "8f950c463f48d0c4bd1fc91e869031179679a8e428812fee3515b236e492e3ab",
+      "bytes": 521206
+    },
+    "pilotsolve/assets/prototype-Cv6bjZxl.css": {
+      "sha256": "b141b7ca586dde2c9d5f497ba53695c5649a900ee0086a6d902bd67837269c07",
+      "bytes": 68586
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-0d01f1207bcb.json",
+  "archive_location": "/Users/diegosuarez/Projects/suarez-aurum-archives/pilotsolve-blue-glass-retirement-20260925/superseded-app-assets.tar.gz"
+}

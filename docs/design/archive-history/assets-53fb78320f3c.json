@@ -1,0 +1,135 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 5,
+      "archive": []
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": [
+        "aero-lab/assets/App-7ujkmwda.js",
+        "aero-lab/assets/App-BR6CLnuu.js",
+        "aero-lab/assets/App-CqOa5LLG.js",
+        "aero-lab/assets/App-D2a-2rC5.js",
+        "aero-lab/assets/GeometryStudio-BHb1RzIf.js",
+        "aero-lab/assets/GeometryStudio-CUZYy03Q.js",
+        "aero-lab/assets/GeometryStudio-D3LGaRzA.js",
+        "aero-lab/assets/GeometryStudio-zQ1dC2uE.js",
+        "aero-lab/assets/ReferenceCases-90Y2vAVZ.js",
+        "aero-lab/assets/ReferenceCases-BNLex8YB.js",
+        "aero-lab/assets/ReferenceCases-BYTKhme7.css",
+        "aero-lab/assets/ReferenceCases-BkgLVONX.js",
+        "aero-lab/assets/ReferenceCases-ZtnB2RZB.js",
+        "aero-lab/assets/ReferenceCases-b1_tN6Vn.css",
+        "aero-lab/assets/index-C1fiNUI2.js",
+        "aero-lab/assets/index-CmPom4-A.css",
+        "aero-lab/assets/index-Ct90X-y3.css",
+        "aero-lab/assets/index-Cyd4zUAi.js",
+        "aero-lab/assets/index-DMf4Bh60.js",
+        "aero-lab/assets/index-XR3V4H_G.css",
+        "aero-lab/assets/index-feqdpVpR.js"
+      ]
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "aero-lab/assets/App-7ujkmwda.js": {
+      "sha256": "746887b23b0230e8e101b4e3894feea0ea06f0f2cfe76131e6315c39c933f572",
+      "bytes": 60453
+    },
+    "aero-lab/assets/App-BR6CLnuu.js": {
+      "sha256": "f34564a7a7f04b709075988876bace89a51a0984f389fe23d3f7621b963dc337",
+      "bytes": 60453
+    },
+    "aero-lab/assets/App-CqOa5LLG.js": {
+      "sha256": "2e0c400280eaae6b38c89a21a758d6983429e425ffb601d3e5b5ed1a312d06d4",
+      "bytes": 60453
+    },
+    "aero-lab/assets/App-D2a-2rC5.js": {
+      "sha256": "ac7f3e4c98740a9b9bfe0d8bf2772856ac10bab31df8db64ff6b7a4951ff2f27",
+      "bytes": 60453
+    },
+    "aero-lab/assets/GeometryStudio-BHb1RzIf.js": {
+      "sha256": "7da8d988c4452dbc54b95792cae5f9a29b55006813c4a4c14ccdd3c35eef47cf",
+      "bytes": 17554
+    },
+    "aero-lab/assets/GeometryStudio-CUZYy03Q.js": {
+      "sha256": "60c551b24f52c8f647ab69bae2512612816ab7342f9b3138fe5df4d639cabbba",
+      "bytes": 17554
+    },
+    "aero-lab/assets/GeometryStudio-D3LGaRzA.js": {
+      "sha256": "06241838896cb16b6398690c7e3d25daef1829f980d7e64072637818eba1a324",
+      "bytes": 17554
+    },
+    "aero-lab/assets/GeometryStudio-zQ1dC2uE.js": {
+      "sha256": "4cd8c2aa178e811fb9e100ca169ab9664d15ad5be997df78621bf84d7f3fff32",
+      "bytes": 17554
+    },
+    "aero-lab/assets/ReferenceCases-90Y2vAVZ.js": {
+      "sha256": "9892439638142821dfcb78737e3a468a8b76056bd9c6707b78eb2d1c2af0927d",
+      "bytes": 12041
+    },
+    "aero-lab/assets/ReferenceCases-BNLex8YB.js": {
+      "sha256": "241b445385d1de9b36e8315cb2cdd0fc298a826e5d4fb851c9752d5030dc1e1c",
+      "bytes": 12041
+    },
+    "aero-lab/assets/ReferenceCases-BYTKhme7.css": {
+      "sha256": "a89f808f9d5e4401c623096dfe722797645c52fda938a0e38ce8ee452da79c27",
+      "bytes": 1866
+    },
+    "aero-lab/assets/ReferenceCases-BkgLVONX.js": {
+      "sha256": "9a6938a3939cfd7359a84584df85179be7d8cbcf3a8f44f6b3b32466202b3ed6",
+      "bytes": 12041
+    },
+    "aero-lab/assets/ReferenceCases-ZtnB2RZB.js": {
+      "sha256": "fb4adf3d197cc5aa198e4cb64c856c4739ea710cec138147cf279631cb3d0abd",
+      "bytes": 12041
+    },
+    "aero-lab/assets/ReferenceCases-b1_tN6Vn.css": {
+      "sha256": "a296bb06fa3699a89fdc72d5abd5b52c4c389cc4381cfaca2ddd2928880d7a14",
+      "bytes": 1967
+    },
+    "aero-lab/assets/index-C1fiNUI2.js": {
+      "sha256": "09d4c87bc8d34b3879f34dcd1feb3b0f1617ed1b735a71a5d1e075a7d28a4e01",
+      "bytes": 234809
+    },
+    "aero-lab/assets/index-CmPom4-A.css": {
+      "sha256": "6233bf96c9bf9112841eaef66cd85f05d8f834bbcb24a4de0a78760d3bffaf62",
+      "bytes": 41341
+    },
+    "aero-lab/assets/index-Ct90X-y3.css": {
+      "sha256": "47ec11a29e73bba4502ec5875f36f510f7743a908ae1c10a51ac40730ede0e2b",
+      "bytes": 40819
+    },
+    "aero-lab/assets/index-Cyd4zUAi.js": {
+      "sha256": "67b4adb42b8e52f9cf23a05cb2dd3b1dc44d632f3ee198e57b545e180236482a",
+      "bytes": 234809
+    },
+    "aero-lab/assets/index-DMf4Bh60.js": {
+      "sha256": "be17b1ed92840f8babee4a1148dd1e478e2ebc20337d77799b11113c1a30514d",
+      "bytes": 234809
+    },
+    "aero-lab/assets/index-XR3V4H_G.css": {
+      "sha256": "f39ce6a7c1951b620e9719a12d274fdb02e6486aea7860517c49592a7a07b637",
+      "bytes": 41260
+    },
+    "aero-lab/assets/index-feqdpVpR.js": {
+      "sha256": "67be5b913737f5eecbe21ecde2f32b008c944c8c877c6676a55b854abc684d46",
+      "bytes": 234809
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-c97750310d0c.json",
+  "archive_location": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-reference-followup/superseded-app-assets.tar.gz"
+}

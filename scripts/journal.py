@@ -212,7 +212,9 @@ def enhance(source, page_kind=None):
     source = re.sub(r'[ \t]*<(?:link|script)\b[^>]*(?:href|src)="/assets/journal\.(?:css|js)[^"]*"[^>]*>(?:</script>)?\n?', '', source)
     css = hashlib.sha256((ROOT / 'assets/journal.css').read_bytes()).hexdigest()[:10]
     js = hashlib.sha256((ROOT / 'assets/journal.js').read_bytes()).hexdigest()[:10]
-    source = source.replace('</head>', f'  <link rel="stylesheet" href="/assets/journal.css?v={css}">\n  <script src="/assets/journal.js?v={js}" defer></script>\n</head>', 1)
+    assets = f'  <link rel="stylesheet" href="/assets/journal.css?v={css}">\n  <script src="/assets/journal.js?v={js}" defer></script>\n'
+    material = re.search(r'<link[^>]*href="/assets/avionics\.css(?:\?[^"]*)?"[^>]*>', source)
+    source = source[:material.start()] + assets + source[material.start():] if material else source.replace('</head>', assets + '</head>', 1)
     return source
 
 

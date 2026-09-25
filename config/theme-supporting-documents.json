@@ -1,0 +1,17 @@
+{
+  "documents": [
+    "simply-endorsed/index.html",
+    "frat/index.html",
+    "pilotsolve/mobile.html",
+    "engine-explorer/app/index.html",
+    "engine-explorer/app/factory-reference/index.html",
+    "aero-lab/native-flow/index.html"
+  ],
+  "excluded_html": {
+    "templates/*.html": "Source templates; generated routes are audited separately.",
+    "assets/partials/*.html": "HTML fragments, not standalone documents.",
+    "simply-endorsed-cfi/pdf-build/dist/*.html": "Print artwork previews; preserve exported artwork materials.",
+    "blog/_template/index.html": "Article authoring template.",
+    "simply-endorsed/tests/text-size-preview.html": "Local test fixture."
+  }
+}

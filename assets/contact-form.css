@@ -2,7 +2,7 @@
    SuarezCFI — Contact form (assets/contact-form.js mount)
    Paper working surface: the mount lives inside the contact paper sheet,
    so the form itself carries no card chrome (transparent, no border, no
-   shadow, no blur). Inputs are white with a 1px hairline. Focus uses the
+   shadow, no blur). Inputs use the shared raised surface with a 1px border. Focus uses the
    domain-wide ring from design-system.css — no local outline reset, no glow.
    ========================================================================== */
 
@@ -54,7 +54,7 @@
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--g-raised, var(--surface-raised));
   color: var(--ink);
   font: inherit;
   font-size: 16px; /* ≥16px keeps iOS from auto-zooming on focus */
@@ -127,9 +127,9 @@
   margin: 0;
   padding: 12px 14px;
   border-radius: 12px;
-  background: rgba(220, 38, 38, 0.08);
-  border: 1px solid rgba(220, 38, 38, 0.28);
-  color: #8f1d1d;
+  background: var(--g-surface, var(--surface));
+  border: 1px solid var(--av-error);
+  color: var(--av-error, #8f1d1d);
   font-size: 14px;
 }
 
@@ -137,8 +137,8 @@
   margin: 0 0 14px;
   padding: 12px 14px;
   border-radius: 12px;
-  background: rgba(244, 190, 48, 0.12);
-  border: 1px solid rgba(154, 111, 0, 0.28);
+  background: var(--g-raised, var(--surface-raised));
+  border: 1px solid var(--g-accent);
   color: var(--ink);
   font-size: 14px;
   line-height: 1.5;
@@ -150,13 +150,13 @@
 }
 
 .cf-form--invalid .cf-input[required]:invalid {
-  border-color: #b42318;
+  border-color: var(--av-error, #b42318);
 }
 
 .cf-success {
   padding: 20px 22px;
   border-radius: 16px;
-  background: #fff;
+  background: var(--g-raised, var(--surface-raised));
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   font-family: var(--font-sans);

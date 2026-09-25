@@ -1,0 +1,703 @@
+--- a/src/components/Layout.tsx
++++ b/src/components/Layout.tsx
+@@ -64,7 +64,7 @@
+       <div className="flex min-h-[100dvh] flex-col">
+         <a
+           href="#main-content"
+-          className="print-hidden fixed left-4 top-4 z-[70] -translate-y-24 rounded-full border border-white/80 bg-[linear-gradient(160deg,#FFDA33,#FFD000_45%,#F5C400)] px-4 py-2 text-sm font-bold text-[#1C2142] opacity-0 shadow-[0_14px_34px_-10px_rgba(245,196,0,.65)] transition-[transform,opacity] focus:translate-y-0 focus:opacity-100"
++          className="print-hidden fixed left-4 top-4 z-[70] -translate-y-24 rounded-full border border-white/80 bg-[image:var(--g-gold)] px-4 py-2 text-sm font-bold text-[color:var(--g-key-ink)] opacity-0 shadow-[0_14px_34px_-10px_rgba(245,196,0,.65)] transition-[transform,opacity] focus:translate-y-0 focus:opacity-100"
+         >
+           Skip to main content
+         </a>
+--- a/src/components/assessment/ConfirmAction.tsx
++++ b/src/components/assessment/ConfirmAction.tsx
+@@ -0,0 +1,42 @@
++import * as Dialog from '@radix-ui/react-dialog'
++import { useRef } from 'react'
++import type { ReactElement } from 'react'
++
++interface ConfirmActionProps {
++  title: string
++  description: string
++  confirmLabel: string
++  onConfirm: () => void
++  children: ReactElement
++}
++
++export default function ConfirmAction({ title, description, confirmLabel, onConfirm, children }: ConfirmActionProps) {
++  const keepRef = useRef<HTMLButtonElement>(null)
++
++  return (
++    <Dialog.Root>
++      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
++      <Dialog.Portal>
++        <Dialog.Overlay className="fr-confirm-overlay" />
++        <Dialog.Content
++          className="fr-confirm-dialog"
++          onOpenAutoFocus={(event) => {
++            event.preventDefault()
++            keepRef.current?.focus()
++          }}
++        >
++          <Dialog.Title className="fr-confirm-title">{title}</Dialog.Title>
++          <Dialog.Description className="fr-confirm-description">{description}</Dialog.Description>
++          <div className="fr-confirm-actions">
++            <Dialog.Close asChild>
++              <button ref={keepRef} type="button" className="fr-confirm-secondary">Keep current data</button>
++            </Dialog.Close>
++            <Dialog.Close asChild>
++              <button type="button" className="fr-confirm-primary" onClick={onConfirm}>{confirmLabel}</button>
++            </Dialog.Close>
++          </div>
++        </Dialog.Content>
++      </Dialog.Portal>
++    </Dialog.Root>
++  )
++}
+--- a/src/components/assessment/FlightProfileCard.tsx
++++ b/src/components/assessment/FlightProfileCard.tsx
+@@ -172,7 +172,7 @@
+               Collected separately from certificate level for IFR eligibility.
+             </p>
+           </div>
+-          <div className="flex rounded-md border border-soft bg-surface-sunken p-1" role="radiogroup" aria-label="Instrument rating">
++          <div className="fr-rating-options flex rounded-md border border-soft bg-surface-sunken p-1" role="radiogroup" aria-label="Instrument rating">
+             {([false, true] as const).map((rated) => {
+               const selected = state.pilot.instrumentRated === rated
+               const locked = state.pilot.certificate === 'student' || state.pilot.certificate === 'atp'
+@@ -185,7 +185,7 @@
+                   disabled={locked}
+                   onClick={() => setInstrumentRated(rated)}
+                   className={cn(
+-                    'h-9 min-w-20 rounded-[5px] px-4 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-70',
++                    'fr-rating-option h-9 min-w-20 rounded-[5px] px-4 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-70',
+                     selected ? 'bg-white text-ink-900 shadow-e1' : 'text-ink-400',
+                   )}
+                 >
+@@ -232,7 +232,7 @@
+                     Acting as pilot in command under IFR requires the appropriate instrument privileges. This assessment is
+                     flagged <strong>HIGH</strong> regardless of score.
+                   </p>
+-                  <span className="mt-2 inline-block rounded-sm bg-white/70 px-2 py-0.5 font-mono text-[11px] font-semibold tracking-wide text-risk-high-text">
++                  <span className="mt-2 inline-block rounded-sm bg-risk-high-tint px-2 py-0.5 font-mono text-[11px] font-semibold tracking-wide text-risk-high-text">
+                     SCORE OVERRIDE → HIGH
+                   </span>
+                 </div>
+--- a/src/components/assessment/Gauge.tsx
++++ b/src/components/assessment/Gauge.tsx
+@@ -80,21 +80,21 @@
+         initial={reduced ? false : { x2: minNeedleX, y2: minNeedleY }}
+         animate={{ x2: needleX, y2: needleY }}
+         transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 120, damping: 18 }}
+-        stroke="#17262C"
++        stroke="var(--g-ink, #17262C)"
+         strokeWidth={4}
+         strokeLinecap="round"
+       />
+-      <circle cx={cx} cy={cy} r={9} fill="#17262C" />
+-      <circle cx={cx} cy={cy} r={3.5} fill="#FFFFFF" />
++      <circle cx={cx} cy={cy} r={9} fill="var(--g-ink, #17262C)" />
++      <circle cx={cx} cy={cy} r={3.5} fill="var(--g-surface, #FFFFFF)" />
+ 
+       {/* scale labels */}
+-      <text x={cx - r - 2} y={cy + 16} textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize={11} fill="#7C8A90">
++      <text x={cx - r - 2} y={cy + 16} textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize={11} fill="var(--g-muted, #7C8A90)">
+         0
+       </text>
+-      <text x={mx} y={my - 4} textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize={11} fill="#7C8A90">
++      <text x={mx} y={my - 4} textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize={11} fill="var(--g-muted, #7C8A90)">
+         {mid}
+       </text>
+-      <text x={cx + r + 2} y={cy + 16} textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize={11} fill="#7C8A90">
++      <text x={cx + r + 2} y={cy + 16} textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize={11} fill="var(--g-muted, #7C8A90)">
+         {tapeMax}
+       </text>
+     </svg>
+--- a/src/components/assessment/ResultsOverlay.tsx
++++ b/src/components/assessment/ResultsOverlay.tsx
+@@ -8,6 +8,7 @@
+ import AssessmentStatusChip from '@/components/AssessmentStatusChip'
+ import Gauge from './Gauge'
+ import { cn } from '@/lib/utils'
++import ConfirmAction from './ConfirmAction'
+ 
+ const SECTION_LABELS: Record<ScoreSectionId, string> = {
+   pilot: 'Pilot',
+@@ -63,17 +64,28 @@
+   return (
+     <Dialog.Root open={open} onOpenChange={(nextOpen) => !nextOpen && onClose()}>
+       <Dialog.Portal>
+-        <Dialog.Overlay className="print-hidden fixed inset-0 z-[60] bg-[rgba(23,38,44,0.38)] backdrop-blur-[4px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0" />
++        <Dialog.Overlay className="print-hidden fixed inset-0 z-[160] bg-[rgba(23,38,44,0.38)] backdrop-blur-[4px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0" />
+         <Dialog.Content
+           onOpenAutoFocus={() => {
+             returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+           }}
+           onCloseAutoFocus={(event) => {
+             event.preventDefault()
+-            returnFocusRef.current?.focus()
++            const available = (element: HTMLElement | null): element is HTMLElement => {
++              if (!element?.isConnected || element.matches(':disabled') || element.closest('[hidden], [inert]')) return false
++              for (let node: HTMLElement | null = element; node; node = node.parentElement) {
++                const style = getComputedStyle(node)
++                if (style.display === 'none' || style.visibility === 'hidden') return false
++              }
++              return true
++            }
++            const original = returnFocusRef.current
++            const target = available(original) ? original :
++              Array.from(document.querySelectorAll<HTMLElement>('[data-results-trigger]')).find(available)
++            target?.focus()
+           }}
+           onPointerDownOutside={(event) => event.preventDefault()}
+-          className="print-hidden fixed inset-x-0 bottom-0 z-[61] flex h-[94dvh] flex-col overflow-hidden rounded-t-xl bg-white shadow-e3 outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom sm:left-1/2 sm:top-1/2 sm:h-auto sm:max-h-[88vh] sm:max-w-[920px] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl sm:data-[state=open]:zoom-in-95 sm:data-[state=closed]:zoom-out-95"
++          className="print-hidden fixed inset-x-0 bottom-0 z-[161] flex h-[94dvh] flex-col overflow-hidden rounded-t-xl bg-white shadow-e3 outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom sm:left-1/2 sm:right-auto sm:top-1/2 sm:bottom-auto sm:w-[calc(100%-3rem)] sm:h-auto sm:max-h-[88vh] sm:max-w-[920px] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl sm:data-[state=open]:zoom-in-95 sm:data-[state=closed]:zoom-out-95"
+         >
+           <div className="flex justify-center pt-2 sm:hidden" aria-hidden>
+             <span className="h-1.5 w-10 rounded-full bg-ink-300/60" />
+@@ -235,15 +247,11 @@
+                 <Undo2 className="h-4 w-4" /> Back to edit
+               </button>
+             </Dialog.Close>
+-            <button
+-              type="button"
+-              onClick={() => {
+-                if (reset()) onClose()
+-              }}
+-              className="col-span-2 inline-flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium text-ink-500 hover:bg-risk-high-tint hover:text-risk-high-text sm:col-span-1"
+-            >
+-              <RotateCcw className="h-4 w-4" /> New assessment
+-            </button>
++            <ConfirmAction title="Start a new assessment?" description="Your current flight answers will be cleared. Saved pilot and aircraft setup will remain on this device." confirmLabel="Start new assessment" onConfirm={() => { reset(); onClose() }}>
++              <button type="button" className="col-span-2 inline-flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium text-ink-500 hover:bg-risk-high-tint hover:text-risk-high-text sm:col-span-1">
++                <RotateCcw className="h-4 w-4" /> New assessment
++              </button>
++            </ConfirmAction>
+           </div>
+         </Dialog.Content>
+       </Dialog.Portal>
+--- a/src/components/assessment/RiskToggleRow.tsx
++++ b/src/components/assessment/RiskToggleRow.tsx
+@@ -80,10 +80,9 @@
+       aria-label={`${item.label}${unanswered ? ' — not yet reviewed' : ''}`}
+       onClick={handleToggle}
+       className={cn(
+-        'relative flex min-h-[68px] w-full cursor-pointer items-center gap-3 overflow-hidden rounded-md border bg-white p-3 pl-4 text-left transition-colors active:bg-surface-sunken/50',
++        'relative flex min-h-[68px] w-full cursor-pointer items-center gap-3 overflow-hidden rounded-md border p-3 pl-4 text-left transition-colors active:bg-surface-sunken/50',
+         unanswered ? 'border-risk-mod-solid/40' : 'border-soft',
+-        checked && mitigator && 'bg-[rgba(226,241,231,0.45)]',
+-        checked && !mitigator && 'bg-[rgba(247,226,222,0.45)]',
++        checked ? mitigator ? 'bg-risk-low-tint' : 'bg-risk-high-tint' : 'bg-white',
+       )}
+     >
+       <motion.span
+--- a/src/components/assessment/SavedSetupCard.tsx
++++ b/src/components/assessment/SavedSetupCard.tsx
+@@ -3,6 +3,7 @@
+ import type { PersonalMinimums } from '@/lib/frat'
+ import { useAssessment } from '@/lib/store'
+ import { CardHeader } from './primitives'
++import ConfirmAction from './ConfirmAction'
+ 
+ const MINIMUM_FIELDS: Array<{
+   field: keyof PersonalMinimums
+@@ -38,7 +39,7 @@
+         }
+       />
+ 
+-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
++      <div className="fr-saved-setup-grid mt-5 grid gap-4 sm:grid-cols-2">
+         <label className="block sm:col-span-2">
+           <span className="text-[13px] font-medium text-ink-700">Aircraft / tail number</span>
+           <input
+@@ -79,13 +80,11 @@
+           These are personal planning targets, not FAA limits. FlightRisk never uploads this information.
+           {!localPersistenceAvailable && ' Local browser storage is unavailable, so this setup lasts only for this tab.'}
+         </p>
+-        <button
+-          type="button"
+-          onClick={clearLocalData}
+-          className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink-500 hover:bg-risk-high-tint hover:text-risk-high-text"
+-        >
+-          <Trash2 className="h-4 w-4" /> Clear local data
+-        </button>
++        <ConfirmAction title="Clear local FlightRisk data?" description="This removes saved pilot and aircraft setup and the current assessment from this device. This cannot be undone." confirmLabel="Clear local data" onConfirm={clearLocalData}>
++          <button type="button" className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink-500 hover:bg-risk-high-tint hover:text-risk-high-text">
++            <Trash2 className="h-4 w-4" /> Clear local data
++          </button>
++        </ConfirmAction>
+       </div>
+     </div>
+   )
+--- a/src/components/assessment/ScoreBar.tsx
++++ b/src/components/assessment/ScoreBar.tsx
+@@ -34,6 +34,7 @@
+       </div>
+       <button
+         type="button"
++        data-results-trigger
+         onClick={onViewResults}
+         className="inline-flex h-11 shrink-0 items-center gap-2 rounded-md bg-accent-600 px-4 text-sm font-semibold text-white shadow-e1 transition-all duration-150 hover:bg-accent-700 active:scale-[0.97]"
+       >
+@@ -54,6 +55,7 @@
+       <div className="flex min-h-16 flex-wrap items-center gap-3">
+         <button
+           type="button"
++          data-results-trigger
+           onClick={onViewResults}
+           className="flex min-h-11 min-w-0 flex-1 items-center gap-2.5 rounded-md text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600"
+           aria-label="Open assessment results"
+@@ -66,6 +68,7 @@
+         </button>
+         <button
+           type="button"
++          data-results-trigger
+           onClick={onViewResults}
+           className="inline-flex h-11 shrink-0 items-center gap-2 rounded-md bg-accent-600 px-4 text-sm font-semibold text-white shadow-e1 transition-all duration-150 hover:bg-accent-700 active:scale-[0.97]"
+         >
+--- a/src/components/assessment/ScoreRail.tsx
++++ b/src/components/assessment/ScoreRail.tsx
+@@ -7,6 +7,7 @@
+ import RiskTape from './RiskTape'
+ import { AnimatedNumber } from './primitives'
+ import { cn } from '@/lib/utils'
++import ConfirmAction from './ConfirmAction'
+ 
+ const MINI_SECTIONS: { id: ScoreSectionId; label: string }[] = [
+   { id: 'pilot', label: 'Pilot' },
+@@ -119,6 +120,7 @@
+         <div className="flex flex-col gap-2">
+           <button
+             type="button"
++            data-results-trigger
+             onClick={onViewResults}
+             className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-accent-600 text-sm font-semibold text-white shadow-e1 transition-all duration-150 hover:-translate-y-px hover:bg-accent-700 hover:shadow-e2 active:scale-[0.97]"
+           >
+@@ -133,14 +135,11 @@
+             <Printer className="h-4 w-4" />
+             Print summary
+           </button>
+-          <button
+-            type="button"
+-            onClick={reset}
+-            className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-medium text-ink-500 transition-colors duration-150 hover:bg-risk-high-tint hover:text-risk-high-text"
+-          >
+-            <RotateCcw className="h-4 w-4" />
+-            Reset
+-          </button>
++          <ConfirmAction title="Start a new assessment?" description="Your current flight answers will be cleared. Saved pilot and aircraft setup will remain on this device." confirmLabel="Start new assessment" onConfirm={reset}>
++            <button type="button" className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-medium text-ink-500 transition-colors duration-150 hover:bg-risk-high-tint hover:text-risk-high-text">
++              <RotateCcw className="h-4 w-4" /> Reset
++            </button>
++          </ConfirmAction>
+         </div>
+ 
+         <p className="mt-3 text-center font-mono text-[11px] font-medium text-ink-400">
+--- a/src/components/assessment/primitives.tsx
++++ b/src/components/assessment/primitives.tsx
+@@ -58,15 +58,15 @@
+   right?: ReactNode
+ }) {
+   return (
+-    <div className="flex items-center gap-3">
++    <div className="fr-card-header flex items-center gap-3">
+       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-accent-100 text-accent-600">
+         {icon}
+       </span>
+-      <div className="min-w-0">
++      <div className="fr-card-header-copy min-w-0">
+         <h3 className="font-display text-lg font-semibold leading-6 text-ink-900">{title}</h3>
+         <p className="text-xs leading-4 text-ink-400">{caption}</p>
+       </div>
+-      {right && <div className="ml-auto shrink-0">{right}</div>}
++      {right && <div className="fr-card-header-right ml-auto shrink-0">{right}</div>}
+     </div>
+   )
+ }
+--- a/src/components/guide/BandMeaning.tsx
++++ b/src/components/guide/BandMeaning.tsx
+@@ -117,7 +117,7 @@
+           privileges is always HIGH — no mitigators apply. Instrument privileges are required before acting as PIC
+           under IFR.
+         </p>
+-        <span className="hidden shrink-0 rounded-sm bg-white/70 px-2 py-1 font-mono text-[11px] font-semibold tracking-[0.08em] text-risk-high-text sm:inline-flex">
++        <span className="hidden shrink-0 rounded-sm bg-risk-high-tint px-2 py-1 font-mono text-[11px] font-semibold tracking-[0.08em] text-risk-high-text sm:inline-flex">
+           OVERRIDE → HIGH
+         </span>
+       </motion.div>
+--- a/src/components/guide/StepTimeline.tsx
++++ b/src/components/guide/StepTimeline.tsx
+@@ -115,13 +115,13 @@
+   },
+ ]
+ 
+-const NODE_IDLE = { borderColor: '#C9CFC8', backgroundColor: '#FFFFFF', color: '#54666E' }
+-const NODE_ACTIVE = { borderColor: '#1E6E66', backgroundColor: '#DCEBE8', color: '#155A52' }
++const NODE_IDLE = { borderColor: 'var(--g-line)', background: 'var(--g-raised)', color: 'var(--g-ink)' }
++const NODE_ACTIVE = { borderColor: 'var(--g-edge)', background: 'var(--g-gold)', color: 'var(--g-key-ink)' }
+ 
+ function setNodeActive(node: HTMLElement, active: boolean) {
+   const s = active ? NODE_ACTIVE : NODE_IDLE
+   node.style.borderColor = s.borderColor
+-  node.style.backgroundColor = s.backgroundColor
++  node.style.background = s.background
+   node.style.color = s.color
+ }
+ 
+--- a/src/components/methodology/BandingMatrix.tsx
++++ b/src/components/methodology/BandingMatrix.tsx
+@@ -162,7 +162,7 @@
+                   const vfr = ranges(cert.vfr)
+                   const ifr = cert.ifr ? ranges(cert.ifr) : null
+                   return (
+-                    <tr key={cert.id} className="border-t border-soft odd:bg-white even:bg-surface-soft/40">
++                    <tr key={cert.id} className="border-t border-soft odd:bg-surface-card even:bg-surface-soft">
+                       <th scope="row" className="px-4 py-3 text-left" {...cellHandlers(cert, 'VFR')}>
+                         <span className="text-sm font-semibold text-ink-900">{cert.short}</span>
+                       </th>
+--- a/src/components/methodology/OverrideActions.tsx
++++ b/src/components/methodology/OverrideActions.tsx
+@@ -27,7 +27,7 @@
+               whileInView={{ scale: [1, 1.14, 1] }}
+               viewport={{ once: true, amount: 0.6 }}
+               transition={{ duration: 0.6, ease: EASE_OUT }}
+-              className="flex h-11 w-11 items-center justify-center rounded-md bg-white/70 text-risk-high-solid"
++              className="flex h-11 w-11 items-center justify-center rounded-md bg-risk-high-tint text-risk-high-solid"
+             >
+               <OctagonAlert className="h-6 w-6" />
+             </motion.span>
+@@ -39,7 +39,7 @@
+               <strong className="font-semibold text-risk-high-text">HIGH risk regardless of score</strong>. No
+               combination of mitigators offsets acting as PIC under IFR without those privileges.
+             </p>
+-            <span className="tnum mt-5 inline-block rounded-sm bg-white/70 px-2 py-1 font-mono text-[11px] font-semibold tracking-[0.08em] text-risk-high-text">
++            <span className="tnum mt-5 inline-block rounded-sm bg-risk-high-tint px-2 py-1 font-mono text-[11px] font-semibold tracking-[0.08em] text-risk-high-text">
+               SCORE OVERRIDE → HIGH
+             </span>
+           </div>
+--- a/src/components/ui/sidebar.tsx
++++ b/src/components/ui/sidebar.tsx
+@@ -480,7 +480,7 @@
+       variant: {
+         default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+         outline:
+-          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
++          "bg-background shadow-[0_0_0_1px_var(--g-line)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--g-raised)]",
+       },
+       size: {
+         default: "h-8 text-sm",
+--- a/src/index.css
++++ b/src/index.css
+@@ -10,35 +10,10 @@
+     --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+     --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+ 
+-    /* shadcn bridge vars — mapped onto the FlightRisk light palette */
+-    --background: 60 2% 89%;
+-    --foreground: 150 4% 17%;
+-    --card: 0 0% 100%;
+-    --card-foreground: 150 4% 17%;
+-    --popover: 0 0% 100%;
+-    --popover-foreground: 150 4% 17%;
+-    --primary: 41 44% 35%;
+-    --primary-foreground: 0 0% 100%;
+-    --secondary: 60 9% 95%;
+-    --secondary-foreground: 195 22% 23%;
+-    --muted: 60 9% 95%;
+-    --muted-foreground: 120 2% 38%;
+-    --accent: 42 43% 91%;
+-    --accent-foreground: 41 47% 28%;
++    /* Risk red remains semantic; all neutral and action materials use --g-* tokens. */
+     --destructive: 5 55% 49%;
+     --destructive-foreground: 0 0% 98%;
+-    --border: 90 4% 88%;
+-    --input: 100 6% 80%;
+-    --ring: 41 44% 35%;
+     --radius: 0.75rem;
+-    --sidebar-background: 60 9% 95%;
+-    --sidebar-foreground: 195 22% 23%;
+-    --sidebar-primary: 41 44% 35%;
+-    --sidebar-primary-foreground: 0 0% 98%;
+-    --sidebar-accent: 42 43% 91%;
+-    --sidebar-accent-foreground: 41 47% 28%;
+-    --sidebar-border: 100 6% 80%;
+-    --sidebar-ring: 41 44% 35%;
+   }
+ }
+ 
+@@ -115,12 +90,21 @@
+ 
+ /* ---- Print: clean single-page assessment summary ---- */
+ @media print {
+-  body {
+-    padding-top: 0;
+-    padding-bottom: 0;
++  body.flightrisk-view {
++    padding: 0 !important;
+     background: #ffffff !important;
+   }
++  /* The screen shell's viewport-height flex layout can strand the signature
++     on a second sheet even when the summary itself fits on one page. */
++  body.flightrisk-view #root > div,
++  body.flightrisk-view main {
++    display: block !important;
++    min-height: 0 !important;
++  }
+   .print-hidden {
++    display: none !important;
++  }
++  body.flightrisk-view > footer.site-footer {
+     display: none !important;
+   }
+   .print-only {
+@@ -140,8 +124,8 @@
+ body.flightrisk-view {
+   padding-top: 0;
+   padding-bottom: var(--dock-clearance, calc(100px + env(safe-area-inset-bottom, 0px)));
+-  background: var(--av-bg, #101418);
+-  color: var(--av-ink, #edf3f7);
++  background: var(--av-bg, var(--g-bg, #e3e3e3));
++  color: var(--av-ink, var(--g-ink, #272727));
+ }
+ #app-nav-slot { display: contents; }
+ #app-nav-slot > .nav-extra-reset {
+@@ -153,8 +137,8 @@
+   min-height: 44px;
+   padding: 10px 12px;
+   color: var(--av-error, #ff9b97);
+-  background: var(--av-raised, #252e36);
+-  border: 1px solid var(--av-line, #4b5b68);
++  background: var(--av-raised, var(--g-raised, #f7f7f7));
++  border: 1px solid var(--av-line, var(--g-line, #b7b7b7));
+   border-radius: 5px;
+   font: inherit;
+   cursor: pointer;
+@@ -163,57 +147,6 @@
+ #app-nav-slot > .av-solid { width: 100%; }
+ #app-nav-slot .av-appearance-options button { min-height: 44px; }
+ 
+-/* Dark is the shared default. Risk colors remain category coded: green low,
+-   amber moderate, red high; only their tints/text are tuned for dark surfaces. */
+-:root[data-suarez-theme="dark"] {
+-  --background: 215 20% 9%;
+-  --foreground: 210 24% 94%;
+-  --card: 210 16% 15%;
+-  --card-foreground: 210 24% 94%;
+-  --popover: 210 16% 15%;
+-  --popover-foreground: 210 24% 94%;
+-  --primary: 187 69% 65%;
+-  --primary-foreground: 210 25% 8%;
+-  --secondary: 211 18% 22%;
+-  --secondary-foreground: 210 24% 94%;
+-  --muted: 211 18% 22%;
+-  --muted-foreground: 210 14% 72%;
+-  --accent: 187 48% 24%;
+-  --accent-foreground: 187 70% 82%;
+-  --border: 207 15% 35%;
+-  --input: 207 15% 35%;
+-  --ring: 187 69% 65%;
+-  --sidebar-background: 215 20% 9%;
+-  --sidebar-foreground: 210 24% 94%;
+-  --sidebar-primary: 187 69% 65%;
+-  --sidebar-primary-foreground: 210 25% 8%;
+-  --sidebar-accent: 211 18% 22%;
+-  --sidebar-accent-foreground: 210 24% 94%;
+-  --sidebar-border: 207 15% 35%;
+-  --sidebar-ring: 187 69% 65%;
+-}
+-:root[data-suarez-theme="dark"] .bg-page,
+-:root[data-suarez-theme="dark"] .bg-alt,
+-:root[data-suarez-theme="dark"] .bg-white,
+-:root[data-suarez-theme="dark"] .bg-surface-card,
+-:root[data-suarez-theme="dark"] .bg-surface-soft { background-color: #1b2228 !important; }
+-:root[data-suarez-theme="dark"] .bg-surface-sunken { background-color: #101418 !important; }
+-:root[data-suarez-theme="dark"] .text-ink-900,
+-:root[data-suarez-theme="dark"] .text-ink-700 { color: #edf3f7 !important; }
+-:root[data-suarez-theme="dark"] .text-ink-500,
+-:root[data-suarez-theme="dark"] .text-ink-400,
+-:root[data-suarez-theme="dark"] .text-ink-300 { color: #aebdc9 !important; }
+-:root[data-suarez-theme="dark"] .border-soft,
+-:root[data-suarez-theme="dark"] .border-strong { border-color: #4b5b68 !important; }
+-:root[data-suarez-theme="dark"] .bg-accent-50 { background-color: #202c32 !important; }
+-:root[data-suarez-theme="dark"] .bg-accent-100 { background-color: #26383c !important; }
+-:root[data-suarez-theme="dark"] .text-accent-600,
+-:root[data-suarez-theme="dark"] .text-accent-700 { color: #71ddeb !important; }
+-:root[data-suarez-theme="dark"] .bg-accent-600,
+-:root[data-suarez-theme="dark"] .bg-accent-700 { background-color: #71ddeb !important; color: #101418 !important; }
+-:root[data-suarez-theme="dark"] .bg-accent-600.text-accent-foreground,
+-:root[data-suarez-theme="dark"] .bg-accent-700.text-accent-foreground { color: #101418 !important; }
+-:root[data-suarez-theme="dark"] .bg-white\/70 { background-color: #2a343d !important; }
+ :root[data-suarez-theme="dark"] .bg-risk-low-tint { background-color: #20382b !important; }
+ :root[data-suarez-theme="dark"] .bg-risk-mod-tint { background-color: #3a3120 !important; }
+ :root[data-suarez-theme="dark"] .bg-risk-high-tint { background-color: #3d2828 !important; }
+@@ -230,42 +163,47 @@
+ :root[data-suarez-theme="dark"] .border-risk-mod-solid { border-color: #c08a10 !important; }
+ :root[data-suarez-theme="dark"] .border-risk-high-solid { border-color: #c0463b !important; }
+ 
+-/* Garmin semantic accents apply in both Day and Dark; risk bands keep their
+-   independent green / amber / red classes above. The shared avionics.css is
+-   linked before the app bundle, so these scoped, state-aware rules are the
+-   final appearance contract for FlightRisk's authored controls. */
+-:root[data-suarez-theme] { --ring: 187 100% 23.5%; }
+-:root[data-suarez-theme="dark"] { --ring: 187 69% 65%; }
+-:root[data-suarez-theme] .bg-accent-50 {
+-  background-color: rgba(0, 104, 120, .12) !important;
+-  background-color: color-mix(in srgb, var(--av-cyan, #006878) 14%, var(--av-panel, #f8fafb)) !important;
+-}
+-:root[data-suarez-theme] .bg-accent-100 {
+-  background-color: rgba(0, 104, 120, .2) !important;
+-  background-color: color-mix(in srgb, var(--av-cyan, #006878) 20%, var(--av-panel, #f8fafb)) !important;
+-}
++/* Polished Aurum actions; independent risk/status bands above are preserved. */
+ :root[data-suarez-theme] .bg-accent-600,
+ :root[data-suarez-theme] .bg-accent-700 {
+-  background-color: var(--av-cyan, #006878) !important;
+-  color: var(--av-bg, #101418) !important;
+-}
+-:root[data-suarez-theme] .text-accent-500,
+-:root[data-suarez-theme] .text-accent-600,
+-:root[data-suarez-theme] .text-accent-700 { color: var(--av-cyan, #006878) !important; }
+-:root[data-suarez-theme] .border-accent-500,
+-:root[data-suarez-theme] .border-accent-600,
+-:root[data-suarez-theme] .border-accent-700 { border-color: var(--av-cyan, #006878) !important; }
+-:root[data-suarez-theme] .flightrisk-view [role="radiogroup"] [role="radio"] {
+-  border-radius: 5px;
+-}
+-:root[data-suarez-theme] .flightrisk-view [role="radiogroup"][aria-label="Flight rules"] [role="radio"][aria-checked="true"] > span.absolute {
+-  border: 1px solid var(--av-cyan, #006878);
+-  background-color: rgba(0, 104, 120, .12);
+-  background-color: color-mix(in srgb, var(--av-cyan, #006878) 14%, var(--av-panel, #f8fafb));
+-  box-shadow: inset 0 1px #ffffff30, 0 2px 3px #0002;
+-}
+-.flightrisk-view .bg-accent-600,
+-.flightrisk-view .bg-accent-700 { border-radius: 5px; }
++  background:var(--g-gold)!important;color:var(--g-key-ink)!important;
++  border:1px solid var(--g-edge);box-shadow:inset 0 1px #fff8,0 2px 4px #0002;
++}
++.flightrisk-view [role="radiogroup"] [role="radio"][aria-checked="true"] {
++  background:var(--g-gold);color:var(--g-key-ink);border-color:var(--g-edge);
++  box-shadow:inset 0 1px #fff8,0 2px 3px #0002;
++}
++.flightrisk-view [role="radio"][aria-checked="true"] > .absolute {background:var(--g-gold)}
++.flightrisk-view [role="radio"][aria-checked="true"] :is(span,svg) {color:var(--g-key-ink)!important}
++.flightrisk-view :is(.bg-accent-600,.bg-accent-700) {border-radius:5px}
++
++/* Confirmation dialogs live in a portal, outside the app root. */
++.fr-confirm-overlay {position:fixed;inset:0;z-index:180;background:rgb(0 0 0 / 45%);backdrop-filter:blur(4px)}
++.fr-confirm-dialog {
++  position:fixed;left:50%;top:50%;z-index:181;width:min(440px,calc(100vw - 32px));
++  transform:translate(-50%,-50%);box-sizing:border-box;padding:24px;
++  border:1px solid var(--g-line);border-radius:12px;background:var(--g-surface);
++  color:var(--g-ink);box-shadow:var(--g-shadow);
++}
++.fr-confirm-title {margin:0 0 12px;font-size:1.45rem;font-weight:700;line-height:1.2;color:var(--g-ink)}
++.fr-confirm-description {margin:0;color:var(--g-muted);font-size:.95rem;line-height:1.6}
++.fr-confirm-actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
++.fr-confirm-actions button {flex:1 1 150px;min-height:48px;padding:8px 14px;border-radius:5px;font-weight:650;cursor:pointer}
++.fr-confirm-secondary {border:1px solid var(--g-line);background:var(--g-raised);color:var(--g-ink);box-shadow:var(--g-shadow)}
++.fr-confirm-primary {border:1px solid var(--g-edge);background:var(--g-gold);color:var(--g-key-ink);box-shadow:inset 0 1px var(--g-glass-edge),var(--g-shadow)}
++.fr-confirm-actions button:focus-visible {outline:3px solid var(--g-accent);outline-offset:2px}
++@media (prefers-reduced-motion:reduce) {.fr-confirm-overlay{backdrop-filter:none}}
++
++/* Keep app-owned form controls usable when phone text is enlarged. */
++.fr-saved-setup-grid {grid-template-columns:minmax(0,1fr)}
++@media (min-width:640px) {.fr-saved-setup-grid {grid-template-columns:repeat(2,minmax(0,1fr))}}
++@media (max-width:480px) {
++  .fr-rating-options {flex-direction:column;width:100%}
++  .fr-rating-option {width:100%;height:auto;min-height:2.25rem;min-width:0;padding:.25rem .5rem;white-space:normal}
++  .fr-card-header {flex-wrap:wrap}
++  .fr-card-header-copy {flex:1 1 100px;overflow-wrap:anywhere}
++  .fr-card-header-right {flex:1 1 100%;margin-left:0}
++}
+ 
+ @layer base {
+   .print-only {
+--- a/src/lib/store.test.tsx
++++ b/src/lib/store.test.tsx
+@@ -5,6 +5,7 @@
+ import { beforeEach, describe, expect, it, vi } from 'vitest'
+ import Layout from '@/components/Layout'
+ import ResultsOverlay from '@/components/assessment/ResultsOverlay'
++import ConfirmAction from '@/components/assessment/ConfirmAction'
+ import { AssessmentProvider, useAssessment } from './store'
+ 
+ const DRAFT_KEY = 'flightrisk:draft:v2'
+@@ -18,7 +19,9 @@
+       <span data-testid="answer">{state.answers['a-workday'] ?? 'unanswered'}</span>
+       <span data-testid="restored">{String(restoredDraft)}</span>
+       <button onClick={() => setAnswer('a-workday', 'yes')}>Set hazard</button>
+-      <button onClick={reset}>Reset</button>
++      <ConfirmAction title="Start a new assessment?" description="Current answers will be cleared." confirmLabel="Start new assessment" onConfirm={reset}>
++        <button>Reset</button>
++      </ConfirmAction>
+     </div>
+   )
+ }
+@@ -55,27 +58,44 @@
+     expect(screen.getByTestId('restored')).toHaveTextContent('true')
+   })
+ 
+-  it('keeps current work when reset confirmation is declined', async () => {
+-    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
++  it('keeps current work until the themed reset confirmation is accepted', async () => {
++    const confirm = vi.spyOn(window, 'confirm')
+     render(<AssessmentProvider><StoreHarness /></AssessmentProvider>)
+     await userEvent.click(screen.getByRole('button', { name: 'Set hazard' }))
+     await userEvent.click(screen.getByRole('button', { name: 'Reset' }))
+-    expect(confirm).toHaveBeenCalled()
++    expect(screen.getByRole('dialog', { name: 'Start a new assessment?' })).toBeInTheDocument()
++    expect(screen.getByRole('button', { name: 'Keep current data' })).toHaveFocus()
++    await userEvent.click(screen.getByRole('button', { name: 'Keep current data' }))
+     expect(screen.getByTestId('answer')).toHaveTextContent('yes')
++    await userEvent.click(screen.getByRole('button', { name: 'Reset' }))
++    await userEvent.click(screen.getByRole('button', { name: 'Start new assessment' }))
++    expect(screen.getByTestId('answer')).toHaveTextContent('unanswered')
++    expect(confirm).not.toHaveBeenCalled()
+   })
+ })
+ 
+-function DialogHarness() {
++function DialogHarness({ phone = false }: { phone?: boolean }) {
+   const [open, setOpen] = useState(false)
+   return (
+     <>
+-      <button onClick={() => setOpen(true)}>Open results</button>
++      <button data-results-trigger style={{ display: phone ? 'none' : undefined }} onClick={() => setOpen(true)}>Open results</button>
++      <button data-results-trigger style={{ display: phone ? undefined : 'none' }} onClick={() => setOpen(true)}>Mobile results</button>
+       <ResultsOverlay open={open} onClose={() => setOpen(false)} onPrint={() => {}} />
+     </>
+   )
+ }
+ 
+ describe('results dialog accessibility', () => {
++  it('returns to the visible results trigger after changing viewport layout', async () => {
++    const user = userEvent.setup()
++    const { rerender } = render(<AssessmentProvider><DialogHarness /></AssessmentProvider>)
++    await user.click(screen.getByRole('button', { name: 'Open results' }))
++    expect(await screen.findByRole('dialog')).toBeInTheDocument()
++    rerender(<AssessmentProvider><DialogHarness phone /></AssessmentProvider>)
++    await user.keyboard('{Escape}')
++    await waitFor(() => expect(screen.getByRole('button', { name: 'Mobile results' })).toHaveFocus())
++  })
++
+   it('moves focus into the dialog, closes with Escape, and restores focus', async () => {
+     const user = userEvent.setup()
+     render(<AssessmentProvider><DialogHarness /></AssessmentProvider>)
+--- a/src/lib/store.tsx
++++ b/src/lib/store.tsx
+@@ -261,7 +261,6 @@
+   )
+ 
+   const reset = useCallback(() => {
+-    if (touched && !window.confirm('Start a new assessment? Your current flight answers will be cleared.')) return false
+     setState((current) => ({
+       ...DEFAULT_STATE,
+       pilot: { ...current.pilot, hours: { ...current.pilot.hours }, personalMinimums: { ...current.pilot.personalMinimums } },
+@@ -274,7 +273,6 @@
+   }, [initial.available, touched])
+ 
+   const clearLocalData = useCallback(() => {
+-    if (!window.confirm('Clear saved FlightRisk profiles and the current draft from this device?')) return false
+     if (initial.available) {
+       window.localStorage.removeItem(PROFILE_KEY)
+       window.localStorage.removeItem(DRAFT_KEY)

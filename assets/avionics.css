@@ -1,16 +1,16 @@
-/* Avionics controls; protected homepage sky stays owned by premium-home. */
+/* Shared controls and application adapters. Polished Aurum is the sole material authority. */
 :root,:root[data-suarez-theme="dark"] {
- --av-bg:#0e1721;--av-panel:#17222e;--av-raised:#223344;--av-ink:#f1f5f8;--av-muted:#aebdca;--av-line:#5b7183;--av-cyan:#71ddeb;--av-green:#a1e583;--av-magenta:#e6a0ee;--av-warning:#ffca72;--av-error:#ff9b97;--av-glass:rgba(18,30,42,.94);--av-menu-glass:rgba(18,30,42,.985);--av-focus:#9fefff;
+ --av-bg:var(--g-bg);--av-panel:var(--g-surface);--av-raised:var(--g-raised);--av-ink:var(--g-ink);--av-muted:var(--g-muted);--av-line:var(--g-line);--av-cyan:var(--g-accent);--av-green:#a1e583;--av-magenta:#e6a0ee;--av-warning:#ffca72;--av-error:#ffc3c0;--av-glass:var(--g-glass);--av-menu-glass:var(--g-glass);--av-focus:var(--g-accent);
  --bg:var(--av-bg);--ink:var(--av-ink);--ink-muted:var(--av-muted);--text:var(--av-ink);--text-strong:var(--av-ink);--text-muted:var(--av-muted);--text-muted-2:var(--av-muted);--navy:var(--av-ink);--navy-600:var(--av-ink);
  --surface:var(--av-panel);--surface-soft:var(--av-bg);--surface-raised:var(--av-raised);--surface-strong:var(--av-raised);--surface-tint:var(--av-panel);--bg-soft:var(--av-panel);--bg-elevated:var(--av-raised);--paper-bg:var(--av-panel);--glass-bg:var(--av-panel);--glass-bg-strong:var(--av-raised);
  --border:var(--av-line);--border-strong:var(--av-line);--line:var(--av-line);--line-strong:var(--av-line);--hairline:var(--av-line);--workbench-panel:var(--av-panel);--workbench-panel-strong:var(--av-raised);--workbench-border:var(--av-line);--workbench-border-strong:var(--av-line);
- --yellow:var(--av-cyan);--yellow-bright:var(--av-cyan);--yellow-ink:var(--av-cyan);--yellow-soft:rgba(113,221,235,.12);--yellow-line:var(--av-line);--dock-clearance:calc(100px + env(safe-area-inset-bottom,0px));
+ --yellow:var(--av-cyan);--yellow-bright:var(--av-cyan);--yellow-ink:var(--av-cyan);--yellow-soft:color-mix(in srgb,var(--g-mid) 12%,transparent);--yellow-line:var(--av-line);--dock-clearance:calc(100px + env(safe-area-inset-bottom,0px));
 }
-:root[data-suarez-theme="light"] {--av-bg:#e8edf0;--av-panel:#f8fafb;--av-raised:#fff;--av-ink:#182630;--av-muted:#4c606e;--av-line:#9cabb5;--av-cyan:#006878;--av-green:#316823;--av-magenta:#853492;--av-warning:#805000;--av-error:#b32c28;--av-glass:rgba(239,245,248,.96);--av-menu-glass:rgba(248,250,251,.985);--av-focus:#005dca;}
+:root[data-suarez-theme="light"] {--av-green:#316823;--av-magenta:#853492;--av-warning:#805000;--av-error:#a82724;}
 html{scroll-padding-block:24px var(--dock-clearance)}
 body{background:var(--av-bg);color:var(--av-ink);padding-bottom:var(--dock-clearance)}
 body :is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid var(--av-focus);outline-offset:3px;transition:none}
-::selection{background:var(--av-cyan);color:var(--av-bg)}
+::selection{background:var(--g-mid);color:var(--g-key-ink)}
 body :is(.card,.paper,.panel,.post-card,.hub-card,.tool-card,.service-card,.article-body,.post-body,.part61-panel,.part61-calculator-header,.filter-rail,.cta-box){background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
 body :is(input,select,textarea){background:var(--av-bg);color:var(--av-ink);border-color:var(--av-line);accent-color:var(--av-cyan)}body :is(input,textarea)::placeholder{color:var(--av-muted);opacity:1}body :is(button,input,select):disabled{opacity:.55;cursor:not-allowed}
 /* Motion stays on controls and navigation; the homepage sky has its own owner. */
@@ -62,7 +62,7 @@ body.engine-explorer-page .engine-explorer-frame{background:var(--av-bg)}
 body.engine-explorer-page #engine-study-guide{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
 body .av-icon{display:block;width:19px;height:19px;flex:none;overflow:visible}
 @media(max-width:600px){body .av-icon{width:16px;height:16px}}
-@media print{:root{--av-bg:white;--av-panel:white;--av-raised:white;--av-ink:black;--av-muted:#333;--av-line:#888;--av-cyan:#005b70;--av-green:#285d25}body{color:black;background:white}}
+@media print{:root{--av-bg:white;--av-panel:white;--av-raised:white;--av-ink:black;--av-muted:#333;--av-line:#888;--av-cyan:#73551b;--av-green:#285d25}body{color:black;background:white}}
 html body.editorial-page .page-hero .eyebrow,html body.editorial-page .hub-card .eyebrow,html body.editorial-page .post-card .post-tag{color:var(--av-cyan)}
 html body :is(.service-proof span,.trust-chip,.proof-chip){background:var(--av-panel);color:var(--av-muted);border-color:var(--av-line);border-radius:5px}
 html body .source-guide{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
@@ -193,23 +193,25 @@ body.editorial-page :is(.prose,.post-body,.article-body) table{display:block;max
 
 /* Tactile system — web adaptation; content retains its own matte/status colors. */
 :root {
- --av-metal-top:#53616e;--av-metal-bottom:#26343f;--av-metal-edge:#8c9ba77a;
+ --av-metal-top:var(--g-raised);--av-metal-bottom:var(--g-surface);--av-metal-edge:var(--g-line);
  --av-metal-sheen:linear-gradient(175deg,#ffffff17 0%,#ffffff03 46%,#00000012 100%);
  --av-contact-shadow:inset 0 1px 0 #ffffff35,inset 0 -1px 0 #00000040,0 2px 2px #00000040;
  --av-pressed-shadow:inset 0 2px 4px #00000060,inset 0 -1px 0 #ffffff18,0 0 0 #0000;
- --av-control-radius:10px;--av-press-duration:65ms;--av-release-duration:160ms;
- --av-dock-glass:linear-gradient(145deg,#ffffff14,#ffffff03),rgba(20,32,43,.84);
- --av-dock-edge:#c6e6fa4d;--av-control-tint:color-mix(in srgb,var(--av-cyan) 14%,var(--av-raised));
+ --av-control-radius:10px;--av-press-duration:100ms;--av-release-duration:220ms;
+ --av-dock-glass:var(--g-glass);
+ --av-dock-edge:var(--g-glass-edge);--av-control-tint:color-mix(in srgb,var(--av-cyan) 14%,var(--av-raised));
 }
 :root[data-suarez-theme="light"]{
- --av-metal-top:#f4f7fa;--av-metal-bottom:#c5d0d9;--av-metal-edge:#73879780;
- --av-metal-sheen:linear-gradient(175deg,#ffffffad,#ffffff16 46%,#20364713);
- --av-contact-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #62758438,0 2px 2px #263a4c25;
- --av-pressed-shadow:inset 0 2px 4px #32485935,inset 0 -1px 0 #ffffff90,0 0 0 #0000;
- --av-dock-glass:linear-gradient(145deg,#ffffff80,#ffffff20),rgba(223,234,242,.88);--av-dock-edge:#6f839960;
+ --av-metal-top:var(--g-raised);--av-metal-bottom:var(--g-surface);--av-metal-edge:var(--g-line);
+ --av-metal-sheen:linear-gradient(175deg,#ffffffad,#ffffff16 46%,#33333313);
+ --av-contact-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #66666638,0 2px 2px #33333325;
+ --av-pressed-shadow:inset 0 2px 4px #44444435,inset 0 -1px 0 #ffffff90,0 0 0 #0000;
+ --av-dock-glass:var(--g-glass);--av-dock-edge:var(--g-glass-edge);
 }
+/* Touch-size defaults must not override app-owned card/key dimensions. */
+:where(html body .av-control){min-block-size:44px;min-inline-size:44px}
 html body .av-control {
- min-block-size:44px;min-inline-size:44px;touch-action:manipulation;
+ touch-action:manipulation;
  box-shadow:var(--av-contact-shadow);
  transition:transform var(--av-release-duration) cubic-bezier(.2,.8,.25,1),box-shadow var(--av-release-duration),border-color 120ms,background-color 120ms;
  -webkit-tap-highlight-color:transparent;
@@ -223,7 +225,7 @@ html body :is(.btn,.av-appearance button,.part61-button-secondary,.cg-btn,.cg-ce
  border-radius:var(--av-control-radius);background-image:var(--av-metal-sheen);
 }
 html body :is(.av-control[aria-pressed="true"],.av-control[aria-checked="true"]:not([role="switch"]),.av-control[aria-current],.option-button.selected){
- box-shadow:inset 0 -2px var(--av-cyan),inset 0 1px #ffffff20;
+ box-shadow:inset 0 1px #fff8,0 2px 3px #0002;
 }
 html body :is(.av-appearance-options,.segmented,.segmented-control){padding:3px;gap:3px;border-radius:13px;background:color-mix(in srgb,var(--av-bg) 85%,#000);box-shadow:inset 0 1px 4px #0005}
 html body :is(.nav,.nav.nav--compact,[data-tactile-dock]){
@@ -320,7 +322,7 @@ html[data-suarez-solid="true"] body :is(.nav,.nav-links,[data-tactile-dock],.aer
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){html body :is(.nav,.nav-links,[data-tactile-dock],.aero-dock__panel,.explorer-menu-panel){background:var(--av-panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 @supports not (backdrop-filter:blur(1px)){html body :is(.nav,.nav-links,[data-tactile-dock],.aero-dock__panel,.explorer-menu-panel){background:var(--av-panel)!important}}
 /* Empty preview is printed-paper colored; its UI hint needs dark ink. */
-html body.certgen-view .cg-preview-empty,html body.certgen-view .cg-preview-empty span{color:#42525e}
+html body.certgen-view .cg-preview-empty,html body.certgen-view .cg-preview-empty span{color:var(--g-muted)}
 
 html body input[type="number"]{min-height:44px}
 html body #part61ValidationMessage{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-amber,#d9a64d)}
@@ -335,16 +337,9 @@ html body [data-tactile-dock].av-dock-collapsed{min-height:48px;padding-block:1p
 
 /* Liquid navigation — a functional layer above the existing page surfaces. */
 :root{
- --liquid-ink:#f4f6fb;--liquid-muted:#b8c1d0;--liquid-surface:#202530;
- --liquid-glass:rgba(26,31,41,.94);--liquid-edge:rgba(218,231,255,.22);
- --liquid-key:rgba(255,255,255,.07);--liquid-selected:rgba(255,255,255,.14);
- --liquid-focus:#99c4ff;
-}
-:root[data-suarez-theme="light"]{
- --liquid-ink:#17202f;--liquid-muted:#506079;--liquid-surface:#f4f6fa;
- --liquid-glass:rgba(244,247,251,.95);--liquid-edge:rgba(60,78,107,.23);
- --liquid-key:rgba(30,45,72,.055);--liquid-selected:rgba(30,45,72,.11);
- --liquid-focus:#1456b8;
+ --liquid-ink:var(--g-ink);--liquid-muted:var(--g-muted);--liquid-surface:var(--g-surface);
+ --liquid-glass:var(--g-glass);--liquid-edge:var(--g-glass-edge);
+ --liquid-key:var(--g-raised);--liquid-selected:var(--g-surface);--liquid-focus:var(--g-accent);
 }
 html body .nav.liquid-dock{
  border-radius:25px;background:var(--liquid-glass);border-color:var(--liquid-edge);
@@ -354,7 +349,7 @@ html body .nav.liquid-dock{
 }
 html body .liquid-dock :is(.av-key,.nav-menu-toggle){
  background:transparent;background-image:none;color:var(--liquid-muted);border:1px solid transparent;
- box-shadow:none;border-radius:19px;min-height:48px;padding:5px 10px;font-size:.75rem;font-weight:600;
+ box-shadow:none;border-radius:19px;min-height:48px;padding:5px 10px;font-size:clamp(12px,.75rem,18px);font-weight:600;
 }
 html body .liquid-dock :is(.av-key,.nav-menu-toggle):hover{background:var(--liquid-key);color:var(--liquid-ink);border-color:transparent}
 html body .liquid-dock :is(.av-key[aria-current],.nav-menu-toggle[aria-expanded="true"]){
@@ -401,7 +396,7 @@ html body .liquid-menu .liquid-section{
  transform:translateY(calc(var(--section-offset,0) * var(--section-offset,0) * 2px));
  transition:transform 220ms ease,background-color 180ms ease,color 180ms ease;
 }
-html body .liquid-menu .liquid-section[aria-selected="true"]{background:var(--liquid-selected);border-color:var(--liquid-edge);color:var(--liquid-ink)}
+html body .liquid-menu .liquid-section[aria-selected="true"]{background:var(--g-gold);border-color:var(--g-edge);color:var(--g-key-ink)!important}
 html body .nav .liquid-menu .nav-links.liquid-menu-panels{
  position:static;display:block;inset:auto;width:100%;max-height:none;padding:0;margin:0;
  border:0;border-radius:0;background:transparent!important;box-shadow:none;backdrop-filter:none!important;
@@ -429,13 +424,15 @@ html body .liquid-menu .av-solid{gap:12px;margin-top:20px;color:var(--liquid-ink
 .liquid-menu .av-solid small{display:block;font-size:.75rem;color:var(--liquid-muted);margin-top:4px;line-height:1.5}
 html body .liquid-menu .av-solid input[type="checkbox"]{border-radius:20px;background:var(--liquid-key);border-color:var(--liquid-edge);box-shadow:none}
 html body .liquid-menu .av-solid input[type="checkbox"]::after{border-radius:50%;background:var(--liquid-ink);box-shadow:none}
-html body .liquid-menu .av-solid input[type="checkbox"]:checked{background:#356fc2}
-html body .liquid-menu .av-solid input[type="checkbox"]:checked::after{background:#fff;border:0}
+html body .liquid-menu .av-solid input[type="checkbox"]:checked{background:var(--g-gold);border-color:var(--g-edge)}
+html body .liquid-menu .av-solid input[type="checkbox"]:checked::after{background:var(--g-key-ink);border:0}
 .liquid-menu .av-menu-actions{border-block:1px solid var(--liquid-edge);padding-block:14px;margin-block:14px 0}
 .liquid-menu .av-menu-actions h3{font-size:.75rem;color:var(--liquid-muted);margin:0 0 10px}
 @media(max-width:600px){
  html body .nav.liquid-dock{width:calc(100% - 24px);border-radius:23px}
- html body .liquid-dock :is(.av-key,.nav-menu-toggle){padding:5px 6px;font-size:.72rem;border-radius:18px}
+ /* Five phone keys retain visible names when enlarged text would otherwise
+    collide inside their fixed-width hardware controls. */
+ html body .liquid-dock :is(.av-key,.nav-menu-toggle){padding:5px 6px;font-size:clamp(12px,.72rem,15px);border-radius:18px}
  .liquid-menu-content{padding:20px}.liquid-panel{min-height:235px}
 }
 @media(max-height:500px){.liquid-panel{min-height:0}.liquid-menu-content{padding:16px}.liquid-sections{margin-bottom:8px}.liquid-menu-heading{margin-bottom:8px!important}}
@@ -512,3 +509,231 @@ html body .liquid-dock-items > :is(.wordmark,.nav-brand){display:none}
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){html body .liquid-dock .liquid-dock-shell{background:var(--liquid-surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
 
 @media(min-width:981px) and (max-width:1024px){html body .nav.liquid-dock[data-compact-dock]{width:min(520px,calc(100% - 24px))}html body .liquid-dock .av-key.av-wide span{white-space:nowrap}}
+/* POLISHED AURUM: canonical material authority. See docs/design/POLISHED_AURUM.md. */
+:root{
+  --g-bg:#e3e3e3;--g-surface:#efefef;--g-raised:#f7f7f7;--g-well:#d6d6d6;
+  --g-ink:#272727;--g-muted:#595959;--g-line:#b7b7b7;--g-accent:#73551b;
+  --g-glass:rgba(241,241,241,.90);--g-glass-edge:rgba(255,255,255,.8);
+  --g-shadow:0 3px 5px #0002,0 9px 20px #0000000b;
+  --g-top:#ffe79a;--g-mid:#e3b741;--g-low:#d2a23a;--g-edge:#9a701b;
+  --g-gold:linear-gradient(165deg,#fff0b4 0%,#ebc55b 23%,#d8a735 40%,#ffdf80 45%,#f4d16a 52%,#d2a23a 79%,#e8c361 100%);
+  --g-key-ink:#2b2316;--g-radius:10px;--g-blur:18px;
+  --g-motion:220ms;--g-press:100ms;
+  background:var(--g-bg);color:var(--g-ink);
+}
+html[data-gold-mode=dark]{--g-bg:#414141;--g-surface:#4a4a4a;--g-raised:#545454;--g-well:#393939;--g-ink:#f4f4f4;--g-muted:#d0d0d0;--g-line:#767676;--g-accent:#ecd39b;--g-glass:rgba(73,73,73,.94);--g-glass-edge:rgba(255,255,255,.23);--g-shadow:0 3px 6px #0003,0 10px 24px #0002}
+html[data-gold-mode],html[data-gold-mode] body,html[data-gold-mode] :is(.pilot-app,.part61-redesign,#se-workspace){
+  --bg:var(--g-bg);--background:var(--g-bg);--ink:var(--g-ink);--text:var(--g-ink);--text-strong:var(--g-ink);--navy:var(--g-ink);--navy-600:var(--g-ink);
+  --ink-muted:var(--g-muted);--text-muted:var(--g-muted);--text-muted-2:var(--g-muted);--muted:var(--g-muted);
+  --surface:var(--g-surface);--surface-soft:var(--g-raised);--surface-raised:var(--g-raised);--surface-strong:var(--g-raised);--surface-tint:var(--g-surface);--bg-soft:var(--g-well);--bg-elevated:var(--g-raised);--paper-bg:var(--g-surface);
+  --line:var(--g-line);--border:var(--g-line);--border-strong:var(--g-line);--separator:var(--g-line);--line-strong:var(--g-line);--hairline:var(--g-line);
+  --yellow:var(--g-mid);--yellow-bright:var(--g-top);--yellow-deep:var(--g-edge);--yellow-ink:var(--g-accent);--yellow-soft:color-mix(in srgb,var(--g-mid) 18%,transparent);--yellow-line:var(--g-edge);--champagne:var(--g-mid);--focus-ring:var(--g-accent);--accent-ink:var(--g-accent);
+  --glass-bg:var(--g-glass);--glass-bg-strong:var(--g-raised);--glass-edge:var(--g-glass-edge);--glass-blur:var(--g-blur);
+  --chrome-bg:var(--g-glass);--chrome-ink:var(--g-ink);--chrome-muted:var(--g-muted);--chrome-border:var(--g-line);--chrome-hover:var(--g-raised);--chrome-cta:var(--g-mid);--chrome-cta-ink:var(--g-key-ink);
+  --footer-bg:var(--g-well);--footer-ink:var(--g-ink);--footer-muted:var(--g-muted);
+  --workbench-panel:var(--g-surface);--workbench-panel-strong:var(--g-raised);--workbench-border:var(--g-line);
+  --p61-bg:var(--g-bg);--p61-surface:var(--g-surface);--p61-ink:var(--g-ink);--p61-muted:var(--g-muted);--p61-line:var(--g-line);
+  --se-canvas:var(--g-bg);--se-surface:var(--g-surface);--se-elevated:var(--g-raised);--se-ink:var(--g-ink);--se-muted:var(--g-muted);--se-line:var(--g-line);--se-action:var(--g-gold);--se-on-action:var(--g-key-ink);--se-focus:var(--g-accent);
+}
+html[data-gold-mode]{background:var(--g-bg)!important}
+html[data-gold-mode] body{background:var(--g-bg)!important;color:var(--g-ink)}
+/* Current liquid-navigation release: preserve structure and adapt semantic tokens. */
+html[data-gold-mode],html[data-gold-mode] body,html[data-gold-mode] .pilot-app,html[data-gold-mode] .tools-experience,html[data-gold-mode] .orbit-catalog{
+  --av-bg:var(--g-bg);--av-panel:var(--g-surface);--av-raised:var(--g-raised);--av-ink:var(--g-ink);--av-muted:var(--g-muted);--av-line:var(--g-line);--av-cyan:var(--g-accent);--av-glass:var(--g-glass);--av-menu-glass:var(--g-glass);--av-focus:var(--g-accent);
+  --liquid-ink:var(--g-ink);--liquid-muted:var(--g-muted);--liquid-surface:var(--g-surface);--liquid-glass:var(--g-glass);--liquid-edge:var(--g-glass-edge);--liquid-key:var(--g-raised);--liquid-selected:var(--g-surface);--liquid-focus:var(--g-accent);
+  --orbit-bg:var(--g-bg);--orbit-surface:var(--g-surface);--orbit-ink:var(--g-ink);--orbit-muted:var(--g-muted);--orbit-line:var(--g-line);--orbit-control:var(--g-raised);
+}
+html[data-gold-mode] .liquid-dock .av-key[aria-current]{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff7,0 2px 4px #0002!important;transition-property:background-color,border-color,box-shadow,transform}
+html[data-gold-mode] .liquid-dock .av-key[aria-current] :is(span,svg){color:var(--g-key-ink)!important}
+/* The current destination in the expanded menu is the same selected action
+   as its dock key. Keep the small "Current" label legible on every gold stop. */
+html[data-gold-mode] body .liquid-menu .liquid-panel>a[aria-current]{
+ background:var(--g-gold)!important;color:var(--g-key-ink)!important;
+ border-color:var(--g-edge)!important;
+ box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important;
+}
+html[data-gold-mode] body .liquid-menu .liquid-panel>a[aria-current]::after{color:var(--g-key-ink)!important}
+html[data-gold-mode] .pilot-app :is(.back-link,.header-actions .icon-button,.avionics-menu){color:var(--g-accent)!important}
+html[data-gold-mode] .pilot-app :is(.segmented button[aria-pressed=true],.segmented button.active){background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+html[data-gold-mode] .pilot-app :is(.key-grid button,.calculator-grid button):not(.equals):not(.key-done):not(.keypad-done){background:linear-gradient(180deg,var(--g-raised),var(--g-surface))!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:inset 0 1px #ffffff40,0 2px 2px #0002!important}
+html[data-gold-mode] .pilot-app .bottom-nav button[aria-current=page]{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+html[data-gold-mode] .pilot-app .bottom-nav button[aria-current=page]::after{background:var(--g-edge)!important}
+html[data-gold-mode] .cp-primary{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border:1px solid var(--g-edge)!important;box-shadow:inset 0 1px #fff8,var(--g-shadow)!important}
+html[data-gold-mode] .horizon-brand{color:var(--g-ink)!important}
+html[data-gold-mode] .home-flight-wordmark{color:var(--g-ink)!important}
+html[data-gold-mode] #se-workspace{--se-accent:var(--g-accent)}
+html[data-gold-mode] :is(.stage-open,.engine-choice,.cg-btn-primary,#cgNextBtn,#startButton),html[data-gold-mode] body.flightrisk-view :is(button,a).bg-accent-600{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,var(--g-shadow)!important}
+html[data-gold-mode] body.flightrisk-view :is(.bg-white,.bg-card,.bg-page,.bg-soft,.bg-ink-900){background:var(--g-surface)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important}
+html[data-gold-mode] body.flightrisk-view :is(.text-ink-900,.text-ink-800,.text-ink-700){color:var(--g-ink)!important}
+html[data-gold-mode] body.flightrisk-view :is(.text-ink-600,.text-ink-500,.text-ink-400){color:var(--g-muted)!important}
+html[data-gold-mode][data-gold-finish]{--cc-bg:var(--g-bg);--cc-panel:var(--g-surface);--cc-raised:var(--g-raised);--cc-ink:var(--g-ink);--cc-muted:var(--g-muted);--cc-line:var(--g-line);--cc-accent:var(--g-accent);--cc-stage:var(--g-well);--cc-dock:var(--g-glass)}
+html[data-gold-mode] :is(.pilot-app,.pilot-mobile-scroll){background:var(--g-bg)!important;color:var(--g-ink)!important;--blue:var(--g-accent);--soft:var(--g-surface);color-scheme:inherit}
+html[data-gold-mode] .pilot-app.standalone{box-shadow:0 0 0 1px var(--g-line)}
+html[data-gold-mode] :is(.site-footer,footer.site-footer){background:var(--g-well)!important;color:var(--g-ink)!important}
+html[data-gold-mode] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,.aero-dock,.aero-dock__panel,[data-tactile-dock]){background:var(--g-glass)!important;color:var(--g-ink)!important;border-color:var(--g-glass-edge)!important;backdrop-filter:blur(var(--g-blur));-webkit-backdrop-filter:blur(var(--g-blur));box-shadow:inset 0 1px var(--g-glass-edge),0 8px 28px #0002}
+html[data-gold-mode] :is(.nav a,.nav button){color:var(--g-ink)!important}
+/* Shared secondary hardware treatment; app-specific primary/semantic states below win. */
+html[data-gold-mode] :where(body:not(.flightrisk-view)) :where(button,[role="button"],.btn,.button){
+ background:linear-gradient(180deg,var(--g-raised),var(--g-surface));color:var(--g-ink);border-color:var(--g-line);
+ box-shadow:inset 0 1px #ffffff40,0 2px 3px #0001;
+ transition:background 220ms,box-shadow 220ms,transform 100ms;
+}
+html[data-gold-mode] :is(.av-appearance-options,.se-appearance) button[aria-pressed="true"]{
+ background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;
+ box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important;
+}
+html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){
+  background:var(--g-gold)!important;color:var(--g-key-ink)!important;border:1px solid var(--g-edge)!important;
+  box-shadow:inset 0 1px 0 #fff9,inset 1px 0 0 #ffffff40,inset 0 -1px 0 #78571d33,var(--g-shadow)!important;
+  position:relative;isolation:isolate;overflow:hidden;text-shadow:0 1px #ffffff30;
+  transition:box-shadow var(--g-motion),filter var(--g-motion),transform var(--g-press)!important;
+}
+html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.gold-primary,.nav-cta)::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 28%,#fff7 45%,transparent 61%);transform:translateX(-160%);opacity:0;z-index:-1}
+@media(hover:hover){html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.gold-primary,.nav-cta):not(:disabled):is(:hover,:focus-visible)::after{animation:gold-glint 550ms ease-out 1}}
+@keyframes gold-glint{0%{transform:translateX(-160%);opacity:0}25%{opacity:.55}100%{transform:translateX(160%);opacity:0}}
+html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta):not(:disabled):active{transform:translateY(1px)!important;box-shadow:inset 0 2px 4px #73501844,0 1px 1px #0002!important}
+html[data-gold-mode] :is(.btn--secondary,.part61-button-secondary,.secondary,.gold-secondary){background:linear-gradient(180deg,var(--g-raised),var(--g-surface))!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:inset 0 1px #ffffff40,0 2px 3px #0001!important}
+/* Quiet actions retain their existing hit areas without raised hardware chrome. */
+html[data-gold-mode] :is(.btn--tertiary,button.text-button,.part61-text-button,.part61-quiet-button){
+ background:transparent!important;color:var(--g-accent)!important;border-color:transparent!important;
+ box-shadow:none!important;text-shadow:none!important;
+}
+html[data-gold-mode] :is(.btn--tertiary,button.text-button,.part61-text-button,.part61-quiet-button):not(:disabled):is(:hover,:focus-visible){
+ text-decoration:underline;text-underline-offset:3px;
+}
+html[data-gold-mode] :is(button,a,input,select,textarea,summary):focus-visible{outline:3px solid var(--g-accent)!important;outline-offset:4px!important}
+html[data-gold-mode] :is(button,input,select,textarea):disabled{opacity:.48;cursor:not-allowed}
+html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea){background:var(--g-raised)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:inset 0 1px 3px #0000000c}
+/* Explicit validation semantics take precedence over neutral input chrome. */
+html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea)[aria-invalid="true"]{border-color:var(--av-error)!important}
+html[data-gold-mode] :is(input,textarea)::placeholder{color:var(--g-muted);opacity:1}
+/* Keep the browser's native search-clear action in the shared material palette. */
+@supports (-webkit-mask-image: url("")) {
+ html[data-gold-mode] input[type="search"]::-webkit-search-cancel-button{
+  -webkit-appearance:none;appearance:none;width:16px;height:16px;cursor:pointer;
+  background-color:var(--g-accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 4 8 8M12 4l-8 8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 4 8 8M12 4l-8 8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+ }
+ @media(forced-colors:active){html[data-gold-mode] input[type="search"]::-webkit-search-cancel-button{background-color:ButtonText;forced-color-adjust:none}}
+}
+html[data-gold-mode=day]{--g-control-line:#828282}
+html[data-gold-mode=dark]{--g-control-line:#a5a5a5}
+html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea){border-color:var(--g-control-line)!important}
+html[data-gold-mode] input:is([type=checkbox],[type=radio],[type=range]){accent-color:var(--g-accent)}
+/* Explicit adapters for the existing planner's literal-color overrides. */
+html[data-gold-mode] :is(.cp-intro,.part61-stage-card,.part61-experience-group,.part61-event-group,.part61-background-details,.part61-cost-details,.dashboard-card,.part61-choice-row,.option-button,.result-panel,.favorite-tile,.panel){background:var(--g-surface)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important}
+html[data-gold-mode] .part61-redesign :is(summary,.part61-choice-row,.option-button,.number-field input,.part61-button-secondary){color:var(--g-ink)!important}
+html[data-gold-mode] .part61-redesign :is(.part61-kicker,.part61-text-button,.stage-number,.part61-rate-summary span){color:var(--g-accent)!important}
+html[data-gold-mode] :is(.part61-goal-summary,.group-completion:not(.complete)){background:var(--g-raised)!important;color:var(--g-muted)!important}
+html[data-gold-mode] :is(.part61-hero-banner,.part61-results-pane){background:var(--g-surface)!important;color:var(--g-ink)!important}
+html[data-gold-mode] .part61-redesign :is(.part61-choice-row,.option-button,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-target-option)[aria-pressed=true],html[data-gold-mode] .part61-redesign .option-button.selected{border-color:var(--g-edge)!important;background:var(--g-gold)!important;color:var(--g-key-ink)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+/* Muted sky retains the original animation and geometry, with an adaptive film. */
+html[data-gold-mode] .horizon-hero{background:var(--g-bg)!important}
+html[data-gold-mode] :is(.horizon-clouds,.horizon-sky-fallback){filter:saturate(.32) brightness(.96)}
+html[data-gold-mode=dark] :is(.horizon-clouds,.horizon-sky-fallback){filter:saturate(.22) brightness(.48)}
+html[data-gold-mode] .horizon-hero :is(h1,.horizon-lede,.horizon-kicker,.horizon-signature,.horizon-tools){color:var(--g-ink)!important}
+html[data-gold-mode] .horizon-hero .btn{color:var(--g-key-ink)!important}
+html[data-gold-mode] .horizon-hero .btn--secondary{color:var(--g-ink)!important}
+/* Explicit quiet-effects control also covers browsers without transparency queries.
+   Change the material itself so app-owned surfaces inherit the fallback. */
+html[data-gold-effects=quiet]{--g-glass:var(--g-surface)!important;--g-blur:0px!important}
+html[data-gold-effects=quiet] *,html[data-gold-effects=quiet] *::before,html[data-gold-effects=quiet] *::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){
+ html[data-gold-mode]{--g-glass:var(--g-surface)!important;--g-blur:0px!important}
+}
+@supports not (backdrop-filter:blur(1px)){
+ html[data-gold-mode]{--g-glass:var(--g-surface)!important;--g-blur:0px!important}
+}
+html[data-gold-effects=quiet] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,.aero-dock,.aero-dock__panel,[data-tactile-dock]){background:var(--g-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html[data-gold-effects=quiet] *,html[data-gold-effects=quiet] *::before,html[data-gold-effects=quiet] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html[data-gold-effects=quiet] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){transition:none!important}
+/* Menu tabs use transform for their static positions; keep them under the pointer. */
+html[data-gold-effects=quiet] :is(button,a,summary,[role="button"],.btn,.button):not(.liquid-section):not(:disabled):active{transform:none!important}
+@media(prefers-reduced-motion:reduce){
+ html[data-gold-mode] *,html[data-gold-mode] *::before,html[data-gold-mode] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){transition:none!important}
+ html[data-gold-mode] :is(button,a,summary,[role="button"],.btn,.button):not(.liquid-section):not(:disabled):active{transform:none!important}
+}
+@media(prefers-reduced-transparency:reduce){html[data-gold-mode] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,.aero-dock,.aero-dock__panel,[data-tactile-dock]){background:var(--g-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+@supports not (backdrop-filter:blur(1px)){html[data-gold-mode] .gold-glass,html[data-gold-mode] .nav{background:var(--g-surface)!important}}
+@media(forced-colors:active){html[data-gold-mode] :is(button,a,input,select,textarea){forced-color-adjust:auto;background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText!important;box-shadow:none!important}}
+
+/* Certificate selections are gold; category dots and canvas artwork retain their source colors. */
+html[data-gold-mode] :is(.cg-cert-btn.is-selected,.cg-rating-btn[aria-checked="true"]) {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 2px 4px #0002!important}
+html[data-gold-mode] .cg-cert-btn.is-selected :is(strong,small){color:var(--g-key-ink)!important}
+/* Flight profile choices are selections, not risk bands. Keep every label dark
+   across the brightest metal stop; the risk score's semantic colors stay intact. */
+html[data-gold-mode] body.flightrisk-view [role="radio"][aria-checked="true"]{background:var(--g-gold)!important;border-color:var(--g-edge)!important}
+html[data-gold-mode] body.flightrisk-view [role="radio"][aria-checked="true"],
+html[data-gold-mode] body.flightrisk-view [role="radio"][aria-checked="true"] :is(span,svg,p,div){color:var(--g-key-ink)!important}
+
+/* Engine collection and appearance selectors use the same selected metal as
+   the shared dock. Model geometry, materials and diagram channels are untouched. */
+html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"],
+html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"] :is(span,strong,small){
+ background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;
+ box-shadow:inset 0 1px #fff8,0 2px 4px #0002!important;
+}
+html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"] :is(span,strong,small){background:none!important;box-shadow:none!important}
+/* Aero Lab's borderless lesson and teaching tabs need the same bronze rim as
+   its other selected keys. An inset rim preserves their authored dimensions. */
+html[data-gold-mode] body.aero-lab-page #root :is(.lesson-tabs button.active,.teaching-tabs button[aria-pressed="true"]){
+ box-shadow:inset 0 0 0 1px var(--g-edge),inset 0 1px #fff8,0 2px 3px #0002!important;
+}
+/* Keep the existing 49px lesson rail while giving each key a 44px touch area. */
+html[data-gold-mode] body.aero-lab-page #root .lesson-tabs{padding-block:1.5px}
+html[data-gold-mode] body.aero-lab-page #root .lesson-tabs button{min-height:44px}
+@media print {
+ html[data-gold-mode] {--g-bg:#fff;--g-surface:#fff;--g-raised:#fff;--g-well:#eee;--g-ink:#000;--g-muted:#444;--g-line:#888;--g-accent:#73551b;--g-shadow:none}
+}
+@media(forced-colors:active){html[data-gold-mode] :is(button,a,input,select,textarea),html[data-gold-mode] button :is(span,svg,p,div){forced-color-adjust:auto;background:ButtonFace!important;color:ButtonText!important;border-color:ButtonText!important;box-shadow:none!important}}
+
+/* Editorial and directory selection use the same action material as the apps.
+   App identity icons and category indicators retain their own semantic colors. */
+html[data-gold-mode] body :is(.blog-categories,.catalog-filters,.library-view-switch) button[aria-pressed="true"] {
+ background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;
+ box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important;
+}
+@media(forced-colors:active){html[data-gold-mode] body :is(.blog-categories,.catalog-filters,.library-view-switch) button[aria-pressed="true"]{background:Highlight!important;color:HighlightText!important;box-shadow:none!important}}
+
+html[data-gold-mode] .part61-redesign :is(.part61-choice-row,.option-button,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-target-option)[aria-pressed=true] :is(span,strong,small){color:var(--g-key-ink)!important}
+
+/* Resolve material aliases to the user's high-contrast palette, including
+   selected-control descendants with more-specific application selectors. */
+@media(forced-colors:active){
+ html[data-gold-mode]{--g-gold:ButtonFace!important;--g-key-ink:ButtonText!important;--g-edge:ButtonText!important;--g-accent:Highlight!important;--g-control-line:ButtonText!important;--av-error:CanvasText!important}
+}
+
+/* Training-route navigation uses the shared selected material. */
+html[data-gold-mode] .journey-planner .journey-stop[aria-selected="true"]{background:var(--g-gold)!important;border-color:var(--g-edge)!important;color:var(--g-key-ink)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+html[data-gold-mode] .journey-planner .journey-stop[aria-selected="true"] .journey-stop-label{color:var(--g-key-ink)!important}
+/* Inline CTA icons need an explicit size; bare SVG defaults distort the link. */
+.journey-cta svg{width:18px;height:18px;flex:0 0 18px}
+
+/* Validation remains distinct from decorative gold in either appearance. */
+html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-field-error,.part61-validation-alert){color:var(--av-error)!important}
+html[data-gold-mode] body.tool-page #part61CalculatorView [aria-invalid="true"]{border-color:var(--av-error)!important}
+html[data-gold-mode] body.tool-page .part61-redesign .part61-validation-alert{background:var(--g-surface)!important;border-color:var(--av-error)!important}
+html[data-gold-mode] body.tool-page .part61-redesign .part61-validation-alert :is(p,small,strong){color:inherit!important}
+
+html[data-gold-mode] .cg-cert-btn.is-selected :is(.cg-cert-title,.cg-cert-sub){color:var(--g-key-ink)!important}
+
+/* Contact validation must survive shared paragraph and input materials. */
+html[data-gold-mode] body .cf-form .cf-error{color:var(--av-error)!important;background:var(--g-surface)!important;border-color:var(--av-error)!important}
+html[data-gold-mode] .cf-form.cf-form--invalid input.cf-input[required]:invalid{border-color:var(--av-error)!important}
+
+/* Let the current mobile dock's shell make the circle. The navigation node
+   itself must stay transparent or its full-width glass remains visible. */
+@media(max-width:1024px){
+ html[data-gold-mode] body .nav.liquid-dock[data-compact-dock]{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ html[data-gold-mode] body .liquid-dock .liquid-dock-shell{z-index:0}
+ html[data-gold-mode] body .liquid-dock .liquid-dock-items{z-index:1}
+ html[data-gold-mode] body .liquid-dock[data-compact-dock="collapsed"] .liquid-dock-shell{background:var(--g-gold)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 3px 8px #0003!important}
+ html[data-gold-mode] body .liquid-dock[data-compact-dock="collapsed"] .nav-menu-toggle{color:var(--g-key-ink)!important}
+ /* Shared pressed depth cannot replace the Menu key's positioning transform;
+    moving it on pointerdown cancels the browser's click on pointerup. */
+ html[data-gold-mode] body .liquid-dock[data-compact-dock="collapsed"] .nav-menu-toggle:active{transform:translate(var(--merge-x),var(--merge-y)) scale(var(--merge-menu-x),var(--merge-menu-y))!important}
+ html[data-gold-mode] body .liquid-dock[data-compact-dock="expanded"] .nav-menu-toggle:active{transform:translate(0,0) scale(1)!important}
+}
+@media(forced-colors:active){html[data-gold-mode] body .liquid-dock[data-compact-dock="collapsed"] .liquid-dock-shell{background:ButtonFace!important;border-color:ButtonText!important;box-shadow:none!important}}

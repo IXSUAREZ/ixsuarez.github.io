@@ -66,7 +66,7 @@
     if (!appearance) {
       appearance = document.createElement('fieldset');
       appearance.className = 'av-appearance';
-      appearance.innerHTML = '<legend>Choose your appearance</legend><div class="av-appearance-options"><button type="button" data-appearance="dark">Dark</button><button type="button" data-appearance="light">Day</button><button type="button" data-appearance="system">System</button></div><label class="av-solid"><input type="checkbox"><span>Solid controls<small>Use opaque surfaces for more contrast.</small></span></label>';
+      appearance.innerHTML = '<legend>Choose your appearance</legend><div class="av-appearance-options"><button type="button" data-appearance="dark">Night</button><button type="button" data-appearance="light">Day</button><button type="button" data-appearance="system">System</button></div><label class="av-solid"><input type="checkbox"><span>Solid controls<small>Use opaque surfaces for more contrast.</small></span></label>';
       panels.appearance.appendChild(appearance);
     }
     function syncAppearance() {
@@ -224,7 +224,7 @@
     destinations.id = destinations.id || 'liquid-dock-destinations-' + index;
     var menuLabel = menu.getAttribute('aria-label');
     nav.dataset.compactDock = 'expanded';
-    var collapsed = false, pressed = false, last = y(), travel = 0, direction = 0, queued = false;
+    var collapsed = false, pressed = false, last = y(), travel = 0, direction = 0, queued = false, shellTapTimer = 0;
     function y() {
       var root = document.scrollingElement || document.documentElement;
       return Math.max(0, Math.min(window.scrollY, Math.max(0, root.scrollHeight - root.clientHeight)));
@@ -241,7 +241,14 @@
       nav.dataset.compactDock = next ? 'collapsed' : 'expanded';
       destinations.inert = next;
       destinations.setAttribute('aria-hidden', String(next));
+      clearTimeout(shellTapTimer);
+      shell.style.pointerEvents = next ? 'auto' : 'none';
       if (next) {
+        // The wide glass remains tappable while it contracts. Once it reaches
+        // the Menu key, release hit testing to the real button for pointer and
+        // accessibility automation alike.
+        shellTapTimer = setTimeout(function () { shell.style.pointerEvents = 'none'; },
+          reduced.matches || nav.dataset.dockMotion === 'off' ? 0 : 1050);
         menu.setAttribute('aria-label', 'Show navigation');
         menu.setAttribute('aria-controls', destinations.id);
         menu.removeAttribute('aria-haspopup');

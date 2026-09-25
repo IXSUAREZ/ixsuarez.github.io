@@ -7,6 +7,11 @@ test('endorsement cache precaches final shared assets and retires only its own v
  events.install({waitUntil:p=>work=p});await work;
  for(const name of ['appearance.js','avionics.css','site-nav.js','tactile.js'])assert(added.some(url=>url.startsWith('/assets/'+name+'?v=')));
  for(const url of added){const p=url.startsWith('/')?path.join(root,url):path.join(root,'simply-endorsed',url);assert(fs.existsSync(p.split('?')[0]),url);}
+ for(const name of ['tool-core.css','simply-endorsed.css','part61.css']){
+  const rel='/assets/tool-system/'+name;
+  const digest=require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,rel))).digest('hex').slice(0,10);
+  assert(added.includes(rel+'?v='+digest),name+' must precache the current material bytes');
+ }
  events.activate({waitUntil:p=>work=p});await work;assert.deepEqual(removed,['simply-endorsed-v40']);
 });
 test('archived engine deep links return to the engine collection without changing runtime bytes',()=>{

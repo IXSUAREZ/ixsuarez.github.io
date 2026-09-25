@@ -6,31 +6,31 @@
    Do not add app-exclusive rules here — they belong in an app module.
    ========================================================================== */
 :root {
-  --bg: #F4F6FB;
-  --bg-soft: #fafafa;
-  --bg-elevated: #f5f5f5;
-  --surface: var(--glass-bg);
-  --surface-soft: rgba(255, 255, 255, 0.42);
-  --surface-raised: rgba(255, 255, 255, 0.85);
-  --surface-strong: rgba(255, 255, 255, 0.94);
-  --surface-tint: rgba(245, 245, 245, 0.92);
-  --line: var(--glass-edge);
-  --line-strong: rgba(13, 19, 48, 0.15);
-  --line-bright: rgba(255, 255, 255, 0.78);
-  --hairline: rgba(13, 19, 48, 0.05);
+  --bg: var(--g-bg);
+  --bg-soft: var(--g-well);
+  --bg-elevated: var(--g-raised);
+  --surface: var(--g-surface);
+  --surface-soft: var(--g-surface);
+  --surface-raised: var(--g-raised);
+  --surface-strong: var(--g-raised);
+  --surface-tint: var(--g-surface);
+  --line: var(--g-line);
+  --line-strong: var(--g-line);
+  --line-bright: var(--g-glass-edge);
+  --hairline: var(--g-line);
   --text: var(--ink);
   --text-strong: var(--navy);
   --text-muted: var(--ink-muted);
-  --text-muted-2: #8a94a8;
-  --accent: var(--yellow-deep);
-  --accent-strong: var(--yellow-ink);
-  --accent-soft: var(--yellow-soft);
-  --accent-ink: var(--yellow-ink);
+  --text-muted-2: var(--g-muted);
+  --accent: var(--g-accent);
+  --accent-strong: var(--g-accent);
+  --accent-soft: color-mix(in srgb,var(--g-mid) 18%,transparent);
+  --accent-ink: var(--g-accent);
   --category-accent: var(--accent);
   --category-soft: var(--accent-soft);
   --category-line: var(--yellow-line);
   --category-ink: var(--accent-ink);
-  --warn: #e60000;
+  --warn: var(--av-error);
   --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -41,9 +41,6 @@
   --radius: 22px;
   --radius-lg: var(--r-card);
   --radius-xl: 36px;
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
   --shadow-inset:
     inset 0 1px 0 rgba(255, 255, 255, 0.66),
     inset 0 -1px 0 rgba(255, 255, 255, 0.18);
@@ -60,113 +57,32 @@
 
 /* Unified workbench redesign */
 :root {
-  --workbench-panel: var(--glass-bg);
-  --workbench-panel-strong: var(--glass-bg-strong);
-  --workbench-border: var(--glass-edge);
-  --workbench-border-strong: rgba(13, 19, 48, 0.14);
+  --workbench-panel: var(--g-surface);
+  --workbench-panel-strong: var(--g-raised);
+  --workbench-border: var(--g-line);
+  --workbench-border-strong: var(--g-line);
   --workbench-shadow: var(--shadow-md);
   --workbench-radius: 14px;
 }
 
-.topbar-sticky {
-  position: sticky;
-  top: 14px;
-  z-index: 80;
-  width: min(var(--max-width), calc(100% - 28px));
-  margin: 14px auto 0;
-  padding: 10px 14px 10px 18px;
-  border: 1px solid var(--glass-edge);
-  border-radius: var(--r-pill); /* Pill shaped rounded sides */
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
-  box-shadow: var(--glass-spec), var(--glass-ring), var(--shadow-md);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.topbar-brand {
-  min-width: 212px;
-  font-size: 1.3rem;
-}
-
-.topbar-actions {
-  width: 100%;
-  justify-content: space-between;
-}
-
-.topbar-view-nav {
-  flex: 1 1 auto;
-  justify-content: center;
-  gap: 18px;
-}
-
-.topbar-text-link {
-  min-height: 42px;
-  min-width: 116px;
-  padding: 0 18px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  color: #1b2740;
-  font-size: 0.92rem;
-  font-weight: 650;
-}
-
-.topbar-text-link:hover,
-.topbar-text-link.is-active,
-.topbar-text-link[aria-current="page"] {
-  border-color: rgba(31, 94, 214, 0.08);
-  background: var(--accent-soft);
-  color: var(--accent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
-}
-
-.topbar-utility-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex: 0 0 auto;
-}
-
-.topbar-icon-button,
 .icon-btn {
   width: 44px;
   height: 44px;
   min-width: 44px;
   border: 1px solid var(--workbench-border);
   border-radius: var(--r-tool);
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--g-surface);
   color: var(--text-strong);
   box-shadow: var(--shadow-inset), 0 6px 16px rgba(15, 23, 42, 0.035);
 }
 
-.topbar-icon-button {
-  appearance: none;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.topbar-icon-button svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 
 .icon-btn {
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--g-surface);
 }
 
-.icon-btn:hover,
-.topbar-icon-button:hover {
-  background: rgba(255, 255, 255, 0.94);
+.icon-btn:hover {
+  background: var(--g-surface);
   box-shadow: var(--shadow-inset), 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
@@ -189,7 +105,7 @@
 .all-button.is-active,
 .nav-group.is-active,
 .nav-group.is-view-active {
-  border-color: rgba(31, 94, 214, 0.08);
+  border-color: var(--g-line);
   background: var(--accent-soft);
 }
 
@@ -240,7 +156,7 @@
 .flashcard-panel,
 .endorsement-scenario-card {
   border-radius: 14px !important;
-  background: rgba(255, 255, 255, 0.74) !important;
+  background: var(--g-surface) !important;
   border-color: var(--workbench-border) !important;
   box-shadow: var(--workbench-shadow) !important;
 }
@@ -250,18 +166,6 @@
 }
 
 @media (max-width: 1180px) {
-  .topbar-sticky {
-    padding-inline: 16px;
-  }
-
-  .topbar-view-nav {
-    gap: 8px;
-  }
-
-  .topbar-text-link {
-    min-width: auto;
-    padding-inline: 12px;
-  }
 
 
   .layout {
@@ -274,29 +178,6 @@
 }
 
 @media (max-width: 900px) {
-  .topbar-sticky {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .topbar-brand {
-    min-width: auto;
-  }
-
-  .topbar-actions {
-    width: auto;
-    margin-left: auto;
-  }
-
-  .topbar-view-nav {
-    order: 3;
-    flex-basis: 100%;
-    justify-content: stretch;
-  }
-
-  .topbar-text-link {
-    flex: 1 1 0;
-  }
 
 
   .layout {
@@ -314,9 +195,9 @@
 .seo-regulatory-definition pre,
 .seo-regulatory-definitions > pre {
   padding: 14px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--g-line);
   border-radius: 10px;
-  background: #f8fafc;
+  background: var(--g-surface);
   font: 0.78rem/1.55 "JetBrains Mono", ui-monospace, monospace;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -324,65 +205,10 @@
 
 .seo-regulatory-definition {
   padding: 18px 0;
-  border-bottom: 1px dashed rgba(15, 23, 42, 0.1);
-}
-
-@media (max-width: 640px) {
-  .topbar-sticky {
-    padding: 12px;
-  }
-
-  .topbar-brand {
-    font-size: 1.08rem;
-  }
-
-  .topbar-brand-credit {
-    font-size: 0.62rem;
-  }
-
-  .topbar-utility-group {
-    display: none;
-  }
-
-  .topbar-text-link {
-    min-height: 36px;
-    padding-inline: 8px;
-    font-size: 0.75rem;
-  }
+  border-bottom: 1px dashed var(--g-line);
 }
 
 /* Regulatory Definitions & Instructor Decisions styling removed */
-
-@media (min-width: 901px) and (max-width: 1220px) {
-  .topbar-sticky {
-    grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr) !important;
-    gap: 10px !important;
-  }
-
-  .topbar-view-nav {
-    gap: 4px !important;
-  }
-
-  .topbar-text-link {
-    min-width: 0 !important;
-    padding-inline: 10px !important;
-    font-size: 0.8rem !important;
-  }
-
-}
-
-@media (max-width: 900px) {
-  .topbar-view-nav {
-    gap: 4px !important;
-  }
-
-  .topbar-text-link {
-    min-height: 40px !important;
-    padding-inline: 6px !important;
-    font-size: 0.75rem !important;
-    line-height: 1.15;
-  }
-}
 
 /* Final workbench corrections. These keep the redesigned shell consistent across views. */
 @media (min-width: 901px) {
@@ -441,8 +267,8 @@ p {
 }
 
 ::selection {
-  background: rgba(31, 94, 214, 0.14);
-  color: var(--text-strong);
+  background: var(--g-mid);
+  color: var(--g-key-ink);
 }
 
 [hidden] {
@@ -460,7 +286,6 @@ p {
   display: none;
 }
 
-.topbar-sticky,
 .filter-rail,
 .selection-summary,
 .endorsement-card,
@@ -474,15 +299,6 @@ p {
     0 0 0 1px var(--hairline);
 }
 
-/* Backdrop blur only where content actually scrolls beneath the element.
-   In-flow panels sit on the solid page background, so blurring it is
-   invisible but costs a compositing layer per element. */
-.topbar-sticky {
-  backdrop-filter: blur(var(--panel-blur)) saturate(180%);
-  -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(180%);
-}
-
-.topbar-sticky::after,
 .filter-rail::after,
 .selection-summary::after,
 .endorsement-card::after,
@@ -496,7 +312,6 @@ p {
   background: none;
 }
 
-.topbar-sticky > *,
 .filter-rail > *,
 .selection-summary > *,
 .endorsement-card > *,
@@ -505,53 +320,6 @@ p {
   z-index: 1;
 }
 
-
-.topbar-brand {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1rem;
-  min-width: 0;
-  max-width: 100%;
-  font-family: var(--display);
-  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--text-strong);
-  text-wrap: balance;
-}
-
-.topbar-brand-main {
-  display: block;
-  color: inherit;
-  line-height: 1;
-}
-
-.topbar-brand-credit {
-  display: block;
-  padding-left: 0;
-  color: #384358;
-  font-family: var(--sans);
-  font-size: 0.65em;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.topbar-brand-credit::before {
-  display: none;
-}
-
-.topbar-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.topbar-text-link,
 .footer-guidance-link {
   appearance: none;
   border: 0;
@@ -566,9 +334,7 @@ p {
   transition: color 160ms ease;
 }
 
-.topbar-text-link:hover,
 .footer-guidance-link:hover,
-.topbar-text-link.is-active,
 .footer-guidance-link.is-active {
   color: var(--text-strong);
 }
@@ -577,8 +343,8 @@ p {
   position: relative;
   appearance: none;
   border: 0;
-  background: linear-gradient(180deg, #1b2330 0%, #111827 100%);
-  color: #d5dce7;
+  background: linear-gradient(180deg,var(--g-raised),var(--g-surface));
+  color: var(--g-ink);
   box-shadow:
     0 12px 24px rgba(15, 23, 42, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -600,14 +366,14 @@ p {
 }
 
 .icon-btn:hover {
-  background: linear-gradient(180deg, #222b3a 0%, #141d2b 100%);
+  background: linear-gradient(180deg,var(--g-surface),var(--g-raised));
   box-shadow:
     0 16px 30px rgba(15, 23, 42, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .icon-btn:active {
-  background: #0f172a;
+  background: var(--g-well);
   box-shadow:
     0 8px 18px rgba(15, 23, 42, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -632,7 +398,7 @@ p {
 .empty-state button {
   appearance: none;
   border: 1px solid var(--hairline);
-  background: rgba(255, 255, 255, 0.36);
+  background: var(--g-surface);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   color: var(--text);
   transition:
@@ -649,7 +415,7 @@ p {
 .detail-toggle:hover,
 .empty-state button:hover {
   border-color: rgba(23, 32, 51, 0.1);
-  background: rgba(255, 255, 255, 0.54);
+  background: var(--g-surface);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.64),
     0 4px 16px rgba(23, 32, 51, 0.06);
@@ -664,7 +430,7 @@ p {
   overflow: hidden;
   border: 1px solid var(--hairline);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.28);
+  background: var(--g-surface);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.56);
 }
 
@@ -707,17 +473,6 @@ p {
   grid-template-columns: minmax(0, 1fr);
 }
 
-.topbar-view-nav {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.topbar-view-nav .topbar-text-link[aria-current="page"],
-.topbar-view-nav .topbar-text-link.is-active {
-  color: var(--text-strong);
-}
-
 .part61-panel,
 .part61-results-pane,
 .part61-calculator .field-group,
@@ -730,7 +485,7 @@ p {
   display: grid;
   gap: 12px;
   margin-top: 14px;
-  background: rgba(255, 255, 255, 0.46);
+  background: var(--g-surface);
 }
 
 .selection-reset,
@@ -796,7 +551,6 @@ p {
 .search-clear:focus-visible,
 .rail-close:focus-visible,
 .icon-btn:focus-visible,
-.topbar-text-link:focus-visible,
 .footer-guidance-link:focus-visible,
 .search-input:focus-visible,
 .search-suggestion:focus-visible,
@@ -805,22 +559,8 @@ p {
 .scope-filter-button:focus-visible,
 .related-chip:focus-visible,
 .empty-state button:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--g-accent);
   outline-offset: 3px;
-}
-
-@media (min-width: 901px) {
-  .topbar-sticky {
-    width: calc(min(var(--max-width), 100%) - 320px - 28px - 32px);
-    margin: 14px 16px 0 auto;
-    margin-right: max(16px, calc((100% - min(var(--max-width), 100%)) / 2 + 16px));
-  }
-}
-
-@media (min-width: 901px) and (max-width: 1100px) {
-  .topbar-sticky {
-    width: calc(min(var(--max-width), 100%) - 290px - 18px - 32px);
-  }
 }
 
 @media (max-width: 1100px) {
@@ -836,11 +576,6 @@ p {
 }
 
 @media (max-width: 900px) {
-  .topbar-sticky {
-    top: 10px;
-    width: calc(100% - 20px);
-    margin-top: 10px;
-  }
 
   .layout {
     grid-template-columns: 1fr;
@@ -850,53 +585,9 @@ p {
   .is-calculator-view .layout {
     grid-template-columns: 1fr;
   }
-
-  .topbar-text-link {
-    display: none;
-  }
-
-  .topbar-view-nav .topbar-text-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: 32px;
-    padding: 0 8px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.48);
-    color: var(--text-muted);
-    font-size: 0.74rem;
-  }
 }
 
 @media (max-width: 720px) {
-  .topbar-sticky {
-    padding: 9px 10px 9px 14px;
-  }
-
-  .topbar-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.16rem;
-    font-size: 1.02rem;
-  }
-
-  .topbar-brand-credit {
-    padding-left: 0;
-    font-size: 0.64em;
-    white-space: normal;
-  }
-
-  .topbar-brand-credit::before {
-    display: none;
-  }
-
-  .topbar-actions {
-    gap: 6px;
-  }
-
-  .topbar-view-nav {
-    gap: 5px;
-  }
 
   .layout {
     width: calc(100% - 20px);
@@ -938,7 +629,6 @@ p {
     color: #000000;
   }
 
-  .topbar-sticky,
   .filter-rail,
   .status-row,
   .filter-popover,
@@ -1011,89 +701,15 @@ p {
   min-height: 160px;
 }
 
-/* Final workbench cascade layer. Keep this at the end of the file. */
-.topbar-sticky {
-  top: 0;
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 14px 24px;
-  border: 0;
-  border-bottom: 1px solid var(--hairline);
-  border-radius: 0;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.035);
-}
-
-.topbar-actions {
-  width: 100%;
-  justify-content: space-between;
-}
-
-.topbar-brand {
-  min-width: 212px;
-  font-size: 1.3rem;
-}
-
-.topbar-view-nav {
-  flex: 1 1 auto;
-  justify-content: center;
-  gap: 18px;
-}
-
-.topbar-text-link {
-  min-height: 42px;
-  min-width: 116px;
-  padding: 0 18px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  color: #1b2740;
-  font-size: 0.92rem;
-  font-weight: 650;
-}
-
-.topbar-text-link:hover,
-.topbar-text-link.is-active,
-.topbar-text-link[aria-current="page"] {
-  border-color: rgba(31, 94, 214, 0.08);
-  background: var(--accent-soft);
-  color: var(--accent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
-}
-
-.topbar-utility-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.topbar-icon-button,
 .icon-btn {
   width: 44px;
   height: 44px;
   min-width: 44px;
   border: 1px solid var(--workbench-border);
   border-radius: var(--r-tool);
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--g-surface);
   color: var(--text-strong);
   box-shadow: var(--shadow-inset), 0 6px 16px rgba(15, 23, 42, 0.035);
-}
-
-.topbar-icon-button {
-  appearance: none;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.topbar-icon-button svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 
@@ -1116,7 +732,7 @@ p {
 .all-button.is-active,
 .nav-group.is-active,
 .nav-group.is-view-active {
-  border-color: rgba(31, 94, 214, 0.08);
+  border-color: var(--g-line);
   background: var(--accent-soft);
 }
 
@@ -1160,7 +776,7 @@ p {
 .flashcard-panel,
 .endorsement-scenario-card {
   border-radius: 14px !important;
-  background: rgba(255, 255, 255, 0.74) !important;
+  background: var(--g-surface) !important;
   border-color: var(--workbench-border) !important;
   box-shadow: var(--workbench-shadow) !important;
 }
@@ -1172,31 +788,6 @@ p {
 }
 
 @media (max-width: 900px) {
-  .topbar-sticky {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-inline: 12px;
-  }
-
-  .topbar-brand {
-    min-width: auto;
-  }
-
-  .topbar-actions {
-    width: auto;
-    margin-left: auto;
-  }
-
-  .topbar-view-nav {
-    order: 3;
-    flex-basis: 100%;
-    justify-content: stretch;
-  }
-
-  .topbar-text-link {
-    flex: 1 1 0;
-    min-width: 0;
-  }
 
 
   .layout {
@@ -1212,19 +803,6 @@ p {
 }
 
 @media (max-width: 640px) {
-  .topbar-brand {
-    font-size: 1.08rem;
-  }
-
-  .topbar-utility-group {
-    display: none;
-  }
-
-  .topbar-text-link {
-    min-height: 36px;
-    padding-inline: 8px;
-    font-size: 0.75rem;
-  }
 
   .detail-panel-head,
   .section-title-action,
@@ -1252,128 +830,6 @@ p {
 }
 
 /* Topbar geometry fix: stable brand / centered tabs / utility controls. */
-@media (min-width: 901px) {
-  .topbar-sticky {
-    display: grid !important;
-    grid-template-columns: minmax(220px, 1fr) auto minmax(260px, 1fr);
-    align-items: center;
-    gap: 18px;
-    min-height: 72px;
-    padding: 12px 24px;
-  }
-
-  .topbar-brand {
-    grid-column: 1;
-    justify-self: start;
-    min-width: 0;
-  }
-
-  .topbar-actions {
-    display: contents;
-  }
-
-  .topbar-view-nav {
-    grid-column: 2;
-    justify-self: center;
-    width: auto;
-    min-width: 0;
-  }
-
-  .topbar-utility-group {
-    grid-column: 3;
-    justify-self: end;
-    min-width: 0;
-  }
-}
-
-@media (max-width: 900px) {
-  .topbar-sticky {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "brand tools"
-      "nav nav";
-    align-items: center;
-    gap: 10px 12px;
-  }
-
-  .topbar-actions {
-    display: contents;
-  }
-
-  .topbar-brand {
-    grid-area: brand;
-    min-width: 0;
-  }
-
-  .topbar-view-nav {
-    grid-area: nav;
-    width: 100%;
-    justify-content: stretch;
-  }
-
-  .topbar-text-link {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .topbar-utility-group {
-    grid-area: tools;
-    justify-self: end;
-  }
-
-}
-
-@media (max-width: 640px) {
-  .topbar-utility-group {
-    display: none;
-  }
-}
-
-/* Uniform topbar final override: no view can restyle the global app navigation. */
-.topbar-sticky {
-  top: 0 !important;
-  width: 100% !important;
-  max-width: none !important;
-  min-height: 72px;
-  margin: 0 !important;
-  padding: 12px 24px;
-  border: 0;
-  border-bottom: 1px solid var(--hairline);
-  border-radius: 0 !important;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.035);
-}
-
-@media (min-width: 901px) {
-  .topbar-sticky {
-    display: grid !important;
-    grid-template-columns: minmax(220px, 1fr) auto minmax(260px, 1fr);
-    align-items: center;
-    gap: 18px;
-  }
-}
-
-@media (max-width: 900px) {
-  .topbar-sticky {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "brand tools"
-      "nav nav";
-    gap: 10px 12px;
-    z-index: 90;
-  }
-
-  .topbar-actions {
-    display: contents;
-  }
-
-  .topbar-utility-group {
-    display: none !important;
-  }
-}
-
 @media (min-width: 901px) and (max-width: 1180px) {
   .content-area {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -1388,66 +844,32 @@ p {
 }
 
 /* Keep the four-view navigation compact after all legacy topbar cascade layers. */
-@media (min-width: 901px) and (max-width: 1220px) {
-  .topbar-sticky {
-    grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr) !important;
-    gap: 10px !important;
-  }
-
-  .topbar-view-nav {
-    gap: 4px !important;
-  }
-
-  .topbar-text-link {
-    min-width: 0 !important;
-    padding-inline: 10px !important;
-    font-size: 0.8rem !important;
-  }
-
-}
-
-@media (max-width: 900px) {
-  .topbar-view-nav {
-    gap: 4px !important;
-  }
-
-  .topbar-text-link {
-    min-width: 0 !important;
-    min-height: 40px !important;
-    padding-inline: 6px !important;
-    font-size: 0.75rem !important;
-    line-height: 1.15;
-  }
-}
-
 /* ==========================================================================
    Canonical floating pill nav — tool pages (2026-07)
    Shares the .nav-wrap / .nav structure and assets/site-nav.js behavior
    with every page of suarezcfi.com (see assets/design-system.css).
-   Per-section theme families (accent / soft / line / ink):
-     body.theme-blue   → Simply Endorsed CFI  (bold blue)
-     body.theme-orange → CertPath   (bold orange)
+   Historical body classes remain compatibility hooks. Shared controls use
+   Aurum; app and category identity colors are supplied by their own data.
    ========================================================================== */
 
 body.theme-blue {
-  --tool-accent: #2563EB;
-  --tool-accent-bright: #3B82F6;
-  --tool-accent-deep: #1D4ED8;
-  --tool-soft: rgba(37, 99, 235, 0.13);
-  --tool-line: rgba(37, 99, 235, 0.42);
-  --tool-ink: #1E3A8A;
-  --tool-glow: rgba(37, 99, 235, 0.55);
+  --tool-accent: var(--g-accent);
+  --tool-accent-bright: var(--g-top);
+  --tool-accent-deep: var(--g-accent);
+  --tool-soft: var(--g-surface);
+  --tool-line: var(--g-line);
+  --tool-ink: var(--g-accent);
+  --tool-glow: color-mix(in srgb, var(--g-accent) 35%, transparent);
 
-  /* Interior accents: bold blue app chrome. Per-category endorsement
-     colors keep their own palette overrides and are untouched. */
-  --accent: #2563EB;
-  --accent-strong: #1D4ED8;
-  --accent-soft: rgba(37, 99, 235, 0.13);
-  --accent-ink: #1E3A8A;
-  --category-accent: #2563EB;
-  --category-soft: rgba(37, 99, 235, 0.13);
-  --category-line: rgba(37, 99, 235, 0.42);
-  --category-ink: #1E3A8A;
+  /* Category elements override all four category tokens with their data colors. */
+  --accent: var(--g-accent);
+  --accent-strong: var(--g-edge);
+  --accent-soft: var(--g-raised);
+  --accent-ink: var(--g-accent);
+  --category-accent: var(--g-accent);
+  --category-soft: var(--g-surface);
+  --category-line: var(--g-line);
+  --category-ink: var(--g-accent);
 }
 
 /* The pill nav is fixed (design-system.css); push the app shell below it. */
@@ -1484,7 +906,7 @@ body.theme-orange .app-shell {
 .nav-brand-divider {
   width: 1px;
   height: 26px;
-  background: rgba(13, 19, 48, 0.16);
+  background: var(--g-line);
   flex: none;
 }
 
@@ -1528,28 +950,28 @@ body.theme-orange .app-shell {
   width: 44px;
   height: 44px;
   border-radius: var(--r-pill, 999px);
-  background: var(--tool-ink);
-  box-shadow: 0 10px 20px -10px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  background: var(--g-raised);
+  box-shadow: var(--g-shadow), inset 0 1px 0 var(--g-glass-edge);
 }
 .nav--tool .icon-btn:hover {
-  background: var(--tool-accent-deep);
-  box-shadow: 0 12px 24px -10px var(--tool-glow), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  background: var(--g-surface);
+  box-shadow: var(--g-shadow), inset 0 1px 0 var(--g-glass-edge);
 }
 
-/* The canonical pill keeps its yellow+navy chrome on tool pages; the tool
-   accent survives only on in-app controls and the tool icon. */
+/* Controls use shared Aurum materials. App identities and category colors
+   remain available for meaningful labels and illustrations. */
 .theme-blue .icon-btn:focus-visible,
 .theme-orange .icon-btn:focus-visible,
 .theme-blue .nav-tool-mark:focus-visible,
 .theme-orange .nav-tool-mark:focus-visible {
-  outline: 2px solid var(--tool-accent);
+  outline: 2px solid var(--g-accent);
   outline-offset: 2px;
 }
 
 .theme-blue ::selection,
 .theme-orange ::selection {
-  background: var(--tool-soft);
-  color: var(--tool-ink);
+  background: var(--g-mid);
+  color: var(--g-key-ink);
 }
 
 /* Progressive trims so the pill never overflows */

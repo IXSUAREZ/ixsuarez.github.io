@@ -1,8 +1,8 @@
 /* ==========================================================================
    part61.css — CertPath app module
-   Wizard steps, step rail, results pane, theme-orange accent mapping.
+   Wizard steps, step rail, results pane, shared Aurum material mapping.
    Extracted from the pre-v9 monolithic endorsement-app stylesheet (v9.0.0 decomposition).
-   Load AFTER tool-core.css. Requires body.theme-orange.
+   Load AFTER tool-core.css. The legacy body.theme-orange class remains a compatibility hook.
    ========================================================================== */
 
 .part61-calculator {
@@ -90,9 +90,9 @@
 }
 
 .part61-calculator {
-  --part61-line: rgba(87, 99, 118, 0.16);
-  --part61-line-strong: rgba(87, 99, 118, 0.26);
-  --part61-soft: rgba(248, 250, 252, 0.74);
+  --part61-line: var(--g-line);
+  --part61-line-strong: var(--g-line);
+  --part61-soft: var(--g-surface);
   --part61-blue: var(--accent);
   --part61-green: #1f7a4c;
   --part61-green-soft: #edf8f1;
@@ -157,14 +157,6 @@
   inset: 16px auto 16px 0;
   width: 3px;
   border-radius: 999px;
-  background: linear-gradient(
-    180deg,
-    #4f46e5 0% 20%,
-    #16a34a 20% 40%,
-    #f59e0b 40% 60%,
-    #0ea5e9 60% 80%,
-    #7c3aed 80% 100%
-  );
 }
 
 .part61-kicker,
@@ -226,7 +218,7 @@
   border: 1px solid var(--part61-line-strong);
   border-radius: var(--r-tool);
   padding: 0 14px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--g-raised);
   color: var(--text-strong);
   cursor: pointer;
   font-size: 0.84rem;
@@ -248,23 +240,23 @@
 .part61-calculator .option-button:hover,
 .part61-calculator .icon-button:hover {
   border-color: color-mix(in srgb, var(--accent) 46%, white);
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--g-raised);
   transform: translateY(-1px);
 }
 
 .part61-button-primary,
 .part61-calculator .button.primary {
-  border-color: var(--accent);
-  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-  color: #fff;
-  box-shadow: 0 12px 24px rgba(31, 94, 214, 0.16);
+  border-color: var(--g-edge);
+  background: var(--g-gold);
+  color: var(--g-key-ink);
+  box-shadow: var(--g-shadow);
 }
 
 .part61-button-primary:hover,
 .part61-calculator .button.primary:hover {
-  border-color: var(--accent-strong);
-  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-  color: #fff;
+  border-color: var(--g-edge);
+  background: var(--g-gold);
+  color: var(--g-key-ink);
 }
 
 .part61-button-secondary,
@@ -391,7 +383,7 @@
   min-height: 42px;
   border: 1px solid var(--part61-line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--g-raised);
   color: var(--text-strong);
   padding: 0 12px;
   outline: none;
@@ -407,8 +399,8 @@
 .part61-number-field input:focus,
 .part61-calculator .number-field input:focus {
   border-color: color-mix(in srgb, var(--accent) 72%, white);
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 0 0 4px rgba(31, 94, 214, 0.12);
+  background: var(--g-raised);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-accent) 25%, transparent);
 }
 
 .part61-option-list,
@@ -435,8 +427,8 @@
 
 .part61-calculator .option-button.selected {
   border-color: color-mix(in srgb, var(--accent) 50%, white);
-  background: var(--accent-soft);
-  color: var(--accent-ink);
+  background: var(--g-gold);
+  color: var(--g-key-ink);
 }
 
 .part61-calculator .chip {
@@ -509,59 +501,6 @@
   color: var(--text-muted);
   font-size: 0.78rem;
   font-weight: 800;
-}
-
-.part61-zero-input-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 42px;
-  align-items: center;
-  gap: 8px;
-}
-
-.part61-zero-field-button {
-  width: 42px;
-  min-height: 42px;
-  border: 1px solid rgba(180, 35, 24, 0.28);
-  border-radius: var(--r-tool);
-  background: var(--part61-red-soft);
-  color: var(--part61-red);
-  cursor: pointer;
-  font-family: var(--mono);
-  font-size: 0.86rem;
-  font-weight: 800;
-  line-height: 1;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    background 160ms ease,
-    transform 120ms ease;
-}
-
-.part61-zero-field-button:hover {
-  border-color: rgba(180, 35, 24, 0.52);
-  background: #ffe5e3;
-  box-shadow: 0 8px 18px rgba(180, 35, 24, 0.12);
-}
-
-.part61-zero-field-button:focus-visible {
-  outline: none;
-  border-color: rgba(180, 35, 24, 0.72);
-  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.14);
-}
-
-.part61-zero-field-button:active {
-  transform: translateY(1px);
-}
-
-@media (max-width: 640px) {
-  .part61-zero-input-row {
-    grid-template-columns: minmax(0, 1fr) 46px;
-  }
-
-  .part61-zero-field-button {
-    width: 46px;
-    min-height: 46px;
-  }
 }
 
 .part61-number-field.field-invalid input,
@@ -841,8 +780,8 @@
 .part61-calculator .tag-optimized,
 .part61-calculator .tag-event,
 .part61-calculator .tag-time-building {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--g-raised);
+  color: var(--g-ink);
 }
 
 .part61-cfi-readout,
@@ -854,7 +793,7 @@
 .part61-calculator .empty-state {
   border: 1px solid var(--part61-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.58);
+  background: var(--part61-soft);
   color: var(--text);
   padding: 12px;
   font-size: 0.88rem;
@@ -1427,11 +1366,11 @@
 
 @keyframes part61FreshPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(31, 94, 214, 0.35);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--g-accent) 35%, transparent);
   }
 
   100% {
-    box-shadow: 0 0 0 18px rgba(31, 94, 214, 0);
+    box-shadow: 0 0 0 18px color-mix(in srgb, var(--g-accent) 0%, transparent);
   }
 }
 
@@ -1466,41 +1405,6 @@
   border: 0;
   background: transparent;
   padding: 0;
-}
-
-.part61-results-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.part61-results-tabs [role="tab"] {
-  appearance: none;
-  min-height: 38px;
-  border: 1px solid var(--part61-line-strong);
-  border-radius: 999px;
-  padding: 0 16px;
-  background: rgba(255, 255, 255, 0.72);
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 800;
-  transition:
-    border-color 160ms ease,
-    background 160ms ease,
-    color 160ms ease;
-}
-
-.part61-results-tabs [role="tab"]:hover {
-  border-color: color-mix(in srgb, var(--accent) 46%, white);
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.part61-results-tabs [role="tab"].active {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent-ink);
 }
 
 .part61-results-tabpanel {
@@ -1921,7 +1825,6 @@
 }
 
 @media print {
-  .part61-results-tabs,
   .part61-mobile-bar,
   .part61-stale-banner,
   .part61-draft-notice,
@@ -2075,7 +1978,7 @@
   .part61-workbench[data-active-step="5"] .part61-results-pane {
     border-color: var(--accent);
     box-shadow:
-      0 0 0 4px rgba(31, 94, 214, 0.12),
+      0 0 0 4px color-mix(in srgb, var(--g-accent) 12%, transparent),
       var(--workbench-shadow);
     transition:
       border-color 220ms ease,
@@ -2136,60 +2039,10 @@
   color: #fff !important;
 }
 
-/* ============================================================
-   CertPath — per-step color theming
-   Mirrors the endorsement CATEGORY_THEMES palette system
-   (accent / soft / line / ink) so each step and results section
-   carries its own color family, like the endorsement categories.
-   ============================================================ */
+/* The current step palette is defined once in the Aurum block below.
+   Endorsement and result categories retain their separate meaning colors. */
 
-/* Step 1 — Current credentials (indigo, matches practical-test-prereqs) */
-.part61-panel[data-step="1"],
-.part61-step-rail .part61-rail-item:nth-child(1) {
-  --p61-step-accent: #4f46e5;
-  --p61-step-soft: #f1f0fd;
-  --p61-step-line: #d3d1f9;
-  --p61-step-ink: #4338ca;
-}
-
-/* Step 2 — Costs (green, matches sport-pilot) */
-.part61-panel[data-step="2"],
-.part61-step-rail .part61-rail-item:nth-child(2) {
-  --p61-step-accent: #16a34a;
-  --p61-step-soft: #ecf8f1;
-  --p61-step-line: #c5e8d2;
-  --p61-step-ink: #0b7633;
-}
-
-/* Step 3 — Hours (amber, matches student-pilot) */
-.part61-panel[data-step="3"],
-.part61-step-rail .part61-rail-item:nth-child(3) {
-  --p61-step-accent: #f59e0b;
-  --p61-step-soft: #fef7eb;
-  --p61-step-line: #fde7c2;
-  --p61-step-ink: #b37000;
-}
-
-/* Step 4 — Target path (sky, matches private-pilot) */
-.part61-panel[data-step="4"],
-.part61-step-rail .part61-rail-item:nth-child(4) {
-  --p61-step-accent: #0ea5e9;
-  --p61-step-soft: #ecf8fd;
-  --p61-step-line: #c3e9fa;
-  --p61-step-ink: #0476a9;
-}
-
-/* Step 5 — Review & share (purple) */
-.part61-panel[data-step="5"],
-.part61-step-rail .part61-rail-item:nth-child(5) {
-  --p61-step-accent: #7c3aed;
-  --p61-step-soft: #f4effe;
-  --p61-step-line: #e0d3fb;
-  --p61-step-ink: #6023c0;
-}
-
-/* Colored left accent bar on each step panel (same language as
-   .endorsement-card::before) */
+/* Gold left accent bar on each step panel. */
 .part61-panel::before {
   content: "";
   position: absolute;
@@ -2200,7 +2053,7 @@
   opacity: 0.75;
 }
 
-/* Panel lights up in its own color while you work in it */
+/* Panel focus uses the shared gold accent. */
 .part61-panel:focus-within {
   border-color: color-mix(in srgb, var(--p61-step-accent, var(--accent)) 38%, white);
   box-shadow:
@@ -2223,7 +2076,7 @@
   font-size: 0.66rem;
 }
 
-/* Step rail numbers pick up their step color */
+/* Step rail numbers use the shared accent tokens. */
 .part61-rail-item span {
   border-color: var(--p61-step-line, var(--part61-line));
   background: var(--p61-step-soft, rgba(255, 255, 255, 0.64));
@@ -2235,15 +2088,12 @@
   color: var(--p61-step-ink, var(--accent-ink));
 }
 
-/* Primary "next" button inside a step follows the step color */
+/* Primary next actions use the shared metallic material. */
 .part61-panel .part61-button-primary {
-  border-color: var(--p61-step-ink, var(--accent));
-  background: linear-gradient(
-    180deg,
-    var(--p61-step-ink, var(--accent)),
-    color-mix(in srgb, var(--p61-step-ink, var(--accent-strong)) 82%, black)
-  );
-  box-shadow: 0 12px 24px color-mix(in srgb, var(--p61-step-accent, var(--accent)) 16%, transparent);
+  border-color: var(--g-edge);
+  background: var(--g-gold);
+  box-shadow: var(--g-shadow);
+  color: var(--g-key-ink);
 }
 
 /* ---------- Results pane ---------- */
@@ -2299,53 +2149,6 @@
   border-radius: 3px;
   background: var(--p61-section-accent, var(--accent));
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--p61-section-accent, var(--accent)) 16%, white);
-}
-
-/* Results tabs: one color per tab with a swatch dot */
-.part61-results-tabs [data-results-tab="plan"] {
-  --p61-tab-accent: var(--accent);
-  --p61-tab-soft: var(--accent-soft);
-  --p61-tab-ink: var(--accent-ink);
-}
-
-.part61-results-tabs [data-results-tab="endorsements"] {
-  --p61-tab-accent: #16a34a;
-  --p61-tab-soft: #ecf8f1;
-  --p61-tab-ink: #0b7633;
-}
-
-.part61-results-tabs [data-results-tab="ledger"] {
-  --p61-tab-accent: #f59e0b;
-  --p61-tab-soft: #fef7eb;
-  --p61-tab-ink: #b37000;
-}
-
-.part61-results-tabs [data-results-tab="rules"] {
-  --p61-tab-accent: #7c3aed;
-  --p61-tab-soft: #f4effe;
-  --p61-tab-ink: #6023c0;
-}
-
-.part61-results-tabs [role="tab"]::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 8px;
-  border-radius: 999px;
-  background: var(--p61-tab-accent, var(--accent));
-  opacity: 0.85;
-}
-
-.part61-results-tabs [role="tab"]:hover {
-  border-color: color-mix(in srgb, var(--p61-tab-accent, var(--accent)) 46%, white);
-  background: color-mix(in srgb, var(--p61-tab-soft, var(--accent-soft)) 40%, white);
-}
-
-.part61-results-tabs [role="tab"].active {
-  border-color: var(--p61-tab-accent, var(--accent));
-  background: var(--p61-tab-soft, var(--accent-soft));
-  color: var(--p61-tab-ink, var(--accent-ink));
 }
 
 /* Step 5 review metric cards: cost = green, hours = amber,
@@ -2519,66 +2322,63 @@
   color: var(--grp-ink);
 }
 
-/* ============================================================
-   Logged Events: teal family
-   ============================================================ */
+/* Logged Events use the shared material palette; completion status stays distinct. */
 .part61-panel[data-step="3"] .part61-subhead-row {
   padding: 8px 12px;
-  border: 1px solid #c3e4e1;
+  border: 1px solid var(--g-line);
   border-radius: 10px;
-  background: #ecf6f5;
+  background: var(--g-surface);
 }
 
 .part61-panel[data-step="3"] .part61-subhead-row h4 {
-  color: #056b62;
+  color: var(--g-ink);
 }
 
 .part61-panel[data-step="3"] .part61-subhead-row .part61-text-button {
-  color: #056b62;
+  color: var(--g-accent);
 }
 
 .part61-event-group {
-  border-color: #c3e4e1;
-  border-left: 3px solid #0d9488;
+  border-color: var(--g-line);
+  border-left: 3px solid var(--g-edge);
 }
 
 .part61-event-group summary {
-  color: #056b62;
+  color: var(--g-ink);
 }
 
 .part61-event-group summary .group-completion {
-  border-color: #c3e4e1;
-  color: #056b62;
+  border-color: var(--g-line);
+  color: var(--g-accent);
 }
 
 body.theme-orange {
-  --tool-accent: #EA580C;
-  --tool-accent-bright: #F97316;
-  --tool-accent-deep: #C2410C;
-  --tool-soft: rgba(234, 88, 12, 0.12);
-  --tool-line: rgba(234, 88, 12, 0.42);
-  --tool-ink: #7C2D12;
-  --tool-glow: rgba(234, 88, 12, 0.5);
+  --tool-accent: var(--g-accent);
+  --tool-accent-bright: var(--g-top);
+  --tool-accent-deep: var(--g-edge);
+  --tool-soft: color-mix(in srgb, var(--g-accent) 12%, transparent);
+  --tool-line: color-mix(in srgb, var(--g-accent) 42%, transparent);
+  --tool-ink: var(--g-accent);
+  --tool-glow: color-mix(in srgb, var(--g-accent) 50%, transparent);
 
-  /* Interior accents: bold orange app chrome. Per-step calculator
-     colors keep their own palette overrides and are untouched. */
-  --accent: #EA580C;
-  --accent-strong: #C2410C;
-  --accent-soft: rgba(234, 88, 12, 0.12);
-  --accent-ink: #7C2D12;
-  --category-accent: #EA580C;
-  --category-soft: rgba(234, 88, 12, 0.12);
-  --category-line: rgba(234, 88, 12, 0.42);
-  --category-ink: #7C2D12;
+  /* Interior accents: shared Aurum app chrome. */
+  --accent: var(--g-accent);
+  --accent-strong: var(--g-edge);
+  --accent-soft: color-mix(in srgb, var(--g-accent) 12%, transparent);
+  --accent-ink: var(--g-accent);
+  --category-accent: var(--g-accent);
+  --category-soft: color-mix(in srgb, var(--g-accent) 12%, transparent);
+  --category-line: color-mix(in srgb, var(--g-accent) 42%, transparent);
+  --category-ink: var(--g-accent);
 }
 
 /* ===== Part 61 wizard steps 1-4 visual refresh — final cascade, keep last ===== */
 
 /* --------------------------------------------------------------------------
-   1. Theme coherence: collapse the rainbow per-step accents into the single
-      orange brand family. Panels keep their --p61-step-* tokens so the
+   1. Theme coherence: set the single shared gold material family. Panels keep
+      their --p61-step-* tokens so the
       existing kicker pill, focus-within ring, and left accent bar rules
-      re-resolve in orange automatically. Rail items are all orange so the
+      re-resolve from the shared tokens. Rail items share the accent so the
       stepper reads as one cohesive control.
    -------------------------------------------------------------------------- */
 .part61-panel[data-step="1"],
@@ -2591,13 +2391,12 @@ body.theme-orange {
 .part61-step-rail .part61-rail-item:nth-child(4),
 .part61-step-rail .part61-rail-item:nth-child(5) {
   --p61-step-accent: var(--accent);
-  --p61-step-soft: rgba(234, 88, 12, 0.10);
-  --p61-step-line: rgba(234, 88, 12, 0.35);
-  --p61-step-ink: #7C2D12;
+  --p61-step-soft: color-mix(in srgb, var(--g-accent) 10%, transparent);
+  --p61-step-line: color-mix(in srgb, var(--g-accent) 35%, transparent);
+  --p61-step-ink: var(--g-accent);
 }
 
-/* Orange focus rings for every text-like control in the calculator
-   (replaces the hardcoded blue ring rgba(31, 94, 214, 0.12)). */
+/* Shared Aurum focus treatment for text-like controls. */
 .part61-calculator .part61-text-input:focus,
 .part61-calculator .part61-number-field input:focus,
 .part61-calculator select:focus,
@@ -2605,8 +2404,8 @@ body.theme-orange {
 .part61-calculator input[type="number"]:focus,
 .part61-calculator input[type="text"]:focus {
   border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.14);
+  background: var(--g-raised);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-accent) 25%, transparent);
 }
 
 /* Invalid fields keep the red ring even while focused. */
@@ -2616,31 +2415,32 @@ body.theme-orange {
   box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.10);
 }
 
-/* Orange-tinted primary button shadow (was blue rgba(31, 94, 214, 0.16)). */
+/* Shared metallic primary action material. */
 .part61-calculator .part61-button-primary {
-  border-color: var(--accent);
-  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-  box-shadow: 0 12px 24px -6px rgba(234, 88, 12, 0.32);
+  border-color: var(--g-edge);
+  background: var(--g-gold);
+  box-shadow: var(--g-shadow);
+  color: var(--g-key-ink);
 }
 
-/* Re-declared last so the "fresh result" pulse animates in orange. */
+/* Re-declared last so the "fresh result" pulse uses the shared accent. */
 @keyframes part61FreshPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.35);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--g-accent) 35%, transparent);
   }
 
   100% {
-    box-shadow: 0 0 0 18px rgba(234, 88, 12, 0);
+    box-shadow: 0 0 0 18px color-mix(in srgb, var(--g-accent) 0%, transparent);
   }
 }
 
-/* Header accent bar: single orange gradient instead of the rainbow strip. */
+/* Header accent bar: shared metallic gold. */
 .part61-calculator-header::before {
-  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  background: var(--g-gold);
 }
 
 /* --------------------------------------------------------------------------
-   2. Step rail → real stepper: circle + label rows, orange active state,
+   2. Step rail → real stepper: circle + label rows, gold active state,
       green completed state with a CSS-only check glyph, and a subtle
       vertical connector between circles on the desktop (vertical) rail.
    -------------------------------------------------------------------------- */
@@ -2801,7 +2601,7 @@ body.theme-orange {
 .part61-panel[data-step="3"] .part61-nav-group .part61-button-secondary:hover,
 .part61-panel[data-step="4"] .part61-nav-group .part61-button-secondary:hover {
   border-color: var(--accent);
-  background: rgba(234, 88, 12, 0.06);
+  background: color-mix(in srgb, var(--g-accent) 6%, transparent);
   color: var(--accent-ink);
 }
 
@@ -2812,7 +2612,7 @@ body.theme-orange {
 
 /* --------------------------------------------------------------------------
    5. Step 1 — Current credentials: taller search input, pill toggles,
-      orange chips, selectable flag cards.
+      gold selected chips, selectable flag cards.
    -------------------------------------------------------------------------- */
 .part61-calculator .part61-text-input {
   min-height: 46px;
@@ -2827,18 +2627,18 @@ body.theme-orange {
 
 .part61-calculator .option-button:hover {
   border-color: var(--accent);
-  background: rgba(234, 88, 12, 0.06);
+  background: color-mix(in srgb, var(--g-accent) 6%, transparent);
 }
 
 .part61-calculator .option-button.selected {
   border-color: var(--accent);
-  background: rgba(234, 88, 12, 0.10);
-  color: #7C2D12;
+  background: color-mix(in srgb, var(--g-accent) 10%, transparent);
+  color: var(--g-accent);
   font-weight: 800;
 }
 
 .part61-calculator .chip button:hover {
-  background: rgba(234, 88, 12, 0.16);
+  background: color-mix(in srgb, var(--g-accent) 16%, transparent);
 }
 
 .part61-calculator .part61-check-row {
@@ -2851,18 +2651,18 @@ body.theme-orange {
 
 .part61-calculator .part61-check-row:hover {
   border-color: var(--accent);
-  background: rgba(234, 88, 12, 0.05);
+  background: color-mix(in srgb, var(--g-accent) 5%, transparent);
 }
 
 .part61-calculator .part61-check-row:has(input:checked) {
   border-color: var(--accent);
-  background: rgba(234, 88, 12, 0.10);
+  background: color-mix(in srgb, var(--g-accent) 10%, transparent);
 }
 
 /* --------------------------------------------------------------------------
    6. Step 2 — Cost assumptions: CSS-only "$" prefix inside the rate inputs
       (label wraps span + input; the glyph is anchored to the input row),
-      and the dual-rate summary becomes an orange hero pill.
+      and the dual-rate summary becomes a shared-accent summary pill.
    -------------------------------------------------------------------------- */
 .part61-calculator label.part61-number-field {
   position: relative;
@@ -2888,9 +2688,9 @@ body.theme-orange {
 .part61-rate-summary span:first-child:not(.part61-rate-warning) {
   min-height: 34px;
   padding: 0 14px;
-  border-color: rgba(234, 88, 12, 0.35);
-  background: rgba(234, 88, 12, 0.10);
-  color: #7C2D12;
+  border-color: color-mix(in srgb, var(--g-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--g-accent) 10%, transparent);
+  color: var(--g-accent);
   font-size: 0.8rem;
   font-weight: 800;
 }
@@ -2908,10 +2708,10 @@ body.theme-orange {
   box-shadow: none;
 }
 
-/* "Logged Events" subhead: warm orange instead of the legacy teal. */
+/* Logged Events uses the shared accent; event categories retain their colors. */
 .part61-panel[data-step="3"] .part61-subhead-row {
-  border-color: rgba(234, 88, 12, 0.35);
-  background: rgba(234, 88, 12, 0.08);
+  border-color: color-mix(in srgb, var(--g-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--g-accent) 8%, transparent);
 }
 
 .part61-panel[data-step="3"] .part61-subhead-row h4,
@@ -2935,7 +2735,7 @@ body.theme-orange {
 }
 
 .part61-event-group summary:hover {
-  background: rgba(234, 88, 12, 0.05);
+  background: color-mix(in srgb, var(--g-accent) 5%, transparent);
 }
 
 .part61-event-group summary::after {
@@ -2971,8 +2771,8 @@ body.theme-orange {
 }
 
 .part61-event-grid .check-row:hover {
-  border-color: rgba(234, 88, 12, 0.35);
-  background: rgba(234, 88, 12, 0.05);
+  border-color: color-mix(in srgb, var(--g-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--g-accent) 5%, transparent);
 }
 
 /* --------------------------------------------------------------------------
@@ -3030,12 +2830,12 @@ body.theme-orange {
   border: 1.5px dashed var(--part61-line-strong);
   border-radius: 12px;
   background: transparent;
-  color: #7C2D12;
+  color: var(--g-accent);
 }
 
 #part61AddStageBtn:hover {
   border-color: var(--accent);
-  background: rgba(234, 88, 12, 0.08);
+  background: color-mix(in srgb, var(--g-accent) 8%, transparent);
   color: var(--accent-ink);
 }
 
@@ -3082,8 +2882,12 @@ body.theme-orange {
 .part61-step-rail .part61-rail-item span {
   position: relative;
   z-index: 2;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85);
+  background: var(--g-raised);
+  box-shadow: 0 0 0 4px var(--g-bg);
+}
+
+.part61-step-rail .part61-rail-item.is-complete span {
+  background: #15803D;
 }
 
 /* The floating status dot is redundant now — the circle itself shows state. */
@@ -3123,12 +2927,12 @@ body.theme-orange {
 /* Connect the secondary actions into a single pill-like group. */
 .part61-calculator .part61-header-actions .part61-button-secondary {
   border-color: var(--part61-line);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--g-raised);
 }
 
 .part61-calculator .part61-header-actions .part61-button-secondary:hover {
   border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--g-raised);
   transform: none;
 }
 
@@ -3151,11 +2955,11 @@ body.theme-orange {
 /* Print stands alone as the primary action. */
 .part61-calculator .part61-header-actions .part61-button-primary {
   padding: 0 16px;
-  box-shadow: 0 8px 18px -6px rgba(234, 88, 12, 0.28);
+  box-shadow: var(--g-shadow);
 }
 
 .part61-calculator .part61-header-actions .part61-button-primary:hover {
-  box-shadow: 0 10px 22px -6px rgba(234, 88, 12, 0.36);
+  box-shadow: var(--g-shadow);
 }
 
 /* Mobile: don't try to connect buttons when they wrap onto multiple lines. */
@@ -3183,4 +2987,3 @@ body.theme-orange {
     font-size: 0.74rem;
   }
 }
-

@@ -54,3 +54,16 @@ test('existing steppers are not duplicated and implicit labels remain isolated',
  for(let i=0;i<10;i++)p.doc.querySelectorAll('.av-step-key')[1].click();assert.equal(p.doc.querySelector('label input').value,'3');assert.deepEqual(p.errors,[]);
  }finally{p.close();}
 });
+test('dynamic class replacement restores tactile controls without touching native buttons',async()=>{
+ const p=await fixture('<button id="dynamic" class="overlay-toggle selected" aria-pressed="true">Particle trails</button><button id="native" data-native-control class="native-key">Native</button>');try{
+  const button=p.doc.querySelector('#dynamic'),native=p.doc.querySelector('#native');
+  assert(button.classList.contains('av-control'));
+  button.className='overlay-toggle';await pause();
+  assert(button.classList.contains('av-control'));
+  button.className='overlay-toggle selected';await pause();
+  assert(button.classList.contains('av-control'));
+  native.className='native-key active';await pause();
+  assert(!native.classList.contains('av-control'));
+  assert.deepEqual(p.errors,[]);
+ }finally{p.close();}
+});

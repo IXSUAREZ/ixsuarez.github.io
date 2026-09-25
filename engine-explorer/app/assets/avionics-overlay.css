@@ -1,22 +1,21 @@
 /* Crank & Core keeps its model and simulation colors; these tokens style the UI. */
-:root[data-suarez-theme="dark"]{--cc-bg:#101418;--cc-panel:#1b2228;--cc-raised:#26313a;--cc-ink:#edf3f7;--cc-muted:#afc0ca;--cc-line:#4b5b68;--cc-accent:#71ddeb;--cc-stage:#171d23;--cc-dock:rgba(24,32,39,.94)}
-:root[data-suarez-theme="light"]{--cc-bg:#e8edf0;--cc-panel:#f8fafb;--cc-raised:#fff;--cc-ink:#182630;--cc-muted:#4c606e;--cc-line:#9cabb5;--cc-accent:#006878;--cc-stage:#dde5e9;--cc-dock:rgba(239,245,248,.96)}
+:root{--cc-bg:var(--g-bg);--cc-panel:var(--g-surface);--cc-raised:var(--g-raised);--cc-ink:var(--g-ink);--cc-muted:var(--g-muted);--cc-line:var(--g-line);--cc-accent:var(--g-accent);--cc-stage:var(--g-well);--cc-dock:var(--g-glass)}
 :root{--ink:var(--cc-ink);--muted:var(--cc-muted);--line:var(--cc-line);--glass:var(--cc-raised);--gold:var(--cc-accent);--brand-copper:var(--cc-accent);--brand-copper-dark:var(--cc-accent);color:var(--cc-ink);background:var(--cc-bg)}
 html,body{width:100%;height:100%;margin:0;padding:0!important;background:var(--cc-bg);color:var(--cc-ink)}
 body .app,body .fi-app.fi-collection{background:var(--cc-bg);color:var(--cc-ink)}
 body .viewport,body .collection .viewport,body .fi-app.fi-collection .viewport,body .app.explorer{background:var(--cc-stage)}
 body .viewport{background-image:radial-gradient(circle at 50% 42%,var(--cc-raised),var(--cc-stage) 68%)}
-body button,body select,body input{color:var(--cc-ink);border-color:var(--cc-line);background:var(--cc-raised);border-radius:6px;box-shadow:inset 0 1px #ffffff18,0 2px 2px #0003;backdrop-filter:none;transition:background-color .12s,border-color .12s,box-shadow .12s}
+body button,body select,body input{color:var(--cc-ink);border-color:var(--cc-line);background:var(--cc-raised);border-radius:6px;box-shadow:inset 0 1px #ffffff18,0 2px 2px #0003;backdrop-filter:none;transition:background-color .22s,border-color .22s,box-shadow .22s,transform .1s}
 body button:hover:not(:disabled){background:var(--cc-panel);border-color:var(--cc-accent);color:var(--cc-ink)}
-body button[aria-pressed=true],body button[aria-expanded=true]{background:var(--cc-raised);border-color:var(--cc-accent);color:var(--cc-accent);box-shadow:inset 0 -3px var(--cc-accent)}
+body button[aria-pressed=true],body button[aria-expanded=true]{background:var(--g-gold)!important;border-color:var(--g-edge)!important;color:var(--g-key-ink)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
 body button:focus-visible,body a:focus-visible,body input:focus-visible,body select:focus-visible,body summary:focus-visible{outline:3px solid var(--av-focus,var(--cc-accent));outline-offset:2px}
 body a,body .eyebrow,body .fi-eyebrow,body .kicker,body .fi-card-index,body .fi-range output{color:var(--cc-accent)}
 body :is(.topbar,.preset-bar,.sidebar,.inspector,.learning-guide,.explorer-panel,.explorer-panel-header,.resource-menu>div,.source-gate,.fi-evidence-card,.fi-study-picker button,.fi-instrument-grid button,.fi-inspection-tabs,.fi-live-face,.fi-lesson,.category-picker,.audit-dialog){background:var(--cc-panel);color:var(--cc-ink);border-color:var(--cc-line);backdrop-filter:none}
 body :is(.product-wordmark h1,.collection-intro h2,.engine-context strong,.fi-collection-intro h2,.fi-collection-footer strong,.fi-focus-title h2,.explorer-panel h2,.fi-controls h3,.fi-resources h3){color:var(--cc-ink)}
 body :is(.product-descriptor,.product-wordmark p,.collection-intro>p:last-child,.collection-specs span,.fi-study-picker span,.fi-instrument-grid button>span:last-child,.fi-controls p,.fi-resources p,.fi-note,.explorer-resources p,.fi-readout,.engine-context>span,.fi-collection-intro>p:not(.kicker),.fi-collection-footer>div>span:last-child,.fi-evidence-card span,.fi-part-row span,.fi-breadcrumb){color:var(--cc-muted)}
 body .engine-title{color:var(--cc-line)}
-body .engine-choice,body .fi-explore,body .fi-demo-button{background:var(--cc-accent)!important;border-color:var(--cc-accent)!important;color:var(--cc-bg)!important;border-radius:6px}
-body .engine-switcher button[aria-pressed="true"],body .fi-study-picker button[aria-pressed=true],body .fi-instrument-grid button.is-active,body .category-picker button[aria-pressed=true],body .fi-inspection-tabs button[aria-pressed=true]{border-color:var(--cc-accent)!important;background:var(--cc-raised)!important;color:var(--cc-accent)!important}
+body .engine-choice,body .fi-explore,body .fi-demo-button{background:var(--g-gold)!important;border-color:var(--g-edge)!important;color:var(--g-key-ink)!important;border-radius:6px}
+body .engine-switcher button[aria-pressed="true"],body .fi-study-picker button[aria-pressed=true],body .fi-instrument-grid button.is-active,body .category-picker button[aria-pressed=true],body .fi-inspection-tabs button[aria-pressed=true]{border-color:var(--g-edge)!important;background:var(--g-gold)!important;color:var(--g-key-ink)!important}
 body .app.explorer{--gutter:16px;--panel-width:320px}
 body .app.explorer .workspace .viewport .canvas-host{inset:0 12px 72px}
 body .app.explorer.panel-open.panel-left .workspace .viewport .canvas-host{left:calc(var(--panel-width) + 28px)}
@@ -38,11 +37,11 @@ body .dock-destinations::-webkit-scrollbar{display:none}
 body .dock-quick{padding-left:5px;border-left:1px solid var(--cc-line)}
 body .explorer-dock .rail-button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:56px;min-height:54px;width:auto;flex:1;padding:4px 6px;border:1px solid var(--cc-line);border-radius:5px;background:var(--cc-raised);color:var(--cc-ink);box-shadow:inset 0 1px #ffffff18,0 2px 2px #0004}
 body .explorer-dock .rail-button span{font-size:11px;line-height:1;font-weight:600;white-space:nowrap}
-body .explorer-dock .rail-button[aria-expanded=true]{color:var(--cc-accent);border-color:var(--cc-accent);box-shadow:inset 0 -3px var(--cc-accent)}
+body .explorer-dock .rail-button[aria-expanded=true]{background:var(--g-gold);color:var(--g-key-ink);border-color:var(--g-edge);box-shadow:inset 0 1px #fff8,0 2px 3px #0002}
 body .explorer-menu{position:relative;flex:0 0 68px}
 body .explorer-menu>summary{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:54px;list-style:none;cursor:pointer;background:var(--cc-raised);border:1px solid var(--cc-line);border-radius:5px;color:var(--cc-ink);font-size:11px;font-weight:600}
 body .explorer-menu>summary::-webkit-details-marker{display:none}
-body .explorer-menu[open]>summary{color:var(--cc-accent);border-color:var(--cc-accent)}
+body .explorer-menu[open]>summary{background:var(--g-gold);color:var(--g-key-ink);border-color:var(--g-edge)}
 body .explorer-menu-panel{position:absolute;bottom:calc(100% + 12px);right:-6px;display:grid;gap:12px;width:min(340px,calc(100vw - 24px));max-height:calc(100dvh - 120px);overflow:auto;padding:14px;background:var(--cc-dock);border:1px solid var(--cc-line);border-radius:9px;box-shadow:0 8px 28px #0008;backdrop-filter:blur(14px)}
 body .explorer-menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 body .explorer-menu-actions button{justify-content:flex-start;min-height:44px;font-size:13px}
@@ -169,10 +168,93 @@ html body .explorer-dock[data-tactile-dock]{height:auto;box-sizing:border-box;co
 html body .explorer-dock [data-dock-key]{color:var(--av-ink);min-height:48px;height:auto}
 html body .explorer-dock[data-tactile-dock].av-dock-collapsed{min-height:48px;padding-block:1px}
 html body .explorer-dock.av-dock-collapsed [data-dock-key]{min-height:44px}
-html body .explorer-dock .rail-button[aria-expanded=true]{color:var(--av-cyan)}
+html body .explorer-dock .rail-button[aria-expanded=true]{color:var(--g-key-ink)}
 /* Binary engine options expose a metal rocker without changing their semantics. */
 body .explorer-panel button[role="switch"]{position:relative;padding-inline-end:68px;min-height:44px}
+body .explorer-panel button[role="switch"][aria-checked="true"]{background:var(--cc-raised);color:var(--cc-ink);border-color:var(--g-edge)}
 body .explorer-panel button[role="switch"]::before{content:"";position:absolute;right:10px;top:calc(50% - 14px);width:46px;height:28px;border:1px solid var(--av-metal-edge);border-radius:9px;background:var(--av-bg);box-shadow:inset 0 2px 4px #0006;box-sizing:border-box}
 body .explorer-panel button[role="switch"]::after{content:"";position:absolute;right:34px;top:calc(50% - 10px);width:18px;height:20px;border-radius:5px;background:linear-gradient(145deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:var(--av-contact-shadow)}
 body .explorer-panel button[role="switch"][aria-checked="true"]::after{right:14px;border-inline-end:2px solid var(--av-cyan)}
-body .explorer-panel button[role="switch"][aria-checked="true"]::before{background:var(--av-control-tint);border-color:var(--av-cyan)}
+body .explorer-panel button[role="switch"][aria-checked="true"]::before{background:var(--g-gold);border-color:var(--g-edge)}
+
+/* Material fallbacks leave solid reading panels and model colors intact. */
+@media(prefers-reduced-transparency:reduce){body :is(.explorer-dock,.explorer-menu-panel){background:var(--cc-panel);backdrop-filter:none;-webkit-backdrop-filter:none}}
+@supports not (backdrop-filter:blur(1px)){body :is(.explorer-dock,.explorer-menu-panel){background:var(--cc-panel)}}
+body button[aria-pressed=true] :is(strong,span),body .explorer-dock .rail-button[aria-expanded=true] :is(svg,span){color:var(--g-key-ink)}
+
+/* The lazy-loaded ignition lab shares the site material authority. Its pinned
+   model runtime, canvas, spark-state colors and energy meters are unchanged. */
+body .ignition-lab{--lab-ink:var(--g-ink);--lab-muted:var(--g-muted);--lab-line:var(--g-line);background:var(--g-bg);color:var(--g-ink);border-color:var(--g-line);box-shadow:var(--g-shadow)}
+body :is(.lab-heading,.lab-model,.lab-deep-dive,.lab-differences,.lab-orbit-note){background:var(--g-surface);border-color:var(--g-line);color:var(--g-ink)}
+body :is(.lab-section-nav,.lab-clock){background:var(--g-glass);border-color:var(--g-line);color:var(--g-ink);box-shadow:var(--g-shadow)}
+body :is(.lab-letter,.lab-differences thead,.lab-inspector-link){background:var(--g-raised);border-color:var(--g-line);color:var(--g-ink)}
+body :is(.lab-live-state>span:not(.spark-live),.lab-spark-destinations>span:not(.on)){background:var(--g-raised);border-color:var(--g-line);color:var(--g-ink)}
+body :is(.lab-live-state p,.lab-explanation p,.lab-evidence strong){color:var(--g-ink)}
+body .selection-caption{background:var(--g-surface);border-color:var(--g-edge);color:var(--g-ink)}
+@media(prefers-reduced-transparency:reduce){body :is(.lab-section-nav,.lab-clock){background:var(--g-surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
+html[data-gold-effects=quiet] :is(.lab-section-nav,.lab-clock){background:var(--g-surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+/* Preserve readable comparison columns on narrow screens. The lab section
+   itself is keyboard-focusable through the companion overlay script. */
+.lab-scroll-hint{display:none}
+@media(max-width:480px){
+  body .ignition-lab .lab-differences{overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;scrollbar-color:var(--g-edge) var(--g-raised)}
+  body .ignition-lab .lab-differences h3,body .ignition-lab .lab-scroll-hint{position:sticky;left:0;width:100%}
+  body .ignition-lab .lab-scroll-hint{display:block;margin:-4px 0 10px;color:var(--g-muted);font-size:.75rem}
+  body .ignition-lab .lab-differences table{min-width:560px;overflow-wrap:normal}
+}
+
+/* Preserve the product mark geometry while retiring the legacy copper palette. */
+body .product-mark{border-radius:50%}
+body .product-wordmark h1 span{color:var(--cc-accent)}
+
+/* The pinned runtime's firing-order guide still declares pale-mode copper and
+   slate labels. Keep its stroke-color bars and model graphics; rematerialize
+   only the reading/control layer on the solid inspector panel. */
+body .learning-guide .firing-disclosure>.firing-toggle{color:var(--cc-accent)}
+body .learning-guide .firing-disclosure>.firing-toggle:focus-visible{outline-color:var(--cc-accent)}
+body .learning-guide .firing-disclosure[open]>.firing-toggle{background:var(--cc-panel);backdrop-filter:none;-webkit-backdrop-filter:none}
+body .learning-guide .cycle-card.firing-order-card .firing-heading{color:var(--cc-muted)}
+body .learning-guide .cycle-card.firing-order-card .firing-heading strong{color:var(--cc-ink)}
+body .learning-guide .cycle-card.firing-order-card .firing-heading svg{color:var(--cc-accent)}
+body .learning-guide .cycle-card.firing-order-card .firing-sequence button{background:var(--cc-raised);border-color:var(--cc-line);color:var(--cc-ink)}
+body .learning-guide .cycle-card.firing-order-card .firing-sequence button[aria-pressed=true]{background:var(--g-gold);border-color:var(--g-edge);color:var(--g-key-ink)}
+body .learning-guide .cycle-card.firing-order-card .firing-sequence button span{color:var(--cc-muted)}
+body .learning-guide .cycle-card.firing-order-card .firing-sequence button[aria-pressed=true] span{color:var(--g-key-ink)}
+body .learning-guide .cycle-card.firing-order-card .firing-next strong{color:var(--cc-accent)}
+body .learning-guide .cycle-card.firing-order-card .firing-next span{color:var(--cc-muted)}
+body .learning-guide .cycle-card.firing-order-card .stroke-guide-heading button{color:var(--cc-accent)}
+body .learning-guide .cycle-card.firing-order-card .stroke-strip button{color:var(--cc-ink)}
+body .learning-guide .cycle-card.firing-order-card .stroke-strip button[aria-pressed=true]{background:var(--g-gold);border-color:var(--g-edge);color:var(--g-key-ink);box-shadow:var(--av-contact-shadow)}
+body .learning-guide .cycle-card.firing-order-card :is(.stroke-description,.firing-timing,.firing-note,.firing-note summary,.firing-note p){color:var(--cc-muted)}
+body .learning-guide :is(.motion-title small,.phase-control){color:var(--cc-muted)}
+
+/* Component browser/details use the same solid gray reading hierarchy. The
+   pinned bundle's pale-mode slate captions otherwise disappear in Night. */
+body #component-browser .part-row small,
+body #component-browser .part-row>svg:last-child{color:var(--cc-muted)}
+body #component-browser .part-row.active{background:var(--g-gold);border-color:var(--g-edge);color:var(--g-key-ink)}
+body #component-browser .part-row.active :is(strong,small,.part-symbol,svg){color:var(--g-key-ink)}
+body .explorer-panel .inspector p,
+body .explorer-panel .inspector li,
+body .explorer-panel .inspector dt,
+body .explorer-panel .inspector .source-link small{color:var(--cc-muted)}
+body .explorer-panel .inspector .part-number{color:var(--cc-muted)!important}
+body .explorer-panel .inspector summary{color:var(--cc-ink)}
+body .explorer-panel .inspector .detail-status{background:var(--cc-raised);border:1px solid var(--g-edge);color:var(--cc-accent)}
+body .explorer-panel .inspector .detail-status span{background:var(--cc-accent)}
+
+/* The collection's pinned scene uses absolute positions. Keep the normal
+   stage geometry, then grow its preview offset with enlarged text. */
+body .app.collection:has(.category-picker):not(.fi-app) .viewport{
+  --aurum-base-preview:clamp(320px,38vh,366px);
+  --preview-top:max(var(--aurum-base-preview),15rem,calc(25rem - 125vw + 320px));
+  min-height:calc(820px + max(0px,calc(var(--preview-top) - var(--aurum-base-preview))));
+}
+@media(max-width:620px){
+  body .collection .engine-title{top:calc(var(--preview-top) - 74px)}
+  body .collection .collection-specs{bottom:max(82px,calc(2.375rem + 44px))}
+}
+@media(min-width:621px){
+  body .collection .engine-title{top:calc(var(--preview-top) - 62px)}
+  body .collection .collection-specs{bottom:max(110px,calc(3.125rem + 60px))}
+}

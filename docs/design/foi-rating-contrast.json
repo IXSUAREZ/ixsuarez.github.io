@@ -1,0 +1,74 @@
+{
+  "scope": "Computed browser sRGB rating-label pairs at 1280x720; local /foi-cards/, after reload. Does not establish full app accessibility.",
+  "stylesheet_sha256": "9774350b3ddddc6ff636d1727b078c7047b104c9d0dba57621c170f29b0e38a5",
+  "checks": [
+    {
+      "mode": "day",
+      "control": "reviewButton",
+      "foreground": [
+        0.15294117647058825,
+        0.15294117647058825,
+        0.15294117647058825
+      ],
+      "background": [
+        0.871961,
+        0.843726,
+        0.796667
+      ],
+      "ratio": 10.468,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "mode": "day",
+      "control": "masteredButton",
+      "foreground": [
+        0.15294117647058825,
+        0.15294117647058825,
+        0.15294117647058825
+      ],
+      "background": [
+        0.758431,
+        0.810196,
+        0.745255
+      ],
+      "ratio": 9.182,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "mode": "dark",
+      "control": "reviewButton",
+      "foreground": [
+        0.9568627450980393,
+        0.9568627450980393,
+        0.9568627450980393
+      ],
+      "background": [
+        0.396667,
+        0.36549,
+        0.313726
+      ],
+      "ratio": 5.886,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "mode": "dark",
+      "control": "masteredButton",
+      "foreground": [
+        0.9568627450980393,
+        0.9568627450980393,
+        0.9568627450980393
+      ],
+      "background": [
+        0.372078,
+        0.436078,
+        0.343843
+      ],
+      "ratio": 4.886,
+      "required": 4.5,
+      "passed": true
+    }
+  ]
+}

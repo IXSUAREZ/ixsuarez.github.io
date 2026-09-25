@@ -1,0 +1,45 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 3,
+      "archive": [
+        "pilotsolve/assets/mobile-Co4tACtC.js",
+        "pilotsolve/assets/prototype-CaUbXWQg.js",
+        "pilotsolve/assets/prototype-CbtqH6Pp.css"
+      ]
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": []
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "pilotsolve/assets/mobile-Co4tACtC.js": {
+      "sha256": "1166591daa4560f3d7720eb6dfdfa66b30ae62388a76995fc66b13185b533803",
+      "bytes": 404
+    },
+    "pilotsolve/assets/prototype-CaUbXWQg.js": {
+      "sha256": "8f950c463f48d0c4bd1fc91e869031179679a8e428812fee3515b236e492e3ab",
+      "bytes": 521206
+    },
+    "pilotsolve/assets/prototype-CbtqH6Pp.css": {
+      "sha256": "9e902a485630e4664cc826e714a1667eb661e37050df3bbacf59b6faa7d18561",
+      "bytes": 68624
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-8ce569b4bc13.json",
+  "archive_location": "/Users/diegosuarez/Projects/suarez-aurum-archives/pilotsolve-fallback-palette-20260925/superseded-app-assets.tar.gz"
+}

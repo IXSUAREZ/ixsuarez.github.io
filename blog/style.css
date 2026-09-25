@@ -75,8 +75,8 @@ img { max-width: 100%; display: block; }
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(28,55,120,0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(28,55,120,0.025) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--g-line) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--g-line) 18%, transparent) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.85;
   z-index: 0;
@@ -206,14 +206,14 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 7px;
   margin: 0 0 14px;
-  color: rgba(11,12,14,0.48);
+  color: var(--g-muted);
   font-size: 0.78rem;
   font-weight: 700;
 }
 .post-card-meta span + span::before {
   content: "/";
   margin-right: 7px;
-  color: rgba(11,12,14,0.24);
+  color: var(--g-muted);
   font-weight: 600;
 }
 .post-card-link {
@@ -317,7 +317,7 @@ img { max-width: 100%; display: block; }
 .prose a {
   color: var(--ink);
   text-decoration: underline;
-  text-decoration-color: rgba(245, 196, 0, 0.7);
+  text-decoration-color: var(--g-accent);
   text-underline-offset: 3px;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
   font-weight: 700;
@@ -360,16 +360,23 @@ img { max-width: 100%; display: block; }
   overflow-x: auto;
   margin: 12px 0 32px;
   border-radius: 18px;
-  border: 1px solid rgba(87, 99, 118, 0.12);
-  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--g-line);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.03);
 }
 .prose table {
+  /* Keep table words intact inside the shared horizontal scroll treatment. */
+  overflow-wrap: normal;
   width: 100%;
+  min-width: 35rem;
   border-collapse: collapse;
   font-size: 0.91rem;
   background: var(--surface);
 }
-.prose thead { background: rgba(127,167,168,0.14); }
+.prose table:focus-visible {
+  outline: 3px solid var(--g-accent);
+  outline-offset: -3px;
+}
+.prose thead { background: var(--g-raised); }
 .prose th {
   text-align: left;
   padding: 13px 16px;
@@ -387,7 +394,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.55;
 }
 .prose tr:last-child td { border-bottom: none; }
-.prose tbody tr:hover td { background: rgba(127,167,168,0.10); }
+.prose tbody tr:hover td { background: var(--g-raised); }
 
 .faq-section {
   margin-top: 52px;
@@ -420,9 +427,9 @@ img { max-width: 100%; display: block; }
   list-style: none;
   cursor: pointer;
   min-height: 44px;
-  padding: 18px 22px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px;
+  padding: 18px 54px 18px 22px;
+  display: block;
+  position: relative;
   font-weight: 600;
   font-size: 0.97rem;
   color: var(--ink);
@@ -432,6 +439,9 @@ img { max-width: 100%; display: block; }
 .faq-item summary::after {
   content: "";
   width: 10px; height: 10px;
+  position: absolute;
+  right: 22px;
+  top: calc(50% - 7px);
   border-right: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
   transform: rotate(45deg);
@@ -445,7 +455,7 @@ img { max-width: 100%; display: block; }
   font-size: 0.95rem;
   line-height: 1.65;
 }
-.faq-body a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(8,9,11,0.25); text-underline-offset: 3px; }
+.faq-body a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--g-accent); text-underline-offset: 3px; }
 .faq-body strong { color: var(--ink); font-weight: 600; }
 
 /* The page's ONE yellow field: a yellow mat framing an inset paper sheet.
@@ -526,7 +536,7 @@ footer {
   color: var(--ink-muted);
   font-size: 14px;
   text-align: center;
-  border-top: 1px solid rgba(8, 9, 11, 0.08);
+  border-top: 1px solid var(--g-line);
 }
 footer .wordmark {
   font-size: 34px;

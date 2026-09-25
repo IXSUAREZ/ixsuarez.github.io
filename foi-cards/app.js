@@ -151,6 +151,7 @@
     byId('studyAllButton').classList.toggle('hidden', left === 0);
     show('completionScreen');
   }
+  let sectionBackground = [];
   function openSections() {
     const list = byId('sectionList');
     list.innerHTML = '';
@@ -159,17 +160,26 @@
       const button = document.createElement('button');
       button.className = 'section-row';
       button.type = 'button';
+      if (state.deck.length > 0 && state.mode === 'remaining' && state.section === section) {
+        button.classList.add('current');
+        button.setAttribute('aria-current', 'true');
+      }
       button.innerHTML = `${name}<span>${count} remaining card${count === 1 ? '' : 's'}</span>`;
       button.onclick = () => { closeSections(false); startPass('remaining', section); byId('flashcard').focus(); };
       list.append(button);
     });
     visible('sectionSheet');
+    sectionBackground = [...document.querySelectorAll('#app > :not(#sectionSheet), .foi-cta')]
+      .map(element => [element, element.inert]);
+    sectionBackground.forEach(([element]) => { element.inert = true; });
     const sectionNav = byId('dockSections');
     if (sectionNav) sectionNav.setAttribute('aria-expanded', 'true');
     list.querySelector('button')?.focus();
   }
   function closeSections(returnFocus = true) {
     hidden('sectionSheet');
+    sectionBackground.forEach(([element, wasInert]) => { element.inert = wasInert; });
+    sectionBackground = [];
     const sectionNav = byId('dockSections');
     if (sectionNav) {
       sectionNav.setAttribute('aria-expanded', 'false');
@@ -177,14 +187,8 @@
     }
   }
   function reset() {
-    if (window.confirm('Reset all FOI Cards progress and the saved pass on this phone?')) {
-      progress = {};
-      localStorage.removeItem(progressKey);
-      clearSession();
-      state.deck = [];
-      state.index = 0;
-      renderWelcome();
-    }
+    byId('resetDialog').showModal();
+    byId('cancelReset').focus();
   }
   function bindClick(id, handler) { const element = byId(id); if (element) element.addEventListener('click', handler); }
   bindClick('startButton', resumePass);
@@ -192,11 +196,18 @@
   bindClick('reviewWeakButton', () => startPass('review'));
   bindClick('studyAllButton', () => startPass('remaining'));
   bindClick('homeButton', renderWelcome);
-  bindClick('resetButton', () => {
-    const menuToggle = byId('chipnavMenuToggle');
-    if (menuToggle && menuToggle.getAttribute('aria-expanded') === 'true') menuToggle.click();
-    reset();
+  bindClick('resetButton', reset);
+  bindClick('cancelReset', () => byId('resetDialog').close());
+  bindClick('confirmReset', () => {
+    progress = {};
+    localStorage.removeItem(progressKey);
+    clearSession();
+    state.deck = [];
+    state.index = 0;
+    renderWelcome();
+    byId('resetDialog').close();
   });
+  byId('resetDialog').addEventListener('close', () => byId('chipnavMenuToggle')?.focus());
   bindClick('sectionButton', openSections);
   bindClick('dockSections', () => {
     const menuToggle = byId('chipnavMenuToggle');
@@ -211,7 +222,20 @@
   bindClick('masteredButton', () => advance('mastered'));
   const flashcard = byId('flashcard');
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !byId('sectionSheet').classList.contains('hidden')) closeSections();
+    const sheet = byId('sectionSheet');
+    if (sheet.classList.contains('hidden')) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeSections();
+    } else if (event.key === 'Tab') {
+      const controls = [...sheet.querySelectorAll('button:not([disabled])')];
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first.focus();
+      }
+    }
   });
   if (flashcard) {
     flashcard.addEventListener('keydown', event => {

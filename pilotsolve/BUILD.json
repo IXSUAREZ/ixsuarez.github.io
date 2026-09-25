@@ -1,7 +1,7 @@
 {
   "app": "PilotSolve",
-  "cache": "pilotsolve-site-1b27a1e1b699",
-  "preparedAt": "2026-09-24T17:21:10.596Z",
+  "cache": "pilotsolve-site-3efe57f69119",
+  "preparedAt": "2026-09-25T08:41:27.881Z",
   "route": "/pilotsolve/",
   "files": [
     "./index.html",
@@ -14,12 +14,9 @@
     "./icon-512.png",
     "./assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
     "./assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
-    "./assets/mobile-CrDSTOf5.js",
-    "./assets/preview-BmIPKyx7.css",
-    "./assets/preview-C3NyXoxZ.js",
-    "./assets/prototype-B8gyO8Om.js",
-    "./assets/prototype-BqeM_fGr.css",
-    "./assets/roboto-latin-500-normal-7RbcRiD8.woff2",
+    "./assets/mobile-CzLIGwDK.js",
+    "./assets/prototype-BTCi2k1e.js",
+    "./assets/prototype-DjmZwi7j.css",
     "/assets/appearance.js",
     "/assets/avionics.css",
     "/assets/tactile.js"

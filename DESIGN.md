@@ -214,12 +214,14 @@ live in that app's module under `assets/tool-system/`.
 
 ### Tool stylesheets (`assets/tool-system/`)
 
-One shared core plus one module per app; each tool page loads exactly
-`tool-core.css` + its own module (in that order):
+Tool pages retain a shared core and app modules. The current Simply Endorsed
+workspace also loads `simply-endorsed/js/workspace.css`; shared Aurum materials
+in `assets/avionics.css` have final authority:
 
-- `tool-core.css` — tokens, base, shared chrome (`nav--tool`, footer),
-  workbench shell, and any component used by ≥2 apps.
-- `simply-endorsed.css` — endorsement browser, category rail, guidance view.
+- `tool-core.css` — compatibility tokens, base, shared chrome (`nav--tool`, footer),
+  workbench shell, and components used by ≥2 apps. The unused pre-workspace
+  `.topbar-*` header rules are archived outside the site.
+- `simply-endorsed.css` — small compatibility rules for the current footer guidance link and hidden legacy header; the active endorsement workspace is styled by `simply-endorsed/js/workspace.css` and shared Aurum materials.
 - `part61.css` — wizard steps, step rail, results pane, `theme-orange`.
 - `certgen.css` — Certificate Generator exclusives (internal tool).
 

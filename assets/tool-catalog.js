@@ -112,7 +112,11 @@
   if (window.ResizeObserver) new ResizeObserver(layout).observe(rail);
   if (narrow.addEventListener) narrow.addEventListener('change', layout);
   window.addEventListener('pageshow', function () { layout(); });
+  root.classList.add('orbit-initializing');
   filters.hidden = false; root.querySelector('.orbit-experience').hidden = false; root.querySelector('.all-apps').open = false;
   document.body.classList.add('has-orbit');
   render(false);
+  // Commit the initial positions without travel; animate only later selections.
+  rail.getBoundingClientRect();
+  requestAnimationFrame(function () { root.classList.remove('orbit-initializing'); });
 })();

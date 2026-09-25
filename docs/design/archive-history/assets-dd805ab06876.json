@@ -1,0 +1,50 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 5,
+      "archive": [
+        "pilotsolve/assets/mobile-lNvbPuSn.js",
+        "pilotsolve/assets/preview-DKaL0fDX.js",
+        "pilotsolve/assets/prototype-DYP-5Q1p.css",
+        "pilotsolve/assets/prototype-pCp3_xBV.js"
+      ]
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": []
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "pilotsolve/assets/mobile-lNvbPuSn.js": {
+      "sha256": "7d0a066e5472b5367096fddddd0615af9a79558b9d50fcbc206fc4b7ba3ff269",
+      "bytes": 404
+    },
+    "pilotsolve/assets/preview-DKaL0fDX.js": {
+      "sha256": "9caa51cad9a29a696bd000cd5a37c1a8abce44eb02e539fe07d10df931ccf669",
+      "bytes": 125534
+    },
+    "pilotsolve/assets/prototype-DYP-5Q1p.css": {
+      "sha256": "351500dd19bd1ad4758d6088edd6a8b37e1aac37a1f3b06a5336e16796843408",
+      "bytes": 68116
+    },
+    "pilotsolve/assets/prototype-pCp3_xBV.js": {
+      "sha256": "8d35211b2d908a5e944abe7c9ce004ac61e2c0c8851bccf5a7faa1e93ac8b22b",
+      "bytes": 520924
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-b3472f16d899.json",
+  "archive_location": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/pilotsolve-sheet-followup/superseded-app-assets.tar.gz"
+}

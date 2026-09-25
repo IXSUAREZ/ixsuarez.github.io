@@ -5,7 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, '../../assets/premium-home.js'), 'utf8');
 
-function setup({ now = '2026-09-08T16:00:00Z', saved = {}, reduced = false, webgl = true, brokenStorage = false } = {}) {
+function setup({ now = '2026-09-08T16:00:00Z', saved = {}, reduced = false, webgl = true, brokenStorage = false, appearance = 'day' } = {}) {
   const events = new Map();
   const makeElement = (extra = {}) => ({ ...extra, addEventListener(type, fn) { events.set([this.id, type].join(':'), fn); } });
   const uniforms = {};
@@ -30,7 +30,7 @@ function setup({ now = '2026-09-08T16:00:00Z', saved = {}, reduced = false, webg
   const properties = {};
   const hero = { dataset: {}, style: { setProperty: (k, v) => { properties[k] = v; } }, classList: { toggle: (c, v) => v ? classes.add(c) : classes.delete(c) }, querySelector: () => stateLabel, querySelectorAll: () => modes };
   const media = makeElement({ id: 'media', matches: reduced });
-  const document = makeElement({ id: 'document', hidden: false, querySelector: () => hero, getElementById: id => id === control.id ? control : canvas });
+  const document = makeElement({ id: 'document', hidden: false, documentElement: { dataset: { goldMode: appearance } }, querySelector: () => hero, getElementById: id => id === control.id ? control : canvas });
   const storage = new Map(Object.entries(saved));
   const window = makeElement({ id: 'window', devicePixelRatio: 2, matchMedia: () => media,
     localStorage: { getItem(k) { if (brokenStorage) throw Error(); return storage.get(k) ?? null; }, setItem(k, v) { if (brokenStorage) throw Error(); storage.set(k, v); } },
@@ -48,14 +48,15 @@ function setup({ now = '2026-09-08T16:00:00Z', saved = {}, reduced = false, webg
     toggle(value) { control.checked = value; events.get('sky-motion:change')(); },
     tick(timestamp) { const callbacks = [...pending.values()]; pending.clear(); callbacks.forEach(fn => fn(timestamp)); },
     at(date) { time = new Date(date).getTime(); events.get('minute')(); },
+    setAppearance(value) { document.documentElement.dataset.goldMode = value; events.get('window:suarez:appearance')(); },
     viewport(isIntersecting) { events.get('intersection')([{ isIntersecting }]); },
   };
 }
 
 
-test('automatic daylight renders immediately and ignores old controls or saved Off preferences', () => {
+test('Day sky renders immediately and ignores old controls or saved Off preferences', () => {
   const s = setup({ saved: { 'suarezcfi.sky-mode': 'night', 'suarezcfi.sky-motion': 'off' } });
-  assert.equal(s.hero.dataset.skyMode, 'auto');
+  assert.equal(s.hero.dataset.skyMode, 'appearance');
   assert.equal(s.hero.dataset.skyPhase, 'day');
   assert.equal(s.hero.dataset.motion, 'on');
   assert.equal(s.uniforms.starIntensity[0], 0);
@@ -66,32 +67,40 @@ test('automatic daylight renders immediately and ignores old controls or saved O
   assert.equal(s.uniforms.cloudSpeed[0], 1.3);
   assert.equal(s.uniforms.sunIntensity[0], 1);
 });
-test('automatic sunrise and sunset crossfades reach the complete night palette and stars', () => {
+test('solar time varies the sky within its appearance without reversing text contrast', () => {
   const s = setup();
   s.at('2026-09-09T04:00:00Z');
-  assert.equal(s.uniforms.starIntensity[0], 1);
-  assert.equal(s.hero.dataset.skyPhase, 'night');
-  assert.ok(Math.abs(s.uniforms.skyColorTop[0] - .02) < 1e-12);
+  assert.equal(s.uniforms.starIntensity[0], .12);
+  assert.equal(s.hero.dataset.skyPhase, 'day');
+  assert.ok(s.uniforms.skyColorTop[0] > .25);
   s.at('2026-09-08T11:15:00Z');
   const morning = s.uniforms.starIntensity[0];
-  assert.ok(morning > 0 && morning < 1);
+  assert.ok(morning > 0 && morning < .12);
   s.at('2026-09-08T11:25:00Z');
   assert.ok(s.uniforms.starIntensity[0] < morning);
   s.at('2026-09-08T23:45:00Z');
   const evening = s.uniforms.starIntensity[0];
-  assert.ok(evening > 0 && evening < 1);
+  assert.ok(evening > 0 && evening < .12);
   s.at('2026-09-08T23:55:00Z');
   assert.ok(s.uniforms.starIntensity[0] > evening);
+  s.setAppearance('dark');
+  assert.equal(s.hero.dataset.skyPhase, 'night');
+  assert.ok(s.uniforms.starIntensity[0] > .88);
+  s.at('2026-09-09T04:00:00Z');
+  assert.equal(s.uniforms.starIntensity[0], 1);
+  assert.ok(Math.abs(s.uniforms.skyColorTop[0] - .02) < 1e-12);
+  s.setAppearance('day');
+  assert.equal(s.uniforms.starIntensity[0], .12);
 });
-test('summer sky stays light across UTC midnight; winter evening is night', () => {
+test('solar timing stays continuous across UTC midnight within Day appearance', () => {
   const s = setup({ now: '2026-06-21T23:59:59Z' });
   assert.equal(s.uniforms.starIntensity[0], 0);
   s.at('2026-06-22T00:00:01Z');
   assert.equal(s.uniforms.starIntensity[0], 0);
   s.at('2026-06-22T01:00:00Z');
-  assert.ok(s.uniforms.starIntensity[0] > 0 && s.uniforms.starIntensity[0] < 1);
+  assert.ok(s.uniforms.starIntensity[0] > 0 && s.uniforms.starIntensity[0] < .12);
   s.at('2026-12-22T00:00:01Z');
-  assert.equal(s.uniforms.starIntensity[0], 1);
+  assert.equal(s.uniforms.starIntensity[0], .12);
 });
 test('animation runs at 30fps, pauses offscreen, and resumes without jumping', () => {
   const s = setup();
@@ -108,26 +117,29 @@ test('animation runs at 30fps, pauses offscreen, and resumes without jumping', (
   s.document.hidden = true; s.emit('document', 'visibilitychange'); assert.equal(s.pending.size, 0);
   s.document.hidden = false; s.emit('document', 'visibilitychange'); assert.equal(s.pending.size, 1);
 });
-test('reduced motion retains the complete sky and still follows time of day', () => {
+test('reduced motion retains the still sky and follows appearance changes', () => {
   const s = setup({ reduced: true });
   assert.equal(s.pending.size, 0);
   assert.equal(s.draws.length, 1);
   s.at('2026-09-09T04:00:00Z');
   assert.equal(s.draws.length, 2);
+  assert.equal(s.uniforms.starIntensity[0], .12);
+  s.setAppearance('dark');
   assert.equal(s.uniforms.starIntensity[0], 1);
+  assert.equal(s.pending.size, 0);
   s.media.matches = false; s.emit('media', 'change'); assert.equal(s.pending.size, 1);
   s.media.matches = true; s.emit('media', 'change'); assert.equal(s.pending.size, 0);
 });
 test('graphics failure keeps the matching still sky, and context restoration resumes animation', () => {
   const fallback = setup({ webgl: false, brokenStorage: true, now: '2026-09-09T04:00:00Z' });
-  assert.equal(fallback.properties['--sky-night'], '1');
+  assert.equal(fallback.properties['--sky-night'], '0.12');
   assert.equal(fallback.hero.dataset.motion, 'off');
   const s = setup();
   s.emit('horizon-clouds', 'webglcontextlost', { preventDefault() {} });
   assert.equal(s.pending.size, 0);
   s.at('2026-09-09T04:00:00Z');
-  assert.equal(s.properties['--sky-night'], '1');
+  assert.equal(s.properties['--sky-night'], '0.12');
   s.emit('horizon-clouds', 'webglcontextrestored');
-  assert.equal(s.uniforms.starIntensity[0], 1);
+  assert.equal(s.uniforms.starIntensity[0], .12);
   assert.equal(s.pending.size, 1);
 });

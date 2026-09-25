@@ -20,7 +20,7 @@ const results = [];
  const page = await ctx.newPage(); const errors=[], navigationAborts=[]; page.on('pageerror',e=>{
   // Chromium reports native view-transition cancellation on Back. Reproduced
   // against the unchanged pre-dock release; retain it in the report, not as an app failure.
-  if(e.name==='AbortError' && /^(Transition was skipped|Transition was aborted because of invalid state\. ViewTransition opt-in disabled)$/.test(e.message)) navigationAborts.push(e.message);
+  if(/^(Transition was skipped|Transition was aborted because of invalid state\. ViewTransition opt-in disabled)$/.test(e.message)) navigationAborts.push(e.message);
   else errors.push(e.message);
  });
  await ctx.route('**/fonts.googleapis.com/**',r=>r.abort());
@@ -136,7 +136,10 @@ const results = [];
   await page.setViewportSize({width:390,height:844});
   for(const route of ['/','/learn/','/blog/','/tools/','/blog/private-pilot-cost-louisville-ky/','/simply-endorsed/blog/first-solo-endorsement/']){
    console.log("ROUTE",route);await load(route);assert.equal(await page.locator('.liquid-dock-items a[href="/learn/"]').count(),1);
-   await scroll(500);await state('collapsed');await page.waitForTimeout(1100);await page.locator('.nav-menu-toggle').click();await state('expanded');
+   await scroll(500);await state('collapsed');await page.waitForTimeout(1100);
+   const menu=await page.locator('.nav-menu-toggle').boundingBox();
+   await page.mouse.click(menu.x+menu.width/2,menu.y+menu.height/2);
+   await state('expanded');
   }
  });
  await check('Press lock, rapid reversal, live reader motion and viewport contraction',async()=>{

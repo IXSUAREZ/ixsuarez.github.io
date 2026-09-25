@@ -440,7 +440,7 @@
   });
   // Presentation metadata only. Regulatory text and task requirements remain above.
   const categoryPresentation = {
-    "practical-test-prereqs": ["#6356d8", "#b5aaff", "list-checks"],
+    "practical-test-prereqs": ["#6356d8", "#bbb0ff", "list-checks"],
     "student-pilot": ["#985511", "#ffc46b", "plane-takeoff"],
     "sport-pilot": ["#237444", "#88dca0", "compass"],
     "recreational-pilot": ["#5c701f", "#c5da7a", "compass"],

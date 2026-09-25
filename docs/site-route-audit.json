@@ -55,7 +55,9 @@
         "Meet Diego Suarez.",
         "Useful tools for the next decision.",
         "The checklist.",
-        "Talk to Diego."
+        "Talk to Diego.",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -110,7 +112,9 @@
         "Flying at Bowman Field (KLOU): A Local Pilot's Guide to Louisville's Historic Airport",
         "From Commercial Pilot to CFI: The Real Path",
         "How Long Does a Private Pilot License Take in Louisville?",
-        "Need an FAA endorsement?"
+        "Need an FAA endorsement?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -150,7 +154,9 @@
         "If you have a condition on \"the list\"",
         "Frequently Asked Questions",
         "Ready to figure out your next step?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -194,7 +200,9 @@
         "Comparing aircraft at Bowman",
         "Frequently Asked Questions",
         "Want to choose the right training path?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -239,7 +247,9 @@
         "What happens after the flight",
         "Frequently Asked Questions",
         "A little planning makes the first flight easier.",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -280,7 +290,9 @@
         "Common mistakes",
         "Bottom line",
         "Need an exact endorsement right now?",
-        "Related endorsement guides"
+        "Related endorsement guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -328,7 +340,9 @@
         "After you pass",
         "Frequently Asked Questions",
         "Stuck on a subject area?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -366,7 +380,9 @@
         "The Louisville logistics, summarized",
         "Frequently Asked Questions",
         "Need an endorsement — or a study plan that works?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -407,7 +423,9 @@
         "Official resources",
         "Frequently Asked Questions",
         "Need help making Bowman Field feel less abstract?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -448,7 +466,9 @@
         "Where I fit in",
         "Frequently Asked Questions",
         "Want an honest conversation about your options?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -483,7 +503,9 @@
         "The upside",
         "Frequently Asked Questions",
         "Flying at Bowman Field, the other 51 weeks",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -520,7 +542,9 @@
         "Ground prep before your next pattern lesson",
         "Frequently Asked Questions",
         "Show up to your next pattern lesson already flown.",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -558,7 +582,9 @@
         "Timing it into your training",
         "Frequently Asked Questions",
         "Medical sorted? The next step is ground knowledge.",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -600,7 +626,9 @@
         "What I offer now",
         "Frequently Asked Questions",
         "Working toward your own CFI?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -639,7 +667,9 @@
         "Realistic 2026 total for a Louisville student",
         "Frequently Asked Questions",
         "Ready to plan the first step?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -681,7 +711,9 @@
         "The stretched path",
         "Frequently Asked Questions",
         "Ready to make the timeline realistic?",
-        "Related articles"
+        "Related articles",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -714,7 +746,9 @@
         "Ground school",
         "Local guide",
         "Ask about Bowman Field training context",
-        "Bowman Field support FAQs"
+        "Bowman Field support FAQs",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -745,7 +779,9 @@
         "Add the photo",
         "Review & download",
         "Social caption",
-        "Adjust photo"
+        "Adjust photo",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -778,7 +814,9 @@
         "Explain",
         "Connect",
         "Send the ACS areas you want to practice out loud",
-        "Oral-prep FAQs"
+        "Oral-prep FAQs",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -814,7 +852,9 @@
         "Request a discovery flight",
         "Discovery flight FAQs",
         "Read the full walkthrough first",
-        "Contact"
+        "Contact",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -867,7 +907,9 @@
         "Explain",
         "Finish",
         "Send your test goal and weak areas",
-        "Written-test prep FAQs"
+        "Written-test prep FAQs",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -905,7 +947,9 @@
         "Useful reading",
         "Flight instructor FAQs",
         "Tell me what you're working toward",
-        "Contact"
+        "Contact",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -929,7 +973,10 @@
         "https://www.facebook.com/Suarez.CFI"
       ],
       "broken_refs": [],
-      "headings": []
+      "headings": [
+        "Explore",
+        "Flight instruction"
+      ]
     },
     {
       "route": "/flight-risk-assessment/guide/",
@@ -952,7 +999,10 @@
         "https://www.facebook.com/Suarez.CFI"
       ],
       "broken_refs": [],
-      "headings": []
+      "headings": [
+        "Explore",
+        "Flight instruction"
+      ]
     },
     {
       "route": "/flight-risk-assessment/methodology/",
@@ -975,12 +1025,15 @@
         "https://www.facebook.com/Suarez.CFI"
       ],
       "broken_refs": [],
-      "headings": []
+      "headings": [
+        "Explore",
+        "Flight instruction"
+      ]
     },
     {
       "route": "/flight-training-louisville-ky/",
       "title": "Flight Training in Louisville, KY | Bowman Field | SuarezCFI",
-      "description": "Planning flight training in Louisville? FAA Certificated Flight Instructor Diego Suarez maps private pilot costs, timeline, written-test prep, oral prep, medical steps, and Bowman Field context.",
+      "description": "Learn to fly with Diego Suarez at Bowman Field in Louisville, KY. Explore personal flight lessons, discovery flights, ground instruction, and your next training step.",
       "kind": "page",
       "identity": "flight-training-louisville-ky",
       "indexable": true,
@@ -1010,12 +1063,16 @@
         "Checkride oral prep",
         "Bowman Field context",
         "Remote study help",
+        "Coming to Bowman Field for lessons",
+        "Study with Diego from home",
         "Send the details that make the first reply useful",
         "Specific local guidance is the advantage",
         "Useful starting articles",
         "Flight training planning FAQs",
         "Tell me where you are stuck",
-        "Contact"
+        "Contact",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1035,9 +1092,12 @@
       ],
       "broken_refs": [],
       "headings": [
+        "Study actions",
+        "Related tools",
         "FOI Cards",
         "Nice work.",
         "Study a section",
+        "Reset study progress?",
         "Studying for your CFI checkride?"
       ]
     },
@@ -1086,7 +1146,9 @@
         "During training",
         "Before testing",
         "Tell me which topic is slowing you down",
-        "Ground instruction FAQs"
+        "Ground instruction FAQs",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1123,7 +1185,9 @@
         "What a first lesson covers",
         "Learn-to-fly FAQs",
         "Tell me where you are starting from",
-        "Contact"
+        "Contact",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1149,7 +1213,9 @@
       "broken_refs": [],
       "headings": [
         "Learn at your own pace.",
-        "Choose where to start"
+        "Choose where to start",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1186,7 +1252,9 @@
         "Understanding Aircraft Insurance Costs",
         "What to Look for When Buying a Used Airplane",
         "Study paths that overlap this topic",
-        "Flight Training Cost Guides"
+        "Flight Training Cost Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1234,7 +1302,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1277,7 +1347,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1320,7 +1392,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1361,7 +1435,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1403,7 +1479,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1446,7 +1524,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1487,7 +1567,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1529,7 +1611,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1573,7 +1657,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1774,7 +1860,9 @@
         "Landings and Takeoffs Guides",
         "Flight Training Cost Guides",
         "IFR Procedures Guides",
-        "Pilot Career Guides"
+        "Pilot Career Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1812,7 +1900,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1855,7 +1945,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1896,7 +1988,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1937,7 +2031,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -1977,7 +2073,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2018,7 +2116,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2062,7 +2162,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2100,7 +2202,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2143,7 +2247,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2185,7 +2291,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2225,7 +2333,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2269,7 +2379,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2307,7 +2419,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2347,7 +2461,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2391,7 +2507,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2430,7 +2548,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2473,7 +2593,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2515,7 +2637,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2557,7 +2681,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2598,7 +2724,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2640,7 +2768,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2684,7 +2814,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2726,7 +2858,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2766,7 +2900,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2808,7 +2944,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2852,7 +2990,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2896,7 +3036,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2940,7 +3082,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -2981,7 +3125,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3023,7 +3169,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3059,7 +3207,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3100,7 +3250,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3138,7 +3290,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3182,7 +3336,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3227,7 +3383,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3271,7 +3429,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3311,7 +3471,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3353,7 +3515,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3393,7 +3557,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3432,7 +3598,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3476,7 +3644,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3513,7 +3683,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3549,7 +3721,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3588,7 +3762,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3630,7 +3806,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3672,7 +3850,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3712,7 +3892,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3758,7 +3940,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3798,7 +3982,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3842,7 +4028,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3881,7 +4069,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3920,7 +4110,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3959,7 +4151,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -3999,7 +4193,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4042,7 +4238,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4081,7 +4279,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4124,7 +4324,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4168,7 +4370,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4208,7 +4412,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4252,7 +4458,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4296,7 +4504,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4339,7 +4549,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4382,7 +4594,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4424,7 +4638,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4467,7 +4683,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4510,7 +4728,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4553,7 +4773,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4595,7 +4817,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4638,7 +4862,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4682,7 +4908,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4724,7 +4952,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4766,7 +4996,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4813,7 +5045,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4854,7 +5088,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4900,7 +5136,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4946,7 +5184,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -4987,7 +5227,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5030,7 +5272,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5072,7 +5316,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5111,7 +5357,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5151,7 +5399,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5194,7 +5444,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5238,7 +5490,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5277,7 +5531,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5317,7 +5573,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5355,7 +5613,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5394,7 +5654,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5434,7 +5696,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5474,7 +5738,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5517,7 +5783,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5557,7 +5825,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5600,7 +5870,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5637,7 +5909,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5676,7 +5950,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5716,7 +5992,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5755,7 +6033,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5800,7 +6080,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5840,7 +6122,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5880,7 +6164,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5921,7 +6207,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -5966,7 +6254,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6009,7 +6299,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6053,7 +6345,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6094,7 +6388,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6134,7 +6430,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6177,7 +6475,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6218,7 +6518,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6261,7 +6563,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6301,7 +6605,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6344,7 +6650,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6389,7 +6697,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6433,7 +6743,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6476,7 +6788,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6523,7 +6837,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6566,7 +6882,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6608,7 +6926,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6649,7 +6969,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6689,7 +7011,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6732,7 +7056,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6771,7 +7097,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6811,7 +7139,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6855,7 +7185,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6893,7 +7225,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6934,7 +7268,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -6974,7 +7310,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7014,7 +7352,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7054,7 +7394,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7096,7 +7438,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7136,7 +7480,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7177,7 +7523,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7214,7 +7562,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7257,7 +7607,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7297,7 +7649,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7339,7 +7693,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7378,7 +7734,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7417,7 +7775,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7459,7 +7819,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7499,7 +7861,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7539,7 +7903,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7582,7 +7948,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7622,7 +7990,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7664,7 +8034,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7704,7 +8076,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7749,7 +8123,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7792,7 +8168,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7833,7 +8211,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7875,7 +8255,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7917,7 +8299,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7956,7 +8340,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -7996,7 +8382,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8037,7 +8425,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8079,7 +8469,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8121,7 +8513,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8161,7 +8555,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8200,7 +8596,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8242,7 +8640,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8284,7 +8684,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8323,7 +8725,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8364,7 +8768,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8406,7 +8812,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8446,7 +8854,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8488,7 +8898,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8528,7 +8940,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8569,7 +8983,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8608,7 +9024,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8652,7 +9070,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8697,7 +9117,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8741,7 +9163,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8786,7 +9210,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8828,7 +9254,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8892,7 +9320,9 @@
         "What Makes General Aviation Airports Busy",
         "Study paths that overlap this topic",
         "Airspace and Radio Communication Guides",
-        "Landings and Takeoffs Guides"
+        "Landings and Takeoffs Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8932,7 +9362,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -8974,7 +9406,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9018,7 +9452,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9062,7 +9498,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9103,7 +9541,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9145,7 +9585,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9186,7 +9628,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9227,7 +9671,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9270,7 +9716,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9314,7 +9762,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9357,7 +9807,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9399,7 +9851,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9442,7 +9896,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9485,7 +9941,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9530,7 +9988,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9574,7 +10034,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9615,7 +10077,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9657,7 +10121,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9702,7 +10168,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9744,7 +10212,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9787,7 +10257,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9829,7 +10301,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9869,7 +10343,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9912,7 +10388,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9955,7 +10433,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -9997,7 +10477,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10041,7 +10523,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10084,7 +10568,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10128,7 +10614,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10171,7 +10659,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10214,7 +10704,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10258,7 +10750,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10300,7 +10794,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10345,7 +10841,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10386,7 +10884,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10445,7 +10945,9 @@
         "Class E Airspace Explained for Student Pilots",
         "Adjacent study paths",
         "IFR Procedures Guides",
-        "Landings and Takeoffs Guides"
+        "Landings and Takeoffs Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10496,7 +10998,9 @@
         "Pilot Career Guides",
         "Checkride Prep Guides",
         "Pilot Medical Certificate Guides",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10539,7 +11043,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10582,7 +11088,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10621,7 +11129,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10664,7 +11174,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10705,7 +11217,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10749,7 +11263,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10792,7 +11308,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10836,7 +11354,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10875,7 +11395,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10916,7 +11438,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -10958,7 +11482,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11001,7 +11527,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11044,7 +11572,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11086,7 +11616,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11132,7 +11664,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11176,7 +11710,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11218,7 +11754,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11260,7 +11798,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11305,7 +11845,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11348,7 +11890,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11381,7 +11925,9 @@
         "Focused study paths for this training track",
         "Pilot Career Guides",
         "Checkride Prep Guides",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11432,7 +11978,9 @@
         "FAA Written Test Study Guides",
         "Pilot Career Guides",
         "Pilot Medical Certificate Guides",
-        "Flight Training Cost Guides"
+        "Flight Training Cost Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11462,7 +12010,9 @@
         "How to Fly Lazy Eights Smoothly",
         "How to Prepare for Your Private Pilot Checkride",
         "Study paths that overlap this topic",
-        "Checkride Prep Guides"
+        "Checkride Prep Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11506,7 +12056,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11549,7 +12101,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11610,7 +12164,9 @@
         "Pilot Career Guides",
         "Pilot Medical Certificate Guides",
         "Flight Training Cost Guides",
-        "Checkride Prep Guides"
+        "Checkride Prep Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11642,7 +12198,9 @@
         "Remote ID Module Buying Checklist",
         "Remote ID for Drone Pilots Explained",
         "Visual Line of Sight for Drones",
-        "Which CBO Rules Should You Follow?"
+        "Which CBO Rules Should You Follow?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11683,7 +12241,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11726,7 +12286,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11767,7 +12329,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11808,7 +12372,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11849,7 +12415,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11890,7 +12458,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11932,7 +12502,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -11987,7 +12559,9 @@
         "Checkride Prep Guides",
         "IFR Procedures Guides",
         "Pilot Medical Certificate Guides",
-        "Weather Guides for Student Pilots"
+        "Weather Guides for Student Pilots",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12040,7 +12614,9 @@
         "Affordable Airplane Kits: How to Compare",
         "Adjacent study paths",
         "Pilot Career Guides",
-        "Checkride Prep Guides"
+        "Checkride Prep Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12113,7 +12689,9 @@
         "IFR Procedures Guides",
         "FAA Written Test Study Guides",
         "Airspace and Radio Communication Guides",
-        "Landings and Takeoffs Guides"
+        "Landings and Takeoffs Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12155,7 +12733,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12198,7 +12778,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12240,7 +12822,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12283,7 +12867,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12329,7 +12915,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12368,7 +12956,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12411,7 +13001,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12454,7 +13046,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12497,7 +13091,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12540,7 +13136,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12582,7 +13180,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12626,7 +13226,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12673,7 +13275,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12716,7 +13320,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12759,7 +13365,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12802,7 +13410,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12844,7 +13454,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12886,7 +13498,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12930,7 +13544,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -12973,7 +13589,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13015,7 +13633,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13059,7 +13679,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13104,7 +13726,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13146,7 +13770,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13188,7 +13814,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13231,7 +13859,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13268,7 +13898,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13310,7 +13942,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13356,7 +13990,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13401,7 +14037,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13443,7 +14081,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13485,7 +14125,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13529,7 +14171,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13571,7 +14215,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13615,7 +14261,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13661,7 +14309,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13704,7 +14354,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13745,7 +14397,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13790,7 +14444,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13833,7 +14489,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13875,7 +14533,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13916,7 +14576,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -13977,7 +14639,9 @@
         "Airspace and Radio Communication Guides",
         "FAA Written Test Study Guides",
         "Checkride Prep Guides",
-        "Pilot Career Guides"
+        "Pilot Career Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14044,7 +14708,9 @@
         "IFR Procedures Guides",
         "Airspace and Radio Communication Guides",
         "FAA Written Test Study Guides",
-        "Landings and Takeoffs Guides"
+        "Landings and Takeoffs Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14097,7 +14763,9 @@
         "Aircraft Trim Explained: How Pilots Use It",
         "Adjacent study paths",
         "Weather Guides for Student Pilots",
-        "Airspace and Radio Communication Guides"
+        "Airspace and Radio Communication Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14149,7 +14817,9 @@
         "Pilot Medical Certificate Guides",
         "Pilot Career Guides",
         "Checkride Prep Guides",
-        "Flight Training Cost Guides"
+        "Flight Training Cost Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14193,7 +14863,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14239,7 +14911,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14283,7 +14957,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14326,7 +15002,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14368,7 +15046,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14413,7 +15093,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14457,7 +15139,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14501,7 +15185,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14544,7 +15230,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14588,7 +15276,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14630,7 +15320,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14674,7 +15366,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14717,7 +15411,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14762,7 +15458,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14807,7 +15505,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14848,7 +15548,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14890,7 +15592,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14931,7 +15635,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -14976,7 +15682,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15021,7 +15729,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15065,7 +15775,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15120,7 +15832,9 @@
         "Pilot Career Guides",
         "Flight Training Cost Guides",
         "Pilot Medical Certificate Guides",
-        "Checkride Prep Guides"
+        "Checkride Prep Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15181,7 +15895,9 @@
         "Flight Training Cost Guides",
         "Pilot Medical Certificate Guides",
         "Checkride Prep Guides",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15211,7 +15927,9 @@
         "Flight Simulator Throttle Quadrants",
         "How to Choose Aviation Apps for Pilots",
         "Study paths that overlap this topic",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15250,7 +15968,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15291,7 +16011,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15345,7 +16067,9 @@
         "Adjacent study paths",
         "Pilot Career Guides",
         "Checkride Prep Guides",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15467,7 +16191,9 @@
         "Checkride Prep Guides",
         "FAA Written Test Study Guides",
         "Flight Training Cost Guides",
-        "Pilot Medical Certificate Guides"
+        "Pilot Medical Certificate Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15512,7 +16238,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15557,7 +16285,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15604,7 +16334,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15649,7 +16381,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15697,7 +16431,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15738,7 +16474,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15782,7 +16520,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15825,7 +16565,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15870,7 +16612,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15913,7 +16657,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -15956,7 +16702,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16000,7 +16748,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16042,7 +16792,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16089,7 +16841,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16135,7 +16889,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16178,7 +16934,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16223,7 +16981,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16265,7 +17025,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16307,7 +17069,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16353,7 +17117,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16397,7 +17163,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16440,7 +17208,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16483,7 +17253,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16527,7 +17299,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16568,7 +17342,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16610,7 +17386,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16653,7 +17431,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16696,7 +17476,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16740,7 +17522,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16781,7 +17565,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16825,7 +17611,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16867,7 +17655,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16910,7 +17700,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16957,7 +17749,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -16999,7 +17793,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17045,7 +17841,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17088,7 +17886,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17134,7 +17934,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17176,7 +17978,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17219,7 +18023,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17264,7 +18070,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17307,7 +18115,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17350,7 +18160,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17392,7 +18204,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17435,7 +18249,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17480,7 +18296,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17524,7 +18342,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17568,7 +18388,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17612,7 +18434,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17657,7 +18481,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17705,7 +18531,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17749,7 +18577,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17789,7 +18619,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17831,7 +18663,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17873,7 +18707,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17916,7 +18752,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -17957,7 +18795,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18002,7 +18842,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18044,7 +18886,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18089,7 +18933,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18135,7 +18981,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18177,7 +19025,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18219,7 +19069,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18261,7 +19113,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18306,7 +19160,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18350,7 +19206,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18394,7 +19252,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18438,7 +19298,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18484,7 +19346,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18527,7 +19391,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18571,7 +19437,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18615,7 +19483,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18658,7 +19528,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18703,7 +19575,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18747,7 +19621,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18792,7 +19668,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18835,7 +19713,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18878,7 +19758,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18927,7 +19809,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -18974,7 +19858,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19018,7 +19904,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19063,7 +19951,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19106,7 +19996,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19152,7 +20044,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19199,7 +20093,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19246,7 +20142,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19289,7 +20187,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19332,7 +20232,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19373,7 +20275,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19416,7 +20320,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19459,7 +20365,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19532,7 +20440,9 @@
         "Weather Guides for Student Pilots",
         "Landings and Takeoffs Guides",
         "IFR Procedures Guides",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19575,7 +20485,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19619,7 +20531,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19663,7 +20577,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19708,7 +20624,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19749,7 +20667,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19794,7 +20714,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19839,7 +20761,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19883,7 +20807,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19924,7 +20850,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -19969,7 +20897,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20014,7 +20944,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20058,7 +20990,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20099,7 +21033,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20140,7 +21076,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20180,7 +21118,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20224,7 +21164,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20265,7 +21207,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20306,7 +21250,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20347,7 +21293,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20389,7 +21337,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20428,7 +21378,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20472,7 +21424,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20517,7 +21471,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20558,7 +21514,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20601,7 +21559,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20645,7 +21605,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20688,7 +21650,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20731,7 +21695,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20774,7 +21740,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20818,7 +21786,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20863,7 +21833,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20905,7 +21877,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20946,7 +21920,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -20989,7 +21965,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21031,7 +22009,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21074,7 +22054,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21118,7 +22100,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21161,7 +22145,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21203,7 +22189,9 @@
         "Official References",
         "Try a related pilot tool",
         "Need help applying this to your training?",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21247,7 +22235,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21288,7 +22278,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21332,7 +22324,9 @@
         "Try a related pilot tool",
         "Need help applying this to your training?",
         "Related guide collections",
-        "Related reading"
+        "Related reading",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21391,7 +22385,9 @@
         "What Is Zulu Time? Aviation Time Explained",
         "Adjacent study paths",
         "Landings and Takeoffs Guides",
-        "FAA Written Test Study Guides"
+        "FAA Written Test Study Guides",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21422,7 +22418,9 @@
         "Your plan starts with your experience.",
         "Ready for a scenario",
         "Edit your plan",
-        "Start over?"
+        "Start over?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21483,13 +22481,15 @@
         "Timeline",
         "Endorsements",
         "Map the next step before training gets expensive",
-        "Private pilot planning FAQs"
+        "Private pilot planning FAQs",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
       "route": "/remote-ground-instruction/",
       "title": "Remote Ground Instruction | SuarezCFI.com",
-      "description": "Remote ground instruction for student pilots who need practical help with FAA knowledge areas, oral prep, and training questions.",
+      "description": "One-on-one remote ground instruction with Diego Suarez, CFI and AGI. Get help with written-test prep, oral practice, and aviation study from Kentucky, Indiana, or beyond.",
       "kind": "page",
       "identity": "remote-ground-instruction",
       "indexable": true,
@@ -21511,8 +22511,11 @@
         "Remote ground instruction for focused aviation study",
         "Focused ground help when you are between lessons",
         "Good remote topics",
+        "How a remote ground lesson works",
         "Send the topic you want to work through",
-        "Remote ground FAQs"
+        "Remote ground FAQs",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21860,7 +22863,9 @@
         "A.93",
         "A.94",
         "A.95",
-        "A.96"
+        "A.96",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21922,7 +22927,9 @@
         "Sport Pilot Endorsements",
         "Recreational Pilot Endorsements",
         "Logbook Audit Checklists",
-        "Need the searchable tool instead?"
+        "Need the searchable tool instead?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21957,7 +22964,9 @@
         "Tailwheel airplane endorsement",
         "How to tell which endorsement applies",
         "Common mistakes",
-        "Open the aircraft endorsement group"
+        "Open the aircraft endorsement group",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -21992,7 +23001,9 @@
         "Spin training",
         "General practical-test support",
         "Next step for the initial checkride path",
-        "Search the full CFI endorsement library"
+        "Search the full CFI endorsement library",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22028,7 +23039,9 @@
         "Practical-test prerequisites and knowledge-test deficiency review",
         "Workflow order to review",
         "Common CFI initial endorsement mistakes",
-        "Search the full CFI endorsement library"
+        "Search the full CFI endorsement library",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22062,7 +23075,9 @@
         "Review of deficiencies identified on airman knowledge test",
         "Prerequisites for practical test",
         "Flight proficiency/practical test",
-        "Want help applying this endorsement guidance?"
+        "Want help applying this endorsement guidance?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22100,7 +23115,9 @@
         "Class B airspace and Class B airport solo",
         "TSA citizenship endorsement",
         "Common mistakes",
-        "Want help applying this endorsement guidance?"
+        "Want help applying this endorsement guidance?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22132,7 +23149,9 @@
         "Relevant endorsements",
         "Completion of a flight review",
         "Completion of any phase of an FAA-sponsored Pilot Proficiency Program (WINGS)",
-        "Want help applying this endorsement guidance?"
+        "Want help applying this endorsement guidance?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22166,7 +23185,9 @@
         "Flight proficiency/practical test",
         "Prerequisites for instrument practical tests",
         "Common supporting reference",
-        "Want help applying this endorsement guidance?"
+        "Want help applying this endorsement guidance?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22201,7 +23222,9 @@
         "IPC completion",
         "Quick comparison",
         "Common mistakes",
-        "Open the instrument endorsement paths"
+        "Open the instrument endorsement paths",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22232,7 +23255,9 @@
         "IPC completion reference",
         "Instrument proficiency check completion",
         "How IPC endorsements differ from checkride endorsements",
-        "Look up the exact IPC endorsement language"
+        "Look up the exact IPC endorsement language",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22280,7 +23305,9 @@
         "Move to aeronautical experience and training eligibility",
         "Validate endorsement package and timing",
         "Finish with document packet reconciliation",
-        "Find the endorsement text during the audit"
+        "Find the endorsement text during the audit",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22314,7 +23341,9 @@
         "Review of deficiencies identified on airman knowledge test",
         "Prerequisites for practical test",
         "Flight proficiency/practical test",
-        "Want help applying this endorsement guidance?"
+        "Want help applying this endorsement guidance?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22350,7 +23379,9 @@
         "Towered or Class B/C/D operations",
         "When to use and when not to use these endorsements",
         "Common mistakes",
-        "Search recreational pilot endorsements"
+        "Search recreational pilot endorsements",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22384,7 +23415,9 @@
         "Knowledge-test deficiency review",
         "When to use and when not to use it",
         "Common mistakes",
-        "Look up the exact retest endorsement"
+        "Look up the exact retest endorsement",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22418,7 +23451,9 @@
         "Repeated solo cross-country flights within 50 NM",
         "Route-specific approval matters",
         "Common mistakes",
-        "Want help applying this endorsement guidance?"
+        "Want help applying this endorsement guidance?",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22449,7 +23484,9 @@
         "Primary spin endorsement reference",
         "Spin training",
         "High-level sport instructor context",
-        "Search the full spin-related endorsement context"
+        "Search the full spin-related endorsement context",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22485,7 +23522,9 @@
         "Aircraft and operating privileges",
         "How to use this guide",
         "Common mistakes",
-        "Search sport pilot endorsements"
+        "Search sport pilot endorsements",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22518,7 +23557,9 @@
         "To act as PIC in a high-performance airplane",
         "To act as PIC in a pressurized aircraft capable of high-altitude operations",
         "To act as PIC in a tailwheel airplane",
-        "Compare the full aircraft endorsement group"
+        "Compare the full aircraft endorsement group",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22562,7 +23603,9 @@
         "Why Simply Endorsed CFI exists",
         "Ready to try it?",
         "Frequently asked questions",
-        "See also"
+        "See also",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22597,7 +23640,9 @@
         "Useful reading",
         "Southern Indiana flight training FAQs",
         "Tell me where in Indiana you're coming from",
-        "Contact"
+        "Contact",
+        "Explore",
+        "Flight instruction"
       ]
     },
     {
@@ -22620,16 +23665,8 @@
       "broken_refs": [],
       "headings": [
         "A tool for your next step.",
-        "Flight planning",
-        "PilotSolve",
-        "FlightRisk",
-        "Training and instruction",
-        "CertPath",
-        "Simply Endorsed CFI",
-        "FOI Cards",
-        "Aircraft systems",
-        "Aero Lab",
-        "Crank & Core"
+        "Explore",
+        "Flight instruction"
       ]
     }
   ]

@@ -1,0 +1,55 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 5,
+      "archive": []
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": [
+        "aero-lab/assets/App-DoJzXOzP.js",
+        "aero-lab/assets/GeometryStudio-BzE8YmEt.js",
+        "aero-lab/assets/ReferenceCases-BbO9TiRV.js",
+        "aero-lab/assets/index-B90QPMlo.css",
+        "aero-lab/assets/index-LsKSwjRY.js"
+      ]
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": []
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "aero-lab/assets/App-DoJzXOzP.js": {
+      "sha256": "8aa40436b224b219ea062b426cca793375bd6be762342f9cf23fc438d7345d0a",
+      "bytes": 60453
+    },
+    "aero-lab/assets/GeometryStudio-BzE8YmEt.js": {
+      "sha256": "8b856691a6acf47eee009063449e71490c6158d45e1297c8f68b437b0acadae7",
+      "bytes": 17554
+    },
+    "aero-lab/assets/ReferenceCases-BbO9TiRV.js": {
+      "sha256": "f13bd4dfb98662e98a8ae56d45f2c9a6c01d828db85a4f63d335e91f0190c6d3",
+      "bytes": 12041
+    },
+    "aero-lab/assets/index-B90QPMlo.css": {
+      "sha256": "b7f63ff72b3b018971421a0a3cd3663032b9e35c461c68edb165c2613935b631",
+      "bytes": 41355
+    },
+    "aero-lab/assets/index-LsKSwjRY.js": {
+      "sha256": "5061b12c11cde0bb487631e5c1e40581e49c917879f2fd36825f134a9654b5b3",
+      "bytes": 234809
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-62554bd8b6b7.json",
+  "archive_location": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/aero-status-followup/superseded-app-assets.tar.gz"
+}

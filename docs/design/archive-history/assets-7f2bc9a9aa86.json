@@ -1,0 +1,75 @@
+{
+  "scope": "Unreferenced generated app style/runtime versions; conservative filename import closure",
+  "apps": [
+    {
+      "app": "pilotsolve",
+      "kept": 5,
+      "archive": []
+    },
+    {
+      "app": "aero-lab",
+      "kept": 8,
+      "archive": []
+    },
+    {
+      "app": "flight-risk-assessment",
+      "kept": 10,
+      "archive": [
+        "flight-risk-assessment/assets/Assessment-B-dqA9IA.js",
+        "flight-risk-assessment/assets/Guide-CZnWntGu.js",
+        "flight-risk-assessment/assets/Methodology-FEY7rDx-.js",
+        "flight-risk-assessment/assets/NotFound-DHUFZjYC.js",
+        "flight-risk-assessment/assets/ScrollTrigger-C9tNXH-u.js",
+        "flight-risk-assessment/assets/index-eVnrbulL.js",
+        "flight-risk-assessment/assets/info-DjOLTKfj.js",
+        "flight-risk-assessment/assets/paths-BfmhZWZn.js",
+        "flight-risk-assessment/assets/users-CmOKIBww.js"
+      ]
+    },
+    {
+      "app": "engine-explorer/app",
+      "kept": 7,
+      "archive": []
+    }
+  ],
+  "files": {
+    "flight-risk-assessment/assets/Assessment-B-dqA9IA.js": {
+      "sha256": "42a4421f624b8d7904e26d6112dc7e471411a26d87234b82abd5fcdb47b728ab",
+      "bytes": 114459
+    },
+    "flight-risk-assessment/assets/Guide-CZnWntGu.js": {
+      "sha256": "6901a05fbabac71d709377b286e74cc39571a2e0d2ac8c5ae65a2805e0525102",
+      "bytes": 37983
+    },
+    "flight-risk-assessment/assets/Methodology-FEY7rDx-.js": {
+      "sha256": "23ee562f6f90b295ae99f8a7d6aced2b39d2c273bb286bfbae47bb69c7f6c8c0",
+      "bytes": 46414
+    },
+    "flight-risk-assessment/assets/NotFound-DHUFZjYC.js": {
+      "sha256": "1775029c9c0e9b3641264330b844fbfae52a1ff1424e00eab4ac2801d965f1b0",
+      "bytes": 1840
+    },
+    "flight-risk-assessment/assets/ScrollTrigger-C9tNXH-u.js": {
+      "sha256": "e7b6815011faa078d14abc771d127cf81ec2c76ef44cad6bc04de2de6e08ff30",
+      "bytes": 114176
+    },
+    "flight-risk-assessment/assets/index-eVnrbulL.js": {
+      "sha256": "23553d5c218fed2acc0cf04bc99e8a71c6c042177dcd51a439b85a669e67608d",
+      "bytes": 410516
+    },
+    "flight-risk-assessment/assets/info-DjOLTKfj.js": {
+      "sha256": "6e9b6bb683559ce15c4a11bacc799dc1dd34e41a52d9a644716561bea67f36e8",
+      "bytes": 285
+    },
+    "flight-risk-assessment/assets/paths-BfmhZWZn.js": {
+      "sha256": "9d7c8799aea48218d572a8b87d832acabe8fb2c9688ae9557bfd4bc10c3910ba",
+      "bytes": 9653
+    },
+    "flight-risk-assessment/assets/users-CmOKIBww.js": {
+      "sha256": "5f11fbde04bf1a222933f798fbc56477b489201a415cc1825d0284c18cbd3a01",
+      "bytes": 2070
+    }
+  },
+  "previous_report": "docs/design/archive-history/assets-851e9c258cb1.json",
+  "archive_location": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924/flightrisk-focus-followup/superseded-app-assets.tar.gz"
+}

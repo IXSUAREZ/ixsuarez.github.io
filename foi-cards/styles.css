@@ -1,16 +1,14 @@
-/* FOI Cards — touch-first flashcard deck.
-   Dark is a mode, not a planet: the deck keeps its dark surface values but
-   expresses them through the shared SuarezCFI token names, geometry, type
-   scale, and motion (see assets/design-system.css for the daylight system). */
+/* FOI Cards — Polished Aurum materials, shared geometry and study semantics.
+   assets/avionics.css owns the Day/Night material values. */
 
 :root {
-  /* Dark surface values mapped onto the shared token names */
-  --bg: var(--av-bg, #101418);
-  --surface: var(--av-panel, #1b2228);
-  --ink: var(--av-ink, #edf3f7);
-  --ink-muted: var(--av-muted, #aebdc9);
-  --line: var(--av-line, #4b5b68);
-  --accent: var(--av-cyan, #71ddeb);
+  /* App compatibility names point to the shared material authority. */
+  --bg: var(--g-bg);
+  --surface: var(--g-surface);
+  --ink: var(--g-ink);
+  --ink-muted: var(--g-muted);
+  --line: var(--g-line);
+  --accent: var(--g-accent);
   --green: var(--av-green, #a1e583);
   --amber: var(--av-warning, #ffca72);
   --red: var(--av-error, #ff9b97);
@@ -38,7 +36,7 @@ body {
   min-height: 100dvh;
   color: var(--ink);
   font-family: var(--font-sans);
-  background: radial-gradient(circle at 20% 0%, #1d4167 0, transparent 35%), var(--bg);
+  background: var(--bg);
 }
 
 button { font: inherit; }
@@ -61,7 +59,7 @@ button:focus-visible {
 /* ==========================================================================
    Compact site chip nav — the canonical pill collapsed for a study app.
    Same recipe (glass + specular edge + pill + script wordmark), re-derived
-   for the dark surface. Full site nav lives in the toggle sheet.
+   for the shared appearance. Full site nav lives in the toggle sheet.
    ========================================================================== */
 
 .chipnav-wrap {
@@ -78,10 +76,10 @@ button:focus-visible {
   min-height: 52px;
   padding: 6px 8px 6px 18px;
   border-radius: var(--r-pill);
-  background: linear-gradient(135deg, rgba(18, 37, 62, 0.86) 0%, rgba(11, 23, 40, 0.72) 100%);
+  background: var(--g-glass);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid rgba(111, 197, 255, 0.20);
+  border: 1px solid var(--g-line);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
     inset 0 -1px 0 rgba(255, 255, 255, 0.05),
@@ -97,7 +95,7 @@ button:focus-visible {
   text-decoration: none;
   padding: 6px 0;
 }
-.chipnav-wordmark:hover { color: #fff; }
+.chipnav-wordmark:hover { color: var(--g-accent); }
 
 .chipnav-back {
   display: none;
@@ -112,7 +110,7 @@ button:focus-visible {
   white-space: nowrap;
   transition: color 0.2s ease, background 0.2s ease;
 }
-.chipnav-back:hover { color: var(--ink); background: rgba(111, 197, 255, 0.10); }
+.chipnav-back:hover { color: var(--ink); background: var(--g-raised); }
 
 .chipnav-actions { display: flex; align-items: center; gap: 6px; }
 
@@ -134,12 +132,12 @@ button:focus-visible {
   transition: color 0.2s ease, background 0.2s ease, transform 0.22s var(--ease-premium);
 }
 .chipnav-reset:hover,
-.chipnav-menu:hover { color: var(--ink); background: rgba(111, 197, 255, 0.10); }
+.chipnav-menu:hover { color: var(--ink); background: var(--g-raised); }
 
 .chipnav-menu {
-  border-color: rgba(111, 197, 255, 0.28);
+  border-color: var(--g-line);
   color: var(--accent);
-  background: rgba(111, 197, 255, 0.08);
+  background: var(--g-raised);
 }
 .chipnav-menu svg { transition: transform 0.22s var(--ease-premium); }
 .chipnav-menu[aria-expanded="true"] svg { transform: rotate(180deg); }
@@ -154,10 +152,10 @@ button:focus-visible {
   gap: 2px;
   padding: 8px;
   border-radius: var(--r-md);
-  background: linear-gradient(165deg, rgba(18, 37, 62, 0.97) 0%, rgba(11, 23, 40, 0.94) 100%);
+  background: var(--g-glass);
   -webkit-backdrop-filter: blur(22px) saturate(1.4);
   backdrop-filter: blur(22px) saturate(1.4);
-  border: 1px solid rgba(111, 197, 255, 0.20);
+  border: 1px solid var(--g-line);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 24px 60px -18px rgba(0, 0, 0, 0.65);
@@ -178,10 +176,10 @@ button:focus-visible {
   text-decoration: none;
   transition: background 0.18s ease;
 }
-.chipnav-sheet a:hover { background: rgba(111, 197, 255, 0.10); }
+.chipnav-sheet a:hover { background: var(--g-raised); }
 .chipnav-sheet a strong { font-size: 14.5px; font-weight: 600; }
 .chipnav-sheet a span { font-size: 12px; color: var(--ink-muted); }
-.chipnav-sheet a[aria-current="page"] { background: rgba(111, 197, 255, 0.12); }
+.chipnav-sheet a[aria-current="page"] { background: var(--g-raised); }
 
 .chipnav-sheet-label {
   margin: 8px 14px 2px;
@@ -195,10 +193,10 @@ button:focus-visible {
 .chipnav-cta {
   margin-top: 6px;
   align-items: center;
-  background: linear-gradient(160deg, #FFDA33 0%, #FFD000 45%, #F5C400 100%) !important;
-  color: #1C2142 !important;
+  background: var(--g-gold) !important;
+  color: var(--g-key-ink) !important;
   font-weight: 700 !important;
-  box-shadow: 0 10px 24px -10px rgba(245, 196, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 @media (min-width: 600px) {
@@ -255,8 +253,8 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   cursor: pointer;
 }
 .primary-button, .flip-button {
-  background: var(--accent);
-  color: #06111e;
+  background: var(--g-gold);
+  color: var(--g-key-ink);
   font-size: 17px;
   box-shadow: 0 12px 28px #0005;
 }
@@ -325,7 +323,7 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   font-variant-numeric: tabular-nums;
 }
 .pass-meta span:last-child { text-align: right; }
-.progress-track { height: 4px; margin: 10px 0 18px; background: #213852; border-radius: var(--r-pill); overflow: hidden; }
+.progress-track { height: 4px; margin: 10px 0 18px; background: var(--g-line); border-radius: var(--r-pill); overflow: hidden; }
 .progress-fill { height: 100%; width: 0%; background: var(--accent); border-radius: inherit; transition: width 0.25s ease; }
 
 .card-stage { flex: 1; min-height: 330px; display: flex; align-items: center; perspective: 1300px; }
@@ -356,21 +354,21 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   border: 1px solid var(--line);
   border-radius: var(--r-card);
   backface-visibility: hidden;
-  background: linear-gradient(145deg, #193b5e, #102641);
+  background: var(--g-surface);
   box-shadow: 0 20px 45px #0004;
   overflow: auto;
   font-family: var(--font-sans);
 }
-.card-back { transform: rotateY(180deg); background: linear-gradient(145deg, #143449, #102c3e); }
+.card-back { transform: rotateY(180deg); background: var(--g-surface); }
 .card-front h2 { margin: auto 0; font-family: var(--font-display); }
-.answer { white-space: pre-line; margin: auto 0; font-size: clamp(17px, 5.2vw, 22px); line-height: 1.5; color: #f6fbff; font-family: var(--font-sans); }
+.answer { white-space: pre-line; margin: auto 0; font-size: clamp(17px, 5.2vw, 22px); line-height: 1.5; color: var(--g-ink); font-family: var(--font-sans); }
 .tap-hint { margin: 20px 0 0; color: var(--ink-muted); font-size: 13px; font-family: var(--font-sans); }
 .swipe-status { min-height: 20px; margin: 14px 0; color: var(--ink-muted); text-align: center; font-size: 13px; font-family: var(--font-sans); }
 .bottom-controls { min-height: 58px; }
 .actions { display: grid; grid-template-columns: 1fr 1fr 1.08fr; gap: 8px; transition: opacity 0.18s ease; }
 .actions[aria-hidden="true"] { display: none; }
 .rate-button { min-height: 54px; padding: 8px 5px; font-size: 12px; }
-.review { color: #ffd4d2; background: #482b37; border: 1px solid #875060; }
+.review { color: var(--amber); background: color-mix(in srgb, var(--amber) 15%, var(--g-surface)); border: 1px solid var(--amber); }
 .next { color: var(--ink); background: var(--surface); border: 1px solid var(--line); }
 .mastered { color: #092416; background: var(--green); }
 .rate-button span { font-size: 17px; vertical-align: -1px; }
@@ -392,7 +390,7 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--r-card);
-  background: #102641;
+  background: var(--g-surface);
   box-shadow: 0 18px 50px #0008;
 }
 .sheet-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
@@ -454,8 +452,8 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
 }
 .foi-cta-actions a:active { transform: scale(0.98); }
 .foi-cta-primary {
-  background: var(--accent);
-  color: #06111e;
+  background: var(--g-gold);
+  color: var(--g-key-ink);
   box-shadow: 0 12px 28px #0005;
 }
 .foi-cta-secondary {
@@ -471,22 +469,22 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   .foi-cta { padding-bottom: 48px; }
 }
 
-/* Shared Garmin touch treatment: matte work surfaces, shallow rectangular keys.
+/* Shared Aurum treatment: gray work surfaces and tactile rectangular keys.
    The only glass surface is the global dock/menu supplied by avionics.css. */
 .primary-button, .secondary-button, .rate-button, .flip-button,
 .foi-cta-actions a, .section-row, .close-button {
   border-radius: 5px;
 }
 .primary-button, .flip-button {
-  background: var(--av-raised, #252e36);
-  color: var(--av-cyan, #71ddeb);
-  border: 1px solid var(--av-cyan, #71ddeb);
-  box-shadow: inset 0 1px #ffffff20, 0 2px 2px #0005;
+  background: var(--g-gold);
+  color: var(--g-key-ink);
+  border: 1px solid var(--g-edge);
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow);
 }
 .secondary-button, .next {
-  background: var(--av-raised, #252e36);
-  color: var(--av-ink, #edf3f7);
-  border: 1px solid var(--av-line, #4b5b68);
+  background: var(--g-raised);
+  color: var(--g-ink);
+  border: 1px solid var(--g-line);
 }
 .mastered {
   background: var(--av-green, #a1e583);
@@ -494,113 +492,151 @@ h2 { margin: 0; font-size: clamp(26px, 8vw, 36px); line-height: 1.08; letter-spa
   border: 1px solid var(--av-green, #a1e583);
 }
 .review {
-  background: color-mix(in srgb, var(--av-error, #ff9b97) 16%, var(--av-panel, #1b2228));
-  color: var(--av-error, #ff9b97);
-  border: 1px solid var(--av-error, #ff9b97);
+  background: color-mix(in srgb, var(--av-warning, #ffca72) 15%, var(--g-surface));
+  color: var(--av-warning, #ffca72);
+  border: 1px solid var(--av-warning, #ffca72);
 }
 .card-face {
-  background: linear-gradient(145deg, var(--av-raised, #252e36), var(--av-panel, #1b2228));
-  border-color: var(--av-line, #4b5b68);
+  background: linear-gradient(145deg, var(--g-raised), var(--g-surface));
+  border-color: var(--g-line);
   box-shadow: inset 0 1px #ffffff12, 0 12px 28px #0004;
 }
 .card-back {
-  background: linear-gradient(145deg, var(--av-panel, #1b2228), var(--av-bg, #101418));
+  background: linear-gradient(145deg, var(--g-surface), var(--g-bg));
 }
 .answer { color: var(--av-green, #a1e583); }
-.progress-track { background: var(--av-line, #4b5b68); }
-.progress-fill { background: var(--av-cyan, #71ddeb); }
+.progress-track { background: var(--g-line); }
+.progress-fill { background: var(--g-accent); }
 .section-row { min-height: 52px; }
 .section-sheet { z-index: 110; padding-bottom: max(16px, calc(var(--dock-clearance, 100px) + env(safe-area-inset-bottom, 0px))); }
-.chipnav-sheet-label { color: var(--av-cyan, #71ddeb); }
+.chipnav-sheet-label { color: var(--g-accent); }
 .chipnav-cta {
-  background: var(--av-raised, #252e36) !important;
-  color: var(--av-cyan, #71ddeb) !important;
-  border: 1px solid var(--av-line, #4b5b68);
-  box-shadow: inset 0 1px #ffffff20, 0 2px 2px #0005;
+  background: var(--g-gold) !important;
+  color: var(--g-key-ink) !important;
+  border: 1px solid var(--g-edge);
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow);
 }
 .chipnav-reset { justify-content: center; cursor: pointer; }
+/* FOI actions are reflowed into the shared menu after startup. Keep their
+   material hierarchy there instead of inheriting the generic text-row style. */
+html body.foi-page .liquid-menu .av-menu-actions a.chipnav-cta {
+  background: var(--g-gold) !important;
+  color: var(--g-key-ink) !important;
+  border: 1px solid var(--g-edge);
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow);
+}
+html body.foi-page .liquid-menu .av-menu-actions button.chipnav-reset {
+  background: linear-gradient(180deg, var(--g-raised), var(--g-surface));
+  color: var(--g-ink);
+  border: 1px solid var(--g-line);
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow);
+}
 .chipnav-reset:focus-visible, .section-row:focus-visible, .primary-button:focus-visible,
 .secondary-button:focus-visible, .rate-button:focus-visible, .flip-button:focus-visible {
-  outline: 3px solid var(--av-focus, #9fefff);
+  outline: 3px solid var(--g-accent);
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .section-sheet { background: var(--av-bg, #101418); }
+  .section-sheet { background: var(--g-bg); }
 }
 
-/* Shared avionics owns dock geometry, materials, collapse and focus. */
+.foi-reset-dialog {
+  width: min(440px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 24px;
+  border: 1px solid var(--g-line);
+  border-radius: 12px;
+  background: var(--g-surface);
+  color: var(--g-ink);
+  box-shadow: var(--g-shadow);
+}
+.foi-reset-dialog::backdrop { background: rgb(0 0 0 / 45%); }
+body.foi-page .foi-reset-dialog h2 { color: var(--g-ink); margin: 0 0 12px; }
+body.foi-page .foi-reset-dialog p { color: var(--g-muted); line-height: 1.6; }
+.foi-reset-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.foi-reset-actions button { flex: 1 1 150px; margin: 0; min-height: 48px; }
+
+/* Shared navigation owns dock geometry, materials, collapse and focus. */
 body.foi-page .app-shell > section.welcome,
 body.foi-page .app-shell > section.completion {
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 /* The legacy premium stylesheet also themes `body` and generic headings.
    Pin FOI's canvas and type directly to the resolved shared appearance tokens
    so Day never combines a dark canvas with dark heading text. */
 body.foi-page {
-  background: var(--av-bg, #101418) !important;
+  background: var(--g-bg) !important;
   background-image: none !important;
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section:is(.welcome, .completion) :is(h1, h2, h3) {
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section:is(.welcome, .completion) :is(p, .summary, .resume-hint, .source-note) {
-  color: var(--av-muted, #aebdc9) !important;
+  color: var(--g-muted) !important;
 }
 
 body.foi-page .app-shell > section:is(.welcome, .completion) .summary strong {
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section.welcome .eyebrow,
 body.foi-page .app-shell > section.completion .eyebrow {
-  color: var(--av-cyan, #71ddeb) !important;
+  color: var(--g-accent) !important;
 }
 
 body.foi-page .app-shell > section.welcome .intro,
 body.foi-page .app-shell > section.completion .intro {
-  color: var(--av-muted, #aebdc9) !important;
+  color: var(--g-muted) !important;
 }
 
-body.foi-page .app-shell > section.welcome .primary-button,
-body.foi-page .app-shell > section.completion .primary-button,
 body.foi-page .app-shell > section.welcome .secondary-button,
 body.foi-page .app-shell > section.completion .secondary-button {
   min-height: 52px;
-  border: 1px solid var(--av-line, #4b5b68);
+  border: 1px solid var(--g-line);
   border-radius: 5px;
-  background: var(--av-raised, #252e36);
-  color: var(--av-cyan, #71ddeb);
-  box-shadow: inset 0 1px #ffffff20, 0 2px 2px #0005;
+  background: var(--g-raised);
+  color: var(--g-accent);
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow);
+}
+
+/* Primary study actions share one material, including the completion screen. */
+body.foi-page .app-shell > section:is(.welcome, .completion) .primary-button {
+  min-height: 52px;
+  border: 1px solid var(--g-edge);
+  border-radius: 5px;
+  background: var(--g-gold);
+  color: var(--g-key-ink);
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow);
 }
 
 @media (prefers-reduced-transparency: reduce) {
   body.foi-page .app-shell > header.chipnav-wrap.nav-wrap > nav.chipnav.nav.nav--tool {
-    background: var(--av-panel, #1b2228);
+    background: var(--g-surface);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 }
 
 /* Override the legacy editorial palette on the working deck and its CTA too.
-   The two rating actions intentionally keep their risk meanings. */
+   The two rating actions intentionally keep their study-status meanings. */
 body.foi-page .app-shell > section.study .flashcard .card-face {
-  border-color: var(--av-line, #4b5b68) !important;
-  background: linear-gradient(145deg, var(--av-raised, #252e36), var(--av-panel, #1b2228)) !important;
-  color: var(--av-ink, #edf3f7) !important;
+  border-color: var(--g-line) !important;
+  background: linear-gradient(145deg, var(--g-raised), var(--g-surface)) !important;
+  color: var(--g-ink) !important;
   box-shadow: inset 0 1px #ffffff12, 0 12px 28px #0004 !important;
 }
 
 body.foi-page .app-shell > section.study .flashcard .card-face :is(h2, p, li, div, span) {
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section.study .flashcard .card-face .card-label {
-  color: var(--av-cyan, #71ddeb) !important;
+  color: var(--g-accent) !important;
 }
 
 body.foi-page .app-shell > section.study .flashcard .card-face .answer {
@@ -611,83 +647,80 @@ body.foi-page .app-shell > section.study .flashcard .card-face .tap-hint,
 body.foi-page .app-shell > section.study .swipe-status,
 body.foi-page .app-shell > section.study .study-meta,
 body.foi-page .app-shell > section.study .pass-meta {
-  color: var(--av-muted, #aebdc9) !important;
+  color: var(--g-muted) !important;
 }
 
 body.foi-page .app-shell > section.study .flip-button {
-  min-height: 52px;
-  border: 1px solid var(--av-cyan, #71ddeb) !important;
-  border-radius: 5px !important;
-  background: var(--av-raised, #252e36) !important;
-  color: var(--av-cyan, #71ddeb) !important;
-  box-shadow: inset 0 1px #ffffff20, 0 2px 2px #0005 !important;
+  min-height:52px;border:1px solid var(--g-edge)!important;border-radius:5px!important;
+  background:var(--g-gold)!important;color:var(--g-key-ink)!important;
+  box-shadow:inset 0 1px var(--g-glass-edge),var(--g-shadow)!important;
 }
 
 body.foi-page .app-shell > section.study .rate-button.review {
   border: 1px solid var(--av-warning, #ffca72) !important;
   border-radius: 5px !important;
-  background: color-mix(in srgb, var(--av-warning, #ffca72) 15%, var(--av-panel, #1b2228)) !important;
-  color: var(--av-warning, #ffca72) !important;
+  background: color-mix(in srgb, var(--av-warning, #ffca72) 15%, var(--g-surface)) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section.study .rate-button.next {
-  border: 1px solid var(--av-line, #4b5b68) !important;
+  border: 1px solid var(--g-line) !important;
   border-radius: 5px !important;
-  background: var(--av-raised, #252e36) !important;
-  color: var(--av-ink, #edf3f7) !important;
+  background: var(--g-raised) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section.study .rate-button.mastered {
   border: 1px solid var(--av-green, #a1e583) !important;
   border-radius: 5px !important;
-  background: color-mix(in srgb, var(--av-green, #a1e583) 24%, var(--av-panel, #1b2228)) !important;
-  color: var(--av-green, #a1e583) !important;
+  background: color-mix(in srgb, var(--av-green, #a1e583) 24%, var(--g-surface)) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page > .foi-cta .foi-cta-card {
-  border: 1px solid var(--av-line, #4b5b68) !important;
+  border: 1px solid var(--g-line) !important;
   border-radius: 8px !important;
-  background: var(--av-panel, #1b2228) !important;
-  color: var(--av-ink, #edf3f7) !important;
+  background: var(--g-surface) !important;
+  color: var(--g-ink) !important;
   box-shadow: none !important;
 }
 
 body.foi-page > .foi-cta .foi-cta-card :is(h2, p, a) {
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page > .foi-cta .foi-cta-card .foi-cta-copy,
 body.foi-page > .foi-cta .foi-cta-card .foi-cta-contact {
-  color: var(--av-muted, #aebdc9) !important;
+  color: var(--g-muted) !important;
 }
 
 body.foi-page > .foi-cta .foi-cta-card .foi-cta-contact a {
-  color: var(--av-cyan, #71ddeb) !important;
+  color: var(--g-accent) !important;
 }
 
 body.foi-page > .foi-cta .foi-cta-card a.foi-cta-primary {
   min-height: 52px;
-  border: 1px solid var(--av-cyan, #71ddeb) !important;
+  border: 1px solid var(--g-edge) !important;
   border-radius: 5px !important;
-  background: var(--av-cyan, #71ddeb) !important;
-  color: var(--av-bg, #101418) !important;
-  box-shadow: inset 0 1px #ffffff30, 0 2px 2px #0005 !important;
+  background: var(--g-gold) !important;
+  color: var(--g-key-ink) !important;
+  box-shadow: inset 0 1px var(--g-glass-edge), var(--g-shadow) !important;
 }
 
 body.foi-page > .foi-cta .foi-cta-card a.foi-cta-secondary {
   min-height: 52px;
-  border: 1px solid var(--av-line, #4b5b68) !important;
+  border: 1px solid var(--g-line) !important;
   border-radius: 5px !important;
-  background: var(--av-raised, #252e36) !important;
-  color: var(--av-ink, #edf3f7) !important;
+  background: var(--g-raised) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .app-shell > section.study .progress-track {
-  background: var(--av-line, #4b5b68) !important;
+  background: var(--g-line) !important;
 }
 
 body.foi-page .app-shell > section.study .progress-fill {
-  background: var(--av-cyan, #71ddeb) !important;
+  background: var(--g-accent) !important;
 }
 
 /* Keep study decisions next to the card at narrow widths and enlarged text. */
@@ -712,17 +745,32 @@ body.foi-page .app-shell > section.study .actions {
 }
 
 body.foi-page .section-sheet .sheet {
-  border-color: var(--av-line, #4b5b68) !important;
+  border-color: var(--g-line) !important;
   border-radius: 8px !important;
-  background: var(--av-panel, #1b2228) !important;
-  color: var(--av-ink, #edf3f7) !important;
+  background: var(--g-surface) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .section-sheet .sheet :is(h2, .section-row) {
-  color: var(--av-ink, #edf3f7) !important;
+  color: var(--g-ink) !important;
 }
 
 body.foi-page .section-sheet .sheet .section-row span,
 body.foi-page .section-sheet .sheet .close-button {
-  color: var(--av-muted, #aebdc9) !important;
+  color: var(--g-muted) !important;
 }
+
+body.foi-page .section-sheet .sheet .section-row.current {
+  background: var(--g-gold) !important;
+  color: var(--g-key-ink) !important;
+  box-shadow: inset 0 1px var(--g-glass-edge), inset 0 0 0 1px var(--g-edge), var(--g-shadow);
+}
+body.foi-page .section-sheet .sheet .section-row.current span {
+  color: var(--g-key-ink) !important;
+}
+
+body.foi-page .flashcard a {color:var(--g-accent)!important}
+
+/* Reserve the floating navigation inside the study viewport, so Flip and
+   rating actions remain above the dock rather than behind its glass. */
+body.foi-page .app-shell {padding-bottom:max(28px,var(--dock-clearance,100px))}

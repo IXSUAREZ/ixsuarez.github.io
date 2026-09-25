@@ -1,6 +1,6 @@
 /* CloudySky, adapted from the supplied Framer component.
-   Preserve its complete shader and day/night colors. The published reference
-   uses cloudDensity 1, cloudSpeed 1.3, sunIntensity 1, and automatic solar time. */
+   Preserve its shader, cloud motion, and solar-time nuance while keeping the
+   sky light enough for Day ink and dark enough for Night ink. */
 (() => {
   'use strict';
   const hero = document.querySelector('.horizon-hero');
@@ -46,6 +46,15 @@
       return 0;
     }
     return 1;
+  }
+
+  function appearanceNightFactor(now) {
+    const solar = getNightFactor(now);
+    // Solar time adds subtle variation within each appearance. It must not
+    // turn the Day hero into a night sky behind dark Day text, or vice versa.
+    return document.documentElement.dataset.goldMode === 'dark'
+      ? .88 + .12 * solar
+      : .12 * solar;
   }
 
   function colorsAt(factor) {
@@ -271,11 +280,11 @@
   let lastFactor = null;
 
   function render() {
-    const factor = getNightFactor(new Date());
+    const factor = appearanceNightFactor(new Date());
     const motion = !reduced.matches && Boolean(renderer);
     const active = motion && visible && !document.hidden;
     hero.classList.toggle('has-cloud-sky', Boolean(renderer));
-    hero.dataset.skyMode = 'auto';
+    hero.dataset.skyMode = 'appearance';
     hero.dataset.skyPhase = factor < .55 ? 'day' : 'night';
     hero.dataset.motion = active ? 'on' : 'off';
     if (factor !== lastFactor) {
@@ -287,6 +296,7 @@
 
   if (reduced.addEventListener) reduced.addEventListener('change', render);
   else reduced.addListener(render);
+  window.addEventListener('suarez:appearance', render);
   document.addEventListener('visibilitychange', render);
   window.addEventListener('pageshow', render);
   window.addEventListener('pagehide', () => { if (renderer) renderer.setActive(false); });

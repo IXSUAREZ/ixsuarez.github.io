@@ -1,0 +1,32 @@
+[
+  {
+    "appearance": "day",
+    "foreground": [
+      147,
+      50,
+      43
+    ],
+    "background": [
+      247,
+      226,
+      222
+    ],
+    "contrast": 6.182,
+    "source": "Browser computed colors after final rebuild"
+  },
+  {
+    "appearance": "night",
+    "foreground": [
+      242,
+      155,
+      145
+    ],
+    "background": [
+      61,
+      40,
+      40
+    ],
+    "contrast": 6.442,
+    "source": "Browser computed colors after final rebuild"
+  }
+]

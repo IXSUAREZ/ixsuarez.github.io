@@ -1,0 +1,184 @@
+{
+  "checked_at_utc": "2026-09-24T23:47:00.784831+00:00",
+  "scope": "Current local regression checkpoint. JSDOM/logic tests and asset identity do not prove rendered, OS, zoom, regulatory-content or native export acceptance.",
+  "suites": [
+    {
+      "command": "node --test scripts/tests/*.test.cjs",
+      "passed": 61
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts/tests -p 'test_*.py'",
+      "passed": 10
+    },
+    {
+      "project": "aero-lab source",
+      "command": "npm test",
+      "passed": 14
+    },
+    {
+      "project": "flightrisk-app source",
+      "command": "npm test",
+      "passed": 27
+    },
+    {
+      "project": "pilotsolve source",
+      "command": "npm test",
+      "passed": 36
+    },
+    {
+      "project": "pilotsolve source",
+      "command": "npm run check:runtime",
+      "protected_files": 28,
+      "result": "pass"
+    },
+    {
+      "project": "simply-endorsed",
+      "command": "node tests/run-tests.js",
+      "passed": 98
+    },
+    {
+      "project": "simply-endorsed",
+      "command": "node tests/workspace.test.js",
+      "assertions_passed": 1678
+    },
+    {
+      "project": "simply-endorsed",
+      "command": "node tests/certpath-storage.test.js",
+      "result": "pass",
+      "coverage": "fresh start, gate, failure preservation, retry key, save/reopen/update, locked inbox"
+    }
+  ],
+  "audits": {
+    "route_wiring": {
+      "passed": 523,
+      "total": 523
+    },
+    "canonical_contrast": {
+      "passed": 44,
+      "total": 44,
+      "minimum_text_ratio": 4.75
+    },
+    "unreferenced_generated_assets": 0,
+    "supporting_document_wiring": {
+      "passed": 6,
+      "total": 6
+    },
+    "packaged_assets_match_local_dist": {
+      "pilotsolve": 5,
+      "aero-lab": 8,
+      "flight-risk-assessment": 10,
+      "missing": 0,
+      "different": 0
+    }
+  },
+  "artifact_sha256": {
+    "aero-lab/assets/App-FZ8v98Wg.js": "cb72f1381e2306d9d449d35c07fb77fa2a9b3f7a1dda71bd38b936368596e9ac",
+    "aero-lab/assets/GeometryStudio-C4w8bhS7.js": "0e8ee40eeb3af8196109750c96d0eac4c20af8868762193f73e8108f2fa2966c",
+    "aero-lab/assets/GeometryStudio-DzphsTdb.css": "7faa1d7404a33c4839e3d6c1e65879c92a9db41ecd88b68554d4fef6d02ff0f8",
+    "aero-lab/assets/ReferenceCases-Dp5WiJsf.css": "8b0865db539760e6fdadd78f23c599b3c0c3fc21637a3c327efb960ae641c3ab",
+    "aero-lab/assets/ReferenceCases-ya7sL5Bk.js": "3423214b32f250c8cdcee93443f670c346979d13a61517c6ecc20e8d88f8fdb7",
+    "aero-lab/assets/engine-worker-C0NeOMa6.js": "15bb3b61ca0c30095908b1f2d807db48029a2ea8a96eda5fc50dce4095c481c5",
+    "aero-lab/assets/index-B2Pyi143.css": "99d04f981c0954980095e4f63367eb6b671f2116891c7f98b31b547abbc227ae",
+    "aero-lab/assets/index-C980s7W8.js": "6b916fff79e2a3eeceaff1cb88c95706318eb36e5d41cbdad7904ed7e4513131",
+    "assets/app-site-navigation.js": "cf2c2ee2570b8203d1ff91f2319f0abe76549c52d51bc2eb5a9f21bc82c39f60",
+    "assets/appearance.js": "cdcd8e82f4190a831cf92a9c41097da4c74d3e057a920671c9fc5076e6006542",
+    "assets/avionics-tools.js": "f0316fe0fc0ef22b4da490bcadc54159545dcd82f00d01be575f7c0c9af7303d",
+    "assets/avionics.css": "7ee47dc1768d47da6ed50075ba437a22506fc6ab7a58d88c3a012bf51814449c",
+    "assets/blog-browser.js": "034d6f935a0f10893cdd46ecae911e09e14de2081d67d53575192db783d69102",
+    "assets/cfr-autolink.js": "d8d417c1c58f53ffde2e93cef164487ff99715d2ca6513bd49073a894e0dcafd",
+    "assets/contact-form.css": "5a081aa2ae4c0bf9d23b055e3c1d2e36ec578f2d789f5885b8d3a29af80a776d",
+    "assets/contact-form.js": "ab9c8cfda37aeef7b2195602410b2c2d255071cf2ad0f24a1dc79617ca9d9585",
+    "assets/conversion-bar.js": "3f69f2ca9562f5641584f046fff03d676ac9c000030f04cee42627049ae9d860",
+    "assets/cta-tracking.js": "94f0d88df11b38b3e3fa3385167f83a579d8ed46982a0a5a794459242bf3af0a",
+    "assets/design-system.css": "cda2166db221a5b0a624f87b6125aa0459f46dc6bdc5a9a64cb2379492987e20",
+    "assets/home-avionics.css": "babde18d898ff95621dd8b37d1a7b70dda211a350d069e73adb1fdc91d7698e8",
+    "assets/library-search.css": "3036b3dae5af730562d133c4085a5a2bcfec28d41cd5461576ce0dd258f08cac",
+    "assets/library-search.js": "3356ce2a4af2c2e0297a1816429d84450800dda5a615454aa15c99affb76bfd3",
+    "assets/premium-home.css": "a3170b2ca495a70531fc05e5b54cb2bbe4994620af17809c40ac7d75d562b187",
+    "assets/premium-home.js": "9d23c4bafc00e0558165012a14db1f6be7e6f568e308e4d80292daad36315b67",
+    "assets/premium.css": "d1f7d1429aea4e82d0c710b13751ae990cb19a2ec4810cf817320eb8c95cb0ad",
+    "assets/site-discovery.css": "fb6c7bee00538517919e5241ea64f60af58a74eaf53a3e61ab6671f995bb95ee",
+    "assets/site-footer.css": "e0480e604c6ceb36b14f9a9bf61ecd1f27da53b0ecd1aab691076dd9a91e60aa",
+    "assets/site-footer.js": "e823b76993a5718bc1d444c6300ab88839d3f1a113315d2771ddbb5989cacf4c",
+    "assets/site-nav.js": "59ae778fb3a86dda199fa0e81f53fb824d40014d823571df70bef4b842f9a9d1",
+    "assets/tactile.js": "15de6a8ffa682a3ee11661f90bb82c44c04f15de1e5995e8e6fe31f3304aa834",
+    "assets/tool-catalog.css": "55d65b91502d5e10e3446e60987183eed993e083c6ca6a0772a84cf8eb704ec2",
+    "assets/tool-catalog.js": "2a6526a2ad8f45185ee4ed2458262a6f3bb6312617aa24cf701b82e8dac16e03",
+    "assets/tool-system/certgen.css": "dfee1a6e922f76c093154da3922094330b6929cb78cd8b5db3a4c071b0a7b40f",
+    "assets/tool-system/part61-redesign.css": "54b84a30e9f4cdb457e24382dd282465256837e7263bccf048b39724c968ec3a",
+    "assets/tool-system/part61.css": "5f609c0164861deba887376adb248c45ab75e527a0a9e832a97b5b65ab9f647d",
+    "assets/tool-system/simply-endorsed.css": "e28fa36c429cd9f01ba4bee4b38f137171775453a9e31ccd1fb8977a4b513864",
+    "assets/tool-system/tool-core.css": "76595731e5c2ad9d7ea00c7128b353750e77f74fb85e87a72a7220dcf5efed7e",
+    "blog/style.css": "54a2b052ed5f10e110bdea69ddf9f6424221854290bea4ba68497695e95c9691",
+    "engine-explorer/app/assets/IgnitionLab-CtUj2gM8.js": "ab5b377b8e62aa2a322cc49b1718ad493a63429a8feb6e24c7203cd475d9bb4e",
+    "engine-explorer/app/assets/IgnitionLab-DTFVniK6.css": "67977afe33c7e8c62d8bcfb612e5bd6123f3f55964962ef4d7c7b927bf6f7248",
+    "engine-explorer/app/assets/InstrumentApp-rn4VoRHz.js": "58914cf95d7d96f182bc7faa44de52965b24df1e1ad9cbcff673442a64df657b",
+    "engine-explorer/app/assets/avionics-boundary.js": "2c279e957a3bab4df7dec3e7b75bb35899c45919c7bc6fd39ae957d873c4a6f9",
+    "engine-explorer/app/assets/avionics-overlay.css": "46b18511dbdeaab9e9adbe0564f212f57ffe973c4768bfa2587fb473a5a6c97b",
+    "engine-explorer/app/assets/avionics-overlay.js": "64a2c76238f8fd377ad3e59b21c51df79cff0715f6b04460d15ce640d579d924",
+    "engine-explorer/app/assets/index-BOxk6Ov7.js": "53736ad786c6e1b21cd9c19920d889e5f570f6be5ef102cfaf6d53f1af630f2b",
+    "engine-explorer/app/assets/index-DrPSlZKX.css": "c75f1ae17f1fd77ae5e3d07e7f3b530ca85c0000d88dcf583ec85b2a8a8f8e73",
+    "engine-explorer/app/assets/three-D-010ueG.js": "e14afe766ab137f91456a046fa33f74ff5280fa48d6c7c317d758fb9a4aae1c8",
+    "flight-risk-assessment/assets/Assessment-DEPPpDDC.js": "c1e170fe1f48d592c59c6e75f1125da4afb5f4e7655dbfc6d473baeb1dfc35c3",
+    "flight-risk-assessment/assets/Guide-BjxfbE29.js": "cb4d3576851a0932f70b5e750040a0a634987bba903f08b63d86f0dbcbc6eb03",
+    "flight-risk-assessment/assets/Methodology-DyNQGesM.js": "5e3936d0974b7f35803f89a179eb3e1180b7c764df76c443443648e6a6719ffe",
+    "flight-risk-assessment/assets/NotFound-B-Whe8An.js": "f9e89d2dd157f8f571d6387a5fd263041a417f3fa89a359da44ca1484f5b7b1f",
+    "flight-risk-assessment/assets/ScrollTrigger-CWLbbeuH.js": "6fae5237671b351fd4e80989364c724962f043c7e74121ce79e9bab8b8d583a9",
+    "flight-risk-assessment/assets/index-Bp18znhh.css": "3919144d8158180f1f4f175995fa9a5ecc2019ab1c00ba25e21fe8ebe4ba832b",
+    "flight-risk-assessment/assets/index-DttITNAe.js": "9eaad846d1ee9fb7f822d89d5c45f60e890f1c8c998668dfd381dd5041057d3d",
+    "flight-risk-assessment/assets/info-D3tBSWUp.js": "7e1a96cc7a4f511ef462c5b902464a546d72a10f9050cb02bfbe561c7e31da32",
+    "flight-risk-assessment/assets/paths-DtFJPV-W.js": "0b411732ad480cac6cc15bce0a26bdc74a6fa4f0bc3d4bf5a690f0d37c5bff58",
+    "flight-risk-assessment/assets/users-BF0pEait.js": "e9ac449cb7cf89c1c0338f33595de906bdd2386a76033c27d15d874b62fcc41b",
+    "foi-cards/app.js": "6edc18295f3bb11aa9d250ce92b8bf27d9fc5d1178ec2db37ed3978625aee0cb",
+    "foi-cards/styles.css": "9774350b3ddddc6ff636d1727b078c7047b104c9d0dba57621c170f29b0e38a5",
+    "part-61-calculator/index.html": "b24f985f03c4e207e4232de27accd8f57de4dcd57236325c2d1e29a232cdcd64",
+    "part-61-calculator/storage.js": "0e5608b39d5b873d5b5b1b9ca9cde77b713bf6e8dbca273509743e69a97360c5",
+    "pilotsolve/assets/mobile-Bya7Y8qO.js": "2d9bede2c662dc79bfc561c83b317abea44543f47f70e6682dccb41c03536e6a",
+    "pilotsolve/assets/preview-BmIPKyx7.css": "4385cca68cbec1c8612313bc2d4245e111b70b7fd418765c6fdd743b36445be9",
+    "pilotsolve/assets/preview-C6OAzi0g.js": "d6f56842e4f3b81bc4a9d852d6f3b86ea8228ef7adeb89e1210c2d997ac94c17",
+    "pilotsolve/assets/prototype-BB03Ca4u.css": "a1c15296927735e3f0d0fbf29ced8893f891afacc869a389f70ba53cc8dbdbfb",
+    "pilotsolve/assets/prototype-DOuNOj3r.js": "8f950c463f48d0c4bd1fc91e869031179679a8e428812fee3515b236e492e3ab",
+    "pilotsolve/sw.js": "dc931220b0ecbe61fc661792a6a6e14158842347aa4801c14731b19b81c0a5b0",
+    "scripts/sync-avionics.py": "a18ebf04f8de7616c76f850da18b2b7445a9a80dfa81d2a019efe309b2d261ca",
+    "scripts/tests/appearance.test.cjs": "fc63ae4b3328bdb0a44a4703865c3a1815a5cfb8fdd8b5e1e0ecccf79d8f33af",
+    "scripts/tests/avionics-navigation.test.cjs": "9c601d275e8ff865901b90a96e337e07ebeb58c04c14419febcb931d48cbdd2a",
+    "scripts/tests/contact-form.test.cjs": "87d6d2ae611a2fb2616f4d393f9c55d39336d81c91f47473c675b38de930ac70",
+    "scripts/tests/crank-blueprint.test.cjs": "046e61147147c6fb10cb1acdd88b36ad0c4492c9d636c68053d039b0038fe752",
+    "scripts/tests/foi-dialog.test.cjs": "e59449f9f95c907682390ca15d712672c99b910ffc87c28af9936d73c0057e0c",
+    "scripts/tests/footer.test.cjs": "ca6acb6c7dbab153e27fca0c603f4318e1908394dfb68256498aee6e62c3e4ba",
+    "scripts/tests/library-search.test.cjs": "16b6c65f55b8748a2a8f2dec437ddd56b67032799044c288235f6b019c48f1ea",
+    "scripts/tests/pilotsolve-cache.test.cjs": "773938863a62053ec984517d5360aecabc7a45084052537632e14f050f24ad0c",
+    "scripts/tests/premium-home.test.cjs": "c68de8d538799e9da2ef77c06d526c4a46524be0de7a1d6a8457791c36ec8501",
+    "scripts/tests/tactile-offline.test.cjs": "3ca1e24e25b1ab7dd8426d2e3b202e79ef382dfaa03cb110cfc3f292973c3e31",
+    "scripts/tests/tactile.test.cjs": "f9210ce0b3a1eb16ed78caaf2b6bdd7a8021f34a872e3bff483798e79cfb284f",
+    "scripts/tests/test_footer_sync.py": "6818e6ab87794546239a3cbf0e76bf7c521367a0e31c47ddb7dfee9a79ac1cc8",
+    "scripts/tests/test_site_audit.py": "52c5418dc8ff386d6e5ba2692449b77bd86b9d7ef0d6c50d3f21fb15753672db",
+    "scripts/tests/tool-catalog.test.cjs": "c854dab82bbfa0f5d936867fdd0ad34333af860caf4a0c319aa30dac7f851e94",
+    "simply-endorsed/js/workspace.js": "92594839ae7ed9029d2e193d07479106970addb60951a03de8b71eaf5a88d995"
+  },
+  "not_proven": [
+    "full visual acceptance matrix",
+    "actual 200% browser zoom",
+    "live OS appearance/reduced-effect changes",
+    "browser-blocked storage",
+    "native download and print delivery",
+    "production release"
+  ],
+  "app_source_tree_sha256": {
+    "pilotsolve": {
+      "files": 73,
+      "sha256": "952d9dacc2774b5b6833b1702108b085ed45c79127766a3a3e985ac11b29ac61",
+      "scope": "src, tests, scripts and package manifests; sorted relative path plus file hash"
+    },
+    "aero-lab": {
+      "files": 37,
+      "sha256": "b26b2d2065a80ec247e927a7e5cbbab9d710a7b4dbfbe31c556a424e7c90c2f1",
+      "scope": "src, tests, scripts and package manifests; sorted relative path plus file hash"
+    },
+    "flightrisk-app": {
+      "files": 108,
+      "sha256": "8cd0464c92ef533e1429fb9f4f00a39d7a043bb38d984b9966d38a711844fc75",
+      "scope": "src, tests, scripts and package manifests; sorted relative path plus file hash"
+    }
+  }
+}

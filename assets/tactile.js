@@ -167,6 +167,19 @@
   function schedule(){if(active&&!scheduled){scheduled=true;frame=requestAnimationFrame(scan);}}
   function destroy(){active=false;cancelAnimationFrame(frame);if(observer)observer.disconnect();inputs.forEach(function(s){s.observer.disconnect();});docks.forEach(function(s){document.removeEventListener('scroll',s.scroll,true);window.removeEventListener('pointerup',s.release);window.removeEventListener('pointercancel',s.release);s.observer.disconnect();if(s.resize)s.resize.disconnect();});}
   window.SuarezTactile={refresh:schedule,attachDock:attachDock,setValue:setValue,destroy:destroy};
-  function ready(){scan();observer=new MutationObserver(function(records){if(records.some(function(r){return Array.from(r.addedNodes).concat(Array.from(r.removedNodes)).some(function(n){return n.nodeType===1;});}))schedule();});observer.observe(document.body,{childList:true,subtree:true});}
+  function ready(){
+    scan();
+    observer=new MutationObserver(function(records){
+      if(records.some(function(r){
+        if(r.type==='attributes'){
+          var target=r.target;
+          return target.matches('button:not([data-native-control]),.btn') && !target.classList.contains('av-control');
+        }
+        return Array.from(r.addedNodes).concat(Array.from(r.removedNodes)).some(function(n){return n.nodeType===1;});
+      }))schedule();
+    });
+    /* React can rewrite an existing button's class without replacing its node. */
+    observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
 })();

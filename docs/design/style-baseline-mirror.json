@@ -1,0 +1,10 @@
+{
+  "source": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/_local-only/style-archive-before-aurum-20260924",
+  "mirror": "/Users/diegosuarez/Projects/suarez-aurum-sources/_archives/style-baseline-20260924",
+  "sha256": {
+    "styles-dfd653c.tar.gz": "257a1b9dfc95ed46ad18a49ac85830da37416a0a080602cc478fb5d3d6e95059",
+    "manifest.json": "292bc47a08824fafedd115b19c262b0265aa8735c692831ce7189200945649db"
+  },
+  "archived_sources": 53,
+  "tar_matches_manifest": true
+}

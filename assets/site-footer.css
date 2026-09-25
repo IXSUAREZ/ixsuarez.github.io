@@ -1,6 +1,6 @@
 /* Shared footer. Independent of page containers and legacy footer selectors. */
 body footer.site-footer-v2 {
-  --sf-bg:var(--footer-bg,#111b26);--sf-text:var(--footer-ink,#d4dee6);--sf-muted:var(--footer-muted,#a7b5c2);--sf-line:color-mix(in srgb,var(--sf-text) 18%,transparent);
+  --sf-bg:var(--footer-bg,var(--g-surface));--sf-text:var(--footer-ink,var(--g-ink));--sf-muted:var(--footer-muted,var(--g-muted));--sf-line:color-mix(in srgb,var(--sf-text) 18%,transparent);
   display:block;box-sizing:border-box;width:100%;max-width:none;margin:0;
   padding:0!important;border:0;border-top:1px solid var(--sf-line);
   background:var(--sf-bg)!important;color:var(--sf-text);text-align:left;
@@ -11,7 +11,7 @@ body footer.site-footer-v2 .site-footer-inner {width:100%;max-width:1200px;margi
 body footer.site-footer-v2 a {color:var(--sf-text);text-decoration:none;font:inherit;letter-spacing:normal;background:none;border:0;border-radius:0;box-shadow:none;overflow-wrap:anywhere}
 body footer.site-footer-v2 a:hover {text-decoration:underline;text-underline-offset:4px;color:var(--sf-text)}
 body footer.site-footer-v2 a:active,body footer.site-footer-v2 summary:active {opacity:.75}
-body footer.site-footer-v2 :focus-visible {outline:3px solid var(--focus-ring,#e3c675);outline-offset:4px;border-radius:3px}
+body footer.site-footer-v2 :focus-visible {outline:3px solid var(--focus-ring,var(--g-accent));outline-offset:4px;border-radius:3px}
 body footer.site-footer-v2 p {margin:0;color:var(--sf-muted);font:inherit;letter-spacing:normal;max-width:none;text-align:left}
 body footer.site-footer-v2 .site-footer-directory {display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
 body footer.site-footer-v2 .site-footer-brand {display:inline-flex;align-items:center;font-size:19px;font-weight:700;letter-spacing:.1em;line-height:1.3;margin-bottom:10px;min-height:32px}

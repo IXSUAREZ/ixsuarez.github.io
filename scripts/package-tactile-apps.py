@@ -4,9 +4,11 @@ from pathlib import Path
 import argparse, re, shutil
 parser=argparse.ArgumentParser()
 parser.add_argument('--source-root',type=Path,required=True)
+parser.add_argument("--app", choices=["aero-lab", "flight-risk-assessment"], help="Package only the rebuilt app")
 args=parser.parse_args()
 root=Path(__file__).resolve().parents[1]
 for app,source in [('aero-lab','aero-lab'),('flight-risk-assessment','flightrisk-app')]:
+    if args.app and args.app != app: continue
     dist=args.source_root/source/'dist'
     html=(dist/'index.html').read_text()
     js=re.search(r'<script type="module"[^>]*src="([^"]+)"',html)[1]

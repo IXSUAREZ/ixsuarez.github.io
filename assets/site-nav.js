@@ -311,6 +311,9 @@
       render(false); reset();
       if (event.detail === 0) (destinations.querySelector('[aria-current]') || menu).focus({ preventScroll: true });
     }, true);
+    shell.addEventListener('click', function () {
+      if (collapsed) { render(false); reset(); }
+    });
     items.addEventListener('focusin', function (event) { if (collapsed && event.target === menu) return; render(false); reset(); });
     nav.addEventListener('pointerdown', function () { pressed = true; });
     function release() { pressed = false; reset(); }

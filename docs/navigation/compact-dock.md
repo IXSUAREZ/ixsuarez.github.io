@@ -5,7 +5,10 @@ and centered 56px Menu circle. Existing buttons gather into that circle as the
 shell contracts; the Menu icon remains visible throughout. Expanded content clearance stays constant, and desktop remains expanded.
 The shell and buttons close over 1050ms and open over 1150ms with symmetric
 easing. Buttons translate and scale throughout; only their labels recede near
-the end of closing. The scroll thresholds stay the same.
+the end of closing. Fully merged destinations become invisible, including the
+active underline, so only Menu remains. The glass has no outer drop shadow,
+and tapping its visible surface during or after contraction reopens the dock.
+The scroll thresholds stay the same.
 
 ## Scope and compatibility
 

@@ -1,5 +1,5 @@
 {
-  "baseline": "e7e55e502af503c37c7e47cebbe6b0ccad815d04",
+  "baseline": "6984336b4af3da9bcf2100f4b2561c104a009bff",
   "html_sources": 545,
   "failures": [],
   "paths": [
@@ -551,7 +551,7 @@
   ],
   "normalization": "Only version queries for assets/avionics.css and assets/site-nav.js; all other bytes unchanged.",
   "assets": {
-    "site-nav.js": "94aa2747c2730aa970d48ac4fc0536f8fb5b6bc0eb8ea284df72b388da49be35",
-    "avionics.css": "f5bc90003b3a166db13c6d3f73c4bb630648044f349c0ed91988c3dd7aff052b"
+    "site-nav.js": "89bdd03d0e95918afea095f73f51541a24e2becd884578733b25a6c9d6da4c59",
+    "avionics.css": "c80c86626ae901b404c0ed00d5f817c652df3b244fa77128b4845a2690b252d5"
   }
 }

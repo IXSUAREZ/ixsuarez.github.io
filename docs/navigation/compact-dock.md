@@ -1,10 +1,11 @@
 # Compact liquid dock
 
 Selected concept 2: a compact continuous glass pill, active-destination underline,
-and centered 56px menu circle. The shell transforms independently of readable
-controls. Expanded content clearance stays constant, and desktop remains expanded.
-The shell closes over 900ms and opens over 1000ms with symmetric ease-in/out;
-icon fades overlap the movement without changing the scroll thresholds.
+and centered 56px Menu circle. Existing buttons gather into that circle as the
+shell contracts; the Menu icon remains visible throughout. Expanded content clearance stays constant, and desktop remains expanded.
+The shell and buttons close over 1050ms and open over 1150ms with symmetric
+easing. Buttons translate and scale throughout; only their labels recede near
+the end of closing. The scroll thresholds stay the same.
 
 ## Scope and compatibility
 
@@ -13,14 +14,16 @@ icon fades overlap the movement without changing the scroll thresholds.
 - 300px mobile / 440px tablet, expanding to 520px at 981–1024px for Fly with Diego.
 - Collapse after 48px downward travel beyond the first 80px; expand after 16px upward.
 - Pointer press, keyboard-visible focus, and an open menu suspend collapse.
-- Tap expands in place. Keyboard activation focuses the current destination.
+- The collapsed Menu key is the sole focusable dock control. The first tap
+  expands the dock; the next Menu tap opens the existing dialog. Keyboard
+  activation restores focus to the current destination.
 - Reduced motion, reader motion settings, solid surfaces, Day/Dark/System supported.
 - Native fallback navigation remains available without JavaScript or dialog support.
 - Existing tactile controller already excludes liquid-dock; no second scroll owner.
 
 ## Preservation and coverage
 
-`compact-dock-coverage.json` records all 545 updated HTML source paths, baseline,
+`compact-dock-coverage.json` records all updated HTML source paths, baseline,
 asset hashes, and the comparison result. HTML changes are exclusively cache-version
 queries for the two shared assets; all other bytes—including text, destinations,
 metadata, tracking identifiers, tables, and citations—are unchanged. Authoring
@@ -28,9 +31,9 @@ templates receive the same versions. Offline cache manifests are refreshed.
 
 ## Verification
 
-- 18 Python tests; 27 Node navigation, appearance, tactile, offline and search tests.
+- 18 Python tests; 58 Node site, navigation, appearance, tactile, offline and search tests.
 - Site route audit: 526 HTML documents, zero broken references or JSON-LD failures.
-- Chromium and WebKit: ten browser scenario groups pass in each engine.
+- Chromium and WebKit: eleven browser scenario groups pass in each engine.
 - Real-browser runner: `scripts/tests/compact-dock-browser.cjs`.
 - Viewports: 320, 390, 600, 768, 834, 1024; 1024x768 landscape; 1440 desktop.
 - Scenarios: thresholds, rapid reversal, press/focus locks, inert/tab order, tap and

@@ -58,6 +58,20 @@ added, or removed topics against its September 23 index.
   suite passed 20/20, and 69 shared Node tests passed using existing local
   dependencies. `git diff --check` passed.
 
-This local review does not establish physical touch/VoiceOver behavior, every
-tool's deep workflow, every paragraph's rendered contrast, or production
-deployment. No site publication was performed.
+This review does not establish physical touch/VoiceOver behavior, every
+tool's deep workflow, or every paragraph's rendered contrast.
+
+## Publication — September 28, 2026
+
+- Committed the theme correction and 503 synchronized stylesheet references as
+  `c53637a60e3e5fa78820b2ca695f6954fa427159`, then pushed to `main`.
+- GitHub Pages reported that exact commit built successfully at
+  `2026-09-28T14:20:24Z` for [suarezcfi.com](https://suarezcfi.com/).
+- Compared cache-busted live bytes against the committed local files for the
+  shared `assets/journal.css`, homepage, Learn index, Blog index, Simply
+  Endorsed Blog, PilotSolve, and FlightRisk: all seven returned HTTP 200 and
+  matched their local SHA-256 digests.
+- Opened the live Learn, Blog, and PilotSolve routes at 390×844 in Night mode.
+  Each resolved the dark appearance and expected gray background, fit the
+  viewport, and produced no uncaught page errors. The visible Learn card
+  computed opacity was 1. Live captures are in `output/playwright/theme-live/`.

@@ -4,6 +4,26 @@ Engineer-facing contract for every page and app on this site. If a change
 violates this file, the change is wrong — update the constitution deliberately,
 never by drift.
 
+## Current sitewide appearance — September 27, 2026
+
+Polished Aurum is the current appearance contract for public pages, editorial
+pages, and standalone tools. This section supersedes earlier default-theme and
+palette descriptions below. A new visitor starts with System appearance; the
+menu also offers Day and Night. Day uses `#E3E3E3` as its page background and
+Night uses `#414141`. Shared controls and selected navigation use the same
+gold material across every route. Reading, form, result, and teaching surfaces
+remain opaque gray, while bounded translucency belongs to navigation and
+temporary controls. Tool category, risk, diagram, and instructional colors keep
+their meanings. The homepage's animated sky and the bottom dock stay in place.
+
+`assets/appearance.js` resolves the preference before first paint;
+`assets/avionics.css` is the final shared material stylesheet. New routes and
+app shells must load both through `scripts/sync-avionics.py`, then pass
+`scripts/audit-aurum.py`. Editorial entrance motion may shift content briefly,
+but text must remain fully legible throughout the transition. The current
+source-linked review and evidence boundary are in
+`docs/design/theme-audit-2026-09-27.md`.
+
 ## Shared liquid dock motion — September 25, 2026
 
 For `.nav.liquid-dock`, this refinement supersedes the older compact-dock motion

@@ -121,11 +121,10 @@ html body.journal-library:is(.blog-index,.learn-index) .page-hero h1 { font-fami
 html body.journal-library .blog-categories button { min-height: 44px; border-radius: 7px; font-weight: 500; }
 html body.journal-library .blog-reference { padding: 30px; border-radius: 14px; }
 
-/* Entrance animation never hides waiting text. Content remains searchable and
-   selectable, even before its one-time viewport entrance. */
-@keyframes journal-arrive { from { opacity: .3; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-html body:is(.journal-article,.journal-library)[data-reader-motion="on"] .journal-arriving { animation: journal-arrive 480ms cubic-bezier(.2,.65,.3,1) both; }
-html body:is(.journal-article,.journal-library)[data-reader-motion="on"] .article-header.journal-arriving { animation-duration: 550ms; }
+/* Keep text fully legible as cards and chapter content enter the viewport. */
+@keyframes journal-arrive { from { transform: translateY(4px); } to { transform: none; } }
+html body:is(.journal-article,.journal-library)[data-reader-motion="on"] .journal-arriving { animation: journal-arrive 180ms cubic-bezier(.2,.65,.3,1) both; }
+html body:is(.journal-article,.journal-library)[data-reader-motion="on"] .article-header.journal-arriving { animation-duration: 200ms; }
 @media (min-width: 1051px) and (max-width: 1300px) {
   html body.journal-article .journal-chapters nav { max-height: calc(100svh - 450px); }
   html body.journal-article .journal-rail:has(.journal-settings[open]) .journal-chapters nav { max-height: max(100px, calc(100svh - 640px)); }

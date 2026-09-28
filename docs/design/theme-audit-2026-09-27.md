@@ -1,0 +1,63 @@
+# Sitewide theme and Apple-guided visual review — September 27, 2026
+
+## Direction and scope
+
+Carry the homepage's gray, gold, and bounded-glass language through every
+public page and app while preserving the animated sky, bottom dock, article
+content, app workflows, and meaningful category/risk/diagram colors. This is
+an Apple-inspired website, so browser navigation, responsive layout, semantic
+HTML, and web accessibility remain the platform contract. CSS glass is a web
+adaptation, not Apple's native Liquid Glass implementation.
+
+The current deployable source is a fresh worktree from `origin/main` at
+`bb2069a7`. The earlier external-drive checkout was behind and modified; no
+changes were made to it. The route manifest has 523 registered pages and 18
+stylesheet/inline-style families. Six supporting documents and four installable
+app manifests are also covered by the theme audit.
+
+## Source → decision → evidence
+
+| Area | Apple guidance consulted September 27, 2026 | Site decision and implementation | Evidence/status |
+| --- | --- | --- | --- |
+| Shared materials | [Materials](https://developer.apple.com/design/human-interface-guidelines/materials), Liquid Glass and standard materials | Keep glass on navigation and temporary controls; use opaque gray reading and result surfaces. Existing `assets/avionics.css` and app adapters preserve product colors. | Verified in 18 representative page families at phone and desktop sizes, in both Day and Night combinations. |
+| Color and appearance | [Color](https://developer.apple.com/design/human-interface-guidelines/color), [Dark Mode](https://developer.apple.com/design/human-interface-guidelines/dark-mode) | Continue System default with explicit Day/Night as a product choice. `assets/appearance.js` and final `assets/avionics.css` remain the shared authority. | All 523 routes passed a rendered Night check at 390px: expected body gray, loaded CSS, no page overflow or script errors. Structural audit passed 523/523, supporting documents 6/6, manifests 4/4. |
+| Readability and motion | [Motion](https://developer.apple.com/design/human-interface-guidelines/motion), [Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility), [Typography](https://developer.apple.com/design/human-interface-guidelines/typography) | `assets/journal.css` now uses a 4px, 180–200ms entrance shift without opacity loss for Blog and Learn content. The previous animation made text start at 30% opacity for 480–550ms. Existing reduced-motion handling remains. | Before/after phone captures in `output/playwright/theme-sweep/`; the entering guide card computed opacity 1 while animation was active. Reader browser suite passed 20/20, including reduced motion, text enlargement, focus, links, and no-result states. |
+| Navigation and actions | [Layout](https://developer.apple.com/design/human-interface-guidelines/layout), [Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons), [Focus and selection](https://developer.apple.com/design/human-interface-guidelines/focus-and-selection) | Preserve the selected gold dock/action, gray secondary actions, visible focus, browser links, and tool-owned contextual navigation. | Representative screenshots show the same hierarchy across the 18 families; the 523-route sweep found zero document-width overflow at 390px. |
+
+The 18 foundation topics were screened as follows. Applicable to this web
+review: accessibility, branding, color, Dark Mode, icons, images, inclusion,
+layout, materials, motion, privacy, typography, and writing. App icons and SF
+Symbols are existing assets rather than production work in this change. Right
+to left remains unresolved for translated content; current published pages are
+English. Immersive experiences and spatial layout do not apply to the 2D site.
+The six HIG categories were also screened: getting started and design
+principles shaped hierarchy; foundations informed color, type, materials, and
+motion; patterns informed loading/search/feedback; components informed
+buttons/navigation/reading surfaces; inputs informed touch, keyboard, focus,
+and pointer behavior; technologies added no new integration requirement for
+this visual-material change. Existing saved-data and disclosure behavior was
+left intact. The skill's live 173-topic source refresh reported no changed,
+added, or removed topics against its September 23 index.
+
+## Review method and boundary
+
+- Visually inspected the first viewport of all 18 distinct page families at
+  390×844 and 1200×800 in crossed Day/Night combinations. Rechecked the
+  actual settled FlightRisk screen because its first frame is a loading state.
+- A separate 390px pass with a 32px root font found no document-width overflow
+  in any of the 18 representative families. This is a text-enlargement probe,
+  not native browser or OS zoom evidence.
+- Opened every registered route at 390×844 in Night and measured resolved
+  appearance, loaded shared CSS, document width, and uncaught script errors:
+  523/523 passed. This is a rendered integration sweep, not a claim that a
+  person inspected every paragraph or interaction on all 523 pages.
+- After the editorial change, synchronized 503 HTML/template references to
+  the stylesheet's new byte-bound URL. `sync-avionics.py --check` found zero
+  stale HTML. The canonical contrast audit passed 109/109 pairs (minimum
+  tested text ratio 4.54:1). Thirty Python tests passed. The reader browser
+  suite passed 20/20, and 69 shared Node tests passed using existing local
+  dependencies. `git diff --check` passed.
+
+This local review does not establish physical touch/VoiceOver behavior, every
+tool's deep workflow, every paragraph's rendered contrast, or production
+deployment. No site publication was performed.

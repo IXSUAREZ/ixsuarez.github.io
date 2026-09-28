@@ -79,59 +79,20 @@
   }
   function enhanceInput(input) {
     if (inputs.has(input) || input.closest('[data-native-controls],.av-input-tools')) return;
-    var rotary = input.hasAttribute('data-av-rotary');
-    if (!rotary && (input.type !== 'number' || input.step === 'any')) return;
+    if (input.type !== 'number' || input.step === 'any') return;
     var name = labelOf(input).replace(/\s+/g, ' ').slice(0,100), shell = document.createElement('span');
-    shell.className = 'av-input-tools' + (rotary ? ' av-rotary-tools' : '');
+    shell.className = 'av-input-tools';
     shell.setAttribute('role','group'); shell.setAttribute('aria-label',name + ' adjustment');
     var minus = document.createElement('button'), plus = document.createElement('button');
     minus.type = plus.type = 'button'; minus.className = plus.className = 'av-step-key av-control';
     minus.textContent = '−'; plus.textContent = '+';
     minus.setAttribute('aria-label','Decrease ' + name); plus.setAttribute('aria-label','Increase ' + name);
-    var state = { shell:shell, refresh:refresh }, dial, entry, drag;
+    var state = { shell:shell, refresh:refresh };
     function step() { return input.step === 'any' ? .1 : Number(input.step || 1); }
     function current() { return input.value === '' ? Number(input.min || 0) : Number(input.value); }
     minus.addEventListener('click', function () { setValue(input,current()-step()); refresh(); });
     plus.addEventListener('click', function () { setValue(input,current()+step()); refresh(); });
     shell.appendChild(minus);
-    if (rotary) {
-      dial = document.createElement('span'); dial.className = 'av-rotary'; dial.tabIndex = 0;
-      dial.setAttribute('role','slider'); dial.setAttribute('aria-label',name); dial.setAttribute('aria-orientation','vertical');
-      var marker = document.createElement('span'); marker.className='av-rotary-marker'; dial.appendChild(marker);
-      dial.addEventListener('keydown', function (e) {
-        if (input.disabled || input.readOnly) return;
-        var value = current();
-        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') value += step();
-        else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') value -= step();
-        else if (e.key === 'Home' && input.min !== '') value = Number(input.min);
-        else if (e.key === 'End' && input.max !== '') value = Number(input.max);
-        else return;
-        e.preventDefault(); setValue(input,value); refresh();
-      });
-      dial.addEventListener('pointerdown', function (e) {
-        if (e.button !== 0 || input.disabled || input.readOnly) return;
-        drag = {id:e.pointerId,y:e.clientY,value:current()};
-        dial.setPointerCapture(e.pointerId); dial.focus({preventScroll:true}); dial.classList.add('is-turning');
-        e.preventDefault();
-      });
-      dial.addEventListener('pointermove', function (e) {
-        if (!drag || e.pointerId !== drag.id) return;
-        var delta = drag.y - e.clientY;
-        if (Math.abs(delta) < 4) return;
-        setValue(input,drag.value+Math.round(delta/4)*step()); refresh();
-      });
-      function stop() { drag=null; dial.classList.remove('is-turning'); }
-      dial.addEventListener('pointerup',stop); dial.addEventListener('pointercancel',stop); dial.addEventListener('lostpointercapture',stop);
-      dial.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();});
-      shell.appendChild(dial);
-      if (input.type === 'range') {
-        entry = document.createElement('input'); entry.type='number'; entry.className='av-value-entry';
-        entry.setAttribute('aria-label',name+' exact value');
-        entry.addEventListener('change',function(){if(entry.value!==''&&entry.checkValidity())setValue(input,Number(entry.value));refresh();});
-        entry.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();entry.blur();}});
-        shell.appendChild(entry);
-      }
-    }
     shell.appendChild(plus);
     var label = input.closest('label');
     if (label && !input.getAttribute('aria-label')) input.setAttribute('aria-label', name);
@@ -141,14 +102,6 @@
       var disabled = input.disabled || input.readOnly, value=current();
       minus.disabled = disabled || (input.min!=='' && value<=Number(input.min));
       plus.disabled = disabled || (input.max!=='' && value>=Number(input.max));
-      if (dial) {
-        dial.tabIndex=disabled?-1:0; dial.setAttribute('aria-disabled',String(disabled));
-        dial.setAttribute('aria-valuenow',String(value)); dial.setAttribute('aria-valuetext',String(value)+(input.dataset.avUnit||'°'));
-        if(input.min!=='')dial.setAttribute('aria-valuemin',input.min);
-        if(input.max!=='')dial.setAttribute('aria-valuemax',input.max);
-        dial.style.setProperty('--av-angle',value+'deg');
-      }
-      if(entry){entry.min=input.min;entry.max=input.max;entry.step=input.step||'1';entry.disabled=disabled;if(document.activeElement!==entry)entry.value=input.value;}
     }
     input.addEventListener('input',refresh); input.addEventListener('change',refresh);
     state.observer=new MutationObserver(refresh);
@@ -160,7 +113,7 @@
     if(!active)return;
     document.querySelectorAll('.nav,[data-tactile-dock]').forEach(attachDock);
     document.querySelectorAll('button:not([data-native-control]),.btn').forEach(function(b){if(!b.classList.contains('av-control'))b.classList.add('av-control');});
-    document.querySelectorAll('input[data-av-rotary],input[data-av-stepper],input[type="number"][step]:not([step="any"])').forEach(enhanceInput);
+    document.querySelectorAll('input[data-av-stepper],input[type="number"][step]:not([step="any"])').forEach(enhanceInput);
     inputs.forEach(function(s,input){if(!input.isConnected){s.observer.disconnect();s.shell.remove();inputs.delete(input);}else s.refresh();});
     docks.forEach(function(s,nav){if(!nav.isConnected){document.removeEventListener('scroll',s.scroll,true);window.removeEventListener('pointerup',s.release);window.removeEventListener('pointercancel',s.release);s.observer.disconnect();if(s.resize)s.resize.disconnect();docks.delete(nav);}else s.refresh();});
   }

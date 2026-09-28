@@ -278,18 +278,10 @@ html body input[type="range"]::-webkit-slider-thumb{box-shadow:var(--av-contact-
 html body input[type="range"]::-moz-range-thumb{background:linear-gradient(150deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:var(--av-contact-shadow);border:1px solid var(--av-metal-edge);border-radius:7px}
 .av-input-tools{display:inline-flex;align-items:center;gap:6px;margin-block:6px;max-width:100%;vertical-align:middle}
 html body .av-step-key{display:inline-flex;align-items:center;justify-content:center;min-width:44px;width:44px;height:44px;padding:0;border:1px solid var(--av-metal-edge);color:var(--av-ink);background:var(--av-metal-sheen),var(--av-raised);font:500 22px/1 system-ui}
-html body .av-rotary{display:inline-flex;flex:none;position:relative;width:54px;height:54px;border-radius:50%;border:2px solid var(--av-metal-edge);box-sizing:border-box;cursor:ns-resize;touch-action:none;user-select:none;background:repeating-conic-gradient(from 0deg,#ffffff25 0 3deg,#0002 3deg 12deg);box-shadow:inset 0 1px 1px #ffffff50,0 3px 5px #0006}
-html body .av-rotary::before{content:"";position:absolute;inset:4px;border-radius:50%;background:linear-gradient(140deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:inset 0 1px 2px #ffffff65,inset 0 -2px 4px #0005}
-.av-rotary-marker{position:absolute;inset:7px;transform:rotate(var(--av-angle,0deg));pointer-events:none}
-.av-rotary-marker::before{content:"";position:absolute;inset:0 auto auto calc(50% - 2px);width:4px;height:11px;border-radius:2px;background:var(--av-cyan);box-shadow:0 0 4px #0005}
-html body .av-rotary:focus-visible{outline:3px solid var(--av-focus);outline-offset:3px}
-html body .av-rotary.is-turning{box-shadow:inset 0 1px 3px #0008,0 1px 2px #0005}
-html body .av-rotary[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
-html body .av-value-entry{width:82px;min-width:0;min-height:44px;padding:6px;border:1px solid var(--av-line);border-radius:8px;background:var(--av-bg);color:var(--av-ink);font:500 16px/1.3 system-ui;font-variant-numeric:tabular-nums}
 [data-suarez-solid="true"] body :is([data-tactile-dock],.nav,.nav-links){background:var(--av-panel);backdrop-filter:none;-webkit-backdrop-filter:none}
 @supports not (backdrop-filter:blur(1px)){html body :is([data-tactile-dock],.nav,.nav-links){background:var(--av-panel)}}
 @media(prefers-reduced-transparency:reduce){html body :is([data-tactile-dock],.nav,.nav-links){background:var(--av-panel);backdrop-filter:none;-webkit-backdrop-filter:none}}
-@media(prefers-contrast:more){html body :is(.av-control,.av-key,[data-dock-key],.av-rotary){border:2px solid currentColor}html body :is([data-tactile-dock],.nav,.nav-links){background:var(--av-panel);backdrop-filter:none}}
+@media(prefers-contrast:more){html body :is(.av-control,.av-key,[data-dock-key]){border:2px solid currentColor}html body :is([data-tactile-dock],.nav,.nav-links){background:var(--av-panel);backdrop-filter:none}}
 @media(prefers-reduced-motion:reduce){html body :is(.av-control,.av-key,[data-tactile-dock],[data-dock-key]){transition:none!important;animation:none!important}html body .av-control:active,html body .av-key:active{transform:none!important}html body input[type="checkbox"]::after{transition:none!important}}
 @media print{html body .av-input-tools,html body [data-tactile-dock]{display:none!important}}
 html body .av-rocker-track{border:1px solid var(--av-metal-edge);border-radius:8px;box-shadow:inset 0 2px 4px #0006}
@@ -300,12 +292,9 @@ html body .aero-dock__destinations{gap:4px}
 html body .aero-dock__panel{border-radius:20px;max-height:calc(var(--av-usable-height,100dvh) - 110px)}
 html body .aero-solid{min-height:44px}
 html body .aero-dock .aero-appearance__options button{background-image:var(--av-metal-sheen);border-radius:9px}
-html body .range-control .av-rotary-tools{display:flex;justify-content:center;margin-block:4px 8px}
 html body .explorer-dock[data-tactile-dock]{min-height:60px;bottom:calc(10px + env(safe-area-inset-bottom,0px));border-radius:20px}
 html body .explorer-dock [data-dock-key]{min-height:48px;border-radius:13px;background-image:var(--av-metal-sheen)}
 html body .explorer-menu-panel{border-radius:18px}
-html body .phase-control{flex-wrap:wrap}
-html body .phase-control .av-rotary-tools{width:100%;justify-content:center}
 @media(max-width:600px){html body .explorer-dock[data-tactile-dock]{min-height:56px}}
 /* Large hit area, slim visual track: do not stretch a legacy filled track. */
 html body input[type="range"]{appearance:none;-webkit-appearance:none;height:44px;min-height:44px;padding:0;border:0;border-radius:0;box-shadow:none;background:linear-gradient(var(--av-line),var(--av-line)) center/100% 4px no-repeat}

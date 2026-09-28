@@ -75,3 +75,23 @@ tool's deep workflow, or every paragraph's rendered contrast.
   Each resolved the dark appearance and expected gray background, fit the
   viewport, and produced no uncaught page errors. The visible Learn card
   computed opacity was 1. Live captures are in `output/playwright/theme-live/`.
+
+## Angular slider follow-up — September 28, 2026
+
+A user reported that the added circular drag control looked clipped and gave
+no clear indication of its purpose. Crank & Core and Aero Lab already include
+labeled horizontal range controls with live degree readouts, so the shared
+`tactile.js` enhancement no longer adds a second rotary slider. This follows
+Apple's [slider guidance](https://developer.apple.com/design/human-interface-guidelines/sliders)
+for a finite range and visible feedback; numeric steppers remain available
+where the source control is a number input. The custom rotary styling was
+removed from `avionics.css`.
+
+Local browser checks covered Crank & Core at 1200px Day and 390px Night and
+Aero Lab at 1200px Night. Each angular control had one slider and no rotary
+dial. ArrowRight advanced Crank angle from 361° to 362° and Aero Lab angle of
+attack from 4.0° to 4.5°; both displayed values updated. Crank & Core fit the
+390px viewport without document-width overflow. The shared tactile tests
+passed 7/7, asset synchronization found zero stale HTML sources, the route
+audit passed 523/523, the material contrast audit passed 109/109, and the
+site audit found zero broken references.

@@ -63,9 +63,9 @@ React apps retain native state and handlers and expose thin adapter attributes.
 - Satin controls show immediate 2px press depth and a brief release; activation
   is never delayed. Focus, selection, busy, and disabled states stay distinct.
   Risk meaning is authoritative; no generic selection accent overrides it.
-- Angular values offer keyboard arrows, dragging, exact number entry, and +/−.
-  Preserve original bounds, precision, handlers, data formats, and non-wrapping
-  behavior. Wheel scrolling never rotates dials. Linear settings retain ranges.
+- Angular values use labeled horizontal ranges with visible degree readouts.
+  Preserve original bounds, precision, handlers, and keyboard arrow adjustment.
+  Numeric inputs retain their separate +/− companion controls.
 - Dark/Day/System and Solid remain. Glass is reserved for navigation/overlays;
   reading/results stay matte. Reduced motion removes travel, and reduced
   transparency/no blur/increased contrast receive opaque navigation.

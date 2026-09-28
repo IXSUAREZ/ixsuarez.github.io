@@ -28,21 +28,16 @@ test('dock freezes during press and retains native activation',async()=>{
 test('nested content scroller is the only collapse source and detached docks clean up',async()=>{
  const p=await fixture('<div id="content"></div>'+nav.replace('class="nav"','class="nav" data-dock-scroll="#content"'));try{const n=p.doc.querySelector('nav'),c=p.doc.querySelector('#content');p.scroll(250);assert(!n.classList.contains('av-dock-collapsed'));c.scrollTop=130;c.dispatchEvent(new p.w.Event('scroll'));assert(n.classList.contains('av-dock-collapsed'));n.remove();await pause();p.scroll(500);assert.deepEqual(p.errors,[]);}finally{p.close();}
 });
-test('rotary preserves bounds, step, keyboard and direct entry; disabled states synchronize',async()=>{
- const p=await fixture('<label>Angle<input data-av-rotary type="range" min="-10" max="20" step="0.5" value="0"></label>');try{
- const input=p.doc.querySelector('input'),dial=p.doc.querySelector('[role=slider]'),entry=p.doc.querySelector('.av-value-entry');await pause();assert.equal(p.doc.querySelectorAll('.av-input-tools').length,1);let calls=0;input.addEventListener('input',()=>calls++);
- dial.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true}));assert.equal(input.value,'0.5');
- dial.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'End',bubbles:true}));assert.equal(input.value,'20');
- p.doc.querySelectorAll('.av-step-key')[1].click();assert.equal(input.value,'20');
- entry.value='12.5';entry.dispatchEvent(new p.w.Event('change'));assert.equal(input.value,'12.5');assert.equal(dial.getAttribute('aria-valuenow'),'12.5');
- input.disabled=true;await pause();assert.equal(dial.tabIndex,-1);assert(entry.disabled);assert.equal(calls,3);assert.deepEqual(p.errors,[]);
- }finally{p.close();}
-});
-test('rotary drag cancels cleanly and ordinary wheel leaves value alone',async()=>{
- const p=await fixture('<input aria-label="Crank angle" data-av-rotary type="range" min="0" max="720" step="1" value="50">');try{
- const input=p.doc.querySelector('input'),dial=p.doc.querySelector('[role=slider]');const pointer=(type,y)=>{const e=new p.w.Event(type,{bubbles:true,cancelable:true});Object.assign(e,{button:0,pointerId:1,clientY:y});dial.dispatchEvent(e);};
- pointer('pointerdown',100);pointer('pointermove',98);assert.equal(input.value,'50');pointer('pointermove',80);assert.equal(input.value,'55');pointer('pointercancel',80);pointer('pointermove',40);assert.equal(input.value,'55');dial.dispatchEvent(new p.w.WheelEvent('wheel',{deltaY:-100}));assert.equal(input.value,'55');
- input.remove();await pause();assert.equal(p.doc.querySelector('.av-input-tools'),null);assert.deepEqual(p.errors,[]);
+test('labeled range remains the only slider and keeps native focus and readout',async()=>{
+ const p=await fixture('<label>Crank angle<input aria-label="Crank angle" data-av-rotary type="range" min="0" max="720" step="1" value="50"><output>50°</output></label>');try{
+ const input=p.doc.querySelector('input');
+ assert.equal(p.doc.querySelectorAll('[role=slider]').length,0);
+ assert.equal(p.doc.querySelectorAll('.av-input-tools').length,0);
+ assert.equal(p.doc.querySelectorAll('input[type=range]').length,1);
+ input.focus();
+ assert.equal(p.doc.activeElement,input);
+ assert.equal(p.doc.querySelector('output').textContent,'50°');
+ assert.deepEqual(p.errors,[]);
  }finally{p.close();}
 });
 test('numeric steppers retain precision and initializer is idempotent',async()=>{

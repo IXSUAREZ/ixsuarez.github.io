@@ -181,15 +181,21 @@ test('embedded appearance follows storage events; collection and child each own 
   } finally { host.close(); child.close(); }
 });
 
-test('liquid sections rotate with keyboard, trap focus and reset to Explore on reopen', async () => {
+test('liquid sections retain their order with keyboard, trap focus and reset to Explore on reopen', async () => {
  const p=await page(nav('<button class="tool-action">Save</button>'));
  try {
   p.run('appearance');p.run('navigation');
   const menu=p.document.querySelector('.nav-menu-toggle'),dialog=p.document.querySelector('.liquid-menu');
   menu.click();
   const tabs=[...dialog.querySelectorAll('[role="tab"]')];
+  assert.deepEqual(tabs.map(tab=>tab.textContent),['Explore','Connect','Appearance']);
   tabs[0].dispatchEvent(new p.window.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));
   assert.equal(tabs[2].getAttribute('aria-selected'),'true');
+  tabs[2].dispatchEvent(new p.window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));
+  assert.equal(tabs[0].getAttribute('aria-selected'),'true');
+  assert.equal(p.document.activeElement,tabs[0]);
+  assert.deepEqual([...dialog.querySelectorAll('[role="tab"]')],tabs);
+  tabs[0].dispatchEvent(new p.window.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));
   assert.equal(p.document.querySelector('#liquid-menu-0-panel-explore').hidden,true);
   const light=dialog.querySelector('[data-appearance="light"]');light.click();
   assert.equal(p.window.SuarezAppearance.getPreference(),'light');

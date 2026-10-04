@@ -1,0 +1,236 @@
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -110,3 +110,10 @@
+ - Apply the shared `data-gold-mode` (`day`/`dark`) and `data-suarez-theme` (`light`/`dark`) root attributes when PilotSolve owns the page. App styles must consume shared tokens with standalone fallbacks and must not override host-wide tokens.
+ - Primary and selected controls use the metallic gold gradient; secondary controls use neutral raised hardware; text actions remain quiet. Keep semantic warning, error, and success colors meaningful. Honor reduced motion and reduced transparency.
+ - Keep all calculations, risk meaning, diagrams, navigation, layout behavior, offline operation, and attribution intact. The phone/mobile runtime remains protected; app-owned changes belong in `src/Prototype.tsx`, `src/PilotApp.tsx`, `src/prototype.css`, and app state modules only.
++
++## Gold review refinement — October 4, 2026
++
++- The shared system UI font stack supersedes Inter/Manrope for app-owned text. Consume the host `--font-ui` token with system fallbacks.
++- Blank numeric controls show Enter; unavailable result actions use neutral styling and explain the required inputs. Keep original numeric entry, helper, unit and result handlers.
++- Desktop tool inputs retain their existing single-column form and use a narrower grouped measure.
++- Preserve network refresh for online app documents/shared theme assets; immutable generated app bundles remain cache-first. Register the worker with updateViaCache none.
+--- a/src/prototype.css
++++ b/src/prototype.css
+@@ -1,5 +1,3 @@
+-@font-face{font-family:'Inter Variable';font-style:normal;font-weight:100 900;font-display:swap;src:url('../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');}
+-@font-face{font-family:'Manrope Variable';font-style:normal;font-weight:200 800;font-display:swap;src:url('../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2') format('woff2');}
+ :root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;color:var(--g-ink,#272727);background:var(--g-bg,#E3E3E3)}html[data-pilot-theme=dark]{color:var(--g-ink,#f4f4f4);background:var(--g-bg,#414141)}*{box-sizing:border-box}html,body,#root{margin:0;width:100%;height:100%}body{min-width:320px}button,input,select,textarea{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.42;cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--g-accent,#73551b);outline-offset:3px}button{color:inherit}a{color:inherit}.pilot-app{--bg:var(--g-bg,#E3E3E3);--surface:var(--g-surface,#efefef);--raised:var(--g-raised,#f7f7f7);--well:var(--g-well,#d6d6d6);--text:var(--g-ink,#272727);--muted:var(--g-muted,#595959);--line:var(--g-line,#b7b7b7);--blue:var(--g-accent,#73551b);--cyan:var(--g-accent,#73551b);--diagram-vector:#175ba9;--soft:color-mix(in srgb,var(--blue) 12%,var(--surface));--danger:#a5322e;--warning:#f4dfb6;--shadow:var(--g-shadow,0 3px 5px #0002,0 9px 20px #0000000b);color:var(--text);background:var(--bg);font-size:15px;line-height:1.45;display:flex;flex-direction:column;overflow:hidden;height:100%;position:relative;color-scheme:light}.pilot-app[data-theme=dark]{--bg:var(--g-bg,#414141);--surface:var(--g-surface,#4a4a4a);--raised:var(--g-raised,#545454);--well:var(--g-well,#393939);--text:var(--g-ink,#f4f4f4);--muted:var(--g-muted,#d0d0d0);--line:var(--g-line,#767676);--blue:var(--g-accent,#ecd39b);--cyan:var(--g-accent,#ecd39b);--diagram-vector:#2376dc;--danger:#ffaaa3;--warning:#685532;color-scheme:dark}.pilot-app.standalone{max-width:500px;margin:0 auto;height:100dvh;box-shadow:0 0 0 1px #e6e9ee}.pilot-app.preview{padding-top:var(--mobile-status-bar-height,56px)}.pilot-header{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;min-height:76px;padding:14px 22px 10px;gap:8px;padding-top:max(14px,env(safe-area-inset-top))}.preview .pilot-header{min-height:65px;padding-top:5px}.wordmark{text-decoration:none;letter-spacing:-1.4px;font-size:29px;line-height:1.1;font-weight:780}.wordmark span{color:var(--blue)}.header-actions{display:flex;gap:2px}.icon-button{border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:48px;padding:8px;color:var(--muted)}.header-actions .icon-button{color:var(--blue)}.header-title{font-size:15px;font-weight:650;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.back-link{display:flex;gap:5px;align-items:center;background:none;border:0;color:var(--blue);padding:0;min-height:48px;font-size:15px}.scroll-slot{flex:1;min-height:0;position:relative;overflow:hidden}.pilot-scroll{height:100%;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}.pilot-mobile-scroll{height:100%;position:relative!important;inset:auto!important;background:var(--bg)}.pilot-content{padding:12px 22px 28px}.pilot-app h1{font-size:28px;letter-spacing:-.8px;line-height:1.15;margin:5px 0 10px;font-weight:730}.pilot-app h2{font-size:20px;letter-spacing:-.4px;margin:26px 0 12px;font-weight:680}.pilot-app p{margin:8px 0 16px}.page-intro p,.tool-intro p:not(.eyebrow){color:var(--muted);font-size:14px}.page-intro{margin-bottom:21px}.search-field{display:flex;align-items:center;gap:10px;min-height:51px;background:var(--surface);border-radius:12px;color:var(--muted);padding:0 13px;margin:0 0 18px}.search-field input{border:0;background:transparent;color:var(--text);width:100%;min-width:0;outline:none;font-size:16px;height:51px}.search-field input::placeholder{color:var(--muted)}.search-field .icon-button{min-width:28px;padding:0}.favorites-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 29px}.favorite-tile{border:1px solid transparent;border-radius:14px;background:var(--surface);min-height:122px;padding:19px 9px 15px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;line-height:1.25;font-size:14px;letter-spacing:-.35px;font-weight:560}.favorite-tile svg{color:var(--blue)}.favorite-tile:active{background:var(--soft);transform:scale(.98)}.tool-row{display:flex;align-items:center;width:100%;gap:14px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;min-height:72px;padding:13px 0}.tool-row>svg:first-child{color:var(--blue);flex-shrink:0}.tool-row>svg:last-child{margin-left:auto;color:var(--muted);flex-shrink:0}.tool-row span{flex:1;min-width:0}.tool-row strong{font-size:15px;font-weight:580;display:block}.tool-row small{display:block;font-size:12px;color:var(--muted);margin-top:2px}.quiet,.muted{color:var(--muted);font-size:13px}.footnote{margin-top:24px!important;line-height:1.6}.bottom-nav{flex-shrink:0;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);background:var(--bg);padding:9px 5px max(12px,env(safe-area-inset-bottom));min-height:78px}.preview .bottom-nav{padding-bottom:30px;min-height:92px}.bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:5px;padding:2px 1px;border:0;background:transparent;color:var(--muted);font-size:10px;min-height:48px}.bottom-nav button[aria-current=page]{color:var(--blue)}.bottom-nav span{white-space:nowrap}.live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--blue);margin-right:3px}.eyebrow{text-transform:uppercase;font-size:10px;letter-spacing:1.5px;color:var(--muted);font-weight:650;margin-top:0!important}.tool-intro h1{font-size:27px}.tool-intro p{font-size:13px;line-height:1.5}.solve-select{display:flex;flex-direction:column;gap:5px;margin:20px 0 14px}.solve-select>span{font-size:10px;letter-spacing:1.7px;text-transform:uppercase;color:var(--muted);font-weight:650}.pilot-app select{background:var(--surface);border:1px solid var(--line);border-radius:10px;min-height:48px;padding:10px 30px 10px 12px;color:var(--text);max-width:100%}.solve-select select{color:var(--blue);font-weight:600;width:100%;font-size:15px}.result-panel{background:var(--surface);border-radius:14px;padding:17px 16px 15px;margin:15px 0 18px;text-align:center}.result-label{display:block;font-size:13px;color:var(--muted)}.result-number{font-size:47px;font-weight:680;line-height:1.3;letter-spacing:-1.7px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.result-number>span{font-size:16px;letter-spacing:0;font-weight:450;color:var(--muted);margin-left:8px}.result-panel small{color:var(--muted);font-size:11px}.result-panel.pending .result-number{color:var(--muted)}.input-group{margin-bottom:15px}.field-row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:64px;border-bottom:1px solid var(--line);padding:10px 0}.field-label{font-weight:560;font-size:14px;flex:1;min-width:0}.field-label small{display:block;font-weight:400;color:var(--muted);font-size:11px;margin-top:3px;line-height:1.4}.number-field{display:flex;align-items:baseline;justify-content:flex-end;gap:7px;border:1px solid transparent;background:var(--surface);border-radius:9px;padding:11px 10px;min-height:48px;min-width:92px;max-width:57%;font-variant-numeric:tabular-nums}.number-field strong{font-size:19px;font-weight:650;overflow-wrap:anywhere;min-width:0}.number-field span{font-size:10px;color:var(--muted);white-space:nowrap}.field-row.active .number-field{border-color:var(--blue);background:var(--soft)}.unit-options{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:2px 0 5px;font-size:10px;color:var(--muted)}.unit-options select{border:0;background:transparent;min-height:32px;font-size:11px;padding:4px 18px 4px 5px;color:var(--blue)}.unit-options button{background:none;border:0;color:var(--blue);min-height:32px;font-size:11px}.related-result{display:flex;gap:10px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:13px 0;min-height:48px;font-size:13px}.related-result strong{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}.related-result small{font-weight:400;color:var(--muted)}.action-row{display:flex;gap:10px;margin:20px 0}.action-row>*{flex:1}.primary,.secondary{border:0;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 17px;font-size:14px;font-weight:600}.primary{background:var(--blue);color:#fff}.secondary{background:var(--soft);color:var(--blue)}.wide{width:100%;margin:8px 0}.text-button{border:0;background:transparent;color:var(--blue);min-height:48px;font-size:13px;padding:10px 0}.danger{color:var(--danger)}.explanation{border-top:1px solid var(--line);margin:20px 0 0;padding:6px 0;color:var(--muted);font-size:13px}.explanation>summary{display:flex;align-items:center;gap:10px;min-height:48px;font-size:14px;cursor:pointer;color:var(--text);list-style:none}.explanation summary>svg:last-child{margin-left:auto;color:var(--muted)}.explanation[open] summary>svg:last-child{transform:rotate(90deg)}.formula{padding:12px;background:var(--surface);border-radius:9px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.warning{padding:13px 15px;background:var(--warning);color:var(--danger);font-size:13px;border-radius:9px;margin:12px 0}.empty{text-align:center;padding:40px 10px;color:var(--muted)}.empty svg{color:var(--blue)}.empty h2{color:var(--text)}.toast{position:absolute;bottom:100px;left:22px;right:22px;background:var(--text);color:var(--bg);border-radius:12px;padding:12px 15px;z-index:20;font-size:13px;text-align:center;box-shadow:var(--shadow)}.numeric-keypad{flex-shrink:0;background:var(--surface);padding:5px 9px max(10px,env(safe-area-inset-bottom));border-top:1px solid var(--line)}.preview .numeric-keypad{padding-bottom:28px}.keypad-caption{display:flex;align-items:center;gap:12px;padding:0 3px 4px;color:var(--muted);font-size:11px;min-height:30px}.keypad-caption>span{margin-right:auto}.keypad-caption button{background:none;border:0;padding:3px;color:var(--blue);font-size:11px;min-height:32px}.key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.key-grid button{display:flex;align-items:center;justify-content:center;height:43px;background:var(--bg);border:1px solid var(--line);border-radius:8px;font-size:23px;font-weight:560;font-variant-numeric:tabular-nums}.keypad-actions{display:flex;gap:6px;margin-top:6px}.keypad-actions .primary{flex:1}.keypad-actions .secondary{min-width:48px;padding:10px}.keypad-actions>*{min-height:44px}.select-field{display:flex;gap:12px;align-items:center;justify-content:space-between;min-height:65px;border-bottom:1px solid var(--line);font-size:14px}.select-field span{font-weight:550}.select-field select{max-width:60%;font-size:13px}.text-field{display:flex;flex-direction:column;gap:6px;margin:13px 0;font-size:13px}.text-field span{font-weight:550}.text-field input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--text);padding:12px;font-size:16px}.panel{margin:15px 0;border:1px solid var(--line);border-radius:12px;padding:12px 14px}.panel>summary{min-height:45px;cursor:pointer;font-weight:600}.panel h2{margin-top:8px}.panel p{font-size:13px}.totals,.trip-totals,.loading-totals{background:var(--surface);padding:15px;border-radius:12px;margin:15px 0}.totals h2{margin:0 0 10px}.history-row{display:flex;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}.history-row>button:first-child{flex:1;border:0;background:none;text-align:left;min-height:55px}.history-row small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.segmented{display:flex;border-radius:10px;background:var(--surface);padding:3px;margin:20px 0;gap:3px}.segmented>button{flex:1;min-height:43px;font-size:13px;background:none;border:0;border-radius:8px;color:var(--muted)}.segmented>button[aria-pressed=true]{background:var(--blue);color:#fff}.timer-face{padding:42px 0;text-align:center;font-variant-numeric:tabular-nums}.timer-face>span{font-size:45px;font-weight:600;letter-spacing:-2px}.timer-face small{display:block;color:var(--muted);font-size:13px;margin-top:9px}.timer-face.overrun{color:var(--danger)}.expression{display:block;margin:20px 0}.expression>span{font-size:12px;color:var(--muted)}.expression input{margin-top:6px;background:var(--surface);border:1px solid var(--line);border-radius:10px;min-height:56px;width:100%;color:var(--text);font-size:23px;text-align:right;padding:10px}.calc-answer{text-align:right;font-size:37px;font-weight:600;min-height:55px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.memory-bar{display:flex;justify-content:space-between;margin:10px 0}.memory-bar button{border:0;background:none;color:var(--blue);min-height:44px;font-size:12px}.calculator-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.calculator-grid button{border:0;background:var(--surface);border-radius:9px;min-height:54px;font-size:23px}.calculator-grid .equals{background:var(--blue);color:white}.file-import{position:relative;width:100%;margin:8px 0;cursor:pointer}.file-import input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.reuse-panel{border:1px solid var(--line);border-radius:12px;padding:12px}.reuse-panel h2{margin:0 0 10px}.check-row{display:flex;gap:10px;align-items:center;min-height:48px;font-size:13px}.check-row input{width:20px;height:20px}.pilot-content details summary{cursor:pointer}.pilot-content dl{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}.pilot-content dd{margin:0;text-align:right;font-weight:600}.pilot-content dt{color:var(--muted)}@media(max-width:360px){.pilot-content{padding-left:16px;padding-right:16px}.pilot-header{padding-left:16px;padding-right:16px}.favorite-tile{font-size:12px}.wordmark{font-size:26px}.number-field strong{font-size:17px}.key-grid button{height:40px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+ 
+ .editing .tool-intro{display:none}.editing .pilot-content{padding-top:4px}.editing .result-panel{padding:12px 16px;margin:10px 0}.editing .result-number{font-size:42px}.key-grid button{min-height:48px}.bottom-nav button span{font-size:11px}.card-title{display:flex;flex-direction:column;gap:4px}.card-title small{font-size:12px;font-weight:400;color:var(--muted)}
+@@ -17,7 +15,7 @@
+   --glass:var(--g-glass,rgba(241,241,241,.86));--glass-edge:var(--g-glass-edge,rgba(255,255,255,.8));
+   --glass-shadow:var(--g-shadow,0 3px 5px #0002,0 9px 20px #0000000b);
+   --press-ease:cubic-bezier(.22,1,.36,1);
+-  font-family:'Inter Variable',-apple-system,BlinkMacSystemFont,sans-serif;
++  font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);
+   background:var(--bg);
+   isolation: isolate;
+ }
+@@ -28,7 +26,7 @@
+   --glass-shadow:var(--g-shadow,0 3px 6px #0003,0 10px 24px #0002);
+   background:var(--bg);
+ }
+-.pilot-app h1,.pilot-app h2,.pilot-app .wordmark {font-family:'Manrope Variable',sans-serif}
++.pilot-app h1,.pilot-app h2,.pilot-app .wordmark {font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif)}
+ .pilot-app h1 {font-weight:760;letter-spacing:-1.1px;font-size:29px;line-height:1.2}
+ .pilot-app h2 {font-weight:740;letter-spacing:-.55px}
+ .brand-lockup {display:flex;flex-direction:column;gap:4px;min-width:0}
+@@ -249,14 +247,14 @@
+ /* Pista avionics system — final app-owned visual layer. */
+ .pilot-app{
+ --bg:var(--g-bg,#E3E3E3);--surface:var(--g-surface,#efefef);--raised:var(--g-raised,#f7f7f7);--text:var(--g-ink,#272727);--muted:var(--g-muted,#595959);--line:var(--g-line,#b7b7b7);--blue:var(--g-accent,#73551b);--cyan:var(--g-accent,#73551b);--green:#397a43;--soft:color-mix(in srgb,var(--blue) 12%,var(--surface));--shadow:var(--g-shadow,0 3px 5px #0002,0 9px 20px #0000000b);
+-font-family:'Inter Variable',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)
++font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);background:var(--bg);color:var(--text)
+ }
+ .pilot-app[data-theme=dark]{--bg:var(--g-bg,#414141);--surface:var(--g-surface,#4a4a4a);--raised:var(--g-raised,#545454);--text:var(--g-ink,#f4f4f4);--muted:var(--g-muted,#d0d0d0);--line:var(--g-line,#767676);--blue:var(--g-accent,#ecd39b);--cyan:var(--g-accent,#ecd39b);--green:#9ed890;--soft:color-mix(in srgb,var(--blue) 12%,var(--surface));--shadow:var(--g-shadow,0 3px 6px #0003,0 10px 24px #0002);color-scheme:dark}
+-.pilot-app :is(h1,h2,h3,.wordmark,.result-number,.calc-answer){font-family:'Manrope Variable','Inter Variable',sans-serif}
+-.pilot-app :is(button,input,select){font-family:'Inter Variable',-apple-system,sans-serif}
++.pilot-app :is(h1,h2,h3,.wordmark,.result-number,.calc-answer){font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif)}
++.pilot-app :is(button,input,select){font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif)}
+ .pilot-app button:focus-visible,.pilot-app input:focus-visible,.pilot-app select:focus-visible,.pilot-app summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+ .pilot-app .pilot-header{background:var(--bg);border-bottom:1px solid var(--line)}
+-.pilot-app .header-title{font-family:'Manrope Variable',sans-serif;font-weight:740;color:var(--text)}
++.pilot-app .header-title{font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);font-weight:740;color:var(--text)}
+ .pilot-app .wordmark span,.pilot-app .header-actions .icon-button,.pilot-app .back-link{color:var(--cyan)}
+ .pilot-app .icon-button{color:var(--muted);border-radius:7px}.pilot-app .icon-button:active{background:var(--raised)}
+ .pilot-app .pilot-mobile-scroll,.pilot-app .pilot-content{background:var(--bg)}
+@@ -287,11 +285,11 @@
+ @media(max-width:350px){.pilot-app .field-label{font-size:12px}.pilot-app .field-value{max-width:66%}.pilot-app .number-field{min-width:52px;padding:6px}.pilot-app .number-field strong{font-size:16px}.pilot-app .bottom-nav button span{font-size:10px}.pilot-app .result-number{font-size:34px}}
+ 
+ /* BottomSheet portals beside the app inherit this only when PilotSolve owns the screen. */
+-.device-screen:has(.pilot-app) .bottom-sheet{--bg:var(--g-bg,#E3E3E3);--surface:var(--g-surface,#efefef);--raised:var(--g-raised,#f7f7f7);--text:var(--g-ink,#272727);--muted:var(--g-muted,#595959);--line:var(--g-line,#b7b7b7);--blue:var(--g-accent,#73551b);--cyan:var(--g-accent,#73551b);--diagram-vector:#175ba9;--green:#397a43;--soft:color-mix(in srgb,var(--blue) 12%,var(--surface));font-family:'Inter Variable',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);border-color:var(--line);box-shadow:0 -10px 28px #0005}
++.device-screen:has(.pilot-app) .bottom-sheet{--bg:var(--g-bg,#E3E3E3);--surface:var(--g-surface,#efefef);--raised:var(--g-raised,#f7f7f7);--text:var(--g-ink,#272727);--muted:var(--g-muted,#595959);--line:var(--g-line,#b7b7b7);--blue:var(--g-accent,#73551b);--cyan:var(--g-accent,#73551b);--diagram-vector:#175ba9;--green:#397a43;--soft:color-mix(in srgb,var(--blue) 12%,var(--surface));font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);background:var(--bg);color:var(--text);border-color:var(--line);box-shadow:0 -10px 28px #0005}
+ .device-screen:has(.pilot-app[data-theme=dark]) .bottom-sheet{--bg:var(--g-bg,#414141);--surface:var(--g-surface,#4a4a4a);--raised:var(--g-raised,#545454);--text:var(--g-ink,#f4f4f4);--muted:var(--g-muted,#d0d0d0);--line:var(--g-line,#767676);--blue:var(--g-accent,#ecd39b);--cyan:var(--g-accent,#ecd39b);--diagram-vector:#2376dc;--green:#9ed890;--soft:color-mix(in srgb,var(--blue) 12%,var(--surface));background:var(--bg);color:var(--text);color-scheme:dark}
+ :is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) .sheet-handle{background:var(--line)}
+ :is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) .sheet-header{border-color:var(--line)}
+-:is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) :is(.sheet-title,.sheet-heading h2){font-family:'Manrope Variable','Inter Variable',sans-serif;color:var(--text)}
++:is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) :is(.sheet-title,.sheet-heading h2){font-family:var(--font-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);color:var(--text)}
+ :is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) .sheet-description{color:var(--muted)}
+ :is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) .choice-list{display:flex;flex-direction:column;gap:6px}
+ :is(.pilot-app,.device-screen:has(.pilot-app) .bottom-sheet) .choice-option{width:100%;min-height:48px;padding:9px 10px;display:flex;align-items:center;gap:9px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:7px;color:var(--text)}
+@@ -399,3 +397,19 @@
+ .pilot-app .calculated-field{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;min-height:58px;padding:5px 0;color:var(--text)}
+ .pilot-app .calculated-field small{color:var(--muted)}
+ .pilot-app .calculated-field strong{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
++
++/* Gold review: legible entry cues and a compact, stable form group. */
++.pilot-app .number-field[data-empty="true"] strong{font-size:13px;letter-spacing:0;font-weight:550;color:var(--muted)}
++.pilot-app .calculate-input{background:transparent!important;border-color:transparent!important;box-shadow:none!important;text-align:left;padding-inline:0;color:var(--text)}
++.pilot-app .result-readiness{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 14px}
++html[data-gold-mode] .pilot-app .result-actions button:disabled,.pilot-app .result-actions button:disabled{
++ background:var(--g-surface,var(--surface))!important;color:var(--g-muted,var(--muted))!important;
++ border-color:var(--g-line,var(--line))!important;box-shadow:none!important;opacity:1!important;text-shadow:none!important;cursor:not-allowed;
++}
++@media(min-width:700px){
++ .pilot-app[data-route="tool"] .pilot-content{max-width:660px}
++ .pilot-app[data-route="tool"] .input-group{margin-block:16px;border-block:1px solid var(--line)}
++ .pilot-app[data-route="tool"] .input-group>div+div{border-top:1px solid var(--line)}
++ .pilot-app[data-route="tool"] .input-group .field-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,240px);gap:16px;padding-block:10px}
++ .pilot-app[data-route="tool"] .input-group .field-value{max-width:none;justify-self:end}
++}
+--- a/src/ui.tsx
++++ b/src/ui.tsx
+@@ -18,7 +18,7 @@
+  const openEntry=()=>ctx.edit({id,label,text:display,dimension,unit:u.id,onChange,replace:true});
+  const rotate=(event:ReactPointerEvent<HTMLSpanElement>)=>{const state=drag.current;if(!state||event.pointerId!==state.id)return;const steps=Math.trunc((state.y-event.clientY)/4);if(!steps)return;if(!state.moved){state.moved=true;setTurning(true);}event.preventDefault();commit(state.value+steps);};
+  const stopRotate=(event?:ReactPointerEvent<HTMLSpanElement>)=>{if(event&&drag.current?.id!==event.pointerId)return;drag.current=null;setTurning(false);};
+- const numeric=<button id={id} data-numeric-field className="number-field" aria-label={label} onClick={openEntry}><strong>{display||'—'}</strong>{!unitControl&&<span>{u.label}</span>}</button>;
++ const numeric=<button id={id} data-numeric-field data-empty={display===''} className="number-field" aria-label={label} onClick={openEntry}><strong>{display||'Enter'}</strong>{!unitControl&&<span>{u.label}</span>}</button>;
+  const adjustments=<div className="angle-adjustments" role="group" aria-label={label+' angle controls'}><button type="button" className="av-control av-step-key" aria-label={'Decrease '+label+' by 1 degree'} onClick={()=>commit(rotaryValue-1)}>−</button><span className={'av-rotary'+(turning?' is-turning':'')} role="slider" aria-orientation="vertical" tabIndex={0} aria-label={label} aria-valuenow={rotaryValue} aria-valuetext={(display||'0')+' '+u.label} aria-valuemin={min} aria-valuemax={max} onClick={event=>event.preventDefault()} onKeyDown={event=>{let next=rotaryValue;if(event.key==='ArrowUp'||event.key==='ArrowRight')next+=1;else if(event.key==='ArrowDown'||event.key==='ArrowLeft')next-=1;else if(event.key==='Home'&&min!==undefined)next=min;else if(event.key==='End'&&max!==undefined)next=max;else return;event.preventDefault();commit(next);}} onPointerDown={event=>{if(event.button!==0)return;drag.current={id:event.pointerId,y:event.clientY,value:rotaryValue,moved:false};event.currentTarget.setPointerCapture(event.pointerId);event.currentTarget.focus({preventScroll:true});event.preventDefault();}} onPointerMove={rotate} onPointerUp={stopRotate} onPointerCancel={stopRotate} onLostPointerCapture={()=>stopRotate()}><span className="av-rotary-marker" style={{'--av-angle':String(rotaryValue)+'deg'} as CSSProperties}/></span><button type="button" className="av-control av-step-key" aria-label={'Increase '+label+' by 1 degree'} onClick={()=>commit(rotaryValue+1)}>+</button></div>;
+  return <div ref={row} className={'field-row '+(active?'active':'')}><div className="field-label">{onCalculate?<button className="calculate-input" aria-label={'Calculate '+label} onClick={onCalculate}>{label}<Icon name="calculator" size={14}/></button>:label}{help&&<small>{help}</small>}</div><div className={'field-value '+(dimension==='angle'?'angle-field-value':'')}>{dimension==='angle'?<><div className="angle-entry-row">{numeric}{unitControl}</div>{adjustments}</>:<>{numeric}{unitControl}</>}{active&&<div className="field-actions"><button className="field-more" aria-label={'Actions for '+label} aria-expanded={actions} onClick={()=>setActions(!actions)}>⋯</button>{actions&&<div className="field-action-menu"><button onClick={()=>{onChange('');ctx.edit({...ctx.editor!,text:'',replace:true});setActions(false);}}>Clear</button>{ctx.memory!=null&&<button onClick={()=>{onChange(String(ctx.memory));ctx.edit({...ctx.editor!,text:formatValue(ctx.memory!,dimension,u.id),replace:true});setActions(false);}}>Recall</button>}</div>}</div>}</div></div>;
+ }
+--- a/src/PilotApp.tsx
++++ b/src/PilotApp.tsx
+@@ -5,7 +5,7 @@
+ import AnimatedValue from './components/AnimatedValue';
+ import InstrumentResult from './components/InstrumentResult';
+ import GlassSwitch from './components/GlassSwitch';
+-import {useState,useEffect,useLayoutEffect,useMemo,useContext,type ComponentType,type InputHTMLAttributes,type PropsWithChildren,type Dispatch,type SetStateAction} from 'react';
++import {useState,useEffect,useLayoutEffect,useMemo,useContext,useId,type ComponentType,type InputHTMLAttributes,type PropsWithChildren,type Dispatch,type SetStateAction} from 'react';
+ import {tools,preferredMode} from './toolPresentation';
+ import {solve} from './engine/solve';
+ import {units,toCanonical,fromCanonical,parseValue,formatValue} from './engine/units';
+@@ -123,7 +123,7 @@
+  </div></UiContext.Provider>;
+ }
+ function ToolView({tool:t,state,setState,notify,selectTool,openTrip,openHelper}:{tool:Tool;state:AppState;setState:Setter;notify:(s:string)=>void;selectTool:(t:Tool)=>void;openTrip:()=>void;openHelper:(field:Field,source:InputHelper)=>void}){
+- const [helperField,setHelperField]=useState<Field|null>(null);
++ const [helperField,setHelperField]=useState<Field|null>(null);const readinessId=useId();
+  const {edit,Sheet=CalculationSheet}=useContext(UiContext);const [reuse,setReuse]=useState<string|null>(null);const [linked,setLinked]=useState(false);const d=getDraft(t,state);const result=calculate(t,state);const m=result.mode;
+  const changeDraft=(update:(d:Draft)=>Draft)=>setState(s=>({...s,drafts:{...s.drafts,[t.id]:update(getDraft(t,s))}}));
+  const field=(id:string)=>t.fields.find(f=>f.id===id)!;const primary=field(m.outputs[0]);const value=result.values[primary?.id];const complete=primary&&Number.isFinite(value)&&!result.errors.length;
+@@ -141,7 +141,8 @@
+  {complete&&m.outputs.slice(1).map(id=>{const f=field(id);return Number.isFinite(result.values[id])?<div className="related-result" key={id}><span>{f.label}</span><strong><AnimatedValue value={formatValue(result.values[id],f.dimension,outUnit(f))}/> <small>{units[f.dimension].find(u=>u.id===outUnit(f))?.label}</small></strong></div>:null;})}
+  {complete&&t.id==='wind-component'&&m.id==='components'&&<WindDiagram crosswind={result.values.crosswind} headwind={result.values.headwind}/>}
+  {complete&&result.notes.map((n,i)=><p className="quiet" key={i}>{n}</p>)}
+- <div className="action-row result-actions"><button className="secondary" disabled={!complete} onClick={save}><Icon name="download" size={20}/>Save</button><button className="primary" disabled={!complete||primary.id==='entry'} onClick={()=>{edit(null);setReuse(reuse?null:primary.id);}}><Icon name="use" size={20}/>Use result</button></div>
++ <div className="action-row result-actions"><button className="secondary" disabled={!complete} onClick={save}><Icon name="download" size={20}/>Save</button><button className="primary" aria-describedby={!complete||primary.id==='entry'?readinessId:undefined} disabled={!complete||primary.id==='entry'} onClick={()=>{edit(null);setReuse(reuse?null:primary.id);}}><Icon name="use" size={20}/>Use result</button></div>
++ {(!complete||primary.id==='entry')&&<p id={readinessId} className="result-readiness">{!complete?'Complete the inputs to save or use the result.':'Save this entry recommendation. Only numeric results can be reused.'}</p>}
+  {reuse&&complete&&<section className="reuse-panel"><h2>Use this result</h2><SelectionControl label="Result to reuse" value={reuse} options={m.outputs.filter(id=>Number.isFinite(result.values[id])).map(id=>({value:id,label:field(id).label}))} onChange={setReuse}/><SendToTrip dimension={field(reuse).dimension} value={result.values[reuse]} state={state} setState={setState} onDone={()=>{setReuse(null);notify("Copied result to trip");openTrip();}}/><GlassSwitch label="Keep linked to this calculation" checked={linked} onChange={setLinked}/><p className="quiet">Linked values update when these inputs change. Reuse within this tool makes an independent copy.</p>{tools.flatMap(target=>target.modes.flatMap(mode=>mode.inputs.filter(id=>target.fields.find(f=>f.id===id)?.dimension===field(reuse).dimension).map(id=>({target,mode,id})))).filter((x,i,a)=>a.findIndex(y=>y.target.id===x.target.id&&y.mode.id===x.mode.id&&y.id===x.id)===i).slice(0,30).map(({target,mode,id})=><button className="tool-row" key={target.id+mode.id+id} onClick={()=>{const f=target.fields.find(f=>f.id===id)!;setState(s=>{const next=getDraft(target,s),u=next.fields[id]?.unit||unitFor(f.dimension,s.settings.unitSystem==='metric').id;return {...s,drafts:{...s.drafts,[target.id]:{...next,mode:mode.id,fields:{...next.fields,[id]:{text:String(fromCanonical(result.values[reuse],u,f.dimension)),unit:u,origin:`Calculated · ${m.label}`,...(linked&&target.id!==t.id?{link:{tool:t.id,field:reuse}}:{})}}}}};});selectTool(target);setReuse(null);}}><span>{target.name}<small>{mode.label} · {target.fields.find(f=>f.id===id)?.label}</small></span><Icon name="next" size={18}/></button>)}</section>}
+  <details className="explanation"><summary><Icon name="info" size={22}/>How this works<Icon name="next" size={16}/></summary><p>{t.description}</p><p>{t.explanation}</p><p className="formula">{t.formula}</p><p>Enter the known values and choose the quantity to solve. Unit changes convert the quantity rather than just relabeling it.</p><details><summary>Correct an assigned unit</summary><p>Use this only if the number was entered with the wrong unit. The number stays unchanged.</p>{m.inputs.map(id=>{const f=field(id);return !f.choices&&units[f.dimension].length>1?<SelectionControl key={id} label={'Reinterpret '+f.label} description="The number stays unchanged. This corrects an incorrectly assigned unit." value={d.fields[id]?.unit||outUnit(f)} options={units[f.dimension].map(u=>({value:u.id,label:u.label}))} onChange={next=>setInput(f,d.fields[id]?.text||'',next)}/>:null;})}</details></details>
+  <button className="text-button muted" onClick={()=>{edit(null);changeDraft(()=>initialDraft(t,state.settings.unitSystem==='metric'));}}>Clear this calculation</button></>;
+--- a/src/mobile-main.tsx
++++ b/src/mobile-main.tsx
+@@ -3,4 +3,4 @@
+ import PilotApp from './PilotApp';
+ import './prototype.css';
+ createRoot(document.getElementById('root')!).render(<React.StrictMode><PilotApp/></React.StrictMode>);
+-if('serviceWorker' in navigator && import.meta.env.PROD) navigator.serviceWorker.register('./sw.js').catch(error=>{console.error('Offline setup failed',error);window.dispatchEvent(new CustomEvent('pilotsolve-offline-error'));});
++if('serviceWorker' in navigator && import.meta.env.PROD) navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(error=>{console.error('Offline setup failed',error);window.dispatchEvent(new CustomEvent('pilotsolve-offline-error'));});
+--- a/scripts/prepare-suarezcfi.mjs
++++ b/scripts/prepare-suarezcfi.mjs
+@@ -9,10 +9,21 @@
+ const identity=path.join(root,'assets/identities/pilotsolve');
+ await mkdir(path.join(output,'assets'),{recursive:true});
+ const source=path.join(project,'dist/client');
+-const assets=(await readdir(path.join(source,'assets'))).filter(n=>!n.startsWith('.')&&/\.(js|css|woff2)$/.test(n));
++// Package the standalone entry and its dependencies, excluding protected preview runtime assets.
++const mobileHtml=await readFile(path.join(source,'mobile.html'),'utf8');
++const candidates=(await readdir(path.join(source,'assets'))).filter(n=>!n.startsWith('.')&&/\.(js|css|woff2)$/.test(n));
++const needed=new Set([...mobileHtml.matchAll(/(?:src|href)="\.\/assets\/([^"?#]+)"/g)].map(match=>match[1]));
++const queue=[...needed];
++for(const asset of queue){
++ if(!candidates.includes(asset))throw Error('Standalone asset missing: '+asset);
++ if(!/\.(js|css)$/.test(asset))continue;
++ const text=await readFile(path.join(source,'assets',asset),'utf8');
++ for(const dependency of candidates){if(!needed.has(dependency)&&text.includes(dependency)){needed.add(dependency);queue.push(dependency);}}
++}
++const assets=[...needed].sort();
+ for(const asset of assets)await copyFile(path.join(source,'assets',asset),path.join(output,'assets',asset));
+ for(const [from,to] of [['mark.svg','icon.svg'],['icon-48.png','icon-48.png'],['icon-180.png','apple-touch-icon.png'],['icon-192.png','icon-192.png'],['icon-512.png','icon-512.png']])await copyFile(path.join(identity,from),path.join(output,to));
+-let html=await readFile(path.join(source,'mobile.html'),'utf8');
++let html=mobileHtml;
+ html=html.replace('</head>',`<meta name="application-name" content="PilotSolve" />\n<meta name="apple-mobile-web-app-title" content="PilotSolve" />\n<meta name="apple-mobile-web-app-status-bar-style" content="default" />\n<meta name="mobile-web-app-capable" content="yes" />\n</head>`);
+ // Use the site's metadata generator, but never inject shared CSS, navigation, or footer.
+ const metadataCode=`import importlib.util,sys\nfrom pathlib import Path\nr=Path(sys.argv[1]);s=importlib.util.spec_from_file_location('site_metadata',r/'scripts/sync-site-metadata.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)\np=next(p for p in m.M['pages'] if p['path']=='/pilotsolve/')\nprint(m.sync_head(sys.stdin.read(),p),end='')`;
+@@ -26,6 +37,28 @@
+ const files=['./','./index.html','./mobile.html','./manifest.webmanifest','./icon.svg','./icon-48.png','./apple-touch-icon.png','./icon-192.png','./icon-512.png',...assets.map(a=>'./assets/'+a),...shared];
+ const hash=createHash('sha256').update('shared-assets-fetch-v2');for(const f of files)hash.update(await readFile(f.startsWith('/')?path.join(root,f):path.join(output,f==='./'?'index.html':f)));
+ const cache='pilotsolve-site-'+hash.digest('hex').slice(0,12);
+-await writeFile(path.join(output,'sw.js'),`const CACHE=${JSON.stringify(cache)};const FILES=${JSON.stringify(files)};\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));\nself.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pilotsolve-site-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));\nself.addEventListener('fetch',event=>{const url=new URL(event.request.url);const shared=url.pathname==='/assets/appearance.js'||url.pathname==='/assets/avionics.css'||url.pathname==='/assets/tactile.js';if(event.request.method!=='GET'||url.origin!==self.location.origin||(!url.pathname.startsWith('/pilotsolve/')&&!shared))return;event.respondWith(caches.open(CACHE).then(cache=>cache.match(event.request,{ignoreVary:true,ignoreSearch:shared})).then(cached=>cached||fetch(event.request).catch(()=>event.request.mode==='navigate'?caches.open(CACHE).then(c=>c.match('./index.html')):Response.error())))});\n`);
++await writeFile(path.join(output,'sw.js'),`const CACHE=${JSON.stringify(cache)};const FILES=${JSON.stringify(files)};\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
++self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pilotsolve-site-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
++// Refresh document/theme responses online; immutable app bundles remain cache-first.
++self.addEventListener('fetch',event=>{
++ const request=event.request,url=new URL(request.url);
++ const shared=['/assets/appearance.js','/assets/avionics.css','/assets/tactile.js'].includes(url.pathname);
++ if(request.method!=='GET'||url.origin!==self.location.origin||(!url.pathname.startsWith('/pilotsolve/')&&!shared))return;
++ event.respondWith((async()=>{
++  const cache=await caches.open(CACHE);
++  const cached=async()=>await cache.match(request,{ignoreVary:true})||(shared?await cache.match(request,{ignoreVary:true,ignoreSearch:true}):null);
++  const fresh=async()=>{
++   const response=await fetch(request);
++   if(response.ok){try{await cache.put(request,response.clone());}catch{/* A full cache must not hide a usable network response. */}}
++   return response;
++  };
++  if(request.mode==='navigate'||shared){
++   try{const response=await fresh();if(response.ok)return response;const fallback=await cached();return fallback||response;}
++   catch{return await cached()||(request.mode==='navigate'?await cache.match('./index.html'):null)||Response.error();}
++  }
++  return await cached()||await fresh().catch(()=>Response.error());
++ })());
++});
++`);
+ await writeFile(path.join(output,'BUILD.json'),JSON.stringify({app:'PilotSolve',cache,preparedAt:new Date().toISOString(),route:'/pilotsolve/',files:files.filter(f=>f!=='./')},null,2)+'\n');
+ console.log(`Prepared ${output} · ${cache}. No publication performed.`);
+--- a/tests/site-offline-worker.test.mjs
++++ b/tests/site-offline-worker.test.mjs
+@@ -7,7 +7,7 @@
+ 
+ const siteRoot=process.env.PILOTSOLVE_SITE_ROOT||fileURLToPath(new URL('../../../site',import.meta.url));
+ const worker=readFileSync(path.join(siteRoot,'pilotsolve/sw.js'),'utf8');
+-function harness(network){
++function harness(network,{rejectWrites=false}={}){
+  const events={},saved=new Map(),calls=[];
+  const key=request=>typeof request==='string'?request:request.url;
+  const cache={
+@@ -16,7 +16,7 @@
+    if(saved.has(url))return saved.get(url);
+    if(options.ignoreSearch)return [...saved].find(([stored])=>stored.split('?')[0]===url.split('?')[0])?.[1];
+   },
+-  put:async(request,response)=>saved.set(key(request),response)
++  put:async(request,response)=>{if(rejectWrites)throw Error('cache quota');saved.set(key(request),response)}
+  };
+  runInNewContext(worker,{URL,Response,Promise,self:{location:{origin:'https://suarezcfi.com'},addEventListener:(name,handler)=>events[name]=handler},caches:{open:async()=>cache},fetch:async request=>{calls.push(request.url);return network(request);}});
+  return {saved,calls,request:async(url,mode='cors',method='GET')=>{
+@@ -57,3 +57,18 @@
+  assert.equal(await h.request('https://example.com/pilotsolve/'),undefined);
+  assert.equal(await h.request('https://suarezcfi.com/pilotsolve/','cors','POST'),undefined);
+ });
++
++
++test('a failing online theme response retains a usable offline fallback',async()=>{
++ const h=harness(async()=>new Response('unavailable',{status:503}));
++ const url='https://suarezcfi.com/assets/avionics.css?v=current';
++ h.saved.set(url,new Response('last usable theme'));
++ assert.equal(await(await h.request(url)).text(),'last usable theme');
++});
++
++test('full offline storage does not hide the current online theme',async()=>{
++ const h=harness(async()=>new Response('current theme'),{rejectWrites:true});
++ const url='https://suarezcfi.com/assets/avionics.css?v=current';
++ h.saved.set(url,new Response('old theme'));
++ assert.equal(await(await h.request(url)).text(),'current theme');
++});

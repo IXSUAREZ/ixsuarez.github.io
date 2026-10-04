@@ -1,0 +1,17 @@
+[
+  {
+    "file": "prototype-DjmZwi7j.css",
+    "bytes_match": true,
+    "sha256": "699210e30254c725f33aaa6184e2b93f0f055c7dacd5fe09e549ac67d72d3f2f"
+  },
+  {
+    "file": "mobile-CzLIGwDK.js",
+    "bytes_match": true,
+    "sha256": "8af14815a69a599019dda2a9ef587d2e0975dd9488cdf945f7071705735def24"
+  },
+  {
+    "file": "prototype-BTCi2k1e.js",
+    "bytes_match": true,
+    "sha256": "8f950c463f48d0c4bd1fc91e869031179679a8e428812fee3515b236e492e3ab"
+  }
+]

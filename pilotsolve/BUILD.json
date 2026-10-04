@@ -1,7 +1,7 @@
 {
   "app": "PilotSolve",
-  "cache": "pilotsolve-site-63ca9cea6a53",
-  "preparedAt": "2026-09-25T08:41:27.881Z",
+  "cache": "pilotsolve-site-dee7ec56b7fb",
+  "preparedAt": "2026-10-04T13:07:46.076Z",
   "route": "/pilotsolve/",
   "files": [
     "./index.html",
@@ -12,11 +12,9 @@
     "./apple-touch-icon.png",
     "./icon-192.png",
     "./icon-512.png",
-    "./assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
-    "./assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
-    "./assets/mobile-CzLIGwDK.js",
-    "./assets/prototype-BTCi2k1e.js",
-    "./assets/prototype-DjmZwi7j.css",
+    "./assets/mobile-BumJsm8X.js",
+    "./assets/prototype-B21ESuXn.css",
+    "./assets/prototype-CsFr79CX.js",
     "/assets/appearance.js",
     "/assets/avionics.css",
     "/assets/tactile.js"

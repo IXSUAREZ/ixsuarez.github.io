@@ -62,6 +62,11 @@ test('keyboard and mobile navigation expose neighbors and all direct links',()=>
   rail.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'Home',bubbles:true,cancelable:true}));
   assert.equal(p.d.querySelector('#stage-title').textContent,'PilotSolve');
   assert.equal(p.d.querySelectorAll('.all-apps-list a').length,7);
+  assert.equal(p.d.querySelector('.all-apps').open,false);
+  p.d.querySelector('.browse-all-tools').click();
+  assert.equal(p.d.querySelector('.all-apps').open,true);
+  assert.equal(p.d.activeElement,p.d.querySelector('.all-apps summary'));
+  assert.equal(p.d.querySelector('.all-apps-list a[href="/aero-lab/"] .tool-device').textContent,'Desktop with a pointer required');
  } finally {p.close()}
 });
 test('selection and description survive a session return without screenshot state',()=>{

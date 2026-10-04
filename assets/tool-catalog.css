@@ -13,6 +13,8 @@ html body.home-page .tools-dock-row{display:block}.home-tool-grid{display:grid;g
 html body:has(.tools-experience){background:var(--g-bg)}
 .tools-experience [hidden]{display:none!important}
 .tools-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:30px}
+.browse-all-tools{display:inline-flex;align-items:center;gap:14px;min-height:44px;margin-top:10px;color:var(--orbit-ink);font-size:.85rem;font-weight:550;text-underline-offset:4px}
+.browse-all-tools:focus-visible{outline:3px solid var(--g-accent);outline-offset:4px;border-radius:4px}
 html body .tools-intro h1{font-size:clamp(1.65rem,3vw,2.35rem);line-height:1.2;letter-spacing:-.045em;font-weight:550;color:var(--orbit-ink);margin:10px 0 0}
 html body .tools-eyebrow{color:var(--orbit-muted);font-size:.64rem;letter-spacing:.14em;font-weight:600;line-height:1.6;margin:0}
 html body .tools-intro>p{color:var(--orbit-muted);font-size:.86rem;line-height:1.6;margin:0;text-align:right}
@@ -69,6 +71,7 @@ html body .orbit-catalog .orbit-controls button{width:44px;height:44px;border:1p
 .orbit-controls p{min-width:160px;max-width:240px;color:var(--orbit-muted);font-size:.75rem;text-align:center;margin:0}
 html body #orbit-hint{font-size:.72rem;line-height:1.5;color:var(--orbit-muted);text-align:center;margin:8px 0 0}
 .all-apps{border-top:1px solid var(--orbit-line);margin-top:28px}
+.all-apps summary{scroll-margin-top:24px}
 .all-apps summary{display:flex;align-items:center;gap:12px;min-height:52px;cursor:pointer;color:var(--orbit-ink);font-size:.85rem;list-style:none}
 .all-apps summary::-webkit-details-marker{display:none}
 .all-apps summary::before{content:"+";font-size:1.2rem;width:14px}
@@ -81,6 +84,7 @@ html body #orbit-hint{font-size:.72rem;line-height:1.5;color:var(--orbit-muted);
 .all-apps-list a>span:nth-child(2){display:grid;gap:4px;flex:1;min-width:0}
 .all-apps-list strong{font-size:.85rem;font-weight:550}
 .all-apps-list small{font-size:.73rem;color:var(--orbit-muted)}
+.all-apps-list .tool-device{font-size:.7rem;line-height:1.5}
 .all-apps-list a>span:last-child{color:var(--orbit-muted)}
 .catalog-guide-link{font-size:.8rem;color:var(--orbit-muted);margin:16px 0 0;text-align:center}
 .catalog-guide-link a{color:var(--orbit-ink);text-underline-offset:4px}

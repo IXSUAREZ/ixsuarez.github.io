@@ -98,8 +98,6 @@
       Array.from(tabs.children).forEach(function (b, i) {
         var active = i === selected;
         b.setAttribute('aria-selected', String(active)); b.tabIndex = active ? 0 : -1;
-        var offset = (i - selected + 3) % 3; if (offset === 2) offset = -1;
-        b.style.setProperty('--section-offset', String(offset));
         panels[b.dataset.section].hidden = !active;
         if (active && focus) b.focus();
       });

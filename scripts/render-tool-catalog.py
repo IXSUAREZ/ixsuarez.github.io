@@ -8,10 +8,10 @@ def E(s): return html.escape(str(s),quote=True)
 def tools_main():
  d=data()
  filters='<button type="button" data-catalog-filter="all" aria-pressed="true">All tools</button>'+''.join(f'<button type="button" data-catalog-filter="{E(g["id"])}" aria-pressed="false">{E(g["name"])}</button>' for g in d['groups'])
- directory=''.join(f'<a href="{E(t["path"])}" data-cta-id="directory-{E(t["id"])}"><img src="/assets/identities/{E(t["id"])}/logo.png" alt="" width="40" height="40" loading="lazy"><span><strong>{E(t["name"])}</strong><small>{E(t["short"])}</small></span><span aria-hidden="true">↗</span></a>' for t in d['tools'])
+ directory=''.join(f'<a href="{E(t["path"])}" data-cta-id="directory-{E(t["id"])}"><img src="/assets/identities/{E(t["id"])}/logo.png" alt="" width="40" height="40" loading="lazy"><span><strong>{E(t["name"])}</strong><small>{E(t["short"])}</small><small class="tool-device">{E(t["compatibility"])}</small></span><span aria-hidden="true">↗</span></a>' for t in d['tools'])
  rail=''.join(f'<button type="button" class="orbit-app" data-orbit-app="{E(t["id"])}" aria-label="Select {E(t["name"])}" aria-pressed="false"><span class="orbit-icon"><img src="/assets/identities/{E(t["id"])}/logo.png" alt="" width="64" height="64" draggable="false"></span><span class="orbit-name">{E(t["name"])}</span></button>' for t in d['tools'])
  return f'''<main id="main-content" class="tools-experience">
- <header class="tools-intro"><div><p class="tools-eyebrow">THE SUAREZCFI TOOLKIT</p><h1>A tool for your next step.</h1></div><p>Plan. Practice. Explore.<br>Seven free apps, built by your instructor.</p></header>
+ <header class="tools-intro"><div><p class="tools-eyebrow">THE SUAREZCFI TOOLKIT</p><h1>A tool for your next step.</h1><a class="browse-all-tools" href="#all-apps">Browse all 7 tools <span aria-hidden="true">↓</span></a></div><p>Plan. Practice. Explore.<br>Seven free apps, built by your instructor.</p></header>
  <section class="orbit-catalog" aria-label="Pilot tools">
  <div class="catalog-filters" role="group" aria-label="Filter tools by purpose" hidden>{filters}</div>
  <div class="orbit-experience" hidden>
@@ -20,7 +20,7 @@ def tools_main():
  </article>
  <div class="orbit-browser"><div class="orbit-rail" role="group" aria-label="Choose an app" aria-describedby="orbit-hint">{rail}</div><div class="orbit-controls"><button type="button" data-orbit-step="-1" aria-label="Previous app">←</button><p id="orbit-position" role="status" aria-live="polite" aria-atomic="true"></p><button type="button" data-orbit-step="1" aria-label="Next app">→</button></div><p id="orbit-hint">Choose an app, or swipe to explore.</p></div>
  </div>
- <details class="all-apps" open><summary>All apps <span>7 tools</span></summary><div class="all-apps-list">{directory}</div></details>
+ <details class="all-apps" open><summary id="all-apps">All apps <span>7 tools</span></summary><div class="all-apps-list">{directory}</div></details>
  <p class="catalog-guide-link">Looking for a lesson? <a href="/learn/">Browse the aviation library →</a></p>
  </section><script type="application/json" id="tool-catalog-data">{json.dumps(d,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></main>'''
 def home_cards():

@@ -16,8 +16,8 @@
   --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
 
   /* Typography alignment with design system */
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
+  --font-display: var(--font-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 
@@ -110,8 +110,8 @@ img { max-width: 100%; display: block; }
   margin: 18px auto 0;
   max-width: 680px;
   color: var(--ink-muted);
-  font-family: var(--font-editorial);
-  font-style: italic;
+  font-family: var(--font-prose, var(--font-sans));
+  font-style: normal;
   font-size: 1.05rem;
   line-height: 1.72;
 }
@@ -268,6 +268,7 @@ img { max-width: 100%; display: block; }
 
 .prose {
   max-width: var(--prose-maxw);
+  font-family: var(--font-prose, var(--font-sans));
   font-size: 1.05rem;
   line-height: 1.72;
   color: var(--ink);

@@ -64,7 +64,7 @@ body .av-icon{display:block;width:19px;height:19px;flex:none;overflow:visible}
 @media(max-width:600px){body .av-icon{width:16px;height:16px}}
 @media print{:root{--av-bg:white;--av-panel:white;--av-raised:white;--av-ink:black;--av-muted:#333;--av-line:#888;--av-cyan:#73551b;--av-green:#285d25}body{color:black;background:white}}
 html body.editorial-page .page-hero .eyebrow,html body.editorial-page .hub-card .eyebrow,html body.editorial-page .post-card .post-tag{color:var(--av-cyan)}
-html body :is(.service-proof span,.trust-chip,.proof-chip){background:var(--av-panel);color:var(--av-muted);border-color:var(--av-line);border-radius:5px}
+html body :is(.trust-chip,.proof-chip){background:var(--av-panel);color:var(--av-muted);border-color:var(--av-line);border-radius:5px}
 html body .source-guide{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
 body.home-page .tool-card :is(.tool-topic,.tool-description){color:var(--av-muted)}
 body.home-page .tools-directory-link a{color:var(--av-cyan)}
@@ -382,8 +382,7 @@ html body .liquid-menu .liquid-close{display:flex;align-items:center;justify-con
 html body .liquid-menu .liquid-section{
  flex:1;min-width:0;min-height:44px;padding:8px 6px;border-radius:30px;background:transparent;
  font-size:.85rem;font-weight:550;cursor:pointer;color:var(--liquid-muted);
- transform:translateY(calc(var(--section-offset,0) * var(--section-offset,0) * 2px));
- transition:transform 220ms ease,background-color 180ms ease,color 180ms ease;
+ transition:background-color 180ms ease,color 180ms ease;
 }
 html body .liquid-menu .liquid-section[aria-selected="true"]{background:var(--g-gold);border-color:var(--g-edge);color:var(--g-key-ink)!important}
 html body .nav .liquid-menu .nav-links.liquid-menu-panels{
@@ -437,19 +436,17 @@ html[data-suarez-solid="true"] .liquid-menu::backdrop{backdrop-filter:none;-webk
  html body .liquid-menu .liquid-section{transform:none}
 }
 @media print{html body .liquid-menu{display:none!important}}
-/* The selected section stays in the center while neighboring sections trade places. */
-html body .liquid-menu .liquid-sections{display:block;height:66px;min-height:66px;box-sizing:border-box}
+/* Selection changes emphasis; destinations keep their spatial and DOM order. */
+html body .liquid-menu .liquid-sections{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-height:62px;box-sizing:border-box}
 html body .liquid-menu .liquid-section{
- position:absolute;inset:0 auto auto 50%;width:calc((100% - 8px)/3);
- transform:translateX(calc(-50% + var(--section-offset,0) * 102%)) translateY(calc(var(--section-offset,0) * var(--section-offset,0) * 8px));
+ position:static;width:100%;transform:none;overflow-wrap:anywhere;
 }
 html body .liquid-menu .liquid-section[aria-selected="true"]{box-shadow:inset 0 1px #ffffff22}
 .liquid-menu-surface::after{content:"";position:absolute;top:100%;left:clamp(25px,calc(var(--bloom-x,85%) - 15px),calc(100% - 55px));width:30px;height:12px;border-radius:0 0 22px 22px;background:var(--liquid-glass);border:1px solid var(--liquid-edge);border-top:0}
-@media(prefers-reduced-motion:reduce){html body .liquid-menu .liquid-section{transform:translateX(calc(-50% + var(--section-offset,0) * 102%))}}
 html[data-suarez-solid="true"] .liquid-menu-surface::after{background:var(--liquid-surface)}
 
 /* Reflow instead of overlapping the decorative arc when text is enlarged. */
-html body .liquid-menu.liquid-large-text .liquid-sections{display:grid;height:auto;min-height:0;gap:4px}
+html body .liquid-menu.liquid-large-text .liquid-sections{grid-template-columns:1fr;height:auto;min-height:0;gap:4px}
 html body .liquid-menu.liquid-large-text .liquid-section{position:static;width:100%;transform:none;transition:none}
 .liquid-large-text .liquid-menu-heading{align-items:start}
 
@@ -503,6 +500,8 @@ html body .liquid-dock-items > :is(.wordmark,.nav-brand){display:none}
 /* POLISHED AURUM: canonical material authority. See docs/design/POLISHED_AURUM.md. */
 :root{
   --g-bg:#e3e3e3;--g-surface:#efefef;--g-raised:#f7f7f7;--g-well:#d6d6d6;
+  --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  --font-prose:var(--font-ui);--font-body:var(--font-ui);
   --g-ink:#272727;--g-muted:#595959;--g-line:#b7b7b7;--g-accent:#73551b;
   --g-glass:rgba(241,241,241,.90);--g-glass-edge:rgba(255,255,255,.8);
   --g-shadow:0 3px 5px #0002,0 9px 20px #0000000b;
@@ -735,6 +734,6 @@ html[data-gold-mode] .cf-form.cf-form--invalid input.cf-input[required]:invalid{
  html body.editorial-page .page-hero h1{font-size:clamp(26px,7vw,30px)}
  html body.editorial-page .page-hero p{font-size:16px}
  html body.editorial-page :is(.post-header h1,.article-header h1){font-size:32px}
- html body.editorial-page :is(.prose,.post-body,.article-body){font-size:16px}
+ html body.editorial-page:not(.journal-article) :is(.prose,.post-body,.article-body){font-size:16px}
  html body.editorial-page .prose>p:first-child{font-size:17px}
 }

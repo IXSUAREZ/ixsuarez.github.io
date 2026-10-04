@@ -3242,9 +3242,9 @@
         "/foi-cards/"
       ]
     },
-    "4aa842bd9337": {
+    "0940578c7e8a": {
       "stylesheets": [
-        "pilotsolve/assets/prototype-DjmZwi7j.css",
+        "pilotsolve/assets/prototype-B21ESuXn.css",
         "assets/avionics.css"
       ],
       "inline_style_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -3252,14 +3252,13 @@
         "/pilotsolve/"
       ]
     },
-    "64e69b523fd9": {
+    "9ea554ce2b7a": {
       "stylesheets": [
         "assets/design-system.css",
         "learn/style.css",
         "assets/premium.css",
         "assets/site-discovery.css",
         "assets/tool-catalog.css",
-        "assets/premium.css",
         "assets/avionics.css",
         "assets/site-footer.css"
       ],
@@ -10546,7 +10545,7 @@
       "route": "/pilotsolve/",
       "file": "pilotsolve/index.html",
       "integration_errors": [],
-      "style_group": "4aa842bd9337",
+      "style_group": "0940578c7e8a",
       "inline_color_literals": [],
       "source_controls": {},
       "visual_review": "pending"
@@ -10555,7 +10554,7 @@
       "route": "/tools/",
       "file": "tools/index.html",
       "integration_errors": [],
-      "style_group": "64e69b523fd9",
+      "style_group": "9ea554ce2b7a",
       "inline_color_literals": [],
       "source_controls": {
         "button | nav-menu-toggle": 1,

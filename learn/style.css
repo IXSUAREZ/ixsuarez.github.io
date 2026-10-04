@@ -15,8 +15,8 @@
   --edge-blur-bottom-mask: linear-gradient(to bottom, transparent 0, #000 var(--edge-blur-visible), #000 100%);
 
   /* Typography alignment with design system */
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
+  --font-display: var(--font-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif);
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 
@@ -102,7 +102,7 @@ body.editorial-page .page-hero p {
   max-width: 720px;
   margin: 18px auto 0;
   color: var(--ink-muted);
-  font-family: var(--font-editorial);
+  font-family: var(--font-prose, var(--font-sans));
   font-size: 1.15rem;
   line-height: 1.7;
 }
@@ -188,7 +188,7 @@ article { max-width: var(--prose); margin: 0 auto; }
 .article-header .dek,
 .dek,
 .prose .lede {
-  font-family: var(--font-editorial);
+  font-family: var(--font-prose, var(--font-sans));
   color: var(--av-ink, var(--ink));
   font-size: 1.08rem;
   line-height: 1.72;
@@ -226,7 +226,7 @@ article { max-width: var(--prose); margin: 0 auto; }
   min-height: 44px;
   border: 1px solid var(--glass-edge); border-radius: var(--radius-pill); padding: 7px 16px; background: var(--g-raised); font-size: 14px;
 }
-.prose { font-size: 1.03rem; line-height: 1.72; }
+.prose { font-family: var(--font-prose, var(--font-sans)); font-size: 1.03rem; line-height: 1.72; }
 .prose h2, .prose h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.15; margin: 42px 0 12px; letter-spacing: -0.02em; color: var(--navy); }
 .prose h2 { font-size: 1.9rem; }
 .prose h3 { font-size: 1.35rem; }
@@ -389,13 +389,16 @@ blockquote.pullquote {
 .service-proof span {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: var(--av-raised, var(--surface-raised));
+  background: transparent;
   padding: 8px 12px;
   color: var(--ink-muted);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
+  box-shadow: none;
+  text-shadow: none;
+  cursor: default;
 }
 .service-note {
   margin-top: 18px;

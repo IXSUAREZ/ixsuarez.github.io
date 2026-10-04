@@ -23,6 +23,12 @@
   var narrow = matchMedia('(max-width: 700px)');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   var filtered = [];
+  var directory = root.querySelector('.all-apps');
+  var browseAll = document.querySelector('.browse-all-tools');
+  if (browseAll) browseAll.addEventListener('click', function () {
+    directory.open = true;
+    directory.querySelector('summary').focus({ preventScroll: true });
+  });
   function save() {
     try { sessionStorage.setItem(key, JSON.stringify({ selected: selected, group: group })); } catch (_) {}
   }
@@ -113,7 +119,7 @@
   if (narrow.addEventListener) narrow.addEventListener('change', layout);
   window.addEventListener('pageshow', function () { layout(); });
   root.classList.add('orbit-initializing');
-  filters.hidden = false; root.querySelector('.orbit-experience').hidden = false; root.querySelector('.all-apps').open = false;
+  filters.hidden = false; root.querySelector('.orbit-experience').hidden = false; directory.open = location.hash === '#all-apps';
   document.body.classList.add('has-orbit');
   render(false);
   // Commit the initial positions without travel; animate only later selections.

@@ -820,6 +820,7 @@
     var limit = opts && opts.force ? 3 : maxReachableStep();
     var next = Math.max(0, Math.min(limit, i));
     if (next === state.step) return;
+    cancelPhotoPaste();
     state.step = next;
     if (!(opts && opts.fromPopState)) {
       try {
@@ -861,8 +862,7 @@
     exitCaptionEdit();
     dom.caption.hidden = true;
 
-    dismissPasteHint();
-    dom.pasteCatcher.innerHTML = "";
+    cancelPhotoPaste();
 
     if (startOverConfirmTimer) {
       clearTimeout(startOverConfirmTimer);
@@ -1201,7 +1201,7 @@
   /** Every path that can produce a candidate photo file funnels through
       here: the <input type=file> change handler, the clipboard-read
       paste button, the document-level Cmd/Ctrl+V listener, and drag&drop. */
-  function handlePhotoFile(file, onError) {
+  function handlePhotoFile(file, onError, pasteRequest) {
     if (!file || !/^image\//.test(file.type)) {
       setStatus("That doesn't look like an image — please choose a photo file.");
       return;
@@ -1209,6 +1209,9 @@
     setStatus("Preparing photo…");
     normalizePhoto(file)
       .then(function (img) {
+        if (pasteRequest && activePasteRequest !== pasteRequest) return;
+        if (pasteRequest) activePasteRequest = null;
+        dismissPasteHint();
         Cropper.open(img, null, function (confirmedImg, crop) {
           state.photo = confirmedImg;
           state.crop = crop;
@@ -1218,10 +1221,12 @@
         });
       })
       .catch(function () {
+        if (pasteRequest && activePasteRequest !== pasteRequest) return;
         if (typeof onError === "function") {
           onError();
           return;
         }
+        if (pasteRequest) activePasteRequest = null;
         setStatus("Could not load that photo — please try a different file.");
       });
   }
@@ -1235,6 +1240,15 @@
   }
 
   var pasteHintTimer = null;
+  var activePasteRequest = null;
+
+  function cancelPhotoPaste() {
+    /* Invalidate late clipboard/type/decode results on navigation or when
+       another photo input takes over. Safari can leave its read pending. */
+    activePasteRequest = null;
+    dismissPasteHint();
+    dom.pasteCatcher.innerHTML = "";
+  }
 
   function dismissPasteHint() {
     dom.pasteHint.hidden = true;
@@ -1277,11 +1291,13 @@
     return i === -1 ? PASTE_TYPE_PREFERENCE.length : i;
   }
 
-  function tryPasteCandidates(candidates, i) {
+  function tryPasteCandidates(candidates, i, request) {
+    if (activePasteRequest !== request) return;
     if (i >= candidates.length) {
       /* Every representation failed — the classic case is a HEIC original.
          Upload goes through the file picker, which iOS converts to JPEG;
          a screenshot is re-encoded as PNG. Both sidestep the HEIC blob. */
+      activePasteRequest = null;
       setStatus("This photo's format can't be pasted directly (HEIC) — use Upload photo, or screenshot it and paste that.");
       promptManualPaste();
       return;
@@ -1290,12 +1306,13 @@
     c.item
       .getType(c.type)
       .then(function (blob) {
+        if (activePasteRequest !== request) return;
         handlePhotoFile(new File([blob], "pasted-photo." + extFromType(c.type), { type: c.type }), function () {
-          tryPasteCandidates(candidates, i + 1);
-        });
+          tryPasteCandidates(candidates, i + 1, request);
+        }, request);
       })
       .catch(function () {
-        tryPasteCandidates(candidates, i + 1);
+        tryPasteCandidates(candidates, i + 1, request);
       });
   }
 
@@ -1304,13 +1321,25 @@
       breaks the user-gesture requirement Safari/iOS enforce, and losing
       that is what stops iOS's native Paste confirmation from appearing. */
   function handlePasteClick() {
+    if (activePasteRequest || dom.cropper.classList.contains("is-open")) return;
+    dismissPasteHint();
     if (!navigator.clipboard || typeof navigator.clipboard.read !== "function") {
       promptManualPaste();
       return;
     }
-    navigator.clipboard
-      .read()
+    var request = {};
+    activePasteRequest = request;
+    var read;
+    try {
+      read = navigator.clipboard.read();
+    } catch (err) {
+      activePasteRequest = null;
+      promptManualPaste();
+      return;
+    }
+    read
       .then(function (items) {
+        if (activePasteRequest !== request) return;
         var candidates = [];
         for (var i = 0; i < items.length; i++) {
           var types = items[i].types;
@@ -1321,13 +1350,16 @@
           }
         }
         if (!candidates.length) {
+          activePasteRequest = null;
           setStatus("No image on your clipboard — copy an image first, then tap Paste.");
           return;
         }
         candidates.sort(function (a, b) { return pasteTypeRank(a.type) - pasteTypeRank(b.type); });
-        tryPasteCandidates(candidates, 0);
+        tryPasteCandidates(candidates, 0, request);
       })
       .catch(function () {
+        if (activePasteRequest !== request) return;
+        activePasteRequest = null;
         promptManualPaste();
       });
   }
@@ -1365,12 +1397,14 @@
     if (!file) return;
 
     e.preventDefault();
-    dismissPasteHint();
+    cancelPhotoPaste();
     /* A pasted photo is accepted from any step, even before names are
        filled in — the normal reachability clamp would otherwise bounce
        this back to step 1 and silently drop the paste. */
     if (state.step !== 2) goToStep(2, { force: true });
-    handlePhotoFile(file);
+    var request = {};
+    activePasteRequest = request;
+    handlePhotoFile(file, null, request);
   }
 
   function wirePhotoDropZone() {
@@ -1397,6 +1431,7 @@
           }
         }
       }
+      cancelPhotoPaste();
       handlePhotoFile(file);
     });
 
@@ -1617,10 +1652,11 @@
       });
     });
 
-    dom.uploadBtn.addEventListener("click", function () { dom.fileInput.click(); });
-    dom.replacePhotoBtn.addEventListener("click", function () { dom.fileInput.click(); });
+    dom.uploadBtn.addEventListener("click", function () { cancelPhotoPaste(); dom.fileInput.click(); });
+    dom.replacePhotoBtn.addEventListener("click", function () { cancelPhotoPaste(); dom.fileInput.click(); });
     dom.adjustCropBtn.addEventListener("click", function () {
       if (!state.photo) return;
+      cancelPhotoPaste();
       Cropper.open(state.photo, state.crop, function (img, crop) {
         state.photo = img;
         state.crop = crop;
@@ -1631,6 +1667,7 @@
     dom.fileInput.addEventListener("change", function (e) {
       var file = e.target.files && e.target.files[0];
       e.target.value = "";
+      cancelPhotoPaste();
       handlePhotoFile(file);
     });
 
@@ -1638,8 +1675,9 @@
     dom.pasteReplaceBtn.addEventListener("click", handlePasteClick);
     document.addEventListener("paste", handleDocumentPaste);
     dom.pasteCatcher.addEventListener("blur", dismissPasteHint);
+    window.addEventListener("pagehide", cancelPhotoPaste);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !dom.pasteHint.hidden) dismissPasteHint();
+      if (e.key === "Escape") cancelPhotoPaste();
     });
     wirePhotoDropZone();
 

@@ -530,6 +530,7 @@ body.certgen-view {
 .cg-photo-drop-btn {
   display: flex;
   width: 100%;
+  min-width: 0;
   flex: 1 1 0;
   flex-direction: column;
   align-items: center;
@@ -554,6 +555,7 @@ body.certgen-view {
 
 .cg-photo-drop-icon {
   display: flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   width: 58px;
@@ -576,7 +578,13 @@ body.certgen-view {
   color: var(--g-ink);
 }
 
+.cg-photo-drop-text {
+  min-width: 0;
+  line-height: 1.35;
+}
+
 .cg-photo-drop-text span {
+  display: block;
   font-size: 0.85rem;
   color: var(--g-muted);
 }
@@ -589,6 +597,9 @@ body.certgen-view {
   }
 
   .cg-photo-drop-btn {
+    /* The desktop zero basis compresses auto-height column items to their
+       minimum button height. Each phone row must size to its wrapped copy. */
+    flex: none;
     flex-direction: row;
     align-items: center;
     gap: 14px;
@@ -1237,8 +1248,8 @@ body.certgen-view {
   position: fixed;
   left: 16px;
   right: 16px;
-  bottom: 16px;
-  z-index: 70;
+  bottom: calc(96px + env(safe-area-inset-bottom, 0px) + var(--av-keyboard-inset, 0px));
+  z-index: 110;
   width: auto;
   height: auto;
   min-height: 56px;

@@ -14,7 +14,10 @@ reproduced in fresh mobile Chrome and WebKit sessions before implementation.
   The clean release checkout at `~/Projects/suarez-gold-review-release-20261004`
   supplied the isolated working copy. The dirty, older volume authoring checkout
   and unrelated Instructor Studio/CFI Binder projects were preserved.
-- Working branch: `fix/mobile-copy-buttons`. No push, PR, merge, or deployment.
+- Initial working branch: `fix/mobile-copy-buttons`; initial fix commit
+  `5dacdcf287263d928f90b10550d58840d87498d6`. This record describes that local
+  stage. The subsequently authorized format extension and release validation
+  are recorded in `certificate-photo-formats-2026-10-05.md`.
 
 ## Changes
 
@@ -90,5 +93,6 @@ parent task workspace's `input/IMG_8462.jpeg` with its Library identity retained
 Physical iPhone Safari testing remains: native Paste permission UI, long-press
 Paste, the software keyboard and safe-area behavior, and real camera-roll/HEIC
 conversion. Browser emulation does not certify those native interactions.
-The working fix is local and ready for integration; production deployment
-requires the separate release step.
+The initial fix was delivered locally. The user subsequently authorized the
+combined format extension to be committed and deployed through the existing
+Pages release flow; see the companion format record.

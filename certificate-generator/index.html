@@ -370,7 +370,7 @@
       </div>
     </div>
 
-    <input type="file" id="cgFileInput" accept="image/*" class="cg-visually-hidden">
+    <input type="file" id="cgFileInput" accept="image/*,.heic,.heif" class="cg-visually-hidden">
     <div id="cgPasteCatcher" class="cg-visually-hidden" contenteditable="true" role="textbox" aria-label="Paste target" tabindex="-1"></div>
 
     <!-- site-footer -->
@@ -379,6 +379,7 @@
       <!-- footer-notes -->
       <aside class="site-footer-notes" aria-label="Tool information">
         <p class="fine">This generator creates a share-ready image for training milestones — it is not an official FAA certificate. Planning a rating instead? Open <a href="/part-61-calculator/">CertPath</a>.</p>
+        <p class="fine">HEIC conversion uses libheif. <a href="/certificate-generator/vendor/libheif-1.23.5/NOTICE.txt">Licenses and source</a>.</p>
       </aside>
       <!-- /footer-notes -->
       <div class="site-footer-inner">
@@ -437,7 +438,8 @@
 
     <script src="/assets/site-nav.js?v=9aacb9e155" defer></script>
     <script src="/simply-endorsed/js/shared-utils.js" defer></script>
-    <script src="/certificate-generator/js/certificate-generator.js?v=d15800945d" defer></script>
+    <script src="/certificate-generator/js/photo-intake.js?v=5c68727178" defer></script>
+    <script src="/certificate-generator/js/certificate-generator.js?v=9077770713" defer></script>
   <script src="/assets/avionics-tools.js?v=f0316fe0fc" defer></script>
 </body>
 </html>

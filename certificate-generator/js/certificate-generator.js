@@ -205,41 +205,14 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /* Photo normalization — ported from src/App.tsx normalizePhoto()      */
+  /* Local photo normalization, including HEIC/HEIF still conversion     */
   /* ------------------------------------------------------------------ */
 
-  /* Loads a File through a temporary object URL, revoking it either way so
-     repeated uploads don't leak a blob per photo. */
-  function loadImageFromFile(file) {
-    var url = URL.createObjectURL(file);
-    function release(result) {
-      URL.revokeObjectURL(url);
-      return result;
-    }
-    return loadImage(url).then(release, function (err) {
-      release();
-      throw err;
-    });
-  }
-
-  function normalizePhoto(file) {
-    if (typeof createImageBitmap === "function") {
-      return createImageBitmap(file, { imageOrientation: "from-image" })
-        .then(function (bmp) {
-          var maxDim = 2400;
-          var k = Math.min(1, maxDim / Math.max(bmp.width, bmp.height));
-          var canvas = document.createElement("canvas");
-          canvas.width = Math.round(bmp.width * k);
-          canvas.height = Math.round(bmp.height * k);
-          canvas.getContext("2d").drawImage(bmp, 0, 0, canvas.width, canvas.height);
-          if (typeof bmp.close === "function") bmp.close();
-          return loadImage(canvas.toDataURL("image/jpeg", 0.92));
-        })
-        .catch(function () {
-          return loadImageFromFile(file);
-        });
-    }
-    return loadImageFromFile(file);
+  function normalizePhoto(file, request) {
+    if (!window.CertgenPhoto) return Promise.reject(new Error("Photo support could not load. Reload the page, then use Upload photo."));
+    var job = window.CertgenPhoto.prepare(file);
+    request.cancel = job.cancel;
+    return job.promise.then(function (result) { return loadImage(result.dataURL); });
   }
 
   /* ------------------------------------------------------------------ */
@@ -1202,12 +1175,14 @@
       here: the <input type=file> change handler, the clipboard-read
       paste button, the document-level Cmd/Ctrl+V listener, and drag&drop. */
   function handlePhotoFile(file, onError, pasteRequest) {
-    if (!file || !/^image\//.test(file.type)) {
-      setStatus("That doesn't look like an image — please choose a photo file.");
-      return;
+    if (!file) return;
+    if (!pasteRequest) {
+      cancelPhotoPaste();
+      pasteRequest = {};
+      activePasteRequest = pasteRequest;
     }
     setStatus("Preparing photo…");
-    normalizePhoto(file)
+    normalizePhoto(file, pasteRequest)
       .then(function (img) {
         if (pasteRequest && activePasteRequest !== pasteRequest) return;
         if (pasteRequest) activePasteRequest = null;
@@ -1220,14 +1195,14 @@
           render();
         });
       })
-      .catch(function () {
+      .catch(function (error) {
         if (pasteRequest && activePasteRequest !== pasteRequest) return;
         if (typeof onError === "function") {
-          onError();
+          onError(error);
           return;
         }
         if (pasteRequest) activePasteRequest = null;
-        setStatus("Could not load that photo — please try a different file.");
+        setStatus(error.message || "Could not load that photo — save a JPEG from Photos and use Upload photo.");
       });
   }
 
@@ -1236,6 +1211,9 @@
     if (type === "image/jpeg" || type === "image/jpg") return "jpg";
     if (type === "image/gif") return "gif";
     if (type === "image/webp") return "webp";
+    if (/heic|heif/.test(type)) return "heic";
+    if (/tiff/.test(type)) return "tiff";
+    if (type === "image/avif") return "avif";
     return "png";
   }
 
@@ -1245,6 +1223,7 @@
   function cancelPhotoPaste() {
     /* Invalidate late clipboard/type/decode results on navigation or when
        another photo input takes over. Safari can leave its read pending. */
+    if (activePasteRequest && activePasteRequest.cancel) activePasteRequest.cancel();
     activePasteRequest = null;
     dismissPasteHint();
     dom.pasteCatcher.innerHTML = "";
@@ -1280,39 +1259,42 @@
     }, 0);
   }
 
-  /** iOS often places several representations of the same photo on the
-      clipboard (a PNG transcode AND the original HEIC). Try every offered
-      image type, most-decodable first, before giving up — HEIC blobs
-      cannot be decoded by the browser from a pasted blob. */
-  var PASTE_TYPE_PREFERENCE = ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"];
+  /** Prefer browser-friendly still representations, then locally convert
+      HEIC/HEIF or inspect generic/Apple MIME variants by file signature. */
+  var PASTE_TYPE_PREFERENCE = ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/avif", "image/gif", "image/heic", "image/heif", "image/tiff"];
 
   function pasteTypeRank(type) {
     var i = PASTE_TYPE_PREFERENCE.indexOf(type);
     return i === -1 ? PASTE_TYPE_PREFERENCE.length : i;
   }
 
-  function tryPasteCandidates(candidates, i, request) {
+  function tryPasteCandidates(candidates, i, request, lastError) {
     if (activePasteRequest !== request) return;
     if (i >= candidates.length) {
-      /* Every representation failed — the classic case is a HEIC original.
-         Upload goes through the file picker, which iOS converts to JPEG;
-         a screenshot is re-encoded as PNG. Both sidestep the HEIC blob. */
       activePasteRequest = null;
-      setStatus("This photo's format can't be pasted directly (HEIC) — use Upload photo, or screenshot it and paste that.");
-      promptManualPaste();
+      setStatus(lastError && lastError.message ? lastError.message : "This copied photo could not be read. Save it to Photos and use Upload photo, or copy a screenshot.");
       return;
     }
     var c = candidates[i];
     c.item
       .getType(c.type)
       .then(function (blob) {
+        if (c.type !== "text/html") return blob;
+        if (blob.size > window.CertgenPhoto.limits.bytes * 1.4) throw new Error("The copied image is too large. Save it to Photos and use Upload photo.");
+        return blob.text().then(function (html) {
+          var image = window.CertgenPhoto.inlineImage(html);
+          if (!image) throw new Error("Your browser did not provide image data from this copy. Save the photo from Messages to Photos, then use Upload photo.");
+          return image;
+        });
+      })
+      .then(function (blob) {
         if (activePasteRequest !== request) return;
-        handlePhotoFile(new File([blob], "pasted-photo." + extFromType(c.type), { type: c.type }), function () {
-          tryPasteCandidates(candidates, i + 1, request);
+        handlePhotoFile(new File([blob], "pasted-photo." + extFromType(blob.type || c.type), { type: blob.type || c.type }), function (error) {
+          tryPasteCandidates(candidates, i + 1, request, error);
         }, request);
       })
-      .catch(function () {
-        tryPasteCandidates(candidates, i + 1, request);
+      .catch(function (error) {
+        tryPasteCandidates(candidates, i + 1, request, error);
       });
   }
 
@@ -1344,14 +1326,15 @@
         for (var i = 0; i < items.length; i++) {
           var types = items[i].types;
           for (var j = 0; j < types.length; j++) {
-            if (/^image\//.test(types[j])) {
+            if (window.CertgenPhoto && window.CertgenPhoto.clipboardHint(types[j])) {
               candidates.push({ item: items[i], type: types[j] });
             }
           }
         }
         if (!candidates.length) {
           activePasteRequest = null;
-          setStatus("No image on your clipboard — copy an image first, then tap Paste.");
+          setStatus("No image on your clipboard that this browser can read. Save the photo from Messages to Photos, then use Upload photo, or copy a screenshot.");
+          promptManualPaste();
           return;
         }
         candidates.sort(function (a, b) { return pasteTypeRank(a.type) - pasteTypeRank(b.type); });
@@ -1365,18 +1348,20 @@
   }
 
   function findImageFileInClipboardData(clipboardData) {
+    if (!window.CertgenPhoto) return null;
     var i;
     if (clipboardData.items) {
       for (i = 0; i < clipboardData.items.length; i++) {
         var item = clipboardData.items[i];
-        if (item.kind === "file" && /^image\//.test(item.type)) {
-          return item.getAsFile();
+        if (item.kind === "file") {
+          var file = item.getAsFile();
+          if (file && window.CertgenPhoto.fileHint(file)) return file;
         }
       }
     }
     if (clipboardData.files) {
       for (i = 0; i < clipboardData.files.length; i++) {
-        if (/^image\//.test(clipboardData.files[i].type)) {
+        if (window.CertgenPhoto.fileHint(clipboardData.files[i])) {
           return clipboardData.files[i];
         }
       }
@@ -1388,13 +1373,18 @@
       every browser. Only intercepts the event when an image is actually
       found, so pasting text into the name fields keeps working normally. */
   function handleDocumentPaste(e) {
+    if (!window.CertgenPhoto) return;
     if (dom.cropper.classList.contains("is-open")) return;
     var clipboardData = e.clipboardData;
     if (!clipboardData) return;
 
     var file = findImageFileInClipboardData(clipboardData);
     clearPasteCatcher();
-    if (!file) return;
+    if (!file && clipboardData.getData) file = window.CertgenPhoto.inlineImage(clipboardData.getData("text/html"));
+    if (!file) {
+      if (dom.pasteCatcher.classList.contains("is-paste-armed")) setStatus("This paste did not include readable photo data. Save the photo from Messages to Photos, then use Upload photo.");
+      return;
+    }
 
     e.preventDefault();
     cancelPhotoPaste();
@@ -1425,7 +1415,7 @@
       var file = null;
       if (files) {
         for (var i = 0; i < files.length; i++) {
-          if (/^image\//.test(files[i].type)) {
+          if (window.CertgenPhoto && window.CertgenPhoto.fileHint(files[i])) {
             file = files[i];
             break;
           }

@@ -1,0 +1,29 @@
+HEIC still-photo conversion in SuarezCFI uses libheif-js 1.23.5,
+libheif, and libde265. Conversion runs locally in a cancellable worker.
+The library bundle is unmodified and loaded separately from the application.
+
+Copyright and licenses:
+  libheif-js: Kiril Vatev; GNU LGPL version 3.
+  libheif: Dirk Farin and contributors; GNU LGPL version 3.
+  libde265: Dirk Farin and contributors; GNU LGPL version 3.
+  Full notices are retained in LICENSE, LICENSE-libheif-js,
+  LICENSE-libde265 and the source archives, including MIT-licensed components.
+
+Source and build records are available beside this notice:
+  README.md
+  sources/manifest.json
+  sources/libheif-js-d8ec4bc.tar.gz
+  sources/libheif-emscripten-v1.23.5.tar.gz
+  sources/libheif-413e2a8.tar.gz
+  sources/libde265-1.0.15.tar.gz
+
+Upstream:
+  https://github.com/catdad-experiments/libheif-js
+  https://github.com/catdad-experiments/libheif-emscripten
+  https://github.com/strukturag/libheif
+  https://github.com/strukturag/libde265
+
+The separate library can be rebuilt or replaced using these sources.
+SuarezCFI imposes no restriction on modifying or debugging this library.
+Application integration source is in ../../js/photo-intake.js and
+../../js/heif-worker.js and https://github.com/IXSUAREZ/ixsuarez.github.io.

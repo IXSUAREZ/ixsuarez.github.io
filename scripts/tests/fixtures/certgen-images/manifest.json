@@ -1,0 +1,82 @@
+[
+  {
+    "file": "large.jpg",
+    "bytes": 154230,
+    "sha256": "6ab4ee20477a49295d500d1aac06c625829359b9f9ca0bdc448cbf80f49e9693"
+  },
+  {
+    "file": "multiple.heic",
+    "bytes": 1015,
+    "sha256": "ac7641a2ee77c496d5cf7be3d111902b464ecd230585dcbabf4c4e711a6509aa"
+  },
+  {
+    "file": "oriented.heic",
+    "bytes": 902,
+    "sha256": "bff8825d735379669f533da73b8a26c5bee23ab89be961314af15d9eac2020ca"
+  },
+  {
+    "file": "oriented.jpg",
+    "bytes": 1668,
+    "sha256": "7f9285bfbbdb6fd0608b6478d3a8a209c89cef4c6072af309e97e7dfa2b08543"
+  },
+  {
+    "file": "sample.avif",
+    "bytes": 453,
+    "sha256": "405be9799f2b594220fc64fbdf5f75224e36e2d3dc5183bb63bf6b7775dc7412"
+  },
+  {
+    "file": "sample.bmp",
+    "bytes": 115254,
+    "sha256": "3120ff15d4481ce4a30cf665a0823dfbe4c7665eb2d4dc7eb191a3da402a9811"
+  },
+  {
+    "file": "sample.gif",
+    "bytes": 833,
+    "sha256": "a8677def5ee4279d577e7d345783a7553dd8250b50912df57cc3c409a7231ebc"
+  },
+  {
+    "file": "sample.heic",
+    "bytes": 873,
+    "sha256": "cba2bbe13e3756bbaa80b05aa20584d8d38ba8236e3fdef774730da56bd236f1"
+  },
+  {
+    "file": "sample.jpg",
+    "bytes": 1632,
+    "sha256": "e84ab99d3c0b09641926dc10e81597972b49b99d57744b68bd453f58157ca100"
+  },
+  {
+    "file": "sample.png",
+    "bytes": 534,
+    "sha256": "88725af9b529b705fe75c10546171ef930244bf19e4a9d7c61e71ff34bd550f9"
+  },
+  {
+    "file": "sample.tiff",
+    "bytes": 115340,
+    "sha256": "0ca15d1c09ceaff06fdfa6f761c2c9332e2eaa8aca2724b9b57b962f19fc373a"
+  },
+  {
+    "file": "sample.webp",
+    "bytes": 80,
+    "sha256": "b5506a016777d91bdf10136e33776105801081ddc6478cc602507ab5173360ad"
+  },
+  {
+    "file": "secondary.png",
+    "bytes": 513,
+    "sha256": "c97ee2c3fb4a31bb842d3c572a1acb0bc0699ecc2b4eb82153af84aad476d3b3"
+  },
+  {
+    "file": "ten-bit.heic",
+    "bytes": 892,
+    "sha256": "b5fe92c0da286487f7327c94ba1753cf736b71ea5354259f08eb5b71df27559c"
+  },
+  {
+    "file": "transparent.heic",
+    "bytes": 2869,
+    "sha256": "5b6708344d20798687b14cb2f042c20f01dbcbbef32c92ec8233e22cf05720f1"
+  },
+  {
+    "file": "transparent.png",
+    "bytes": 558,
+    "sha256": "69974818eae66621ce87010beddfb7682e61ab125f038f57882ca2da4c1de720"
+  }
+]

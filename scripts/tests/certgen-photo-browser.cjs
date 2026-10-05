@@ -7,7 +7,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '../..');
 const engine = process.env.CERTGEN_ENGINE || 'chromium';
 const base = process.env.CERTGEN_URL || 'http://127.0.0.1:8994';
-const out = path.join(root, 'output/playwright/paste-buttons', engine);
+const out = path.join(root, 'output/playwright/paste-buttons', process.env.CERTGEN_RUN || 'local', engine);
 const results = [], errors = [];
 let page, ctx;
 
@@ -121,10 +121,12 @@ async function noCrop() { assert.equal(await page.locator('#cgCropper').evaluate
     await clipboard('success'); await page.locator('#cgPasteReplaceBtn').tap(); await cropOpen();
     await page.locator('#cgCropCancelBtn').click(); await page.locator('#cgPhotoReady').waitFor({state:'visible'});
   });
-  await check('Empty clipboard reports a useful status without opening a crop dialog',async()=>{
+  await check('Empty clipboard reports the Photos upload path and offers manual paste',async()=>{
     await resetPhoto(); await clipboard('empty'); await page.locator('#cgPasteBtn').tap();
     await page.waitForFunction(()=>document.querySelector('#cgStatus').textContent.includes('No image on your clipboard'));
-    await noCrop(); await noFallback();
+    await noCrop();
+    assert.equal(await page.locator('#cgPasteCatcher').evaluate(el=>el.classList.contains('is-paste-armed')),true);
+    assert.match(await page.locator('#cgStatus').textContent(),/Messages to Photos/);
   });
   for(const mode of ['unavailable','denied','throws']) await check(mode+' clipboard shows a reachable manual image-paste fallback',async()=>{
     await resetPhoto(); await clipboard(mode); await page.locator('#cgPasteBtn').tap();

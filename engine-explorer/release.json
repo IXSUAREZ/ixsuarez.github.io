@@ -1,51 +1,89 @@
 {
-  "date": "2026-09-12",
+  "date": "2026-10-07",
   "route": "https://suarezcfi.com/engine-explorer/",
   "lycoming": {
-    "sha256": "a64e2bcd84fe71527f69b7a4c70f34617988879b6d247649d3d7dab1c3209ec1",
-    "bytes": 79925984,
-    "parts": 961,
+    "sha256": "9b5ea6511610e8a81e90e7f9b17b4cccbc1850df386ffb5462921fa633ddc8aa",
+    "bytes": 85077596,
+    "parts": 977,
     "animatedInstances": 227,
-    "schematic": 105
+    "schematic": 105,
+    "compressedSha256": "d9cec086f971034e2de30a32f0e4c65252dd640fef3719ded45a122a639e1cdd",
+    "compressedBytes": 35512806
   },
   "rotax": {
-    "sha256": "8217a66db1bb80c37e676605065861e0e25e5591259f4b545e8e4befa9edbb18",
-    "bytes": 160868108,
+    "sha256": "2d3a5343cef335e102da1adf92c37c02473b6b3c9f17857161550199c850b879",
+    "bytes": 36079912,
     "physicalAndConceptualInstances": 1168,
-    "animatedInstances": 164,
-    "schematic": 26
+    "animatedInstances": 158,
+    "encoding": "KHR_draco_mesh_compression",
+    "geometryChanged": false,
+    "metadataNote": "Actual currently served artifact fingerprint, replacing stale pre-optimization byte/hash fields. The geometry payload and manifest are preserved."
   },
   "verification": {
-    "lycomingAndSharedCombustion": {
-      "files": 28,
-      "passed": 134
+    "lycomingAndRelevantShared": {
+      "files": 36,
+      "passed": 164
     },
-    "sharedAndRotax": {
-      "files": 28,
-      "passed": 179
+    "build": "TypeScript and Vite production build passed",
+    "browser": {
+      "modelLoaded": 977,
+      "nominalInductionHosesFound": 4,
+      "partSelection": true,
+      "animationPlayPause": true,
+      "consoleErrors": []
     },
-    "browserCombustion": {
-      "lycomingChecks": 13,
-      "rotaxChecks": 12,
-      "errors": []
-    },
-    "siteViewportChecks": [
-      {
-        "width": 1440,
-        "height": 1000,
-        "frameTop": 116
-      },
-      {
-        "width": 390,
-        "height": 844,
-        "frameTop": 96,
-        "horizontalOverflow": false,
-        "mobileMenuWorks": true
-      }
-    ],
-    "cover": "Rocker cover 2 isolated and visually matched to the requested red formed cover"
+    "fullRepositorySuite": "Pre-existing Rotax/shared Node fixture failures for unchanged Draco-compressed Rotax asset remain; full-suite pass not claimed."
   },
   "completeOemReplica": false,
   "physicalIpadVerified": false,
-  "sourceCommit": "92f1acf"
+  "sourceCommit": "c084566209b4b951ca211f8f23c805d82de0ae52",
+  "previousReleaseVerification": {
+    "date": "2026-09-12",
+    "verification": {
+      "lycomingAndSharedCombustion": {
+        "files": 28,
+        "passed": 134
+      },
+      "sharedAndRotax": {
+        "files": 28,
+        "passed": 179
+      },
+      "browserCombustion": {
+        "lycomingChecks": 13,
+        "rotaxChecks": 12,
+        "errors": []
+      },
+      "siteViewportChecks": [
+        {
+          "width": 1440,
+          "height": 1000,
+          "frameTop": 116
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "frameTop": 96,
+          "horizontalOverflow": false,
+          "mobileMenuWorks": true
+        }
+      ],
+      "cover": "Rocker cover 2 isolated and visually matched to the requested red formed cover",
+      "evidenceScope": "Historical record only; not evidence for this revised asset."
+    },
+    "rotaxMetadata": {
+      "sha256": "8217a66db1bb80c37e676605065861e0e25e5591259f4b545e8e4befa9edbb18",
+      "bytes": 160868108,
+      "physicalAndConceptualInstances": 1168,
+      "animatedInstances": 164,
+      "schematic": 26
+    }
+  },
+  "catalogAudit": {
+    "occurrences": 387,
+    "directIdentityRows": 129,
+    "unmatchedIdentityOccurrences": 156,
+    "exactGeometryRows": 0,
+    "installedBomComplete": false
+  },
+  "assetDirectory": "engine-explorer/app/assets/lycoming-c084566"
 }

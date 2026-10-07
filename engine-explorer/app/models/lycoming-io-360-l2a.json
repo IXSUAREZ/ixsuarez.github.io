@@ -249,7 +249,9 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "Supports the forward crankshaft journal and crankshaft oil seal.",
-      "facts": [],
+      "facts": [
+        "Journal passage, split-bearing counterbore and flange-neck clearance are derived reconstruction fits; this is not a measured OEM casting."
+      ],
       "sourceIds": [
         "lyc-ipc",
         "reconstruction"
@@ -267,7 +269,9 @@
       "systemId": "79-20-00",
       "quantity": 1,
       "purpose": "Retains engine oil around the rotating propeller-end shaft.",
-      "facts": [],
+      "facts": [
+        "IPC Figure 4 identifies LW-13792. The bore clears the local reconstructed flange-neck envelope. Seal profile, dimensions and installed station remain reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
         "reconstruction"
@@ -277,7 +281,8 @@
       "tags": [
         "oil"
       ],
-      "role": "component"
+      "role": "component",
+      "partNumber": "LW-13792"
     },
     {
       "id": "main-bearing--0_244--1",
@@ -285,10 +290,12 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "A split plain bearing carries crankshaft load on a pressurized oil film.",
-      "facts": [],
+      "facts": [
+        "Six halves are represented. The 0.1 mm radial running clearance, shell OD/width and station assignment remain reconstructed; journal OD uses the SSP Chart S midpoint."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-overhaul",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -304,10 +311,12 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "A split plain bearing carries crankshaft load on a pressurized oil film.",
-      "facts": [],
+      "facts": [
+        "Six halves are represented. The 0.1 mm radial running clearance, shell OD/width and station assignment remain reconstructed; journal OD uses the SSP Chart S midpoint."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-overhaul",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -323,10 +332,12 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "A split plain bearing carries crankshaft load on a pressurized oil film.",
-      "facts": [],
+      "facts": [
+        "Six halves are represented. The 0.1 mm radial running clearance, shell OD/width and station assignment remain reconstructed; journal OD uses the SSP Chart S midpoint."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-overhaul",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -342,10 +353,12 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "A split plain bearing carries crankshaft load on a pressurized oil film.",
-      "facts": [],
+      "facts": [
+        "Six halves are represented. The 0.1 mm radial running clearance, shell OD/width and station assignment remain reconstructed; journal OD uses the SSP Chart S midpoint."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-overhaul",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -361,10 +374,12 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "A split plain bearing carries crankshaft load on a pressurized oil film.",
-      "facts": [],
+      "facts": [
+        "Six halves are represented. The 0.1 mm radial running clearance, shell OD/width and station assignment remain reconstructed; journal OD uses the SSP Chart S midpoint."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-overhaul",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -380,10 +395,12 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "A split plain bearing carries crankshaft load on a pressurized oil film.",
-      "facts": [],
+      "facts": [
+        "Six halves are represented. The 0.1 mm radial running clearance, shell OD/width and station assignment remain reconstructed; journal OD uses the SSP Chart S midpoint."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-overhaul",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -401,10 +418,12 @@
       "purpose": "Four offset crankpins receive connecting-rod force. Main journals turn in the crankcase bearings and drive the propeller directly.",
       "facts": [
         "Nominal crank radius 55.5625 mm gives the documented 111.125 mm stroke.",
-        "Crank cheek profiles, journal diameters and longitudinal spacing are reconstructed."
+        "Main and rod journal ODs use selected manufacturing-range midpoints of SSP-1776-5 Chart S refs 500/501: 60.33135 mm and 53.95595 mm. These are not OEM nominal drawing values.",
+        "Cheek profiles, longitudinal spacing, journal widths, internal drillings and bearing fits remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1103,7 +1122,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -1126,7 +1145,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -1770,11 +1789,12 @@
       "quantity": 1,
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
-        "Exhaust stem diameter remains reconstructed: the parallel-valve SSP Chart S value is not yet confirmed as IO-360-L2A-specific.",
-        "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
+        "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
+        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1793,10 +1813,12 @@
       "quantity": 1,
       "purpose": "Guides the valve stem and transfers heat into the cylinder head.",
       "facts": [
-        "Guide bore remains reconstructed pending explicit IO-360-L2A exhaust-valve applicability."
+        "Guide bore selects the 0.4985–0.4995 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.6746 mm.",
+        "The outer guide, host bore, protrusion and installation remain reconstructed; this midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1875,10 +1897,11 @@
       "quantity": 1,
       "purpose": "Transfers spring force into the valve stem through the retaining keys.",
       "facts": [
-        "Retainer passage is reconstructed with the unverified exhaust stem."
+        "Retainer passage is derived from the sourced Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; its profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1897,10 +1920,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1919,10 +1943,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -2772,10 +2797,12 @@
       "quantity": 1,
       "purpose": "Separate rotator-type cap sits over the exhaust valve stem end. Rotation itself is not simulated.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies the 17C19386 exhaust rotator cap.",
+        "Its passage is derived from the SSP-1776-5 Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; the cap outer wall/profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3313,7 +3340,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -3336,7 +3363,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -3980,11 +4007,12 @@
       "quantity": 1,
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
-        "Exhaust stem diameter remains reconstructed: the parallel-valve SSP Chart S value is not yet confirmed as IO-360-L2A-specific.",
-        "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
+        "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
+        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4003,10 +4031,12 @@
       "quantity": 1,
       "purpose": "Guides the valve stem and transfers heat into the cylinder head.",
       "facts": [
-        "Guide bore remains reconstructed pending explicit IO-360-L2A exhaust-valve applicability."
+        "Guide bore selects the 0.4985–0.4995 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.6746 mm.",
+        "The outer guide, host bore, protrusion and installation remain reconstructed; this midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4085,10 +4115,11 @@
       "quantity": 1,
       "purpose": "Transfers spring force into the valve stem through the retaining keys.",
       "facts": [
-        "Retainer passage is reconstructed with the unverified exhaust stem."
+        "Retainer passage is derived from the sourced Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; its profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4107,10 +4138,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4129,10 +4161,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4982,10 +5015,12 @@
       "quantity": 1,
       "purpose": "Separate rotator-type cap sits over the exhaust valve stem end. Rotation itself is not simulated.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies the 17C19386 exhaust rotator cap.",
+        "Its passage is derived from the SSP-1776-5 Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; the cap outer wall/profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5523,7 +5558,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -5546,7 +5581,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -6190,11 +6225,12 @@
       "quantity": 1,
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
-        "Exhaust stem diameter remains reconstructed: the parallel-valve SSP Chart S value is not yet confirmed as IO-360-L2A-specific.",
-        "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
+        "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
+        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6213,10 +6249,12 @@
       "quantity": 1,
       "purpose": "Guides the valve stem and transfers heat into the cylinder head.",
       "facts": [
-        "Guide bore remains reconstructed pending explicit IO-360-L2A exhaust-valve applicability."
+        "Guide bore selects the 0.4985–0.4995 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.6746 mm.",
+        "The outer guide, host bore, protrusion and installation remain reconstructed; this midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6295,10 +6333,11 @@
       "quantity": 1,
       "purpose": "Transfers spring force into the valve stem through the retaining keys.",
       "facts": [
-        "Retainer passage is reconstructed with the unverified exhaust stem."
+        "Retainer passage is derived from the sourced Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; its profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6317,10 +6356,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6339,10 +6379,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7192,10 +7233,12 @@
       "quantity": 1,
       "purpose": "Separate rotator-type cap sits over the exhaust valve stem end. Rotation itself is not simulated.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies the 17C19386 exhaust rotator cap.",
+        "Its passage is derived from the SSP-1776-5 Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; the cap outer wall/profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7733,7 +7776,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -7756,7 +7799,7 @@
       "purpose": "One of two replaceable bearing shells supports the crankpin on an oil film.",
       "facts": [
         "IO-360-L2A IPC Figure 8, printed pages 16–17.",
-        "Eight shells across four rods. Displayed 0.1 mm radial running clearance is a reconstruction choice, not a factory clearance."
+        "Eight shells across four rods. Crankpin diameter is the selected SSP Chart S manufacturing-range midpoint. Displayed 0.1 mm radial clearance and 1.9 mm shell wall remain reconstruction choices, not factory dimensions."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -8400,11 +8443,12 @@
       "quantity": 1,
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
-        "Exhaust stem diameter remains reconstructed: the parallel-valve SSP Chart S value is not yet confirmed as IO-360-L2A-specific.",
-        "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
+        "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
+        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8423,10 +8467,12 @@
       "quantity": 1,
       "purpose": "Guides the valve stem and transfers heat into the cylinder head.",
       "facts": [
-        "Guide bore remains reconstructed pending explicit IO-360-L2A exhaust-valve applicability."
+        "Guide bore selects the 0.4985–0.4995 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.6746 mm.",
+        "The outer guide, host bore, protrusion and installation remain reconstructed; this midpoint is not asserted as an OEM part-drawing nominal."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8505,10 +8551,11 @@
       "quantity": 1,
       "purpose": "Transfers spring force into the valve stem through the retaining keys.",
       "facts": [
-        "Retainer passage is reconstructed with the unverified exhaust stem."
+        "Retainer passage is derived from the sourced Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; its profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8527,10 +8574,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8549,10 +8597,11 @@
       "quantity": 1,
       "purpose": "One half of the paired tapered keeper locks the spring retainer to the valve stem.",
       "facts": [
-        "IPC Figure 10 lists eight intake keys and eight exhaust keys, establishing two per valve. Keeper taper is reconstructed."
+        "IPC Figure 10 lists eight 17C21191 exhaust keys. Their inner passage is derived from the sourced Ref. 615 stem midpoint plus 0.04 mm radial clearance; keeper taper remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9402,10 +9451,12 @@
       "quantity": 1,
       "purpose": "Separate rotator-type cap sits over the exhaust valve stem end. Rotation itself is not simulated.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies the 17C19386 exhaust rotator cap.",
+        "Its passage is derived from the SSP-1776-5 Ref. 615 exhaust-stem midpoint plus 0.09 mm radial clearance; the cap outer wall/profile remains reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9709,9 +9760,10 @@
       "name": "Cylinder-head oil-drain nipple 1",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Straight 3/8-inch-hose nipple connects the cylinder-head drain outlet to its flexible hose.",
+      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
       "facts": [
-        "Figure 12 lists four nipples; location and bore direction are reconstructed."
+        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9731,9 +9783,10 @@
       "name": "Cylinder-head oil-drain hose 1",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Flexible 3/8-inch-ID hose carries returned rocker-box oil from the head nipple to the rigid drain tube.",
+      "purpose": "Carries returned rocker-box oil to the rigid drain tube through an open bore.",
       "facts": [
-        "IPC Figure 12 specifies four hoses, each 2-1/2 inches long. Curvature is reconstructed to meet modeled interfaces."
+        "Figure 12: four 3/8-inch-ID x 2-1/2-inch-long hoses. Modeled ID 9.525 mm and centreline length 63.5 mm.",
+        "Nominal OD 11.1125 mm follows the 7/16-inch hose interface in the clamp callout. Bend, straight-end locations and loaded shape are reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9753,9 +9806,10 @@
       "name": "Cylinder-head oil-drain tube 1",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Rigid tube returns drained cylinder-head oil toward the crankcase.",
+      "purpose": "Inserts into the hose and returns oil through an open case passage.",
       "facts": [
-        "Figure 12 identifies distinct tubes for cylinders 1 and 2 and a common part number for cylinders 3 and 4. Bend geometry is reconstructed."
+        "Figure 12: one 68759, one 68760 and two 68761 assemblies.",
+        "Tube OD is derived from the nominal hose fit; wall, bend and installed stations remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9775,9 +9829,10 @@
       "name": "Oil-drain hose clamp 1 · head",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9786,7 +9841,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 1,
@@ -9797,9 +9853,10 @@
       "name": "Oil-drain hose clamp 1 · tube",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9808,7 +9865,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 1,
@@ -9819,9 +9877,10 @@
       "name": "Cylinder-head oil-drain nipple 2",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Straight 3/8-inch-hose nipple connects the cylinder-head drain outlet to its flexible hose.",
+      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
       "facts": [
-        "Figure 12 lists four nipples; location and bore direction are reconstructed."
+        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9841,9 +9900,10 @@
       "name": "Cylinder-head oil-drain hose 2",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Flexible 3/8-inch-ID hose carries returned rocker-box oil from the head nipple to the rigid drain tube.",
+      "purpose": "Carries returned rocker-box oil to the rigid drain tube through an open bore.",
       "facts": [
-        "IPC Figure 12 specifies four hoses, each 2-1/2 inches long. Curvature is reconstructed to meet modeled interfaces."
+        "Figure 12: four 3/8-inch-ID x 2-1/2-inch-long hoses. Modeled ID 9.525 mm and centreline length 63.5 mm.",
+        "Nominal OD 11.1125 mm follows the 7/16-inch hose interface in the clamp callout. Bend, straight-end locations and loaded shape are reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9863,9 +9923,10 @@
       "name": "Cylinder-head oil-drain tube 2",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Rigid tube returns drained cylinder-head oil toward the crankcase.",
+      "purpose": "Inserts into the hose and returns oil through an open case passage.",
       "facts": [
-        "Figure 12 identifies distinct tubes for cylinders 1 and 2 and a common part number for cylinders 3 and 4. Bend geometry is reconstructed."
+        "Figure 12: one 68759, one 68760 and two 68761 assemblies.",
+        "Tube OD is derived from the nominal hose fit; wall, bend and installed stations remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9885,9 +9946,10 @@
       "name": "Oil-drain hose clamp 2 · head",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9896,7 +9958,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 2,
@@ -9907,9 +9970,10 @@
       "name": "Oil-drain hose clamp 2 · tube",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9918,7 +9982,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 2,
@@ -9929,9 +9994,10 @@
       "name": "Cylinder-head oil-drain nipple 3",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Straight 3/8-inch-hose nipple connects the cylinder-head drain outlet to its flexible hose.",
+      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
       "facts": [
-        "Figure 12 lists four nipples; location and bore direction are reconstructed."
+        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9951,9 +10017,10 @@
       "name": "Cylinder-head oil-drain hose 3",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Flexible 3/8-inch-ID hose carries returned rocker-box oil from the head nipple to the rigid drain tube.",
+      "purpose": "Carries returned rocker-box oil to the rigid drain tube through an open bore.",
       "facts": [
-        "IPC Figure 12 specifies four hoses, each 2-1/2 inches long. Curvature is reconstructed to meet modeled interfaces."
+        "Figure 12: four 3/8-inch-ID x 2-1/2-inch-long hoses. Modeled ID 9.525 mm and centreline length 63.5 mm.",
+        "Nominal OD 11.1125 mm follows the 7/16-inch hose interface in the clamp callout. Bend, straight-end locations and loaded shape are reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9973,9 +10040,10 @@
       "name": "Cylinder-head oil-drain tube 3",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Rigid tube returns drained cylinder-head oil toward the crankcase.",
+      "purpose": "Inserts into the hose and returns oil through an open case passage.",
       "facts": [
-        "Figure 12 identifies distinct tubes for cylinders 1 and 2 and a common part number for cylinders 3 and 4. Bend geometry is reconstructed."
+        "Figure 12: one 68759, one 68760 and two 68761 assemblies.",
+        "Tube OD is derived from the nominal hose fit; wall, bend and installed stations remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -9995,9 +10063,10 @@
       "name": "Oil-drain hose clamp 3 · head",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10006,7 +10075,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 3,
@@ -10017,9 +10087,10 @@
       "name": "Oil-drain hose clamp 3 · tube",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10028,7 +10099,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 3,
@@ -10039,9 +10111,10 @@
       "name": "Cylinder-head oil-drain nipple 4",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Straight 3/8-inch-hose nipple connects the cylinder-head drain outlet to its flexible hose.",
+      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
       "facts": [
-        "Figure 12 lists four nipples; location and bore direction are reconstructed."
+        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10061,9 +10134,10 @@
       "name": "Cylinder-head oil-drain hose 4",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Flexible 3/8-inch-ID hose carries returned rocker-box oil from the head nipple to the rigid drain tube.",
+      "purpose": "Carries returned rocker-box oil to the rigid drain tube through an open bore.",
       "facts": [
-        "IPC Figure 12 specifies four hoses, each 2-1/2 inches long. Curvature is reconstructed to meet modeled interfaces."
+        "Figure 12: four 3/8-inch-ID x 2-1/2-inch-long hoses. Modeled ID 9.525 mm and centreline length 63.5 mm.",
+        "Nominal OD 11.1125 mm follows the 7/16-inch hose interface in the clamp callout. Bend, straight-end locations and loaded shape are reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10083,9 +10157,10 @@
       "name": "Cylinder-head oil-drain tube 4",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Rigid tube returns drained cylinder-head oil toward the crankcase.",
+      "purpose": "Inserts into the hose and returns oil through an open case passage.",
       "facts": [
-        "Figure 12 identifies distinct tubes for cylinders 1 and 2 and a common part number for cylinders 3 and 4. Bend geometry is reconstructed."
+        "Figure 12: one 68759, one 68760 and two 68761 assemblies.",
+        "Tube OD is derived from the nominal hose fit; wall, bend and installed stations remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10105,9 +10180,10 @@
       "name": "Oil-drain hose clamp 4 · head",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10116,7 +10192,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 4,
@@ -10127,9 +10204,10 @@
       "name": "Oil-drain hose clamp 4 · tube",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Clamps one end of the cylinder-head oil-drain hose to its connected fitting.",
+      "purpose": "Aligned band surrounds a straight hose insertion section.",
       "facts": [
-        "Figure 12 specifies eight clamps total: two per drain hose. Clamp form is reconstructed."
+        "Figure 12: eight clamps for 7/16-inch-OD hose, two per oil-return hose.",
+        "Band width, thickness and tightening mechanism remain reconstructed; this selectable clamp is not a resolved vendor internal assembly."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -10138,7 +10216,8 @@
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "oil"
+        "oil",
+        "fastener"
       ],
       "role": "component",
       "cylinder": 4,
@@ -12598,14 +12677,16 @@
     },
     {
       "id": "intake-runner-1",
-      "name": "Induction runner 1",
+      "name": "Intake pipe 1",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Connects the sump air chamber to the underside intake port of cylinder 1.",
-      "facts": [],
+      "purpose": "Hollow 70485 intake-pipe reconstruction from the 69603 hose interface to cylinder 1.",
+      "facts": [
+        "Figure 13 identifies four 70485 intake pipes. Pipe OD/ID, bends, wall thickness, flange relationship and stations are reconstructed.",
+        "The pipe OD is a derived 0.05 mm diametral-clearance hose-fit choice below the sourced 1-3/4-inch hose ID, not a published 70485 dimension."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -12615,102 +12696,118 @@
         "induction",
         "hollow"
       ],
-      "role": "component",
-      "cylinder": 1
-    },
-    {
-      "id": "intake-runner-flange-1",
-      "name": "Induction flange 1",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Clamps the induction runner and gasket against the cylinder intake port.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction",
-        "fastener"
-      ],
-      "role": "component",
-      "cylinder": 1
-    },
-    {
-      "id": "intake-gasket-1",
-      "name": "Induction flange gasket 1",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Seals the runner flange to the cylinder intake port.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction"
-      ],
-      "role": "component",
-      "cylinder": 1
-    },
-    {
-      "id": "intake-flange-1--1",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
-    },
-    {
-      "id": "intake-flange-1-1",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
+      "role": "housing",
+      "cylinder": 1,
+      "partNumber": "70485"
     },
     {
       "id": "intake-coupler-1",
-      "name": "Induction coupling hose 1",
+      "name": "Intake coupling hose 1",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Flexible coupling accommodates movement between the sump outlet and cylinder runner. Clamp locations are reconstructed.",
-      "facts": [],
+      "purpose": "Straight flexible coupling between two coaxial intake-pipe stubs.",
+      "facts": [
+        "Figure 13: 69603 hose, 1-3/4-inch ID × 2-3/16-inch OD × 1-3/4-inch long.",
+        "The hose center station and relationship to the reconstructed pipe stubs are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "hollow"
+      ],
+      "role": "housing",
+      "cylinder": 1,
+      "partNumber": "69603"
+    },
+    {
+      "id": "intake-clamp-1-sump",
+      "name": "Intake hose clamp 1 sump",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-clamp-1-head",
+      "name": "Intake hose clamp 1 head",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-runner-flange-1",
+      "name": "Upper intake-pipe flange 1",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Upper flange at the retained cylinder intake-port datum.",
+      "facts": [
+        "Figure 13 identifies four 73346 upper intake-pipe flanges. Two bolt bores are real apertures at reconstructed ±33 mm stations, clear of the sourced 1-3/4-inch passage. Outline, thickness and fastener stations are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "73346"
+    },
+    {
+      "id": "intake-gasket-1",
+      "name": "Upper intake-flange gasket 1",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Two-bolt intake-flange gasket between the head port and upper pipe flange.",
+      "facts": [
+        "Figure 13: 71973 gasket, 2-bolt flange, 1-3/4-inch ID. The real two-bolt apertures, outer profile and thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -12720,60 +12817,165 @@
         "induction"
       ],
       "role": "component",
-      "cylinder": 1
+      "cylinder": 1,
+      "partNumber": "71973"
     },
     {
-      "id": "intake-clamp-1--1",
-      "name": "Induction hose clamp 1",
+      "id": "intake-flange-bolt-1--1",
+      "name": "Intake-flange bolt 1 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
         "fuel",
+        "induction",
         "fastener"
       ],
       "role": "component",
-      "cylinder": 1
+      "cylinder": 1,
+      "partNumber": "LW-25-1.25"
     },
     {
-      "id": "intake-clamp-1-1",
-      "name": "Induction hose clamp 1",
+      "id": "intake-flange-washer-1--1",
+      "name": "Intake-flange plain washer 1 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
         "fuel",
+        "induction",
         "fastener"
       ],
       "role": "component",
-      "cylinder": 1
+      "cylinder": 1,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-1--1",
+      "name": "Intake-flange lock washer 1 left",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "STD-160"
+    },
+    {
+      "id": "intake-flange-bolt-1-1",
+      "name": "Intake-flange bolt 1 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "LW-25-1.25"
+    },
+    {
+      "id": "intake-flange-washer-1-1",
+      "name": "Intake-flange plain washer 1 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-1-1",
+      "name": "Intake-flange lock washer 1 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 1,
+      "partNumber": "STD-160"
     },
     {
       "id": "intake-runner-2",
-      "name": "Induction runner 2",
+      "name": "Intake pipe 2",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Connects the sump air chamber to the underside intake port of cylinder 2.",
-      "facts": [],
+      "purpose": "Hollow 70485 intake-pipe reconstruction from the 69603 hose interface to cylinder 2.",
+      "facts": [
+        "Figure 13 identifies four 70485 intake pipes. Pipe OD/ID, bends, wall thickness, flange relationship and stations are reconstructed.",
+        "The pipe OD is a derived 0.05 mm diametral-clearance hose-fit choice below the sourced 1-3/4-inch hose ID, not a published 70485 dimension."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -12783,102 +12985,118 @@
         "induction",
         "hollow"
       ],
-      "role": "component",
-      "cylinder": 2
-    },
-    {
-      "id": "intake-runner-flange-2",
-      "name": "Induction flange 2",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Clamps the induction runner and gasket against the cylinder intake port.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction",
-        "fastener"
-      ],
-      "role": "component",
-      "cylinder": 2
-    },
-    {
-      "id": "intake-gasket-2",
-      "name": "Induction flange gasket 2",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Seals the runner flange to the cylinder intake port.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction"
-      ],
-      "role": "component",
-      "cylinder": 2
-    },
-    {
-      "id": "intake-flange-2--1",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
-    },
-    {
-      "id": "intake-flange-2-1",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
+      "role": "housing",
+      "cylinder": 2,
+      "partNumber": "70485"
     },
     {
       "id": "intake-coupler-2",
-      "name": "Induction coupling hose 2",
+      "name": "Intake coupling hose 2",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Flexible coupling accommodates movement between the sump outlet and cylinder runner. Clamp locations are reconstructed.",
-      "facts": [],
+      "purpose": "Straight flexible coupling between two coaxial intake-pipe stubs.",
+      "facts": [
+        "Figure 13: 69603 hose, 1-3/4-inch ID × 2-3/16-inch OD × 1-3/4-inch long.",
+        "The hose center station and relationship to the reconstructed pipe stubs are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "hollow"
+      ],
+      "role": "housing",
+      "cylinder": 2,
+      "partNumber": "69603"
+    },
+    {
+      "id": "intake-clamp-2-sump",
+      "name": "Intake hose clamp 2 sump",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-clamp-2-head",
+      "name": "Intake hose clamp 2 head",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-runner-flange-2",
+      "name": "Upper intake-pipe flange 2",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Upper flange at the retained cylinder intake-port datum.",
+      "facts": [
+        "Figure 13 identifies four 73346 upper intake-pipe flanges. Two bolt bores are real apertures at reconstructed ±33 mm stations, clear of the sourced 1-3/4-inch passage. Outline, thickness and fastener stations are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "73346"
+    },
+    {
+      "id": "intake-gasket-2",
+      "name": "Upper intake-flange gasket 2",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Two-bolt intake-flange gasket between the head port and upper pipe flange.",
+      "facts": [
+        "Figure 13: 71973 gasket, 2-bolt flange, 1-3/4-inch ID. The real two-bolt apertures, outer profile and thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -12888,60 +13106,165 @@
         "induction"
       ],
       "role": "component",
-      "cylinder": 2
+      "cylinder": 2,
+      "partNumber": "71973"
     },
     {
-      "id": "intake-clamp-2--1",
-      "name": "Induction hose clamp 2",
+      "id": "intake-flange-bolt-2--1",
+      "name": "Intake-flange bolt 2 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
         "fuel",
+        "induction",
         "fastener"
       ],
       "role": "component",
-      "cylinder": 2
+      "cylinder": 2,
+      "partNumber": "LW-25-1.25"
     },
     {
-      "id": "intake-clamp-2-1",
-      "name": "Induction hose clamp 2",
+      "id": "intake-flange-washer-2--1",
+      "name": "Intake-flange plain washer 2 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
         "fuel",
+        "induction",
         "fastener"
       ],
       "role": "component",
-      "cylinder": 2
+      "cylinder": 2,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-2--1",
+      "name": "Intake-flange lock washer 2 left",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "STD-160"
+    },
+    {
+      "id": "intake-flange-bolt-2-1",
+      "name": "Intake-flange bolt 2 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "LW-25-1.25"
+    },
+    {
+      "id": "intake-flange-washer-2-1",
+      "name": "Intake-flange plain washer 2 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-2-1",
+      "name": "Intake-flange lock washer 2 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 2,
+      "partNumber": "STD-160"
     },
     {
       "id": "intake-runner-3",
-      "name": "Induction runner 3",
+      "name": "Intake pipe 3",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Connects the sump air chamber to the underside intake port of cylinder 3.",
-      "facts": [],
+      "purpose": "Hollow 70485 intake-pipe reconstruction from the 69603 hose interface to cylinder 3.",
+      "facts": [
+        "Figure 13 identifies four 70485 intake pipes. Pipe OD/ID, bends, wall thickness, flange relationship and stations are reconstructed.",
+        "The pipe OD is a derived 0.05 mm diametral-clearance hose-fit choice below the sourced 1-3/4-inch hose ID, not a published 70485 dimension."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -12951,165 +13274,22 @@
         "induction",
         "hollow"
       ],
-      "role": "component",
-      "cylinder": 3
-    },
-    {
-      "id": "intake-runner-flange-3",
-      "name": "Induction flange 3",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Clamps the induction runner and gasket against the cylinder intake port.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction",
-        "fastener"
-      ],
-      "role": "component",
-      "cylinder": 3
-    },
-    {
-      "id": "intake-gasket-3",
-      "name": "Induction flange gasket 3",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Seals the runner flange to the cylinder intake port.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction"
-      ],
-      "role": "component",
-      "cylinder": 3
-    },
-    {
-      "id": "intake-flange-3--1",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
-    },
-    {
-      "id": "intake-flange-3-1",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
+      "role": "housing",
+      "cylinder": 3,
+      "partNumber": "70485"
     },
     {
       "id": "intake-coupler-3",
-      "name": "Induction coupling hose 3",
+      "name": "Intake coupling hose 3",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Flexible coupling accommodates movement between the sump outlet and cylinder runner. Clamp locations are reconstructed.",
-      "facts": [],
+      "purpose": "Straight flexible coupling between two coaxial intake-pipe stubs.",
+      "facts": [
+        "Figure 13: 69603 hose, 1-3/4-inch ID × 2-3/16-inch OD × 1-3/4-inch long.",
+        "The hose center station and relationship to the reconstructed pipe stubs are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "induction"
-      ],
-      "role": "component",
-      "cylinder": 3
-    },
-    {
-      "id": "intake-clamp-3--1",
-      "name": "Induction hose clamp 3",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "fastener"
-      ],
-      "role": "component",
-      "cylinder": 3
-    },
-    {
-      "id": "intake-clamp-3-1",
-      "name": "Induction hose clamp 3",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fuel",
-        "fastener"
-      ],
-      "role": "component",
-      "cylinder": 3
-    },
-    {
-      "id": "intake-runner-4",
-      "name": "Induction runner 4",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Connects the sump air chamber to the underside intake port of cylinder 4.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -13119,19 +13299,21 @@
         "induction",
         "hollow"
       ],
-      "role": "component",
-      "cylinder": 4
+      "role": "housing",
+      "cylinder": 3,
+      "partNumber": "69603"
     },
     {
-      "id": "intake-runner-flange-4",
-      "name": "Induction flange 4",
+      "id": "intake-clamp-3-sump",
+      "name": "Intake hose clamp 3 sump",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Clamps the induction runner and gasket against the cylinder intake port.",
-      "facts": [],
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -13142,18 +13324,68 @@
         "fastener"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 3,
+      "partNumber": "LW-15592-8-28"
     },
     {
-      "id": "intake-gasket-4",
-      "name": "Induction flange gasket 4",
+      "id": "intake-clamp-3-head",
+      "name": "Intake hose clamp 3 head",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Seals the runner flange to the cylinder intake port.",
-      "facts": [],
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-runner-flange-3",
+      "name": "Upper intake-pipe flange 3",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Upper flange at the retained cylinder intake-port datum.",
+      "facts": [
+        "Figure 13 identifies four 73346 upper intake-pipe flanges. Two bolt bores are real apertures at reconstructed ±33 mm stations, clear of the sourced 1-3/4-inch passage. Outline, thickness and fastener stations are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "73346"
+    },
+    {
+      "id": "intake-gasket-3",
+      "name": "Upper intake-flange gasket 3",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Two-bolt intake-flange gasket between the head port and upper pipe flange.",
+      "facts": [
+        "Figure 13: 71973 gasket, 2-bolt flange, 1-3/4-inch ID. The real two-bolt apertures, outer profile and thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -13163,58 +13395,286 @@
         "induction"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 3,
+      "partNumber": "71973"
     },
     {
-      "id": "intake-flange-4--1",
-      "name": "Retaining fastener",
+      "id": "intake-flange-bolt-3--1",
+      "name": "Intake-flange bolt 3 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "fastener",
-        "fuel"
+        "fuel",
+        "induction",
+        "fastener"
       ],
-      "role": "component"
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "LW-25-1.25"
     },
     {
-      "id": "intake-flange-4-1",
-      "name": "Retaining fastener",
+      "id": "intake-flange-washer-3--1",
+      "name": "Intake-flange plain washer 3 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
-        "fastener",
-        "fuel"
+        "fuel",
+        "induction",
+        "fastener"
       ],
-      "role": "component"
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-3--1",
+      "name": "Intake-flange lock washer 3 left",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "STD-160"
+    },
+    {
+      "id": "intake-flange-bolt-3-1",
+      "name": "Intake-flange bolt 3 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "LW-25-1.25"
+    },
+    {
+      "id": "intake-flange-washer-3-1",
+      "name": "Intake-flange plain washer 3 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-3-1",
+      "name": "Intake-flange lock washer 3 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 3,
+      "partNumber": "STD-160"
+    },
+    {
+      "id": "intake-runner-4",
+      "name": "Intake pipe 4",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Hollow 70485 intake-pipe reconstruction from the 69603 hose interface to cylinder 4.",
+      "facts": [
+        "Figure 13 identifies four 70485 intake pipes. Pipe OD/ID, bends, wall thickness, flange relationship and stations are reconstructed.",
+        "The pipe OD is a derived 0.05 mm diametral-clearance hose-fit choice below the sourced 1-3/4-inch hose ID, not a published 70485 dimension."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "hollow"
+      ],
+      "role": "housing",
+      "cylinder": 4,
+      "partNumber": "70485"
     },
     {
       "id": "intake-coupler-4",
-      "name": "Induction coupling hose 4",
+      "name": "Intake coupling hose 4",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Flexible coupling accommodates movement between the sump outlet and cylinder runner. Clamp locations are reconstructed.",
-      "facts": [],
+      "purpose": "Straight flexible coupling between two coaxial intake-pipe stubs.",
+      "facts": [
+        "Figure 13: 69603 hose, 1-3/4-inch ID × 2-3/16-inch OD × 1-3/4-inch long.",
+        "The hose center station and relationship to the reconstructed pipe stubs are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "hollow"
+      ],
+      "role": "housing",
+      "cylinder": 4,
+      "partNumber": "69603"
+    },
+    {
+      "id": "intake-clamp-4-sump",
+      "name": "Intake hose clamp 4 sump",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-clamp-4-head",
+      "name": "Intake hose clamp 4 head",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two hose clamps retaining the 69603 coupling hose.",
+      "facts": [
+        "Figure 13 lists eight LW-15592-8-28 hose clamps. Clamp profile, width, tension and axial station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "LW-15592-8-28"
+    },
+    {
+      "id": "intake-runner-flange-4",
+      "name": "Upper intake-pipe flange 4",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Upper flange at the retained cylinder intake-port datum.",
+      "facts": [
+        "Figure 13 identifies four 73346 upper intake-pipe flanges. Two bolt bores are real apertures at reconstructed ±33 mm stations, clear of the sourced 1-3/4-inch passage. Outline, thickness and fastener stations are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "73346"
+    },
+    {
+      "id": "intake-gasket-4",
+      "name": "Upper intake-flange gasket 4",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Two-bolt intake-flange gasket between the head port and upper pipe flange.",
+      "facts": [
+        "Figure 13: 71973 gasket, 2-bolt flange, 1-3/4-inch ID. The real two-bolt apertures, outer profile and thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -13224,49 +13684,152 @@
         "induction"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 4,
+      "partNumber": "71973"
     },
     {
-      "id": "intake-clamp-4--1",
-      "name": "Induction hose clamp 4",
+      "id": "intake-flange-bolt-4--1",
+      "name": "Intake-flange bolt 4 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
         "fuel",
+        "induction",
         "fastener"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 4,
+      "partNumber": "LW-25-1.25"
     },
     {
-      "id": "intake-clamp-4-1",
-      "name": "Induction hose clamp 4",
+      "id": "intake-flange-washer-4--1",
+      "name": "Intake-flange plain washer 4 left",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Secures the flexible induction coupling.",
-      "facts": [],
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
       "tags": [
         "fuel",
+        "induction",
         "fastener"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 4,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-4--1",
+      "name": "Intake-flange lock washer 4 left",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "STD-160"
+    },
+    {
+      "id": "intake-flange-bolt-4-1",
+      "name": "Intake-flange bolt 4 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13: eight LW-25-1.25 bolts, 1/4-20 × 1-1/4 inch. Nominal under-head shank length is modeled; head form, thread relief and installed station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "LW-25-1.25"
+    },
+    {
+      "id": "intake-flange-washer-4-1",
+      "name": "Intake-flange plain washer 4 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-8 1/4 plain washers. This washer seats on the flange bottom; OD/thickness are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "STD-8"
+    },
+    {
+      "id": "intake-flange-lockwasher-4-1",
+      "name": "Intake-flange lock washer 4 right",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "IO-360-L2A induction-system member. Figure 13 establishes part identity and selected nominal interfaces; all stations and unsourced profiles are reconstructed.",
+      "facts": [
+        "Figure 13 lists eight STD-160 1/4 internal-tooth lock washers. The toothed aperture seats under the plain washer; tooth form, OD/thickness and station are reconstructed."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "induction",
+        "fastener"
+      ],
+      "role": "component",
+      "cylinder": 4,
+      "partNumber": "STD-160"
     },
     {
       "id": "mechanical-fuel-pump",
@@ -92387,9 +92950,9 @@
       "partId": "head-drain-nipple-1",
       "meshName": "head-drain-nipple-1",
       "explodedOffset": [
-        -0.55,
-        -0.15,
-        0.24
+        -0.5,
+        -0.19,
+        0.25
       ]
     },
     {
@@ -92407,9 +92970,9 @@
       "partId": "head-drain-tube-1",
       "meshName": "head-drain-tube-1",
       "explodedOffset": [
-        -0.43,
-        -0.22,
-        0.22
+        -0.5,
+        -0.19,
+        0.25
       ]
     },
     {
@@ -92428,7 +92991,7 @@
       "meshName": "head-drain-clamp-1-tube",
       "explodedOffset": [
         -0.52,
-        -0.23,
+        -0.19,
         0.27
       ]
     },
@@ -92437,9 +93000,9 @@
       "partId": "head-drain-nipple-2",
       "meshName": "head-drain-nipple-2",
       "explodedOffset": [
-        0.55,
-        -0.15,
-        0.19
+        0.5,
+        -0.19,
+        0.2
       ]
     },
     {
@@ -92457,9 +93020,9 @@
       "partId": "head-drain-tube-2",
       "meshName": "head-drain-tube-2",
       "explodedOffset": [
-        0.43,
-        -0.22,
-        0.17
+        0.5,
+        -0.19,
+        0.2
       ]
     },
     {
@@ -92478,7 +93041,7 @@
       "meshName": "head-drain-clamp-2-tube",
       "explodedOffset": [
         0.52,
-        -0.23,
+        -0.19,
         0.22
       ]
     },
@@ -92487,9 +93050,9 @@
       "partId": "head-drain-nipple-3",
       "meshName": "head-drain-nipple-3",
       "explodedOffset": [
-        -0.55,
-        -0.15,
-        -0.020000000000000004
+        -0.5,
+        -0.19,
+        -0.009999999999999995
       ]
     },
     {
@@ -92507,9 +93070,9 @@
       "partId": "head-drain-tube-3",
       "meshName": "head-drain-tube-3",
       "explodedOffset": [
-        -0.43,
-        -0.22,
-        -0.039999999999999994
+        -0.5,
+        -0.19,
+        -0.009999999999999995
       ]
     },
     {
@@ -92528,7 +93091,7 @@
       "meshName": "head-drain-clamp-3-tube",
       "explodedOffset": [
         -0.52,
-        -0.23,
+        -0.19,
         0.009999999999999995
       ]
     },
@@ -92537,9 +93100,9 @@
       "partId": "head-drain-nipple-4",
       "meshName": "head-drain-nipple-4",
       "explodedOffset": [
-        0.55,
-        -0.15,
-        -0.07
+        0.5,
+        -0.19,
+        -0.06
       ]
     },
     {
@@ -92557,9 +93120,9 @@
       "partId": "head-drain-tube-4",
       "meshName": "head-drain-tube-4",
       "explodedOffset": [
-        0.43,
-        -0.22,
-        -0.09
+        0.5,
+        -0.19,
+        -0.06
       ]
     },
     {
@@ -92578,7 +93141,7 @@
       "meshName": "head-drain-clamp-4-tube",
       "explodedOffset": [
         0.52,
-        -0.23,
+        -0.19,
         -0.04000000000000001
       ]
     },
@@ -93793,6 +94356,36 @@
       ]
     },
     {
+      "id": "intake-coupler-1",
+      "partId": "intake-coupler-1",
+      "meshName": "intake-coupler-1",
+      "explodedOffset": [
+        -0.2,
+        -0.2,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-1-sump",
+      "partId": "intake-clamp-1-sump",
+      "meshName": "intake-clamp-1-sump",
+      "explodedOffset": [
+        -0.2,
+        -0.2,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-1-head",
+      "partId": "intake-clamp-1-head",
+      "meshName": "intake-clamp-1-head",
+      "explodedOffset": [
+        -0.2,
+        -0.2,
+        0.15
+      ]
+    },
+    {
       "id": "intake-runner-flange-1",
       "partId": "intake-runner-flange-1",
       "meshName": "intake-runner-flange-1",
@@ -93813,9 +94406,9 @@
       ]
     },
     {
-      "id": "intake-flange-1--1",
-      "partId": "intake-flange-1--1",
-      "meshName": "intake-flange-1--1",
+      "id": "intake-flange-bolt-1--1",
+      "partId": "intake-flange-bolt-1--1",
+      "meshName": "intake-flange-bolt-1--1",
       "explodedOffset": [
         -0.2,
         0,
@@ -93823,9 +94416,9 @@
       ]
     },
     {
-      "id": "intake-flange-1-1",
-      "partId": "intake-flange-1-1",
-      "meshName": "intake-flange-1-1",
+      "id": "intake-flange-washer-1--1",
+      "partId": "intake-flange-washer-1--1",
+      "meshName": "intake-flange-washer-1--1",
       "explodedOffset": [
         -0.2,
         0,
@@ -93833,32 +94426,42 @@
       ]
     },
     {
-      "id": "intake-coupler-1",
-      "partId": "intake-coupler-1",
-      "meshName": "intake-coupler-1",
+      "id": "intake-flange-lockwasher-1--1",
+      "partId": "intake-flange-lockwasher-1--1",
+      "meshName": "intake-flange-lockwasher-1--1",
       "explodedOffset": [
         -0.2,
-        -0.2,
+        0,
         0.15
       ]
     },
     {
-      "id": "intake-clamp-1--1",
-      "partId": "intake-clamp-1--1",
-      "meshName": "intake-clamp-1--1",
+      "id": "intake-flange-bolt-1-1",
+      "partId": "intake-flange-bolt-1-1",
+      "meshName": "intake-flange-bolt-1-1",
       "explodedOffset": [
         -0.2,
-        -0.2,
+        0,
         0.15
       ]
     },
     {
-      "id": "intake-clamp-1-1",
-      "partId": "intake-clamp-1-1",
-      "meshName": "intake-clamp-1-1",
+      "id": "intake-flange-washer-1-1",
+      "partId": "intake-flange-washer-1-1",
+      "meshName": "intake-flange-washer-1-1",
       "explodedOffset": [
         -0.2,
+        0,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-flange-lockwasher-1-1",
+      "partId": "intake-flange-lockwasher-1-1",
+      "meshName": "intake-flange-lockwasher-1-1",
+      "explodedOffset": [
         -0.2,
+        0,
         0.15
       ]
     },
@@ -93866,6 +94469,36 @@
       "id": "intake-runner-2",
       "partId": "intake-runner-2",
       "meshName": "intake-runner-2",
+      "explodedOffset": [
+        0.2,
+        -0.2,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-coupler-2",
+      "partId": "intake-coupler-2",
+      "meshName": "intake-coupler-2",
+      "explodedOffset": [
+        0.2,
+        -0.2,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-2-sump",
+      "partId": "intake-clamp-2-sump",
+      "meshName": "intake-clamp-2-sump",
+      "explodedOffset": [
+        0.2,
+        -0.2,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-2-head",
+      "partId": "intake-clamp-2-head",
+      "meshName": "intake-clamp-2-head",
       "explodedOffset": [
         0.2,
         -0.2,
@@ -93893,9 +94526,9 @@
       ]
     },
     {
-      "id": "intake-flange-2--1",
-      "partId": "intake-flange-2--1",
-      "meshName": "intake-flange-2--1",
+      "id": "intake-flange-bolt-2--1",
+      "partId": "intake-flange-bolt-2--1",
+      "meshName": "intake-flange-bolt-2--1",
       "explodedOffset": [
         0.2,
         0,
@@ -93903,9 +94536,9 @@
       ]
     },
     {
-      "id": "intake-flange-2-1",
-      "partId": "intake-flange-2-1",
-      "meshName": "intake-flange-2-1",
+      "id": "intake-flange-washer-2--1",
+      "partId": "intake-flange-washer-2--1",
+      "meshName": "intake-flange-washer-2--1",
       "explodedOffset": [
         0.2,
         0,
@@ -93913,32 +94546,42 @@
       ]
     },
     {
-      "id": "intake-coupler-2",
-      "partId": "intake-coupler-2",
-      "meshName": "intake-coupler-2",
+      "id": "intake-flange-lockwasher-2--1",
+      "partId": "intake-flange-lockwasher-2--1",
+      "meshName": "intake-flange-lockwasher-2--1",
       "explodedOffset": [
         0.2,
-        -0.2,
+        0,
         0.15
       ]
     },
     {
-      "id": "intake-clamp-2--1",
-      "partId": "intake-clamp-2--1",
-      "meshName": "intake-clamp-2--1",
+      "id": "intake-flange-bolt-2-1",
+      "partId": "intake-flange-bolt-2-1",
+      "meshName": "intake-flange-bolt-2-1",
       "explodedOffset": [
         0.2,
-        -0.2,
+        0,
         0.15
       ]
     },
     {
-      "id": "intake-clamp-2-1",
-      "partId": "intake-clamp-2-1",
-      "meshName": "intake-clamp-2-1",
+      "id": "intake-flange-washer-2-1",
+      "partId": "intake-flange-washer-2-1",
+      "meshName": "intake-flange-washer-2-1",
       "explodedOffset": [
         0.2,
-        -0.2,
+        0,
+        0.15
+      ]
+    },
+    {
+      "id": "intake-flange-lockwasher-2-1",
+      "partId": "intake-flange-lockwasher-2-1",
+      "meshName": "intake-flange-lockwasher-2-1",
+      "explodedOffset": [
+        0.2,
+        0,
         0.15
       ]
     },
@@ -93946,6 +94589,36 @@
       "id": "intake-runner-3",
       "partId": "intake-runner-3",
       "meshName": "intake-runner-3",
+      "explodedOffset": [
+        -0.2,
+        -0.2,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-coupler-3",
+      "partId": "intake-coupler-3",
+      "meshName": "intake-coupler-3",
+      "explodedOffset": [
+        -0.2,
+        -0.2,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-3-sump",
+      "partId": "intake-clamp-3-sump",
+      "meshName": "intake-clamp-3-sump",
+      "explodedOffset": [
+        -0.2,
+        -0.2,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-3-head",
+      "partId": "intake-clamp-3-head",
+      "meshName": "intake-clamp-3-head",
       "explodedOffset": [
         -0.2,
         -0.2,
@@ -93973,9 +94646,9 @@
       ]
     },
     {
-      "id": "intake-flange-3--1",
-      "partId": "intake-flange-3--1",
-      "meshName": "intake-flange-3--1",
+      "id": "intake-flange-bolt-3--1",
+      "partId": "intake-flange-bolt-3--1",
+      "meshName": "intake-flange-bolt-3--1",
       "explodedOffset": [
         -0.2,
         0,
@@ -93983,9 +94656,9 @@
       ]
     },
     {
-      "id": "intake-flange-3-1",
-      "partId": "intake-flange-3-1",
-      "meshName": "intake-flange-3-1",
+      "id": "intake-flange-washer-3--1",
+      "partId": "intake-flange-washer-3--1",
+      "meshName": "intake-flange-washer-3--1",
       "explodedOffset": [
         -0.2,
         0,
@@ -93993,32 +94666,42 @@
       ]
     },
     {
-      "id": "intake-coupler-3",
-      "partId": "intake-coupler-3",
-      "meshName": "intake-coupler-3",
+      "id": "intake-flange-lockwasher-3--1",
+      "partId": "intake-flange-lockwasher-3--1",
+      "meshName": "intake-flange-lockwasher-3--1",
       "explodedOffset": [
         -0.2,
-        -0.2,
+        0,
         -0.15
       ]
     },
     {
-      "id": "intake-clamp-3--1",
-      "partId": "intake-clamp-3--1",
-      "meshName": "intake-clamp-3--1",
+      "id": "intake-flange-bolt-3-1",
+      "partId": "intake-flange-bolt-3-1",
+      "meshName": "intake-flange-bolt-3-1",
       "explodedOffset": [
         -0.2,
-        -0.2,
+        0,
         -0.15
       ]
     },
     {
-      "id": "intake-clamp-3-1",
-      "partId": "intake-clamp-3-1",
-      "meshName": "intake-clamp-3-1",
+      "id": "intake-flange-washer-3-1",
+      "partId": "intake-flange-washer-3-1",
+      "meshName": "intake-flange-washer-3-1",
       "explodedOffset": [
         -0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-flange-lockwasher-3-1",
+      "partId": "intake-flange-lockwasher-3-1",
+      "meshName": "intake-flange-lockwasher-3-1",
+      "explodedOffset": [
         -0.2,
+        0,
         -0.15
       ]
     },
@@ -94026,6 +94709,36 @@
       "id": "intake-runner-4",
       "partId": "intake-runner-4",
       "meshName": "intake-runner-4",
+      "explodedOffset": [
+        0.2,
+        -0.2,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-coupler-4",
+      "partId": "intake-coupler-4",
+      "meshName": "intake-coupler-4",
+      "explodedOffset": [
+        0.2,
+        -0.2,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-4-sump",
+      "partId": "intake-clamp-4-sump",
+      "meshName": "intake-clamp-4-sump",
+      "explodedOffset": [
+        0.2,
+        -0.2,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-clamp-4-head",
+      "partId": "intake-clamp-4-head",
+      "meshName": "intake-clamp-4-head",
       "explodedOffset": [
         0.2,
         -0.2,
@@ -94053,9 +94766,9 @@
       ]
     },
     {
-      "id": "intake-flange-4--1",
-      "partId": "intake-flange-4--1",
-      "meshName": "intake-flange-4--1",
+      "id": "intake-flange-bolt-4--1",
+      "partId": "intake-flange-bolt-4--1",
+      "meshName": "intake-flange-bolt-4--1",
       "explodedOffset": [
         0.2,
         0,
@@ -94063,9 +94776,9 @@
       ]
     },
     {
-      "id": "intake-flange-4-1",
-      "partId": "intake-flange-4-1",
-      "meshName": "intake-flange-4-1",
+      "id": "intake-flange-washer-4--1",
+      "partId": "intake-flange-washer-4--1",
+      "meshName": "intake-flange-washer-4--1",
       "explodedOffset": [
         0.2,
         0,
@@ -94073,32 +94786,42 @@
       ]
     },
     {
-      "id": "intake-coupler-4",
-      "partId": "intake-coupler-4",
-      "meshName": "intake-coupler-4",
+      "id": "intake-flange-lockwasher-4--1",
+      "partId": "intake-flange-lockwasher-4--1",
+      "meshName": "intake-flange-lockwasher-4--1",
       "explodedOffset": [
         0.2,
-        -0.2,
+        0,
         -0.15
       ]
     },
     {
-      "id": "intake-clamp-4--1",
-      "partId": "intake-clamp-4--1",
-      "meshName": "intake-clamp-4--1",
+      "id": "intake-flange-bolt-4-1",
+      "partId": "intake-flange-bolt-4-1",
+      "meshName": "intake-flange-bolt-4-1",
       "explodedOffset": [
         0.2,
-        -0.2,
+        0,
         -0.15
       ]
     },
     {
-      "id": "intake-clamp-4-1",
-      "partId": "intake-clamp-4-1",
-      "meshName": "intake-clamp-4-1",
+      "id": "intake-flange-washer-4-1",
+      "partId": "intake-flange-washer-4-1",
+      "meshName": "intake-flange-washer-4-1",
       "explodedOffset": [
         0.2,
-        -0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
+      "id": "intake-flange-lockwasher-4-1",
+      "partId": "intake-flange-lockwasher-4-1",
+      "meshName": "intake-flange-lockwasher-4-1",
+      "explodedOffset": [
+        0.2,
+        0,
         -0.15
       ]
     },

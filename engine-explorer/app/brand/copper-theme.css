@@ -1,0 +1,8 @@
+/* Crank & Core: copper, ivory and charcoal. Model/semantic colors stay in the viewer. */
+:root { --brand-copper: #a65f46; --brand-copper-dark: #85452f; --brand-ivory: #f4eee5; --gold: var(--brand-copper); }
+.product-wordmark h1 span { color: var(--brand-copper-dark); }
+.product-mark { border-radius: 50%; }
+.engine-choice { background: var(--brand-copper) !important; border-color: var(--brand-copper-dark) !important; color: #fff !important; }
+.engine-choice:hover:not(:disabled) { background: var(--brand-copper-dark) !important; }
+.engine-switcher button[aria-pressed="true"] { border-color: var(--brand-copper) !important; background: #f4e7df !important; color: #572f22 !important; }
+button:focus-visible, a:focus-visible { outline-color: var(--brand-copper-dark); }

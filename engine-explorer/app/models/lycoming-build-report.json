@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-10-08T02:03:56.111Z",
+  "builtAt": "2026-10-08T03:56:21.592Z",
   "asset": "lycoming-io-360-l2a.glb",
-  "sha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
-  "bytes": 106214412,
+  "sha256": "b3f9186024f208b5d54cb90a526ae7fa8993b25fbab692268dc1275c406549d7",
+  "bytes": 122951156,
   "parts": 981,
   "instances": 981,
   "animatedInstances": 228,
@@ -51,7 +51,7 @@
     "connectingRodM": 0.175
   },
   "exportCleanup": {
-    "scope": "Head bodies/fins: assert no wholly outside positive-host triangles, with 0.1 micron reserve; no surfaces discarded. Head/valve/seat and revised fuel-pump/case and flat-tappet/receiver/rear-gear export: exactly zero-area triangles only; real small faces and attribute values preserved.",
+    "scope": "Head bodies/fins: assert no wholly outside positive-host triangles, with 0.1 micron reserve; no surfaces discarded. Head/valve/seat, cam/rod/rocker/bushing/box and revised fuel-pump/case and flat-tappet/receiver/rear-gear export: exactly zero-area triangles only; real small faces and attribute values preserved.",
     "booleanOutsideHostTriangles": {
       "head-1-body": 0,
       "head-1-fin-0": 0,
@@ -167,56 +167,85 @@
       "head-4-fin-26": 0
     },
     "zeroAreaExportTriangles": {
-      "crankcase-right": 2983,
-      "crankcase-left": 2637,
+      "crankcase-right": 2970,
+      "crankcase-left": 2669,
       "crankshaft": 10,
+      "camshaft": 0,
       "crank-drive-gear": 910,
       "crankshaft-gear-alignment-dowel": 0,
       "accessory-case": 1163,
-      "head-1": 20158,
+      "head-1": 20081,
+      "rocker-box-1": 0,
       "valve-1-intake": 56,
       "valve-seat-1-intake": 0,
       "tappet-1-intake": 0,
+      "pushrod-1-intake": 0,
+      "rocker-1-intake": 0,
+      "rocker-bushing-1-intake": 0,
       "valve-1-exhaust": 32,
       "valve-seat-1-exhaust": 0,
       "tappet-1-exhaust": 0,
+      "pushrod-1-exhaust": 0,
+      "rocker-1-exhaust": 0,
+      "rocker-bushing-1-exhaust": 0,
       "tappet-plunger-intake-1": 0,
-      "tappet-socket-intake-1": 7,
+      "tappet-socket-intake-1": 265,
       "tappet-plunger-exhaust-1": 0,
-      "tappet-socket-exhaust-1": 4,
-      "head-2": 34684,
+      "tappet-socket-exhaust-1": 342,
+      "head-2": 34773,
+      "rocker-box-2": 0,
       "valve-2-intake": 48,
       "valve-seat-2-intake": 0,
       "tappet-2-intake": 0,
+      "pushrod-2-intake": 0,
+      "rocker-2-intake": 0,
+      "rocker-bushing-2-intake": 0,
       "valve-2-exhaust": 34,
       "valve-seat-2-exhaust": 0,
       "tappet-2-exhaust": 0,
+      "pushrod-2-exhaust": 0,
+      "rocker-2-exhaust": 0,
+      "rocker-bushing-2-exhaust": 0,
       "tappet-plunger-intake-2": 0,
-      "tappet-socket-intake-2": 5,
+      "tappet-socket-intake-2": 276,
       "tappet-plunger-exhaust-2": 0,
-      "tappet-socket-exhaust-2": 7,
-      "head-3": 27072,
+      "tappet-socket-exhaust-2": 318,
+      "head-3": 26967,
+      "rocker-box-3": 0,
       "valve-3-intake": 50,
       "valve-seat-3-intake": 0,
       "tappet-3-intake": 0,
+      "pushrod-3-intake": 0,
+      "rocker-3-intake": 0,
+      "rocker-bushing-3-intake": 0,
       "valve-3-exhaust": 28,
       "valve-seat-3-exhaust": 0,
       "tappet-3-exhaust": 0,
+      "pushrod-3-exhaust": 0,
+      "rocker-3-exhaust": 0,
+      "rocker-bushing-3-exhaust": 0,
       "tappet-plunger-intake-3": 0,
-      "tappet-socket-intake-3": 8,
+      "tappet-socket-intake-3": 335,
       "tappet-plunger-exhaust-3": 0,
-      "tappet-socket-exhaust-3": 9,
-      "head-4": 59836,
+      "tappet-socket-exhaust-3": 272,
+      "head-4": 59834,
+      "rocker-box-4": 0,
       "valve-4-intake": 52,
       "valve-seat-4-intake": 0,
       "tappet-4-intake": 0,
+      "pushrod-4-intake": 0,
+      "rocker-4-intake": 0,
+      "rocker-bushing-4-intake": 0,
       "valve-4-exhaust": 33,
       "valve-seat-4-exhaust": 0,
       "tappet-4-exhaust": 0,
+      "pushrod-4-exhaust": 0,
+      "rocker-4-exhaust": 0,
+      "rocker-bushing-4-exhaust": 0,
       "tappet-plunger-intake-4": 0,
-      "tappet-socket-intake-4": 6,
+      "tappet-socket-intake-4": 300,
       "tappet-plunger-exhaust-4": 0,
-      "tappet-socket-exhaust-4": 6,
+      "tappet-socket-exhaust-4": 298,
       "mechanical-fuel-pump": 394,
       "fuel-pump-gasket": 366,
       "fuel-pump-mount-washer-1": 0,
@@ -227,6 +256,764 @@
       "mechanical-fuel-pump-spring": 0,
       "mechanical-fuel-pump-actuator": 0,
       "fuel-hose-end-0": 0
+    },
+    "closedSolidExport": {
+      "rocker-box-1": {
+        "vertices": 14722,
+        "uniquePositions": 6936,
+        "triangles": 13904,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0002610196540187968,
+        "minCrossSquared": 1.0043037488175278e-26,
+        "bounds": {
+          "min": [
+            -0.3869999945163727,
+            -0.09049999713897705,
+            0.06399999558925629
+          ],
+          "max": [
+            -0.3543824553489685,
+            0.09200000017881393,
+            0.23609082400798798
+          ]
+        }
+      },
+      "pushrod-1-intake": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.00000513328945426674,
+        "minCrossSquared": 2.7261279384275318e-17,
+        "bounds": {
+          "min": [
+            -0.37287479639053345,
+            0.07600010186433792,
+            0.18100015819072723
+          ],
+          "max": [
+            -0.049625203013420105,
+            0.10099989920854568,
+            0.18899984657764435
+          ]
+        }
+      },
+      "rocker-1-intake": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059909382631043,
+        "minCrossSquared": 4.015709503536303e-24,
+        "bounds": {
+          "min": [
+            -0.4030742347240448,
+            0.009716732427477837,
+            0.17299999296665192
+          ],
+          "max": [
+            -0.35723909735679626,
+            0.0860000029206276,
+            0.19699999690055847
+          ]
+        }
+      },
+      "rocker-bushing-1-intake": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001981386122289785,
+        "minCrossSquared": 9.829391295517289e-21,
+        "bounds": {
+          "min": [
+            -0.38065001368522644,
+            0.03734999895095825,
+            0.17399999499320984
+          ],
+          "max": [
+            -0.36134999990463257,
+            0.05665000155568123,
+            0.19599999487400055
+          ]
+        }
+      },
+      "pushrod-1-exhaust": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000005064456088905094,
+        "minCrossSquared": 2.7266642233735986e-17,
+        "bounds": {
+          "min": [
+            -0.368280827999115,
+            0.07539594173431396,
+            0.11100015789270401
+          ],
+          "max": [
+            -0.04962250590324402,
+            0.10099980235099792,
+            0.11899984627962112
+          ]
+        }
+      },
+      "rocker-1-exhaust": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059911447824362,
+        "minCrossSquared": 4.026703919602127e-24,
+        "bounds": {
+          "min": [
+            -0.4068119525909424,
+            0.013144543394446373,
+            0.10300000011920929
+          ],
+          "max": [
+            -0.35680437088012695,
+            0.08645585179328918,
+            0.12700000405311584
+          ]
+        }
+      },
+      "rocker-bushing-1-exhaust": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000019813853774485395,
+        "minCrossSquared": 1.8326199946016e-20,
+        "bounds": {
+          "min": [
+            -0.380649209022522,
+            0.03735080361366272,
+            0.10400000214576721
+          ],
+          "max": [
+            -0.36135080456733704,
+            0.05664919689297676,
+            0.12600000202655792
+          ]
+        }
+      },
+      "rocker-box-2": {
+        "vertices": 14710,
+        "uniquePositions": 6930,
+        "triangles": 13892,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0002610196532767176,
+        "minCrossSquared": 1.0043037488175278e-26,
+        "bounds": {
+          "min": [
+            0.3543824553489685,
+            -0.09049999713897705,
+            0.013999996706843376
+          ],
+          "max": [
+            0.3869999945163727,
+            0.09200000017881393,
+            0.18609081208705902
+          ]
+        }
+      },
+      "pushrod-2-intake": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000005133290391855682,
+        "minCrossSquared": 2.7262436986052822e-17,
+        "bounds": {
+          "min": [
+            0.049625203013420105,
+            0.07600010186433792,
+            0.13100016117095947
+          ],
+          "max": [
+            0.37287479639053345,
+            0.10099989920854568,
+            0.1389998495578766
+          ]
+        }
+      },
+      "rocker-2-intake": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059908669785594,
+        "minCrossSquared": 4.015709503536303e-24,
+        "bounds": {
+          "min": [
+            0.35723909735679626,
+            0.009716732427477837,
+            0.12300000339746475
+          ],
+          "max": [
+            0.4030742347240448,
+            0.0860000029206276,
+            0.1469999998807907
+          ]
+        }
+      },
+      "rocker-bushing-2-intake": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001981386330357144,
+        "minCrossSquared": 9.830665023861447e-21,
+        "bounds": {
+          "min": [
+            0.36134999990463257,
+            0.03734999895095825,
+            0.12399999797344208
+          ],
+          "max": [
+            0.38065001368522644,
+            0.05665000155568123,
+            0.1459999978542328
+          ]
+        }
+      },
+      "pushrod-2-exhaust": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000050644569619979035,
+        "minCrossSquared": 2.7266642233735986e-17,
+        "bounds": {
+          "min": [
+            0.04962250590324402,
+            0.07539594173431396,
+            0.06100015342235565
+          ],
+          "max": [
+            0.368280827999115,
+            0.10099980235099792,
+            0.06899984925985336
+          ]
+        }
+      },
+      "rocker-2-exhaust": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059907412715263,
+        "minCrossSquared": 4.026703919602127e-24,
+        "bounds": {
+          "min": [
+            0.35680437088012695,
+            0.013144543394446373,
+            0.05299999937415123
+          ],
+          "max": [
+            0.4068119525909424,
+            0.08645585179328918,
+            0.07699999958276749
+          ]
+        }
+      },
+      "rocker-bushing-2-exhaust": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001981385030763332,
+        "minCrossSquared": 1.8326199946016e-20,
+        "bounds": {
+          "min": [
+            0.36135080456733704,
+            0.03735080361366272,
+            0.05400000140070915
+          ],
+          "max": [
+            0.380649209022522,
+            0.05664919689297676,
+            0.07599999755620956
+          ]
+        }
+      },
+      "rocker-box-3": {
+        "vertices": 14710,
+        "uniquePositions": 6929,
+        "triangles": 13890,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0002610196951197935,
+        "minCrossSquared": 1.3669689914460795e-26,
+        "bounds": {
+          "min": [
+            -0.3869999945163727,
+            -0.09049999713897705,
+            -0.19600000977516174
+          ],
+          "max": [
+            -0.3543824553489685,
+            0.09200000017881393,
+            -0.023909181356430054
+          ]
+        }
+      },
+      "pushrod-3-intake": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000005133289425531581,
+        "minCrossSquared": 2.7268378152826976e-17,
+        "bounds": {
+          "min": [
+            -0.37287479639053345,
+            0.07600010186433792,
+            -0.0789998471736908
+          ],
+          "max": [
+            -0.049625203013420105,
+            0.10099989920854568,
+            -0.07100015133619308
+          ]
+        }
+      },
+      "rocker-3-intake": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059901944579597,
+        "minCrossSquared": 3.9753183738081814e-24,
+        "bounds": {
+          "min": [
+            -0.4030742347240448,
+            0.009716732427477837,
+            -0.08699999749660492
+          ],
+          "max": [
+            -0.35723909735679626,
+            0.0860000029206276,
+            -0.06300000101327896
+          ]
+        }
+      },
+      "rocker-bushing-3-intake": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000019813862303650263,
+        "minCrossSquared": 9.830028149236961e-21,
+        "bounds": {
+          "min": [
+            -0.38065001368522644,
+            0.03734999895095825,
+            -0.0860000029206276
+          ],
+          "max": [
+            -0.36134999990463257,
+            0.05665000155568123,
+            -0.06400000303983688
+          ]
+        }
+      },
+      "pushrod-3-exhaust": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000005064458794869163,
+        "minCrossSquared": 2.7259927919618965e-17,
+        "bounds": {
+          "min": [
+            -0.368280827999115,
+            0.07539594173431396,
+            -0.14899984002113342
+          ],
+          "max": [
+            -0.04962250590324402,
+            0.10099980235099792,
+            -0.1410001516342163
+          ]
+        }
+      },
+      "rocker-3-exhaust": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059910816762174,
+        "minCrossSquared": 4.016903592427775e-24,
+        "bounds": {
+          "min": [
+            -0.4068119525909424,
+            0.013144543394446373,
+            -0.15700000524520874
+          ],
+          "max": [
+            -0.35680437088012695,
+            0.08645585179328918,
+            -0.13300000131130219
+          ]
+        }
+      },
+      "rocker-bushing-3-exhaust": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000019813854959335745,
+        "minCrossSquared": 1.887223517328458e-20,
+        "bounds": {
+          "min": [
+            -0.380649209022522,
+            0.03735080361366272,
+            -0.15600000321865082
+          ],
+          "max": [
+            -0.36135080456733704,
+            0.05664919689297676,
+            -0.1340000033378601
+          ]
+        }
+      },
+      "rocker-box-4": {
+        "vertices": 14728,
+        "uniquePositions": 6939,
+        "triangles": 13910,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.00026101970582897006,
+        "minCrossSquared": 1.0043037488175278e-26,
+        "bounds": {
+          "min": [
+            0.3543824553489685,
+            -0.09049999713897705,
+            -0.2460000067949295
+          ],
+          "max": [
+            0.3869999945163727,
+            0.09200000017881393,
+            -0.07390917837619781
+          ]
+        }
+      },
+      "pushrod-4-intake": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000051332899506608185,
+        "minCrossSquared": 2.7260160759943822e-17,
+        "bounds": {
+          "min": [
+            0.049625203013420105,
+            0.07600010186433792,
+            -0.12899984419345856
+          ],
+          "max": [
+            0.37287479639053345,
+            0.10099989920854568,
+            -0.12100015580654144
+          ]
+        }
+      },
+      "rocker-4-intake": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000021059907551866137,
+        "minCrossSquared": 4.0259552074028984e-24,
+        "bounds": {
+          "min": [
+            0.35723909735679626,
+            0.009716732427477837,
+            -0.13699999451637268
+          ],
+          "max": [
+            0.4030742347240448,
+            0.0860000029206276,
+            -0.11299999803304672
+          ]
+        }
+      },
+      "rocker-bushing-4-intake": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001981386920496195,
+        "minCrossSquared": 9.830028149236961e-21,
+        "bounds": {
+          "min": [
+            0.36134999990463257,
+            0.03734999895095825,
+            -0.13600000739097595
+          ],
+          "max": [
+            0.38065001368522644,
+            0.05665000155568123,
+            -0.11400000005960464
+          ]
+        }
+      },
+      "pushrod-4-exhaust": {
+        "vertices": 25280,
+        "uniquePositions": 25280,
+        "triangles": 50560,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000050644549297094204,
+        "minCrossSquared": 2.7259966380509535e-17,
+        "bounds": {
+          "min": [
+            0.04962250590324402,
+            0.07539594173431396,
+            -0.19899985194206238
+          ],
+          "max": [
+            0.368280827999115,
+            0.10099980235099792,
+            -0.19100014865398407
+          ]
+        }
+      },
+      "rocker-4-exhaust": {
+        "vertices": 27862,
+        "uniquePositions": 21908,
+        "triangles": 43820,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.00002105989952043763,
+        "minCrossSquared": 4.016903592427775e-24,
+        "bounds": {
+          "min": [
+            0.35680437088012695,
+            0.013144543394446373,
+            -0.2070000022649765
+          ],
+          "max": [
+            0.4068119525909424,
+            0.08645585179328918,
+            -0.18299999833106995
+          ]
+        }
+      },
+      "rocker-bushing-4-exhaust": {
+        "vertices": 4640,
+        "uniquePositions": 2128,
+        "triangles": 4264,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.00000198138550555384,
+        "minCrossSquared": 1.8870388205238398e-20,
+        "bounds": {
+          "min": [
+            0.36135080456733704,
+            0.03735080361366272,
+            -0.20600000023841858
+          ],
+          "max": [
+            0.380649209022522,
+            0.05664919689297676,
+            -0.18400000035762787
+          ]
+        }
+      }
     }
   },
   "interfaceMeshApproximation": {

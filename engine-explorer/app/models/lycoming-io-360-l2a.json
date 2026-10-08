@@ -105,6 +105,13 @@
       "revision": "October 5 2015"
     },
     {
+      "id": "lyc-si-1011n",
+      "title": "Tappets and Lifters",
+      "url": "https://www.lycoming.com/sites/default/files/attachments/SI1011N%2520Tappets%2520and%2520Lifters.pdf",
+      "locator": "PDF / printed p. 2 of 9: IO-360-series flat tappet replacement row specifies 15B26262 or 15B26588 and plunger assembly 15B26066; roller body LRT23381 requires a different crankcase. PDF / printed p. 3 of 9: approved 15B26588 alternate context. Does not establish 15B21319 socket geometry or any face profile, length, bore depth, or internal dimensions.",
+      "revision": "Revision N, January 7, 2019"
+    },
+    {
       "id": "acorn-exhaust",
       "title": "Cessna 172R / 172S Exhaust Systems, Engine Mounts and Air Boxes",
       "url": "https://www.acornwelding.com/pdf/Cessna/Cessna%20100%20Series/Cessna%20172%20R_172S.pdf",
@@ -214,10 +221,13 @@
       "purpose": "Supports the crankshaft and camshaft bearings, cylinder base flanges and oil passages. Its split line permits assembly around the rotating components.",
       "facts": [
         "The crankcase is split vertically.",
-        "Internal case shape and cylinder stations are reconstructed; the cylinder bore is nominal."
+        "Internal case shape and cylinder stations are reconstructed; the cylinder bore is nominal.",
+        "Eight horizontal flat-tappet receivers use the SSP-1776-5 Ref.511 Chart S bore manufacturing-range midpoint, 18.27149 mm. Bore depths, stations and angled shroud transitions remain estimates."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -236,10 +246,13 @@
       "purpose": "Supports the crankshaft and camshaft bearings, cylinder base flanges and oil passages. Its split line permits assembly around the rotating components.",
       "facts": [
         "The crankcase is split vertically.",
-        "Internal case shape and cylinder stations are reconstructed; the cylinder bore is nominal."
+        "Internal case shape and cylinder stations are reconstructed; the cylinder bore is nominal.",
+        "Eight horizontal flat-tappet receivers use the SSP-1776-5 Ref.511 Chart S bore manufacturing-range midpoint, 18.27149 mm. Bore depths, stations and angled shroud transitions remain estimates."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -508,10 +521,12 @@
       "quantity": 1,
       "purpose": "Turns at half crankshaft speed and controls the four-stroke valve sequence through the hydraulic tappets.",
       "facts": [
-        "Cam profile and peak lift are illustrative."
+        "IPC Figure 6 identifies LW-18840. Cam profile, timing and peak lift are illustrative.",
+        "The current cam/follower travel laws do not close contact through the cycle; a coordinated cam, pushrod and rocker kinematic reconstruction remains unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -519,7 +534,8 @@
       "tags": [
         "powertrain"
       ],
-      "role": "component"
+      "role": "component",
+      "partNumber": "LW-18840"
     },
     {
       "id": "crank-drive-gear",
@@ -1695,10 +1711,16 @@
       "name": "Hydraulic tappet body 1 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1707,7 +1729,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 1
+      "cylinder": 1,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-1-intake",
@@ -1985,10 +2008,16 @@
       "name": "Hydraulic tappet body 1 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1997,7 +2026,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 1
+      "cylinder": 1,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-1-exhaust",
@@ -2639,12 +2669,16 @@
       "name": "Hydraulic tappet plunger barrel · intake · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -2728,12 +2762,16 @@
       "name": "Hydraulic tappet pushrod socket · intake · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -2840,12 +2878,16 @@
       "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -2929,12 +2971,16 @@
       "name": "Hydraulic tappet pushrod socket · exhaust · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3925,10 +3971,16 @@
       "name": "Hydraulic tappet body 2 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3937,7 +3989,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 2
+      "cylinder": 2,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-2-intake",
@@ -4215,10 +4268,16 @@
       "name": "Hydraulic tappet body 2 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4227,7 +4286,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 2
+      "cylinder": 2,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-2-exhaust",
@@ -4869,12 +4929,16 @@
       "name": "Hydraulic tappet plunger barrel · intake · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -4958,12 +5022,16 @@
       "name": "Hydraulic tappet pushrod socket · intake · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5070,12 +5138,16 @@
       "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -5159,12 +5231,16 @@
       "name": "Hydraulic tappet pushrod socket · exhaust · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6155,10 +6231,16 @@
       "name": "Hydraulic tappet body 3 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6167,7 +6249,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 3
+      "cylinder": 3,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-3-intake",
@@ -6445,10 +6528,16 @@
       "name": "Hydraulic tappet body 3 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6457,7 +6546,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 3
+      "cylinder": 3,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-3-exhaust",
@@ -7099,12 +7189,16 @@
       "name": "Hydraulic tappet plunger barrel · intake · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -7188,12 +7282,16 @@
       "name": "Hydraulic tappet pushrod socket · intake · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7300,12 +7398,16 @@
       "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -7389,12 +7491,16 @@
       "name": "Hydraulic tappet pushrod socket · exhaust · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8385,10 +8491,16 @@
       "name": "Hydraulic tappet body 4 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8397,7 +8509,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 4,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-4-intake",
@@ -8675,10 +8788,16 @@
       "name": "Hydraulic tappet body 4 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Follows the cam and uses oil pressure to maintain valve-train clearance.",
-      "facts": [],
+      "purpose": "Carries the hydraulic plunger assembly and pushrod socket in a flat-tappet crankcase receiver.",
+      "facts": [
+        "IPC Figure 4 identifies eight 15B26262 bodies for flat tappets. SI 1011 N identifies this as the bow-shaped hyperbolic body; the straight alternative and roller bodies are not co-installed.",
+        "Body envelope OD is the conditional SSP-1776-5 Ref.511 Chart S manufacturing-range midpoint, 18.21942 mm; this is not a measured OEM nominal.",
+        "The cylindrical envelope, length, internal bore and stations remain reconstructed. Bow curvature, oil-feed geometry and exact cam contact are unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8687,7 +8806,8 @@
         "powertrain"
       ],
       "role": "component",
-      "cylinder": 4
+      "cylinder": 4,
+      "partNumber": "15B26262"
     },
     {
       "id": "pushrod-4-exhaust",
@@ -9329,12 +9449,16 @@
       "name": "Hydraulic tappet plunger barrel · intake · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -9418,12 +9542,16 @@
       "name": "Hydraulic tappet pushrod socket · intake · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9530,12 +9658,16 @@
       "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. Internal geometry follows the generic overhaul sectional diagram; dimensions are reconstructed.",
+      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
+        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
+        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "lyc-overhaul",
         "reconstruction"
       ],
@@ -9619,12 +9751,16 @@
       "name": "Hydraulic tappet pushrod socket · exhaust · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Oil-drilled cup receives the pushrod ball end and transmits hydraulic tappet motion.",
+      "purpose": "Oil-drilled cup member of the flat hydraulic tappet assembly.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "IPC Figure 10 identifies eight 15B21319 sockets.",
+        "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
+        "Cup profile, oil bore and stations remain estimated. The current capped pushrod still intersects this cup; ball-ended, pivoting linkage closure is unresolved."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-limits",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -99235,6 +99371,7 @@
       "Connecting rod center distance is estimated at 175 mm. Cam contours, 10 mm peak valve lift and the valve timing curve are illustrative; no exact cam or ignition calibration claim is made.",
       "Magneto, fuel servo, flow-divider, alternator and starter internals are functional reconstructions; omitted small seals, bearings, wiring and hardware are not accounted for by an OEM inventory.",
       "Cessna muffler internals, shroud geometry, baffle openings, mechanical interfaces and fit clearances require measured or licensed dimensional evidence.",
+      "Flat-tappet body and case-bore diameters select published manufacturing-range midpoints. Body bow/foot profile, internal absolute dimensions and oil feeds remain reconstructed; the current cam/follower law, capped pushrod/cup interfaces, rocker contact and hydraulic check-seat topology are unresolved.",
       "Lycoming combustion gas overlay and physical iPad performance remain unverified."
     ]
   }

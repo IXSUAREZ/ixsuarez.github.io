@@ -21,99 +21,112 @@
     "compressionRatioSubstantiated": false,
     "scope": "Capped section diagnostic only, not verified connected or sealed combustion volume."
   },
-  "sourceCommit": "6cb5534d3dc4b941dc85b783282fe68ff723b5a8",
-  "frontendArtifactSourceCommit": "6cb5534d3dc4b941dc85b783282fe68ff723b5a8",
-  "assetDirectory": "engine-explorer/app/assets/lycoming-6cb5534",
+  "sourceCommit": "0a7b9491141bfbbd91b0007ac6201c2550be7968",
+  "frontendArtifactSourceCommit": "0a7b9491141bfbbd91b0007ac6201c2550be7968",
+  "assetDirectory": "engine-explorer/app/assets/lycoming-0a7b949",
   "lycoming": {
-    "sha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
-    "bytes": 104792208,
+    "sha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
+    "bytes": 105552344,
     "parts": 980,
     "animatedInstances": 227,
     "schematic": 105,
-    "compressedSha256": "071f82465728c77ffcc3b831cd0dfa1da1f41a7ac36eeb70d858263f6f4f0fda",
-    "compressedBytes": 43258098
+    "compressedSha256": "c5082aafbd19ee01e215eaa7f7525c23a2afebaa76d09dd01da997d487c66e04",
+    "compressedBytes": 43619231
   },
   "catalogAudit": {
     "occurrences": 387,
-    "directIdentityRows": 132,
-    "unmatchedIdentityOccurrences": 154,
+    "directIdentityRows": 134,
+    "unmatchedIdentityOccurrences": 152,
     "exactGeometryRows": 0,
     "installedBomComplete": false
   },
   "verification": {
     "lycomingAndRelevantShared": {
-      "files": 42,
-      "passed": 193
+      "files": 43,
+      "passed": 197
     },
     "build": "TypeScript and Vite production build passed",
     "browser": {
-      "modelLoaded": 980,
-      "partSelection": true,
-      "selectedPart": "mechanical-fuel-pump / 62B26931",
-      "animationPlayPause": true,
+      "loadedElements": 980,
+      "identity": true,
+      "sourceDimension": true,
+      "playPause": true,
+      "selection": true,
+      "canvas": 1,
+      "selectedPart": "tappet-1-intake / 15B26262",
+      "countEvidence": "980 modeled elements in actual Parts caption",
       "consoleErrors": [],
-      "testedArtifactSha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
-      "scope": "Local production artifact before publication; live readback and interaction are recorded in the matching deployment receipt."
+      "testedArtifactSha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
+      "scope": "Local production artifact before publication; actual live evidence recorded separately."
     },
     "mesh": {
-      "finiteAllMeshes": true,
-      "outsideHostAssertions": 112,
-      "outsideHostTriangles": 0,
-      "headValveSeatMeshesByteIdenticalToPriorAcceptedAsset": 20,
-      "revisedPumpMeshesExactZeroAreaTriangles": 0,
-      "catalogPumpMountScrews": 2,
-      "catalogPumpMountWashers": 2,
+      "finitePositionAttributes": true,
+      "changedMeshes": 26,
+      "unchangedPositionIndexMeshPayloads": 954,
+      "selectedTappetAndCaseExactZeroAreaTriangles": 0,
+      "headValveSeatAndFuelPumpMeshPayloadsUnchanged": true,
+      "flatTappetBodies": 8,
+      "bodyReceiverCycleCrossings": 0,
       "completeComponentGeometryVerified": false
     },
     "fullRepositorySuite": "Known unchanged Rotax/shared Node-loader limitations remain; full-repository suite pass not claimed."
   },
   "previousModelRelease": {
-    "sourceCommit": "4e0b27be3cc57b25eb35b361ec0a158a48fccc73",
+    "sourceCommit": "6cb5534d3dc4b941dc85b783282fe68ff723b5a8",
+    "frontendArtifactSourceCommit": "6cb5534d3dc4b941dc85b783282fe68ff723b5a8",
+    "assetDirectory": "engine-explorer/app/assets/lycoming-6cb5534",
     "lycoming": {
-      "sha256": "8c4b8bec501a60b1f82e65480d376149872edb03ac772db193854ffe85b8d4b4",
-      "bytes": 104019644,
-      "parts": 977,
+      "sha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
+      "bytes": 104792208,
+      "parts": 980,
       "animatedInstances": 227,
       "schematic": 105,
-      "compressedSha256": "b53226e211dff103968e5c02ff83fb7dee6b67f4aedb1fee806ab354bff71e34",
-      "compressedBytes": 42864413
-    },
-    "verification": {
-      "lycomingAndRelevantShared": {
-        "files": 40,
-        "passed": 181
-      },
-      "build": "TypeScript and Vite production build passed",
-      "browser": {
-        "modelLoaded": 977,
-        "partSelection": true,
-        "animationPlayPause": true,
-        "consoleErrors": [],
-        "testedArtifactSha256": "8c4b8bec501a60b1f82e65480d376149872edb03ac772db193854ffe85b8d4b4",
-        "scope": "Local production artifact before publication. Live readback and interaction verification are recorded with the matching deployment receipt."
-      },
-      "fullRepositorySuite": "Pre-existing Rotax/shared Node fixture failures for unchanged Draco-compressed Rotax asset remain; full-suite pass not claimed.",
-      "mesh": {
-        "outsideHostAssertions": 112,
-        "outsideHostTriangles": 0,
-        "selectedMeshesWithoutExactZeroAreaFaces": 20,
-        "maximumSelectedRadialApproximationMicrometres": 2,
-        "entireComponentAccuracyClaim": false,
-        "independentAllCylinderGasketFaces": 8,
-        "independentAllCylinderExhaustStudCaps": 8,
-        "independentInletSeamRays": 20,
-        "movingFitCrossings": 0
-      }
+      "compressedSha256": "071f82465728c77ffcc3b831cd0dfa1da1f41a7ac36eeb70d858263f6f4f0fda",
+      "compressedBytes": 43258098
     },
     "catalogAudit": {
       "occurrences": 387,
-      "directIdentityRows": 129,
-      "unmatchedIdentityOccurrences": 156,
+      "directIdentityRows": 132,
+      "unmatchedIdentityOccurrences": 154,
       "exactGeometryRows": 0,
       "installedBomComplete": false
     },
-    "frontendArtifactSourceCommit": "c084566209b4b951ca211f8f23c805d82de0ae52",
-    "assetDirectory": "engine-explorer/app/assets/lycoming-c084566",
-    "scope": "Historical accepted valve revision; not direct browser verification for this fuel-pump revision."
+    "verification": {
+      "lycomingAndRelevantShared": {
+        "files": 42,
+        "passed": 193
+      },
+      "build": "TypeScript and Vite production build passed",
+      "browser": {
+        "modelLoaded": 980,
+        "partSelection": true,
+        "selectedPart": "mechanical-fuel-pump / 62B26931",
+        "animationPlayPause": true,
+        "consoleErrors": [],
+        "testedArtifactSha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
+        "scope": "Local production artifact before publication; live readback and interaction are recorded in the matching deployment receipt."
+      },
+      "mesh": {
+        "finiteAllMeshes": true,
+        "outsideHostAssertions": 112,
+        "outsideHostTriangles": 0,
+        "headValveSeatMeshesByteIdenticalToPriorAcceptedAsset": 20,
+        "revisedPumpMeshesExactZeroAreaTriangles": 0,
+        "catalogPumpMountScrews": 2,
+        "catalogPumpMountWashers": 2,
+        "completeComponentGeometryVerified": false
+      },
+      "fullRepositorySuite": "Known unchanged Rotax/shared Node-loader limitations remain; full-repository suite pass not claimed."
+    },
+    "scope": "Historical fuel-pump checkpoint, retained at its original model fingerprint."
+  },
+  "flatTappetFits": {
+    "bodyDiameterMm": 18.21942,
+    "caseBoreDiameterMm": 18.27149,
+    "diametralClearanceMm": 0.05207,
+    "source": "Conditional SSP1776 ChartS Ref511 manufacturing midpoints, not measured OEM nominal",
+    "plungerSocketAbsoluteGeometry": "Derived from estimated bodyID17mm and Ref512/513 fit midpoints",
+    "camPushrodRockerClosureVerified": false,
+    "hydraulicCheckSeatVerified": false
   }
 }

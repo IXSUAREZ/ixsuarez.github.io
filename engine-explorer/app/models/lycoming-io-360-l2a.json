@@ -105,6 +105,20 @@
       "revision": "October 5 2015"
     },
     {
+      "id": "lyc-sb-475c",
+      "title": "Service Bulletin 475C, Crankshaft Gear Modification and Assembly Procedures",
+      "url": "https://www.lycoming.com/sites/default/files/attachments/Crankshaft%2520Gear%2520Modification%2520and%2520Assembly%2520Procedures.pdf",
+      "locator": "Rear crankshaft, 13S19646 gear, STD-1065 dowel, LW-18639 lockplate and STD-2246 relationship. Selected service intervals and three scallop/back-counterbore topology; depths, axial step lengths and installed coordinates remain reconstructed. No target-engine maintenance-compliance claim.",
+      "revision": "2003-01-30"
+    },
+    {
+      "id": "lyc-sb-475c-s1",
+      "title": "Supplement No. 1 to Service Bulletin 475C",
+      "url": "https://www.lycoming.com/sites/default/files/attachments/SB475C-S1%2520Crankshaft%2520Gear%2520Replacement%2520as%2520an%2520Alternative%2520to%2520SB-475C_0.pdf",
+      "locator": "Rear crankshaft, 13S19646 gear, STD-1065 dowel, LW-18639 lockplate and STD-2246 relationship. Selected service intervals and three scallop/back-counterbore topology; depths, axial step lengths and installed coordinates remain reconstructed. No target-engine maintenance-compliance claim.",
+      "revision": "2016-09-12"
+    },
+    {
       "id": "lyc-si-1011n",
       "title": "Tappets and Lifters",
       "url": "https://www.lycoming.com/sites/default/files/attachments/SI1011N%2520Tappets%2520and%2520Lifters.pdf",
@@ -439,12 +453,15 @@
       "facts": [
         "Nominal crank radius 55.5625 mm gives the documented 111.125 mm stroke.",
         "Main and rod journal ODs use selected manufacturing-range midpoints of SSP-1776-5 Chart S refs 500/501: 60.33135 mm and 53.95595 mm. These are not OEM nominal drawing values.",
+        "Rear pilot ID selects the SB475C conditional repaired range midpoint and receives a separate STD-1065 dowel with its sourced pin/hole interference; counterbore depths and stations remain reconstructed.",
         "Cheek profiles, longitudinal spacing, journal widths, internal drillings and bearing fits remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-sb-475c",
+        "lyc-sb-475c-s1"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -495,12 +512,13 @@
     },
     {
       "id": "starter-ring-gear",
-      "name": "149-tooth starter ring gear",
+      "name": "Starter ring gear",
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "Receives starter-pinion torque during cranking, then rotates with the propeller flange after the starter disengages.",
       "facts": [
-        "149-tooth family follows the applicable starter family; tooth shape and pitch circle are reconstructed."
+        "IPC Figure 5 item 12 identifies one 72566 starter ring gear with the catalog description 12/14 pitch, carried by the selected 31M22045 support.",
+        "The retained 149-tooth reconstruction, tooth form, pitch-circle diameter, thickness and starter-pinion fit are not established by that IPC row. Assigning its catalog identity does not verify the physical gear geometry."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -512,7 +530,8 @@
         "powertrain",
         "starter"
       ],
-      "role": "component"
+      "role": "component",
+      "partNumber": "72566"
     },
     {
       "id": "camshaft",
@@ -542,12 +561,16 @@
       "name": "Crankshaft accessory drive gear",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Transfers rotation into the camshaft and accessory gear train through a hollow rear hub with two reconstructed oil-pump-drive slots.",
+      "purpose": "Transfers rotation into the camshaft and accessory gear train, located by its separate stepped dowel in the rear crankshaft counterbore.",
       "facts": [
-        "Figure 5 identifies the crankshaft gear. Two rear drive slots are reconstructed from generic overhaul oil-pump-drive engagement language; tooth form, slot dimensions and hub geometry are not published L2A dimensions."
+        "IPC Figure 5 and SB475C Table 2 pair 13S19646 with STD-1065, LW-18639 and STD-2246. Three 19.05 mm-radius pilot scallops and a 33.274 mm-diameter, 0.508 mm-deep underside relief follow the bulletin figures.",
+        "Pilot OD selects the conditional original/restored 2.1250–2.1255 in midpoint. This service selection is not a measured factory nominal or an installed-engine compliance claim.",
+        "The 24 teeth, tooth form, two oil-pump slots, web and pilot lengths, scallop centres, local dowel station and mating clearance bores remain reconstructed."
       ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-sb-475c",
+        "lyc-sb-475c-s1",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -555,7 +578,8 @@
       "tags": [
         "powertrain"
       ],
-      "role": "component"
+      "role": "component",
+      "partNumber": "13S19646"
     },
     {
       "id": "crankshaft-prop-oil-tube",
@@ -764,6 +788,34 @@
       ],
       "role": "component",
       "partNumber": "STD-2246"
+    },
+    {
+      "id": "crankshaft-gear-alignment-dowel",
+      "name": "Rear crankshaft gear alignment dowel",
+      "systemId": "72-20-00",
+      "quantity": 1,
+      "purpose": "One stepped alignment dowel is press fitted into the rear crankshaft counterbore face; its smaller tip locates the crankshaft gear.",
+      "facts": [
+        "IPC Figure 5 item 2 lists one STD-1065, described as 5/16 x 1/4 step. SB475C Table 2 and Supplement 1 Table 2 associate it with 13S19646, LW-18639 and STD-2246 at the rear crankshaft gear.",
+        "The standard body OD selects the 0.3095–0.3100 in interval midpoint; its matching crank hole selects the 0.3085–0.3095 in midpoint. Their 9.525 micrometre radial interference is a source-selected press fit, not an accidental solid overlap.",
+        "The shoulder sits 0.015 in below the counterbore face, selecting the SB475C Figure 2 / S1 Figure 6 0.010–0.020 in recess interval midpoint.",
+        "SB475C Figure 4 and Supplement 1 Figure 8 supply the 0.55 in total length and 0.2505–0.2510 in tip diameter interval. The body/tip length split, radial station, gear-hole clearance and end/shoulder details remain estimated.",
+        "The hydraulic removal drilling described by SB475C/S1 is a discarded-dowel removal operation; this installed dowel is solid."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "lyc-sb-475c",
+        "lyc-sb-475c-s1",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "powertrain",
+        "lycoming-io-360-l2a"
+      ],
+      "role": "component",
+      "partNumber": "STD-1065"
     },
     {
       "id": "cam-drive-gear",
@@ -23259,6 +23311,34 @@
       ]
     },
     {
+      "id": "crankshaft-gear-alignment-dowel",
+      "partId": "crankshaft-gear-alignment-dowel",
+      "meshName": "crankshaft-gear-alignment-dowel",
+      "explodedOffset": [
+        0,
+        0.1,
+        -0.25
+      ],
+      "motion": {
+        "kind": "rotation",
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "ratio": 1
+      },
+      "motionSourceIds": [
+        "lyc-operator",
+        "reconstruction"
+      ]
+    },
+    {
       "id": "cam-drive-gear",
       "partId": "cam-drive-gear",
       "meshName": "cam-drive-gear",
@@ -24081,6 +24161,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -24725,6 +24806,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -25329,6 +25411,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -25933,6 +26016,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -26537,6 +26621,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -27141,6 +27226,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -27755,6 +27841,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -28364,6 +28451,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -28973,6 +29061,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -29617,6 +29706,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -30221,6 +30311,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -30825,6 +30916,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -31429,6 +31521,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -32033,6 +32126,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -32647,6 +32741,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -33256,6 +33351,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -34115,6 +34211,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -34719,6 +34816,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -35323,6 +35421,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -35927,6 +36026,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -36531,6 +36631,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -37165,6 +37266,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -37769,6 +37871,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -38373,6 +38476,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -38977,6 +39081,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -39581,6 +39686,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -40185,6 +40291,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -41539,6 +41646,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -42183,6 +42291,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -42787,6 +42896,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -43391,6 +43501,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -43995,6 +44106,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -44599,6 +44711,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -45213,6 +45326,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -45822,6 +45936,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -46431,6 +46546,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -47075,6 +47191,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -47679,6 +47796,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -48283,6 +48401,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -48887,6 +49006,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -49491,6 +49611,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -50105,6 +50226,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -50714,6 +50836,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -51573,6 +51696,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -52177,6 +52301,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -52781,6 +52906,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -53385,6 +53511,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -53989,6 +54116,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -54623,6 +54751,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -55227,6 +55356,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -55831,6 +55961,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -56435,6 +56566,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -57039,6 +57171,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -57643,6 +57776,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -58997,6 +59131,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -59641,6 +59776,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -60245,6 +60381,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -60849,6 +60986,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -61453,6 +61591,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -62057,6 +62196,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -62671,6 +62811,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -63280,6 +63421,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -63889,6 +64031,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -64533,6 +64676,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -65137,6 +65281,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -65741,6 +65886,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -66345,6 +66491,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -66949,6 +67096,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -67563,6 +67711,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -68172,6 +68321,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           -0.371,
           0.047,
@@ -69031,6 +69181,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -69635,6 +69786,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -70239,6 +70391,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -70843,6 +70996,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -71447,6 +71601,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -72081,6 +72236,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -72685,6 +72841,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -73289,6 +73446,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -73893,6 +74051,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -74497,6 +74656,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -75101,6 +75261,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -76455,6 +76616,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -77099,6 +77261,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -77703,6 +77866,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -78307,6 +78471,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -78911,6 +79076,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -79515,6 +79681,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -80129,6 +80296,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -80738,6 +80906,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -81347,6 +81516,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -81991,6 +82161,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -82595,6 +82766,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -83199,6 +83371,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -83803,6 +83976,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -84407,6 +84581,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -85021,6 +85196,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -85630,6 +85806,7 @@
       ],
       "motion": {
         "kind": "rotationTable",
+        "referenceValue": 0,
         "pivot": [
           0.371,
           0.047,
@@ -86489,6 +86666,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -87093,6 +87271,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -87697,6 +87876,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -88301,6 +88481,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -88905,6 +89086,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -89539,6 +89721,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           -1,
           0,
@@ -90143,6 +90326,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -90747,6 +90931,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -91351,6 +91536,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -91955,6 +92141,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -92559,6 +92746,7 @@
       ],
       "motion": {
         "kind": "linearTable",
+        "referenceValue": 0,
         "axis": [
           1,
           0,
@@ -99372,6 +99560,8 @@
       "Magneto, fuel servo, flow-divider, alternator and starter internals are functional reconstructions; omitted small seals, bearings, wiring and hardware are not accounted for by an OEM inventory.",
       "Cessna muffler internals, shroud geometry, baffle openings, mechanical interfaces and fit clearances require measured or licensed dimensional evidence.",
       "Flat-tappet body and case-bore diameters select published manufacturing-range midpoints. Body bow/foot profile, internal absolute dimensions and oil feeds remain reconstructed; the current cam/follower law, capped pushrod/cup interfaces, rocker contact and hydraulic check-seat topology are unresolved.",
+      "Rear crankshaft-gear/dowel service dimensions and three pilot scallops are source bounded; tooth form/count, axial pilot/counterbore dimensions, dowel body/tip split, clocking and installation stations remain reconstructed. This is not an installed-engine SB475C compliance record.",
+      "Lycoming table motions use an explicit closed-pose datum, correcting first-sample outward valve overtravel. The independently driven cam, capped pushrod/cup and rocker interfaces still do not form a closed linkage.",
       "Lycoming combustion gas overlay and physical iPad performance remain unverified."
     ]
   }

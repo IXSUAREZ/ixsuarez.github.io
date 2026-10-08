@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "partNumber": "74887",
+  "assetFile": "74887-spacer.glb",
+  "units": "m",
+  "engineQuantity": 2,
+  "installedInEngineModel": false,
+  "classification": "Nominal catalog envelope; no complete part geometry or installation claim",
+  "dimensions": {
+    "insideDiameterM": 0.013096875,
+    "outsideDiameterM": 0.022224999999999998,
+    "thicknessM": 0.009524999999999999
+  },
+  "source": {
+    "publisher": "Lycoming Engines",
+    "document": "PC-IO-360-L2A June2025",
+    "locator": "Figure11 item7, PDFp37 / printed72-30 Page23",
+    "sha256": "a7a41d65dd0faff31c87225096c3bf8642838a2b1e648e9dcc9c6f9a23b9329e"
+  },
+  "meshApproximation": {
+    "maxRadialChordErrorM": 0.000002,
+    "authoredRadialChordErrorM": 0.0000018,
+    "minimumRadialSegments": 128
+  },
+  "unresolved": [
+    "Two exact cylinder/stud stations and parent stack",
+    "Edge breaks, chamfers, surface finish and dimensional tolerances",
+    "Measured OEM geometry and selected installed configuration"
+  ],
+  "sha256": "96c28dec7a2734ed6a3d22831ca71a608165f5686bdf680b2a552edda73191da",
+  "bytes": 136588
+}

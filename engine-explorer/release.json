@@ -19,106 +19,152 @@
       366.17227447142415
     ],
     "compressionRatioSubstantiated": false,
-    "scope": "Capped section diagnostic only, not verified connected or sealed combustion volume."
+    "scope": "Historical capped section diagnostic only, not verified connected/sealed combustion volume. Four head payloads changed in retainer pockets; current volume not rerun."
   },
-  "sourceCommit": "0a7b9491141bfbbd91b0007ac6201c2550be7968",
-  "frontendArtifactSourceCommit": "0a7b9491141bfbbd91b0007ac6201c2550be7968",
-  "assetDirectory": "engine-explorer/app/assets/lycoming-0a7b949",
+  "sourceCommit": "39b239ca7c6dcdd6dac07d922bca3f21063987f5",
+  "frontendArtifactSourceCommit": "39b239ca7c6dcdd6dac07d922bca3f21063987f5",
+  "assetDirectory": "engine-explorer/app/assets/lycoming-39b239c",
   "lycoming": {
-    "sha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
-    "bytes": 105552344,
-    "parts": 980,
-    "animatedInstances": 227,
+    "sha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
+    "bytes": 106214412,
+    "parts": 981,
+    "animatedInstances": 228,
     "schematic": 105,
-    "compressedSha256": "c5082aafbd19ee01e215eaa7f7525c23a2afebaa76d09dd01da997d487c66e04",
-    "compressedBytes": 43619231
+    "compressedSha256": "684db2e5d5a0f38bd2a7b056b49024488f7154eca7a9f5303584b5287834ee32",
+    "compressedBytes": 43867276
   },
   "catalogAudit": {
     "occurrences": 387,
-    "directIdentityRows": 134,
-    "unmatchedIdentityOccurrences": 152,
+    "directIdentityRows": 137,
+    "unmatchedIdentityOccurrences": 149,
     "exactGeometryRows": 0,
     "installedBomComplete": false
   },
   "verification": {
     "lycomingAndRelevantShared": {
-      "files": 43,
-      "passed": 197
+      "files": 46,
+      "passed": 212
     },
     "build": "TypeScript and Vite production build passed",
     "browser": {
-      "loadedElements": 980,
-      "identity": true,
-      "sourceDimension": true,
-      "playPause": true,
-      "selection": true,
-      "canvas": 1,
-      "selectedPart": "tappet-1-intake / 15B26262",
-      "countEvidence": "980 modeled elements in actual Parts caption",
-      "consoleErrors": [],
-      "testedArtifactSha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
-      "scope": "Local production artifact before publication; actual live evidence recorded separately."
+      "scope": "Local and live interaction receipts recorded separately; no current live assertion before deployment."
     },
     "mesh": {
-      "finitePositionAttributes": true,
-      "changedMeshes": 26,
-      "unchangedPositionIndexMeshPayloads": 954,
-      "selectedTappetAndCaseExactZeroAreaTriangles": 0,
-      "headValveSeatAndFuelPumpMeshPayloadsUnchanged": true,
-      "flatTappetBodies": 8,
-      "bodyReceiverCycleCrossings": 0,
-      "completeComponentGeometryVerified": false
+      "review": "independent rear gear candidate review",
+      "artifact": {
+        "path": "public/models/lycoming-io-360-l2a.glb",
+        "sha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
+        "bytes": 106214412,
+        "meshCount": 981,
+        "baselineMeshCount": 980,
+        "changedOrAddedMeshNames": [
+          "crankshaft",
+          "crank-drive-gear",
+          "crankshaft-gear-alignment-dowel",
+          "head-1",
+          "head-2",
+          "head-3",
+          "head-4"
+        ],
+        "unchangedBaselinePayloads": 974
+      },
+      "geometryChecks": {
+        "changedMeshesFinite": true,
+        "changedMeshesExactZeroAreaTriangles": 0,
+        "pin": {
+          "vertices": 514,
+          "triangles": 1024,
+          "boundaryEdges": 0,
+          "duplicateFaces": 0,
+          "signedVolumeM3": 5.738719978800413e-07,
+          "outwardWound": true,
+          "boundsM": [
+            0.007867650128901005,
+            0.00786764919757843,
+            0.013969987630844116
+          ]
+        },
+        "rearGearFitAndAttachments": "targeted suites passed: rear gear 7 tests; crank attachments 3 tests; source-selected press fit, pilot radial clearance, seated zero-gap, scallops, slots, lockplate and bolt constraints exercised against current GLB"
+      },
+      "motionChecks": {
+        "tableCount": 108,
+        "explicitReferenceValueZero": 108,
+        "missingReferenceValue": 0,
+        "validation": "verified after manifest refresh",
+        "failure": "resolved: refreshed manifest now includes lyc-sb-475c and lyc-sb-475c-s1 in its sources array",
+        "impact": "none remaining for this suite; valve datum, seat/guide clearance, and upper-retainer/head clearance tests executed successfully",
+        "sourcesAfterRefresh": 33,
+        "testResult": "tests/lycoming-valve-motion-reference.test.ts: 4 passed"
+      },
+      "claimsReview": {
+        "exactOEMOrBulletinComplianceClaimFound": false,
+        "evidenceBoundary": "rear gear dimensions and pilot/dowel fits are source-selected or reconstructed estimates; this review does not establish OEM exactness or installed-engine compliance"
+      },
+      "severity": {
+        "high": [],
+        "medium": [],
+        "low": [
+          "Crankshaft, gear and heads are composite meshes, so their raw edge-incidence counts are not meaningful whole-mesh manifold checks; the dedicated pin topology check is closed and positively oriented."
+        ],
+        "resolved": [
+          "Initial source-ID synchronization blocker was repaired; the original failure remains recorded above as resolved."
+        ]
+      }
     },
     "fullRepositorySuite": "Known unchanged Rotax/shared Node-loader limitations remain; full-repository suite pass not claimed."
   },
   "previousModelRelease": {
-    "sourceCommit": "6cb5534d3dc4b941dc85b783282fe68ff723b5a8",
-    "frontendArtifactSourceCommit": "6cb5534d3dc4b941dc85b783282fe68ff723b5a8",
-    "assetDirectory": "engine-explorer/app/assets/lycoming-6cb5534",
+    "sourceCommit": "0a7b9491141bfbbd91b0007ac6201c2550be7968",
+    "frontendArtifactSourceCommit": "0a7b9491141bfbbd91b0007ac6201c2550be7968",
+    "assetDirectory": "engine-explorer/app/assets/lycoming-0a7b949",
     "lycoming": {
-      "sha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
-      "bytes": 104792208,
+      "sha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
+      "bytes": 105552344,
       "parts": 980,
       "animatedInstances": 227,
       "schematic": 105,
-      "compressedSha256": "071f82465728c77ffcc3b831cd0dfa1da1f41a7ac36eeb70d858263f6f4f0fda",
-      "compressedBytes": 43258098
+      "compressedSha256": "c5082aafbd19ee01e215eaa7f7525c23a2afebaa76d09dd01da997d487c66e04",
+      "compressedBytes": 43619231
     },
     "catalogAudit": {
       "occurrences": 387,
-      "directIdentityRows": 132,
-      "unmatchedIdentityOccurrences": 154,
+      "directIdentityRows": 134,
+      "unmatchedIdentityOccurrences": 152,
       "exactGeometryRows": 0,
       "installedBomComplete": false
     },
     "verification": {
       "lycomingAndRelevantShared": {
-        "files": 42,
-        "passed": 193
+        "files": 43,
+        "passed": 197
       },
       "build": "TypeScript and Vite production build passed",
       "browser": {
-        "modelLoaded": 980,
-        "partSelection": true,
-        "selectedPart": "mechanical-fuel-pump / 62B26931",
-        "animationPlayPause": true,
+        "loadedElements": 980,
+        "identity": true,
+        "sourceDimension": true,
+        "playPause": true,
+        "selection": true,
+        "canvas": 1,
+        "selectedPart": "tappet-1-intake / 15B26262",
+        "countEvidence": "980 modeled elements in actual Parts caption",
         "consoleErrors": [],
-        "testedArtifactSha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
-        "scope": "Local production artifact before publication; live readback and interaction are recorded in the matching deployment receipt."
+        "testedArtifactSha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
+        "scope": "Local production artifact before publication; actual live evidence recorded separately."
       },
       "mesh": {
-        "finiteAllMeshes": true,
-        "outsideHostAssertions": 112,
-        "outsideHostTriangles": 0,
-        "headValveSeatMeshesByteIdenticalToPriorAcceptedAsset": 20,
-        "revisedPumpMeshesExactZeroAreaTriangles": 0,
-        "catalogPumpMountScrews": 2,
-        "catalogPumpMountWashers": 2,
+        "finitePositionAttributes": true,
+        "changedMeshes": 26,
+        "unchangedPositionIndexMeshPayloads": 954,
+        "selectedTappetAndCaseExactZeroAreaTriangles": 0,
+        "headValveSeatAndFuelPumpMeshPayloadsUnchanged": true,
+        "flatTappetBodies": 8,
+        "bodyReceiverCycleCrossings": 0,
         "completeComponentGeometryVerified": false
       },
       "fullRepositorySuite": "Known unchanged Rotax/shared Node-loader limitations remain; full-repository suite pass not claimed."
     },
-    "scope": "Historical fuel-pump checkpoint, retained at its original model fingerprint."
+    "scope": "Historical flat-tappet checkpoint retained at original fingerprint."
   },
   "flatTappetFits": {
     "bodyDiameterMm": 18.21942,
@@ -128,5 +174,31 @@
     "plungerSocketAbsoluteGeometry": "Derived from estimated bodyID17mm and Ref512/513 fit midpoints",
     "camPushrodRockerClosureVerified": false,
     "hydraulicCheckSeatVerified": false
+  },
+  "rearGearFit": {
+    "gearPartNumber": "13S19646",
+    "dowelPartNumber": "STD-1065",
+    "selectedBodyDiameterMm": 7.86765,
+    "selectedHostDiameterMm": 7.8486,
+    "dowelTipDiameterMm": 6.36905,
+    "dowelOverallLengthMm": 13.97,
+    "selectedGearPilotDiameterMm": 53.98135,
+    "selectedCrankPilotDiameterMm": 53.9877,
+    "sourceBoundary": "Selected inspection/repair dimensions and reconstructed geometry. Not factory nominal or installed compliance."
+  },
+  "motionDatum": {
+    "tables": 108,
+    "referenceValue": 0,
+    "fullCamPushrodRockerClosureVerified": false,
+    "estimatedRetainerPockets": 8,
+    "changedHeadPayloads": 4
+  },
+  "standaloneReferenceParts": {
+    "74887": {
+      "asset": "app/models/reference-parts/74887-spacer.glb",
+      "sha256": "96c28dec7a2734ed6a3d22831ca71a608165f5686bdf680b2a552edda73191da",
+      "installedInEngine": false,
+      "exactGeometryVerified": false
+    }
   }
 }

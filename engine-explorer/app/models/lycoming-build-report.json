@@ -1,15 +1,15 @@
 {
-  "builtAt": "2026-10-08T01:15:46.433Z",
+  "builtAt": "2026-10-08T02:03:56.111Z",
   "asset": "lycoming-io-360-l2a.glb",
-  "sha256": "01d06d1fef6ad6d2de246a54ed621c91189a21e1f7e939ce9a34ec328ccde107",
-  "bytes": 105552344,
-  "parts": 980,
-  "instances": 980,
-  "animatedInstances": 227,
+  "sha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
+  "bytes": 106214412,
+  "parts": 981,
+  "instances": 981,
+  "animatedInstances": 228,
   "schematic": 105,
-  "manufacturerPartNumberMatches": 672,
+  "manufacturerPartNumberMatches": 675,
   "bySystem": {
-    "72-20-00": 520,
+    "72-20-00": 521,
     "79-20-00": 72,
     "73-10-00": 98,
     "74-20-00": 134,
@@ -51,7 +51,7 @@
     "connectingRodM": 0.175
   },
   "exportCleanup": {
-    "scope": "Head bodies/fins: assert no wholly outside positive-host triangles, with 0.1 micron reserve; no surfaces discarded. Head/valve/seat and revised fuel-pump/case and flat-tappet/receiver export: exactly zero-area triangles only; real small faces and attribute values preserved.",
+    "scope": "Head bodies/fins: assert no wholly outside positive-host triangles, with 0.1 micron reserve; no surfaces discarded. Head/valve/seat and revised fuel-pump/case and flat-tappet/receiver/rear-gear export: exactly zero-area triangles only; real small faces and attribute values preserved.",
     "booleanOutsideHostTriangles": {
       "head-1-body": 0,
       "head-1-fin-0": 0,
@@ -169,8 +169,11 @@
     "zeroAreaExportTriangles": {
       "crankcase-right": 2983,
       "crankcase-left": 2637,
+      "crankshaft": 10,
+      "crank-drive-gear": 910,
+      "crankshaft-gear-alignment-dowel": 0,
       "accessory-case": 1163,
-      "head-1": 20345,
+      "head-1": 20158,
       "valve-1-intake": 56,
       "valve-seat-1-intake": 0,
       "tappet-1-intake": 0,
@@ -181,7 +184,7 @@
       "tappet-socket-intake-1": 7,
       "tappet-plunger-exhaust-1": 0,
       "tappet-socket-exhaust-1": 4,
-      "head-2": 34739,
+      "head-2": 34684,
       "valve-2-intake": 48,
       "valve-seat-2-intake": 0,
       "tappet-2-intake": 0,
@@ -192,7 +195,7 @@
       "tappet-socket-intake-2": 5,
       "tappet-plunger-exhaust-2": 0,
       "tappet-socket-exhaust-2": 7,
-      "head-3": 27200,
+      "head-3": 27072,
       "valve-3-intake": 50,
       "valve-seat-3-intake": 0,
       "tappet-3-intake": 0,
@@ -203,7 +206,7 @@
       "tappet-socket-intake-3": 8,
       "tappet-plunger-exhaust-3": 0,
       "tappet-socket-exhaust-3": 9,
-      "head-4": 64893,
+      "head-4": 59836,
       "valve-4-intake": 52,
       "valve-seat-4-intake": 0,
       "tappet-4-intake": 0,
@@ -230,7 +233,7 @@
     "maxRadialChordErrorM": 0.000002,
     "authoredRadialChordErrorM": 0.0000018,
     "minimumRadialSegments": 128,
-    "scope": "Selected journal, bearing, valve, guide, rocker, bore, piston and selected flat-tappet interfaces only. This bounds polygonal chord error, not complete component accuracy or manufacturing tolerances."
+    "scope": "Selected journal, bearing, valve, guide, rocker, bore, piston and selected flat-tappet/rear-gear/dowel interfaces only. This bounds polygonal chord error, not complete component accuracy or manufacturing tolerances."
   },
   "completeOemReplica": false
 }

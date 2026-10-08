@@ -1,17 +1,17 @@
 {
-  "builtAt": "2026-10-08T00:07:14.262Z",
+  "builtAt": "2026-10-08T00:42:01.013Z",
   "asset": "lycoming-io-360-l2a.glb",
-  "sha256": "8c4b8bec501a60b1f82e65480d376149872edb03ac772db193854ffe85b8d4b4",
-  "bytes": 104019644,
-  "parts": 977,
-  "instances": 977,
+  "sha256": "3105968b5b06edbf9deaa6f9c5feea0fe2e9318e043fe08c0dc9a3f38f3df401",
+  "bytes": 104792208,
+  "parts": 980,
+  "instances": 980,
   "animatedInstances": 227,
   "schematic": 105,
-  "manufacturerPartNumberMatches": 658,
+  "manufacturerPartNumberMatches": 663,
   "bySystem": {
     "72-20-00": 520,
     "79-20-00": 72,
-    "73-10-00": 95,
+    "73-10-00": 98,
     "74-20-00": 134,
     "24-20-00": 22,
     "80-10-00": 14,
@@ -51,7 +51,7 @@
     "connectingRodM": 0.175
   },
   "exportCleanup": {
-    "scope": "Head bodies/fins: assert no wholly outside positive-host triangles, with 0.1 micron reserve; no surfaces discarded. Head/valve/seat export: exactly zero-area triangles only; real small faces and attribute values preserved.",
+    "scope": "Head bodies/fins: assert no wholly outside positive-host triangles, with 0.1 micron reserve; no surfaces discarded. Head/valve/seat and revised fuel-pump/case export: exactly zero-area triangles only; real small faces and attribute values preserved.",
     "booleanOutsideHostTriangles": {
       "head-1-body": 0,
       "head-1-fin-0": 0,
@@ -167,6 +167,7 @@
       "head-4-fin-26": 0
     },
     "zeroAreaExportTriangles": {
+      "accessory-case": 1163,
       "head-1": 20345,
       "valve-1-intake": 56,
       "valve-seat-1-intake": 0,
@@ -186,7 +187,17 @@
       "valve-4-intake": 52,
       "valve-seat-4-intake": 0,
       "valve-4-exhaust": 33,
-      "valve-seat-4-exhaust": 0
+      "valve-seat-4-exhaust": 0,
+      "mechanical-fuel-pump": 394,
+      "fuel-pump-gasket": 366,
+      "fuel-pump-mount-washer-1": 0,
+      "fuel-pump-mount-screw-1": 0,
+      "fuel-pump-mount-washer-2": 0,
+      "fuel-pump-mount-screw-2": 0,
+      "mechanical-fuel-pump-diaphragm": 0,
+      "mechanical-fuel-pump-spring": 0,
+      "mechanical-fuel-pump-actuator": 0,
+      "fuel-hose-end-0": 0
     }
   },
   "interfaceMeshApproximation": {

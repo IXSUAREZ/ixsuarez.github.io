@@ -98,6 +98,13 @@
       "revision": "September 1, 1995"
     },
     {
+      "id": "lyc-sb-621b",
+      "title": "Diaphragm-Type Fuel Pump Replacement",
+      "url": "https://www.lycoming.com/sites/default/files/attachments/SB621B%2520Diaphragm-Type%2520Fuel%2520Pump%2520Replacement.pdf",
+      "locator": "Page 2 Figures 1 and 2: pump-family upright tower, tapered bell, vertical diaphragm housing and mounting flange topology only. Illustrations are unscaled; exact geometry, complete rim fastener count, applicability to the target installed serial and maintenance compliance are not established.",
+      "revision": "October 5 2015"
+    },
+    {
       "id": "acorn-exhaust",
       "title": "Cessna 172R / 172S Exhaust Systems, Engine Mounts and Air Boxes",
       "url": "https://www.acornwelding.com/pdf/Cessna/Cessna%20100%20Series/Cessna%20172%20R_172S.pdf",
@@ -871,7 +878,9 @@
       "systemId": "72-20-00",
       "quantity": 1,
       "purpose": "Closes the rear gear compartment and supports magneto, oil-pump and fuel-pump mounting pads.",
-      "facts": [],
+      "facts": [
+        "Fuel-pump pad, deep receiving bosses, blind bore envelopes and arm opening are estimated. They support the sourced two-screw mounting stack; casting contours and female thread form are not OEM dimensions."
+      ],
       "sourceIds": [
         "lyc-ipc",
         "reconstruction"
@@ -13884,11 +13893,14 @@
       "name": "Engine-driven diaphragm fuel pump",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Supplies pressurized fuel to the servo from the aircraft fuel system.",
-      "facts": [],
+      "purpose": "Supplies fuel to the servo through the engine-driven diaphragm pump.",
+      "facts": [
+        "IPC Figure18 identifies one 62B26931 high-pressure pump. SB621B p.2 illustrates an upright tower, tapered bell, vertical diaphragm stack, lower cup and two-ear mounting flange.",
+        "Housing contours, internal wall sections, installed stations and port assignments are estimates. The illustrations are unscaled; unseen rim fastener counts and detailed pump internals remain unresolved."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "lyc-sb-621b",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -13901,15 +13913,142 @@
       "partNumber": "62B26931"
     },
     {
+      "id": "fuel-pump-gasket",
+      "name": "Fuel-pump mounting gasket",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Seals the two-ear pump flange to the rear accessory-case pad.",
+      "facts": [
+        "IPC Figure18 lists one 60096 gasket. Its outline, opening, 0.8 mm thickness and installed coordinates are estimated."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "lyc-sb-621b",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "pump"
+      ],
+      "role": "component",
+      "partNumber": "60096"
+    },
+    {
+      "id": "fuel-pump-mount-washer-1",
+      "name": "Fuel-pump plain washer 1",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Plain washer seats between the socket-head screw and mounting ear.",
+      "facts": [
+        "IPC Figure18 specifies two STD-33 plain 3/8-inch washers. OD, bore, thickness and installed stations are estimated."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "lyc-sb-621b",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "pump",
+        "fastener"
+      ],
+      "role": "component",
+      "partNumber": "STD-33"
+    },
+    {
+      "id": "fuel-pump-mount-screw-1",
+      "name": "Fuel-pump drilled socket screw 1",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two drilled socket-head 3/8-16 screws retains the pump mounting stack.",
+      "facts": [
+        "IPC Figure18 specifies two STD-1882 screws: nominal major diameter 9.525 mm, pitch 1.5875 mm and listed length 32.54375 mm.",
+        "The listed length is interpreted as under-head length. That datum, head, blind hex socket, transverse safety-wire drilling, truncated helical profile, runout, bore envelope and placement are estimates; no OEM thread class or exact production form is asserted.",
+        "Receiving bores are clearance envelopes in reconstructed deep case bosses. Female thread form and safety-wire routing remain unresolved."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "lyc-sb-621b",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "pump",
+        "fastener",
+        "drilled"
+      ],
+      "role": "component",
+      "partNumber": "STD-1882"
+    },
+    {
+      "id": "fuel-pump-mount-washer-2",
+      "name": "Fuel-pump plain washer 2",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "Plain washer seats between the socket-head screw and mounting ear.",
+      "facts": [
+        "IPC Figure18 specifies two STD-33 plain 3/8-inch washers. OD, bore, thickness and installed stations are estimated."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "lyc-sb-621b",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "pump",
+        "fastener"
+      ],
+      "role": "component",
+      "partNumber": "STD-33"
+    },
+    {
+      "id": "fuel-pump-mount-screw-2",
+      "name": "Fuel-pump drilled socket screw 2",
+      "systemId": "73-10-00",
+      "quantity": 1,
+      "purpose": "One of two drilled socket-head 3/8-16 screws retains the pump mounting stack.",
+      "facts": [
+        "IPC Figure18 specifies two STD-1882 screws: nominal major diameter 9.525 mm, pitch 1.5875 mm and listed length 32.54375 mm.",
+        "The listed length is interpreted as under-head length. That datum, head, blind hex socket, transverse safety-wire drilling, truncated helical profile, runout, bore envelope and placement are estimates; no OEM thread class or exact production form is asserted.",
+        "Receiving bores are clearance envelopes in reconstructed deep case bosses. Female thread form and safety-wire routing remain unresolved."
+      ],
+      "sourceIds": [
+        "lyc-ipc",
+        "lyc-sb-621b",
+        "reconstruction"
+      ],
+      "geometryStatus": "reconstructed",
+      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "tags": [
+        "fuel",
+        "pump",
+        "fastener",
+        "drilled"
+      ],
+      "role": "component",
+      "partNumber": "STD-1882"
+    },
+    {
       "id": "mechanical-fuel-pump-diaphragm",
       "name": "Fuel-pump diaphragm",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Displaces fuel as the engine-driven actuator flexes the diaphragm.",
-      "facts": [],
+      "purpose": "Functional teaching diaphragm clamped between the reconstructed upper and lower housing rim faces.",
+      "facts": [
+        "The selected 3 mm section fills the estimated rim spacing. Material, section, clamped profile and complete internal stack are not measured or inventoried."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "lyc-sb-621b",
         "reconstruction"
       ],
       "geometryStatus": "schematic",
@@ -13925,11 +14064,11 @@
       "name": "Fuel-pump return spring",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Returns the diaphragm against the changing fuel load.",
+      "purpose": "Functional spring occupies the upper bell cavity; its dimensions and preload remain schematic.",
       "facts": [],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "lyc-sb-621b",
         "reconstruction"
       ],
       "geometryStatus": "schematic",
@@ -13945,11 +14084,13 @@
       "name": "Fuel-pump actuating lever",
       "systemId": "73-10-00",
       "quantity": 1,
-      "purpose": "Represents the engine-driven mechanical input to the diaphragm. Exact drive geometry is unresolved.",
-      "facts": [],
+      "purpose": "Reconstructed arm passes through the flange and accessory-case opening toward the engine drive.",
+      "facts": [
+        "Drive contact, complete linkage, pivot geometry and movement are unresolved; this is not a calibrated mechanism."
+      ],
       "sourceIds": [
         "lyc-ipc",
-        "precision",
+        "lyc-sb-621b",
         "reconstruction"
       ],
       "geometryStatus": "schematic",
@@ -13957,46 +14098,6 @@
       "tags": [
         "fuel",
         "pump-internal"
-      ],
-      "role": "component"
-    },
-    {
-      "id": "fuel-pump-bolt--0_107",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
-      ],
-      "role": "component"
-    },
-    {
-      "id": "fuel-pump-bolt--0_043",
-      "name": "Retaining fastener",
-      "systemId": "73-10-00",
-      "quantity": 1,
-      "purpose": "Attaches a serviceable teaching assembly.",
-      "facts": [],
-      "sourceIds": [
-        "lyc-ipc",
-        "precision",
-        "reconstruction"
-      ],
-      "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
-      "tags": [
-        "fastener",
-        "fuel"
       ],
       "role": "component"
     },
@@ -14346,7 +14447,9 @@
       "systemId": "73-10-00",
       "quantity": 1,
       "purpose": "Carries pressurized fuel from the engine-driven pump to the servo. Aircraft feed line is outside this engine-only scope.",
-      "facts": [],
+      "facts": [
+        "Pump port assignment, thread, fitting and hose bends remain reconstructed."
+      ],
       "sourceIds": [
         "lyc-ipc",
         "precision",
@@ -94884,12 +94987,62 @@
       ]
     },
     {
+      "id": "fuel-pump-gasket",
+      "partId": "fuel-pump-gasket",
+      "meshName": "fuel-pump-gasket",
+      "explodedOffset": [
+        0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
+      "id": "fuel-pump-mount-washer-1",
+      "partId": "fuel-pump-mount-washer-1",
+      "meshName": "fuel-pump-mount-washer-1",
+      "explodedOffset": [
+        0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
+      "id": "fuel-pump-mount-screw-1",
+      "partId": "fuel-pump-mount-screw-1",
+      "meshName": "fuel-pump-mount-screw-1",
+      "explodedOffset": [
+        0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
+      "id": "fuel-pump-mount-washer-2",
+      "partId": "fuel-pump-mount-washer-2",
+      "meshName": "fuel-pump-mount-washer-2",
+      "explodedOffset": [
+        0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
+      "id": "fuel-pump-mount-screw-2",
+      "partId": "fuel-pump-mount-screw-2",
+      "meshName": "fuel-pump-mount-screw-2",
+      "explodedOffset": [
+        0.2,
+        0,
+        -0.15
+      ]
+    },
+    {
       "id": "mechanical-fuel-pump-diaphragm",
       "partId": "mechanical-fuel-pump-diaphragm",
       "meshName": "mechanical-fuel-pump-diaphragm",
       "explodedOffset": [
         0.2,
-        0,
+        -0.2,
         -0.15
       ]
     },
@@ -94899,7 +95052,7 @@
       "meshName": "mechanical-fuel-pump-spring",
       "explodedOffset": [
         0.2,
-        0,
+        -0.2,
         -0.15
       ]
     },
@@ -94907,26 +95060,6 @@
       "id": "mechanical-fuel-pump-actuator",
       "partId": "mechanical-fuel-pump-actuator",
       "meshName": "mechanical-fuel-pump-actuator",
-      "explodedOffset": [
-        0.2,
-        0,
-        -0.15
-      ]
-    },
-    {
-      "id": "fuel-pump-bolt--0_107",
-      "partId": "fuel-pump-bolt--0_107",
-      "meshName": "fuel-pump-bolt--0_107",
-      "explodedOffset": [
-        0.2,
-        0,
-        -0.15
-      ]
-    },
-    {
-      "id": "fuel-pump-bolt--0_043",
-      "partId": "fuel-pump-bolt--0_043",
-      "meshName": "fuel-pump-bolt--0_043",
       "explodedOffset": [
         0.2,
         0,

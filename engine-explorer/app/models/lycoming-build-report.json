@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-10-08T03:56:21.592Z",
+  "builtAt": "2026-10-08T04:41:09.856Z",
   "asset": "lycoming-io-360-l2a.glb",
-  "sha256": "b3f9186024f208b5d54cb90a526ae7fa8993b25fbab692268dc1275c406549d7",
-  "bytes": 122951156,
+  "sha256": "67693c06353f8e7aaf9c98610ea788dbac960141365d42e86b1177f3557cf301",
+  "bytes": 133723468,
   "parts": 981,
   "instances": 981,
   "animatedInstances": 228,
@@ -189,9 +189,15 @@
       "rocker-1-exhaust": 0,
       "rocker-bushing-1-exhaust": 0,
       "tappet-plunger-intake-1": 0,
-      "tappet-socket-intake-1": 265,
+      "tappet-piston-intake-1": 0,
+      "tappet-check-ball-intake-1": 0,
+      "tappet-plunger-spring-intake-1": 0,
+      "tappet-socket-intake-1": 0,
       "tappet-plunger-exhaust-1": 0,
-      "tappet-socket-exhaust-1": 342,
+      "tappet-piston-exhaust-1": 0,
+      "tappet-check-ball-exhaust-1": 0,
+      "tappet-plunger-spring-exhaust-1": 0,
+      "tappet-socket-exhaust-1": 0,
       "head-2": 34773,
       "rocker-box-2": 0,
       "valve-2-intake": 48,
@@ -207,9 +213,15 @@
       "rocker-2-exhaust": 0,
       "rocker-bushing-2-exhaust": 0,
       "tappet-plunger-intake-2": 0,
-      "tappet-socket-intake-2": 276,
+      "tappet-piston-intake-2": 0,
+      "tappet-check-ball-intake-2": 0,
+      "tappet-plunger-spring-intake-2": 0,
+      "tappet-socket-intake-2": 0,
       "tappet-plunger-exhaust-2": 0,
-      "tappet-socket-exhaust-2": 318,
+      "tappet-piston-exhaust-2": 0,
+      "tappet-check-ball-exhaust-2": 0,
+      "tappet-plunger-spring-exhaust-2": 0,
+      "tappet-socket-exhaust-2": 0,
       "head-3": 26967,
       "rocker-box-3": 0,
       "valve-3-intake": 50,
@@ -225,9 +237,15 @@
       "rocker-3-exhaust": 0,
       "rocker-bushing-3-exhaust": 0,
       "tappet-plunger-intake-3": 0,
-      "tappet-socket-intake-3": 335,
+      "tappet-piston-intake-3": 0,
+      "tappet-check-ball-intake-3": 0,
+      "tappet-plunger-spring-intake-3": 0,
+      "tappet-socket-intake-3": 0,
       "tappet-plunger-exhaust-3": 0,
-      "tappet-socket-exhaust-3": 272,
+      "tappet-piston-exhaust-3": 0,
+      "tappet-check-ball-exhaust-3": 0,
+      "tappet-plunger-spring-exhaust-3": 0,
+      "tappet-socket-exhaust-3": 0,
       "head-4": 59834,
       "rocker-box-4": 0,
       "valve-4-intake": 52,
@@ -243,9 +261,15 @@
       "rocker-4-exhaust": 0,
       "rocker-bushing-4-exhaust": 0,
       "tappet-plunger-intake-4": 0,
-      "tappet-socket-intake-4": 300,
+      "tappet-piston-intake-4": 0,
+      "tappet-check-ball-intake-4": 0,
+      "tappet-plunger-spring-intake-4": 0,
+      "tappet-socket-intake-4": 0,
       "tappet-plunger-exhaust-4": 0,
-      "tappet-socket-exhaust-4": 298,
+      "tappet-piston-exhaust-4": 0,
+      "tappet-check-ball-exhaust-4": 0,
+      "tappet-plunger-spring-exhaust-4": 0,
+      "tappet-socket-exhaust-4": 0,
       "mechanical-fuel-pump": 394,
       "fuel-pump-gasket": 366,
       "fuel-pump-mount-washer-1": 0,
@@ -258,6 +282,33 @@
       "fuel-hose-end-0": 0
     },
     "closedSolidExport": {
+      "camshaft": {
+        "vertices": 35588,
+        "uniquePositions": 35028,
+        "triangles": 70052,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0004878846074146518,
+        "minCrossSquared": 7.811175480697146e-17,
+        "bounds": {
+          "min": [
+            -0.021347710862755775,
+            0.07565228641033173,
+            -0.2679999768733978
+          ],
+          "max": [
+            0.021347710862755775,
+            0.11834771186113358,
+            0.25200000405311584
+          ]
+        }
+      },
       "rocker-box-1": {
         "vertices": 14722,
         "uniquePositions": 6936,
@@ -282,6 +333,33 @@
             -0.3543824553489685,
             0.09200000017881393,
             0.23609082400798798
+          ]
+        }
+      },
+      "tappet-1-intake": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228871090712639,
+        "minCrossSquared": 4.139509424681807e-14,
+        "bounds": {
+          "min": [
+            -0.05050000175833702,
+            0.08789028972387314,
+            0.17589029669761658
+          ],
+          "max": [
+            -0.017999999225139618,
+            0.10610970854759216,
+            0.194109708070755
           ]
         }
       },
@@ -366,6 +444,33 @@
           ]
         }
       },
+      "tappet-1-exhaust": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228882150670314,
+        "minCrossSquared": 4.1396055228921776e-14,
+        "bounds": {
+          "min": [
+            -0.05050000175833702,
+            0.08789028972387314,
+            0.10589028894901276
+          ],
+          "max": [
+            -0.017999999225139618,
+            0.10610970854759216,
+            0.12410970777273178
+          ]
+        }
+      },
       "pushrod-1-exhaust": {
         "vertices": 25280,
         "uniquePositions": 25280,
@@ -447,6 +552,276 @@
           ]
         }
       },
+      "tappet-plunger-intake-1": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018847215088353,
+        "minCrossSquared": 3.36017690919646e-15,
+        "bounds": {
+          "min": [
+            -0.04050000011920929,
+            0.08854889124631882,
+            0.17654889822006226
+          ],
+          "max": [
+            -0.020499998703598976,
+            0.10545110702514648,
+            0.19345110654830933
+          ]
+        }
+      },
+      "tappet-piston-intake-1": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000011960292098849756,
+        "minCrossSquared": 1.8781261533655413e-19,
+        "bounds": {
+          "min": [
+            -0.04399999976158142,
+            0.08889999985694885,
+            0.1768999993801117
+          ],
+          "max": [
+            -0.03099999949336052,
+            0.10509999841451645,
+            0.1931000053882599
+          ]
+        }
+      },
+      "tappet-check-ball-intake-1": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.094126956026811e-8,
+        "minCrossSquared": 2.785671937566661e-20,
+        "bounds": {
+          "min": [
+            -0.03006214089691639,
+            0.09470000118017197,
+            0.1826999932527542
+          ],
+          "max": [
+            -0.025462141260504723,
+            0.09929999709129333,
+            0.18729999661445618
+          ]
+        }
+      },
+      "tappet-plunger-spring-intake-1": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.463284569966949e-8,
+        "minCrossSquared": 1.185858237261397e-25,
+        "bounds": {
+          "min": [
+            -0.043699998408555984,
+            0.08959999680519104,
+            0.17759999632835388
+          ],
+          "max": [
+            -0.04050000011920929,
+            0.10440000146627426,
+            0.1923999935388565
+          ]
+        }
+      },
+      "tappet-socket-intake-1": {
+        "vertices": 8304,
+        "uniquePositions": 7490,
+        "triangles": 14980,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000018794652506058538,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            -0.05299999937415123,
+            0.08855714648962021,
+            0.17655715346336365
+          ],
+          "max": [
+            -0.04399999976158142,
+            0.10544285178184509,
+            0.19344285130500793
+          ]
+        }
+      },
+      "tappet-plunger-exhaust-1": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018845847905597,
+        "minCrossSquared": 3.361094776864574e-15,
+        "bounds": {
+          "min": [
+            -0.04050000011920929,
+            0.08854889124631882,
+            0.10654889792203903
+          ],
+          "max": [
+            -0.020499998703598976,
+            0.10545110702514648,
+            0.1234511062502861
+          ]
+        }
+      },
+      "tappet-piston-exhaust-1": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001196029012148232,
+        "minCrossSquared": 1.928404394358362e-19,
+        "bounds": {
+          "min": [
+            -0.04399999976158142,
+            0.08889999985694885,
+            0.10689999908208847
+          ],
+          "max": [
+            -0.03099999949336052,
+            0.10509999841451645,
+            0.12309999763965607
+          ]
+        }
+      },
+      "tappet-check-ball-exhaust-1": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.0941269218191044e-8,
+        "minCrossSquared": 2.7939385538213625e-20,
+        "bounds": {
+          "min": [
+            -0.03006214089691639,
+            0.09470000118017197,
+            0.11270000040531158
+          ],
+          "max": [
+            -0.025462141260504723,
+            0.09929999709129333,
+            0.11730000376701355
+          ]
+        }
+      },
+      "tappet-plunger-spring-exhaust-1": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.463284564018426e-8,
+        "minCrossSquared": 1.185858237261397e-25,
+        "bounds": {
+          "min": [
+            -0.043699998408555984,
+            0.08959999680519104,
+            0.10760000348091125
+          ],
+          "max": [
+            -0.04050000011920929,
+            0.10440000146627426,
+            0.12240000069141388
+          ]
+        }
+      },
+      "tappet-socket-exhaust-1": {
+        "vertices": 8300,
+        "uniquePositions": 7488,
+        "triangles": 14976,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001879465047762515,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            -0.05299999937415123,
+            0.08855714648962021,
+            0.10655715316534042
+          ],
+          "max": [
+            -0.04399999976158142,
+            0.10544285178184509,
+            0.12344285100698471
+          ]
+        }
+      },
       "rocker-box-2": {
         "vertices": 14710,
         "uniquePositions": 6930,
@@ -471,6 +846,33 @@
             0.3869999945163727,
             0.09200000017881393,
             0.18609081208705902
+          ]
+        }
+      },
+      "tappet-2-intake": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001322888598615298,
+        "minCrossSquared": 4.139439821207178e-14,
+        "bounds": {
+          "min": [
+            0.017999999225139618,
+            0.08789028972387314,
+            0.12589028477668762
+          ],
+          "max": [
+            0.05050000175833702,
+            0.10610970854759216,
+            0.14410971105098724
           ]
         }
       },
@@ -555,6 +957,33 @@
           ]
         }
       },
+      "tappet-2-exhaust": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228879442575518,
+        "minCrossSquared": 4.1396055228921776e-14,
+        "bounds": {
+          "min": [
+            0.017999999225139618,
+            0.08789028972387314,
+            0.0558902882039547
+          ],
+          "max": [
+            0.05050000175833702,
+            0.10610970854759216,
+            0.07410971075296402
+          ]
+        }
+      },
       "pushrod-2-exhaust": {
         "vertices": 25280,
         "uniquePositions": 25280,
@@ -636,6 +1065,276 @@
           ]
         }
       },
+      "tappet-plunger-intake-2": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018842563592445,
+        "minCrossSquared": 3.360464768374897e-15,
+        "bounds": {
+          "min": [
+            0.020499998703598976,
+            0.08854889124631882,
+            0.1265489012002945
+          ],
+          "max": [
+            0.04050000011920929,
+            0.10545110702514648,
+            0.14345110952854156
+          ]
+        }
+      },
+      "tappet-piston-intake-2": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000011960289927711943,
+        "minCrossSquared": 1.9728363282589943e-19,
+        "bounds": {
+          "min": [
+            0.03099999949336052,
+            0.08889999985694885,
+            0.12690000236034393
+          ],
+          "max": [
+            0.04399999976158142,
+            0.10509999841451645,
+            0.14309999346733093
+          ]
+        }
+      },
+      "tappet-check-ball-intake-2": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.094126602005984e-8,
+        "minCrossSquared": 2.784415574224246e-20,
+        "bounds": {
+          "min": [
+            0.025462141260504723,
+            0.09470000118017197,
+            0.13269999623298645
+          ],
+          "max": [
+            0.03006214089691639,
+            0.09929999709129333,
+            0.13729999959468842
+          ]
+        }
+      },
+      "tappet-plunger-spring-intake-2": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.46328417805987e-8,
+        "minCrossSquared": 1.260293303385305e-25,
+        "bounds": {
+          "min": [
+            0.04050000011920929,
+            0.08959999680519104,
+            0.12759999930858612
+          ],
+          "max": [
+            0.043699998408555984,
+            0.10440000146627426,
+            0.14239999651908875
+          ]
+        }
+      },
+      "tappet-socket-intake-2": {
+        "vertices": 8356,
+        "uniquePositions": 7516,
+        "triangles": 15032,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000018794651579820573,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            0.04399999976158142,
+            0.08855714648962021,
+            0.1265571564435959
+          ],
+          "max": [
+            0.05299999937415123,
+            0.10544285178184509,
+            0.14344285428524017
+          ]
+        }
+      },
+      "tappet-plunger-exhaust-2": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001701884442946824,
+        "minCrossSquared": 3.3609747305439947e-15,
+        "bounds": {
+          "min": [
+            0.020499998703598976,
+            0.08854889124631882,
+            0.056548893451690674
+          ],
+          "max": [
+            0.04050000011920929,
+            0.10545110702514648,
+            0.07345110177993774
+          ]
+        }
+      },
+      "tappet-piston-exhaust-2": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000011960289828759542,
+        "minCrossSquared": 1.9251889254576584e-19,
+        "bounds": {
+          "min": [
+            0.03099999949336052,
+            0.08889999985694885,
+            0.05689999833703041
+          ],
+          "max": [
+            0.04399999976158142,
+            0.10509999841451645,
+            0.0731000006198883
+          ]
+        }
+      },
+      "tappet-check-ball-exhaust-2": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.094126869332421e-8,
+        "minCrossSquared": 2.789593953971275e-20,
+        "bounds": {
+          "min": [
+            0.025462141260504723,
+            0.09470000118017197,
+            0.06270000338554382
+          ],
+          "max": [
+            0.03006214089691639,
+            0.09929999709129333,
+            0.06729999929666519
+          ]
+        }
+      },
+      "tappet-plunger-spring-exhaust-2": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.4632843877338333e-8,
+        "minCrossSquared": 1.185858237261397e-25,
+        "bounds": {
+          "min": [
+            0.04050000011920929,
+            0.08959999680519104,
+            0.0575999990105629
+          ],
+          "max": [
+            0.043699998408555984,
+            0.10440000146627426,
+            0.07240000367164612
+          ]
+        }
+      },
+      "tappet-socket-exhaust-2": {
+        "vertices": 8300,
+        "uniquePositions": 7488,
+        "triangles": 14976,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000018794650969504853,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            0.04399999976158142,
+            0.08855714648962021,
+            0.056557148694992065
+          ],
+          "max": [
+            0.05299999937415123,
+            0.10544285178184509,
+            0.07344284653663635
+          ]
+        }
+      },
       "rocker-box-3": {
         "vertices": 14710,
         "uniquePositions": 6929,
@@ -660,6 +1359,33 @@
             -0.3543824553489685,
             0.09200000017881393,
             -0.023909181356430054
+          ]
+        }
+      },
+      "tappet-3-intake": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228889743211702,
+        "minCrossSquared": 4.139622541176335e-14,
+        "bounds": {
+          "min": [
+            -0.05050000175833702,
+            0.08789028972387314,
+            -0.08410970866680145
+          ],
+          "max": [
+            -0.017999999225139618,
+            0.10610970854759216,
+            -0.06589028984308243
           ]
         }
       },
@@ -744,6 +1470,33 @@
           ]
         }
       },
+      "tappet-3-exhaust": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228884347722076,
+        "minCrossSquared": 4.1394323535620795e-14,
+        "bounds": {
+          "min": [
+            -0.05050000175833702,
+            0.08789028972387314,
+            -0.15410971641540527
+          ],
+          "max": [
+            -0.017999999225139618,
+            0.10610970854759216,
+            -0.13589029014110565
+          ]
+        }
+      },
       "pushrod-3-exhaust": {
         "vertices": 25280,
         "uniquePositions": 25280,
@@ -825,6 +1578,276 @@
           ]
         }
       },
+      "tappet-plunger-intake-3": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018844405503722,
+        "minCrossSquared": 3.3609747305439947e-15,
+        "bounds": {
+          "min": [
+            -0.04050000011920929,
+            0.08854889124631882,
+            -0.08345110714435577
+          ],
+          "max": [
+            -0.020499998703598976,
+            0.10545110702514648,
+            -0.0665488913655281
+          ]
+        }
+      },
+      "tappet-piston-intake-3": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000011960290452310332,
+        "minCrossSquared": 1.9251889254576584e-19,
+        "bounds": {
+          "min": [
+            -0.04399999976158142,
+            0.08889999985694885,
+            -0.08309999853372574
+          ],
+          "max": [
+            -0.03099999949336052,
+            0.10509999841451645,
+            -0.06689999997615814
+          ]
+        }
+      },
+      "tappet-check-ball-intake-3": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.0941270205993456e-8,
+        "minCrossSquared": 2.7939385538213625e-20,
+        "bounds": {
+          "min": [
+            -0.03006214089691639,
+            0.09470000118017197,
+            -0.07729999721050262
+          ],
+          "max": [
+            -0.025462141260504723,
+            0.09929999709129333,
+            -0.07270000129938126
+          ]
+        }
+      },
+      "tappet-plunger-spring-intake-3": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.463283703860096e-8,
+        "minCrossSquared": 1.2227587160321862e-25,
+        "bounds": {
+          "min": [
+            -0.043699998408555984,
+            0.08959999680519104,
+            -0.08240000158548355
+          ],
+          "max": [
+            -0.04050000011920929,
+            0.10440000146627426,
+            -0.06759999692440033
+          ]
+        }
+      },
+      "tappet-socket-intake-3": {
+        "vertices": 8304,
+        "uniquePositions": 7490,
+        "triangles": 14980,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000018794652154179693,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            -0.05299999937415123,
+            0.08855714648962021,
+            -0.08344285190105438
+          ],
+          "max": [
+            -0.04399999976158142,
+            0.10544285178184509,
+            -0.0665571466088295
+          ]
+        }
+      },
+      "tappet-plunger-exhaust-3": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018841503150339,
+        "minCrossSquared": 3.360464768374897e-15,
+        "bounds": {
+          "min": [
+            -0.04050000011920929,
+            0.08854889124631882,
+            -0.1534510999917984
+          ],
+          "max": [
+            -0.020499998703598976,
+            0.10545110702514648,
+            -0.13654889166355133
+          ]
+        }
+      },
+      "tappet-piston-exhaust-3": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000011960290063490231,
+        "minCrossSquared": 1.9728363282589943e-19,
+        "bounds": {
+          "min": [
+            -0.04399999976158142,
+            0.08889999985694885,
+            -0.15309999883174896
+          ],
+          "max": [
+            -0.03099999949336052,
+            0.10509999841451645,
+            -0.13689999282360077
+          ]
+        }
+      },
+      "tappet-check-ball-exhaust-3": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.094126765012409e-8,
+        "minCrossSquared": 2.773999557428403e-20,
+        "bounds": {
+          "min": [
+            -0.03006214089691639,
+            0.09470000118017197,
+            -0.14730000495910645
+          ],
+          "max": [
+            -0.025462141260504723,
+            0.09929999709129333,
+            -0.14270000159740448
+          ]
+        }
+      },
+      "tappet-plunger-spring-exhaust-3": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.463285406167272e-8,
+        "minCrossSquared": 1.185858237261397e-25,
+        "bounds": {
+          "min": [
+            -0.043699998408555984,
+            0.08959999680519104,
+            -0.15240000188350677
+          ],
+          "max": [
+            -0.04050000011920929,
+            0.10440000146627426,
+            -0.13760000467300415
+          ]
+        }
+      },
+      "tappet-socket-exhaust-3": {
+        "vertices": 8332,
+        "uniquePositions": 7504,
+        "triangles": 15008,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001879465298892486,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            -0.05299999937415123,
+            0.08855714648962021,
+            -0.153442844748497
+          ],
+          "max": [
+            -0.04399999976158142,
+            0.10544285178184509,
+            -0.13655714690685272
+          ]
+        }
+      },
       "rocker-box-4": {
         "vertices": 14728,
         "uniquePositions": 6939,
@@ -849,6 +1872,33 @@
             0.3869999945163727,
             0.09200000017881393,
             -0.07390917837619781
+          ]
+        }
+      },
+      "tappet-4-intake": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228887983444494,
+        "minCrossSquared": 4.139529953007267e-14,
+        "bounds": {
+          "min": [
+            0.017999999225139618,
+            0.08789028972387314,
+            -0.1341097056865692
+          ],
+          "max": [
+            0.05050000175833702,
+            0.10610970854759216,
+            -0.11589028686285019
           ]
         }
       },
@@ -933,6 +1983,33 @@
           ]
         }
       },
+      "tappet-4-exhaust": {
+        "vertices": 642,
+        "uniquePositions": 642,
+        "triangles": 1280,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000013228891165654694,
+        "minCrossSquared": 4.139439821207178e-14,
+        "bounds": {
+          "min": [
+            0.017999999225139618,
+            0.08789028972387314,
+            -0.20410971343517303
+          ],
+          "max": [
+            0.05050000175833702,
+            0.10610970854759216,
+            -0.1858902871608734
+          ]
+        }
+      },
       "pushrod-4-exhaust": {
         "vertices": 25280,
         "uniquePositions": 25280,
@@ -1011,6 +2088,276 @@
             0.380649209022522,
             0.05664919689297676,
             -0.18400000035762787
+          ]
+        }
+      },
+      "tappet-plunger-intake-4": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018843915043605,
+        "minCrossSquared": 3.360585919020128e-15,
+        "bounds": {
+          "min": [
+            0.020499998703598976,
+            0.08854889124631882,
+            -0.13345110416412354
+          ],
+          "max": [
+            0.04050000011920929,
+            0.10545110702514648,
+            -0.11654889583587646
+          ]
+        }
+      },
+      "tappet-piston-intake-4": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.00000119602911877893,
+        "minCrossSquared": 1.8781261533655413e-19,
+        "bounds": {
+          "min": [
+            0.03099999949336052,
+            0.08889999985694885,
+            -0.1331000030040741
+          ],
+          "max": [
+            0.04399999976158142,
+            0.10509999841451645,
+            -0.1168999969959259
+          ]
+        }
+      },
+      "tappet-check-ball-intake-4": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.0941268857361454e-8,
+        "minCrossSquared": 2.785671937566661e-20,
+        "bounds": {
+          "min": [
+            0.025462141260504723,
+            0.09470000118017197,
+            -0.12729999423027039
+          ],
+          "max": [
+            0.03006214089691639,
+            0.09929999709129333,
+            -0.12269999831914902
+          ]
+        }
+      },
+      "tappet-plunger-spring-intake-4": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.463284864457421e-8,
+        "minCrossSquared": 1.1836732466283304e-25,
+        "bounds": {
+          "min": [
+            0.04050000011920929,
+            0.08959999680519104,
+            -0.1324000060558319
+          ],
+          "max": [
+            0.043699998408555984,
+            0.10440000146627426,
+            -0.11760000139474869
+          ]
+        }
+      },
+      "tappet-socket-intake-4": {
+        "vertices": 8330,
+        "uniquePositions": 7503,
+        "triangles": 15006,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000018794652655949113,
+        "minCrossSquared": 3.270968602668171e-28,
+        "bounds": {
+          "min": [
+            0.04399999976158142,
+            0.08855714648962021,
+            -0.13344284892082214
+          ],
+          "max": [
+            0.05299999937415123,
+            0.10544285178184509,
+            -0.11655715107917786
+          ]
+        }
+      },
+      "tappet-plunger-exhaust-4": {
+        "vertices": 1248,
+        "uniquePositions": 1248,
+        "triangles": 2496,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000017018849341962515,
+        "minCrossSquared": 3.3602175567803522e-15,
+        "bounds": {
+          "min": [
+            0.020499998703598976,
+            0.08854889124631882,
+            -0.20345111191272736
+          ],
+          "max": [
+            0.04050000011920929,
+            0.10545110702514648,
+            -0.1865488886833191
+          ]
+        }
+      },
+      "tappet-piston-exhaust-4": {
+        "vertices": 2386,
+        "uniquePositions": 1802,
+        "triangles": 3608,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.000001196028991532583,
+        "minCrossSquared": 1.9728363282589943e-19,
+        "bounds": {
+          "min": [
+            0.03099999949336052,
+            0.08889999985694885,
+            -0.20309999585151672
+          ],
+          "max": [
+            0.04399999976158142,
+            0.10509999841451645,
+            -0.18690000474452972
+          ]
+        }
+      },
+      "tappet-check-ball-exhaust-4": {
+        "vertices": 17474,
+        "uniquePositions": 17474,
+        "triangles": 34944,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.0941265511205666e-8,
+        "minCrossSquared": 2.784259092206723e-20,
+        "bounds": {
+          "min": [
+            0.025462141260504723,
+            0.09470000118017197,
+            -0.1973000019788742
+          ],
+          "max": [
+            0.03006214089691639,
+            0.09929999709129333,
+            -0.19269999861717224
+          ]
+        }
+      },
+      "tappet-plunger-spring-exhaust-4": {
+        "vertices": 21016,
+        "uniquePositions": 20408,
+        "triangles": 40812,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 5.463284788128013e-8,
+        "minCrossSquared": 1.185858237261397e-25,
+        "bounds": {
+          "min": [
+            0.04050000011920929,
+            0.08959999680519104,
+            -0.20239999890327454
+          ],
+          "max": [
+            0.043699998408555984,
+            0.10440000146627426,
+            -0.1876000016927719
+          ]
+        }
+      },
+      "tappet-socket-exhaust-4": {
+        "vertices": 8312,
+        "uniquePositions": 7494,
+        "triangles": 14988,
+        "collapsedTriangles": 0,
+        "zeroAreaTriangles": 0,
+        "duplicateTriangles": 0,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "orientationEdges": 0,
+        "connectedComponents": 1,
+        "closedOriented": true,
+        "signedVolumeM3": 0.0000018794651294761454,
+        "minCrossSquared": 3.7550395386102366e-28,
+        "bounds": {
+          "min": [
+            0.04399999976158142,
+            0.08855714648962021,
+            -0.20344285666942596
+          ],
+          "max": [
+            0.05299999937415123,
+            0.10544285178184509,
+            -0.18655714392662048
           ]
         }
       }

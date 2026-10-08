@@ -1,165 +1,200 @@
 {
-  "date": "2026-10-08",
-  "route": "https://suarezcfi.com/engine-explorer/",
-  "sourceCommit": "15495fc19048957ee8cca79e8dcdf452d2c38ae9",
-  "frontendArtifactSourceCommit": "15495fc19048957ee8cca79e8dcdf452d2c38ae9",
-  "assetDirectory": "engine-explorer/app/assets/lycoming-15495fc",
-  "lycoming": {
-    "sha256": "b3f9186024f208b5d54cb90a526ae7fa8993b25fbab692268dc1275c406549d7",
-    "bytes": 122951156,
-    "parts": 981,
-    "animatedInstances": 228,
-    "schematic": 105,
-    "compressedSha256": "9a2b5b1aa80e22d987ad6e20e1b5083677da04b09e4cd904e9a05194bd3125cd",
-    "compressedBytes": 54516136
-  },
-  "rotax": {
-    "sha256": "2d3a5343cef335e102da1adf92c37c02473b6b3c9f17857161550199c850b879",
-    "bytes": 36079912,
-    "physicalAndConceptualInstances": 1168,
-    "animatedInstances": 158,
-    "encoding": "KHR_draco_mesh_compression",
-    "geometryChanged": false,
-    "metadataNote": "Actual currently served artifact fingerprint, replacing stale pre-optimization byte/hash fields. The geometry payload and manifest are preserved."
-  },
-  "completeOemReplica": false,
-  "physicalIpadVerified": false,
-  "goalComplete": false,
-  "catalogAudit": {
-    "occurrences": 387,
-    "directIdentityRows": 137,
-    "unmatchedIdentityOccurrences": 149,
-    "exactGeometryRows": 0,
-    "installedBomComplete": false
-  },
-  "verification": {
-    "lycomingAndRelevantShared": {
-      "files": 52,
-      "passed": 245,
-      "broaderFiles": 51,
-      "broaderPassed": 239,
-      "actualMechanismPassed": 6
-    },
-    "build": "TypeScript and Vite production build passed; native config loader",
-    "mesh": {
-      "baselineSha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
-      "changedExistingPayloads": 91,
-      "retainedPayloads": 890,
-      "added": 0,
-      "removed": 0,
-      "selectedClosedPositiveSingleComponentSolids": 28,
-      "valveSeatPayloadsRetained": 16,
-      "pumpPayloadsRetained": 10,
-      "wholeHeadPayloadIdentityPreserved": false
-    },
-    "mechanism": {
-      "checks": {
-        "rodAndJointGeometry": true,
-        "camFollowerContact": true,
-        "padValveContact": true,
-        "movingClearances": true,
-        "closedLinkageAndAlignedOilHoles": true
-      },
-      "metrics": {
-        "actualClosedLinkageSolidsChecked": 28,
-        "actualAlignedRockerSleeveOilProbes": 272,
-        "maximumActualCommonForgingSampledDeviationM": 2.9402239373249298e-08,
-        "maximumActualRodEndpointErrorM": 4.400953082438547e-09,
-        "maximumActualRigidRodLengthErrorM": 4.357224248074942e-09,
-        "minimumActualCupRadiusM": 0.004013817509181077,
-        "maximumActualCupRadiusM": 0.004013828324627484,
-        "actualThroughBoredPushrodsChecked": 8,
-        "minimumCamToActualFootSupportGapM": -4.477164181060367e-09,
-        "maximumCamToActualFootSupportGapM": 2.2789473243245428e-07,
-        "maximumActualCamContactToFlatFaceDistanceM": 2.2789473243245428e-07,
-        "maximumActualCamContactOffsetM": 0.009026601894484551,
-        "actualCamBandsChecked": 6,
-        "actualCamFollowersChecked": 8,
-        "actualCamPerimeterPointsChecked": 17233,
-        "maximumActualShoeValveContactDistanceM": 4.966726919672879e-07,
-        "representativeMovingPoses": 440,
-        "surfaceCrossingPairs": 7920,
-        "finiteCrossingPairs": 0
-      },
-      "scope": "Actual candidate GLB checks of an estimated analytic teaching mechanism; not OEM geometry, dynamics or lash proof",
-      "sampledSurfaceCrossingsOnly": true,
-      "oemGeometryVerified": false
-    },
-    "browser": {
-      "local": "981 loaded, common rocker selection/source facts, isolate/Fit/Play/Pause and zero console errors",
-      "live": "Not asserted before matching deployment and browser checks"
-    },
-    "fullRepositorySuite": "Known unchanged Rotax/shared Node-loader limitations remain; full repository pass not claimed."
-  },
-  "remainingChamberConstraint": {
-    "targetClearanceCcPerCylinder": 197.19484821109705,
-    "estimatedCappedSectionCc": [
-      365.6933627952798,
-      365.67183277076856,
-      366.17227447142415
-    ],
-    "currentVolumeRerun": true,
-    "testedArtifactSha256": "b3f9186024f208b5d54cb90a526ae7fa8993b25fbab692268dc1275c406549d7",
-    "compressionRatioSubstantiated": false,
-    "scope": "Transverse midpoint-grid section integration. Oriented triangle crossings are unioned along axis rays over crown-to-roof cell, capped at x=306mm; it excludes connected volume beyond this cap. All intersecting model meshes are included except the piston behind its flat TDC crown. Positive winding counts handle overlapping primitive constituents. This is a numerical mesh diagnostic, not a certified closed chamber or exact BREP volume."
-  },
-  "flatTappetFits": {
-    "bodyDiameterMm": 18.21942,
-    "caseBoreDiameterMm": 18.27149,
-    "diametralClearanceMm": 0.05207,
-    "source": "Conditional SSP1776 ChartS Ref511 manufacturing midpoints, not measured OEM nominal",
-    "plungerSocketAbsoluteGeometry": "Derived from estimated bodyID17mm and Ref512/513 fit midpoints",
-    "camPushrodRockerClosureVerified": false,
-    "hydraulicCheckSeatVerified": false,
-    "estimatedAnalyticSampledContactChecksPassed": true
-  },
-  "analyticValveTrain": {
-    "instances": 108,
-    "camBands": 6,
-    "intakeSharedBands": 2,
-    "exhaustBands": 4,
-    "commonRockerPartNumber": "17F19357",
-    "hollowPushrods": 8,
-    "peakFollowerLiftMm": 7.5,
-    "derivedPeakValveLiftMm": {
-      "intake": 7.264999801,
-      "exhaust": 6.744204913
-    },
-    "factoryTimingOrGeometryVerified": false,
-    "camGlobalSingleSolid": false,
-    "hydraulicInternalsIntegratedRevision": "schematic unchanged except follower placement"
-  },
-  "rearGearFit": {
-    "gearPartNumber": "13S19646",
-    "dowelPartNumber": "STD-1065",
-    "selectedBodyDiameterMm": 7.86765,
-    "selectedHostDiameterMm": 7.8486,
-    "dowelTipDiameterMm": 6.36905,
-    "dowelOverallLengthMm": 13.97,
-    "selectedGearPilotDiameterMm": 53.98135,
-    "selectedCrankPilotDiameterMm": 53.9877,
-    "sourceBoundary": "Selected inspection/repair dimensions and reconstructed geometry. Not factory nominal or installed compliance."
-  },
-  "standaloneReferenceParts": {
-    "74887": {
-      "asset": "app/models/reference-parts/74887-spacer.glb",
-      "sha256": "96c28dec7a2734ed6a3d22831ca71a608165f5686bdf680b2a552edda73191da",
-      "installedInEngine": false,
-      "exactGeometryVerified": false
-    }
-  },
-  "previousModelRelease": {
-    "sourceCommit": "39b239ca7c6dcdd6dac07d922bca3f21063987f5",
-    "assetDirectory": "engine-explorer/app/assets/lycoming-39b239c",
+  "builtAtUtc": "2026-10-08T04:54:29.299528+00:00",
+  "engine": "io-360-l2a",
+  "sourceCommit": "3188311925062f6af1350420e7419cac9b827bee",
+  "assetDirectory": "engine-explorer/app/assets/lycoming-3188311",
+  "previousRelease": {
+    "date": "2026-10-08",
+    "route": "https://suarezcfi.com/engine-explorer/",
+    "sourceCommit": "15495fc19048957ee8cca79e8dcdf452d2c38ae9",
+    "frontendArtifactSourceCommit": "15495fc19048957ee8cca79e8dcdf452d2c38ae9",
+    "assetDirectory": "engine-explorer/app/assets/lycoming-15495fc",
     "lycoming": {
-      "sha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
-      "bytes": 106214412,
+      "sha256": "b3f9186024f208b5d54cb90a526ae7fa8993b25fbab692268dc1275c406549d7",
+      "bytes": 122951156,
       "parts": 981,
       "animatedInstances": 228,
       "schematic": 105,
-      "compressedSha256": "684db2e5d5a0f38bd2a7b056b49024488f7154eca7a9f5303584b5287834ee32",
-      "compressedBytes": 43867276
+      "compressedSha256": "9a2b5b1aa80e22d987ad6e20e1b5083677da04b09e4cd904e9a05194bd3125cd",
+      "compressedBytes": 54516136
     },
-    "scope": "Previous published rear-gear/motion-datum checkpoint; retained as history."
-  }
+    "rotax": {
+      "sha256": "2d3a5343cef335e102da1adf92c37c02473b6b3c9f17857161550199c850b879",
+      "bytes": 36079912,
+      "physicalAndConceptualInstances": 1168,
+      "animatedInstances": 158,
+      "encoding": "KHR_draco_mesh_compression",
+      "geometryChanged": false,
+      "metadataNote": "Actual currently served artifact fingerprint, replacing stale pre-optimization byte/hash fields. The geometry payload and manifest are preserved."
+    },
+    "completeOemReplica": false,
+    "physicalIpadVerified": false,
+    "goalComplete": false,
+    "catalogAudit": {
+      "occurrences": 387,
+      "directIdentityRows": 137,
+      "unmatchedIdentityOccurrences": 149,
+      "exactGeometryRows": 0,
+      "installedBomComplete": false
+    },
+    "verification": {
+      "lycomingAndRelevantShared": {
+        "files": 52,
+        "passed": 245,
+        "broaderFiles": 51,
+        "broaderPassed": 239,
+        "actualMechanismPassed": 6
+      },
+      "build": "TypeScript and Vite production build passed; native config loader",
+      "mesh": {
+        "baselineSha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
+        "changedExistingPayloads": 91,
+        "retainedPayloads": 890,
+        "added": 0,
+        "removed": 0,
+        "selectedClosedPositiveSingleComponentSolids": 28,
+        "valveSeatPayloadsRetained": 16,
+        "pumpPayloadsRetained": 10,
+        "wholeHeadPayloadIdentityPreserved": false
+      },
+      "mechanism": {
+        "checks": {
+          "rodAndJointGeometry": true,
+          "camFollowerContact": true,
+          "padValveContact": true,
+          "movingClearances": true,
+          "closedLinkageAndAlignedOilHoles": true
+        },
+        "metrics": {
+          "actualClosedLinkageSolidsChecked": 28,
+          "actualAlignedRockerSleeveOilProbes": 272,
+          "maximumActualCommonForgingSampledDeviationM": 2.9402239373249298e-08,
+          "maximumActualRodEndpointErrorM": 4.400953082438547e-09,
+          "maximumActualRigidRodLengthErrorM": 4.357224248074942e-09,
+          "minimumActualCupRadiusM": 0.004013817509181077,
+          "maximumActualCupRadiusM": 0.004013828324627484,
+          "actualThroughBoredPushrodsChecked": 8,
+          "minimumCamToActualFootSupportGapM": -4.477164181060367e-09,
+          "maximumCamToActualFootSupportGapM": 2.2789473243245428e-07,
+          "maximumActualCamContactToFlatFaceDistanceM": 2.2789473243245428e-07,
+          "maximumActualCamContactOffsetM": 0.009026601894484551,
+          "actualCamBandsChecked": 6,
+          "actualCamFollowersChecked": 8,
+          "actualCamPerimeterPointsChecked": 17233,
+          "maximumActualShoeValveContactDistanceM": 4.966726919672879e-07,
+          "representativeMovingPoses": 440,
+          "surfaceCrossingPairs": 7920,
+          "finiteCrossingPairs": 0
+        },
+        "scope": "Actual candidate GLB checks of an estimated analytic teaching mechanism; not OEM geometry, dynamics or lash proof",
+        "sampledSurfaceCrossingsOnly": true,
+        "oemGeometryVerified": false
+      },
+      "browser": {
+        "local": "981 loaded, common rocker selection/source facts, isolate/Fit/Play/Pause and zero console errors",
+        "live": "Not asserted before matching deployment and browser checks"
+      },
+      "fullRepositorySuite": "Known unchanged Rotax/shared Node-loader limitations remain; full repository pass not claimed."
+    },
+    "remainingChamberConstraint": {
+      "targetClearanceCcPerCylinder": 197.19484821109705,
+      "estimatedCappedSectionCc": [
+        365.6933627952798,
+        365.67183277076856,
+        366.17227447142415
+      ],
+      "currentVolumeRerun": true,
+      "testedArtifactSha256": "b3f9186024f208b5d54cb90a526ae7fa8993b25fbab692268dc1275c406549d7",
+      "compressionRatioSubstantiated": false,
+      "scope": "Transverse midpoint-grid section integration. Oriented triangle crossings are unioned along axis rays over crown-to-roof cell, capped at x=306mm; it excludes connected volume beyond this cap. All intersecting model meshes are included except the piston behind its flat TDC crown. Positive winding counts handle overlapping primitive constituents. This is a numerical mesh diagnostic, not a certified closed chamber or exact BREP volume."
+    },
+    "flatTappetFits": {
+      "bodyDiameterMm": 18.21942,
+      "caseBoreDiameterMm": 18.27149,
+      "diametralClearanceMm": 0.05207,
+      "source": "Conditional SSP1776 ChartS Ref511 manufacturing midpoints, not measured OEM nominal",
+      "plungerSocketAbsoluteGeometry": "Derived from estimated bodyID17mm and Ref512/513 fit midpoints",
+      "camPushrodRockerClosureVerified": false,
+      "hydraulicCheckSeatVerified": false,
+      "estimatedAnalyticSampledContactChecksPassed": true
+    },
+    "analyticValveTrain": {
+      "instances": 108,
+      "camBands": 6,
+      "intakeSharedBands": 2,
+      "exhaustBands": 4,
+      "commonRockerPartNumber": "17F19357",
+      "hollowPushrods": 8,
+      "peakFollowerLiftMm": 7.5,
+      "derivedPeakValveLiftMm": {
+        "intake": 7.264999801,
+        "exhaust": 6.744204913
+      },
+      "factoryTimingOrGeometryVerified": false,
+      "camGlobalSingleSolid": false,
+      "hydraulicInternalsIntegratedRevision": "schematic unchanged except follower placement"
+    },
+    "rearGearFit": {
+      "gearPartNumber": "13S19646",
+      "dowelPartNumber": "STD-1065",
+      "selectedBodyDiameterMm": 7.86765,
+      "selectedHostDiameterMm": 7.8486,
+      "dowelTipDiameterMm": 6.36905,
+      "dowelOverallLengthMm": 13.97,
+      "selectedGearPilotDiameterMm": 53.98135,
+      "selectedCrankPilotDiameterMm": 53.9877,
+      "sourceBoundary": "Selected inspection/repair dimensions and reconstructed geometry. Not factory nominal or installed compliance."
+    },
+    "standaloneReferenceParts": {
+      "74887": {
+        "asset": "app/models/reference-parts/74887-spacer.glb",
+        "sha256": "96c28dec7a2734ed6a3d22831ca71a608165f5686bdf680b2a552edda73191da",
+        "installedInEngine": false,
+        "exactGeometryVerified": false
+      }
+    },
+    "previousModelRelease": {
+      "sourceCommit": "39b239ca7c6dcdd6dac07d922bca3f21063987f5",
+      "assetDirectory": "engine-explorer/app/assets/lycoming-39b239c",
+      "lycoming": {
+        "sha256": "1886791a5a53e546354abbcadf23317c5fccfea4b6bb94127968a4298b84d1ac",
+        "bytes": 106214412,
+        "parts": 981,
+        "animatedInstances": 228,
+        "schematic": 105,
+        "compressedSha256": "684db2e5d5a0f38bd2a7b056b49024488f7154eca7a9f5303584b5287834ee32",
+        "compressedBytes": 43867276
+      },
+      "scope": "Previous published rear-gear/motion-datum checkpoint; retained as history."
+    }
+  },
+  "rawGlbSha256": "67693c06353f8e7aaf9c98610ea788dbac960141365d42e86b1177f3557cf301",
+  "rawGlbBytes": 133723468,
+  "gzipSha256": "7206f732fd705a92178cdd02b8a6e9ba31f4a265e17b94e927b24cada6e2b709",
+  "gzipBytes": 61116042,
+  "modeledElements": 981,
+  "animatedElements": 228,
+  "schematicElements": 105,
+  "sourceCount": 39,
+  "analyticValveTrainDescriptors": 108,
+  "tests": {
+    "passed": 263,
+    "files": 55,
+    "fullRepositoryPass": false
+  },
+  "selectedClosedSolids": 77,
+  "changedPayloads": 41,
+  "retainedPayloads": 940,
+  "unifiedCamshaftSingleConnectedSolid": true,
+  "hydraulicMembersIntegrated": 32,
+  "rebuiltOriginalSockets": 8,
+  "hydraulicState": "Estimated static loaded seated illustration, sharing macro follower motion. Retention, external supply, pressure, leakage rate, flow and dynamics unverified.",
+  "assemblyIdentityScope": "Eight 15B26066 service anchors; four members per station do not establish the complete internal OEM BOM.",
+  "rodDimensionStatus": "New primary manufacturing interval171.4119..171.4881mm found; current175mm estimate remains pending coordinated reciprocating integration.",
+  "exactGeometryVerified": false,
+  "completeOemReplica": false,
+  "goalComplete": false,
+  "physicalIpadVerified": false,
+  "publicationStatus": "Pending matching deployment and served-byte/browser verification",
+  "sourceAcceptance": "docs/lycoming-io-360-l2a/hydraulic-cam-acceptance-20261008.json"
 }

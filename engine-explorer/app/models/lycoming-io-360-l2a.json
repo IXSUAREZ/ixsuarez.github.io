@@ -583,6 +583,7 @@
       "purpose": "Turns at half crankshaft speed and controls the four-stroke valve sequence through the hydraulic tappets.",
       "facts": [
         "IPC Figure 6 identifies the flat-tappet LW-18840 and shows six eccentric lobe bands. The model uses four exhaust and two paired intake lobes; shared-intake assignment is a family-level inference from primary examination evidence, not a dimensioned L2A drawing. Cam profile, timing and peak lift are illustrative.",
+        "The six original reconstructed bands and shaft are united into one closed physical solid; their original contours, widths, phases and outer bounds are retained. This Boolean union adds no manufacturer dimensional evidence.",
         "A shared analytic estimated support law coordinates cam, follower, rigid ball-ended rod and rocker contact. Profile, timing, lobes, shaft dimensions, installed stations and dynamic behavior are not OEM verified."
       ],
       "sourceIds": [
@@ -2786,21 +2787,23 @@
     },
     {
       "id": "tappet-plunger-intake-1",
-      "name": "Hydraulic tappet plunger barrel · intake · cylinder 1",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · intake · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -2809,19 +2812,24 @@
       ],
       "role": "component",
       "cylinder": 1,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-intake-1",
-      "name": "Hydraulic tappet piston · intake · cylinder 1",
+      "name": "Hydraulic sliding plunger · intake · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -2835,15 +2843,19 @@
     },
     {
       "id": "tappet-check-ball-intake-1",
-      "name": "Tappet check ball · intake · cylinder 1",
+      "name": "Loaded-state tappet check ball · intake · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -2857,15 +2869,19 @@
     },
     {
       "id": "tappet-plunger-spring-intake-1",
-      "name": "Tappet plunger spring · intake · cylinder 1",
+      "name": "Outward hydraulic plunger spring · intake · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -2886,12 +2902,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -2995,21 +3013,23 @@
     },
     {
       "id": "tappet-plunger-exhaust-1",
-      "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 1",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · exhaust · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -3018,19 +3038,24 @@
       ],
       "role": "component",
       "cylinder": 1,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-exhaust-1",
-      "name": "Hydraulic tappet piston · exhaust · cylinder 1",
+      "name": "Hydraulic sliding plunger · exhaust · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3044,15 +3069,19 @@
     },
     {
       "id": "tappet-check-ball-exhaust-1",
-      "name": "Tappet check ball · exhaust · cylinder 1",
+      "name": "Loaded-state tappet check ball · exhaust · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3066,15 +3095,19 @@
     },
     {
       "id": "tappet-plunger-spring-exhaust-1",
-      "name": "Tappet plunger spring · exhaust · cylinder 1",
+      "name": "Outward hydraulic plunger spring · exhaust · cylinder 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3095,12 +3128,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5069,21 +5104,23 @@
     },
     {
       "id": "tappet-plunger-intake-2",
-      "name": "Hydraulic tappet plunger barrel · intake · cylinder 2",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · intake · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -5092,19 +5129,24 @@
       ],
       "role": "component",
       "cylinder": 2,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-intake-2",
-      "name": "Hydraulic tappet piston · intake · cylinder 2",
+      "name": "Hydraulic sliding plunger · intake · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5118,15 +5160,19 @@
     },
     {
       "id": "tappet-check-ball-intake-2",
-      "name": "Tappet check ball · intake · cylinder 2",
+      "name": "Loaded-state tappet check ball · intake · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5140,15 +5186,19 @@
     },
     {
       "id": "tappet-plunger-spring-intake-2",
-      "name": "Tappet plunger spring · intake · cylinder 2",
+      "name": "Outward hydraulic plunger spring · intake · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5169,12 +5219,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5278,21 +5330,23 @@
     },
     {
       "id": "tappet-plunger-exhaust-2",
-      "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 2",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · exhaust · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -5301,19 +5355,24 @@
       ],
       "role": "component",
       "cylinder": 2,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-exhaust-2",
-      "name": "Hydraulic tappet piston · exhaust · cylinder 2",
+      "name": "Hydraulic sliding plunger · exhaust · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5327,15 +5386,19 @@
     },
     {
       "id": "tappet-check-ball-exhaust-2",
-      "name": "Tappet check ball · exhaust · cylinder 2",
+      "name": "Loaded-state tappet check ball · exhaust · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5349,15 +5412,19 @@
     },
     {
       "id": "tappet-plunger-spring-exhaust-2",
-      "name": "Tappet plunger spring · exhaust · cylinder 2",
+      "name": "Outward hydraulic plunger spring · exhaust · cylinder 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5378,12 +5445,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7352,21 +7421,23 @@
     },
     {
       "id": "tappet-plunger-intake-3",
-      "name": "Hydraulic tappet plunger barrel · intake · cylinder 3",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · intake · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -7375,19 +7446,24 @@
       ],
       "role": "component",
       "cylinder": 3,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-intake-3",
-      "name": "Hydraulic tappet piston · intake · cylinder 3",
+      "name": "Hydraulic sliding plunger · intake · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7401,15 +7477,19 @@
     },
     {
       "id": "tappet-check-ball-intake-3",
-      "name": "Tappet check ball · intake · cylinder 3",
+      "name": "Loaded-state tappet check ball · intake · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7423,15 +7503,19 @@
     },
     {
       "id": "tappet-plunger-spring-intake-3",
-      "name": "Tappet plunger spring · intake · cylinder 3",
+      "name": "Outward hydraulic plunger spring · intake · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7452,12 +7536,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7561,21 +7647,23 @@
     },
     {
       "id": "tappet-plunger-exhaust-3",
-      "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 3",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · exhaust · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -7584,19 +7672,24 @@
       ],
       "role": "component",
       "cylinder": 3,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-exhaust-3",
-      "name": "Hydraulic tappet piston · exhaust · cylinder 3",
+      "name": "Hydraulic sliding plunger · exhaust · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7610,15 +7703,19 @@
     },
     {
       "id": "tappet-check-ball-exhaust-3",
-      "name": "Tappet check ball · exhaust · cylinder 3",
+      "name": "Loaded-state tappet check ball · exhaust · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7632,15 +7729,19 @@
     },
     {
       "id": "tappet-plunger-spring-exhaust-3",
-      "name": "Tappet plunger spring · exhaust · cylinder 3",
+      "name": "Outward hydraulic plunger spring · exhaust · cylinder 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7661,12 +7762,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9635,21 +9738,23 @@
     },
     {
       "id": "tappet-plunger-intake-4",
-      "name": "Hydraulic tappet plunger barrel · intake · cylinder 4",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · intake · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -9658,19 +9763,24 @@
       ],
       "role": "component",
       "cylinder": 4,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-intake-4",
-      "name": "Hydraulic tappet piston · intake · cylinder 4",
+      "name": "Hydraulic sliding plunger · intake · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9684,15 +9794,19 @@
     },
     {
       "id": "tappet-check-ball-intake-4",
-      "name": "Tappet check ball · intake · cylinder 4",
+      "name": "Loaded-state tappet check ball · intake · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9706,15 +9820,19 @@
     },
     {
       "id": "tappet-plunger-spring-intake-4",
-      "name": "Tappet plunger spring · intake · cylinder 4",
+      "name": "Outward hydraulic plunger spring · intake · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9735,12 +9853,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9844,21 +9964,23 @@
     },
     {
       "id": "tappet-plunger-exhaust-4",
-      "name": "Hydraulic tappet plunger barrel · exhaust · cylinder 4",
+      "name": "Hydraulic cylinder · 15B26066 assembly anchor · exhaust · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Barrel member of the 15B26066 hydraulic plunger assembly. The OD is derived from an estimated 17 mm body ID minus the SSP Ref.512 hyperbolic manufacturing-fit midpoint. Internal form, absolute dimensions and stations remain reconstructed.",
+      "purpose": "Hydraulic cylinder member holds the estimated rear pressure chamber and inlet seat. Its catalog number anchors the eight service assemblies rather than identifying this internal member as a separate spare.",
       "facts": [
-        "IPC Figure 10 identifies eight 15B26066 plunger assemblies; the displayed barrel is one member, not the complete assembly BOM.",
-        "The selected hyperbolic plunger/body diametral fit is 0.09779 mm. Absolute body ID and plunger OD remain derived estimates.",
-        "The generic check ball remains unseated in the current sectional reconstruction; check-seat and chamber topology are unresolved."
+        "IPC Figure 10 PDF34–35 identifies eight 15B26066 service assemblies. This cylinder member carries one assembly identity anchor per station; 15B26066 is not an individually identified cylinder spare, and the four displayed members do not establish a complete internal BOM.",
+        "Historical overhaul Figure6-9 PDF57 and SI1011N PDF5/9 support the cylinder, plunger, check ball and outward spring relationship. They do not provide dimensioned L2A internal CAD.",
+        "The conditional SSP Ref.512 assembly/body fit midpoint is 0.09779 mm diametral; the retained 17 mm body ID and derived absolute cylinder OD remain estimates.",
+        "The rear inlet and annular ball seat are estimated integral features, with the ball shown seated under load.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "lyc-limits",
-        "lyc-si-1011n",
         "lyc-overhaul",
-        "reconstruction"
+        "lyc-si-1011n",
+        "reconstruction",
+        "lyc-limits"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -9867,19 +9989,24 @@
       ],
       "role": "component",
       "cylinder": 4,
-      "partNumber": "15B26066"
+      "partNumber": "15B26066",
+      "assemblyPartNumber": "15B26066"
     },
     {
       "id": "tappet-piston-exhaust-4",
-      "name": "Hydraulic tappet piston · exhaust · cylinder 4",
+      "name": "Hydraulic sliding plunger · exhaust · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Sliding member of the hydraulic plunger assembly; kept separate to expose the oil chamber.",
+      "purpose": "Selectively paired plunger has an estimated closed rear load face and a separate blind outward oil-supply cavity. It remains fixed relative to its hydraulic cylinder in the loaded illustration.",
       "facts": [
-        "Part of the displayed 15B26066 assembly, not a separately identified IPC spare. Generic overhaul Figure2-2 establishes the internal relationship."
+        "Historical overhaul paragraph2-7 PDF17–18 and Figure6-9 PDF57 establish separate pressure and supply spaces. SI1011N PDF5 describes selective mating and spring engagement; no individually identified plunger spare or measured serial pairing is asserted.",
+        "The rear face is an estimated 0.8 mm thick; the neck cross-feed station at 42.4 mm and its dimensions are reconstructed.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9893,15 +10020,19 @@
     },
     {
       "id": "tappet-check-ball-exhaust-4",
-      "name": "Tappet check ball · exhaust · cylinder 4",
+      "name": "Loaded-state tappet check ball · exhaust · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Ball closes the oil chamber when the cam loads the tappet. Generic hydraulic-tappet topology; exact internal dimensions are unverified.",
+      "purpose": "Estimated ball touches the reconstructed inlet rim in a static loaded seated illustration. The model does not simulate refill timing or ball travel.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph2-7 PDF17–18 and SI1011N PDF5/9 support a check ball and seat. Ball radius, sharp seat rim and installed station are estimates; geometric tangency does not prove a seal.",
+        "The illustrated state stays seated throughout the common macro follower cycle. Physical ball retention and operating travel remain unresolved.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9915,15 +10046,19 @@
     },
     {
       "id": "tappet-plunger-spring-exhaust-4",
-      "name": "Tappet plunger spring · exhaust · cylinder 4",
+      "name": "Outward hydraulic plunger spring · exhaust · cylinder 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Light spring extends the hydraulic plunger to take up valve-train clearance. Generic overhaul Figure2-2 supplies the functional relationship.",
+      "purpose": "Estimated ground spring reacts between the cylinder front annulus and the outward plunger flange, toward the separate pushrod socket.",
       "facts": [
-        "Identity and installed quantity follow the L2A IPC. Shape and installation coordinates remain reconstructed unless a published dimension is identified."
+        "Historical overhaul paragraph6-129 PDF71 and SI1011N Figure14 PDF9 show the outward spring/socket relationship.",
+        "The reconstructed 7 mm mean radius gives contact on the cylinder annulus; the earlier 5 mm proposal would fall inside its bore. Wire size, active turns, end form, rate, preload and retaining engagement are unmeasured.",
+        "Internal dimensions and integral passages are estimates. The 100 micrometre radial plunger/cylinder leakage gap, ball capture and spring engagement, external case/body feed, pressure, leakage rate and hydraulic operating law remain unverified."
       ],
       "sourceIds": [
+        "lyc-ipc",
         "lyc-overhaul",
+        "lyc-si-1011n",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -9944,12 +10079,14 @@
       "facts": [
         "IPC Figure 10 identifies eight 15B21319 sockets.",
         "OD is derived from the estimated 17 mm body ID minus the SSP Ref.513 hyperbolic-flat fit midpoint; this is not a published absolute socket diameter.",
-        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof."
+        "Spherical cup and 15 micrometre radial reserve fit the estimated 4 mm ball. Oil bore, station and absolute internal dimensions remain estimates; ideal joint geometry is not OEM or oil-film proof.",
+        "Historical overhaul Figure6-9 supports supply through the socket and hollow pushrod. The retained socket rear face meets the estimated plunger front at 44 mm; external case/body oil feed and manufactured routing remain unverified."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
         "lyc-si-1011n",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -36652,7 +36789,7 @@
       "Connecting rod center distance is estimated at175mm. Cam contours and timing use one estimated analytic support law; derived peak valve lifts7.265mm intake/6.744mm exhaust are linkage results, not OEM measurements or calibration.",
       "Magneto, fuel servo, flow-divider, alternator and starter internals are functional reconstructions; omitted small seals, bearings, wiring and hardware are not accounted for by an OEM inventory.",
       "Cessna muffler internals, shroud geometry, baffle openings, mechanical interfaces and fit clearances require measured or licensed dimensional evidence.",
-      "Flat-tappet body and case-bore diameters select published manufacturing-range midpoints. Body bow/foot profile, internal absolute dimensions and oil feeds remain reconstructed; cam profile, rod/station/cup/pad dimensions, dynamic contact, oil films and hydraulic check-seat topology remain unverified. Analytic closure is not OEM geometry.",
+      "Flat-tappet body and case-bore diameters select published manufacturing-range midpoints. Four estimated hydraulic members per station reconstruct the rear inlet/seat, closed load face and outward spring in a static loaded seated state. The 100 micrometre estimated radial leakage gap, ball/spring retention, external case/body feed, manufactured internal dimensions and hydraulic dynamics remain unresolved. Body bow/foot, cam/rod/cup/pad geometry and oil films remain unverified; analytic closure is not OEM geometry.",
       "Rear crankshaft-gear/dowel service dimensions and three pilot scallops are source bounded; tooth form/count, axial pilot/counterbore dimensions, dowel body/tip split, clocking and installation stations remain reconstructed. This is not an installed-engine SB475C compliance record.",
       "Lycoming valve-train members share an analytic closed-reference solver. Ball-center rod lengths derive from reconstructed stations and cannot be matched to SI1060U approximate lengths without a defined length datum. Casting pockets and cup support remain estimated and require actual swept exported-mesh validation.",
       "Lycoming combustion gas overlay and physical iPad performance remain unverified."

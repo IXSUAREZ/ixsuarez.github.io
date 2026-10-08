@@ -1283,7 +1283,8 @@
       "quantity": 1,
       "purpose": "Contains the combustion chamber, two valve passages and two spark-plug positions. Head fins conduct combustion heat to cooling air.",
       "facts": [
-        "Chamber and port contours are illustrative and have not been flow- or dimension-verified."
+        "The valve seats have matching receiving pockets. Stepped bores support the guides; port cutters preserve a reconstructed chamber wall and join behind the seats.",
+        "Chamber volume, cast surfaces, port contours, support lengths and stations remain estimates; neither OEM shape nor flow performance is verified."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -1508,12 +1509,14 @@
       "purpose": "Opens to admit the incoming fuel-air charge into the cylinder.",
       "facts": [
         "Stem diameter uses the 0.4022–0.4030 in SSP-1776-5 Ref. 616 manufacturing range midpoint.",
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile and overall length are inferred.",
         "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -1552,10 +1555,14 @@
       "name": "Valve seat 1 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 54.610 mm, face width 2.4511 mm and angle 30.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -1790,12 +1797,13 @@
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
         "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
-        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile, stem length and 10 mm peak lift remain reconstructed. No OEM part-drawing nominal is asserted."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -1835,10 +1843,14 @@
       "name": "Valve seat 1 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 44.323 mm, face width 1.7145 mm and angle 45.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -3501,7 +3513,8 @@
       "quantity": 1,
       "purpose": "Contains the combustion chamber, two valve passages and two spark-plug positions. Head fins conduct combustion heat to cooling air.",
       "facts": [
-        "Chamber and port contours are illustrative and have not been flow- or dimension-verified."
+        "The valve seats have matching receiving pockets. Stepped bores support the guides; port cutters preserve a reconstructed chamber wall and join behind the seats.",
+        "Chamber volume, cast surfaces, port contours, support lengths and stations remain estimates; neither OEM shape nor flow performance is verified."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -3726,12 +3739,14 @@
       "purpose": "Opens to admit the incoming fuel-air charge into the cylinder.",
       "facts": [
         "Stem diameter uses the 0.4022–0.4030 in SSP-1776-5 Ref. 616 manufacturing range midpoint.",
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile and overall length are inferred.",
         "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -3770,10 +3785,14 @@
       "name": "Valve seat 2 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 54.610 mm, face width 2.4511 mm and angle 30.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -4008,12 +4027,13 @@
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
         "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
-        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile, stem length and 10 mm peak lift remain reconstructed. No OEM part-drawing nominal is asserted."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -4053,10 +4073,14 @@
       "name": "Valve seat 2 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 44.323 mm, face width 1.7145 mm and angle 45.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -5719,7 +5743,8 @@
       "quantity": 1,
       "purpose": "Contains the combustion chamber, two valve passages and two spark-plug positions. Head fins conduct combustion heat to cooling air.",
       "facts": [
-        "Chamber and port contours are illustrative and have not been flow- or dimension-verified."
+        "The valve seats have matching receiving pockets. Stepped bores support the guides; port cutters preserve a reconstructed chamber wall and join behind the seats.",
+        "Chamber volume, cast surfaces, port contours, support lengths and stations remain estimates; neither OEM shape nor flow performance is verified."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -5944,12 +5969,14 @@
       "purpose": "Opens to admit the incoming fuel-air charge into the cylinder.",
       "facts": [
         "Stem diameter uses the 0.4022–0.4030 in SSP-1776-5 Ref. 616 manufacturing range midpoint.",
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile and overall length are inferred.",
         "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -5988,10 +6015,14 @@
       "name": "Valve seat 3 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 54.610 mm, face width 2.4511 mm and angle 30.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -6226,12 +6257,13 @@
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
         "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
-        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile, stem length and 10 mm peak lift remain reconstructed. No OEM part-drawing nominal is asserted."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -6271,10 +6303,14 @@
       "name": "Valve seat 3 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 44.323 mm, face width 1.7145 mm and angle 45.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -7937,7 +7973,8 @@
       "quantity": 1,
       "purpose": "Contains the combustion chamber, two valve passages and two spark-plug positions. Head fins conduct combustion heat to cooling air.",
       "facts": [
-        "Chamber and port contours are illustrative and have not been flow- or dimension-verified."
+        "The valve seats have matching receiving pockets. Stepped bores support the guides; port cutters preserve a reconstructed chamber wall and join behind the seats.",
+        "Chamber volume, cast surfaces, port contours, support lengths and stations remain estimates; neither OEM shape nor flow performance is verified."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -8162,12 +8199,14 @@
       "purpose": "Opens to admit the incoming fuel-air charge into the cylinder.",
       "facts": [
         "Stem diameter uses the 0.4022–0.4030 in SSP-1776-5 Ref. 616 manufacturing range midpoint.",
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile and overall length are inferred.",
         "Valve-lift curve and 10 mm peak lift are illustrative, not factory cam measurements."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -8206,10 +8245,14 @@
       "name": "Valve seat 4 · intake",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 54.610 mm, face width 2.4511 mm and angle 30.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
@@ -8444,12 +8487,13 @@
       "purpose": "Opens to release burned gases into the exhaust riser.",
       "facts": [
         "Stem diameter selects the 0.4932–0.4945 in SSP-1776-5 Ref. 615 Chart S (parallel-valve) manufacturing-range midpoint: 12.5438 mm.",
-        "The valve head, stem length, lift curve and 10 mm peak lift remain reconstructed; the midpoint is not asserted as an OEM part-drawing nominal."
+        "The seating face uses the parallel-valve overhaul Figure 6-26 service midpoint; valve-head margin, neck profile, stem length and 10 mm peak lift remain reconstructed. No OEM part-drawing nominal is asserted."
       ],
       "sourceIds": [
         "lyc-ipc",
         "lyc-limits",
-        "reconstruction"
+        "reconstruction",
+        "lyc-overhaul"
       ],
       "geometryStatus": "reconstructed",
       "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
@@ -8489,10 +8533,14 @@
       "name": "Valve seat 4 · exhaust",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Provides the hardened sealing face against which the valve closes.",
-      "facts": [],
+      "purpose": "Provides a matched conical sealing face against which the valve closes.",
+      "facts": [
+        "Parallel-valve overhaul Figure 6-26 outer-face diameter 44.323 mm, face width 1.7145 mm and angle 45.25 degrees select service-range midpoints.",
+        "The insert OD, body width, receiving pocket and absolute mounting station remain reconstructed. Closed face contact is intentional tangency, not a 4 mm solid overlap."
+      ],
       "sourceIds": [
         "lyc-ipc",
+        "lyc-overhaul",
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",

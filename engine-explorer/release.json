@@ -2,13 +2,13 @@
   "date": "2026-10-07",
   "route": "https://suarezcfi.com/engine-explorer/",
   "lycoming": {
-    "sha256": "9b5ea6511610e8a81e90e7f9b17b4cccbc1850df386ffb5462921fa633ddc8aa",
-    "bytes": 85077596,
+    "sha256": "8c4b8bec501a60b1f82e65480d376149872edb03ac772db193854ffe85b8d4b4",
+    "bytes": 104019644,
     "parts": 977,
     "animatedInstances": 227,
     "schematic": 105,
-    "compressedSha256": "d9cec086f971034e2de30a32f0e4c65252dd640fef3719ded45a122a639e1cdd",
-    "compressedBytes": 35512806
+    "compressedSha256": "b53226e211dff103968e5c02ff83fb7dee6b67f4aedb1fee806ab354bff71e34",
+    "compressedBytes": 42864413
   },
   "rotax": {
     "sha256": "2d3a5343cef335e102da1adf92c37c02473b6b3c9f17857161550199c850b879",
@@ -21,22 +21,34 @@
   },
   "verification": {
     "lycomingAndRelevantShared": {
-      "files": 36,
-      "passed": 164
+      "files": 40,
+      "passed": 181
     },
     "build": "TypeScript and Vite production build passed",
     "browser": {
       "modelLoaded": 977,
-      "nominalInductionHosesFound": 4,
       "partSelection": true,
       "animationPlayPause": true,
-      "consoleErrors": []
+      "consoleErrors": [],
+      "testedArtifactSha256": "8c4b8bec501a60b1f82e65480d376149872edb03ac772db193854ffe85b8d4b4",
+      "scope": "Local production artifact before publication. Live readback and interaction verification are recorded with the matching deployment receipt."
     },
-    "fullRepositorySuite": "Pre-existing Rotax/shared Node fixture failures for unchanged Draco-compressed Rotax asset remain; full-suite pass not claimed."
+    "fullRepositorySuite": "Pre-existing Rotax/shared Node fixture failures for unchanged Draco-compressed Rotax asset remain; full-suite pass not claimed.",
+    "mesh": {
+      "outsideHostAssertions": 112,
+      "outsideHostTriangles": 0,
+      "selectedMeshesWithoutExactZeroAreaFaces": 20,
+      "maximumSelectedRadialApproximationMicrometres": 2,
+      "entireComponentAccuracyClaim": false,
+      "independentAllCylinderGasketFaces": 8,
+      "independentAllCylinderExhaustStudCaps": 8,
+      "independentInletSeamRays": 20,
+      "movingFitCrossings": 0
+    }
   },
   "completeOemReplica": false,
   "physicalIpadVerified": false,
-  "sourceCommit": "c084566209b4b951ca211f8f23c805d82de0ae52",
+  "sourceCommit": "4e0b27be3cc57b25eb35b361ec0a158a48fccc73",
   "previousReleaseVerification": {
     "date": "2026-09-12",
     "verification": {
@@ -85,5 +97,55 @@
     "exactGeometryRows": 0,
     "installedBomComplete": false
   },
-  "assetDirectory": "engine-explorer/app/assets/lycoming-c084566"
+  "assetDirectory": "engine-explorer/app/assets/lycoming-c084566",
+  "previousModelReleaseVerification": {
+    "sourceCommit": "c084566209b4b951ca211f8f23c805d82de0ae52",
+    "lycoming": {
+      "sha256": "9b5ea6511610e8a81e90e7f9b17b4cccbc1850df386ffb5462921fa633ddc8aa",
+      "bytes": 85077596,
+      "parts": 977,
+      "animatedInstances": 227,
+      "schematic": 105,
+      "compressedSha256": "d9cec086f971034e2de30a32f0e4c65252dd640fef3719ded45a122a639e1cdd",
+      "compressedBytes": 35512806
+    },
+    "verification": {
+      "lycomingAndRelevantShared": {
+        "files": 40,
+        "passed": 181
+      },
+      "build": "TypeScript and Vite production build passed",
+      "browser": {
+        "modelLoaded": 977,
+        "partSelection": true,
+        "animationPlayPause": true,
+        "consoleErrors": [],
+        "testedArtifactSha256": "8c4b8bec501a60b1f82e65480d376149872edb03ac772db193854ffe85b8d4b4",
+        "scope": "Local production artifact before publication. Live readback and interaction verification are recorded with the matching deployment receipt."
+      },
+      "fullRepositorySuite": "Pre-existing Rotax/shared Node fixture failures for unchanged Draco-compressed Rotax asset remain; full-suite pass not claimed.",
+      "mesh": {
+        "outsideHostAssertions": 112,
+        "outsideHostTriangles": 0,
+        "selectedMeshesWithoutExactZeroAreaFaces": 20,
+        "maximumSelectedRadialApproximationMicrometres": 2,
+        "entireComponentAccuracyClaim": false,
+        "independentAllCylinderGasketFaces": 8,
+        "independentAllCylinderExhaustStudCaps": 8,
+        "independentInletSeamRays": 20,
+        "movingFitCrossings": 0
+      }
+    },
+    "scope": "Historical record for 9b5ea651 model only; not verification for current geometry."
+  },
+  "frontendArtifactSourceCommit": "c084566209b4b951ca211f8f23c805d82de0ae52",
+  "remainingChamberConstraint": {
+    "targetClearanceCcPerCylinder": 197.19484821109705,
+    "estimatedCappedSectionCc": [
+      365.67183277076856,
+      366.17227447142415
+    ],
+    "compressionRatioSubstantiated": false,
+    "scope": "Capped section diagnostic only, not verified connected or sealed combustion volume."
+  }
 }

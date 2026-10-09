@@ -1,13 +1,13 @@
 {
-  "builtAt": "2026-10-08T04:41:09.856Z",
+  "builtAt": "2026-10-09T03:29:01.812Z",
   "asset": "lycoming-io-360-l2a.glb",
-  "sha256": "67693c06353f8e7aaf9c98610ea788dbac960141365d42e86b1177f3557cf301",
-  "bytes": 133723468,
+  "sha256": "0b912a83aa443ada591aca6cbb272bfdac8cd50884d9f16f0ee71cbe34828af4",
+  "bytes": 206444164,
   "parts": 981,
   "instances": 981,
   "animatedInstances": 228,
   "schematic": 105,
-  "manufacturerPartNumberMatches": 675,
+  "manufacturerPartNumberMatches": 671,
   "bySystem": {
     "72-20-00": 521,
     "79-20-00": 72,

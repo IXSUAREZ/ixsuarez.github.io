@@ -196,6 +196,13 @@
       "revision": "Revision E, July 1984; historical reference"
     },
     {
+      "id": "nbs-h28-1969",
+      "title": "Historical Screw Thread Standards for Federal Services, Part I",
+      "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/hb/nbshandbook28-1969p1.pdf",
+      "locator": "Figure 2.3, Table 2.1 and Table 2.8: generic historical external DESIGN optional circular tangent-root, nominal maximum-material interpretation. Table 2.1 column 8 specifies rounded-root truncation f_rs=H/6; circular radius H/6 follows from the declared tangent circle with 60-degree flanks. This does not establish the installed Lycoming bolt's production class, allowance, root choice, runout, head, receiving fit or current standards compliance.",
+      "revision": "1969 historical reference"
+    },
+    {
       "id": "spruce-s1021",
       "title": "S1021Z8-8 replacement screw specification",
       "url": "https://www.aircraftspruce.com/catalog/appages/cessna_07-27046.php",
@@ -1494,9 +1501,9 @@
       "name": "Rocker-cover pan-head screw 1 · 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -1517,9 +1524,9 @@
       "name": "Rocker-cover pan-head screw 1 · 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -1540,9 +1547,9 @@
       "name": "Rocker-cover pan-head screw 1 · 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -1563,9 +1570,9 @@
       "name": "Rocker-cover pan-head screw 1 · 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -1586,9 +1593,9 @@
       "name": "Rocker-cover pan-head screw 1 · 5",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -1609,9 +1616,9 @@
       "name": "Rocker-cover pan-head screw 1 · 6",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -3811,9 +3818,9 @@
       "name": "Rocker-cover pan-head screw 2 · 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -3834,9 +3841,9 @@
       "name": "Rocker-cover pan-head screw 2 · 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -3857,9 +3864,9 @@
       "name": "Rocker-cover pan-head screw 2 · 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -3880,9 +3887,9 @@
       "name": "Rocker-cover pan-head screw 2 · 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -3903,9 +3910,9 @@
       "name": "Rocker-cover pan-head screw 2 · 5",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -3926,9 +3933,9 @@
       "name": "Rocker-cover pan-head screw 2 · 6",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -6128,9 +6135,9 @@
       "name": "Rocker-cover pan-head screw 3 · 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -6151,9 +6158,9 @@
       "name": "Rocker-cover pan-head screw 3 · 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -6174,9 +6181,9 @@
       "name": "Rocker-cover pan-head screw 3 · 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -6197,9 +6204,9 @@
       "name": "Rocker-cover pan-head screw 3 · 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -6220,9 +6227,9 @@
       "name": "Rocker-cover pan-head screw 3 · 5",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -6243,9 +6250,9 @@
       "name": "Rocker-cover pan-head screw 3 · 6",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -8445,9 +8452,9 @@
       "name": "Rocker-cover pan-head screw 4 · 1",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -8468,9 +8475,9 @@
       "name": "Rocker-cover pan-head screw 4 · 2",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -8491,9 +8498,9 @@
       "name": "Rocker-cover pan-head screw 4 · 3",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -8514,9 +8521,9 @@
       "name": "Rocker-cover pan-head screw 4 · 4",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -8537,9 +8544,9 @@
       "name": "Rocker-cover pan-head screw 4 · 5",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -8560,9 +8567,9 @@
       "name": "Rocker-cover pan-head screw 4 · 6",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through real flange holes.",
+      "purpose": "One of six pan-head screws retains the cover and silicone gasket. Its shank passes through reconstructed flange holes; female-thread retention is not verified.",
       "facts": [
-        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. Diameter, pitch and under-head length follow that callout; drive recess and head proportions are reconstructed.",
+        "IPC Figure12:24 self-locking pan-head screws,1/4-20 x5/8inch. The nominal diameter and pitch follow that callout. The 15.875 mm axial length uses a selected under-head datum; the catalog does not establish that datum. Drive recess, head proportions and locking treatment remain reconstructed.",
         "The standard-cover choice excludes the alternative chrome-cover screw/washer combination."
       ],
       "sourceIds": [
@@ -10276,12 +10283,12 @@
     },
     {
       "id": "head-drain-nipple-1",
-      "name": "Cylinder-head oil-drain nipple 1",
+      "name": "Head-side oil-return connection proxy 1",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
+      "purpose": "This straight reconstructed proxy occupies the head-side oil-return connection. Figure 9 identifies a 45-degree MS20823-6D elbow there; its complete shape and installed port fit remain unresolved.",
       "facts": [
-        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Figure 9 item 10 lists four MS20823-6D elbows. Figure 12 separately lists four STD-684 straight nipples for 3/8-inch-ID hose; that callout does not establish this head-side proxy identity.",
         "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
@@ -10294,8 +10301,7 @@
         "oil"
       ],
       "role": "component",
-      "cylinder": 1,
-      "partNumber": "STD-684"
+      "cylinder": 1
     },
     {
       "id": "head-drain-hose-1",
@@ -10393,12 +10399,12 @@
     },
     {
       "id": "head-drain-nipple-2",
-      "name": "Cylinder-head oil-drain nipple 2",
+      "name": "Head-side oil-return connection proxy 2",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
+      "purpose": "This straight reconstructed proxy occupies the head-side oil-return connection. Figure 9 identifies a 45-degree MS20823-6D elbow there; its complete shape and installed port fit remain unresolved.",
       "facts": [
-        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Figure 9 item 10 lists four MS20823-6D elbows. Figure 12 separately lists four STD-684 straight nipples for 3/8-inch-ID hose; that callout does not establish this head-side proxy identity.",
         "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
@@ -10411,8 +10417,7 @@
         "oil"
       ],
       "role": "component",
-      "cylinder": 2,
-      "partNumber": "STD-684"
+      "cylinder": 2
     },
     {
       "id": "head-drain-hose-2",
@@ -10510,12 +10515,12 @@
     },
     {
       "id": "head-drain-nipple-3",
-      "name": "Cylinder-head oil-drain nipple 3",
+      "name": "Head-side oil-return connection proxy 3",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
+      "purpose": "This straight reconstructed proxy occupies the head-side oil-return connection. Figure 9 identifies a 45-degree MS20823-6D elbow there; its complete shape and installed port fit remain unresolved.",
       "facts": [
-        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Figure 9 item 10 lists four MS20823-6D elbows. Figure 12 separately lists four STD-684 straight nipples for 3/8-inch-ID hose; that callout does not establish this head-side proxy identity.",
         "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
@@ -10528,8 +10533,7 @@
         "oil"
       ],
       "role": "component",
-      "cylinder": 3,
-      "partNumber": "STD-684"
+      "cylinder": 3
     },
     {
       "id": "head-drain-hose-3",
@@ -10627,12 +10631,12 @@
     },
     {
       "id": "head-drain-nipple-4",
-      "name": "Cylinder-head oil-drain nipple 4",
+      "name": "Head-side oil-return connection proxy 4",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Hollow nipple enters the head drain passage and inserts eight millimetres into the hose.",
+      "purpose": "This straight reconstructed proxy occupies the head-side oil-return connection. Figure 9 identifies a 45-degree MS20823-6D elbow there; its complete shape and installed port fit remain unresolved.",
       "facts": [
-        "Figure 12: four straight nipples for 3/8-inch-ID hose.",
+        "Figure 9 item 10 lists four MS20823-6D elbows. Figure 12 separately lists four STD-684 straight nipples for 3/8-inch-ID hose; that callout does not establish this head-side proxy identity.",
         "Nipple length, wall, angle and installed station remain reconstructed."
       ],
       "sourceIds": [
@@ -10645,8 +10649,7 @@
         "oil"
       ],
       "role": "component",
-      "cylinder": 4,
-      "partNumber": "STD-684"
+      "cylinder": 4
     },
     {
       "id": "head-drain-hose-4",
@@ -11098,16 +11101,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/2inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11200,16 +11206,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/2inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11302,16 +11311,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/2inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11404,16 +11416,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/2inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11506,16 +11521,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/2inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11608,16 +11626,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/2inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11710,16 +11731,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.625inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-5/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11792,16 +11816,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.875inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-7/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11874,16 +11901,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.875inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-7/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11956,16 +11986,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.125inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -11998,16 +12031,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.125inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -12040,16 +12076,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.125inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -12082,16 +12121,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed bored joint lugs with a generic nominal external DESIGN thread; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.125inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length 1-1/8inch. Catalogue long datum is unestablished; mapping this length between tip and underhead is reconstructed.",
+        "Generic historical NBS H28-1969 external DESIGN optional circular root tangent60degree: rounded-root truncation H/6 gives derived circular radius H/6; nominal major/pitch/minor are theoretical maximum-material references, not selected production allowance or class.",
+        "Selected25.4mm thread extent,5.588mm head thickness,head size,station,single-start right-hand helix,flat tip and abrupt runout treatment are reconstructed; production root/UNR/class,serial geometry and receiving fit remain unestablished."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Generic optional external DESIGN circular tangent-root reconstruction using96angular columns and8root subarcs. Catalogue nominal controls and existing per-joint pose are retained; underhead datum,head,extent,end and installation are estimates. Representative18micrometre lateral construction qualification is not a formal global2micrometre,manufactured/OEM or all-family embedding certificate.",
       "tags": [
         "fastener",
         "case"
@@ -12124,16 +12166,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed joint with a generic external DESIGN thread and the retained estimated transverse shank drilling; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length1-1/2inch; catalogue long datum is unestablished and underhead interpretation is estimated.",
+        "Generic historical external DESIGN optional tangent-circle root is reconstructed; class, allowance, root/UNR, handedness, runout, head, station and25.4mm threaded extent are unselected production estimates.",
+        "Retained cutter radius1mm,length20mm,axisY and centreX=tip+1.5mm are legacy shank-drilling estimates, not a controlled OEM hole or head hole. Boolean closure does not prove manufacturing dimensions or assembly fit."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Isolated generic DESIGN joined-body minus literal retained transverse shank cutter using pinned Manifold3.5.4. Exact input-position merges only; no cutter expansion or moved axes. Drilling, head, datum and selected production configuration remain unknown; topology is checked separately, with no all-pair/OEM/fit/global2micrometre acceptance.",
       "tags": [
         "fastener",
         "case"
@@ -12206,16 +12251,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed joint with a generic external DESIGN thread and the retained estimated transverse shank drilling; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length1-1/2inch; catalogue long datum is unestablished and underhead interpretation is estimated.",
+        "Generic historical external DESIGN optional tangent-circle root is reconstructed; class, allowance, root/UNR, handedness, runout, head, station and25.4mm threaded extent are unselected production estimates.",
+        "Retained cutter radius1mm,length20mm,axisY and centreX=tip+1.5mm are legacy shank-drilling estimates, not a controlled OEM hole or head hole. Boolean closure does not prove manufacturing dimensions or assembly fit."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Isolated generic DESIGN joined-body minus literal retained transverse shank cutter using pinned Manifold3.5.4. Exact input-position merges only; no cutter expansion or moved axes. Drilling, head, datum and selected production configuration remain unknown; topology is checked separately, with no all-pair/OEM/fit/global2micrometre acceptance.",
       "tags": [
         "fastener",
         "case"
@@ -12288,16 +12336,19 @@
       "name": "Crankcase joint bolt",
       "systemId": "72-20-00",
       "quantity": 1,
-      "purpose": "Clamps the bored joint lugs across the case split.",
+      "purpose": "Clamps the reconstructed joint with a generic external DESIGN thread and the retained estimated transverse shank drilling; receiving fit is unverified.",
       "facts": [
-        "IPC nominal diameter1/4inch and under-head length 1.4999999999999998inch; lug shape, station and engagement are reconstructed."
+        "IPC nominal diameter1/4inch,20TPI and catalog length1-1/2inch; catalogue long datum is unestablished and underhead interpretation is estimated.",
+        "Generic historical external DESIGN optional tangent-circle root is reconstructed; class, allowance, root/UNR, handedness, runout, head, station and25.4mm threaded extent are unselected production estimates.",
+        "Retained cutter radius1mm,length20mm,axisY and centreX=tip+1.5mm are legacy shank-drilling estimates, not a controlled OEM hole or head hole. Boolean closure does not prove manufacturing dimensions or assembly fit."
       ],
       "sourceIds": [
         "lyc-ipc",
-        "reconstruction"
+        "reconstruction",
+        "nbs-h28-1969"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Isolated generic DESIGN joined-body minus literal retained transverse shank cutter using pinned Manifold3.5.4. Exact input-position merges only; no cutter expansion or moved axes. Drilling, head, datum and selected production configuration remain unknown; topology is checked separately, with no all-pair/OEM/fit/global2micrometre acceptance.",
       "tags": [
         "fastener",
         "case"
@@ -22839,10 +22890,11 @@
       "name": "Adjustable oil-pressure relief-valve housing",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Hollow adjustable relief-valve housing routes pressure oil past a seated ball when its spring setting is exceeded.",
+      "purpose": "Coherent reconstructed housing boundary represents the body, flange and through bore associated with adjustable valve assembly 77808; individual OEM housing identity and geometry are unestablished.",
       "facts": [
-        "IPC Figure 4 lists adjustable relief valve assembly 77808, quantity 1.",
-        "Figure 4 shows a lateral side-mounted stack. The selected rear/right case station, housing profile, bore diameter and pressure setting are reconstructed; the case gallery cut is an integration requirement."
+        "IPC Figure 4 lists adjustable relief valve assembly 77808, quantity 1; this is an assembly identity, not a separately established OEM housing part.",
+        "The original reconstructed eight-corner body/flange-minus-bore profile and rigid station are retained with a checked 2 micrometre representation budget, not a manufacturing tolerance.",
+        "Actual reconstructed seat and collar surfaces overlap this housing; separation from the published case remains unresolved as an assembled oil path. Receiving fit is rejected."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -22850,7 +22902,7 @@
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Closed reconstructed housing mesh only. Seat/collar overlaps and case gap remain unresolved; no oil seal, manufactured geometry, installed configuration or OEM housing identity is accepted.",
       "tags": [
         "oil",
         "lycoming-io-360-l2a"
@@ -22885,10 +22937,11 @@
       "name": "Oil-pressure-relief ball seat",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Internal conical-seat proxy makes a circular tangency with the catalogued ball surface.",
+      "purpose": "Reconstructed conical seat and rounded lip form one closed annular solid beside the catalogued ball.",
       "facts": [
         "The IPC confirms the ball and valve assembly but does not publish seat geometry.",
-        "The lip centerline is one ball radius plus lip-wire radius from the ball center, giving analytic external tangency. The connected conical seat profile is reconstructed."
+        "The original continuous reconstructed conical profile and analytically tangent lip scalars are retained. One native profile union replaces overlapping primitive surfaces.",
+        "The complete exported seat profile has a separately checked 2 micrometre representation bound. Its numerical support reserve is a mesh approximation, not a manufactured clearance or oil seal."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -22896,7 +22949,7 @@
         "reconstruction"
       ],
       "geometryStatus": "schematic",
-      "geometryNote": "Functional internal geometry only; component placement, count and dimensions are not verified manufacturer detail.",
+      "geometryNote": "Coherent estimated seat from the original reconstruction profile, exported after the unchanged rigid station map with one Float32 conversion. Actual refined-ball surface separation is checked separately; housing, spring, case fit, sealing and OEM geometry remain unverified.",
       "tags": [
         "oil",
         "lycoming-io-360-l2a"
@@ -22918,7 +22971,7 @@
         "reconstruction"
       ],
       "geometryStatus": "reconstructed",
-      "geometryNote": "Original reconstructed surfaces and installed coordinates. Published nominal dimensions are identified in the facts; other dimensions are estimates.",
+      "geometryNote": "Catalogued 11/16-inch nominal sphere with a checked 2 micrometre mesh approximation bound. Diameter tolerance, surface finish and installed station remain unverified. Fit against the estimated seat is not accepted.",
       "tags": [
         "oil",
         "lycoming-io-360-l2a"
@@ -22931,10 +22984,11 @@
       "name": "Oil-pressure-relief spring family",
       "systemId": "79-20-00",
       "quantity": 1,
-      "purpose": "Compressed spring biases the relief ball toward its seat.",
+      "purpose": "Closed geometric spring proxy follows the original reconstructed centripetal centreline and biases the relief ball; manufactured spring identity and dimensions remain unestablished.",
       "facts": [
-        "IPC Figure 4 lists one selected spring from 61084, 68668, 77467, LW-11713, or LW-18085. No one alternative is assigned because effectivity is not established.",
-        "Coil diameter, free length and rate are reconstructed."
+        "IPC Figure 4 lists possible springs 61084, 68668, 77467, LW-11713, or LW-18085. All five alternatives remain unselected because effectivity is unestablished.",
+        "Original reconstructed 5 mm coil radius, 21 mm axial centreline span, six turns, 0.7 mm wire radius and 121-control-point centripetal path are retained. End disks close proxy cross-sections only; they do not establish manufactured closed or ground coil ends.",
+        "A separate coarse conservative profile comparison is 466.687 micrometres; no formal interval, exact maximum or 2 micrometre profile certificate is accepted. Exact finite spring/adjuster crossings retain assembly-fit rejection."
       ],
       "sourceIds": [
         "lyc-ipc",
@@ -22942,7 +22996,7 @@
         "reconstruction"
       ],
       "geometryStatus": "schematic",
-      "geometryNote": "Functional internal geometry only; component placement, count and dimensions are not verified manufacturer detail.",
+      "geometryNote": "Closed schematic spring-family proxy with the native 200-entry arc lookup, original finite-difference endpoint planes and unchanged rigid station followed by one world Float32 conversion. No selected part number, effectivity, manufactured free length, rate, load, coil-end style, receiver fit or OEM geometry is accepted.",
       "tags": [
         "oil",
         "lycoming-io-360-l2a"

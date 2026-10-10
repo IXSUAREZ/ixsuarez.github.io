@@ -85,20 +85,6 @@
       "accent": "#b8a0ff"
     },
     {
-      "id": "flight-lesson-guide",
-      "name": "Flight Lesson Guide",
-      "path": "/flight-lesson-guide/",
-      "group": "training",
-      "short": "Teach each flight, step by step",
-      "description": "Prepare a flight, follow its teaching sequence, and print a cockpit checklist.",
-      "compatibility": "Phone, tablet & desktop · Offline guide",
-      "features": [
-        "Timed teaching and student practice steps",
-        "Cockpit checklists and Letter-size course PDFs"
-      ],
-      "accent": "#B99746"
-    },
-    {
       "id": "aero-lab",
       "name": "Aero Lab",
       "path": "/aero-lab/",

@@ -162,19 +162,11 @@
         "theme_color": "#E3E3E3"
       },
       "integration_errors": []
-    },
-    {
-      "file": "flight-lesson-guide/manifest.webmanifest",
-      "colors": {
-        "background_color": "#E3E3E3",
-        "theme_color": "#E3E3E3"
-      },
-      "integration_errors": []
     }
   ],
   "source_control_families": {
     "button | nav-menu-toggle": {
-      "count": 522,
+      "count": 521,
       "routes": [
         "/",
         "/flight-training-louisville-ky/",
@@ -696,8 +688,7 @@
         "/blog/landing-practice-bowman-field/",
         "/engine-explorer/",
         "/foi-cards/",
-        "/tools/",
-        "/flight-lesson-guide/"
+        "/tools/"
       ]
     },
     "a | btn btn--primary": {
@@ -1795,7 +1786,7 @@
       ]
     },
     "button | ": {
-      "count": 1465,
+      "count": 1453,
       "routes": [
         "/part-61-calculator/",
         "/simply-endorsed/blog/what-is-simply-endorsed/",
@@ -2273,8 +2264,7 @@
         "/blog/medexpress-faa-medical-walkthrough/",
         "/blog/kentucky-derby-tfr-flying/",
         "/blog/landing-practice-bowman-field/",
-        "/tools/",
-        "/flight-lesson-guide/"
+        "/tools/"
       ]
     },
     "button | part61-button part61-button-full part61-button-secondary": {
@@ -2506,12 +2496,12 @@
       ]
     },
     "button | orbit-app": {
-      "count": 8,
+      "count": 7,
       "routes": [
         "/tools/"
       ]
     },
-    "button | flg-primary": {
+    "a | private-guide-button": {
       "count": 1,
       "routes": [
         "/flight-lesson-guide/"
@@ -3287,14 +3277,13 @@
         "/tools/"
       ]
     },
-    "3d8b6b459b87": {
+    "e58e8f845cda": {
       "stylesheets": [
         "assets/design-system.css",
         "flight-lesson-guide/styles.css",
-        "assets/avionics.css",
-        "assets/site-footer.css"
+        "assets/avionics.css"
       ],
-      "inline_style_sha256": "3322a02e4326a9c784ead9e6f278168590cd7caa05f73193f9693bb8b72ddc5a",
+      "inline_style_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "routes": [
         "/flight-lesson-guide/"
       ]
@@ -10591,7 +10580,7 @@
       "source_controls": {
         "button | nav-menu-toggle": 1,
         "button | ": 6,
-        "button | orbit-app": 8
+        "button | orbit-app": 7
       },
       "visual_review": "pending"
     },
@@ -10599,12 +10588,10 @@
       "route": "/flight-lesson-guide/",
       "file": "flight-lesson-guide/index.html",
       "integration_errors": [],
-      "style_group": "3d8b6b459b87",
+      "style_group": "e58e8f845cda",
       "inline_color_literals": [],
       "source_controls": {
-        "button | nav-menu-toggle": 1,
-        "button | ": 12,
-        "button | flg-primary": 1
+        "a | private-guide-button": 1
       },
       "visual_review": "pending"
     }

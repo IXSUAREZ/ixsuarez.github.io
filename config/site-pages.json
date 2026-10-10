@@ -355,14 +355,6 @@
       "summary": "Mobile flight calculator",
       "description": "Work through common flight calculations in a focused, mobile-first cockpit.",
       "topic": "Flight planning"
-    },
-    {
-      "id": "flight-lesson-guide",
-      "label": "Flight Lesson Guide",
-      "path": "/flight-lesson-guide/",
-      "summary": "Timed flight teaching guides",
-      "description": "Plan each flight with teaching steps, practice blocks, and cockpit checklists.",
-      "topic": "Training"
     }
   ],
   "pages": [
@@ -5699,9 +5691,9 @@
       "file": "flight-lesson-guide/index.html",
       "kind": "page",
       "identity": "flight-lesson-guide",
-      "title": "Flight Lesson Guide | Timed Flight Lessons & Cockpit Checklists",
-      "description": "Follow flight lesson teaching sequences, practice time budgets, and printable cockpit checklists across pilot and instructor pathways.",
-      "indexable": true,
+      "title": "Private Flight Lesson Guide | SuarezCFI",
+      "description": "Owner access to the private Flight Lesson Guide.",
+      "indexable": false,
       "primary_cta": "/ground-school-louisville-ky/"
     }
   ],

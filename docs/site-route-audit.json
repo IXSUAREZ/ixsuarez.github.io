@@ -2,11 +2,11 @@
   "generated_by": "scripts/audit-site.py",
   "origin": "https://suarezcfi.com",
   "summary": {
-    "manifest_routes": 523,
-    "discovered_html": 526,
-    "audit_rows": 526,
+    "manifest_routes": 524,
+    "discovered_html": 528,
+    "audit_rows": 528,
     "alias_count": 2,
-    "built_runtime_entry_count": 1,
+    "built_runtime_entry_count": 2,
     "failure_count": 0,
     "broken_reference_count": 0,
     "jsonld_failure_count": 0,
@@ -14,12 +14,12 @@
   },
   "aliases": [
     {
-      "route": "/simply-endorsed/",
-      "destination": "/simply-endorsed-cfi/"
-    },
-    {
       "route": "/frat/",
       "destination": "/flight-risk-assessment/"
+    },
+    {
+      "route": "/simply-endorsed/",
+      "destination": "/simply-endorsed-cfi/"
     }
   ],
   "failures": [],
@@ -878,6 +878,20 @@
       ]
     },
     {
+      "route": "/engine-explorer/rotax-component-studies.html",
+      "title": "Rotax 912 ULS saved component junctions",
+      "description": "",
+      "kind": "built_runtime_entry",
+      "identity": null,
+      "indexable": null,
+      "classification_note": "Independent saved component evidence viewer with embedded source models; not a canonical product route.",
+      "source_urls": [],
+      "broken_refs": [],
+      "headings": [
+        "Component study"
+      ]
+    },
+    {
       "route": "/faa-written-test-prep/",
       "title": "FAA Written Test Prep in Louisville, KY | SuarezCFI.com",
       "description": "FAA written-test prep for private pilot and related aviation knowledge areas, with official-source explanations, weak-area review, and Louisville ground support.",
@@ -948,6 +962,33 @@
         "Flight instructor FAQs",
         "Tell me what you're working toward",
         "Contact",
+        "Explore",
+        "Flight instruction"
+      ]
+    },
+    {
+      "route": "/flight-lesson-guide/",
+      "title": "Flight Lesson Guide | Timed Flight Lessons & Cockpit Checklists",
+      "description": "Follow flight lesson teaching sequences, practice time budgets, and printable cockpit checklists across pilot and instructor pathways.",
+      "kind": "page",
+      "identity": "flight-lesson-guide",
+      "indexable": true,
+      "classification_note": null,
+      "source_urls": [
+        "https://suarezcfi.com/flight-lesson-guide/",
+        "https://www.instagram.com/suarez.cfi/",
+        "https://www.threads.net/@suarez.cfi",
+        "https://www.youtube.com/@SUAREZCFI",
+        "https://www.tiktok.com/@suarez.cfi",
+        "https://www.facebook.com/Suarez.CFI"
+      ],
+      "broken_refs": [],
+      "headings": [
+        "Flight Lesson Guide",
+        "Loading the lesson library…",
+        "Read the course PDFs",
+        "Prepare on the ground",
+        "The complete sequence",
         "Explore",
         "Flight instruction"
       ]

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-10T12:10:00.689660+00:00",
+  "courseCount": 8,
+  "lessonRecords": 276,
+  "flightDeviceLessons": 196,
+  "files": [
+    {
+      "path": "data/courses.json",
+      "bytes": 3225867,
+      "sha256": "50cf898b7b1cca712bf731d73e39fc3fb88ecf10395a8eb3b0bcf82ef2f7142a"
+    },
+    {
+      "path": "downloads/private.pdf",
+      "bytes": 728290,
+      "sha256": "be142cbce02fb85f68632cee713af12d7d6c7744a09d0c98876c5fb0dc9e19db"
+    },
+    {
+      "path": "downloads/sport.pdf",
+      "bytes": 551971,
+      "sha256": "a9dd77d51ec9dc7d85bf8144b7bcb64011bb8999c019786f7f00266a124fe2e7"
+    },
+    {
+      "path": "downloads/instrument.pdf",
+      "bytes": 479412,
+      "sha256": "e7d37d9a29e8a852ed3e991784f8eb691e28e9e24961281dcb62d01484e933a3"
+    },
+    {
+      "path": "downloads/commercial.pdf",
+      "bytes": 964868,
+      "sha256": "cb55ca7f639580a1738065dd21f5a00b24be90e82bbb00aceb0542eb03b454db"
+    },
+    {
+      "path": "downloads/cfi.pdf",
+      "bytes": 271073,
+      "sha256": "c2c25e4592494e61f9a073a1930eb3b5edbc992b173d44e116a28d17b2f969df"
+    },
+    {
+      "path": "downloads/cfii.pdf",
+      "bytes": 198165,
+      "sha256": "bbc00a819dcddc9f9984db0e734208869f60c8c7e1d95203d006cf07bf776105"
+    },
+    {
+      "path": "downloads/mei.pdf",
+      "bytes": 233998,
+      "sha256": "5983dfd6fc55dd7428f05a3e1e6f88665a3fdc14a991a6a16156e63f911ed44d"
+    },
+    {
+      "path": "downloads/mei-addon.pdf",
+      "bytes": 153746,
+      "sha256": "306ee2193124ab717ed3368d4ad407dc9b0b1c90760c76ca8cbec14d1a780f1f"
+    }
+  ]
+}

@@ -103,6 +103,7 @@ def kind(source):
 def paths():
     for group in GROUPS:
         for path in sorted((ROOT / group).rglob('*.html')):
+            if path.name.startswith('._'): continue
             if not any(p.startswith(('.', '_')) for p in path.relative_to(ROOT).parts):
                 yield path
 

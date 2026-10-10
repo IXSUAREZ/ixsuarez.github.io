@@ -17,6 +17,7 @@ shared_versions={name.removeprefix('assets/'):digest for name,digest in asset_ve
 app_versions={name:digest for name,digest in asset_versions.items() if not name.startswith('assets/')}
 changed=[]
 for p in root.rglob('*.html'):
+ if p.name.startswith('._'):continue
  rel=p.relative_to(root)
  if any(x in rel.parts for x in ['.git','node_modules','_local-only','.wrangler-integration','output']):continue
  s=p.read_text(errors='strict')

@@ -1,0 +1,3 @@
+
+# Authored course PDFs are binary documents, not mergeable source text.
+flight-lesson-guide/downloads/*.pdf binary

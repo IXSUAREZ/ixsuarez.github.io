@@ -12,6 +12,7 @@ EXCLUDED_PREFIXES = ('engine-explorer/app/', 'aero-lab/native-flow/', 'assets/pa
 # canonical public routes. Keep this path-specific and backed by its source
 # preparation script; new unmanifested HTML still fails the route audit.
 BUILT_RUNTIME_ENTRIES = {
+    'engine-explorer/rotax-component-studies.html': 'Independent saved component evidence viewer with embedded source models; not a canonical product route.',
     'pilotsolve/mobile.html': 'PilotSolve installable/mobile shell emitted by ../sources/pilotsolve/scripts/prepare-suarezcfi.mjs',
 }
 HTTP = re.compile(r'^https?://', re.I)
@@ -65,6 +66,7 @@ def main():
     sitemap=set(re.findall(r'<loc>(.*?)</loc>',sitemap_text)); rows=[]; failures=[]; source_failures=[]; jsonld_failures=[]; aliases=[]
     discovered=[]
     for f in ROOT.rglob('*.html'):
+        if f.name.startswith('._'): continue
         rel=str(f.relative_to(ROOT))
         if any(part in EXCLUDED for part in f.relative_to(ROOT).parts) or rel.startswith(EXCLUDED_PREFIXES): continue
         discovered.append(f)

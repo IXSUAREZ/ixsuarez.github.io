@@ -10,3 +10,6 @@ output/
 # Local Worker state and macOS metadata on external volumes
 .wrangler/
 ._*
+
+# Ignored dependency directories may be technical compatibility links.
+node_modules

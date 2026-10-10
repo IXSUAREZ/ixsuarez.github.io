@@ -25,7 +25,7 @@ def sync_head(text,p):
  # Preserve all stylesheets, app scripts, manifests, verification tokens and schema.
  def clean(m):
   tag=m.group(0); attrs=dict(re.findall(r'([\w:-]+)\s*=\s*["\']([^"\']*)["\']',tag))
-  if tag.lower().startswith('<meta') and (attrs.get('name','').lower() in ['description','robots'] or attrs.get('name','').startswith('twitter:') or attrs.get('property','').startswith('og:')):return ''
+  if tag.lower().startswith('<meta') and (attrs.get('name','').lower() in ['description','robots','theme-color'] or attrs.get('name','').startswith('twitter:') or attrs.get('property','').startswith('og:')):return ''
   if tag.lower().startswith('<link') and attrs.get('rel','') in ['canonical','icon','shortcut icon','apple-touch-icon','apple-touch-icon-precomposed']:return ''
   return tag
  start,end=text.index('<head>')+6,text.index('</head>');head=text[start:end]
@@ -35,7 +35,7 @@ def sync_head(text,p):
  head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',head).strip()
  appearance=f'<script src="/assets/appearance.js?v={sha256((ROOT/"assets/appearance.js").read_bytes()).hexdigest()[:10]}"></script>'
  had_appearance=bool(re.search(r'<script src="/assets/appearance\.js(?:\?[^\"]*)?"></script>',head))
- prefix=appearance+'\n' if had_appearance else ''
+ prefix='<meta name="theme-color" content="#E3E3E3">\n'+appearance if had_appearance else ''
  head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',re.sub(r'<script src="/assets/appearance\.js(?:\?[^\"]*)?"></script>','',head)).lstrip()
  return text[:start]+'\n'+prefix+head_for(p)+'\n'+head+'\n'+text[end:]
 def sync_tools_page(text):

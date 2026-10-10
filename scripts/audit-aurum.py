@@ -26,7 +26,8 @@ supporting_files=supporting_config['documents']
 registered_pages=json.loads((root/'config/site-pages.json').read_text())['pages']
 pwa_manifests=[]
 for file in ('simply-endorsed-cfi/site.webmanifest', 'simply-endorsed/site.webmanifest',
-             'pilotsolve/manifest.webmanifest', 'aero-lab/site.webmanifest'):
+             'pilotsolve/manifest.webmanifest', 'aero-lab/site.webmanifest',
+             'flight-lesson-guide/manifest.webmanifest'):
     manifest=json.loads((root/file).read_text())
     colors={key:manifest.get(key) for key in ('background_color','theme_color')}
     errors=[f'{key} must use the Day gray fallback #E3E3E3, got {value!r}'
@@ -36,6 +37,7 @@ known_files={page['file'] for page in registered_pages} | set(supporting_files)
 excluded_html=[]
 unclassified=[]
 for path in root.rglob('*.html'):
+    if path.name.startswith('._'): continue
     relative=path.relative_to(root)
     if any(part in relative.parts for part in ['.git','node_modules','_local-only','.wrangler-integration','output','.venv']):
         continue

@@ -2,15 +2,11 @@
   "unclassified_html": [],
   "excluded_html": [
     {
-      "file": "templates/home.html",
-      "reason": "Source templates; generated routes are audited separately."
+      "file": "engine-explorer/rotax-component-studies.html",
+      "reason": "Independent saved geometry/evidence viewer with embedded component models; preserve its reference materials outside the canonical tool chrome."
     },
     {
       "file": "templates/article.html",
-      "reason": "Source templates; generated routes are audited separately."
-    },
-    {
-      "file": "templates/library.html",
       "reason": "Source templates; generated routes are audited separately."
     },
     {
@@ -18,11 +14,15 @@
       "reason": "Source templates; generated routes are audited separately."
     },
     {
-      "file": "templates/service.html",
+      "file": "templates/home.html",
       "reason": "Source templates; generated routes are audited separately."
     },
     {
-      "file": "templates/workspace.html",
+      "file": "templates/library.html",
+      "reason": "Source templates; generated routes are audited separately."
+    },
+    {
+      "file": "templates/service.html",
       "reason": "Source templates; generated routes are audited separately."
     },
     {
@@ -30,31 +30,39 @@
       "reason": "Source templates; generated routes are audited separately."
     },
     {
-      "file": "assets/partials/nav-foi.html",
-      "reason": "HTML fragments, not standalone documents."
+      "file": "templates/workspace.html",
+      "reason": "Source templates; generated routes are audited separately."
     },
     {
-      "file": "assets/partials/nav-tool.html",
-      "reason": "HTML fragments, not standalone documents."
+      "file": "simply-endorsed/tests/text-size-preview.html",
+      "reason": "Local test fixture."
     },
     {
-      "file": "assets/partials/post-cta.html",
-      "reason": "HTML fragments, not standalone documents."
+      "file": "simply-endorsed-cfi/pdf-build/dist/book.html",
+      "reason": "Print artwork previews; preserve exported artwork materials."
     },
     {
-      "file": "assets/partials/footer.html",
-      "reason": "HTML fragments, not standalone documents."
+      "file": "simply-endorsed-cfi/pdf-build/dist/preview-card.html",
+      "reason": "Print artwork previews; preserve exported artwork materials."
     },
     {
-      "file": "assets/partials/nav.html",
-      "reason": "HTML fragments, not standalone documents."
+      "file": "simply-endorsed-cfi/pdf-build/dist/preview-cover-frontmatter.html",
+      "reason": "Print artwork previews; preserve exported artwork materials."
     },
     {
-      "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-d.html",
+      "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-a.html",
+      "reason": "Print artwork previews; preserve exported artwork materials."
+    },
+    {
+      "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-b.html",
       "reason": "Print artwork previews; preserve exported artwork materials."
     },
     {
       "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-c.html",
+      "reason": "Print artwork previews; preserve exported artwork materials."
+    },
+    {
+      "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-d.html",
       "reason": "Print artwork previews; preserve exported artwork materials."
     },
     {
@@ -66,32 +74,28 @@
       "reason": "Print artwork previews; preserve exported artwork materials."
     },
     {
-      "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-b.html",
-      "reason": "Print artwork previews; preserve exported artwork materials."
-    },
-    {
-      "file": "simply-endorsed-cfi/pdf-build/dist/preview-part1-cat-a.html",
-      "reason": "Print artwork previews; preserve exported artwork materials."
-    },
-    {
-      "file": "simply-endorsed-cfi/pdf-build/dist/preview-card.html",
-      "reason": "Print artwork previews; preserve exported artwork materials."
-    },
-    {
-      "file": "simply-endorsed-cfi/pdf-build/dist/book.html",
-      "reason": "Print artwork previews; preserve exported artwork materials."
-    },
-    {
-      "file": "simply-endorsed-cfi/pdf-build/dist/preview-cover-frontmatter.html",
-      "reason": "Print artwork previews; preserve exported artwork materials."
-    },
-    {
       "file": "blog/_template/index.html",
       "reason": "Article authoring template."
     },
     {
-      "file": "simply-endorsed/tests/text-size-preview.html",
-      "reason": "Local test fixture."
+      "file": "assets/partials/footer.html",
+      "reason": "HTML fragments, not standalone documents."
+    },
+    {
+      "file": "assets/partials/nav-foi.html",
+      "reason": "HTML fragments, not standalone documents."
+    },
+    {
+      "file": "assets/partials/nav-tool.html",
+      "reason": "HTML fragments, not standalone documents."
+    },
+    {
+      "file": "assets/partials/nav.html",
+      "reason": "HTML fragments, not standalone documents."
+    },
+    {
+      "file": "assets/partials/post-cta.html",
+      "reason": "HTML fragments, not standalone documents."
     }
   ],
   "supporting_documents": [
@@ -158,11 +162,19 @@
         "theme_color": "#E3E3E3"
       },
       "integration_errors": []
+    },
+    {
+      "file": "flight-lesson-guide/manifest.webmanifest",
+      "colors": {
+        "background_color": "#E3E3E3",
+        "theme_color": "#E3E3E3"
+      },
+      "integration_errors": []
     }
   ],
   "source_control_families": {
     "button | nav-menu-toggle": {
-      "count": 521,
+      "count": 522,
       "routes": [
         "/",
         "/flight-training-louisville-ky/",
@@ -684,7 +696,8 @@
         "/blog/landing-practice-bowman-field/",
         "/engine-explorer/",
         "/foi-cards/",
-        "/tools/"
+        "/tools/",
+        "/flight-lesson-guide/"
       ]
     },
     "a | btn btn--primary": {
@@ -1782,7 +1795,7 @@
       ]
     },
     "button | ": {
-      "count": 1453,
+      "count": 1465,
       "routes": [
         "/part-61-calculator/",
         "/simply-endorsed/blog/what-is-simply-endorsed/",
@@ -2260,7 +2273,8 @@
         "/blog/medexpress-faa-medical-walkthrough/",
         "/blog/kentucky-derby-tfr-flying/",
         "/blog/landing-practice-bowman-field/",
-        "/tools/"
+        "/tools/",
+        "/flight-lesson-guide/"
       ]
     },
     "button | part61-button part61-button-full part61-button-secondary": {
@@ -2492,9 +2506,15 @@
       ]
     },
     "button | orbit-app": {
-      "count": 7,
+      "count": 8,
       "routes": [
         "/tools/"
+      ]
+    },
+    "button | flg-primary": {
+      "count": 1,
+      "routes": [
+        "/flight-lesson-guide/"
       ]
     }
   },
@@ -3265,6 +3285,18 @@
       "inline_style_sha256": "707e9869bdb91736d5ad47f45e51cd3eb6ff69b9296fdce348f66a8628eef603",
       "routes": [
         "/tools/"
+      ]
+    },
+    "3d8b6b459b87": {
+      "stylesheets": [
+        "assets/design-system.css",
+        "flight-lesson-guide/styles.css",
+        "assets/avionics.css",
+        "assets/site-footer.css"
+      ],
+      "inline_style_sha256": "3322a02e4326a9c784ead9e6f278168590cd7caa05f73193f9693bb8b72ddc5a",
+      "routes": [
+        "/flight-lesson-guide/"
       ]
     }
   },
@@ -10559,7 +10591,20 @@
       "source_controls": {
         "button | nav-menu-toggle": 1,
         "button | ": 6,
-        "button | orbit-app": 7
+        "button | orbit-app": 8
+      },
+      "visual_review": "pending"
+    },
+    {
+      "route": "/flight-lesson-guide/",
+      "file": "flight-lesson-guide/index.html",
+      "integration_errors": [],
+      "style_group": "3d8b6b459b87",
+      "inline_color_literals": [],
+      "source_controls": {
+        "button | nav-menu-toggle": 1,
+        "button | ": 12,
+        "button | flg-primary": 1
       },
       "visual_review": "pending"
     }

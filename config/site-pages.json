@@ -291,6 +291,12 @@
       "icon": "CloudDrizzle",
       "background": "#e5e1e9",
       "source": "assets/identities/learn-weather-for-student-pilots/icon-master.png"
+    },
+    "flight-lesson-guide": {
+      "label": "Flight Lesson Guide",
+      "icon": "ListChecks",
+      "background": "#E3E3E3",
+      "source": "assets/identities/flight-lesson-guide/icon-master.png"
     }
   },
   "tools": [
@@ -349,6 +355,14 @@
       "summary": "Mobile flight calculator",
       "description": "Work through common flight calculations in a focused, mobile-first cockpit.",
       "topic": "Flight planning"
+    },
+    {
+      "id": "flight-lesson-guide",
+      "label": "Flight Lesson Guide",
+      "path": "/flight-lesson-guide/",
+      "summary": "Timed flight teaching guides",
+      "description": "Plan each flight with teaching steps, practice blocks, and cockpit checklists.",
+      "topic": "Training"
     }
   ],
   "pages": [
@@ -5679,6 +5693,16 @@
       "description": "Explore free pilot tools for FAA endorsements, training plans, flight risk, instructor study, aerodynamics, and aircraft engines from SuarezCFI.",
       "indexable": true,
       "primary_cta": "/discovery-flight-louisville-ky/"
+    },
+    {
+      "path": "/flight-lesson-guide/",
+      "file": "flight-lesson-guide/index.html",
+      "kind": "page",
+      "identity": "flight-lesson-guide",
+      "title": "Flight Lesson Guide | Timed Flight Lessons & Cockpit Checklists",
+      "description": "Follow flight lesson teaching sequences, practice time budgets, and printable cockpit checklists across pilot and instructor pathways.",
+      "indexable": true,
+      "primary_cta": "/ground-school-louisville-ky/"
     }
   ],
   "learnCollections": [

@@ -18,7 +18,7 @@ function setup({mobile=false,saved=null,storageFailure=false,largeText=false}={}
 test('static directory launches every tool with no JavaScript; enhancement shows descriptions without screenshot dependencies',()=>{
  const plain=new JSDOM(html),d=plain.window.document;
  assert.equal(d.querySelector('.all-apps').open,true);
- assert.equal(d.querySelectorAll('.all-apps-list a').length,7);
+ assert.equal(d.querySelectorAll('.all-apps-list a').length,catalog.tools.length);
  assert.equal(d.querySelector('.orbit-experience').hidden,true);
  assert.equal(d.querySelector('.tool-preview-dialog'),null);
  plain.window.close();
@@ -41,7 +41,7 @@ test('filters preserve eligible selection and choose first matching app otherwis
   p.d.querySelector('[data-orbit-app="foi-cards"]').click();
   p.d.querySelector('[data-catalog-filter="training"]').click();
   assert.equal(p.d.querySelector('#stage-title').textContent,'FOI Cards');
-  assert.equal([...p.d.querySelectorAll('.orbit-app')].filter(b=>!b.hidden).length,3);
+  assert.equal([...p.d.querySelectorAll('.orbit-app')].filter(b=>!b.hidden).length,catalog.tools.filter(t=>t.group==='training').length);
   p.d.querySelector('[data-catalog-filter="flight"]').click();
   assert.equal(p.d.querySelector('#stage-title').textContent,'PilotSolve');
   assert.match(p.d.querySelector('#orbit-position').textContent,/1 of 2/);
@@ -61,7 +61,7 @@ test('keyboard and mobile navigation expose neighbors and all direct links',()=>
   assert.equal(p.d.querySelector('#stage-title').textContent,'Crank & Core');
   rail.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'Home',bubbles:true,cancelable:true}));
   assert.equal(p.d.querySelector('#stage-title').textContent,'PilotSolve');
-  assert.equal(p.d.querySelectorAll('.all-apps-list a').length,7);
+  assert.equal(p.d.querySelectorAll('.all-apps-list a').length,catalog.tools.length);
   assert.equal(p.d.querySelector('.all-apps').open,false);
   p.d.querySelector('.browse-all-tools').click();
   assert.equal(p.d.querySelector('.all-apps').open,true);
@@ -100,7 +100,7 @@ test('horizontal swipe changes selection; vertical travel remains ordinary scrol
 
 test('enlarged text uses a readable three-app rail and keeps direct links',()=>{
  const p=setup({largeText:true});
- try {assert.ok(p.d.querySelector('.orbit-large-text'));assert.equal([...p.d.querySelectorAll('.orbit-app')].filter(b=>!b.hidden).length,3);assert.equal(p.d.querySelectorAll('.all-apps-list a').length,7)} finally {p.close()}
+ try {assert.ok(p.d.querySelector('.orbit-large-text'));assert.equal([...p.d.querySelectorAll('.orbit-app')].filter(b=>!b.hidden).length,3);assert.equal(p.d.querySelectorAll('.all-apps-list a').length,catalog.tools.length)} finally {p.close()}
 });
 
 test('reduced motion selects apps without starting stage animation',()=>{

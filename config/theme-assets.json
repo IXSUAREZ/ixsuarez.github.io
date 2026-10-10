@@ -33,7 +33,9 @@
     "assets/library-search.css",
     "assets/premium-home.css",
     "assets/premium-home.js",
-    "engine-explorer/model-info.css"
+    "engine-explorer/model-info.css",
+    "flight-lesson-guide/styles.css",
+    "flight-lesson-guide/app.js"
   ],
   "retired": [
     "aero-lab/assets/App--urF1wgT.js",

@@ -12,6 +12,7 @@
     "assets/partials/*.html": "HTML fragments, not standalone documents.",
     "simply-endorsed-cfi/pdf-build/dist/*.html": "Print artwork previews; preserve exported artwork materials.",
     "blog/_template/index.html": "Article authoring template.",
-    "simply-endorsed/tests/text-size-preview.html": "Local test fixture."
+    "simply-endorsed/tests/text-size-preview.html": "Local test fixture.",
+    "engine-explorer/rotax-component-studies.html": "Independent saved geometry/evidence viewer with embedded component models; preserve its reference materials outside the canonical tool chrome."
   }
 }

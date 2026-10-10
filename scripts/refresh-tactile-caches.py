@@ -41,3 +41,19 @@ h=cache_hash.hexdigest()[:12]
 s=re.sub(r'const CACHE_NAME = "[^"]+";',f'const CACHE_NAME = "simply-endorsed-tactile-{h}";',s)
 sw.write_text(s)
 print(cache, 'simply-endorsed-tactile-'+h)
+# Flight Lesson Guide: version authored data/PDFs and shared dependencies together.
+# Its service worker owns only its prefix and explicit allowlist.
+guide=root/'flight-lesson-guide'
+if (guide/'sw.js').exists():
+ worker=guide/'sw.js';source=worker.read_text()
+ normalized=re.sub(r"const CACHE_NAME = CACHE_PREFIX \+ '[^']+';", "const CACHE_NAME = CACHE_PREFIX + 'VERSION';", source)
+ digest=sha256(normalized.encode())
+ files=sorted(p for p in guide.rglob('*') if p.is_file() and p.name!='sw.js' and not p.name.startswith('._'))
+ named_shared=['assets/appearance.js','assets/avionics.css','assets/design-system.css','assets/site-nav.js','assets/tactile.js','assets/site-footer.css','assets/site-footer.js','assets/avionics-icons.svg']
+ files += [root/rel for rel in named_shared]
+ files += [root/'assets/identities/flight-lesson-guide'/name for name in ['logo.png','icon-48.png','icon-192.png','icon-180.png']]
+ for file in files:
+  if file.exists():digest.update(str(file.relative_to(root)).encode());digest.update(file.read_bytes())
+ revision=digest.hexdigest()[:12]
+ worker.write_text(re.sub(r"const CACHE_NAME = CACHE_PREFIX \+ '[^']+';", "const CACHE_NAME = CACHE_PREFIX + '"+revision+"';", source))
+ print('flight-lesson-guide-'+revision)

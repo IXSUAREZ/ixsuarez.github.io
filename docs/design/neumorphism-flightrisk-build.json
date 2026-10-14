@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-14",
+  "source": "/Volumes/Codex SSD/worktrees/suarez-neumorphism-flight-risk-source-20261014",
+  "verified_baseline_source": "/Users/diegosuarez/Projects/suarez-aurum-sources/flightrisk-app",
+  "baseline_build_identical_to_site": {
+    "commit": "ae18e574",
+    "asset_count": 10,
+    "result": "all byte-identical before material edits"
+  },
+  "source_content_changes": [
+    "src/index.css",
+    "tailwind.config.js"
+  ],
+  "typecheck": "passed",
+  "flight_risk_tests": {
+    "files": 2,
+    "passed": 27
+  },
+  "site_shells": "existing assessment, methodology and guide shells retained; only Vite entry URLs replaced",
+  "new_assets": {
+    "Methodology-D6FYN9q1.js": "4206b47d1d6f511e183f94f7e2f77e476ebf3cbf2b503a9c4b14fad008e8580c",
+    "NotFound-8Awq5llO.js": "9d1f8b1a6588f9d7ab8af53e386118c0caf0ead66bc2a3593b5173e98d9fb182",
+    "users-2ybkPPTr.js": "73c9969b18ca59869b1e4449d7ab5f26b35c1d67f53cd2bdbfc6d11c609f4c0e",
+    "Assessment-C_RCYvz4.js": "7bb6dc36ecc908908595de142946e412095751b0ba385af572b5adbd6795c775",
+    "index-DiybfdD-.css": "e040c4673be379d1ba4dd761b64607b72a91677f1407c19913963cb8fd7c3dcd",
+    "Guide-9zzoozqf.js": "032a64830a4bfc754885b87d39ed68d49f7300d47e7a074aee90b8c924683f6d",
+    "ScrollTrigger-CL-CGucR.js": "34719e7f3daa786d045c431fd95f6d57d25e79081bdea7c5de582f69c430999a",
+    "index-B_Do11i2.js": "9ebd48381def35c3d22e5b650973504f14c9c2375c3200c72819c7a3e09162d4",
+    "info-CFKQ53vl.js": "43ec4fe6a5f55e01433959f8988e563472217100bae0a6288301ae779938d7d0",
+    "paths-Bytu-2Qs.js": "4a804eb057f2be2e2410b08f44a3d540d3d82d8974a2548eac5245075c68ca92"
+  },
+  "intermediate_assets_removed": [
+    {
+      "asset": "index-HjRF7Bt9.css",
+      "sha256": "426ec962a7b04b01a8c9f9b7a0004e0c0f7cf62fc5a739fa4eec91c5025cb98b"
+    },
+    {
+      "asset": "Assessment-Hp26We7M.js",
+      "sha256": "7b2bbde212a83aefd489fbd651ffa7ef48898532d0702767e3e12a8371c43554"
+    },
+    {
+      "asset": "ScrollTrigger-CfWGytqh.js",
+      "sha256": "14b922ac4ac01d4961bcc25ff13e77138b5a74737497357ca067f2e239a35003"
+    },
+    {
+      "asset": "paths-DaUDFom9.js",
+      "sha256": "9c7a3483e3f30b8c8063cb52c53fd9babf161c13de380b96183e6d2e5c26c057"
+    },
+    {
+      "asset": "NotFound-CaaxPla3.js",
+      "sha256": "937d440abce5bc85a465e8e4ea9e164e399480509edcd67f4f720a6f5ba5e7ee"
+    },
+    {
+      "asset": "users-D9uylVg-.js",
+      "sha256": "2a279be53396026d9df4f89ae99adb2ae670ba7ccd87aa17d639b068c9bebe21"
+    },
+    {
+      "asset": "Methodology-DA0V-nsl.js",
+      "sha256": "6ec1eb288ae7e8ff7041b3a2a624ec59440a032b98ff89cd52a7df2538f0778f"
+    },
+    {
+      "asset": "Guide-BKhviGBI.js",
+      "sha256": "4e09267352664e120dcaf0d25f754ca7587fafc966d05bbf61d88eff8ad13da3"
+    },
+    {
+      "asset": "index-OpzAvGSr.js",
+      "sha256": "12e22d57cda53812de68fbe468521378a4e87742e50ffde1f0c13c0acca3b3f0"
+    },
+    {
+      "asset": "info-HS7I6zfv.js",
+      "sha256": "a39db9ed086c51c5436b674132064f68c473969d50fe52a8c18003f5642d9774"
+    }
+  ],
+  "final_build": "npm run build passed (TypeScript + Vite + route shells)",
+  "final_material_correction": "Tailwind accent-500 references readable g-accent instead of bronze border edge.",
+  "baseline_assets": {
+    "Assessment-CkyiXt4d.js": "af6a8d444e5b8d06073379955ac1758f20012ab1216bb5342c0a1af3b8cfd8c2",
+    "Guide-CyL-Nxv2.js": "defae418de23bc7d96d8c4ad505eba6be912fd4bf3550a8e166cf187460be157",
+    "Methodology-CG19Vrp-.js": "540dcf02f890e4143d04a603caaa51264df867e68581ea29001a8471bb5b3fee",
+    "NotFound-7MRlLc8q.js": "eb2030f22eaa30e094e1e94fa101ee0ffeed68c9a4e0092441c1890f58d458a8",
+    "ScrollTrigger-DUd_z0VK.js": "fccb8da719cfdc3dec825e5588d6fb5e8f6178879e9529fbd318d772f0a8ddb8",
+    "index-DOHC-9L6.js": "6571778220aea9fe35764ecde81194b9d6803a9657a8186fdfb864aad082e409",
+    "index-m-lKhUhC.css": "a36bafa85e6470a5d5a5e3c01b3dbe45fbea3826e01645e28241a6817166031e",
+    "info-DzhQr4g2.js": "d45668bb6295a9440e823edf271bb991a6350b1036cfe4e2308243294e1a9b90",
+    "paths-ua8jBdHY.js": "ddb43e1e280377debb67816dcac264cd9f57ad0201181d171e174eec6d1b37e4",
+    "users-DnFC6ybS.js": "56d961ac01c866e1a8489169a017aa54cedd93e11df3e38919bd009a0f574bc9"
+  }
+}

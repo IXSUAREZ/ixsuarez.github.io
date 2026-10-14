@@ -14,12 +14,12 @@
   },
   "aliases": [
     {
-      "route": "/frat/",
-      "destination": "/flight-risk-assessment/"
-    },
-    {
       "route": "/simply-endorsed/",
       "destination": "/simply-endorsed-cfi/"
+    },
+    {
+      "route": "/frat/",
+      "destination": "/flight-risk-assessment/"
     }
   ],
   "failures": [],
@@ -968,29 +968,20 @@
     },
     {
       "route": "/flight-lesson-guide/",
-      "title": "Flight Lesson Guide | Timed Flight Lessons & Cockpit Checklists",
-      "description": "Follow flight lesson teaching sequences, practice time budgets, and printable cockpit checklists across pilot and instructor pathways.",
+      "title": "Private Flight Lesson Guide | SuarezCFI",
+      "description": "Owner access to the private Flight Lesson Guide.",
       "kind": "page",
       "identity": "flight-lesson-guide",
-      "indexable": true,
+      "indexable": false,
       "classification_note": null,
       "source_urls": [
         "https://suarezcfi.com/flight-lesson-guide/",
-        "https://www.instagram.com/suarez.cfi/",
-        "https://www.threads.net/@suarez.cfi",
-        "https://www.youtube.com/@SUAREZCFI",
-        "https://www.tiktok.com/@suarez.cfi",
-        "https://www.facebook.com/Suarez.CFI"
+        "https://suarez-flight-guide-private.certpath-api.workers.dev/auth",
+        "https://suarezcfi.com/"
       ],
       "broken_refs": [],
       "headings": [
-        "Flight Lesson Guide",
-        "Loading the lesson library…",
-        "Read the course PDFs",
-        "Prepare on the ground",
-        "The complete sequence",
-        "Explore",
-        "Flight instruction"
+        "Flight Lesson Guide"
       ]
     },
     {

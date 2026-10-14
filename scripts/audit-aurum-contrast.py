@@ -24,14 +24,22 @@ for mode,t in mode_tokens.items():
  error=re.search(r'--av-error:(#[0-9a-f]{6})',error_scope)[1]
  for bg in ['--g-bg','--g-surface','--g-raised','--g-well']:
   checks.append(dict(mode=mode,foreground='--av-error',background=bg,ratio=round(ratio(rgb(error),rgb(t[bg])),3),required=4.5))
- # Bound any underlying sRGB color by black/white luminance extremes.
- glass=[float(x) for x in re.findall(r"[\d.]+",t['--g-glass'])]
+ # The current soft chrome is opaque and aliases the canonical surface.
+ # Retain bounds checking for any legacy/translucent material declaration.
+ material=t['--g-glass']
+ while material.startswith('var('):material=t[material[4:-1]]
+ if material.startswith('#'):
+  glass=[channel*255 for channel in rgb(material)]+[1.0]
+ else:
+  glass=[float(x) for x in re.findall(r"[\d.]+",material)]
+  if len(glass)!=4:raise ValueError('Unsupported chrome material '+material)
  for fg in ['--g-ink','--g-muted','--g-accent']:
   backgrounds=[[(channel*glass[3]+under*(1-glass[3]))/255 for channel in glass[:3]] for under in (0,255)]
-  checks.append(dict(mode=mode,foreground=fg,background='glass over black/white bounds',ratio=round(min(ratio(rgb(t[fg]),b) for b in backgrounds),3),required=4.5))
+  checks.append(dict(mode=mode,foreground=fg,background='navigation material over black/white bounds',ratio=round(min(ratio(rgb(t[fg]),b) for b in backgrounds),3),required=4.5))
  # Border contrast for the actual solid input surface, not decorative separators.
  control=re.search(r'html\[data-gold-mode='+mode+r'\]\{--g-control-line:(#[0-9a-f]+)',css)[1]
- checks.append(dict(mode=mode,foreground='--g-control-line',background='--g-raised',ratio=round(ratio(rgb(control),rgb(t['--g-raised'])),3),required=3))
+ for bg in ['--g-surface','--g-raised']:
+  checks.append(dict(mode=mode,foreground='--g-control-line',background=bg,ratio=round(ratio(rgb(control),rgb(t[bg])),3),required=3))
  stops=[rgb(x) for x in re.findall(r'#[0-9a-f]{6}',t['--g-gold'])]
  samples=[[a+(b-a)*i/100 for a,b in zip(start,end)] for start,end in zip(stops,stops[1:]) for i in range(101)]
  checks.append(dict(mode=mode,foreground='--g-key-ink',background='gold gradient, 101 sRGB samples per segment',ratio=round(min(ratio(rgb(t['--g-key-ink']),s) for s in samples),3),required=4.5))
@@ -45,8 +53,13 @@ if not re.search(r'html\[data-gold-mode="dark"\] body\.se-redesigned #se-workspa
  raise SystemExit('Night category-card hover no longer retains its contrast-safe solid surface')
 for name,fill,bright in categories:
  checks.append(dict(mode='category',foreground='white text on '+name,background=fill,ratio=round(ratio(rgb('#ffffff'),rgb(fill)),3),required=4.5))
- checks.append(dict(mode='day',foreground=name+' label',background='--g-surface',ratio=round(ratio(rgb(fill),rgb(mode_tokens['day']['--g-surface'])),3),required=4.5))
- checks.append(dict(mode='day hover',foreground=name+' label',background='--g-raised',ratio=round(ratio(rgb(fill),rgb(mode_tokens['day']['--g-raised'])),3),required=4.5))
+ # This matches the explicit Day text-only treatment in workspace.css;
+ # category artwork, edges and authored palette retain their original hues.
+ if 'color:color-mix(in srgb,var(--category-fill) 90%,#000)' not in workspace_css:
+  raise SystemExit('Day category text contrast treatment missing')
+ day_text=[channel*.9 for channel in rgb(fill)]
+ checks.append(dict(mode='day',foreground=name+' label (90% category + 10% black)',background='--g-surface',ratio=round(ratio(day_text,rgb(mode_tokens['day']['--g-surface'])),3),required=4.5))
+ checks.append(dict(mode='day hover',foreground=name+' label (90% category + 10% black)',background='--g-raised',ratio=round(ratio(day_text,rgb(mode_tokens['day']['--g-raised'])),3),required=4.5))
  checks.append(dict(mode='dark',foreground=name+' label',background='--g-surface',ratio=round(ratio(rgb(bright),rgb(mode_tokens['dark']['--g-surface'])),3),required=4.5))
  checks.append(dict(mode='dark hover',foreground=name+' label',background='--g-surface with gold edge',ratio=round(ratio(rgb(bright),rgb(mode_tokens['dark']['--g-surface'])),3),required=4.5))
 for c in checks:c['pass']=c['ratio']>=c['required']

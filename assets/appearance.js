@@ -1,4 +1,4 @@
-/* Polished Aurum: synchronous shared appearance; System on first visit. */
+/* Shared neumorphic gold appearance; System on first visit. */
 (function () {
   'use strict';
   var key = 'suarez-cfi-appearance', legacyKey = 'suarez:appearance', solidKey = 'suarez:solid-controls';
@@ -32,6 +32,7 @@
     root.dataset.theme = preference;
     root.dataset.goldMode = dark ? 'dark' : 'day';
     root.dataset.goldFinish = 'aurum';
+    root.dataset.design = 'neumorphism';
     root.dataset.goldEffects = solid || transparency.matches ? 'quiet' : 'normal';
     root.dataset.suarezTheme = theme;
     root.dataset.suarezPreference = preference === 'day' ? 'light' : preference;

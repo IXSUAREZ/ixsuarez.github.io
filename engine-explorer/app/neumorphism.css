@@ -1,0 +1,63 @@
+/* Approved SuarezCFI neumorphic materials. Source-owned, stable export asset.
+   Canonical site tokens take precedence; fallbacks support standalone previews.
+   Diagrams, engine geometry, phase colors, and calculated quantities are untouched. */
+:root {
+  --nu-canvas:var(--av-neu-canvas,#e3e3e3);
+  --nu-surface:var(--av-neu-surface,#e3e3e3);
+  --nu-well:var(--av-neu-well,#dedede);
+  --nu-ink:var(--g-ink,#25282b);
+  --nu-muted:var(--g-muted,#53575b);
+  --nu-line:var(--g-line,#b6b6b6);
+  --nu-accent:var(--g-accent,#795820);
+  --nu-gold:var(--g-gold,#e2b44b);
+  --nu-key-ink:var(--g-key-ink,#232323);
+  --nu-shadow:var(--av-neu-shadow,9px 9px 20px #00000020,-9px -9px 20px #ffffffd9);
+  --nu-shadow-sm:var(--av-neu-shadow-sm,4px 4px 9px #00000021,-4px -4px 9px #ffffffc7);
+  --nu-inset:var(--av-neu-inset,inset 3px 3px 7px #00000022,inset -3px -3px 7px #ffffffbb);
+  --nu-gold-shadow:var(--av-neu-gold-shadow,4px 4px 9px #00000026,-4px -4px 9px #ffffffbb,inset 0 1px 1px #fff9);
+}
+:root:is([data-suarez-theme="dark"],[data-gold-mode="dark"],[data-theme="night"]) {
+  --nu-canvas:var(--av-neu-canvas,#414141);--nu-surface:var(--av-neu-surface,#414141);--nu-well:var(--av-neu-well,#393939);
+  --nu-ink:var(--g-ink,#f4f4f4);--nu-muted:var(--g-muted,#c7c7c7);--nu-line:var(--g-line,#747474);--nu-accent:var(--g-accent,#f0d28a);
+  --nu-shadow:var(--av-neu-shadow,9px 9px 20px #00000052,-9px -9px 20px #ffffff0d);
+  --nu-shadow-sm:var(--av-neu-shadow-sm,4px 4px 9px #00000052,-4px -4px 9px #ffffff0d);
+  --nu-inset:var(--av-neu-inset,inset 3px 3px 7px #00000052,inset -3px -3px 7px #ffffff0d);
+  --nu-gold-shadow:var(--av-neu-gold-shadow,4px 4px 9px #00000052,-4px -4px 9px #ffffff0d,inset 0 1px 1px #fff8);
+  color-scheme:dark;
+}
+@media(prefers-contrast:more) { :root {--nu-line:currentColor} }
+
+/* Crank & Core: the engine remains intact inside a shared matte study workspace. */
+html body,html body #root,html body .app {background:var(--nu-canvas)!important;color:var(--nu-ink)!important;--ink:var(--nu-ink);--muted:var(--nu-muted);--line:var(--nu-line);--gold:var(--nu-accent);--glass:var(--nu-surface);--shadow:var(--nu-shadow)}
+html body .app :is(.topbar,.preset-bar,.study-navigation,.explorer-context,.explorer-tool-deck,.sidebar,.inspector,.learning-guide,.explorer-panel,.study-panel,.control-deck,.edge-rail,.navigation-rail,.action-rail,.explorer-corner,.resource-menu>div,.more-menu>div,.reading-actions,.sidebar-title) {
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;border-color:color-mix(in srgb,var(--nu-line) 35%,transparent)!important;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body .app :is(.explorer-panel,.study-panel,.inspector,.learning-guide,.control-deck,.edge-rail,.navigation-rail,.action-rail,.explorer-corner,.resource-menu>div,.more-menu>div) {border-radius:18px!important}
+html body .app .viewport {background:var(--nu-canvas)!important;box-shadow:var(--nu-inset)!important}
+html body .app :is(button,select,.resource-menu>summary,.more-menu>summary,.search,.browse-tabs,.tool-content,.official-source-links a,.model-notice,.collection-specs) {
+  border:1px solid color-mix(in srgb,var(--nu-line) 30%,transparent)!important;border-radius:11px!important;background:var(--nu-surface)!important;color:var(--nu-ink)!important;
+  box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body .app :is(.search,select,.browse-tabs,.phase-control) {box-shadow:var(--nu-inset)!important}
+html body .app .search input {background:transparent!important;color:var(--nu-ink)!important;box-shadow:none!important}
+html body .app :is(.primary,.engine-choice,.engine-switcher button[aria-pressed=true],.preset-bar button[aria-pressed=true],.study-tabs button[aria-pressed=true],.panel-navigation button[aria-expanded=true],.tools-tabs button[aria-pressed=true],.browse-tabs button[aria-pressed=true],.part-row.active,.tool-disclosure>button[aria-expanded=true],.resource-menu[open]>summary) {
+  border:1px solid var(--g-edge,#a77a29)!important;background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;box-shadow:var(--nu-gold-shadow)!important;
+}
+html body .app :is(.engine-switcher button[aria-pressed=true],.part-row.active,.study-tabs button[aria-pressed=true],.tools-tabs button[aria-pressed=true]) :is(strong,small,span,svg) {color:var(--nu-key-ink)!important}
+html body .app :is(.collection-intro h1,.engine-title,.lycoming-title,.product-wordmark h1,.inspector h2,.inspector h3,.learning-guide h2,.source-library h3,.official-source-links strong) {color:var(--nu-ink)!important}
+html body .app :is(.product-wordmark p,.selection-caption,.collection-specs,.model-notice,.list-caption,.catalog-note p,.part-row small,.view-label,.motion-title small,.learning-guide p,.inspector p,.official-source-links small,.source-link small,.lesson-step-navigation,.dialog-body p,.dialog-body li) {color:var(--nu-muted)!important}
+html body .app :is(.product-wordmark h1 span,.resource-menu>summary svg,.status-button,.kicker,.loading-eyebrow) {color:var(--nu-accent)!important}
+html body .audit-dialog {background:var(--nu-surface)!important;color:var(--nu-ink)!important;border:1px solid var(--nu-line)!important;border-radius:20px;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important}
+html body .audit-dialog :is(.dialog-head,.audit-stats,.import-review,.official-source-links a) {background:var(--nu-surface)!important;color:var(--nu-ink)!important;backdrop-filter:none!important}
+html body .audit-dialog .dialog-head {box-shadow:var(--nu-shadow-sm)!important}
+html body .app :is(button,a,input,select,summary):focus-visible {outline:3px solid var(--nu-accent)!important;outline-offset:3px}
+html body .app input[type=range] {accent-color:var(--nu-accent)}
+html body .app button:not(:disabled):active {box-shadow:var(--nu-inset)!important;transform:translateY(1px)}
+/* Floating panels retain their existing placement and responsive behavior. */
+@media(prefers-reduced-motion:reduce) {html body .app :is(button,.explorer-panel,.study-panel) {transition:none!important}}
+
+/* This iframe has its own controls and needs no outer-site dock clearance. */
+html body:has(.app) {padding-bottom:0!important}
+html body #root .app .search input {background:transparent!important;border:0!important;box-shadow:none!important}
+html body .app .collection-loading {background:var(--nu-surface)!important;color:var(--nu-ink)!important;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:20px;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important}
+html body .app .rail-button[aria-expanded=true] {background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important}

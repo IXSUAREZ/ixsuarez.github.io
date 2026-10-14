@@ -1,0 +1,145 @@
+{
+  "verifiedAtUTC": "2026-10-14T22:38:26.244593+00:00",
+  "sourceRoot": "/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/INSTRUCTOR STUDIO/Projects/Flight Lesson Guide/private-site",
+  "siteRoot": "/Volumes/Codex SSD/worktrees/suarez-neumorphism-20261014",
+  "protectedSourceFilesUnchanged": 13,
+  "protectedAppDataIdentical": true,
+  "pdfs": [
+    {
+      "name": "cfi.pdf",
+      "sha256": "c2c25e4592494e61f9a073a1930eb3b5edbc992b173d44e116a28d17b2f969df",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "cfii.pdf",
+      "sha256": "bbc00a819dcddc9f9984db0e734208869f60c8c7e1d95203d006cf07bf776105",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "commercial.pdf",
+      "sha256": "cb55ca7f639580a1738065dd21f5a00b24be90e82bbb00aceb0542eb03b454db",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "instrument.pdf",
+      "sha256": "e7d37d9a29e8a852ed3e991784f8eb691e28e9e24961281dcb62d01484e933a3",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "mei-addon.pdf",
+      "sha256": "306ee2193124ab717ed3368d4ad407dc9b0b1c90760c76ca8cbec14d1a780f1f",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "mei.pdf",
+      "sha256": "5983dfd6fc55dd7428f05a3e1e6f88665a3fdc14a991a6a16156e63f911ed44d",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "private.pdf",
+      "sha256": "be142cbce02fb85f68632cee713af12d7d6c7744a09d0c98876c5fb0dc9e19db",
+      "masterSourceAndDistIdentical": true
+    },
+    {
+      "name": "sport.pdf",
+      "sha256": "a9dd77d51ec9dc7d85bf8144b7bcb64011bb8999c019786f7f00266a124fe2e7",
+      "masterSourceAndDistIdentical": true
+    }
+  ],
+  "sharedAssets": [
+    {
+      "name": "appearance.js",
+      "sha256": "d2973544aa666644edd877514318029ec10565d116c9ee18f066933041a503d5",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "avionics.css",
+      "sha256": "e004db0ee165ea0f4a50fa5d2834b6cbdb2901e882c088baf20da43aef260e93",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "design-system.css",
+      "sha256": "abe951e60d78ce173a32cae961689c445583039d82de2130c597578bfbe304d3",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "site-nav.js",
+      "sha256": "b69106644ae24ce7663212a475548b7abbac3fa15a42e79c2aff190c518b855e",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "tactile.js",
+      "sha256": "66b9aa061ed41697426a9ae6c7379068bb5dbff21c9cb7e7a75a2fafa99a636e",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "site-footer.css",
+      "sha256": "bcb3bee0decbe731379c2279413db71fe2d3ac82356d6dd7dbdef3caa8089889",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "site-footer.js",
+      "sha256": "e823b76993a5718bc1d444c6300ab88839d3f1a113315d2771ddbb5989cacf4c",
+      "matchesFinalSite": true
+    },
+    {
+      "name": "avionics-icons.svg",
+      "sha256": "bdfcab8f50d8d0a0657665c25f138d70f91f074985ef60f5c024f878568c25ae",
+      "matchesFinalSite": true
+    }
+  ],
+  "plaintextOfflineWorkerAbsent": true,
+  "sourcePatchManifest": [
+    {
+      "source": "CONTRACT.md",
+      "beforeSha256": "724571ca12373f35ff785dc6c365ce01f0d29b8ce8c2f138853b57faa1c8c166",
+      "afterSha256": "e62954f600251f8efc98d08e21e9eeb373fae06e6ea6c0f47d67be4c4840d761",
+      "changed": true
+    },
+    {
+      "source": "private-site/tools/build.mjs",
+      "beforeSha256": "dce952651e74fbedb6bd36377e4a3b0f31957fe3cd80f2cf74e3bf1a509dab70",
+      "afterSha256": "0d7b36777997927e17ca0f62c20ea1c6e21a3d36a9883c63ed5eb5d0fbed0072",
+      "changed": true
+    },
+    {
+      "source": "private-site/ui/auth.css",
+      "beforeSha256": "d21c32ad324cb92d83b1be3004c6a25b6a795c18e11f32b8e438150e41b18232",
+      "afterSha256": "f3bcc453b3a4fd88f58ac2743a8362ab70273cc5bf243a43bdb9b1fdf3d0e183",
+      "changed": true
+    },
+    {
+      "source": "private-site/ui/session.css",
+      "beforeSha256": "2b4a64b8d3d79615abe30444d875b18a14b004172264fa6b9a5f7e1d2e2a0ad8",
+      "afterSha256": "f664523254fc42a94b2198354d86af1b40a724dacf5a6845e570476189cfe9c5",
+      "changed": true
+    },
+    {
+      "source": "private-site/guide-source/styles.css",
+      "beforeSha256": "cdd5236076500b809e618e33c0a9602cc0818ad451e7a9ff9cc2fd2c2c66d462",
+      "afterSha256": "4993fec4e9ddc8d62d8f50a7267fbaf8efe9e45429d7d590b2e41f02c026c509",
+      "changed": true
+    },
+    {
+      "source": "private-site/guide-source/index.html",
+      "beforeSha256": "87655acccd7b749f1b83542d83dd72a244ae930b2d9359154e145a6b50bc5444",
+      "afterSha256": "3d401c86892d8e346388b879e050bf4064cc050f5ffc30f076ce90cf021b431e",
+      "changed": true,
+      "scope": "Day and Night option text only; values preserved"
+    }
+  ],
+  "checks": {
+    "build": "passed",
+    "typecheck": "passed",
+    "workerTests": {
+      "passed": 17,
+      "failed": 0,
+      "anonymousProtectedPathsDenied": true
+    },
+    "authAndGuideTests": {
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0
+    }
+  }
+}

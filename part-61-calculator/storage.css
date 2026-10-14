@@ -58,6 +58,36 @@ body.cp-navbar-actions .nav-tools{display:contents!important}
 #cp-shell #cp-saved-date{font-variant-numeric:tabular-nums}
 #cp-shell #cp-message{background:var(--g-surface);border:1px solid var(--g-line);border-radius:6px;color:var(--g-ink)}
 #cp-shell #cp-message.cp-error{border-color:var(--av-warning);color:var(--av-warning)}
+
+/* Entry, contact, student links and owner inbox share the calculator material. */
+@media screen {
+  html[data-gold-mode] body.tool-page #cp-shell :is(.cp-card,.cp-saved,#cp-message),
+  html[data-gold-mode] body.tool-page #cp-delete-dialog {
+    background:var(--av-neu-surface,var(--g-surface));color:var(--g-ink);
+    border:1px solid var(--g-glass-edge);border-radius:18px;
+    box-shadow:var(--av-neu-shadow,var(--g-shadow));
+  }
+  html[data-gold-mode] body.tool-page #cp-shell .cp-card {
+    padding:clamp(20px,4vw,32px);
+  }
+  html[data-gold-mode] body.tool-page #cp-shell :is(button,.cp-record) {
+    background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-glass-edge);
+    border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
+  }
+  html[data-gold-mode] body.tool-page #cp-shell input {
+    background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-line);
+    border-radius:10px;box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
+  html[data-gold-mode] body.tool-page #cp-shell button.cp-primary {
+    background:var(--g-gold)!important;color:var(--g-key-ink)!important;
+    border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow,var(--g-shadow))!important;
+  }
+  html[data-gold-mode] body.tool-page #cp-shell button:not(:disabled):active {
+    box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
+  html[data-gold-mode] body.tool-page #cp-shell .cp-saved {border-color:var(--g-edge)}
+  html[data-gold-mode] body.tool-page #cp-shell #cp-message.cp-error {border-color:var(--av-warning);color:var(--av-warning)}
+}
 #cp-shell .cp-card{background:var(--g-surface);border:1px solid var(--g-line);border-radius:8px}
 #cp-shell .cp-card h1,#cp-shell .cp-card h2{color:var(--g-ink)}
 #cp-shell .cp-card p{color:var(--g-muted)}

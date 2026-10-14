@@ -1,4 +1,4 @@
-/* Shared controls and application adapters. Polished Aurum is the sole material authority. */
+/* Shared controls and application adapters. Neumorphism with gold highlights. */
 :root,:root[data-suarez-theme="dark"] {
  --av-bg:var(--g-bg);--av-panel:var(--g-surface);--av-raised:var(--g-raised);--av-ink:var(--g-ink);--av-muted:var(--g-muted);--av-line:var(--g-line);--av-cyan:var(--g-accent);--av-green:#a1e583;--av-magenta:#e6a0ee;--av-warning:#ffca72;--av-error:#ffc3c0;--av-glass:var(--g-glass);--av-menu-glass:var(--g-glass);--av-focus:var(--g-accent);
  --bg:var(--av-bg);--ink:var(--av-ink);--ink-muted:var(--av-muted);--text:var(--av-ink);--text-strong:var(--av-ink);--text-muted:var(--av-muted);--text-muted-2:var(--av-muted);--navy:var(--av-ink);--navy-600:var(--av-ink);
@@ -448,6 +448,7 @@ html[data-suarez-solid="true"] .liquid-menu-surface::after{background:var(--liqu
 /* Reflow instead of overlapping the decorative arc when text is enlarged. */
 html body .liquid-menu.liquid-large-text .liquid-sections{grid-template-columns:1fr;height:auto;min-height:0;gap:4px}
 html body .liquid-menu.liquid-large-text .liquid-section{position:static;width:100%;transform:none;transition:none}
+@media(max-width:360px){html body .liquid-menu:not(.liquid-large-text) .liquid-section{font-size:.8rem;padding-inline:3px;overflow-wrap:normal;word-break:normal}}
 .liquid-large-text .liquid-menu-heading{align-items:start}
 
 html body .liquid-menu .av-menu-actions :is(a,button){display:flex;flex-direction:row;align-items:center;justify-content:space-between;box-sizing:border-box;width:100%;min-height:44px;padding:10px 14px;margin:3px 0;border-radius:14px;background:transparent;color:var(--liquid-ink);text-align:left;text-decoration:none;font-size:.9rem;font-weight:500}
@@ -497,21 +498,31 @@ html body .liquid-dock-items > :is(.wordmark,.nav-brand){display:none}
 }
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){html body .liquid-dock .liquid-dock-shell{background:var(--liquid-surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
 @media(min-width:981px) and (max-width:1024px){html body .nav.liquid-dock[data-compact-dock]{width:min(520px,calc(100% - 24px))}html body .liquid-dock .av-key.av-wide span{white-space:nowrap}}
-/* POLISHED AURUM: canonical material authority. See docs/design/POLISHED_AURUM.md. */
+/* Canonical material authority. See docs/design/NEUMORPHISM.md.
+   Raised surfaces share the canvas color; depth comes from a consistent light.
+   The --g-* contract remains stable for source-owned application adapters. */
 :root{
-  --g-bg:#e3e3e3;--g-surface:#efefef;--g-raised:#f7f7f7;--g-well:#d6d6d6;
+  --g-bg:#e3e3e3;--g-surface:#e3e3e3;--g-raised:#e9e9e9;--g-well:#dcdcdc;
+  --av-neu-canvas:var(--g-bg);--av-neu-surface:var(--g-surface);--av-neu-raised:var(--g-raised);--av-neu-well:var(--g-well);
+  --av-neu-light:#ffffffd9;--av-neu-dark:#ababab66;
+  --av-neu-shadow:-7px -7px 16px var(--av-neu-light),7px 7px 16px var(--av-neu-dark);
+  --av-neu-shadow-sm:-3px -3px 8px var(--av-neu-light),3px 3px 8px var(--av-neu-dark);
+  --av-neu-inset:inset 3px 3px 7px var(--av-neu-dark),inset -3px -3px 7px var(--av-neu-light);
+  --av-neu-gold-shadow:inset 0 1px 1px #fff8,-3px -3px 8px var(--av-neu-light),3px 4px 9px var(--av-neu-dark);
+  --av-contact-shadow:var(--av-neu-shadow-sm);--av-pressed-shadow:var(--av-neu-inset);
+  --shadow-sm:var(--av-neu-shadow-sm);--shadow-md:var(--av-neu-shadow);--shadow-lg:var(--av-neu-shadow);--shadow-yellow:var(--av-neu-gold-shadow);
   --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
   --font-prose:var(--font-ui);--font-body:var(--font-ui);
   --g-ink:#272727;--g-muted:#595959;--g-line:#b7b7b7;--g-accent:#73551b;
-  --g-glass:rgba(241,241,241,.90);--g-glass-edge:rgba(255,255,255,.8);
-  --g-shadow:0 3px 5px #0002,0 9px 20px #0000000b;
+  --g-glass:var(--g-surface);--g-glass-edge:#ffffff6b;
+  --g-shadow:var(--av-neu-shadow);
   --g-top:#ffe79a;--g-mid:#e3b741;--g-low:#d2a23a;--g-edge:#9a701b;
-  --g-gold:linear-gradient(165deg,#fff0b4 0%,#ebc55b 23%,#d8a735 40%,#ffdf80 45%,#f4d16a 52%,#d2a23a 79%,#e8c361 100%);
-  --g-key-ink:#2b2316;--g-radius:10px;--g-blur:18px;
+  --g-gold:linear-gradient(145deg,#f9e5a3 0%,#efc95f 45%,#ddb146 100%);
+  --g-key-ink:#2b2316;--g-radius:20px;--g-blur:0px;
   --g-motion:220ms;--g-press:100ms;
   background:var(--g-bg);color:var(--g-ink);
 }
-html[data-gold-mode=dark]{--g-bg:#414141;--g-surface:#4a4a4a;--g-raised:#545454;--g-well:#393939;--g-ink:#f4f4f4;--g-muted:#d0d0d0;--g-line:#767676;--g-accent:#ecd39b;--g-glass:rgba(73,73,73,.94);--g-glass-edge:rgba(255,255,255,.23);--g-shadow:0 3px 6px #0003,0 10px 24px #0002}
+html[data-gold-mode=dark]{--g-bg:#414141;--g-surface:#414141;--g-raised:#484848;--g-well:#3a3a3a;--g-ink:#f4f4f4;--g-muted:#d0d0d0;--g-line:#767676;--g-accent:#ecd39b;--g-glass:var(--g-surface);--g-glass-edge:#ffffff16;--av-neu-light:#62626266;--av-neu-dark:#22222299;--g-shadow:var(--av-neu-shadow)}
 html[data-gold-mode],html[data-gold-mode] body,html[data-gold-mode] :is(.pilot-app,.part61-redesign,#se-workspace){
   --bg:var(--g-bg);--background:var(--g-bg);--ink:var(--g-ink);--text:var(--g-ink);--text-strong:var(--g-ink);--navy:var(--g-ink);--navy-600:var(--g-ink);
   --ink-muted:var(--g-muted);--text-muted:var(--g-muted);--text-muted-2:var(--g-muted);--muted:var(--g-muted);
@@ -533,26 +544,26 @@ html[data-gold-mode],html[data-gold-mode] body,html[data-gold-mode] .pilot-app,h
   --liquid-ink:var(--g-ink);--liquid-muted:var(--g-muted);--liquid-surface:var(--g-surface);--liquid-glass:var(--g-glass);--liquid-edge:var(--g-glass-edge);--liquid-key:var(--g-raised);--liquid-selected:var(--g-surface);--liquid-focus:var(--g-accent);
   --orbit-bg:var(--g-bg);--orbit-surface:var(--g-surface);--orbit-ink:var(--g-ink);--orbit-muted:var(--g-muted);--orbit-line:var(--g-line);--orbit-control:var(--g-raised);
 }
-html[data-gold-mode] .liquid-dock .av-key[aria-current]{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff7,0 2px 4px #0002!important;transition-property:background-color,border-color,box-shadow,transform}
+html[data-gold-mode] .liquid-dock .av-key[aria-current]{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important;transition-property:background-color,border-color,box-shadow,transform}
 html[data-gold-mode] .liquid-dock .av-key[aria-current] :is(span,svg){color:var(--g-key-ink)!important}
 /* The current destination in the expanded menu is the same selected action
    as its dock key. Keep the small "Current" label legible on every gold stop. */
 html[data-gold-mode] body .liquid-menu .liquid-panel>a[aria-current]{
  background:var(--g-gold)!important;color:var(--g-key-ink)!important;
  border-color:var(--g-edge)!important;
- box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important;
+ box-shadow:var(--av-neu-gold-shadow)!important;
 }
 html[data-gold-mode] body .liquid-menu .liquid-panel>a[aria-current]::after{color:var(--g-key-ink)!important}
 html[data-gold-mode] .pilot-app :is(.back-link,.header-actions .icon-button,.avionics-menu){color:var(--g-accent)!important}
-html[data-gold-mode] .pilot-app :is(.segmented button[aria-pressed=true],.segmented button.active){background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
-html[data-gold-mode] .pilot-app :is(.key-grid button,.calculator-grid button):not(.equals):not(.key-done):not(.keypad-done){background:linear-gradient(180deg,var(--g-raised),var(--g-surface))!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:inset 0 1px #ffffff40,0 2px 2px #0002!important}
-html[data-gold-mode] .pilot-app .bottom-nav button[aria-current=page]{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+html[data-gold-mode] .pilot-app :is(.segmented button[aria-pressed=true],.segmented button.active){background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important}
+html[data-gold-mode] .pilot-app :is(.key-grid button,.calculator-grid button):not(.equals):not(.key-done):not(.keypad-done){background:var(--av-neu-surface)!important;color:var(--g-ink)!important;border-color:var(--g-glass-edge)!important;box-shadow:var(--av-neu-shadow-sm)!important}
+html[data-gold-mode] .pilot-app .bottom-nav button[aria-current=page]{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important}
 html[data-gold-mode] .pilot-app .bottom-nav button[aria-current=page]::after{background:var(--g-edge)!important}
-html[data-gold-mode] .cp-primary{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border:1px solid var(--g-edge)!important;box-shadow:inset 0 1px #fff8,var(--g-shadow)!important}
+html[data-gold-mode] .cp-primary{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border:1px solid var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important}
 html[data-gold-mode] .horizon-brand{color:var(--g-ink)!important}
 html[data-gold-mode] .home-flight-wordmark{color:var(--g-ink)!important}
 html[data-gold-mode] #se-workspace{--se-accent:var(--g-accent)}
-html[data-gold-mode] :is(.stage-open,.engine-choice,.cg-btn-primary,#cgNextBtn,#startButton),html[data-gold-mode] body.flightrisk-view :is(button,a).bg-accent-600{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,var(--g-shadow)!important}
+html[data-gold-mode] :is(.stage-open,.engine-choice,.cg-btn-primary,#cgNextBtn,#startButton),html[data-gold-mode] body.flightrisk-view :is(button,a).bg-accent-600{background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important}
 html[data-gold-mode] body.flightrisk-view :is(.bg-white,.bg-card,.bg-page,.bg-soft,.bg-ink-900){background:var(--g-surface)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important}
 html[data-gold-mode] body.flightrisk-view :is(.text-ink-900,.text-ink-800,.text-ink-700){color:var(--g-ink)!important}
 html[data-gold-mode] body.flightrisk-view :is(.text-ink-600,.text-ink-500,.text-ink-400){color:var(--g-muted)!important}
@@ -565,24 +576,24 @@ html[data-gold-mode] :is(.nav a,.nav button){color:var(--g-ink)!important}
 /* Shared secondary hardware treatment; app-specific primary/semantic states below win. */
 html[data-gold-mode] :where(body:not(.flightrisk-view)) :where(button,[role="button"],.btn,.button){
  background:linear-gradient(180deg,var(--g-raised),var(--g-surface));color:var(--g-ink);border-color:var(--g-line);
- box-shadow:inset 0 1px #ffffff40,0 2px 3px #0001;
+ box-shadow:var(--av-neu-shadow-sm);
  transition:background 220ms,box-shadow 220ms,transform 100ms;
 }
 html[data-gold-mode] :is(.av-appearance-options,.se-appearance) button[aria-pressed="true"]{
  background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;
- box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important;
+ box-shadow:var(--av-neu-gold-shadow)!important;
 }
 html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){
   background:var(--g-gold)!important;color:var(--g-key-ink)!important;border:1px solid var(--g-edge)!important;
-  box-shadow:inset 0 1px 0 #fff9,inset 1px 0 0 #ffffff40,inset 0 -1px 0 #78571d33,var(--g-shadow)!important;
+  box-shadow:var(--av-neu-gold-shadow)!important;
   position:relative;isolation:isolate;overflow:hidden;text-shadow:0 1px #ffffff30;
   transition:box-shadow var(--g-motion),filter var(--g-motion),transform var(--g-press)!important;
 }
 html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.gold-primary,.nav-cta)::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 28%,#fff7 45%,transparent 61%);transform:translateX(-160%);opacity:0;z-index:-1}
 @media(hover:hover){html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.gold-primary,.nav-cta):not(:disabled):is(:hover,:focus-visible)::after{animation:gold-glint 550ms ease-out 1}}
 @keyframes gold-glint{0%{transform:translateX(-160%);opacity:0}25%{opacity:.55}100%{transform:translateX(160%);opacity:0}}
-html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta):not(:disabled):active{transform:translateY(1px)!important;box-shadow:inset 0 2px 4px #73501844,0 1px 1px #0002!important}
-html[data-gold-mode] :is(.btn--secondary,.part61-button-secondary,.secondary,.gold-secondary){background:linear-gradient(180deg,var(--g-raised),var(--g-surface))!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:inset 0 1px #ffffff40,0 2px 3px #0001!important}
+html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta):not(:disabled):active{transform:translateY(1px)!important;box-shadow:var(--av-neu-inset)!important}
+html[data-gold-mode] :is(.btn--secondary,.part61-button-secondary,.secondary,.gold-secondary){background:linear-gradient(180deg,var(--g-raised),var(--g-surface))!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:var(--av-neu-shadow-sm)!important}
 /* Quiet actions retain their existing hit areas without raised hardware chrome. */
 html[data-gold-mode] :is(.btn--tertiary,button.text-button,.part61-text-button,.part61-quiet-button){
  background:transparent!important;color:var(--g-accent)!important;border-color:transparent!important;
@@ -593,7 +604,7 @@ html[data-gold-mode] :is(.btn--tertiary,button.text-button,.part61-text-button,.
 }
 html[data-gold-mode] :is(button,a,input,select,textarea,summary):focus-visible{outline:3px solid var(--g-accent)!important;outline-offset:4px!important}
 html[data-gold-mode] :is(button,input,select,textarea):disabled{opacity:.48;cursor:not-allowed}
-html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea){background:var(--g-raised)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:inset 0 1px 3px #0000000c}
+html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea){background:var(--g-raised)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:var(--av-neu-inset)}
 /* Explicit validation semantics take precedence over neutral input chrome. */
 html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea)[aria-invalid="true"]{border-color:var(--av-error)!important}
 html[data-gold-mode] :is(input,textarea)::placeholder{color:var(--g-muted);opacity:1}
@@ -607,7 +618,7 @@ html[data-gold-mode] :is(input,textarea)::placeholder{color:var(--g-muted);opaci
  }
  @media(forced-colors:active){html[data-gold-mode] input[type="search"]::-webkit-search-cancel-button{background-color:ButtonText;forced-color-adjust:none}}
 }
-html[data-gold-mode=day]{--g-control-line:#828282}
+html[data-gold-mode=day]{--g-control-line:#7b7b7b}
 html[data-gold-mode=dark]{--g-control-line:#a5a5a5}
 html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea){border-color:var(--g-control-line)!important}
 html[data-gold-mode] input:is([type=checkbox],[type=radio],[type=range]){accent-color:var(--g-accent)}
@@ -617,7 +628,7 @@ html[data-gold-mode] .part61-redesign :is(summary,.part61-choice-row,.option-but
 html[data-gold-mode] .part61-redesign :is(.part61-kicker,.part61-text-button,.stage-number,.part61-rate-summary span){color:var(--g-accent)!important}
 html[data-gold-mode] :is(.part61-goal-summary,.group-completion:not(.complete)){background:var(--g-raised)!important;color:var(--g-muted)!important}
 html[data-gold-mode] :is(.part61-hero-banner,.part61-results-pane){background:var(--g-surface)!important;color:var(--g-ink)!important}
-html[data-gold-mode] .part61-redesign :is(.part61-choice-row,.option-button,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-target-option)[aria-pressed=true],html[data-gold-mode] .part61-redesign .option-button.selected{border-color:var(--g-edge)!important;background:var(--g-gold)!important;color:var(--g-key-ink)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+html[data-gold-mode] .part61-redesign :is(.part61-choice-row,.option-button,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-target-option)[aria-pressed=true],html[data-gold-mode] .part61-redesign .option-button.selected{border-color:var(--g-edge)!important;background:var(--g-gold)!important;color:var(--g-key-ink)!important;box-shadow:var(--av-neu-gold-shadow)!important}
 /* Muted sky retains the original animation and geometry, with an adaptive film. */
 html[data-gold-mode] .horizon-hero{background:var(--g-bg)!important}
 html[data-gold-mode] :is(.horizon-clouds,.horizon-sky-fallback){filter:saturate(.32) brightness(.96)}
@@ -650,7 +661,7 @@ html[data-gold-effects=quiet] :is(button,a,summary,[role="button"],.btn,.button)
 @media(forced-colors:active){html[data-gold-mode] :is(button,a,input,select,textarea){forced-color-adjust:auto;background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText!important;box-shadow:none!important}}
 
 /* Certificate selections are gold; category dots and canvas artwork retain their source colors. */
-html[data-gold-mode] :is(.cg-cert-btn.is-selected,.cg-rating-btn[aria-checked="true"]) {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:inset 0 1px #fff8,0 2px 4px #0002!important}
+html[data-gold-mode] :is(.cg-cert-btn.is-selected,.cg-rating-btn[aria-checked="true"]) {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important}
 html[data-gold-mode] .cg-cert-btn.is-selected :is(strong,small){color:var(--g-key-ink)!important}
 /* Flight profile choices are selections, not risk bands. Keep every label dark
    across the brightest metal stop; the risk score's semantic colors stay intact. */
@@ -663,13 +674,13 @@ html[data-gold-mode] body.flightrisk-view [role="radio"][aria-checked="true"] :i
 html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"],
 html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"] :is(span,strong,small){
  background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;
- box-shadow:inset 0 1px #fff8,0 2px 4px #0002!important;
+ box-shadow:var(--av-neu-gold-shadow)!important;
 }
 html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"] :is(span,strong,small){background:none!important;box-shadow:none!important}
 /* Aero Lab's borderless lesson and teaching tabs need the same bronze rim as
    its other selected keys. An inset rim preserves their authored dimensions. */
 html[data-gold-mode] body.aero-lab-page #root :is(.lesson-tabs button.active,.teaching-tabs button[aria-pressed="true"]){
- box-shadow:inset 0 0 0 1px var(--g-edge),inset 0 1px #fff8,0 2px 3px #0002!important;
+ box-shadow:inset 0 0 0 1px var(--g-edge),var(--av-neu-gold-shadow)!important;
 }
 /* Keep the existing 49px lesson rail while giving each key a 44px touch area. */
 html[data-gold-mode] body.aero-lab-page #root .lesson-tabs{padding-block:1.5px}
@@ -683,7 +694,7 @@ html[data-gold-mode] body.aero-lab-page #root .lesson-tabs button{min-height:44p
    App identity icons and category indicators retain their own semantic colors. */
 html[data-gold-mode] body :is(.blog-categories,.catalog-filters,.library-view-switch) button[aria-pressed="true"] {
  background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;
- box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important;
+ box-shadow:var(--av-neu-gold-shadow)!important;
 }
 @media(forced-colors:active){html[data-gold-mode] body :is(.blog-categories,.catalog-filters,.library-view-switch) button[aria-pressed="true"]{background:Highlight!important;color:HighlightText!important;box-shadow:none!important}}
 
@@ -696,7 +707,7 @@ html[data-gold-mode] .part61-redesign :is(.part61-choice-row,.option-button,.par
 }
 
 /* Training-route navigation uses the shared selected material. */
-html[data-gold-mode] .journey-planner .journey-stop[aria-selected="true"]{background:var(--g-gold)!important;border-color:var(--g-edge)!important;color:var(--g-key-ink)!important;box-shadow:inset 0 1px #fff8,0 2px 3px #0002!important}
+html[data-gold-mode] .journey-planner .journey-stop[aria-selected="true"]{background:var(--g-gold)!important;border-color:var(--g-edge)!important;color:var(--g-key-ink)!important;box-shadow:var(--av-neu-gold-shadow)!important}
 html[data-gold-mode] .journey-planner .journey-stop[aria-selected="true"] .journey-stop-label{color:var(--g-key-ink)!important}
 /* Inline CTA icons need an explicit size; bare SVG defaults distort the link. */
 .journey-cta svg{width:18px;height:18px;flex:0 0 18px}
@@ -736,4 +747,105 @@ html[data-gold-mode] .cf-form.cf-form--invalid input.cf-input[required]:invalid{
  html body.editorial-page :is(.post-header h1,.article-header h1){font-size:32px}
  html body.editorial-page:not(.journal-article) :is(.prose,.post-body,.article-body){font-size:16px}
  html body.editorial-page .prose>p:first-child{font-size:17px}
+}
+
+/* Neumorphic component contract. Geometry/behavior remain owned by each flow;
+   shared surfaces and their states now use one lighting model in both modes. */
+html[data-gold-mode] :is(.paper,.glass-material,.glass-panel,.surface-card){
+ background:var(--av-neu-surface);border-color:var(--g-glass-edge);border-radius:22px;
+ box-shadow:var(--av-neu-shadow);backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+html[data-gold-mode] body :is(.btn,.button,button.av-control,.cp-primary,.cg-btn,.part61-button-primary,.part61-button-secondary){border-radius:14px}
+html[data-gold-mode] body :is(.btn,.button):not(.btn--tertiary){box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){box-shadow:var(--av-neu-gold-shadow)!important}
+html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.gold-primary,.nav-cta)::after{content:none!important;animation:none!important}
+html[data-gold-mode] :is(.btn,.button,button.av-control):not(:disabled):active{box-shadow:var(--av-neu-inset)!important}
+html[data-gold-mode] :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]),select,textarea){
+ background:var(--av-neu-surface)!important;border-radius:12px;box-shadow:var(--av-neu-inset)!important;
+}
+/* The navigation bar, its mobile morphing shell, and its menus are part of
+   the same soft material. Never replace the positioning/compaction transforms. */
+html[data-gold-mode] body .nav.liquid-dock{
+ background:var(--av-neu-surface)!important;box-shadow:var(--av-neu-shadow)!important;
+ border:1px solid var(--g-glass-edge)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html[data-gold-mode] body .liquid-dock .liquid-dock-shell{
+ background:var(--av-neu-surface)!important;box-shadow:var(--av-neu-shadow)!important;
+ border-color:var(--g-glass-edge);backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html[data-gold-mode] body .liquid-dock .liquid-dock-shell::after{box-shadow:var(--av-neu-gold-shadow)!important}
+html[data-gold-mode] body .liquid-dock :is(.av-key,.nav-menu-toggle){background:transparent;box-shadow:none}
+html[data-gold-mode] body .liquid-dock :is(.av-key,.nav-menu-toggle):hover{background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] body .liquid-dock :is(.av-key[aria-current],.nav-menu-toggle[aria-expanded=true]){
+ background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important;
+}
+html[data-gold-mode] body .liquid-dock :is(.av-key,.nav-menu-toggle):active{box-shadow:var(--av-neu-inset)!important}
+html[data-gold-mode] body .liquid-menu-surface{
+ background:var(--av-neu-surface);border-color:var(--g-glass-edge);box-shadow:var(--av-neu-shadow),0 18px 46px #0002;
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html[data-gold-mode] body .liquid-menu :is(.liquid-close,.av-appearance button){
+ background:var(--av-neu-surface);border-color:var(--g-glass-edge);box-shadow:var(--av-neu-shadow-sm);
+}
+html[data-gold-mode] body .liquid-menu :is(.liquid-section[aria-selected=true],.av-appearance button[aria-pressed=true],.liquid-panel>a[aria-current]){box-shadow:var(--av-neu-gold-shadow)!important}
+html[data-gold-mode] body .liquid-menu .liquid-panel>a:not([aria-current]):hover{background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] body .liquid-menu :is(button,.liquid-panel>a):active{box-shadow:var(--av-neu-inset)!important}
+/* Source-built app menus expose the same complete, directly launchable set. */
+.av-app-launcher{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px;list-style:none;margin:18px 0 8px!important;padding:8px!important}
+.av-app-launcher>li{min-width:0;margin:0;padding:0}
+html[data-gold-mode] body .av-app-launcher .av-app-tile{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:9px;min-width:0;min-height:44px;width:100%;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;text-align:center;text-decoration:none;color:var(--g-ink)!important}
+.av-app-launcher .av-app-icon{display:grid;place-items:center;flex:none;width:64px;height:64px;border-radius:20px;background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
+.av-app-launcher img{display:block;width:48px!important;height:48px!important;object-fit:contain;border-radius:22%}
+.av-app-launcher strong{font-size:12px!important;font-weight:600;line-height:1.45;overflow-wrap:anywhere}
+html body .av-app-launcher .av-app-tile::after{content:none!important}
+.av-app-launcher .av-app-tile:active .av-app-icon{box-shadow:var(--av-neu-inset)}
+@media(max-width:340px){.av-app-launcher{grid-template-columns:repeat(2,minmax(0,1fr))}}
+html[data-gold-mode] :is(.bottom-nav,.numeric-keypad,.aero-dock,.aero-dock__panel,[data-tactile-dock]){
+ background:var(--av-neu-surface)!important;box-shadow:var(--av-neu-shadow)!important;
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+/* Website pages: grouped content is raised, while prose stays on an open,
+   readable canvas. Category/diagram imagery and export canvases are excluded. */
+@media screen{
+ html[data-gold-mode] body.journal-article .journal-rail{background:var(--av-neu-surface);border:1px solid var(--g-glass-edge);border-radius:20px;padding:14px 16px;box-shadow:var(--av-neu-shadow)}
+ html[data-gold-mode] .horizon-hero .btn{border-radius:14px!important;box-shadow:var(--av-neu-shadow-sm)!important}
+ html[data-gold-mode] .horizon-hero .btn--primary{box-shadow:var(--av-neu-gold-shadow)!important}
+}
+html[data-gold-mode] body:is(.home-page,.service-page,.editorial-page,.journal-library,.journal-article) :is(
+ .next-step-card,.plan-row,.service-panel,.service-fact,.service-facts>div,.service-card,.service-card-grid>article,
+ .about-panel,.faq-sheet,.contact-sheet,.contact-card,.conversion-bar,.cf-form,
+ .category-card,.post-card,.article-card,.guide-card,.library-card,.library-search,
+ .source-guide,.see-also,.related-reading,.cta-box,.faq-section,.seo-guide-note,.table-wrap){
+ background:var(--av-neu-surface);border-color:var(--g-glass-edge);border-radius:22px;box-shadow:var(--av-neu-shadow);
+}
+html[data-gold-mode] body.home-page .next-step-card{padding:28px;transition:box-shadow 160ms ease,border-color 160ms ease}
+html[data-gold-mode] body.home-page .next-step-card:hover{box-shadow:var(--av-neu-shadow-sm);border-color:var(--g-accent)}
+html[data-gold-mode] body.home-page .next-step-card:active{box-shadow:var(--av-neu-inset)}
+html[data-gold-mode] body.journal-article .journal-chapters a[aria-current=location]{
+ background:var(--av-neu-surface);border-left-color:var(--g-accent);border-radius:0 14px 14px 0;box-shadow:var(--av-neu-shadow-sm);
+}
+html[data-gold-mode] body.journal-article .journal-reading-progress{box-shadow:var(--av-neu-inset);border-radius:999px}
+html[data-gold-mode] body :is(.catalog-filters,.library-view-switch,.blog-categories) button{border-radius:999px;box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] body footer.site-footer-v2{
+ --sf-bg:var(--av-neu-surface);background:var(--av-neu-surface)!important;
+ box-shadow:inset 0 7px 12px var(--av-neu-dark),inset 0 1px var(--av-neu-light);
+}
+/* Small-phone shadows use less travel without reducing touch targets. */
+@media(max-width:600px){
+ html[data-gold-mode]{--av-neu-shadow:-5px -5px 12px var(--av-neu-light),5px 5px 12px var(--av-neu-dark)}
+ html[data-gold-mode] body.home-page .next-step-card{padding:24px}
+}
+@media(max-width:1024px){
+ html[data-gold-mode] body .nav.liquid-dock[data-compact-dock]{background:transparent!important;border:0!important;box-shadow:none!important}
+}
+@media(prefers-contrast:more){
+ html[data-gold-mode]{--g-glass-edge:var(--g-control-line);--av-neu-shadow:0 0 0 1px var(--g-control-line);--av-neu-shadow-sm:0 0 0 1px var(--g-control-line)}
+}
+@media(forced-colors:active){
+ html[data-gold-mode]{--av-neu-canvas:Canvas;--av-neu-surface:Canvas;--av-neu-raised:Canvas;--av-neu-well:Canvas;--av-neu-shadow:none;--av-neu-shadow-sm:none;--av-neu-inset:none;--av-neu-gold-shadow:none}
+ html[data-gold-mode] body :is(.nav.liquid-dock,.liquid-dock-shell,.liquid-menu-surface){background:Canvas!important;border:1px solid ButtonText!important;box-shadow:none!important}
+}
+@media print{
+ html[data-gold-mode]{--av-neu-shadow:none;--av-neu-shadow-sm:none;--av-neu-inset:none;--av-neu-gold-shadow:none;--av-neu-surface:#fff;--av-neu-canvas:#fff}
+ html[data-gold-mode] body :is(.paper,.glass-material,.surface-card,.service-panel,.source-guide,.cf-form,.next-step-card){box-shadow:none!important;background:#fff!important}
 }

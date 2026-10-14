@@ -2,6 +2,7 @@
 """Package app-owned PilotSolve builds while retaining published metadata."""
 from pathlib import Path
 import argparse
+from hashlib import sha256
 import json
 import re
 import shutil
@@ -43,6 +44,14 @@ if missing := required_assets - manifest_assets:
     raise SystemExit('Mobile dependencies missing from offline manifest: ' + ', '.join(sorted(missing)))
 build['files'] = [path for path in build['files']
                   if not path.startswith('./assets/') or Path(path).name in required_assets]
+# Stable source-owned material adapter accompanies every future mobile build.
+material = args.dist / 'neumorphism.css'
+if not material.is_file():
+    raise SystemExit('Mobile build is missing source-owned neumorphism.css')
+if './neumorphism.css' not in build['files']:
+    build['files'].append('./neumorphism.css')
+shutil.copy2(material, app / 'neumorphism.css')
+material_version = sha256(material.read_bytes()).hexdigest()[:10]
 build['cache'] = json.loads((app / 'BUILD.json').read_text())['cache']
 pages = {}
 for name in ('index.html', 'mobile.html'):
@@ -52,6 +61,9 @@ for name in ('index.html', 'mobile.html'):
         text, count = re.subn(pattern, lambda _: replacement, text, count=1)
         if count != 1:
             raise SystemExit(f'{name}: missing expected entry')
+    if 'neumorphism.css' not in text:
+        text = text.replace('</head>', '<link rel="stylesheet" href="./neumorphism.css" />\n</head>')
+    text = re.sub(r'\./neumorphism\.css(?:\?[^\"\s]*)?', './neumorphism.css?v=' + material_version, text)
     pages[page] = text
 worker = app / 'sw.js'
 worker_text, count = re.subn(r'const FILES=\[.*?\];',

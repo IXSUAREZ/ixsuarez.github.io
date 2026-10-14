@@ -490,3 +490,39 @@ body.tool-page .part61-redesign :is(.dashboard-card .value,.dashboard-card>b){co
 body.tool-page .part61-redesign .part61-panel-navigation{position:static;background:transparent;backdrop-filter:none}
 body.tool-page .part61-redesign .part61-edit-dialog>footer,body.tool-page .part61-redesign .part61-menu>:is(div,section){background:var(--g-surface);color:var(--g-ink)}
 body.tool-page .part61-redesign .part61-menu button{color:var(--g-ink)}
+
+/* Neumorphic CertPath surfaces cover every wizard/result/review state. */
+@media screen {
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-step-nav,.part61-stage-card,.field-group,.part61-check-row,.part61-check-group,.part61-event-group,.part61-target-option,.part61-goal-summary,.part61-summary-card,.part61-training-block,.part61-reference-card,.part61-ledger-card,.part61-ledger-total,.summary-block,.dashboard-card,.metric,.part61-zero-review,.part61-zero-confirm,.part61-edit-dialog,.part61-discard-dialog,.part61-menu>:is(div,section)) {
+    background:var(--av-neu-surface,var(--g-surface));
+    border-color:var(--g-glass-edge);border-radius:16px;
+    box-shadow:var(--av-neu-shadow,var(--g-shadow));
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign .part61-step-nav {
+    padding:8px;gap:8px;border:1px solid var(--g-glass-edge);
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-choice-row,.option-button,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-experience-entry button,.part61-button-secondary,.part61-edit-summary button,.part61-menu>summary,.part61-filter-button) {
+    background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-glass-edge);
+    border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea,.part61-ledger-numbers) {
+    background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-line);
+    border-radius:10px;box-shadow:var(--av-neu-inset,var(--shadow-inset));
+    color:var(--g-ink);
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-button-primary,.part61-choice-row[aria-pressed="true"],.option-button[aria-pressed="true"],.option-button.selected,.part61-common-goals button[aria-pressed="true"],.part61-no-certificate[aria-pressed="true"],.part61-has-certificate[aria-pressed="true"],.part61-target-option[aria-pressed="true"],.part61-filter-button[aria-pressed="true"],.part61-step-nav [aria-current="step"]) {
+    background:var(--g-gold)!important;color:var(--g-key-ink)!important;
+    border-color:var(--g-edge)!important;border-radius:12px;
+    box-shadow:var(--av-neu-gold-shadow,var(--g-shadow))!important;
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign :is(button,.part61-choice-row,.option-button):not(:disabled):active {
+    box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign .part61-text-button {
+    background:transparent;box-shadow:none;
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign .part61-menu button {
+    background:transparent;box-shadow:none;
+  }
+}

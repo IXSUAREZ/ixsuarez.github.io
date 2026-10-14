@@ -1,3 +1,5 @@
+> Historical Aurum record below. Current material authority: [NEUMORPHISM.md](NEUMORPHISM.md). Current implementation evidence: [neumorphism-implementation-status.md](neumorphism-implementation-status.md) and [design QA](../../design-qa.md).
+
 # Polished Aurum implementation status
 
 Release integration checkpoint: `/Users/diegosuarez/Projects/suarez-aurum-release-20260925`, branch `codex/polished-aurum-release-20260925`, rebased onto public `origin/main` at `4a20d30`. The older isolated Aurum snapshot is `26edd1a`; this checkout preserves the newer journal, contact/SEO, compact mobile dock and its latest brief-motion behavior. The mobile refinements below are the release candidate; deployment evidence belongs in the release record after publication.

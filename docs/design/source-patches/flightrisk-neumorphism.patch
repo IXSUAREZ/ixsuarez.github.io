@@ -1,0 +1,101 @@
+--- a/src/index.css
++++ b/src/index.css
+@@ -211,6 +211,63 @@
+   }
+ }
+ 
++/* Neumorphic content material, rebuilt from the verified current source.
++   PAVE colors, risk tapes, toggles, gauges and printed summary are semantic. */
++@media screen {
++  html[data-gold-mode] body.flightrisk-view #root :is(.border.bg-white,.border.bg-surface-card,.border.bg-alt,[data-slot="card"]),
++  html[data-gold-mode] body.flightrisk-view :is([role="dialog"],.fr-confirm-dialog) {
++    background:var(--av-neu-surface,var(--g-surface));
++    border-color:var(--g-glass-edge);border-radius:18px;
++    box-shadow:var(--av-neu-shadow,var(--g-shadow));
++  }
++  html[data-gold-mode] body.flightrisk-view #root :is(button.bg-white,a.bg-white) {
++    background:var(--av-neu-surface,var(--g-surface));
++    border-color:var(--g-glass-edge);border-radius:10px;
++    box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
++  }
++  html[data-gold-mode] body.flightrisk-view #root :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),select,textarea,.border.bg-surface-soft),
++  html[data-gold-mode] body.flightrisk-view #root [role="radiogroup"].bg-surface-sunken {
++    background:var(--av-neu-surface,var(--g-surface));
++    border-color:var(--g-line);border-radius:10px;
++    box-shadow:var(--av-neu-inset,inset 3px 3px 6px #0002,inset -3px -3px 6px #fff6);
++  }
++  html[data-gold-mode] body.flightrisk-view #root .border.bg-surface-soft>input {
++    background:transparent;box-shadow:none;
++  }
++  html[data-gold-mode] body.flightrisk-view :is(.bg-accent-600,.bg-accent-700,.fr-confirm-primary),
++  html[data-gold-mode] body.flightrisk-view #root [role="radio"][aria-checked="true"] {
++    background:var(--g-gold)!important;color:var(--g-key-ink)!important;
++    border-color:var(--g-edge)!important;border-radius:10px;
++    box-shadow:var(--av-neu-gold-shadow,var(--g-shadow))!important;
++  }
++  html[data-gold-mode] body.flightrisk-view #root [role="radio"][aria-checked="true"]>.absolute {
++    background:transparent;box-shadow:none;border-radius:inherit;
++  }
++  html[data-gold-mode] body.flightrisk-view #root button[role="switch"] {
++    border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
++  }
++  html[data-gold-mode] body.flightrisk-view #root :is(.bg-surface-sunken,.bg-surface-soft):not(button):not([role="radiogroup"]) {
++    background-color:var(--av-neu-well,var(--g-well));
++  }
++  html[data-gold-mode] body.flightrisk-view .fr-confirm-secondary {
++    background:var(--av-neu-surface,var(--g-surface));border-radius:10px;
++    box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
++  }
++  html[data-gold-mode] body.flightrisk-view .fr-confirm-overlay {
++    backdrop-filter:none;-webkit-backdrop-filter:none;
++  }
++  html[data-gold-mode] body.flightrisk-view #root button:not(:disabled):active,
++  html[data-gold-mode] body.flightrisk-view .fr-confirm-actions button:active {
++    box-shadow:var(--av-neu-inset,inset 3px 3px 6px #0002,inset -3px -3px 6px #fff6);
++  }
++  @media(forced-colors:active) {
++    html[data-gold-mode] body.flightrisk-view :is(button,input,select,[role="dialog"],.fr-confirm-dialog) {
++      background:Canvas!important;color:CanvasText!important;
++      border:1px solid CanvasText!important;box-shadow:none!important;
++    }
++  }
++}
++
+ @media (prefers-reduced-motion: reduce) {
+   html {
+     scroll-behavior: auto;
+--- a/tailwind.config.js
++++ b/tailwind.config.js
+@@ -58,7 +58,7 @@
+           foreground: "var(--g-raised)",
+           700: "var(--g-accent)",
+           600: "var(--g-accent)",
+-          500: "var(--g-edge)",
++          500: "var(--g-accent)",
+           100: "var(--g-raised)",
+           50: "var(--g-surface)",
+         },
+@@ -99,16 +99,16 @@
+       },
+       borderRadius: {
+         sm: "5px",
+-        md: "6px",
+-        lg: "8px",
+-        xl: "10px",
+-        "2xl": "12px",
++        md: "10px",
++        lg: "18px",
++        xl: "22px",
++        "2xl": "26px",
+       },
+       boxShadow: {
+         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+-        e1: "0 1px 2px rgb(0 0 0 / 0.12)",
+-        e2: "0 2px 6px rgb(0 0 0 / 0.12), 0 12px 28px rgb(0 0 0 / 0.08)",
+-        e3: "0 8px 16px rgb(0 0 0 / 0.16), 0 24px 64px rgb(0 0 0 / 0.12)",
++        e1: "var(--av-neu-shadow, 6px 6px 14px #0002, -6px -6px 14px #fff7)",
++        e2: "var(--av-neu-shadow, 6px 6px 14px #0002, -6px -6px 14px #fff7)",
++        e3: "var(--av-neu-shadow, 10px 10px 24px #0003, -10px -10px 24px #fff5)",
+       },
+       maxWidth: {
+         shell: "1240px",

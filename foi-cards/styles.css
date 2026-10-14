@@ -774,3 +774,41 @@ body.foi-page .flashcard a {color:var(--g-accent)!important}
 /* Reserve the floating navigation inside the study viewport, so Flip and
    rating actions remain above the dock rather than behind its glass. */
 body.foi-page .app-shell {padding-bottom:max(28px,var(--dock-clearance,100px))}
+
+/* Soft raised study cards and inset progress, using the site's Day/Night
+   material. Review/mastered colors retain their learning-status meanings. */
+@media screen {
+  html[data-gold-mode] body.foi-page .app-shell > section.study .flashcard .card-face,
+  html[data-gold-mode] body.foi-page :is(.foi-cta-card,.section-sheet .sheet,.foi-reset-dialog) {
+    background:var(--av-neu-surface,var(--g-surface))!important;
+    border:1px solid var(--g-glass-edge)!important;border-radius:22px!important;
+    box-shadow:var(--av-neu-shadow,var(--g-shadow))!important;
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  html[data-gold-mode] body.foi-page :is(.secondary-button,.rate-button.next,.foi-cta-secondary,.chipnav-reset) {
+    background:var(--av-neu-surface,var(--g-surface))!important;
+    color:var(--g-ink)!important;border-color:var(--g-glass-edge)!important;
+    border-radius:12px!important;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow))!important;
+  }
+  html[data-gold-mode] body.foi-page :is(.primary-button,.flip-button,.foi-cta-primary,.chipnav-cta,.section-row.current) {
+    background:var(--g-gold)!important;color:var(--g-key-ink)!important;
+    border:1px solid var(--g-edge)!important;border-radius:12px!important;
+    box-shadow:var(--av-neu-gold-shadow,var(--g-shadow))!important;
+  }
+  html[data-gold-mode] body.foi-page .app-shell > section.study :is(.rate-button.review,.rate-button.mastered) {
+    border-radius:12px!important;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
+  }
+  html[data-gold-mode] body.foi-page .progress-track {
+    background:var(--av-neu-well,var(--g-well));
+    box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
+  html[data-gold-mode] body.foi-page :is(button,.foi-cta-actions a):not(:disabled):active {
+    box-shadow:var(--av-neu-inset,var(--shadow-inset))!important;
+  }
+  @media(max-width:600px) {
+    /* Leave space between the study action shadows and the floating dock. */
+    body.foi-page .app-shell > section.study .flashcard {
+      min-height:clamp(330px,calc(57dvh - 24px),520px);
+    }
+  }
+}

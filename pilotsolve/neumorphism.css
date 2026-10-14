@@ -1,0 +1,80 @@
+/* Approved SuarezCFI neumorphic materials. Source-owned, stable export asset.
+   Canonical site tokens take precedence; fallbacks support standalone previews.
+   Diagrams, engine geometry, phase colors, and calculated quantities are untouched. */
+:root {
+  --nu-canvas:var(--av-neu-canvas,#e3e3e3);
+  --nu-surface:var(--av-neu-surface,#e3e3e3);
+  --nu-well:var(--av-neu-well,#dedede);
+  --nu-ink:var(--g-ink,#25282b);
+  --nu-muted:var(--g-muted,#53575b);
+  --nu-line:var(--g-line,#b6b6b6);
+  --nu-accent:var(--g-accent,#795820);
+  --nu-gold:var(--g-gold,#e2b44b);
+  --nu-key-ink:var(--g-key-ink,#232323);
+  --nu-shadow:var(--av-neu-shadow,9px 9px 20px #00000020,-9px -9px 20px #ffffffd9);
+  --nu-shadow-sm:var(--av-neu-shadow-sm,4px 4px 9px #00000021,-4px -4px 9px #ffffffc7);
+  --nu-inset:var(--av-neu-inset,inset 3px 3px 7px #00000022,inset -3px -3px 7px #ffffffbb);
+  --nu-gold-shadow:var(--av-neu-gold-shadow,4px 4px 9px #00000026,-4px -4px 9px #ffffffbb,inset 0 1px 1px #fff9);
+}
+:root:is([data-suarez-theme="dark"],[data-gold-mode="dark"],[data-theme="night"]) {
+  --nu-canvas:var(--av-neu-canvas,#414141);--nu-surface:var(--av-neu-surface,#414141);--nu-well:var(--av-neu-well,#393939);
+  --nu-ink:var(--g-ink,#f4f4f4);--nu-muted:var(--g-muted,#c7c7c7);--nu-line:var(--g-line,#747474);--nu-accent:var(--g-accent,#f0d28a);
+  --nu-shadow:var(--av-neu-shadow,9px 9px 20px #00000052,-9px -9px 20px #ffffff0d);
+  --nu-shadow-sm:var(--av-neu-shadow-sm,4px 4px 9px #00000052,-4px -4px 9px #ffffff0d);
+  --nu-inset:var(--av-neu-inset,inset 3px 3px 7px #00000052,inset -3px -3px 7px #ffffff0d);
+  --nu-gold-shadow:var(--av-neu-gold-shadow,4px 4px 9px #00000052,-4px -4px 9px #ffffff0d,inset 0 1px 1px #fff8);
+  color-scheme:dark;
+}
+@media(prefers-contrast:more) { :root {--nu-line:currentColor} }
+
+/* PilotSolve keeps its compact forms, keypad, unit split controls and three tabs. */
+html body .pilot-app,html body .device-screen:has(.pilot-app) .bottom-sheet {
+  --bg:var(--nu-canvas);--surface:var(--nu-surface);--raised:var(--nu-surface);--text:var(--nu-ink);--muted:var(--nu-muted);--line:var(--nu-line);
+  --blue:var(--nu-accent);--cyan:var(--nu-accent);--soft:var(--nu-well);--shadow:var(--nu-shadow);
+  background:var(--nu-canvas)!important;color:var(--nu-ink)!important;
+}
+/* App-local appearance also works without the website's appearance bootstrap. */
+html:not([data-gold-mode]) .pilot-app[data-theme=dark],html:not([data-gold-mode]) .device-screen:has(.pilot-app[data-theme=dark]) .bottom-sheet {
+  --nu-canvas:#414141;--nu-surface:#414141;--nu-well:#393939;--nu-ink:#f4f4f4;--nu-muted:#c7c7c7;--nu-line:#747474;--nu-accent:#f0d28a;
+  --nu-shadow:9px 9px 20px #00000052,-9px -9px 20px #ffffff0d;--nu-shadow-sm:4px 4px 9px #00000052,-4px -4px 9px #ffffff0d;
+  --nu-inset:inset 3px 3px 7px #00000052,inset -3px -3px 7px #ffffff0d;
+}
+html body .pilot-app :is(.pilot-header,.bottom-nav,.numeric-keypad,.helper-return),html body .device-screen:has(.pilot-app) .bottom-sheet {
+  background:var(--nu-surface)!important;border-color:var(--nu-line)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  box-shadow:var(--nu-shadow)!important;
+}
+html body .pilot-app .pilot-header {border:0;border-radius:0 0 18px 18px;margin-bottom:8px}
+html body .pilot-app .bottom-nav {margin:8px 12px 12px;border:0;border-radius:18px;gap:10px;padding:9px max(9px,env(safe-area-inset-right)) max(9px,env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left))}
+html body .pilot-app .numeric-keypad {border-radius:18px 18px 0 0;padding:10px}
+html body .pilot-app :is(.search-field,.favorite-tile,.tool-row,.result-panel,.panel,.reuse-panel,.appearance-panel,.totals,.trip-totals,.loading-totals,.wind-diagram,.choice-option,.choice-trigger,.secondary,.icon-button,.back-link,.unit-split,.key-grid button,.calculator-grid button,.bottom-nav button),html body .device-screen:has(.pilot-app) .bottom-sheet :is(.choice-option,.tool-row,.secondary) {
+  border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:12px!important;background:var(--nu-surface)!important;
+  color:var(--nu-ink)!important;box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body .pilot-app :is(.favorite-tile,.result-panel,.panel,.reuse-panel,.appearance-panel,.totals,.trip-totals,.loading-totals,.wind-diagram) {border-radius:18px!important;box-shadow:var(--nu-shadow)!important}
+html body .pilot-app :is(.search-field,.number-field,select,.text-field input,.expression input,.formula) {
+  border:1px solid color-mix(in srgb,var(--nu-line) 40%,transparent)!important;border-radius:11px!important;background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-inset)!important;
+}
+html body .pilot-app .field-row.active .number-field {border-color:var(--nu-accent)!important;outline:2px solid var(--nu-accent);outline-offset:1px}
+html body .pilot-app :is(.primary,.key-done,.keypad-done,.equals,.bottom-nav button[aria-current=page],.segmented button[aria-pressed=true]),html body .pilot-app .choice-option[aria-pressed=true],html body .device-screen:has(.pilot-app) .bottom-sheet .choice-option[aria-pressed=true] {
+  border:1px solid var(--g-edge,#a77a29)!important;border-radius:11px!important;background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;box-shadow:var(--nu-gold-shadow)!important;
+}
+html body .pilot-app .bottom-nav button[aria-current=page]::after {display:none}
+html body .pilot-app :is(.choice-option[aria-pressed=true],.bottom-nav button[aria-current=page]) :is(svg,strong,small,span) {color:var(--nu-key-ink)!important}
+html body .pilot-app .unit-split .unit-cycle,html body .pilot-app .unit-split .unit-picker {background:transparent!important;border:0!important;box-shadow:none!important;border-radius:10px!important}
+html body .pilot-app .unit-split .unit-picker {border-left:1px solid var(--nu-line)!important;border-radius:0 10px 10px 0!important}
+html body .pilot-app :is(.tool-row,.favorite-tile) {margin-block:10px}
+html body .pilot-app :is(.result-label,.quiet,.muted,.designer-credit,.choice-copy small) {color:var(--nu-muted)!important}
+html body .pilot-app :is(.result-value,.number-field strong,.wordmark span,.back-link svg) {color:var(--nu-accent)!important}
+html body .pilot-app :is(button,input,select,summary):focus-visible {outline:3px solid var(--nu-accent)!important;outline-offset:3px}
+html body .pilot-app button:not(:disabled):active {box-shadow:var(--nu-inset)!important;transform:translateY(1px)}
+/* At 320px, retain two separate 44px unit actions without reducing the labels. */
+@media(max-width:350px) {html body .pilot-app .bottom-nav {margin-inline:8px;gap:7px}html body .pilot-app .favorite-tile {padding:11px}}
+@media(prefers-reduced-motion:reduce) {html body .pilot-app * {transition:none!important;animation:none!important}}
+
+/* Content and sheets share the same canvas, including the independent app menu. */
+html body .pilot-app :is(.pilot-content,.pilot-mobile-scroll,.pilot-scroll,.scroll-slot) {background:var(--nu-canvas)!important}
+html body .pilot-app .search-field input {background:transparent!important;border:0!important;box-shadow:none!important}
+html body .pilot-app .calculation-sheet {background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-shadow)!important;border-radius:18px 18px 0 0;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+html body:has(.pilot-app.standalone) {padding-bottom:0!important}
+html body #root .pilot-app .search-field input {background:transparent!important;border:0!important;box-shadow:none!important}

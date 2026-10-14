@@ -2,11 +2,19 @@
 """Audit tactile release coverage against the immutable checkout starting commit."""
 from pathlib import Path
 from hashlib import sha256
-import json,re,subprocess
+import argparse,json,re,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 GIT='/Library/Developer/CommandLineTools/usr/bin/git'
 manifest=json.loads((ROOT/'config/site-pages.json').read_text())
-base='6c97779192aad3a245cd0a1b5db7aab0c3e34d3d'
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--baseline',default='6c97779192aad3a245cd0a1b5db7aab0c3e34d3d',
+                    help='Immutable starting commit for this rollout (defaults to the historical tactile baseline).')
+args=parser.parse_args()
+resolved=subprocess.run([GIT,'rev-parse','--verify','--end-of-options',args.baseline+'^{commit}'],
+                        cwd=ROOT,capture_output=True,text=True)
+if resolved.returncode:
+ parser.error('baseline must resolve to an existing Git commit: '+args.baseline)
+base=resolved.stdout.strip()
 def git(*args):return subprocess.check_output([GIT,*args],cwd=ROOT)
 failures=[];routes=[]
 for p in manifest['pages']:
@@ -24,7 +32,12 @@ protected += [p for p in tracked if p.startswith('engine-explorer/app/') and ((p
 protected += [p for p in tracked if p.startswith(('certificate-generator/js/','certificate-generator/templates/'))]
 checks=[]
 for p in protected:
- before=git('show',base+':'+p);after=(ROOT/p).read_bytes()
+ before=git('show',base+':'+p)
+ if not (ROOT/p).is_file():
+  checks.append({'file':p,'exists':False,'unchanged':False})
+  failures.append(p+' missing protected file')
+  continue
+ after=(ROOT/p).read_bytes()
  ok=sha256(before).digest()==sha256(after).digest();checks.append({'file':p,'unchanged':ok})
  if not ok:failures.append(p+' changed protected bytes')
 for rel in ['assets/tactile.js','assets/avionics.css','assets/site-nav.js']:

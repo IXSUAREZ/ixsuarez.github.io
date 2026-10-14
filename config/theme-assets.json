@@ -35,7 +35,11 @@
     "assets/premium-home.js",
     "engine-explorer/model-info.css",
     "flight-lesson-guide/styles.css",
-    "flight-lesson-guide/app.js"
+    "flight-lesson-guide/app.js",
+    "pilotsolve/neumorphism.css",
+    "aero-lab/neumorphism.css",
+    "engine-explorer/app/neumorphism.css",
+    "assets/app-site-navigation.js"
   ],
   "retired": [
     "aero-lab/assets/App--urF1wgT.js",

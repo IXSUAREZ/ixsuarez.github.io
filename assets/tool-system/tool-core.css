@@ -1001,3 +1001,33 @@ body.theme-orange .app-shell {
   .nav--tool .nav-brand { gap: 10px; }
   .nav--tool .link-back { display: none; }
 }
+
+/* Neumorphic tool material contract. Layout, category palettes and print
+   output stay owned by the application; every screen shares these surfaces. */
+@media screen {
+  html[data-gold-mode] body.tool-page {
+    --workbench-panel: var(--av-neu-surface, var(--g-surface));
+    --workbench-panel-strong: var(--av-neu-raised, var(--g-raised));
+    --workbench-shadow: var(--av-neu-shadow, var(--g-shadow));
+    --shadow-inset: var(--av-neu-inset, inset 2px 2px 5px #0002, inset -2px -2px 5px #fff6);
+    --panel-blur: 0px;
+  }
+  html[data-gold-mode] body.tool-page :is(.placeholder-card,.empty-state,.endorsement-scenario-card,.seo-regulatory-definition) {
+    background: var(--av-neu-surface, var(--g-surface));
+    border: 1px solid var(--g-glass-edge);
+    border-radius: 18px;
+    box-shadow: var(--av-neu-shadow, var(--g-shadow));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  html[data-gold-mode] body.tool-page :is(.icon-btn,.footer-guidance-link) {
+    background: var(--av-neu-surface, var(--g-surface));
+    color: var(--g-ink);
+    border-color: var(--g-glass-edge);
+    border-radius: 12px;
+    box-shadow: var(--av-neu-shadow-sm, var(--g-shadow));
+  }
+  html[data-gold-mode] body.tool-page :is(.icon-btn,.footer-guidance-link):active {
+    box-shadow: var(--av-neu-inset, var(--shadow-inset));
+  }
+}

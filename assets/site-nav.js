@@ -66,7 +66,7 @@
     if (!appearance) {
       appearance = document.createElement('fieldset');
       appearance.className = 'av-appearance';
-      appearance.innerHTML = '<legend>Choose your appearance</legend><div class="av-appearance-options"><button type="button" data-appearance="dark">Night</button><button type="button" data-appearance="light">Day</button><button type="button" data-appearance="system">System</button></div><label class="av-solid"><input type="checkbox"><span>Solid controls<small>Use opaque surfaces for more contrast.</small></span></label>';
+      appearance.innerHTML = '<legend>Choose your appearance</legend><div class="av-appearance-options"><button type="button" data-appearance="dark">Night</button><button type="button" data-appearance="light">Day</button><button type="button" data-appearance="system">System</button></div><label class="av-solid"><input type="checkbox"><span>Reduce effects<small>Pause decorative motion and transitions.</small></span></label>';
       panels.appearance.appendChild(appearance);
     }
     function syncAppearance() {

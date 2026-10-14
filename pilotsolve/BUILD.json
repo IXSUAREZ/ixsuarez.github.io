@@ -1,6 +1,6 @@
 {
   "app": "PilotSolve",
-  "cache": "pilotsolve-site-dee7ec56b7fb",
+  "cache": "pilotsolve-site-287d61a92d5a",
   "preparedAt": "2026-10-04T13:07:46.076Z",
   "route": "/pilotsolve/",
   "files": [
@@ -17,6 +17,7 @@
     "./assets/prototype-CsFr79CX.js",
     "/assets/appearance.js",
     "/assets/avionics.css",
-    "/assets/tactile.js"
+    "/assets/tactile.js",
+    "./neumorphism.css"
   ]
 }

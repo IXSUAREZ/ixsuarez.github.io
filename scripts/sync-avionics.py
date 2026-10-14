@@ -25,6 +25,12 @@ for p in root.rglob('*.html'):
  # Tools and templates receive the same runtime, with a byte-bound cache URL.
  base=re.sub(r'\s*<script[^>]*src="/assets/tactile\.js(?:\?[^"]*)?"[^>]*></script>','',s)
  base=base.replace('</head>',tactile+'\n</head>')
+ if str(rel) in {'aero-lab/index.html','engine-explorer/app/index.html'}:
+  base=re.sub(r'\s*<script[^>]*src="/assets/app-site-navigation\.js(?:\?[^"]*)?"[^>]*></script>','',base)
+  # Aero Lab owns a website menu. Crank & Core uses engine-control rails and
+  # has no website/app menu in the released runtime; preserve those controls.
+  if str(rel)=='aero-lab/index.html':
+   base=base.replace('</head>','<script defer src="/assets/app-site-navigation.js"></script>\n</head>')
  for name,digest in shared_versions.items():
   base=re.sub(r'(/assets/'+re.escape(name)+r')(?:\?[^"\s]*)?(?=")',lambda m:m.group(1)+'?v='+digest,base)
  for name,digest in app_versions.items():

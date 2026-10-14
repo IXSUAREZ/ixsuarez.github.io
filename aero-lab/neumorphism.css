@@ -1,0 +1,63 @@
+/* Approved SuarezCFI neumorphic materials. Source-owned, stable export asset.
+   Canonical site tokens take precedence; fallbacks support standalone previews.
+   Diagrams, engine geometry, phase colors, and calculated quantities are untouched. */
+:root {
+  --nu-canvas:var(--av-neu-canvas,#e3e3e3);
+  --nu-surface:var(--av-neu-surface,#e3e3e3);
+  --nu-well:var(--av-neu-well,#dedede);
+  --nu-ink:var(--g-ink,#25282b);
+  --nu-muted:var(--g-muted,#53575b);
+  --nu-line:var(--g-line,#b6b6b6);
+  --nu-accent:var(--g-accent,#795820);
+  --nu-gold:var(--g-gold,#e2b44b);
+  --nu-key-ink:var(--g-key-ink,#232323);
+  --nu-shadow:var(--av-neu-shadow,9px 9px 20px #00000020,-9px -9px 20px #ffffffd9);
+  --nu-shadow-sm:var(--av-neu-shadow-sm,4px 4px 9px #00000021,-4px -4px 9px #ffffffc7);
+  --nu-inset:var(--av-neu-inset,inset 3px 3px 7px #00000022,inset -3px -3px 7px #ffffffbb);
+  --nu-gold-shadow:var(--av-neu-gold-shadow,4px 4px 9px #00000026,-4px -4px 9px #ffffffbb,inset 0 1px 1px #fff9);
+}
+:root:is([data-suarez-theme="dark"],[data-gold-mode="dark"],[data-theme="night"]) {
+  --nu-canvas:var(--av-neu-canvas,#414141);--nu-surface:var(--av-neu-surface,#414141);--nu-well:var(--av-neu-well,#393939);
+  --nu-ink:var(--g-ink,#f4f4f4);--nu-muted:var(--g-muted,#c7c7c7);--nu-line:var(--g-line,#747474);--nu-accent:var(--g-accent,#f0d28a);
+  --nu-shadow:var(--av-neu-shadow,9px 9px 20px #00000052,-9px -9px 20px #ffffff0d);
+  --nu-shadow-sm:var(--av-neu-shadow-sm,4px 4px 9px #00000052,-4px -4px 9px #ffffff0d);
+  --nu-inset:var(--av-neu-inset,inset 3px 3px 7px #00000052,inset -3px -3px 7px #ffffff0d);
+  --nu-gold-shadow:var(--av-neu-gold-shadow,4px 4px 9px #00000052,-4px -4px 9px #ffffff0d,inset 0 1px 1px #fff8);
+  color-scheme:dark;
+}
+@media(prefers-contrast:more) { :root {--nu-line:currentColor} }
+
+/* Aero Lab: neutral teaching workspace surrounds the original colorful wind tunnel. */
+html body,html body .app-shell,html body .desktop-gate,html body .gallery {
+  background:var(--nu-canvas)!important;color:var(--nu-ink)!important;--muted:var(--nu-muted);--line:var(--nu-line);--paper:var(--nu-surface);--ink:var(--nu-ink);--accent:var(--nu-accent);--selected:var(--nu-well);
+}
+html body :is(.site-header,.workspace-bar,.lesson-tabs,.teaching-tabs,.teaching-tools,.app-utilities,.tunnel-controls,.source-button,.studio-launch) {background:var(--nu-surface)!important;color:var(--nu-ink)!important;border-color:var(--nu-line)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html body :is(.learning-card,.tunnel-card,.instruments-card,.instrument-card,.chart-card,.drag-card,.turn-card,.flap-card,.reference-cases,.technical-details,.dialog-content,.studio-modal,.desktop-gate>img,.gallery-sidebar,.lesson-player,.lesson-details) {
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:20px!important;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body :is(.learning-card,.reference-cases,.dialog-content,.studio-modal,.desktop-gate,.lesson-details) :is(p,label,summary,h1,h2,h3,strong) {color:var(--nu-ink)}
+html body :is(.eyebrow,.intro p,.reference-provenance,.instrument-note,.chart-note,.chart-footer,.desktop-gate label,.desktop-gate>p:not(.desktop-gate__eyebrow),.studio-header p) {color:var(--nu-muted)!important}
+html body :is(.workspace-bar,.lesson-tabs,.teaching-tabs) {border:0;border-radius:15px;box-shadow:var(--nu-inset)!important;padding:6px;gap:7px}
+html body :is(.app-shell,.desktop-gate,.gallery,.studio-modal,.dialog-content) button:not(.probe-target),html body .site-navigation :is(button,a) {
+  background:var(--nu-surface);color:var(--nu-ink);border-radius:11px;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent);box-shadow:var(--nu-shadow-sm);backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+html body :is(.lesson-tabs button.active,.lesson-tabs button[aria-pressed=true],.teaching-tabs button[aria-pressed=true],.teaching-tools button[aria-pressed=true],.studio-launch,.desktop-gate>button,.gallery button[aria-pressed=true],.gallery .primary) {
+  background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;border:1px solid var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important;border-radius:11px;
+}
+html body :is(.app-shell,.desktop-gate,.gallery,.studio-modal,.dialog-content) :is(select,input:not([type=range]):not([type=checkbox])) {
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;border:1px solid color-mix(in srgb,var(--nu-line) 45%,transparent)!important;border-radius:11px!important;box-shadow:var(--nu-inset)!important;
+}
+html body :is(.app-shell,.desktop-gate,.gallery) input[type=range] {accent-color:var(--nu-accent)}
+/* Native source navigation follows the same soft material as the shared site dock. */
+html body .site-navigation {--site-nav-ink:var(--nu-ink);--site-nav-muted:var(--nu-muted);--site-nav-panel:var(--nu-surface);--site-nav-edge:var(--nu-line);--site-nav-gold:var(--nu-accent);color:var(--nu-ink)}
+html body .site-navigation :is(.site-navigation__pill,.site-navigation__drop-panel) {background:var(--nu-surface)!important;border-color:color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:20px;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important}
+html body .site-navigation :is(.site-navigation__wordmark,.site-navigation__tool,.site-navigation__links,.site-navigation__links>a,.site-navigation__drop-toggle,.site-navigation__drop-panel a,.site-navigation__drop-panel strong) {color:var(--nu-ink);box-shadow:none;border-color:var(--nu-line);background:transparent}
+html body .site-navigation :is(.site-navigation__links>a:hover,.site-navigation__drop-toggle:hover,.site-navigation__links>a[aria-current=page]) {background:var(--nu-gold);color:var(--nu-key-ink);box-shadow:var(--nu-gold-shadow)}
+html body .site-navigation .site-navigation__wordmark {border-radius:0;border-left:0;border-top:0;border-bottom:0}
+html body :is(.app-shell,.desktop-gate,.gallery,.studio-modal,.dialog-content,.site-navigation) :is(button,a,input,select,summary):focus-visible {outline:3px solid var(--nu-accent)!important;outline-offset:3px}
+html body :is(.app-shell,.desktop-gate,.gallery) button:not(:disabled):active {box-shadow:var(--nu-inset)!important}
+@media(max-width:980px) {html body .site-navigation .site-navigation__links {background:var(--nu-surface)!important;border-color:var(--nu-line)!important;border-radius:18px;box-shadow:var(--nu-shadow)!important}}
+@media(prefers-reduced-motion:reduce) {html body :is(.app-shell,.desktop-gate,.gallery) * {transition:none!important}}
+
+/* The released simulator calls its right-hand panels cockpit-card and controls-card. */
+html body .app-shell :is(.cockpit-card,.controls-card,.drag-summary,.turn-result,.flap-context) {background:var(--nu-surface)!important;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:20px!important;box-shadow:var(--nu-shadow)!important}

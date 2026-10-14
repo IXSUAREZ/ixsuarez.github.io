@@ -1303,6 +1303,39 @@ body.certgen-view {
   .cg-page-head h1 { font-size: 1.7rem; }
 }
 
+/* Editor chrome is neumorphic; generated certificate pixels remain untouched. */
+@media screen {
+  html[data-gold-mode] body.certgen-view :is(.cg-card,.cg-stepper,.cg-caption-card,.cg-photo-ready,.cg-saveimg-wrap) {
+    background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-glass-edge);
+    border-radius:18px;box-shadow:var(--av-neu-shadow,var(--g-shadow));
+  }
+  html[data-gold-mode] body.certgen-view :is(.cg-cert-btn,.cg-rating-btn,.cg-btn-secondary,.cg-icon-btn,.cg-step-btn,.cg-caption-edit) {
+    background:var(--av-neu-surface,var(--g-surface));color:var(--g-ink);
+    border-color:var(--g-glass-edge);border-radius:12px;
+    box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
+  }
+  html[data-gold-mode] body.certgen-view :is(.cg-cert-btn,.cg-rating-btn,.cg-btn,.cg-icon-btn):not(:disabled):active {
+    box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
+  html[data-gold-mode] body.certgen-view :is(.cg-field input[type="text"],.cg-caption-input,.cg-photo-drop,.cg-canvas-wrap) {
+    background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-line);
+    border-radius:12px;box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
+  html[data-gold-mode] body.certgen-view :is(.cg-btn-primary,#cgNextBtn,.cg-cert-btn.is-selected,.cg-rating-btn[aria-checked="true"],.cg-step.is-active .cg-step-btn) {
+    background:var(--g-gold)!important;color:var(--g-key-ink)!important;
+    border-color:var(--g-edge)!important;border-radius:12px;
+    box-shadow:var(--av-neu-gold-shadow,var(--g-shadow))!important;
+  }
+  html[data-gold-mode] body.certgen-view .cg-step.is-active :is(.cg-step-num,.cg-step-label) {
+    background:transparent;color:var(--g-key-ink);
+  }
+  html[data-gold-mode] body.certgen-view .cg-stepper {padding:8px;gap:8px}
+  html[data-gold-mode] body.certgen-view .cg-btn-ghost {background:transparent;box-shadow:none}
+  html[data-gold-mode] body.certgen-view :is(.cg-nav-row,.cg-cropper,.cg-cropper-head) {
+    background:var(--av-neu-surface,var(--g-surface));backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+}
+
 /* Readable builder hierarchy without changing the certificate canvas geometry. */
 body.certgen-view .cg-page-head h1,
 body.certgen-view .cg-panel-heading { color: var(--av-ink); }

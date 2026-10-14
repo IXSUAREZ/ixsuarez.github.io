@@ -1,3 +1,7 @@
 
 # Authored course PDFs are binary documents, not mergeable source text.
 flight-lesson-guide/downloads/*.pdf binary
+
+# Preserve literal template whitespace in generated Vite output and patch context.
+flight-risk-assessment/assets/*.js -whitespace linguist-generated=true
+docs/design/source-patches/*.patch -whitespace

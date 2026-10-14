@@ -1,113 +1,154 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const path = require('node:path');
+const { execFileSync } = require('node:child_process');
 const { JSDOM } = require('../../simply-endorsed/node_modules/jsdom');
-const html = fs.readFileSync('tools/index.html','utf8');
-const script = fs.readFileSync('assets/tool-catalog.js','utf8');
-const catalog = JSON.parse(fs.readFileSync('config/tool-catalog.json','utf8'));
-function setup({mobile=false,saved=null,storageFailure=false,largeText=false}={}) {
-  const dom = new JSDOM(html,{url:'https://suarezcfi.com/tools/',runScripts:'outside-only',pretendToBeVisual:true});
-  const w=dom.window,d=w.document;
-  w.matchMedia=q=>({matches:q.includes('max-width')?mobile:true,addEventListener(){}});
-  if(saved)w.sessionStorage.setItem('suarez:tool-orbit:v1',JSON.stringify(saved));
-  if(storageFailure) Object.defineProperty(w,'sessionStorage',{get(){throw new Error('blocked')}});
-  if(largeText)d.documentElement.style.fontSize='32px';
-  w.eval(script);
-  return {dom,w,d,close:()=>dom.window.close()};
-}
-test('static directory launches every tool with no JavaScript; enhancement shows descriptions without screenshot dependencies',()=>{
- const plain=new JSDOM(html),d=plain.window.document;
- assert.equal(d.querySelector('.all-apps').open,true);
- assert.equal(d.querySelectorAll('.all-apps-list a').length,catalog.tools.length);
- assert.equal(d.querySelector('.orbit-experience').hidden,true);
- assert.equal(d.querySelector('.tool-preview-dialog'),null);
- plain.window.close();
- const p=setup();
- try {
-  for(const t of catalog.tools) {
-   p.d.querySelector('[data-orbit-app="'+t.id+'"]').click();
-   assert.equal(p.d.querySelector('#stage-title').textContent,t.name);
-   assert.equal(p.d.querySelector('#stage-open').getAttribute('href'),t.path);
-   assert.equal(p.d.querySelector('#stage-open').dataset.ctaId,'directory-'+t.id);
-   assert.equal(p.d.querySelector('#stage-description').textContent,t.description);
-   assert.equal(p.d.querySelector('#stage-screenshot'),null);
-   assert.equal(p.d.querySelector('#stage-compatibility').textContent,t.compatibility);
+const root = path.resolve(__dirname, '../..');
+const script = fs.readFileSync(path.join(root, 'assets/tool-catalog.js'), 'utf8');
+const catalog = JSON.parse(fs.readFileSync(path.join(root, 'config/tool-catalog.json'), 'utf8'));
+// Exercise the authored generator without rewriting shared pages during parallel work.
+const rendered = JSON.parse(execFileSync('python3', ['-B', '-c', `
+import importlib.util,json
+spec=importlib.util.spec_from_file_location('catalog', 'scripts/render-tool-catalog.py')
+module=importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+print(json.dumps({'tools':module.tools_main(),'home':module.home_cards()}))
+`], { cwd: root, encoding: 'utf8' }));
+
+function setup({enhance = true, both = false, blockedStorage = false} = {}) {
+  const dom = new JSDOM('<!doctype html><html><body>' + rendered.tools + (both ? rendered.home : '') + '</body></html>', {
+    url: 'https://suarezcfi.com/tools/', runScripts: 'outside-only', pretendToBeVisual: true,
+  });
+  const w = dom.window, d = w.document;
+  if (blockedStorage) {
+    for (const property of ['localStorage', 'sessionStorage']) {
+      Object.defineProperty(w, property, { get() { throw new Error('Storage is blocked'); } });
+    }
   }
- } finally {p.close()}
-});
-test('filters preserve eligible selection and choose first matching app otherwise',()=>{
- const p=setup();
- try {
-  p.d.querySelector('[data-orbit-app="foi-cards"]').click();
-  p.d.querySelector('[data-catalog-filter="training"]').click();
-  assert.equal(p.d.querySelector('#stage-title').textContent,'FOI Cards');
-  assert.equal([...p.d.querySelectorAll('.orbit-app')].filter(b=>!b.hidden).length,catalog.tools.filter(t=>t.group==='training').length);
-  p.d.querySelector('[data-catalog-filter="flight"]').click();
-  assert.equal(p.d.querySelector('#stage-title').textContent,'PilotSolve');
-  assert.match(p.d.querySelector('#orbit-position').textContent,/1 of 2/);
-  p.d.querySelector('[data-orbit-step="-1"]').click();
-  assert.equal(p.d.querySelector('#stage-title').textContent,'FlightRisk');
- } finally {p.close()}
-});
-test('keyboard and mobile navigation expose neighbors and all direct links',()=>{
- const p=setup({mobile:true});
- try {
-  const rail=p.d.querySelector('.orbit-rail');
-  assert.equal([...rail.children].filter(b=>!b.hidden).length,3);
-  rail.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));
-  assert.equal(p.d.querySelector('#stage-title').textContent,'FlightRisk');
-  assert.equal(p.d.activeElement.dataset.orbitApp,'flight-risk-assessment');
-  rail.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));
-  assert.equal(p.d.querySelector('#stage-title').textContent,'Crank & Core');
-  rail.dispatchEvent(new p.w.KeyboardEvent('keydown',{key:'Home',bubbles:true,cancelable:true}));
-  assert.equal(p.d.querySelector('#stage-title').textContent,'PilotSolve');
-  assert.equal(p.d.querySelectorAll('.all-apps-list a').length,catalog.tools.length);
-  assert.equal(p.d.querySelector('.all-apps').open,false);
-  p.d.querySelector('.browse-all-tools').click();
-  assert.equal(p.d.querySelector('.all-apps').open,true);
-  assert.equal(p.d.activeElement,p.d.querySelector('.all-apps summary'));
-  assert.equal(p.d.querySelector('.all-apps-list a[href="/aero-lab/"] .tool-device').textContent,'Desktop with a pointer required');
- } finally {p.close()}
-});
-test('selection and description survive a session return without screenshot state',()=>{
- const p=setup();let saved;
- try {
-  p.d.querySelector('[data-orbit-app="engine-explorer"]').click();
-  saved=JSON.parse(p.w.sessionStorage.getItem('suarez:tool-orbit:v1'));
-  assert.equal('shot' in saved,false);
-  assert.equal(p.d.querySelector('.stage-image-controls'),null);
- } finally {p.close()}
- const restored=setup({saved});
- try {assert.equal(restored.d.querySelector('#stage-title').textContent,'Crank & Core');assert.match(restored.d.querySelector('#stage-description').textContent,/teaching reconstructions/)} finally {restored.close()}
-});
-test('blocked storage and invalid saved filters do not break catalog',()=>{
- for(const options of [{storageFailure:true},{saved:{selected:'foi-cards',group:'deleted',shot:999}},{saved:{selected:'foi-cards',group:'all',shot:.5}}]) {
-  const p=setup(options);
-  try {assert.equal(p.d.querySelector('.orbit-experience').hidden,false); assert.ok(p.d.querySelector('#stage-open').getAttribute('href'))} finally {p.close()}
- }
-});
-test('horizontal swipe changes selection; vertical travel remains ordinary scrolling',()=>{
- const p=setup({mobile:true});
- try {
-  const rail=p.d.querySelector('.orbit-rail');
-  const event=(type,x,y)=>rail.dispatchEvent(new p.w.MouseEvent(type,{clientX:x,clientY:y,button:0,bubbles:true}));
-  event('pointerdown',220,40); event('pointermove',120,45); event('pointerup',120,45);
-  assert.equal(p.d.querySelector('#stage-title').textContent,'FlightRisk');
-  event('pointerdown',220,40); event('pointermove',215,120); event('pointerup',210,160);
-  assert.equal(p.d.querySelector('#stage-title').textContent,'FlightRisk');
- } finally {p.close()}
+  if (enhance) w.eval(script);
+  return {w, d, close() { w.close(); }};
+}
+
+function visible(root) {
+  return [...root.querySelectorAll('[data-catalog-app]')].filter(item => !item.hidden);
+}
+
+test('both static catalogs expose every real app link, name and artwork in catalog order', () => {
+  for (const [context, html] of [['directory', rendered.tools], ['home-tools', rendered.home]]) {
+    const dom = new JSDOM(html), d = dom.window.document;
+    try {
+      const entries = [...d.querySelectorAll('[data-catalog-app]')];
+      assert.equal(entries.length, catalog.tools.length);
+      assert.equal(d.querySelector('.catalog-filters').hidden, true);
+      catalog.tools.forEach((tool, index) => {
+        const entry = entries[index], link = entry.querySelector('a');
+        assert.equal(entry.hidden, false);
+        assert.equal(entry.dataset.catalogApp, tool.id);
+        assert.equal(link.getAttribute('href'), tool.path);
+        assert.equal(link.dataset.ctaId, context + '-' + tool.id);
+        assert.equal(link.querySelector('.tool-app-name').textContent, tool.name);
+        assert.equal(link.querySelector('img').getAttribute('src'), '/assets/identities/' + tool.id + '/logo.png');
+        assert.ok(fs.existsSync(path.join(root, tool.path, 'index.html')));
+        assert.ok(fs.existsSync(path.join(root, 'assets/identities', tool.id, 'logo.png')));
+      });
+      assert.equal(d.querySelector('.orbit-rail,.app-stage,.orbit-controls,details'), null);
+    } finally { dom.window.close(); }
+  }
 });
 
-test('enlarged text uses a readable three-app rail and keeps direct links',()=>{
- const p=setup({largeText:true});
- try {assert.ok(p.d.querySelector('.orbit-large-text'));assert.equal([...p.d.querySelectorAll('.orbit-app')].filter(b=>!b.hidden).length,3);assert.equal(p.d.querySelectorAll('.all-apps-list a').length,catalog.tools.length)} finally {p.close()}
+test('names are native links and device guidance is accessible before enhancement', () => {
+  const p = setup({enhance: false});
+  try {
+    for (const tool of catalog.tools) {
+      const link = p.d.querySelector('[data-catalog-app="' + tool.id + '"] a');
+      assert.equal(link.tagName, 'A');
+      assert.equal(link.hasAttribute('tabindex'), false);
+      assert.equal(link.hasAttribute('aria-pressed'), false);
+      const description = p.d.getElementById(link.getAttribute('aria-describedby'));
+      assert.ok(description.textContent.includes(tool.description));
+      assert.ok(description.textContent.includes(tool.compatibility));
+    }
+    assert.equal(p.d.querySelector('[data-catalog-app="aero-lab"] .tool-app-device').textContent, 'Desktop required');
+    assert.equal(p.d.querySelector('[data-catalog-app="engine-explorer"] .tool-app-device').textContent, 'Desktop recommended');
+  } finally { p.close(); }
 });
 
-test('reduced motion selects apps without starting stage animation',()=>{
- const p=setup();
- try {
-  p.d.querySelector('.app-stage').animate=()=>{throw new Error('Motion must be suppressed')};
-  p.d.querySelector('[data-orbit-step="1"]').click();
-  assert.equal(p.d.querySelector('#stage-title').textContent,'FlightRisk');
- } finally {p.close()}
+test('enhancement defaults to all apps and each purpose filter exposes only matching direct links', () => {
+  const p = setup();
+  try {
+    const root = p.d.querySelector('[data-tool-catalog]');
+    assert.equal(root.querySelector('.catalog-filters').hidden, false);
+    assert.equal(visible(root).length, catalog.tools.length);
+    for (const group of catalog.groups) {
+      root.querySelector('[data-catalog-filter="' + group.id + '"]').click();
+      const expected = catalog.tools.filter(tool => tool.group === group.id);
+      assert.deepEqual(visible(root).map(item => item.dataset.catalogApp), expected.map(tool => tool.id));
+      assert.equal(root.querySelectorAll('[aria-pressed="true"]').length, 1);
+      assert.equal(root.querySelector('[aria-pressed="true"]').dataset.catalogFilter, group.id);
+      assert.match(root.querySelector('[data-catalog-status]').textContent, new RegExp(expected.length + ' apps'));
+      assert.equal(root.querySelectorAll('.tool-app').length, catalog.tools.length);
+    }
+    root.querySelector('[data-catalog-filter="all"]').click();
+    assert.equal(visible(root).length, catalog.tools.length);
+  } finally { p.close(); }
+});
+
+test('homepage and Tools instances filter independently with unique accessible descriptions', () => {
+  const p = setup({both: true});
+  try {
+    const [tools, home] = [...p.d.querySelectorAll('[data-tool-catalog]')];
+    tools.querySelector('[data-catalog-filter="flight"]').click();
+    assert.equal(visible(tools).length, 2);
+    assert.equal(visible(home).length, catalog.tools.length);
+    home.querySelector('[data-catalog-filter="systems"]').click();
+    assert.equal(visible(home).length, 2);
+    assert.equal(visible(tools).length, 2);
+    const ids = [...p.d.querySelectorAll('[id]')].map(element => element.id);
+    assert.equal(new Set(ids).size, ids.length);
+  } finally { p.close(); }
+});
+
+test('old carousel preferences and blocked storage cannot hide apps on arrival', () => {
+  const p = setup({blockedStorage: true});
+  try {
+    assert.equal(visible(p.d).length, catalog.tools.length);
+    assert.equal(p.d.querySelector('[data-catalog-filter="all"]').getAttribute('aria-pressed'), 'true');
+  } finally { p.close(); }
+  const restored = setup({enhance: false});
+  try {
+    restored.w.sessionStorage.setItem('suarez:tool-orbit:v1', JSON.stringify({group: 'training', selected: 'foi-cards'}));
+    restored.w.eval(script);
+    assert.equal(visible(restored.d).length, catalog.tools.length);
+  } finally { restored.close(); }
+});
+
+test('browser Back restoration returns to the complete grid without stale filter announcements', () => {
+  const p = setup();
+  try {
+    p.d.querySelector('[data-catalog-filter="systems"]').click();
+    assert.equal(visible(p.d).length, 2);
+    p.w.dispatchEvent(new p.w.PageTransitionEvent('pageshow', {persisted: true}));
+    assert.equal(visible(p.d).length, catalog.tools.length);
+    assert.equal(p.d.querySelector('[data-catalog-status]').textContent, '');
+    assert.equal(p.d.querySelector('[data-catalog-filter="all"]').getAttribute('aria-pressed'), 'true');
+  } finally { p.close(); }
+});
+
+test('grid leaves arrow keys and swipe travel available for native scrolling', () => {
+  const p = setup();
+  try {
+    const grid = p.d.querySelector('.tool-app-grid');
+    const key = new p.w.KeyboardEvent('keydown', {key: 'ArrowRight', bubbles: true, cancelable: true});
+    grid.dispatchEvent(key);
+    assert.equal(key.defaultPrevented, false);
+    for (const type of ['pointerdown', 'pointermove', 'pointerup']) {
+      const event = new p.w.MouseEvent(type, {clientX: 50, clientY: 100, bubbles: true, cancelable: true});
+      grid.dispatchEvent(event);
+      assert.equal(event.defaultPrevented, false);
+    }
+    assert.equal(visible(p.d).length, catalog.tools.length);
+    const names = [...p.d.querySelectorAll('.tool-app-name')].map(element => element.textContent);
+    assert.deepEqual(names, catalog.tools.map(tool => tool.name));
+  } finally { p.close(); }
 });

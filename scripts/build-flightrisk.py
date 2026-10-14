@@ -50,4 +50,6 @@ for path in dist.rglob('*'):
         destination.write_text(updated)
     else:
         shutil.copy2(path, destination)
+        # Sources on ExFAT may report every static asset as executable.
+        destination.chmod(0o644)
 print('FlightRisk packaged with current site shells. Run sync-avionics.py and refresh-tactile-caches.py before release; no deployment performed.')

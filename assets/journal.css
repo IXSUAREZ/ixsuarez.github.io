@@ -88,11 +88,11 @@ html body.journal-article .journal-settings fieldset { border: 0; margin: 0 0 20
 html body.journal-article .journal-settings legend { font-size: 12px; margin-bottom: 10px; color: var(--text-muted); }
 html body.journal-article .journal-size-options { display: flex; flex-wrap: wrap; gap: 5px; }
 html body.journal-article .journal-size-options button { appearance: none; font-family: inherit; font-size: 11px; color: var(--text); background: var(--surface); border: 1px solid var(--border); min-height: 44px; padding: 8px; border-radius: 6px; cursor: pointer; }
-html body.journal-article .journal-size-options button[aria-pressed="true"] { background: var(--g-gold, var(--text)); color: var(--g-key-ink, var(--bg)); border-color: var(--g-edge, var(--text)); box-shadow: inset 0 1px #fff8, 0 2px 3px #0002; }
+html body.journal-article .journal-size-options button[aria-pressed="true"] { background: var(--g-gold, var(--text)); color: var(--g-key-ink, var(--bg)); border-color: var(--g-edge, var(--text)); box-shadow: var(--av-neu-gold-shadow); }
 html body.journal-article .journal-size-options button:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 4px; }
-html body.journal-article .journal-size-options button:not(:disabled):active { box-shadow: inset 0 2px 4px #0002; }
+html body.journal-article .journal-size-options button:not(:disabled):active { box-shadow: var(--av-neu-inset); }
 html body.journal-article .journal-motion-label { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 12px; line-height: 1.5; color: var(--text); cursor: pointer; }
-html body.journal-article .journal-motion-label input { width: 18px; height: 18px; accent-color: var(--journal-accent); flex-shrink: 0; }
+html body.journal-article .journal-motion-label input { width: 18px; height: 18px; accent-color: var(--journal-accent); flex-shrink: 0; border-radius: 4px; box-shadow: var(--av-neu-inset); }
 html body.journal-article .journal-motion-note { font-size: 11px; line-height: 1.6; margin: 8px 0 0; }
 html body.journal-article .journal-position { display: flex; justify-content: space-between; font-size: 11px; border-top: 1px solid var(--border); padding-top: 18px; margin-top: 16px; font-variant-numeric: tabular-nums; }
 html body.journal-article [hidden] { display: none !important; }

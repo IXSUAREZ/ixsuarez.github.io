@@ -61,3 +61,56 @@ html body :is(.app-shell,.desktop-gate,.gallery) button:not(:disabled):active {b
 
 /* The released simulator calls its right-hand panels cockpit-card and controls-card. */
 html body .app-shell :is(.cockpit-card,.controls-card,.drag-summary,.turn-result,.flap-context) {background:var(--nu-surface)!important;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:20px!important;box-shadow:var(--nu-shadow)!important}
+
+/* Completeness audit: analysis and portaled dialogs share the workspace material. */
+html body .app-shell .analysis-card,html body dialog:has(.dialog-content),
+html body .studio-modal :is(.studio-header,.studio-tools,.studio-timeline) {
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;
+  border-color:color-mix(in srgb,var(--nu-line) 25%,transparent)!important;
+  box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body dialog:has(.dialog-content) {border-radius:20px!important}
+html body .studio-modal :is(.studio-tools,.studio-timeline) {box-shadow:var(--nu-shadow-sm)!important}
+/* The authoring gallery is source-only; this adapter prepares its real class names
+   without adding a gallery entry or ahead application runtime to the website. */
+html body .aero-gallery {background:var(--nu-canvas)!important;color:var(--nu-ink)!important;--ink:var(--nu-ink);--muted:var(--nu-muted);--line:var(--nu-line);--paper:var(--nu-surface);--accent:var(--nu-accent)}
+html body .aero-gallery :is(.brandbar,.topics,.lesson-viewer,.toolbar,.layers,.transport,.filters,.example-selector,.why-panel,.source-grid,.theme-picker) {
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;border-color:var(--nu-line)!important;
+  border-radius:16px;box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body .aero-gallery :is(button,.why-toggle) {background:var(--nu-surface)!important;color:var(--nu-ink)!important;border-color:var(--nu-line)!important;box-shadow:var(--nu-shadow-sm)!important;border-radius:11px}
+html body .aero-gallery :is(button[aria-pressed=true],button.active,.primary) {background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important}
+html body .aero-gallery :is(select,input:not([type=range]):not([type=checkbox])) {background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-inset)!important;border:1px solid var(--nu-line);border-radius:11px}
+html body .aero-gallery :is(button,a,input,select,summary):focus-visible {outline:3px solid var(--nu-accent)!important;outline-offset:3px}
+html body .aero-gallery button:not(:disabled):active {box-shadow:var(--nu-inset)!important}
+
+/* Selected flap, altitude mode and studio object controls use the same gold depth
+   as lesson tabs; their surrounding diagrams retain their scientific channels. */
+html body .app-shell button[aria-pressed=true]:not(.probe-target),
+html body .studio-modal button:is([aria-pressed=true],.selected,.active) {
+ background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;
+ border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important;
+}
+html body .studio-modal .studio-object-list button.selected small {color:var(--nu-key-ink)!important}
+html body :is(.app-shell,.studio-modal) button:not(:disabled):active {box-shadow:var(--nu-inset)!important}
+
+/* Gallery scenes retain their dark scientific field and light labels. */
+html body .aero-gallery .scene-card {box-shadow:var(--nu-shadow-sm);border-color:var(--nu-line)}
+
+/* Learning support lives in the header outside .app-shell. */
+html body :is(.site-header,.desktop-gate,.dialog-content) :is(.source-button,.source-button.av-control,.reference-button),
+html body button.source-button.av-control {
+ background:var(--nu-surface)!important;color:var(--nu-ink)!important;
+ border-color:var(--nu-line)!important;box-shadow:var(--nu-shadow-sm)!important;
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body button.source-button.av-control:not(:disabled):active {box-shadow:var(--nu-inset)!important}
+
+/* Released narrow-screen dock Menu is an independent control on its dock. */
+html body button.aero-dock__menu.av-control {
+ background:var(--nu-surface)!important;color:var(--nu-ink)!important;
+ border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;
+ border-radius:12px!important;box-shadow:var(--nu-shadow-sm)!important;
+}
+html body button.aero-dock__menu.av-control[aria-expanded=true] {background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important}
+html body button.aero-dock__menu.av-control:not(:disabled):active {box-shadow:var(--nu-inset)!important}

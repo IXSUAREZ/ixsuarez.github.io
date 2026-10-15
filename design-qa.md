@@ -1,57 +1,62 @@
-# Neumorphism visual acceptance — 2026-10-14
+# Sitewide neumorphism completeness review
 
 final result: passed
 
-The approved sheets are material and hierarchy references, not replacements for source text, workflow, original artwork or the existing sky/hero geometry. No actionable P0/P1/P2 finding remains after the fixes and fresh captures below. Independent review reached the same conclusion.
+Scope: complete the gray-and-gold material system across the existing website and source-owned app interfaces. Preserve content, workflows, original imagery, scientific/semantic colors, calculations, authentication and exports. This is a material-consistency follow-up to release `104626f9`, not a pixel-for-pixel rebuild of generated concept layouts.
 
-## Source and capture truth
+## Visual truth and comparison inputs
 
-Source visual truth: `/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/docs/design/neumorphism-previews-2026-10-14/`: website-pages.png (1816×866), app-launcher.png (1627×967), tool-workspaces.png (1513×1039). Original user reference: IMG_8619.PNG.
+- User material reference: `/Users/diegosuarez/Downloads/IMG_8619.PNG`, 1206 × 2622 pixels; the gray dashboard region is the material reference.
+- Approved direction: `/Volumes/VIXIONDRIVE/VIBE CODING PROJECTS/SUAREZ.CFI/docs/design/neumorphism-previews-2026-10-14/{website-pages,app-launcher,tool-workspaces}.png`.
+- Actual current renders and computed samples: `output/neumorphism-completeness/site/`, `apps/`, and `standalone/`.
+- Combined full-view comparison inputs opened and reviewed: `comparison/launcher-full-comparison.png` and `comparison/pages-full-comparison.png` under the same output root.
+- Combined focused material comparison opened and reviewed: `comparison/material-focused-comparison.png`. It compares the actual reference material with cropper actions/range, reader controls, model-note dialog and validation fields. `comparison/comparison-inputs.json` records source dimensions and normalization.
 
-Implementation: threaded loopback preview at http://127.0.0.1:8912/, current baseline ae18e574 plus this branch. Browser-rendered screenshots: `output/neumorphism/site/`, `output/neumorphism/apps/`; standalone/private details are in the linked design records. Root used Codex IAB; private visual tests used an isolated Chrome fallback when IAB was unavailable to the subagent.
+Desktop CSS viewport: 1440 × 1000. Phone: 390 × 844. Additional narrow/reflow checks: 320 × 760 with Larger reader text and open menus. Current full-view screenshots include `28-tools-day-desktop-final.jpg`, `29-home-day-desktop-final.jpg`, `30-reader-day-desktop-final.jpg`, and `27-tools-night-phone-final.jpg`. Desktop rasters are 1425 × 990 and the phone raster is 375 × 812: these have uniform density scaling and were fitted without distortion. Model dialog `31-model-notes-night-phone-final.jpg` is 390 × 844. Source boards are illustrative compositions, so comparisons judge the required material, hierarchy and grid rather than inventing pixel precision for their differing frames.
 
-Requested CSS viewports: 1440×1000 desktop, 768×1024 tablet, 390×844 phone, 320×568 narrow phone. Day/Night, source content, live menu state and real app controls were reviewed. The source sheets have no authored CSS viewport or density contract. Observed implementation image pixel dimensions are recorded in `output/neumorphism/comparisons/capture-dimensions.json`; scrollbar/native viewport cropping varies. Comparisons preserve image aspect ratios and normalize display width with contain fitting; no pixel/font-size equivalence or pixel-difference score is claimed.
+The invalid early `11-model-notes-night-phone-after.jpg` is excluded; `31-model-notes-night-phone-final.jpg` replaces its visual evidence. The first attempted desktop launcher capture was recaptured after viewport settlement, then the combined comparison was regenerated and reopened. The excluded wrong-viewport Day phone census and pre-Day-alias census are diagnostic history, not final acceptance evidence. App-owner reports separately flag compressed and stale-tab captures; those are not used for acceptance.
 
-## Combined comparison evidence
+## Required fidelity surfaces
 
-Source and implementation appear together in each input, opened and visually reviewed:
+- **Typography:** system sans-serif / SF fallback family is retained consistently; current computed UI family is `-apple-system, system-ui, SF Pro Display, SF Pro Text, Helvetica Neue, Arial, sans-serif`. Headline hierarchy, existing compact UI labels and prose line lengths remain readable. Standard and Larger reader states and 320px wrapping were inspected. No new font or generated text was substituted for product copy.
+- **Spacing and layout:** the complete seven-app, four-column phone grid and four-plus-three desktop grid retain names below icons. Purpose filters return to all seven apps. Dock compaction, dialogs, disclosure rows, input hit areas and native range geometry retain their original behavior. All final route entries have no page-width overflow. Existing page proportions and footer placement take precedence over illustrative concept framing.
+- **Colors and tokens:** Day `#E3E3E3`, Night `#414141`, charcoal/light text, paired light/dark shadows and inset wells map to shared tokens. Gold identifies primary/current/selected states. All 111 audited contrast pairs pass. Category, risk, stage, valve, plot and model colors retain their meaning. Forced-color and print fallbacks remain intact.
+- **Imagery and assets:** original app icons, portraits, animated sky, certificate artwork, model data and scientific renderers are preserved. No mock logo, CSS drawing or replacement illustration was substituted. Original assets take precedence over small generated-art differences in the concept sheets.
+- **Copy and content:** 524 editorial route signatures and actual active runtime roles are preserved by independent comparison. No teaching copy, calculations, curriculum, credentials or model-fidelity claims were changed. Interface labels remain the existing product labels.
 
-- `output/neumorphism/comparisons/homepage-full.png`: original sky, clear headline, gold primary/soft secondary action and soft persistent dock. Existing hero height is preserved; the concept compresses it to display more sections on its presentation board.
-- `output/neumorphism/comparisons/reader-full.png`: readable open prose and raised reader controls. Actual discovery-flight copy, 18 chapters and user-selected Larger reading size replace the concept's illustrative copy and shorter chapter list.
-- `output/neumorphism/comparisons/launcher-full.png`: all seven original app artworks and direct native links, four-column desktop/phone structure, gold filter and neutral icon wells. Desktop-required notes and website footer are real product information absent from the concept.
-- `output/neumorphism/comparisons/workspace-full.png`: neutral raised task workspace, inset search, gold selection and retained semantic category icons. Actual full category/content inventory takes precedence over generated abbreviated text.
-- `output/neumorphism/comparisons/navigation-focused.png`: readable labels, original navigation icons, paired surface shadows and satin gold selected state at a readable focused scale.
+## Comparison and repair history
 
-## Five fidelity surfaces
+The initial source/state audit was not sufficient to pass. These substantive differences were repaired and reviewed in current after states:
 
-| Surface | Result and evidence |
-| --- | --- |
-| Fonts/typography | Existing system typography retained; headline, body and compact navigation hierarchy remain clear. Original app labels wrap naturally. 320px Appearance label fixed. Reader Larger control and phone reflow verified. Generated font pixels are illustrative; exact source strings and existing reader-size settings are authoritative. |
-| Spacing/layout rhythm | Complete Home/Tools grid, vertical scrolling and native links replace the stage/carousel. 390px four columns, 320px three columns; no observed page-width overflow. Existing app geometry is retained except the FOI clearance fix. Shared surface radii/shadows and inset fields align. |
-| Colors/tokens | Day #E3E3E3, Night #414141, satin gold primary/selected states, readable foregrounds. All111 audited text/control/category pairs pass; minimum checked text ratio4.95:1. Real category/risk/scientific colors remain semantic. |
-| Image quality/assets | Original seven app logos, author image, animated sky, certificate artwork, wind/flow diagrams and engine model assets retained. No generated approximate logo or UI raster is used as implementation.81 protected runtime/model/data files remain byte-identical; FlightRisk style build is source-verified separately. |
-| Copy/content | All actual tool labels and instructional/source text retained.522 editorial/metadata route signatures unchanged; Home/Tools intentional grid changes only. No generated mock text becomes product content. Day/Night labeling standardized in private guide without changing preference values. |
+1. Flat quiet/tertiary actions, menu rows, inactive dock keys and disclosures now use neutral raised material; primary/selected gold and active inset states remain clear.
+2. The legacy Day appearance selector overrode generic control shadows. Matching canonical alias specificity fixes Day as well as Night. The corrected Day desktop census has no unexplained button candidates.
+3. Reader selected text size and motion checkbox retained old/flat treatment. The shared reader CSS now supplies gold selected depth and native inset checkbox wells. After evidence: `22-reader-larger-day-320-final` and `26-reader-settings-night-320-final`.
+4. Simply Endorsed quiet/navigation/category actions and checkboxes, CertPath menu/status/checkbox controls, and Certificate Generator ghost/upload/paste/range controls were corrected. Selected Not applicable was additionally repaired to pair gold background with dark key text. Current exact-asset receipts and Day/Night screenshots are in `apps/remaining-family-verification.md`.
+5. Aero Lab source/header and independent phone Menu actions, selected studio controls, analysis surfaces and dialog depth were corrected; current Day/Night open-close-reopen states pass.
+6. Crank & Core's lazy ignition dialog, combustion/firing/Lycoming teaching panels and separate sticky panel header were corrected. Scientific/model colors were retained.
+7. The reachable Rotax saved-component study was brought into shared theme/supporting-document coverage without changing its embedded renderer/model payload. Factory reference outer chrome was corrected.
+8. PilotSolve helper/menu/disabled actions and private Guide menu/lesson/tray/timer/primary controls were corrected in their source-owned CSS exports. Private auth and protected copies receive the same final shared material bytes.
 
-## Finding and fix history
+Before/after findings and valid state indexes are in the app and standalone audit reports. Native cropper zoom was exercised with a self-authored colored-shape fixture: 0 → ArrowRight 1 → reset 0, then Photo Added at review. No personal photo or production contact submission was used.
 
-1. P2: narrow menu split Appearance mid-word. Reduced tab padding/type at320px without shrinking44px touch height. Fresh `site/nav-night-phone320-final.jpg` keeps the whole label; independent review confirms resolution.
-2. P2: Day category labels fell below4.5:1 against the new gray. Added a text-only90% category/10% black presentation; palette, icons and edges remain unchanged. All111 contrast checks now pass.
-3. P2: FlightRisk Night unselected profile icons used dark bronze. Source accent token now uses readable shared gold; rebuilt normally. Fresh `apps/flightrisk-night-profile-final.jpg` shows pale gold on graphite; computed foreground rgb(236,211,155) against rgb(65,65,65), independent review confirms resolution.
-4. P2: FOI phone actions touched the dock. Reduced card minimum24px; at390×844 final gap20.2px. Fresh app evidence and3 FOI tests pass.
-5. P2 material gap: article rail and hero secondary action retained flat/shallow material. Added scoped raised material and captured revised homepage/article shown in combined inputs above; long prose remains open.
-6. Capture mismatch: older Certificate Generator shot caught dock compaction. Fresh `apps/certgen-day-names-final.jpg` shows the intentional clean collapsed gold Menu circle; no faded/duplicated labels remain. Expanded and collapsed states retain their original behavior.
-7. Integration gap: shared app-menu adapter was not loaded in Aero Lab. Sync now injects the byte-versioned adapter into its actual menu. Seven links and close/reopen verified in IAB. Crank's current released runtime has engine-control rails, no website menu; its existing Explore/Parts controls remain intact and receive the same material. No new menu is invented there.
+## Coverage and limits
 
-## Interaction and evidence boundary
+`site/four-viewport-summary.json` contains four sets of 531 unique entries: 524 registered routes plus seven supporting documents. There are no pending loads, errors, unexpected widths or horizontal overflow in the final merged sets. Later targeted samples replace early transient app/loading samples. The 62 reachable interface families are mapped in `verification/requirement-evidence-matrix.md`; representative component variants establish material coverage, not every aviation scenario or numeric permutation.
 
-Home/Tools purpose filters and All reset, direct grid links, desktop/phone menus, Day/Night persistence, actual Escape dismissal/focus recovery, reader settings/Larger, Aero app-picker close/reopen, and Crank engine loading/Explore/Parts checked in IAB. Owned app tasks, results, dialogs and appearance states are recorded in `docs/design/neumorphism-app-surfaces.md` and `neumorphism-standalone-apps-qa-2026-10-14.md`. Browser logs showed no application error; localhost analytics warnings are expected and excluded from runtime failure claims.
+The public guide gateway redirects to another origin, whose existing appearance preference is independent. Its redirect/layout is counted in the route matrix; private Day/Night styling is separately verified from the packaged auth/guide UI. This review does not claim automatic cross-origin preference synchronization.
 
-Private guide source build/typecheck/50 tests and synthetic visual checks passed. Its Worker, authentication, curriculum and PDFs are unchanged. Synthetic screenshots prove visual/material adaptation, not a live authenticated owner session. Native passkey/device, VoiceOver and print/export dialog acceptance are outside automated/browser evidence. No perfect HIG compliance claim is made.
+Transparent search children inside an inset search well, native range hitboxes with a raised thumb/track, and the compact Menu face on its own material shell are intentional composites. Inline prose/source links, scientific canvases and exported print/certificate artwork retain their appropriate treatment. Native OS/file/print/biometric UI and Sketchfab-owned interior UI are outside source-owned CSS. The factory provider reported unavailable; its outer loading/unavailable/disabled shell was inspected. Actual owner passkey acceptance remains a separate device/session check.
 
-## Implementation checklist
+## Findings and implementation checklist
 
-- Shared tokens, every registered/supporting page, app-owned surfaces and nav verified.
-- Full seven-app direct-link grid generated, keyboard/no-JS semantics tested.
-- Route/content/runtime preservation, cache freshness/idempotence and contrast pass.
-- P0/P1/P2 visual findings fixed and post-fix captures reviewed.
-- Production publication/asset parity and anonymous private denial recorded separately in the external release receipt.
+No actionable P0/P1/P2 material or layout differences remain in the reviewed source-owned interfaces. Original workflow/layout/imagery differences from generated concepts are intentional preservation constraints. No prompt/planning text was added to product flows.
+
+- [x] Shared and app-owned material corrections saved in source and matching exports.
+- [x] Current combined full-view and focused comparisons opened after repairs.
+- [x] Day/Night desktop/phone route census and targeted selected/disabled/open/checked states reviewed.
+- [x] 320px and enlarged-reader reflow checked.
+- [x] Content/runtime/private/embedded-payload preservation and deterministic caches checked independently.
+- [x] Twelve isolated theme/sync regressions pass; private Guide typecheck and 50 tests pass; relevant app lifecycle/focus regressions pass.
+- Publication is verified in a separate release receipt; it is not inferred from this local visual-QA gate.
+
+No P3 visual refinement is required for this consistency scope. Real-device/passkey/provider checks retain the limits stated above.

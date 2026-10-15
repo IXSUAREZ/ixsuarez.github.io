@@ -219,15 +219,15 @@ html body .av-control {
 html body .av-control:not(:disabled):not([aria-disabled="true"]):active,
 html body .av-key:active {transform:translateY(2px);box-shadow:var(--av-pressed-shadow);transition-duration:var(--av-press-duration);filter:none}
 html body .av-control:focus-visible{outline:3px solid var(--av-focus);outline-offset:3px}
-html body .av-control[aria-busy="true"]{cursor:progress;box-shadow:inset 0 0 0 2px var(--av-cyan)}
-html body .av-control:disabled{transform:none;box-shadow:none;opacity:.55}
+html body .av-control[aria-busy="true"]{cursor:progress;box-shadow:var(--av-neu-inset),inset 0 0 0 2px var(--av-cyan)}
+html body .av-control:disabled{transform:none;box-shadow:var(--av-neu-shadow-sm);opacity:.55}
 html body :is(.btn,.av-appearance button,.part61-button-secondary,.cg-btn,.cg-cert-btn,.cg-rating-btn,.option-button,.av-step-key) {
  border-radius:var(--av-control-radius);background-image:var(--av-metal-sheen);
 }
 html body :is(.av-control[aria-pressed="true"],.av-control[aria-checked="true"]:not([role="switch"]),.av-control[aria-current],.option-button.selected){
- box-shadow:inset 0 1px #fff8,0 2px 3px #0002;
+ box-shadow:var(--av-neu-inset);
 }
-html body :is(.av-appearance-options,.segmented,.segmented-control){padding:3px;gap:3px;border-radius:13px;background:color-mix(in srgb,var(--av-bg) 85%,#000);box-shadow:inset 0 1px 4px #0005}
+html body :is(.av-appearance-options,.segmented,.segmented-control){padding:3px;gap:3px;border-radius:13px;background:var(--av-neu-surface);box-shadow:var(--av-neu-inset)}
 html body :is(.nav,.nav.nav--compact,[data-tactile-dock]){
  max-width:600px;min-height:60px;padding:4px;gap:4px;border-radius:20px;
  background:var(--av-dock-glass);border:1px solid var(--av-dock-edge);
@@ -264,15 +264,15 @@ html body .nav-wrap{bottom:calc(10px + env(safe-area-inset-bottom,0px) + var(--a
 /* Real binary settings retain native keyboard/checked semantics. */
 html body :is(.av-solid,.explorer-appearance label){min-height:44px;cursor:pointer}
 html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]{
- appearance:none;-webkit-appearance:none;flex:none;width:46px;height:28px;min-height:28px;margin:0;border-radius:9px;
- border:1px solid var(--av-metal-edge);background:linear-gradient(var(--av-bg),var(--av-raised));box-shadow:inset 0 2px 4px #0006;position:relative;cursor:pointer;
+ appearance:none;-webkit-appearance:none;flex:none;width:46px;height:28px;min-height:28px;margin:0;border-radius:999px;
+ border:1px solid var(--av-metal-edge);background:var(--av-neu-surface);box-shadow:var(--av-neu-inset);position:relative;cursor:pointer;
 }
 html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]::after{
- content:"";position:absolute;inset:3px auto 3px 3px;width:19px;border-radius:5px;
- background:linear-gradient(160deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:var(--av-contact-shadow);transition:transform 140ms ease;
+ content:"";position:absolute;inset:3px auto 3px 3px;width:19px;border-radius:50%;
+ background:var(--av-neu-raised);border:1px solid var(--g-control-line);box-shadow:var(--av-neu-shadow-sm);transition:transform 140ms ease;
 }
-html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]:checked{background:var(--av-control-tint);border-color:var(--av-cyan)}
-html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]:checked::after{transform:translateX(18px);border-inline-end:2px solid var(--av-cyan)}
+html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]:checked{background:var(--g-gold);border-color:var(--g-edge)}
+html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]:checked::after{transform:translateX(18px);background:var(--g-key-ink);border-color:var(--g-key-ink)}
 html body input[type="range"]{min-height:44px;accent-color:var(--av-cyan);cursor:ew-resize}
 html body input[type="range"]::-webkit-slider-thumb{box-shadow:var(--av-contact-shadow);border:1px solid var(--av-metal-edge);border-radius:7px}
 html body input[type="range"]::-moz-range-thumb{background:linear-gradient(150deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:var(--av-contact-shadow);border:1px solid var(--av-metal-edge);border-radius:7px}
@@ -284,8 +284,8 @@ html body .av-step-key{display:inline-flex;align-items:center;justify-content:ce
 @media(prefers-contrast:more){html body :is(.av-control,.av-key,[data-dock-key]){border:2px solid currentColor}html body :is([data-tactile-dock],.nav,.nav-links){background:var(--av-panel);backdrop-filter:none}}
 @media(prefers-reduced-motion:reduce){html body :is(.av-control,.av-key,[data-tactile-dock],[data-dock-key]){transition:none!important;animation:none!important}html body .av-control:active,html body .av-key:active{transform:none!important}html body input[type="checkbox"]::after{transition:none!important}}
 @media print{html body .av-input-tools,html body [data-tactile-dock]{display:none!important}}
-html body .av-rocker-track{border:1px solid var(--av-metal-edge);border-radius:8px;box-shadow:inset 0 2px 4px #0006}
-html body .av-rocker-thumb{border-radius:5px;background:linear-gradient(145deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:var(--av-contact-shadow)}
+html body .av-rocker-track{border:1px solid var(--av-metal-edge);border-radius:8px;background:var(--av-neu-surface);box-shadow:var(--av-neu-inset)}
+html body .av-rocker-thumb{border-radius:5px;background:var(--av-neu-raised);box-shadow:var(--av-neu-shadow-sm)}
 html body .aero-dock-wrap{bottom:calc(10px + env(safe-area-inset-bottom,0px) + var(--av-keyboard-inset,0px))}
 html body .aero-dock[data-tactile-dock]{width:calc(100% - 24px)}
 html body .aero-dock__destinations{gap:4px}
@@ -522,6 +522,8 @@ html body .liquid-dock-items > :is(.wordmark,.nav-brand){display:none}
   --g-motion:220ms;--g-press:100ms;
   background:var(--g-bg);color:var(--g-ink);
 }
+/* Match the legacy appearance selector's specificity in Day as well as Night. */
+:root[data-gold-mode]{--av-contact-shadow:var(--av-neu-shadow-sm);--av-pressed-shadow:var(--av-neu-inset)}
 html[data-gold-mode=dark]{--g-bg:#414141;--g-surface:#414141;--g-raised:#484848;--g-well:#3a3a3a;--g-ink:#f4f4f4;--g-muted:#d0d0d0;--g-line:#767676;--g-accent:#ecd39b;--g-glass:var(--g-surface);--g-glass-edge:#ffffff16;--av-neu-light:#62626266;--av-neu-dark:#22222299;--g-shadow:var(--av-neu-shadow)}
 html[data-gold-mode],html[data-gold-mode] body,html[data-gold-mode] :is(.pilot-app,.part61-redesign,#se-workspace){
   --bg:var(--g-bg);--background:var(--g-bg);--ink:var(--g-ink);--text:var(--g-ink);--text-strong:var(--g-ink);--navy:var(--g-ink);--navy-600:var(--g-ink);
@@ -594,10 +596,11 @@ html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-prim
 @keyframes gold-glint{0%{transform:translateX(-160%);opacity:0}25%{opacity:.55}100%{transform:translateX(160%);opacity:0}}
 html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta):not(:disabled):active{transform:translateY(1px)!important;box-shadow:var(--av-neu-inset)!important}
 html[data-gold-mode] :is(.btn--secondary,.part61-button-secondary,.secondary,.gold-secondary){background:linear-gradient(180deg,var(--g-raised),var(--g-surface))!important;color:var(--g-ink)!important;border-color:var(--g-line)!important;box-shadow:var(--av-neu-shadow-sm)!important}
-/* Quiet actions retain their existing hit areas without raised hardware chrome. */
+/* Secondary and quiet actions share the same soft control material. */
 html[data-gold-mode] :is(.btn--tertiary,button.text-button,.part61-text-button,.part61-quiet-button){
- background:transparent!important;color:var(--g-accent)!important;border-color:transparent!important;
- box-shadow:none!important;text-shadow:none!important;
+ background:var(--av-neu-surface)!important;color:var(--g-ink)!important;border:1px solid var(--g-glass-edge)!important;
+ box-shadow:var(--av-neu-shadow-sm)!important;text-shadow:none!important;
+ border-radius:12px;min-height:44px;padding:8px 12px;
 }
 html[data-gold-mode] :is(.btn--tertiary,button.text-button,.part61-text-button,.part61-quiet-button):not(:disabled):is(:hover,:focus-visible){
  text-decoration:underline;text-underline-offset:3px;
@@ -757,6 +760,8 @@ html[data-gold-mode] :is(.paper,.glass-material,.glass-panel,.surface-card){
 }
 html[data-gold-mode] body :is(.btn,.button,button.av-control,.cp-primary,.cg-btn,.part61-button-primary,.part61-button-secondary){border-radius:14px}
 html[data-gold-mode] body :is(.btn,.button):not(.btn--tertiary){box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] body .av-step-key{background:var(--av-neu-surface);border-color:var(--g-glass-edge);box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] .journey-planner .journey-stop:not([aria-selected=true]){background:var(--av-neu-surface);border-color:var(--g-glass-edge);box-shadow:var(--av-neu-shadow-sm)}
 html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){box-shadow:var(--av-neu-gold-shadow)!important}
 html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.gold-primary,.nav-cta)::after{content:none!important;animation:none!important}
 html[data-gold-mode] :is(.btn,.button,button.av-control):not(:disabled):active{box-shadow:var(--av-neu-inset)!important}
@@ -774,7 +779,7 @@ html[data-gold-mode] body .liquid-dock .liquid-dock-shell{
  border-color:var(--g-glass-edge);backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
 }
 html[data-gold-mode] body .liquid-dock .liquid-dock-shell::after{box-shadow:var(--av-neu-gold-shadow)!important}
-html[data-gold-mode] body .liquid-dock :is(.av-key,.nav-menu-toggle){background:transparent;box-shadow:none}
+html[data-gold-mode] body .liquid-dock :is(.av-key,.nav-menu-toggle){background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
 html[data-gold-mode] body .liquid-dock :is(.av-key,.nav-menu-toggle):hover{background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
 html[data-gold-mode] body .liquid-dock :is(.av-key[aria-current],.nav-menu-toggle[aria-expanded=true]){
  background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important;
@@ -787,7 +792,12 @@ html[data-gold-mode] body .liquid-menu-surface{
 html[data-gold-mode] body .liquid-menu :is(.liquid-close,.av-appearance button){
  background:var(--av-neu-surface);border-color:var(--g-glass-edge);box-shadow:var(--av-neu-shadow-sm);
 }
-html[data-gold-mode] body .liquid-menu :is(.liquid-section[aria-selected=true],.av-appearance button[aria-pressed=true],.liquid-panel>a[aria-current]){box-shadow:var(--av-neu-gold-shadow)!important}
+html[data-gold-mode] body .liquid-menu :is(.liquid-section:not([aria-selected=true]),.liquid-panel>a:not([aria-current])){background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
+html[data-gold-mode] body .liquid-menu .liquid-panel>a{margin-block:9px}
+html[data-gold-mode] body .liquid-menu :is(.liquid-section[aria-selected=true],.av-appearance button[aria-pressed=true],.liquid-panel>a[aria-current]){background:var(--g-gold);color:var(--g-key-ink)!important;border-color:var(--g-edge);box-shadow:var(--av-neu-gold-shadow)!important}
+html[data-gold-mode] body .liquid-menu .liquid-panel>a[aria-current]::after{color:var(--g-key-ink)}
+html[data-gold-mode] body .liquid-menu .av-solid input[type=checkbox]{box-shadow:var(--av-neu-inset)}
+html[data-gold-mode] body .liquid-menu .av-solid input[type=checkbox]::after{box-shadow:var(--av-neu-shadow-sm)}
 html[data-gold-mode] body .liquid-menu .liquid-panel>a:not([aria-current]):hover{background:var(--av-neu-surface);box-shadow:var(--av-neu-shadow-sm)}
 html[data-gold-mode] body .liquid-menu :is(button,.liquid-panel>a):active{box-shadow:var(--av-neu-inset)!important}
 /* Source-built app menus expose the same complete, directly launchable set. */
@@ -807,6 +817,8 @@ html[data-gold-mode] :is(.bottom-nav,.numeric-keypad,.aero-dock,.aero-dock__pane
 /* Website pages: grouped content is raised, while prose stays on an open,
    readable canvas. Category/diagram imagery and export canvases are excluded. */
 @media screen{
+ html[data-gold-mode] body summary{background:var(--av-neu-surface);border:1px solid var(--g-glass-edge);border-radius:12px;padding:10px 14px;box-shadow:var(--av-neu-shadow-sm)}
+ html[data-gold-mode] body summary:active{box-shadow:var(--av-neu-inset)}
  html[data-gold-mode] body.journal-article .journal-rail{background:var(--av-neu-surface);border:1px solid var(--g-glass-edge);border-radius:20px;padding:14px 16px;box-shadow:var(--av-neu-shadow)}
  html[data-gold-mode] .horizon-hero .btn{border-radius:14px!important;box-shadow:var(--av-neu-shadow-sm)!important}
  html[data-gold-mode] .horizon-hero .btn--primary{box-shadow:var(--av-neu-gold-shadow)!important}
@@ -837,6 +849,8 @@ html[data-gold-mode] body footer.site-footer-v2{
 }
 @media(max-width:1024px){
  html[data-gold-mode] body .nav.liquid-dock[data-compact-dock]{background:transparent!important;border:0!important;box-shadow:none!important}
+ /* The collapsed button's visible gold face lives on the shared shell. */
+ html[data-gold-mode] body .liquid-dock[data-compact-dock=collapsed] :is(.av-key,.nav-menu-toggle){background:transparent;box-shadow:none}
 }
 @media(prefers-contrast:more){
  html[data-gold-mode]{--g-glass-edge:var(--g-control-line);--av-neu-shadow:0 0 0 1px var(--g-control-line);--av-neu-shadow-sm:0 0 0 1px var(--g-control-line)}

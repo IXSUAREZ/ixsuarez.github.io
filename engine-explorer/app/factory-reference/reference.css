@@ -17,3 +17,21 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 input{accent-color:var(--g-accent)}
 .brand i{color:var(--fr-muted)}
 .spinner{border-color:var(--fr-line);border-top-color:var(--fr-accent)}
+
+/* Source-owned material adapter: provider-hosted model and scientific colors are
+   intentionally outside this outer-shell styling boundary. */
+body:has(.reference-workspace) {background:var(--av-neu-canvas,#e3e3e3);color:var(--g-ink,#25282b);--muted:var(--g-muted,#53575b);--gold:var(--g-accent,#795820);--line:var(--g-line,#b6b6b6)}
+body:has(.reference-workspace) :is(.topbar,aside,.stage-caption,.loading) {background:var(--av-neu-surface,#e3e3e3)!important;color:var(--g-ink,#25282b);box-shadow:var(--av-neu-shadow);border-color:var(--line);backdrop-filter:none;-webkit-backdrop-filter:none}
+body:has(.reference-workspace) .stage {background:var(--av-neu-canvas,#e3e3e3);box-shadow:var(--av-neu-inset)}
+body:has(.reference-workspace) :is(.stage-caption span,.view-note,.about) {background:var(--av-neu-surface,#e3e3e3);color:var(--g-ink,#25282b);box-shadow:var(--av-neu-inset);border-radius:12px;padding:12px}
+body:has(.reference-workspace) :is(.views button,.back,.source,.teach) {display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;background:var(--av-neu-surface,#e3e3e3)!important;color:var(--g-ink,#25282b)!important;border:1px solid var(--line);border-radius:11px;box-shadow:var(--av-neu-shadow-sm)!important}
+body:has(.reference-workspace) .teach {display:flex;background:var(--g-gold)!important;color:var(--g-key-ink)!important;box-shadow:var(--av-neu-gold-shadow)!important}
+body:has(.reference-workspace) .views button[aria-pressed=true] {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge)!important;box-shadow:var(--av-neu-gold-shadow)!important}
+body:has(.reference-workspace) :is(.view-note p,.about p,.loading strong,.brand i) {color:var(--g-muted,#53575b)}
+body:has(.reference-workspace) :is(button,a,input,summary):focus-visible {outline:3px solid var(--g-accent,#795820);outline-offset:3px}
+body:has(.reference-workspace) :is(button,a):not(:disabled):active {box-shadow:var(--av-neu-inset)!important}
+body:has(.reference-workspace) input {accent-color:var(--g-accent,#795820)}
+
+body:has(.reference-workspace) .reference-workspace .teach {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge);box-shadow:var(--av-neu-gold-shadow)!important}
+body:has(.reference-workspace) input[type=checkbox] {box-shadow:var(--av-neu-inset)!important;border-radius:4px}
+body:has(.reference-workspace) .stage-caption span {padding:6px 9px}

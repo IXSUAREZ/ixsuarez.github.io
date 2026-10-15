@@ -126,5 +126,140 @@ class ThemeAssetTests(unittest.TestCase):
             self.assertTrue(theme.theme_asset_errors('index.html', html, after, set()))
 
 
+class ThemeSyncTests(unittest.TestCase):
+    """Exercise the real sync CLI without authoring or rewriting the site."""
+
+    def make_fixture(self, root, extra_assets):
+        for folder in ('scripts', 'config', 'assets'):
+            (root / folder).mkdir(parents=True)
+        for script in ('sync-avionics.py', 'theme_assets.py'):
+            shutil.copy2(Path(__file__).parents[1] / script, root / 'scripts' / script)
+        # Journal generation is a separate authoring job. An unexpected call to
+        # enhance would expose accidental parsing of Rotax's embedded payload.
+        (root / 'scripts/journal.py').write_text(
+            'def enhance(source):\n'
+            '    raise AssertionError("fixture has no journal document")\n'
+            'def apply():\n'
+            '    pass\n')
+        assets = {'assets/appearance.js': '/* appearance */',
+                  'assets/avionics.css': '/* shared material */',
+                  'assets/tactile.js': '/* tactile behavior */', **extra_assets}
+        for name, content in assets.items():
+            path = root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content)
+        (root / 'config/theme-assets.json').write_text(json.dumps(
+            {'managed': list(assets), 'retired': []}))
+
+    def sync(self, root, check=False, expected=0):
+        command = [sys.executable, '-B', str(root / 'scripts/sync-avionics.py')]
+        if check:
+            command.append('--check')
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
+        return result.stdout
+
+    def test_sync_versions_relative_managed_urls_and_preserves_unmanaged_urls(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.make_fixture(root, {'apps/theme.css': '/* app surface */',
+                                     'apps/deep/entry.js': '/* app runtime */',
+                                     'assets/site-footer.css': '/* footer */'})
+            document = root / 'apps/deep/index.html'
+            untouched = (
+                '<link rel="stylesheet" href="./unmanaged.css?mode=night#local">\n'
+                '<link rel="stylesheet" href="https://cdn.example.test/apps/theme.css?v=old">\n'
+                '<script src="//cdn.example.test/apps/deep/entry.js?v=old"></script>\n'
+                '<a href="aviation+app://cdn.example.test/apps/theme.css?v=old">Open native app</a>\n'
+                '<div data-src="./entry.js?v=original" data-href="../theme.css?v=original"></div>\n'
+                '<a href="#app-settings">Settings</a>')
+            document.write_text(
+                '<!doctype html><html><head>\n'
+                "<link rel='stylesheet' href='.././theme.css?mode=night&amp;v=old#surface'>\n"
+                "<link rel='stylesheet' HREF = '/apps/theme.css?v=old#absolute'>\n"
+                '<link rel="stylesheet" href="../../assets/site-footer.css#footer">\n'
+                '</head><body>\n'
+                '<script type="module" src="./entry.js?v=old#boot"></script>\n'
+                "<script SRC = './entry.js?v=old#alternate'></script>\n"
+                + untouched + '\n</body></html>')
+            original = document.read_bytes()
+            self.assertIn('apps/deep/index.html', self.sync(root, check=True, expected=1))
+            self.assertEqual(document.read_bytes(), original)
+            self.sync(root)
+            versions, _ = theme.load_asset_versions(root)
+            source = document.read_text()
+            self.assertIn("href='.././theme.css?v=" + versions['apps/theme.css'] + "#surface'", source)
+            self.assertIn("HREF = '/apps/theme.css?v=" + versions['apps/theme.css'] + "#absolute'", source)
+            self.assertIn('href="../../assets/site-footer.css?v=' + versions['assets/site-footer.css'] + '#footer"', source)
+            self.assertIn('src="./entry.js?v=' + versions['apps/deep/entry.js'] + '#boot"', source)
+            self.assertIn("SRC = './entry.js?v=" + versions['apps/deep/entry.js'] + "#alternate'", source)
+            self.assertIn(untouched, source)
+            self.assertEqual(theme.theme_asset_errors('apps/deep/index.html', source, versions, set()), [])
+            settled = document.read_bytes()
+            self.assertIn('Stale 0 HTML sources', self.sync(root, check=True))
+            self.assertIn('Updated 0 HTML sources', self.sync(root))
+            self.assertEqual(document.read_bytes(), settled)
+
+            (root / 'apps/theme.css').write_text('/* changed app surface */')
+            self.sync(root, check=True, expected=1)
+            self.assertEqual(document.read_bytes(), settled)
+            self.sync(root)
+            changed_versions, _ = theme.load_asset_versions(root)
+            self.assertNotEqual(versions['apps/theme.css'], changed_versions['apps/theme.css'])
+            self.assertEqual(document.read_text(), source.replace(
+                versions['apps/theme.css'], changed_versions['apps/theme.css']))
+            self.sync(root, check=True)
+
+    def test_rotax_sync_updates_only_head_and_preserves_opaque_viewer_tail(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.make_fixture(root, {
+                'engine-explorer/rotax-component-studies.css': '/* viewer material */'})
+            document = root / 'engine-explorer/rotax-component-studies.html'
+            tail = (
+                '\n<body><h1>Rotax component studies — teaching viewer</h1>\n'
+                '<script id="study-data" type="application/json">' +
+                json.dumps({'asset': './rotax-component-studies.css?v=original#model',
+                            'markup': '<head></head><meta name="theme-color" content="#123456">',
+                            'class': 'journal-article'}) + '</script>\n'
+                '<script src="/assets/tactile.js?v=opaque-runtime"></script>\n'
+                '<script>const saved = \'<link href="./rotax-component-studies.css?v=opaque">\';\n'
+                'const unicode = "crankshaft ⚙ — original model data";</script>\n'
+                '</body></html>\n')
+            document.write_text(
+                '<!doctype html><html><head><title>Original viewer</title>\n'
+                '<meta name="theme-color" content="#171b21">\n'
+                '<link rel="stylesheet" href="./rotax-component-studies.css?v=stale#viewer">\n'
+                '</head>' + tail)
+            original = document.read_bytes()
+            self.sync(root, check=True, expected=1)
+            self.assertEqual(document.read_bytes(), original)
+            self.sync(root)
+            head, current_tail = document.read_text().split('</head>', 1)
+            self.assertEqual(current_tail.encode(), tail.encode())
+            versions, _ = theme.load_asset_versions(root)
+            self.assertIn('<title>Original viewer</title>', head)
+            self.assertIn('content="#E3E3E3"', head)
+            self.assertIn('./rotax-component-studies.css?v=' +
+                          versions['engine-explorer/rotax-component-studies.css'] + '#viewer', head)
+            self.assertLess(head.index('/assets/appearance.js'), head.index('./rotax-component-studies.css'))
+            self.assertGreater(head.index('/assets/avionics.css'), head.index('./rotax-component-studies.css'))
+            settled = document.read_bytes()
+            self.sync(root, check=True)
+            self.assertIn('Updated 0 HTML sources', self.sync(root))
+            self.assertEqual(document.read_bytes(), settled)
+
+            (root / 'engine-explorer/rotax-component-studies.css').write_text('/* changed viewer material */')
+            self.sync(root, check=True, expected=1)
+            self.assertEqual(document.read_bytes(), settled)
+            self.sync(root)
+            changed_head, changed_tail = document.read_text().split('</head>', 1)
+            changed_versions, _ = theme.load_asset_versions(root)
+            self.assertIn('./rotax-component-studies.css?v=' +
+                          changed_versions['engine-explorer/rotax-component-studies.css'] + '#viewer', changed_head)
+            self.assertEqual(changed_tail.encode(), tail.encode())
+            self.sync(root, check=True)
+
+
 if __name__ == '__main__':
     unittest.main()

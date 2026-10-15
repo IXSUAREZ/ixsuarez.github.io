@@ -78,3 +78,23 @@ html body .pilot-app .calculation-sheet {background:var(--nu-surface)!important;
 
 html body:has(.pilot-app.standalone) {padding-bottom:0!important}
 html body #root .pilot-app .search-field input {background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* Completeness audit: helper actions are controls, while search/unit inputs stay
+   inside their existing inset/raised composite wrappers. */
+html body #root .pilot-app .calculate-input {
+  min-height:44px;padding:9px 12px!important;margin-block:5px;
+  border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;
+  border-radius:11px!important;background:var(--nu-surface)!important;
+  color:var(--nu-ink)!important;box-shadow:var(--nu-shadow-sm)!important;
+}
+html body #root .pilot-app .calculate-input:active {box-shadow:var(--nu-inset)!important}
+
+html body .pilot-app .unit-split:has(button:not(:disabled):active) {box-shadow:var(--nu-inset)!important}
+
+html body .pilot-app .site-menu-links a {
+ min-height:44px;padding:10px 12px;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;
+ border-radius:11px!important;background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-shadow-sm)!important;
+}
+html body .pilot-app .site-menu-links a:active {box-shadow:var(--nu-inset)!important}
+
+html body #root .pilot-app button:disabled {background:var(--nu-surface)!important;color:var(--nu-muted)!important;box-shadow:var(--nu-shadow-sm)!important;opacity:.5}

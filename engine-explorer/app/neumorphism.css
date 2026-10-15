@@ -61,3 +61,65 @@ html body:has(.app) {padding-bottom:0!important}
 html body #root .app .search input {background:transparent!important;border:0!important;box-shadow:none!important}
 html body .app .collection-loading {background:var(--nu-surface)!important;color:var(--nu-ink)!important;border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:20px;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important}
 html body .app .rail-button[aria-expanded=true] {background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important}
+
+/* Completeness audit: lazy ignition comparison is portaled outside .app. Its
+   scientific canvases, energy meter fills, spark/stroke channels stay original. */
+html body .ignition-lab {
+  --lab-ink:var(--nu-ink);--lab-muted:var(--nu-muted);--lab-line:var(--nu-line);
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;
+  border-color:var(--nu-line)!important;box-shadow:var(--nu-shadow)!important;
+}
+html body .ignition-lab::backdrop {background:#17171780;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html body .ignition-lab :is(.lab-heading,.lab-section-nav,.lab-model,.lab-clock,.lab-deep-dive,.lab-differences,.lab-evidence) {
+  background:var(--nu-surface)!important;color:var(--nu-ink)!important;
+  border-color:color-mix(in srgb,var(--nu-line) 30%,transparent)!important;
+  box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body .ignition-lab .lab-model {box-shadow:var(--nu-shadow)!important}
+html body .ignition-lab :is(.lab-heading p,.lab-model-title small,.lab-live-state p,.lab-explanation p,.lab-evidence,.lab-evidence p,.lab-orbit-note,.lab-clock>span) {color:var(--nu-muted)!important}
+html body .ignition-lab :is(h2,h3,.lab-evidence strong,.lab-explanation>strong) {color:var(--nu-ink)!important}
+html body .ignition-lab :is(.lab-letter,.lab-orbit-note,.lab-live-state>span:not(.spark-live),.lab-spark-destinations>span:not(.on),.lab-differences thead) {
+  background:var(--nu-surface)!important;background-image:none!important;color:var(--nu-ink)!important;border-color:var(--nu-line)!important;box-shadow:var(--nu-inset)!important;
+}
+html body .ignition-lab button {background:var(--nu-surface)!important;color:var(--nu-ink)!important;border-color:var(--nu-line)!important;box-shadow:var(--nu-shadow-sm)!important;border-radius:11px}
+html body .ignition-lab button[aria-pressed=true] {background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important}
+html body .ignition-lab select {background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-inset)!important;border-color:var(--nu-line)!important}
+html body .ignition-lab :is(button,a,input,select):focus-visible {outline:3px solid var(--nu-accent)!important;outline-offset:3px}
+html body .ignition-lab button:not(:disabled):active {box-shadow:var(--nu-inset)!important}
+/* Stroke and valve colors carry teaching meaning; only neutral chrome changes. */
+html body .app :is(.combustion-live-state,.cycle-card.firing-order-card) {background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-inset)!important;border-color:var(--nu-line)!important;border-radius:12px}
+html body .app .combustion-live-state {border-left-color:var(--stage-color)!important}
+html body .app :is(.combustion-heading,.firing-toggle,.firing-heading strong,.firing-heading svg,.firing-next strong) {color:var(--nu-accent)!important}
+html body .app :is(.combustion-stroke>span,.combustion-piston,.combustion-explanation,.combustion-legend span,.firing-heading,.firing-next span,.firing-sequence span,.firing-timing,.firing-note,.firing-note summary) {color:var(--nu-muted)!important}
+html body .app .combustion-valves>span:not([data-open=true]) {background:var(--nu-surface)!important;color:var(--nu-muted)!important;box-shadow:var(--nu-inset)!important}
+html body .app .combustion-progress {background:var(--nu-well)!important;box-shadow:var(--nu-inset)!important}
+html body .app .firing-disclosure>.firing-toggle {background:var(--nu-surface)!important;box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html body .app :is(.combustion-cylinders,.combustion-stages,.firing-sequence,.stroke-strip) button[aria-pressed=true] {background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;box-shadow:var(--nu-gold-shadow)!important;border-color:var(--g-edge,#a77a29)!important}
+html body .app :is(.firing-sequence,.stroke-strip) button[aria-pressed=true] :is(span,b) {color:var(--nu-key-ink)!important}
+
+html body .ignition-lab .kicker {color:var(--nu-accent)!important}
+
+/* View/assembly toggles expose their selected state through native ARIA, including
+   controls reached through the phone Tools deck. */
+html body .app button:is([aria-pressed=true],[role=switch][aria-checked=true],[aria-current=step]) {
+ background:var(--nu-gold)!important;color:var(--nu-key-ink)!important;
+ border-color:var(--g-edge,#a77a29)!important;box-shadow:var(--nu-gold-shadow)!important;
+}
+html body .app button:not(:disabled):active {box-shadow:var(--nu-inset)!important}
+
+/* The alternate engine's learning guide uses distinct neutral fact/readout names. */
+html body .app .lycoming-guide :is(.lycoming-eyebrow,.lycoming-angle,.lycoming-facts b,.lycoming-source-note a) {color:var(--nu-accent)!important}
+html body .app .lycoming-guide :is(.lycoming-facts span,.lycoming-cylinder-row>span,.lycoming-cycle-readout,.lycoming-timing-note,.lycoming-source-note) {color:var(--nu-muted)!important}
+html body .app .lycoming-guide .lycoming-stage-copy strong {color:var(--nu-ink)!important}
+html body .app .lycoming-guide .lycoming-heading-icon {background:var(--nu-surface)!important;color:var(--nu-accent)!important;box-shadow:var(--nu-shadow-sm)!important}
+html body .app .lycoming-guide .lycoming-facts div {background:var(--nu-surface)!important;box-shadow:var(--nu-inset)!important;border-radius:11px}
+html body .app .learning-guide :is(.lesson-heading,.cycle-title) {color:var(--nu-accent)!important}
+html body .app .learning-guide :is(.lesson-heading strong,.cycle-title strong) {color:var(--nu-ink)!important}
+html body .app .learning-guide :is(.lesson-heading small,.cycle-card>small,.circuit-switches b) {color:var(--nu-muted)!important}
+
+/* Screenshot review catches the Explorer's separate sticky panel heading and
+   legacy context text sheen, which are outside the inner learning-guide header. */
+html body .app .explorer-panel-header {background:var(--nu-surface)!important;color:var(--nu-ink)!important;box-shadow:var(--nu-shadow-sm)!important;border-color:var(--nu-line)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html body .app .explorer-panel-header h2 {color:var(--nu-ink)!important}
+html body .app .engine-context {color:var(--nu-ink)!important;text-shadow:none!important}
+html body .app .engine-context>span {color:var(--nu-muted)!important;text-shadow:none!important}

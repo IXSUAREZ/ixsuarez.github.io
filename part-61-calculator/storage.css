@@ -61,6 +61,11 @@ body.cp-navbar-actions .nav-tools{display:contents!important}
 
 /* Entry, contact, student links and owner inbox share the calculator material. */
 @media screen {
+  html[data-gold-mode] body.tool-page .cp-site-actions {gap:6px}
+  html[data-gold-mode] body.tool-page .cp-site-actions button {
+    background:var(--av-neu-surface,var(--g-surface));border:1px solid var(--g-glass-edge);
+    border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
+  }
   html[data-gold-mode] body.tool-page #cp-shell :is(.cp-card,.cp-saved,#cp-message),
   html[data-gold-mode] body.tool-page #cp-delete-dialog {
     background:var(--av-neu-surface,var(--g-surface));color:var(--g-ink);

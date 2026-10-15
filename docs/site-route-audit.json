@@ -2,9 +2,9 @@
   "generated_by": "scripts/audit-site.py",
   "origin": "https://suarezcfi.com",
   "summary": {
-    "manifest_routes": 524,
-    "discovered_html": 528,
-    "audit_rows": 528,
+    "manifest_routes": 523,
+    "discovered_html": 527,
+    "audit_rows": 527,
     "alias_count": 2,
     "built_runtime_entry_count": 2,
     "failure_count": 0,
@@ -59,20 +59,6 @@
         "Explore",
         "Flight instruction"
       ]
-    },
-    {
-      "route": "/aero-lab/",
-      "title": "Aero Lab | Interactive Airflow, Lift & Drag Simulator",
-      "description": "Explore airflow, angle of attack, lift, and drag in Aero Lab. Try guided wind-tunnel lessons with clearly labeled educational models by SuarezCFI.",
-      "kind": "page",
-      "identity": "aero-lab",
-      "indexable": true,
-      "classification_note": null,
-      "source_urls": [
-        "https://suarezcfi.com/aero-lab/"
-      ],
-      "broken_refs": [],
-      "headings": []
     },
     {
       "route": "/blog/",

@@ -72,7 +72,7 @@ React apps retain native state and handlers and expose thin adapter attributes.
 - Mechanical metal and the scroll thresholds are SUAREZ.CFI design choices;
   CSS blur is a web adaptation, not Apple's native Liquid Glass API. No haptics.
 - Homepage sky, engine bundles/models, calculations, saved records, export
-  geometry, Aero Lab desktop requirement, and archived Flight Instruments remain.
+  geometry and archived Flight Instruments remain.
 
 See [the source-linked applicability and verification record](docs/tactile/design-verification.md)
 and [route coverage](docs/tactile/coverage.json) for the release evidence boundary.
@@ -137,7 +137,7 @@ This user-approved contract supersedes historical styling and navigation below.
   shader, timing, solar behavior, fallback, layers and hero bounds remain unchanged.
   Theme preference affects surrounding interface, not the sky renderer.
 - Preserve all content, routes, calculations, source links, saved formats, backend
-  APIs and certificate/export geometry. Aero Lab retains its desktop/pointer gate.
+  APIs and certificate/export geometry.
   Crank & Core parent owns collection navigation; child owns exploration toolbar.
 - Generate shared HTML using sync-chrome.py; sync-avionics.py injects first-paint
   appearance and final stylesheet order into pages and future templates. Compiled

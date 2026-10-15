@@ -69,7 +69,6 @@ test('names are native links and device guidance is accessible before enhancemen
       assert.ok(description.textContent.includes(tool.description));
       assert.ok(description.textContent.includes(tool.compatibility));
     }
-    assert.equal(p.d.querySelector('[data-catalog-app="aero-lab"] .tool-app-device').textContent, 'Desktop required');
     assert.equal(p.d.querySelector('[data-catalog-app="engine-explorer"] .tool-app-device').textContent, 'Desktop recommended');
   } finally { p.close(); }
 });
@@ -86,7 +85,7 @@ test('enhancement defaults to all apps and each purpose filter exposes only matc
       assert.deepEqual(visible(root).map(item => item.dataset.catalogApp), expected.map(tool => tool.id));
       assert.equal(root.querySelectorAll('[aria-pressed="true"]').length, 1);
       assert.equal(root.querySelector('[aria-pressed="true"]').dataset.catalogFilter, group.id);
-      assert.match(root.querySelector('[data-catalog-status]').textContent, new RegExp(expected.length + ' apps'));
+      assert.equal(root.querySelector('[data-catalog-status]').textContent, expected.length + (expected.length === 1 ? ' app' : ' apps') + ' · ' + group.name);
       assert.equal(root.querySelectorAll('.tool-app').length, catalog.tools.length);
     }
     root.querySelector('[data-catalog-filter="all"]').click();
@@ -102,7 +101,7 @@ test('homepage and Tools instances filter independently with unique accessible d
     assert.equal(visible(tools).length, 2);
     assert.equal(visible(home).length, catalog.tools.length);
     home.querySelector('[data-catalog-filter="systems"]').click();
-    assert.equal(visible(home).length, 2);
+    assert.equal(visible(home).length, catalog.tools.filter(tool => tool.group === 'systems').length);
     assert.equal(visible(tools).length, 2);
     const ids = [...p.d.querySelectorAll('[id]')].map(element => element.id);
     assert.equal(new Set(ids).size, ids.length);
@@ -127,7 +126,7 @@ test('browser Back restoration returns to the complete grid without stale filter
   const p = setup();
   try {
     p.d.querySelector('[data-catalog-filter="systems"]').click();
-    assert.equal(visible(p.d).length, 2);
+    assert.equal(visible(p.d).length, catalog.tools.filter(tool => tool.group === 'systems').length);
     p.w.dispatchEvent(new p.w.PageTransitionEvent('pageshow', {persisted: true}));
     assert.equal(visible(p.d).length, catalog.tools.length);
     assert.equal(p.d.querySelector('[data-catalog-status]').textContent, '');

@@ -77,7 +77,6 @@ PARTIALS = ROOT / "assets" / "partials"
 
 SKIP_DIRS = {
     "pilotsolve": "standalone flight computer — intentionally no shared navigation or footer",
-    "aero-lab": "compiled React SPA — chrome owned by its app build",
     "flight-risk-assessment": "compiled React SPA — chrome owned by its app build",
     "foi-cards": "immersive app; index navigation uses nav-foi.html, no footer",
 }

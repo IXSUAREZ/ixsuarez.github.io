@@ -113,13 +113,6 @@
       "source": "assets/identities/flight-risk-assessment/icon-master.png",
       "previewSource": "assets/preview-sources/flightrisk-ios-preview.png"
     },
-    "aero-lab": {
-      "label": "Aero Lab",
-      "icon": null,
-      "background": "#dce9e8",
-      "source": "assets/identities/aero-lab/icon-master.png",
-      "previewSource": "assets/preview-sources/aero-lab-ios-preview.png"
-    },
     "engine-explorer": {
       "label": "Crank & Core",
       "icon": null,
@@ -323,14 +316,6 @@
       "summary": "PAVE risk assessment",
       "description": "Work through pilot, aircraft, environment, and external-pressure factors.",
       "topic": "Safety"
-    },
-    {
-      "id": "aero-lab",
-      "label": "Aero Lab",
-      "path": "/aero-lab/",
-      "summary": "Interactive wind tunnel",
-      "description": "Explore angle of attack, lift, drag, and qualitative airflow with guided lessons.",
-      "topic": "Aircraft systems"
     },
     {
       "id": "engine-explorer",
@@ -5635,16 +5620,6 @@
         "featured": false,
         "heading": "Landing Practice at Bowman Field: How Pattern Work Builds Better Pilots"
       }
-    },
-    {
-      "path": "/aero-lab/",
-      "file": "aero-lab/index.html",
-      "kind": "page",
-      "identity": "aero-lab",
-      "title": "Aero Lab | Interactive Airflow, Lift & Drag Simulator",
-      "description": "Explore airflow, angle of attack, lift, and drag in Aero Lab. Try guided wind-tunnel lessons with clearly labeled educational models by SuarezCFI.",
-      "indexable": true,
-      "primary_cta": "/ground-school-louisville-ky/"
     },
     {
       "path": "/engine-explorer/",

@@ -40,7 +40,7 @@ test('hashed bundles stay cache-first and new bundles are retained offline',asyn
 });
 test('worker leaves other apps, origins and non-GET requests untouched',async()=>{
  const h=harness(async()=>{throw Error('must not fetch');});
- assert.equal(await h.request('https://suarezcfi.com/aero-lab/'),undefined);
+ assert.equal(await h.request('https://suarezcfi.com/engine-explorer/'),undefined);
  assert.equal(await h.request('https://example.com/pilotsolve/'),undefined);
  assert.equal(await h.request('https://suarezcfi.com/pilotsolve/','cors','POST'),undefined);
 });

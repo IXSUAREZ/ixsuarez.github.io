@@ -1,8 +1,8 @@
 {
   "scope": "Canonical opaque text, input-border and base metallic-gradient pairs plus Simply Endorsed category text on filled cards and normal/hover Day/Night reading surfaces. Night hover retains the solid surface and adds a gold edge. Includes sRGB glass compositing over black/white bounds, shared error text and text-selection colors. Excludes edge shadows, other app overrides, diagrams, disabled states and full rendered accessibility.",
-  "stylesheet_sha256": "e004db0ee165ea0f4a50fa5d2834b6cbdb2901e882c088baf20da43aef260e93",
+  "stylesheet_sha256": "348191458cbda27a23c3d3439c8d590c41a8f411288022f09f3278b269ecbe59",
   "category_palette_sha256": "e4ffa6a6a24591eebe284898554ecf51df5b17c9974b6241200a08a43c4d297d",
-  "category_stylesheet_sha256": "044f450379e4ba8378378b11a28f76f305398899e8ebbe1e19749b78c96e67c0",
+  "category_stylesheet_sha256": "805765a5fa4a1622f85f7615051e4dfe6c0a990f76a093d484f1b2c2c95b3198",
   "checks": [
     {
       "mode": "day",

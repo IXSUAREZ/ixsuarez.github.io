@@ -77,8 +77,7 @@ class ThemeAssetTests(unittest.TestCase):
                 (root / name).write_text('/* fixture */')
             for name in ('simply-endorsed-cfi/site.webmanifest',
                          'simply-endorsed/site.webmanifest',
-                         'pilotsolve/manifest.webmanifest',
-                         'aero-lab/site.webmanifest'):
+                         'pilotsolve/manifest.webmanifest'):
                 manifest = root / name
                 manifest.parent.mkdir(parents=True)
                 manifest.write_text(json.dumps({'background_color': '#E3E3E3',

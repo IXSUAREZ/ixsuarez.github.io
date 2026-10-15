@@ -5,7 +5,6 @@
     "pilotsolve/mobile.html",
     "engine-explorer/app/index.html",
     "engine-explorer/app/factory-reference/index.html",
-    "aero-lab/native-flow/index.html",
     "engine-explorer/rotax-component-studies.html"
   ],
   "excluded_html": {

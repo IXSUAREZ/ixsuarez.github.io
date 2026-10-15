@@ -35,7 +35,7 @@ def sync_head(text,p):
  head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',head).strip()
  appearance=f'<script src="/assets/appearance.js?v={sha256((ROOT/"assets/appearance.js").read_bytes()).hexdigest()[:10]}"></script>'
  had_appearance=bool(re.search(r'<script src="/assets/appearance\.js(?:\?[^\"]*)?"></script>',head))
- prefix='<meta name="theme-color" content="#E3E3E3">\n'+appearance if had_appearance else ''
+ prefix='<meta name="theme-color" content="#E3E3E3">\n'+appearance+'\n' if had_appearance else ''
  head=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)*','\n',re.sub(r'<script src="/assets/appearance\.js(?:\?[^\"]*)?"></script>','',head)).lstrip()
  return text[:start]+'\n'+prefix+head_for(p)+'\n'+head+'\n'+text[end:]
 def sync_tools_page(text):

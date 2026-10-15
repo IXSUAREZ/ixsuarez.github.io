@@ -7,7 +7,7 @@ from urllib.parse import urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 EXCLUDED = {'.git', '.agents', 'node_modules', 'output', '_local-only', 'templates', '_template'}
-EXCLUDED_PREFIXES = ('engine-explorer/app/', 'aero-lab/native-flow/', 'assets/partials/', 'simply-endorsed-cfi/pdf-build/dist/', 'simply-endorsed/tests/')
+EXCLUDED_PREFIXES = ('engine-explorer/app/', 'assets/partials/', 'simply-endorsed-cfi/pdf-build/dist/', 'simply-endorsed/tests/')
 # Explicit built app documents that are shipped as runtime entry points, not
 # canonical public routes. Keep this path-specific and backed by its source
 # preparation script; new unmanifested HTML still fails the route audit.

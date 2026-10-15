@@ -15,7 +15,7 @@ class ArchiveRetirementTests(unittest.TestCase):
             base = Path(directory)
             root = base / 'site'
             for folder in ['scripts', 'config', 'docs/design', 'pilotsolve/assets',
-                           'aero-lab/assets', 'flight-risk-assessment/assets',
+                           'flight-risk-assessment/assets',
                            'engine-explorer/app/assets']:
                 (root / folder).mkdir(parents=True)
             script = root / 'scripts/archive-stale-app-styles.py'

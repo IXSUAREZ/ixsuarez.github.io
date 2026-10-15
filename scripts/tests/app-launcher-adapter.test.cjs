@@ -6,7 +6,7 @@ const {JSDOM}=require('../../simply-endorsed/node_modules/jsdom');
 const source=fs.readFileSync(path.join(__dirname,'../../assets/app-site-navigation.js'),'utf8');
 const tools=JSON.parse(fs.readFileSync(path.join(__dirname,'../../config/site-pages.json'),'utf8')).tools;
 test('standalone app picker retains native links and listeners with one complete icon grid',()=>{
- const dom=new JSDOM('<div class="aero-dock__panel-links"><a href="/learn/">Learn</a><a id="retained" href="/pilotsolve/">PilotSolve</a></div>',{url:'https://suarezcfi.com/aero-lab/',runScripts:'outside-only'});
+ const dom=new JSDOM('<div class="site-navigation__drop-panel"><a href="/learn/">Learn</a><a id="retained" href="/pilotsolve/">PilotSolve</a></div>',{url:'https://suarezcfi.com/engine-explorer/',runScripts:'outside-only'});
  const kept=dom.window.document.getElementById('retained');let clicks=0;
  kept.addEventListener('click',e=>{e.preventDefault();clicks++});
  dom.window.eval(source);dom.window.eval(source);

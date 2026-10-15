@@ -85,20 +85,6 @@
       "accent": "#b8a0ff"
     },
     {
-      "id": "aero-lab",
-      "name": "Aero Lab",
-      "path": "/aero-lab/",
-      "group": "systems",
-      "short": "Explore aerodynamics",
-      "description": "Explore angle of attack, lift, drag, and qualitative airflow with guided lessons.",
-      "compatibility": "Desktop with a pointer required",
-      "features": [
-        "Interactive airflow visualization",
-        "Guided lessons and source explanations"
-      ],
-      "accent": "#70cdd1"
-    },
-    {
       "id": "engine-explorer",
       "name": "Crank & Core",
       "path": "/engine-explorer/",

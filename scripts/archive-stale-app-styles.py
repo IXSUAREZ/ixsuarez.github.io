@@ -11,7 +11,7 @@ from hashlib import sha256
 import argparse,json,re,tarfile
 root=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser();parser.add_argument('--archive',type=Path);args=parser.parse_args()
-apps=['pilotsolve','aero-lab','flight-risk-assessment','engine-explorer/app']
+apps=['pilotsolve','flight-risk-assessment','engine-explorer/app']
 report=[];stale=[]
 for app in apps:
     candidates=[p for p in (root/app/'assets').glob('*') if re.fullmatch(r'.+-[A-Za-z0-9_-]{8}\.(?:js|css)',p.name)]

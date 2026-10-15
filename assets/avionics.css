@@ -263,16 +263,16 @@ html body .nav-wrap{bottom:calc(10px + env(safe-area-inset-bottom,0px) + var(--a
 }
 /* Real binary settings retain native keyboard/checked semantics. */
 html body :is(.av-solid,.explorer-appearance label){min-height:44px;cursor:pointer}
-html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]{
+html body :is(.av-solid,.explorer-appearance) input[type="checkbox"]{
  appearance:none;-webkit-appearance:none;flex:none;width:46px;height:28px;min-height:28px;margin:0;border-radius:999px;
  border:1px solid var(--av-metal-edge);background:var(--av-neu-surface);box-shadow:var(--av-neu-inset);position:relative;cursor:pointer;
 }
-html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]::after{
+html body :is(.av-solid,.explorer-appearance) input[type="checkbox"]::after{
  content:"";position:absolute;inset:3px auto 3px 3px;width:19px;border-radius:50%;
  background:var(--av-neu-raised);border:1px solid var(--g-control-line);box-shadow:var(--av-neu-shadow-sm);transition:transform 140ms ease;
 }
-html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]:checked{background:var(--g-gold);border-color:var(--g-edge)}
-html body :is(.av-solid,.aero-solid,.explorer-appearance) input[type="checkbox"]:checked::after{transform:translateX(18px);background:var(--g-key-ink);border-color:var(--g-key-ink)}
+html body :is(.av-solid,.explorer-appearance) input[type="checkbox"]:checked{background:var(--g-gold);border-color:var(--g-edge)}
+html body :is(.av-solid,.explorer-appearance) input[type="checkbox"]:checked::after{transform:translateX(18px);background:var(--g-key-ink);border-color:var(--g-key-ink)}
 html body input[type="range"]{min-height:44px;accent-color:var(--av-cyan);cursor:ew-resize}
 html body input[type="range"]::-webkit-slider-thumb{box-shadow:var(--av-contact-shadow);border:1px solid var(--av-metal-edge);border-radius:7px}
 html body input[type="range"]::-moz-range-thumb{background:linear-gradient(150deg,var(--av-metal-top),var(--av-metal-bottom));box-shadow:var(--av-contact-shadow);border:1px solid var(--av-metal-edge);border-radius:7px}
@@ -286,12 +286,6 @@ html body .av-step-key{display:inline-flex;align-items:center;justify-content:ce
 @media print{html body .av-input-tools,html body [data-tactile-dock]{display:none!important}}
 html body .av-rocker-track{border:1px solid var(--av-metal-edge);border-radius:8px;background:var(--av-neu-surface);box-shadow:var(--av-neu-inset)}
 html body .av-rocker-thumb{border-radius:5px;background:var(--av-neu-raised);box-shadow:var(--av-neu-shadow-sm)}
-html body .aero-dock-wrap{bottom:calc(10px + env(safe-area-inset-bottom,0px) + var(--av-keyboard-inset,0px))}
-html body .aero-dock[data-tactile-dock]{width:calc(100% - 24px)}
-html body .aero-dock__destinations{gap:4px}
-html body .aero-dock__panel{border-radius:20px;max-height:calc(var(--av-usable-height,100dvh) - 110px)}
-html body .aero-solid{min-height:44px}
-html body .aero-dock .aero-appearance__options button{background-image:var(--av-metal-sheen);border-radius:9px}
 html body .explorer-dock[data-tactile-dock]{min-height:60px;bottom:calc(10px + env(safe-area-inset-bottom,0px));border-radius:20px}
 html body .explorer-dock [data-dock-key]{min-height:48px;border-radius:13px;background-image:var(--av-metal-sheen)}
 html body .explorer-menu-panel{border-radius:18px}
@@ -303,13 +297,11 @@ html body input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appe
 html body input[type="range"]::-moz-range-track{height:4px;background:transparent}
 html body input[type="range"]::-moz-range-thumb{width:24px;height:26px}
 
-@media(max-width:980px){html body .aero-dock__destinations>a.aero-dock__wide{display:none}}
 
-html body.aero-lab-page{background:var(--av-bg);color:var(--av-ink)}
 /* Explicit opacity modes outrank independent tool cascades. */
-html[data-suarez-solid="true"] body :is(.nav,.nav-links,[data-tactile-dock],.aero-dock__panel,.explorer-menu-panel){background:var(--av-panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){html body :is(.nav,.nav-links,[data-tactile-dock],.aero-dock__panel,.explorer-menu-panel){background:var(--av-panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
-@supports not (backdrop-filter:blur(1px)){html body :is(.nav,.nav-links,[data-tactile-dock],.aero-dock__panel,.explorer-menu-panel){background:var(--av-panel)!important}}
+html[data-suarez-solid="true"] body :is(.nav,.nav-links,[data-tactile-dock],.explorer-menu-panel){background:var(--av-panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){html body :is(.nav,.nav-links,[data-tactile-dock],.explorer-menu-panel){background:var(--av-panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+@supports not (backdrop-filter:blur(1px)){html body :is(.nav,.nav-links,[data-tactile-dock],.explorer-menu-panel){background:var(--av-panel)!important}}
 /* Empty preview is printed-paper colored; its UI hint needs dark ink. */
 html body.certgen-view .cg-preview-empty,html body.certgen-view .cg-preview-empty span{color:var(--g-muted)}
 
@@ -573,7 +565,7 @@ html[data-gold-mode][data-gold-finish]{--cc-bg:var(--g-bg);--cc-panel:var(--g-su
 html[data-gold-mode] :is(.pilot-app,.pilot-mobile-scroll){background:var(--g-bg)!important;color:var(--g-ink)!important;--blue:var(--g-accent);--soft:var(--g-surface);color-scheme:inherit}
 html[data-gold-mode] .pilot-app.standalone{box-shadow:0 0 0 1px var(--g-line)}
 html[data-gold-mode] :is(.site-footer,footer.site-footer){background:var(--g-well)!important;color:var(--g-ink)!important}
-html[data-gold-mode] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,.aero-dock,.aero-dock__panel,[data-tactile-dock]){background:var(--g-glass)!important;color:var(--g-ink)!important;border-color:var(--g-glass-edge)!important;backdrop-filter:blur(var(--g-blur));-webkit-backdrop-filter:blur(var(--g-blur));box-shadow:inset 0 1px var(--g-glass-edge),0 8px 28px #0002}
+html[data-gold-mode] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,[data-tactile-dock]){background:var(--g-glass)!important;color:var(--g-ink)!important;border-color:var(--g-glass-edge)!important;backdrop-filter:blur(var(--g-blur));-webkit-backdrop-filter:blur(var(--g-blur));box-shadow:inset 0 1px var(--g-glass-edge),0 8px 28px #0002}
 html[data-gold-mode] :is(.nav a,.nav button){color:var(--g-ink)!important}
 /* Shared secondary hardware treatment; app-specific primary/semantic states below win. */
 html[data-gold-mode] :where(body:not(.flightrisk-view)) :where(button,[role="button"],.btn,.button){
@@ -649,7 +641,7 @@ html[data-gold-effects=quiet] *,html[data-gold-effects=quiet] *::before,html[dat
 @supports not (backdrop-filter:blur(1px)){
  html[data-gold-mode]{--g-glass:var(--g-surface)!important;--g-blur:0px!important}
 }
-html[data-gold-effects=quiet] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,.aero-dock,.aero-dock__panel,[data-tactile-dock]){background:var(--g-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html[data-gold-effects=quiet] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,[data-tactile-dock]){background:var(--g-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 html[data-gold-effects=quiet] *,html[data-gold-effects=quiet] *::before,html[data-gold-effects=quiet] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 html[data-gold-effects=quiet] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){transition:none!important}
 /* Menu tabs use transform for their static positions; keep them under the pointer. */
@@ -659,7 +651,7 @@ html[data-gold-effects=quiet] :is(button,a,summary,[role="button"],.btn,.button)
  html[data-gold-mode] :is(.btn--primary,.part61-button-primary,.cp-start,.se-primary,.se-action-primary,.primary,.equals,.key-done,.gold-primary,.nav-cta){transition:none!important}
  html[data-gold-mode] :is(button,a,summary,[role="button"],.btn,.button):not(.liquid-section):not(:disabled):active{transform:none!important}
 }
-@media(prefers-reduced-transparency:reduce){html[data-gold-mode] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,.aero-dock,.aero-dock__panel,[data-tactile-dock]){background:var(--g-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+@media(prefers-reduced-transparency:reduce){html[data-gold-mode] :is(.nav,.nav-menu,.nav-sheet,.nav-panel,.nav-menu-panel,.bottom-nav,.numeric-keypad,.gold-glass,[data-tactile-dock]){background:var(--g-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 @supports not (backdrop-filter:blur(1px)){html[data-gold-mode] .gold-glass,html[data-gold-mode] .nav{background:var(--g-surface)!important}}
 @media(forced-colors:active){html[data-gold-mode] :is(button,a,input,select,textarea){forced-color-adjust:auto;background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText!important;box-shadow:none!important}}
 
@@ -680,14 +672,6 @@ html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pres
  box-shadow:var(--av-neu-gold-shadow)!important;
 }
 html[data-gold-mode] :is(.engine-switcher,.explorer-appearance) button[aria-pressed="true"] :is(span,strong,small){background:none!important;box-shadow:none!important}
-/* Aero Lab's borderless lesson and teaching tabs need the same bronze rim as
-   its other selected keys. An inset rim preserves their authored dimensions. */
-html[data-gold-mode] body.aero-lab-page #root :is(.lesson-tabs button.active,.teaching-tabs button[aria-pressed="true"]){
- box-shadow:inset 0 0 0 1px var(--g-edge),var(--av-neu-gold-shadow)!important;
-}
-/* Keep the existing 49px lesson rail while giving each key a 44px touch area. */
-html[data-gold-mode] body.aero-lab-page #root .lesson-tabs{padding-block:1.5px}
-html[data-gold-mode] body.aero-lab-page #root .lesson-tabs button{min-height:44px}
 @media print {
  html[data-gold-mode] {--g-bg:#fff;--g-surface:#fff;--g-raised:#fff;--g-well:#eee;--g-ink:#000;--g-muted:#444;--g-line:#888;--g-accent:#73551b;--g-shadow:none}
 }
@@ -810,7 +794,7 @@ html[data-gold-mode] body .av-app-launcher .av-app-tile{display:flex;flex-direct
 html body .av-app-launcher .av-app-tile::after{content:none!important}
 .av-app-launcher .av-app-tile:active .av-app-icon{box-shadow:var(--av-neu-inset)}
 @media(max-width:340px){.av-app-launcher{grid-template-columns:repeat(2,minmax(0,1fr))}}
-html[data-gold-mode] :is(.bottom-nav,.numeric-keypad,.aero-dock,.aero-dock__panel,[data-tactile-dock]){
+html[data-gold-mode] :is(.bottom-nav,.numeric-keypad,[data-tactile-dock]){
  background:var(--av-neu-surface)!important;box-shadow:var(--av-neu-shadow)!important;
  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
 }

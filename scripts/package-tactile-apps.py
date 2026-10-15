@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""Package matched, rebuilt Aero Lab/FlightRisk assets without replacing release metadata."""
+"""Package matched, rebuilt FlightRisk assets without replacing release metadata."""
 from pathlib import Path
 import argparse, re, shutil
 parser=argparse.ArgumentParser()
 parser.add_argument('--source-root',type=Path,required=True)
-parser.add_argument("--app", choices=["aero-lab", "flight-risk-assessment"], help="Package only the rebuilt app")
+parser.add_argument("--app", choices=["flight-risk-assessment"], help="Package only the rebuilt app")
 args=parser.parse_args()
 root=Path(__file__).resolve().parents[1]
-for app,source in [('aero-lab','aero-lab'),('flight-risk-assessment','flightrisk-app')]:
+for app,source in [('flight-risk-assessment','flightrisk-app')]:
     if args.app and args.app != app: continue
     dist=args.source_root/source/'dist'
     html=(dist/'index.html').read_text()
     js=re.search(r'<script type="module"[^>]*src="([^"]+)"',html)[1]
     css=re.search(r'<link rel="stylesheet" crossorigin href="([^"]+)"',html)[1]
-    if not all(url.startswith('/'+app+'/assets/') or (app=='aero-lab' and url.startswith('./assets/')) for url in (js,css)):
+    if not all(url.startswith('/'+app+'/assets/') for url in (js,css)):
         raise SystemExit(f'{app}: rebuild with its published base path before packaging')
     for asset in (dist/'assets').iterdir():
         if asset.is_file(): shutil.copy2(asset,root/app/'assets'/asset.name)

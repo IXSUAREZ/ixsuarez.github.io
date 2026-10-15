@@ -17,7 +17,6 @@ HASHES = WORK / 'baseline' / 'file-hashes.json'
 OUT = ROOT / 'docs' / 'avionics' / 'coverage.json'
 OWNERS = {
     'pilotsolve': 'PilotSolve independent source/build owner',
-    'aero-lab': 'Aero Lab independent source/build owner (pending corrected loader build)',
     'flight-risk-assessment': 'FlightRisk independent React/Vite source/build owner',
     'engine-explorer': 'Engine Explorer independent source/build owner',
     'app': 'Engine Explorer compiled application',

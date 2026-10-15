@@ -10,7 +10,6 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root,'config/site-pages.js
 const standaloneIcons = {
   'simply-endorsed-cfi': ['icons/apple-touch-icon.png:180','icons/favicon-32.png:32','icons/favicon-192.png:192','icons/favicon-512.png:512'],
   'part-61-calculator': ['icons/apple-touch-icon.png:180','icons/favicon-32.png:32','icons/favicon-192.png:192','icons/favicon-512.png:512'],
-  'aero-lab': ['icons/icon-32.png:32','icons/icon-48.png:48','icons/icon-180.png:180','icons/icon-192.png:192','icons/icon-512.png:512'],
   'pilotsolve': ['apple-touch-icon.png:180','icon-48.png:48','icon-192.png:192','icon-512.png:512'],
   'engine-explorer': ['app/apple-touch-icon.png:180','app/favicon-32.png:32','app/favicon-192.png:192'],
 };

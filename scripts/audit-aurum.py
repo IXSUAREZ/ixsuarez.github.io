@@ -9,12 +9,25 @@ from theme_assets import load_asset_versions, theme_asset_errors, retired_asset_
 
 class ControlInventory(HTMLParser):
     """Source inventory only: dynamic app controls require runtime review."""
+    native_controls = {'button', 'input', 'select', 'textarea', 'summary'}
+    interactive_roles = {'button', 'tab', 'switch', 'checkbox', 'radio', 'slider',
+                         'spinbutton', 'combobox', 'listbox', 'option', 'menuitem',
+                         'menuitemcheckbox', 'menuitemradio', 'treeitem', 'textbox',
+                         'searchbox'}
+    button_link_classes = {'av-key', 'av-app-tile', 'tool-app', 'nav-cta',
+                           'next-step-card', 'plan-row'}
     def __init__(self):
         super().__init__();self.controls=Counter()
     def handle_starttag(self,tag,attrs):
-        attrs=dict(attrs);classes=attrs.get("class", "").split()
-        if tag == "button" or (tag == "a" and any("btn" in c or "button" in c for c in classes)):
-            self.controls[tag + " | " + " ".join(sorted(classes))] += 1
+        attrs=dict(attrs);classes=(attrs.get('class') or '').split()
+        role=(attrs.get('role') or '').strip().lower()
+        button_link=tag == 'a' and ('data-dock-key' in attrs or any(
+            'btn' in c or 'button' in c or c in self.button_link_classes for c in classes))
+        if tag in self.native_controls or button_link or any(r in self.interactive_roles for r in role.split()):
+            # Record control identity without copying field values, labels or data.
+            control_type=attrs.get('type') or ('text' if tag == 'input' else 'submit' if tag == 'button' else '-')
+            family=f'{tag} | type={control_type.lower()} | role={role or "native"} | classes={" ".join(sorted(classes))}'
+            self.controls[family] += 1
 root=Path(__file__).resolve().parents[1]
 asset_versions, retired_assets = load_asset_versions(root)
 restored_retired_assets = retired_asset_files(root, retired_assets)
@@ -63,7 +76,8 @@ for file in supporting_files:
         clean=href.split('?',1)[0]
         asset=clean.lstrip('/') if clean.startswith('/') else posixpath.normpath(posixpath.join(posixpath.dirname(file),clean))
         if not (root/asset).is_file(): errors.append('missing stylesheet: '+asset)
-    supporting.append({'file':file,'integration_errors':errors,'visual_review':'pending'})
+    inventory=ControlInventory();inventory.feed(source)
+    supporting.append({'file':file,'integration_errors':errors,'source_controls':dict(inventory.controls),'visual_review':'pending'})
 
 for page in registered_pages:
     path=root/page['file'];source=path.read_text();head=source.split('</head>',1)[0]
@@ -91,11 +105,14 @@ for page in registered_pages:
     literals=[value for value in re.findall(r'style="([^"]*)"',source) if re.search(r'(?:color|background)[^:]*:\s*(?:#|rgb|hsl)',value)]
     rows.append({'route':page['path'],'file':page['file'],'integration_errors':errors,'style_group':signature,'inline_color_literals':literals,'source_controls':dict(inventory.controls),'visual_review':'pending'})
 control_families={}
-for row in rows:
+for row in rows + supporting:
     for family,count in row['source_controls'].items():
-        item=control_families.setdefault(family,{'count':0,'routes':[]})
-        item['count']+=count;item['routes'].append(row['route'])
-report={'unclassified_html':unclassified,'excluded_html':excluded_html,'supporting_documents':supporting,'pwa_manifests':pwa_manifests,'source_control_families':control_families,'scope':'Registered active routes. Structural integration only; not visual, accessibility, workflow, or export approval. Visual review observations are recorded separately in visual-checks-20260924.md.','template_groups':groups,'routes':rows}
+        item=control_families.setdefault(family,{'count':0,'routes':[],'supporting_documents':[]})
+        item['count']+=count
+        if 'route' in row:item['routes'].append(row['route'])
+        else:item['supporting_documents'].append(row['file'])
+report={'unclassified_html':unclassified,'excluded_html':excluded_html,'supporting_documents':supporting,'pwa_manifests':pwa_manifests,'source_control_families':control_families,'scope':'Registered active routes and explicit supporting documents. Structural integration only; not material, visual, accessibility, workflow, or export approval. Current rendered and interaction evidence is recorded separately.','template_groups':groups,'routes':rows}
+report['source_control_inventory_scope']='Static semantic controls, interactive ARIA roles and button-like native links in registered/supporting documents, classified by tag/type/role/classes without field values. Hidden or disabled source nodes may not currently render; dynamic controls and actual materials/states require current runtime review.'
 report['restored_retired_assets'] = restored_retired_assets
 out=root/'docs/design/route-coverage.json';out.write_text(json.dumps(report,indent=2)+'\n')
 fail=[r for r in rows if r['integration_errors']]

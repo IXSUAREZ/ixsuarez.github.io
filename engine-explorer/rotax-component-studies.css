@@ -1,0 +1,12 @@
+/* Saved-component study chrome; all embedded geometry and renderer bytes stay original. */
+html body.rotax-component-study {background:var(--av-neu-canvas,#e3e3e3)!important;color:var(--g-ink,#25282b)!important;padding:0!important}
+.rotax-component-study :is(header,aside) {background:var(--av-neu-surface,#e3e3e3);border-color:var(--g-line);box-shadow:var(--av-neu-shadow);position:relative;z-index:1}
+.rotax-component-study #viewport {background:var(--av-neu-canvas,#e3e3e3);box-shadow:var(--av-neu-inset)}
+.rotax-component-study :is(header p,#status,td:first-child) {color:var(--g-muted,#53575b)}
+.rotax-component-study .scope {color:var(--g-accent,#795820);border-color:var(--g-line)}
+.rotax-component-study td {border-color:var(--g-line)}
+html body.rotax-component-study button {background:var(--av-neu-surface,#e3e3e3)!important;color:var(--g-ink,#25282b)!important;border:1px solid var(--g-line);border-radius:11px;min-height:44px;box-shadow:var(--av-neu-shadow-sm)!important}
+html body.rotax-component-study select {background:var(--av-neu-surface,#e3e3e3)!important;color:var(--g-ink,#25282b)!important;border:1px solid var(--g-line);border-radius:11px;min-height:44px;box-shadow:var(--av-neu-inset)!important}
+html body.rotax-component-study button[aria-pressed=true] {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge);box-shadow:var(--av-neu-gold-shadow)!important}
+.rotax-component-study :is(button,select):focus-visible {outline:3px solid var(--g-accent);outline-offset:3px}
+html body.rotax-component-study button:not(:disabled):active {box-shadow:var(--av-neu-inset)!important}

@@ -493,7 +493,7 @@ body.tool-page .part61-redesign .part61-menu button{color:var(--g-ink)}
 
 /* Neumorphic CertPath surfaces cover every wizard/result/review state. */
 @media screen {
-  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-step-nav,.part61-stage-card,.field-group,.part61-check-row,.part61-check-group,.part61-event-group,.part61-target-option,.part61-goal-summary,.part61-summary-card,.part61-training-block,.part61-reference-card,.part61-ledger-card,.part61-ledger-total,.summary-block,.dashboard-card,.metric,.part61-zero-review,.part61-zero-confirm,.part61-edit-dialog,.part61-discard-dialog,.part61-menu>:is(div,section)) {
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-step-nav,.part61-stage-card,.field-group,.part61-check-row,.part61-check-group,.part61-event-group,.part61-target-option,.part61-goal-summary,.part61-summary-card,.part61-training-block,.part61-reference-card,.part61-ledger-card,.part61-ledger-total,.summary-block,.dashboard-card,.metric,.part61-hero-banner,.part61-zero-review,.part61-zero-confirm,.part61-edit-dialog,.part61-discard-dialog,.part61-menu>:is(div,section)) {
     background:var(--av-neu-surface,var(--g-surface));
     border-color:var(--g-glass-edge);border-radius:16px;
     box-shadow:var(--av-neu-shadow,var(--g-shadow));
@@ -511,6 +511,9 @@ body.tool-page .part61-redesign .part61-menu button{color:var(--g-ink)}
     border-radius:10px;box-shadow:var(--av-neu-inset,var(--shadow-inset));
     color:var(--g-ink);
   }
+  html[data-gold-mode] body.tool-page .part61-redesign :is(input[type="checkbox"],input[type="radio"]) {
+    box-shadow:var(--av-neu-inset,var(--shadow-inset));
+  }
   html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-button-primary,.part61-choice-row[aria-pressed="true"],.option-button[aria-pressed="true"],.option-button.selected,.part61-common-goals button[aria-pressed="true"],.part61-no-certificate[aria-pressed="true"],.part61-has-certificate[aria-pressed="true"],.part61-target-option[aria-pressed="true"],.part61-filter-button[aria-pressed="true"],.part61-step-nav [aria-current="step"]) {
     background:var(--g-gold)!important;color:var(--g-key-ink)!important;
     border-color:var(--g-edge)!important;border-radius:12px;
@@ -520,9 +523,11 @@ body.tool-page .part61-redesign .part61-menu button{color:var(--g-ink)}
     box-shadow:var(--av-neu-inset,var(--shadow-inset));
   }
   html[data-gold-mode] body.tool-page .part61-redesign .part61-text-button {
-    background:transparent;box-shadow:none;
+    background:var(--av-neu-surface,var(--g-surface));
+    border:1px solid var(--g-glass-edge);box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
   }
   html[data-gold-mode] body.tool-page .part61-redesign .part61-menu button {
-    background:transparent;box-shadow:none;
+    background:var(--av-neu-surface,var(--g-surface));
+    border:1px solid var(--g-glass-edge);box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
   }
 }

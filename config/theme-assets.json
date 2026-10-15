@@ -39,7 +39,8 @@
     "pilotsolve/neumorphism.css",
     "aero-lab/neumorphism.css",
     "engine-explorer/app/neumorphism.css",
-    "assets/app-site-navigation.js"
+    "assets/app-site-navigation.js",
+    "engine-explorer/rotax-component-studies.css"
   ],
   "retired": [
     "aero-lab/assets/App--urF1wgT.js",

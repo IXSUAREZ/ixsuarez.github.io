@@ -21,3 +21,10 @@ body.engine-explorer-page .model-info-reading a:hover{text-decoration:underline}
 body.engine-explorer-page .model-info-dialog :is(button,a):focus-visible,body.engine-explorer-page .model-info-trigger:focus-visible{outline:3px solid var(--av-focus);outline-offset:3px}
 @media(max-width:600px){body.engine-explorer-page .model-info-trigger{inset-inline-start:max(10px,env(safe-area-inset-left));padding:10px;inline-size:44px}body.engine-explorer-page .model-info-trigger span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}body.engine-explorer-page .model-info-dialog{inline-size:100%;max-block-size:min(90dvh,780px);margin:auto 0 0;padding:24px 20px 28px;border-radius:18px 18px 0 0}}
 @media(prefers-reduced-motion:reduce){body.engine-explorer-page .model-info-trigger{transition:none}}
+@media screen{
+ body.engine-explorer-page :is(.model-info-trigger,.model-info-close,.model-info-reading a){background:var(--av-neu-surface);color:var(--g-ink);border-color:var(--g-glass-edge);border-radius:12px;box-shadow:var(--av-neu-shadow-sm)}
+ body.engine-explorer-page :is(.model-info-trigger,.model-info-close,.model-info-reading a):active{box-shadow:var(--av-neu-inset)}
+ body.engine-explorer-page .model-info-dialog{background:var(--av-neu-surface);border-color:var(--g-glass-edge);border-radius:22px;box-shadow:var(--av-neu-shadow),0 18px 46px #0002}
+ body.engine-explorer-page .model-info-reading{gap:10px}
+ body.engine-explorer-page .model-info-reading a{padding-inline:12px;border:1px solid var(--g-glass-edge)}
+}

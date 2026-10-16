@@ -66,7 +66,7 @@ body.cp-navbar-actions .nav-tools{display:contents!important}
     background:var(--av-neu-surface,var(--g-surface));border:1px solid var(--g-glass-edge);
     border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
   }
-  html[data-gold-mode] body.tool-page #cp-shell :is(.cp-card,.cp-saved,#cp-message),
+  html[data-gold-mode] body.tool-page #cp-shell :is(.cp-card,.cp-saved),
   html[data-gold-mode] body.tool-page #cp-delete-dialog {
     background:var(--av-neu-surface,var(--g-surface));color:var(--g-ink);
     border:1px solid var(--g-glass-edge);border-radius:18px;
@@ -74,6 +74,16 @@ body.cp-navbar-actions .nav-tools{display:contents!important}
   }
   html[data-gold-mode] body.tool-page #cp-shell .cp-card {
     padding:clamp(20px,4vw,32px);
+  }
+  html[data-gold-mode] body.tool-page #cp-shell #cp-message {
+    background:transparent;box-shadow:none;border:0;border-inline-start:3px solid var(--g-edge);
+    border-radius:0;padding:10px 14px;
+  }
+  html[data-gold-mode] body.tool-page #cp-shell .cp-fields {grid-template-columns:repeat(2,minmax(0,1fr))}
+  html[data-gold-mode] body.tool-page #cp-shell :is(label,.cp-actions>button) {min-width:0}
+  html[data-gold-mode] body.tool-page #cp-shell .cp-actions>button {max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  @media(max-width:540px) {
+    html[data-gold-mode] body.tool-page #cp-shell .cp-fields {grid-template-columns:1fr}
   }
   html[data-gold-mode] body.tool-page #cp-shell :is(button,.cp-record) {
     background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-glass-edge);

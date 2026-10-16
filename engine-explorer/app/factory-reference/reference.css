@@ -35,3 +35,19 @@ body:has(.reference-workspace) input {accent-color:var(--g-accent,#795820)}
 body:has(.reference-workspace) .reference-workspace .teach {background:var(--g-gold)!important;color:var(--g-key-ink)!important;border-color:var(--g-edge);box-shadow:var(--av-neu-gold-shadow)!important}
 body:has(.reference-workspace) input[type=checkbox] {box-shadow:var(--av-neu-inset)!important;border-radius:4px}
 body:has(.reference-workspace) .stage-caption span {padding:6px 9px}
+
+/* Let the caption reserve its actual height, including wrapped phone text.
+   The provider frame and controls remain independent of this quiet shell. */
+body:has(.reference-workspace) .stage {display:grid;grid-template-rows:minmax(0,1fr) auto;box-shadow:none}
+body:has(.reference-workspace) .stage iframe {position:static;display:block;min-height:0;height:100%}
+body:has(.reference-workspace) .stage-caption {position:static;min-height:0;flex-wrap:wrap;padding:10px 12px;box-shadow:none}
+body:has(.reference-workspace) .stage-caption span {padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+body:has(.reference-workspace) :is(.topbar,aside,.loading) {box-shadow:none}
+body:has(.reference-workspace) :is(.view-note,.about) {background:transparent;box-shadow:none;border-radius:0;padding-inline:0}
+body:has(.reference-workspace) .topbar {height:auto;min-height:82px}
+body:has(.reference-workspace) .brand {min-width:0}
+body:has(.reference-workspace) .brand img {flex:none}
+body:has(.reference-workspace) .back {flex:none;max-width:45%;white-space:normal}
+body:has(.reference-workspace) .views button {min-width:0;overflow-wrap:anywhere}
+@media(max-width:650px) {body:has(.reference-workspace) .topbar {min-height:72px}}
+@media(max-width:380px) {body:has(.reference-workspace) .views {grid-template-columns:repeat(2,minmax(0,1fr))}}

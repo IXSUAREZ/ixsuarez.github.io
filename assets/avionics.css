@@ -19,7 +19,7 @@ body :is(input,select,textarea){background:var(--av-bg);color:var(--av-ink);bord
 /* Content families: matte surfaces and readable foregrounds in both appearances. */
 body.home-page section:not(.horizon-hero),body.home-page #contact,body.home-page .contact-mat{background:var(--av-bg);color:var(--av-ink)}
 body.home-page section:not(.horizon-hero) :is(h1,h2,h3,h4,p,.plan-row-name,.plan-row-desc,.credential-ledger dd,.credential-ledger dt),body.editorial-page :is(h1,h2,h3,h4,p,li),body footer :is(a,p,.wordmark,.fine){color:var(--av-ink)}
-body.home-page :is(.about-panel,.journey-controls,.journey-panel,.faq-sheet,.contact-sheet),body.editorial-page :is(.toc,.see-also,.service-panel,.callout,.cta-box),body.tool-page :is(.selection-summary,.endorsement-detail-panel,.part61-calculator-header,.part61-panel,.part61-step-rail,.part61-results-pane,.cg-card,.endorsement-card,.verbatim-block,.filter-rail),body footer{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
+body.home-page :is(.about-panel,.journey-controls,.journey-panel,.faq-sheet),body.editorial-page :is(.toc,.see-also,.service-panel,.callout,.cta-box),body.tool-page :is(.selection-summary,.endorsement-detail-panel,.part61-calculator-header,.part61-panel,.part61-step-rail,.part61-results-pane,.cg-card,.endorsement-card,.verbatim-block,.filter-rail),body footer{background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line)}
 body.home-page :is(.section-header .eyebrow,.plan-row-num),body.editorial-page :is(.eyebrow,.post-tag,.post-card-link),body footer .footer-col-title{color:var(--av-cyan)}
 body.home-page :is(.tool-card,.tool-card:hover){background:var(--av-panel);border-color:var(--av-line)}body.home-page .tool-card :is(strong,em){color:var(--av-ink)}
 body.tool-page :is(input[type="text"],input[type="number"],input[type="search"],select,textarea){background:var(--av-bg);color:var(--av-ink)}
@@ -125,7 +125,7 @@ body .av-has-compact .av-label-compact{display:none}
 @media(max-width:360px){body .av-compact-360 .av-label-full{display:none}body .av-compact-360 .av-label-compact{display:inline}}
 
 /* Shared control owner. Legacy nav/button rules are removed from base skins. */
-body .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-block-size:48px;max-inline-size:100%;padding:11px 20px;box-sizing:border-box;border:1px solid var(--av-line);border-radius:6px;background:linear-gradient(#ffffff09,transparent),var(--av-raised);color:var(--av-ink);font:600 1rem/1.4 var(--font-body,system-ui);text-align:center;text-decoration:none;white-space:normal;overflow-wrap:break-word;box-shadow:inset 0 1px #ffffff25,0 2px 3px #0002;cursor:pointer;transition:background-color 100ms,border-color 100ms,box-shadow 100ms}
+body .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-block-size:48px;min-inline-size:0;max-inline-size:100%;height:auto;padding:11px 20px;box-sizing:border-box;border:1px solid var(--av-line);border-radius:6px;background:linear-gradient(#ffffff09,transparent),var(--av-raised);color:var(--av-ink);font:600 1rem/1.4 var(--font-body,system-ui);text-align:center;text-decoration:none;white-space:normal;overflow-wrap:anywhere;box-shadow:inset 0 1px #ffffff25,0 2px 3px #0002;cursor:pointer;transition:background-color 100ms,border-color 100ms,box-shadow 100ms}
 body .btn::before,body .btn::after{content:none}
 body .btn.btn--primary{background:var(--av-cyan);color:var(--av-bg);border-color:var(--av-cyan)}
 body .btn:hover{border-color:var(--av-cyan);color:var(--av-ink);filter:none;transform:none}
@@ -561,6 +561,63 @@ html[data-gold-mode] :is(.stage-open,.engine-choice,.cg-btn-primary,#cgNextBtn,#
 html[data-gold-mode] body.flightrisk-view :is(.bg-white,.bg-card,.bg-page,.bg-soft,.bg-ink-900){background:var(--g-surface)!important;color:var(--g-ink)!important;border-color:var(--g-line)!important}
 html[data-gold-mode] body.flightrisk-view :is(.text-ink-900,.text-ink-800,.text-ink-700){color:var(--g-ink)!important}
 html[data-gold-mode] body.flightrisk-view :is(.text-ink-600,.text-ink-500,.text-ink-400){color:var(--g-muted)!important}
+/* The deployed app's h-9 utility must not squeeze the stacked rating choices. */
+html body.flightrisk-view .fr-rating-options .fr-rating-option{min-height:44px;height:auto}
+/* One results scroll surface keeps enlarged header, body and actions reachable. */
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) {overflow:auto;overscroll-behavior:contain;min-height:0}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div {flex-shrink:0;min-width:0;max-width:100%}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) {
+  display:grid;grid-template-columns:32px minmax(0,1fr) 44px;gap:12px;
+  align-items:start;padding:16px 20px;
+}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) > img {width:32px;height:32px}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) > div {min-width:0;overflow-wrap:anywhere}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) button[aria-label="Close results"] {width:44px;height:44px;min-width:44px;min-height:44px}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div[class~="overflow-y-auto"] {flex:none;overflow:visible;min-height:0;overflow-wrap:anywhere}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div[class~="overflow-y-auto"] .flex:not(.flex-col) {flex-wrap:wrap}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div[class~="overflow-y-auto"] .flex > :is(div,p,span,li) {min-width:0;max-width:100%}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child {display:flex;flex-wrap:wrap;padding:12px 16px}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child > button {
+  flex:1 1 10rem;min-width:0;max-width:100%;min-height:44px;height:auto;padding:10px 12px;
+  line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
+}
+html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child > button > svg {flex:none}
+@media (max-width:600px) {
+  html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) {grid-template-columns:minmax(0,1fr) 44px}
+  html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) > div {grid-column:1/-1;grid-row:2}
+  html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) button[aria-label="Close results"] {grid-column:2;grid-row:1}
+}
+@media (min-width:640px) {
+  html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]),
+  html body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child {padding-left:28px;padding-right:28px}
+}
+/* Live summary actions reflow when enlarged copy exceeds the tablet row. */
+html body.flightrisk-view #root [aria-label="Assessment progress and risk summary"] {min-width:0;max-width:100%}
+html body.flightrisk-view #root [aria-label="Assessment progress and risk summary"]:has(> button[data-results-trigger]) {flex-wrap:wrap}
+html body.flightrisk-view #root [aria-label="Assessment progress and risk summary"]:has(> button[data-results-trigger]) > div:first-child {flex-shrink:1;min-width:0;max-width:100%}
+html body.flightrisk-view #root [aria-label="Assessment progress and risk summary"]:has(> button[data-results-trigger]) > div:nth-child(2) {flex-basis:8rem;max-width:100%}
+html body.flightrisk-view #root [aria-label="Assessment progress and risk summary"] button[data-results-trigger]:not([aria-label]) {
+  flex:0 1 auto;min-width:0;max-width:100%;min-height:44px;height:auto;padding:10px 16px;
+  justify-content:center;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
+}
+html body.flightrisk-view #root [aria-label="Assessment progress and risk summary"] button[data-results-trigger]:not([aria-label]) > svg {flex:none}
+/* The hero action group must shrink below the buttons' min-content width. */
+html body.flightrisk-view #root section > div:has(> div > h1) > div:has(> button) {
+  min-width:0;max-width:100%;flex-wrap:wrap;
+}
+html body.flightrisk-view #root section > div:has(> div > h1) > div:has(> button) > :is(button,a) {
+  min-width:0;max-width:100%;min-height:48px;height:auto;padding:10px 20px;
+  justify-content:center;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
+}
+html body.flightrisk-view #root section > div:has(> div > h1) > div:has(> button) > :is(button,a) > svg {flex:none}
+/* Footer calls to action reflow with their copy and grow with wrapped labels. */
+html body.flightrisk-view #root div:has(> div > [data-cta-id="frat-cta-train"]) {flex-flow:row wrap}
+html body.flightrisk-view #root div:has(> div > [data-cta-id="frat-cta-train"]) > div:first-child {flex:1 1 24rem;min-width:0}
+html body.flightrisk-view #root div:has(> [data-cta-id="frat-cta-train"]) {flex:0 1 auto;flex-flow:row wrap;min-width:0;max-width:100%}
+html body.flightrisk-view #root :is([data-cta-id="frat-cta-train"],[data-cta-id="frat-cta-methodology"]) {
+  flex:1 1 auto;min-width:0;max-width:100%;min-height:44px;height:auto;
+  padding:10px 20px;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
+}
 html[data-gold-mode][data-gold-finish]{--cc-bg:var(--g-bg);--cc-panel:var(--g-surface);--cc-raised:var(--g-raised);--cc-ink:var(--g-ink);--cc-muted:var(--g-muted);--cc-line:var(--g-line);--cc-accent:var(--g-accent);--cc-stage:var(--g-well);--cc-dock:var(--g-glass)}
 html[data-gold-mode] :is(.pilot-app,.pilot-mobile-scroll){background:var(--g-bg)!important;color:var(--g-ink)!important;--blue:var(--g-accent);--soft:var(--g-surface);color-scheme:inherit}
 html[data-gold-mode] .pilot-app.standalone{box-shadow:0 0 0 1px var(--g-line)}
@@ -801,17 +858,18 @@ html[data-gold-mode] :is(.bottom-nav,.numeric-keypad,[data-tactile-dock]){
 /* Website pages: grouped content is raised, while prose stays on an open,
    readable canvas. Category/diagram imagery and export canvases are excluded. */
 @media screen{
- html[data-gold-mode] body summary{background:var(--av-neu-surface);border:1px solid var(--g-glass-edge);border-radius:12px;padding:10px 14px;box-shadow:var(--av-neu-shadow-sm)}
- html[data-gold-mode] body summary:active{box-shadow:var(--av-neu-inset)}
+ /* Disclosures belong to their containing panel, with no second floating face. */
+ html[data-gold-mode] body summary{min-block-size:44px;box-sizing:border-box;background:transparent;border:0;border-radius:0;padding:10px 14px;box-shadow:none;overflow-wrap:anywhere}
+ html[data-gold-mode] body summary:active{color:var(--g-accent)}
  html[data-gold-mode] body.journal-article .journal-rail{background:var(--av-neu-surface);border:1px solid var(--g-glass-edge);border-radius:20px;padding:14px 16px;box-shadow:var(--av-neu-shadow)}
  html[data-gold-mode] .horizon-hero .btn{border-radius:14px!important;box-shadow:var(--av-neu-shadow-sm)!important}
  html[data-gold-mode] .horizon-hero .btn--primary{box-shadow:var(--av-neu-gold-shadow)!important}
 }
 html[data-gold-mode] body:is(.home-page,.service-page,.editorial-page,.journal-library,.journal-article) :is(
- .next-step-card,.plan-row,.service-panel,.service-fact,.service-facts>div,.service-card,.service-card-grid>article,
- .about-panel,.faq-sheet,.contact-sheet,.contact-card,.conversion-bar,.cf-form,
+ .next-step-card,.service-panel,.service-card,.service-card-grid>article,
+ .about-panel,.faq-sheet,.contact,.contact-card,.conversion-bar,
  .category-card,.post-card,.article-card,.guide-card,.library-card,.library-search,
- .source-guide,.see-also,.related-reading,.cta-box,.faq-section,.seo-guide-note,.table-wrap){
+ .source-guide,.see-also,.related-reading,.cta-box,.faq-section){
  background:var(--av-neu-surface);border-color:var(--g-glass-edge);border-radius:22px;box-shadow:var(--av-neu-shadow);
 }
 html[data-gold-mode] body.home-page .next-step-card{padding:28px;transition:box-shadow 160ms ease,border-color 160ms ease}

@@ -358,6 +358,23 @@
     });
     window.addEventListener('pointercancel', function () { shellPressId = null; });
     items.addEventListener('focusin', function (event) { if (collapsed && event.target === menu) return; render(false); reset(); });
+    // A control can be visible to the browser while hidden beneath this fixed
+    // dock. Correct document focus only; app-owned scrollers keep their layout.
+    document.addEventListener('focusin', function (event) {
+      var target = event.target;
+      if (!document.body.matches('.home-page,.service-page,.editorial-page,.journal-library,.journal-article,.certgen-view,.simply-endorsed-page,.is-calculator-view') ||
+          document.body.matches('.flightrisk-view,.foi-page,.engine-explorer-page') ||
+          !(target instanceof Element) || nav.contains(target) || dialog.contains(target) ||
+          !target.closest('main,footer')) return;
+      requestAnimationFrame(function () {
+        if (document.activeElement !== target || !target.matches(':focus-visible')) return;
+        var control = target.getBoundingClientRect(), dock = nav.getBoundingClientRect();
+        if (control.right > dock.left && control.left < dock.right &&
+            control.bottom > dock.top - 16 && control.top < dock.bottom) {
+          window.scrollBy({ top: Math.ceil(control.bottom - dock.top + 16), behavior: 'instant' });
+        }
+      });
+    });
     var pressToken = 0;
     nav.addEventListener('pointerdown', function () {
       pressToken++;

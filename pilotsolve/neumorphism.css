@@ -43,9 +43,11 @@ html body .pilot-app :is(.pilot-header,.bottom-nav,.numeric-keypad,.helper-retur
   background:var(--nu-surface)!important;border-color:var(--nu-line)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
   box-shadow:var(--nu-shadow)!important;
 }
-html body .pilot-app .pilot-header {border:0;border-radius:0 0 18px 18px;margin-bottom:8px}
-html body .pilot-app .bottom-nav {margin:8px 12px 12px;border:0;border-radius:18px;gap:10px;padding:9px max(9px,env(safe-area-inset-right)) max(9px,env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left))}
-html body .pilot-app .numeric-keypad {border-radius:18px 18px 0 0;padding:10px}
+/* The controls own the tactile treatment; their layout shelves stay quiet. */
+html body .pilot-app :is(.pilot-header,.bottom-nav,.numeric-keypad,.helper-return) {box-shadow:none!important}
+html body .pilot-app .pilot-header {border:0;border-radius:0;margin-bottom:0}
+html body .pilot-app .bottom-nav {margin:0;border:0;border-radius:0;gap:10px;padding:10px max(16px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+html body .pilot-app .numeric-keypad {border-radius:0;padding:10px}
 html body .pilot-app :is(.search-field,.favorite-tile,.tool-row,.result-panel,.panel,.reuse-panel,.appearance-panel,.totals,.trip-totals,.loading-totals,.wind-diagram,.choice-option,.choice-trigger,.secondary,.icon-button,.back-link,.unit-split,.key-grid button,.calculator-grid button,.bottom-nav button),html body .device-screen:has(.pilot-app) .bottom-sheet :is(.choice-option,.tool-row,.secondary) {
   border:1px solid color-mix(in srgb,var(--nu-line) 25%,transparent)!important;border-radius:12px!important;background:var(--nu-surface)!important;
   color:var(--nu-ink)!important;box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
@@ -68,7 +70,7 @@ html body .pilot-app :is(.result-value,.number-field strong,.wordmark span,.back
 html body .pilot-app :is(button,input,select,summary):focus-visible {outline:3px solid var(--nu-accent)!important;outline-offset:3px}
 html body .pilot-app button:not(:disabled):active {box-shadow:var(--nu-inset)!important;transform:translateY(1px)}
 /* At 320px, retain two separate 44px unit actions without reducing the labels. */
-@media(max-width:350px) {html body .pilot-app .bottom-nav {margin-inline:8px;gap:7px}html body .pilot-app .favorite-tile {padding:11px}}
+@media(max-width:350px) {html body .pilot-app .bottom-nav {margin-inline:0;gap:8px}html body .pilot-app .favorite-tile {padding:11px}}
 @media(prefers-reduced-motion:reduce) {html body .pilot-app * {transition:none!important;animation:none!important}}
 
 /* Content and sheets share the same canvas, including the independent app menu. */
@@ -98,3 +100,19 @@ html body .pilot-app .site-menu-links a {
 html body .pilot-app .site-menu-links a:active {box-shadow:var(--nu-inset)!important}
 
 html body #root .pilot-app button:disabled {background:var(--nu-surface)!important;color:var(--nu-muted)!important;box-shadow:var(--nu-shadow-sm)!important;opacity:.5}
+
+/* Keep nested content aligned with its existing section instead of stacking
+   another frame inside the same card. Inputs, actions and results keep depth. */
+html body #root .pilot-app .panel :is(.panel,.totals,.trip-totals,.loading-totals,.appearance-panel),
+html body #root .pilot-app .wind-diagram {
+ background:transparent!important;border-color:transparent!important;box-shadow:none!important;
+}
+html body #root .pilot-app .favorites-grid .favorite-tile {margin:0}
+html body #root .pilot-app .favorite-tile::before {content:none!important}
+html body #root .pilot-app .favorite-tile svg {filter:none}
+html body #root .pilot-app .tool-row {padding:12px 14px;min-width:0}
+html body #root .pilot-app .tool-row :is(strong,small) {overflow-wrap:anywhere}
+html body #root .pilot-app .header-actions {flex:none;gap:8px}
+html body #root .pilot-app .header-title {margin:0;min-width:0;line-height:1.3}
+html body #root .pilot-app .action-row {flex-wrap:wrap}
+html body #root .pilot-app .action-row>* {flex:1 1 120px;min-width:0}

@@ -2,7 +2,7 @@
    SuarezCFI — Contact form (assets/contact-form.js mount)
    Paper working surface: the mount lives inside the contact paper sheet,
    so the form itself carries no card chrome (transparent, no border, no
-   shadow, no blur). Inputs use the shared raised surface with a 1px border. Focus uses the
+   shadow, no blur). Inputs use the shared inset surface with a 1px border. Focus uses the
    domain-wide ring from design-system.css — no local outline reset, no glow.
    ========================================================================== */
 
@@ -12,10 +12,14 @@
 
 .cf-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   font-family: var(--font-sans);
   text-align: left;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .cf-field {
@@ -103,10 +107,12 @@
   align-items: center;
   gap: 10px;
   margin-top: 4px;
+  min-width: 0;
 }
 
 .cf-submit {
   border: none;
+  scroll-margin-block: 24px var(--dock-clearance, 100px);
 }
 
 .cf-submit[disabled] {
@@ -120,6 +126,9 @@
   font-size: 13px;
   color: var(--ink-muted);
   text-align: center;
+  max-width: 100%;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .cf-error {

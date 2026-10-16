@@ -33,7 +33,7 @@ html body .app :is(.topbar,.preset-bar,.study-navigation,.explorer-context,.expl
   background:var(--nu-surface)!important;color:var(--nu-ink)!important;border-color:color-mix(in srgb,var(--nu-line) 35%,transparent)!important;box-shadow:var(--nu-shadow)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
 }
 html body .app :is(.explorer-panel,.study-panel,.inspector,.learning-guide,.control-deck,.edge-rail,.navigation-rail,.action-rail,.explorer-corner,.resource-menu>div,.more-menu>div) {border-radius:18px!important}
-html body .app .viewport {background:var(--nu-canvas)!important;box-shadow:var(--nu-inset)!important}
+html body .app .viewport {background:var(--nu-canvas)!important;box-shadow:none!important}
 html body .app :is(button,select,.resource-menu>summary,.more-menu>summary,.search,.browse-tabs,.tool-content,.official-source-links a,.model-notice,.collection-specs) {
   border:1px solid color-mix(in srgb,var(--nu-line) 30%,transparent)!important;border-radius:11px!important;background:var(--nu-surface)!important;color:var(--nu-ink)!important;
   box-shadow:var(--nu-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
@@ -123,3 +123,106 @@ html body .app .explorer-panel-header {background:var(--nu-surface)!important;co
 html body .app .explorer-panel-header h2 {color:var(--nu-ink)!important}
 html body .app .engine-context {color:var(--nu-ink)!important;text-shadow:none!important}
 html body .app .engine-context>span {color:var(--nu-muted)!important;text-shadow:none!important}
+
+/* ExplorerChrome already supplies one scrollable sheet. Restore its intentional
+   flat inner sections rather than framing the guide, header and tools again. */
+html body #root .app.explorer .explorer-panel :is(.sidebar,.inspector,.learning-guide,.study-panel,.tool-content) {
+ background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+html body #root .app .explorer-panel-header {box-shadow:none!important}
+html body #root .app .explorer-panel-header h2 {margin:0;min-width:0;overflow-wrap:anywhere}
+html body #root .app .explorer-panel-header>div {flex:none;gap:8px}
+html body #root .app :is(.edge-rail,.navigation-rail,.action-rail,.explorer-corner) {
+ background:transparent!important;border-color:transparent!important;box-shadow:none!important;
+}
+html body #root .app :is(.model-notice,.collection-specs),
+html body #root .app .lycoming-guide :is(.lycoming-heading-icon,.lycoming-facts div) {
+ background:transparent!important;border-color:transparent!important;box-shadow:none!important;
+}
+html body #root .app .lycoming-facts {grid-template-columns:repeat(3,minmax(0,1fr))}
+html body #root .app .lycoming-facts div {min-width:0;overflow-wrap:anywhere}
+html body .ignition-lab :is(.lab-heading,.lab-section-nav,.lab-model,.lab-deep-dive,.lab-differences,.lab-evidence) {box-shadow:none!important}
+html body .ignition-lab :is(.lab-letter,.lab-orbit-note) {background:transparent!important;box-shadow:none!important}
+html body .ignition-lab .lab-model-title {flex-wrap:wrap}
+html body .ignition-lab .lab-model-title>div {flex:1 1 180px;min-width:0}
+html body .ignition-lab .lab-model-title h3 {overflow-wrap:anywhere}
+html body .ignition-lab .lab-model-title>button {flex:none}
+html body .ignition-lab .lab-clock {flex-wrap:wrap}
+html body .ignition-lab .lab-clock>label {flex:1 1 220px;min-width:0}
+
+/* The collection is a document, not a fixed-height overlay. Reserve the
+   actual introduction and selector height before the unchanged model canvas.
+   Only the canvas, its hit target and its loading veil share a grid cell. */
+html body #root .app.collection:not(.fi-app) {
+ height:auto;min-height:100dvh;overflow:visible;
+}
+html body #root .app.collection:not(.fi-app)>.topbar {
+ flex:none;flex-wrap:wrap;height:auto;gap:12px;
+}
+html body #root .app.collection:not(.fi-app)>.topbar .product-brand {
+ flex:1 1 12rem;min-width:0;
+}
+html body #root .app.collection:not(.fi-app)>.topbar .product-mark {flex:none}
+html body #root .app.collection:not(.fi-app)>.topbar .product-wordmark {
+ min-width:0;max-width:none;overflow-wrap:anywhere;
+}
+html body #root .app.collection:not(.fi-app)>.topbar .top-actions {flex:none;margin-inline-start:auto}
+html body #root .app.collection:not(.fi-app)>.workspace {
+ flex:none;display:block;height:auto;min-height:0;
+}
+html body #root .app.collection:not(.fi-app) .viewport {
+ display:grid;grid-template-columns:minmax(0,1fr);
+ grid-template-rows:auto auto var(--preview-height) auto auto;
+ gap:24px;min-height:0;height:auto;overflow:visible;
+ padding:clamp(16px,3vw,32px) clamp(16px,5vw,64px) 32px;
+}
+html body #root .app.collection:not(.fi-app) .engine-collection {display:contents}
+html body #root .app.collection:not(.fi-app) .collection-intro {
+ position:static;grid-area:1 / 1;min-width:0;width:100%;max-width:72rem;
+ justify-self:center;margin:0;padding:0;pointer-events:auto;
+}
+html body #root .app.collection:not(.fi-app) .collection-intro :is(h2,p) {overflow-wrap:anywhere}
+html body #root .app.collection:not(.fi-app) .collection-intro>p:not(.kicker) {
+ max-width:42ch;margin:16px auto 0;line-height:1.55;
+}
+html body #root .app.collection:not(.fi-app) .engine-switcher {
+ flex-wrap:wrap;gap:12px;max-width:52rem;margin:24px auto 0;
+}
+html body #root .app.collection:not(.fi-app) .engine-switcher button {
+ flex:1 1 12rem;min-width:0;width:auto;max-width:24rem;
+ height:auto;white-space:normal;overflow-wrap:anywhere;
+}
+html body #root .app.collection:not(.fi-app) .engine-switcher :is(strong,span) {min-width:0;white-space:normal;overflow-wrap:anywhere}
+html body #root .app.collection:not(.fi-app) .engine-title {
+ position:static;grid-area:2 / 1;min-width:0;width:auto;margin:0;
+ flex-wrap:wrap;line-height:1.1;white-space:normal;overflow:visible;
+ transform:none;pointer-events:none;
+}
+html body #root .app.collection:not(.fi-app) .viewport>.canvas-host,
+html body #root .app.collection:not(.fi-app) .engine-hit-area,
+html body #root .app.collection:not(.fi-app) .viewport>.loading-model,
+html body #root .app.collection:not(.fi-app) .viewport>.reference-stage {
+ position:relative;grid-area:3 / 1;inset:auto;min-width:0;min-height:0;
+ width:100%;height:100%;margin:0;transform:none;
+}
+html body #root .app.collection:not(.fi-app) .viewport>.canvas-host {overflow:hidden}
+html body #root .app.collection:not(.fi-app) .engine-hit-area,
+html body #root .app.collection:not(.fi-app) .engine-hit-area:is(:hover,:active,:focus-visible) {
+ padding:0;border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important;transform:none;
+}
+html body #root .app.collection:not(.fi-app) .collection-specs {
+ position:static;grid-area:4 / 1;min-width:0;max-width:100%;justify-self:center;
+ flex-wrap:wrap;justify-content:center;gap:12px;margin:0;
+}
+html body #root .app.collection:not(.fi-app) .collection-specs>div {
+ min-width:0;max-width:100%;overflow-wrap:anywhere;
+}
+html body #root .app.collection:not(.fi-app) .engine-choice {
+ position:static;grid-area:5 / 1;min-width:0;max-width:100%;height:auto;
+ justify-self:center;margin:0;white-space:normal;overflow-wrap:anywhere;
+ transform:none;
+}
+html body #root .app.collection:not(.fi-app) .engine-choice:is(:hover,:active) {transform:none}
+html body #root .app.collection:not(.fi-app) .category-picker {flex-wrap:wrap;width:fit-content}
+html body #root .app.collection:not(.fi-app) .category-picker button {min-width:0;white-space:normal;overflow-wrap:anywhere}

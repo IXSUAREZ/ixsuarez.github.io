@@ -1,9 +1,79 @@
 --- a/src/index.css
 +++ b/src/index.css
-@@ -211,6 +211,63 @@
-   }
- }
- 
+@@ -197,9 +197,65 @@
+ /* Keep app-owned form controls usable when phone text is enlarged. */
+ .fr-saved-setup-grid {grid-template-columns:minmax(0,1fr)}
+ @media (min-width:640px) {.fr-saved-setup-grid {grid-template-columns:repeat(2,minmax(0,1fr))}}
++.fr-rating-options .fr-rating-option {min-height:44px;height:auto}
++/* One results scroll surface keeps enlarged header, body and actions reachable. */
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) {overflow:auto;overscroll-behavior:contain;min-height:0}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div {flex-shrink:0;min-width:0;max-width:100%}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) {
++  display:grid;grid-template-columns:32px minmax(0,1fr) 44px;gap:12px;
++  align-items:start;padding:16px 20px;
++}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) > img {width:32px;height:32px}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) > div {min-width:0;overflow-wrap:anywhere}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) button[aria-label="Close results"] {width:44px;height:44px;min-width:44px;min-height:44px}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div[class~="overflow-y-auto"] {flex:none;overflow:visible;min-height:0;overflow-wrap:anywhere}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div[class~="overflow-y-auto"] .flex:not(.flex-col) {flex-wrap:wrap}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div[class~="overflow-y-auto"] .flex > :is(div,p,span,li) {min-width:0;max-width:100%}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child {display:flex;flex-wrap:wrap;padding:12px 16px}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child > button {
++  flex:1 1 10rem;min-width:0;max-width:100%;min-height:44px;height:auto;padding:10px 12px;
++  line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
++}
++body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child > button > svg {flex:none}
++@media (max-width:600px) {
++  body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) {grid-template-columns:minmax(0,1fr) 44px}
++  body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]) > div {grid-column:1/-1;grid-row:2}
++  body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) button[aria-label="Close results"] {grid-column:2;grid-row:1}
++}
++@media (min-width:640px) {
++  body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:has(> button[aria-label="Close results"]),
++  body.flightrisk-view [role="dialog"]:has(button[aria-label="Close results"]) > div:last-child {padding-left:28px;padding-right:28px}
++}
++/* Live summary actions reflow when enlarged copy exceeds the tablet row. */
++body.flightrisk-view #root [aria-label="Assessment progress and risk summary"] {min-width:0;max-width:100%}
++body.flightrisk-view #root [aria-label="Assessment progress and risk summary"]:has(> button[data-results-trigger]) {flex-wrap:wrap}
++body.flightrisk-view #root [aria-label="Assessment progress and risk summary"]:has(> button[data-results-trigger]) > div:first-child {flex-shrink:1;min-width:0;max-width:100%}
++body.flightrisk-view #root [aria-label="Assessment progress and risk summary"]:has(> button[data-results-trigger]) > div:nth-child(2) {flex-basis:8rem;max-width:100%}
++body.flightrisk-view #root [aria-label="Assessment progress and risk summary"] button[data-results-trigger]:not([aria-label]) {
++  flex:0 1 auto;min-width:0;max-width:100%;min-height:44px;height:auto;padding:10px 16px;
++  justify-content:center;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
++}
++body.flightrisk-view #root [aria-label="Assessment progress and risk summary"] button[data-results-trigger]:not([aria-label]) > svg {flex:none}
++/* The hero action group must shrink below the buttons' min-content width. */
++body.flightrisk-view #root section > div:has(> div > h1) > div:has(> button) {
++  min-width:0;max-width:100%;flex-wrap:wrap;
++}
++body.flightrisk-view #root section > div:has(> div > h1) > div:has(> button) > :is(button,a) {
++  min-width:0;max-width:100%;min-height:48px;height:auto;padding:10px 20px;
++  justify-content:center;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
++}
++body.flightrisk-view #root section > div:has(> div > h1) > div:has(> button) > :is(button,a) > svg {flex:none}
++/* Footer calls to action reflow with their copy and grow with wrapped labels. */
++body.flightrisk-view #root div:has(> div > [data-cta-id="frat-cta-train"]) {flex-flow:row wrap}
++body.flightrisk-view #root div:has(> div > [data-cta-id="frat-cta-train"]) > div:first-child {flex:1 1 24rem;min-width:0}
++body.flightrisk-view #root div:has(> [data-cta-id="frat-cta-train"]) {flex:0 1 auto;flex-flow:row wrap;min-width:0;max-width:100%}
++body.flightrisk-view #root :is([data-cta-id="frat-cta-train"],[data-cta-id="frat-cta-methodology"]) {
++  flex:1 1 auto;min-width:0;max-width:100%;min-height:44px;height:auto;
++  padding:10px 20px;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;
++}
+ @media (max-width:480px) {
+   .fr-rating-options {flex-direction:column;width:100%}
+-  .fr-rating-option {width:100%;height:auto;min-height:2.25rem;min-width:0;padding:.25rem .5rem;white-space:normal}
++  .fr-rating-option {width:100%;min-width:0;padding:.25rem .5rem;white-space:normal}
+   .fr-card-header {flex-wrap:wrap}
+   .fr-card-header-copy {flex:1 1 100px;overflow-wrap:anywhere}
+   .fr-card-header-right {flex:1 1 100%;margin-left:0}
+@@ -208,6 +264,63 @@
+ @layer base {
+   .print-only {
+     display: none;
++  }
++}
++
 +/* Neumorphic content material, rebuilt from the verified current source.
 +   PAVE colors, risk tapes, toggles, gauges and printed summary are semantic. */
 +@media screen {
@@ -58,12 +128,9 @@
 +      background:Canvas!important;color:CanvasText!important;
 +      border:1px solid CanvasText!important;box-shadow:none!important;
 +    }
-+  }
-+}
-+
- @media (prefers-reduced-motion: reduce) {
-   html {
-     scroll-behavior: auto;
+   }
+ }
+ 
 --- a/tailwind.config.js
 +++ b/tailwind.config.js
 @@ -58,7 +58,7 @@

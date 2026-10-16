@@ -1,5 +1,9 @@
 # Sitewide neumorphism completeness review
 
+Latest evidence: [October 16 text/control overlap audit](docs/design/layout-overlap-audit-2026-10-16.md), including the reported Home row, route census, responsive/enlarged-text checks and actual app states. This records QA before publication; deployment verification is kept separately at `/Volumes/Codex SSD/tmp/release-layout-20261016/`.
+
+Current follow-up: [October 16 layout cleanup](docs/design/neumorphism-cleanup-2026-10-16.md) passed local source and representative rendered review. Public/private publication is verified separately. The seven-app counts and release claims below describe the earlier October 14 release; the current catalog has six apps after Aero Lab removal.
+
 final result: passed
 
 Scope: complete the gray-and-gold material system across the existing website and source-owned app interfaces. Preserve content, workflows, original imagery, scientific/semantic colors, calculations, authentication and exports. This is a material-consistency follow-up to release `104626f9`, not a pixel-for-pixel rebuild of generated concept layouts.

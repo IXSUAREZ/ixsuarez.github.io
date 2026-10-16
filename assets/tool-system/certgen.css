@@ -730,14 +730,19 @@ body.certgen-view {
   justify-content: center;
   gap: 8px;
   min-height: 50px;
-  padding: 0 22px;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  padding: 10px 22px;
   border-radius: var(--r-pill, 999px);
   border: 1px solid transparent;
   font: inherit;
   font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
-  white-space: nowrap;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -816,32 +821,25 @@ body.certgen-view {
   }
 }
 
-/* Below 1024px the whole preview canvas sits above the nav row (see the
-   Layout and Preview column comments), so pin Back/Continue to the bottom
-   of the viewport instead of making the user scroll past it every step.
-   .cg-nav-row is the last child of .cg-container, and the <footer> lives
-   outside .cg-container, so `sticky` pins the bar until the container's
-   end scrolls into view, then it settles naturally above the footer. */
+/* The shared dock provides persistent navigation. Keep the builder actions
+   in document flow without the old sticky bar's extra clearance and bleed. */
 @media (max-width: 1023px) {
   .cg-nav-row {
-    position: sticky;
-    bottom: 0;
-    z-index: 20;
-    margin: 28px -20px 0;                 /* bleed through .cg-container's 20px padding */
-    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-    background: var(--g-glass);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    position: static;
+    flex-wrap: wrap;
+    margin: 24px 0 0;
+    padding: 12px 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
     border-top: 1px solid var(--g-line);
   }
-
-  /* Clear the pinned bar so it never sits on top of the last content. */
-  .cg-layout { padding-bottom: 84px; }
+  .cg-layout { padding-bottom: 0; }
 }
 
 @media (max-width: 400px) {
-  /* Let enlarged button labels wrap, with clearance above the shared dock. */
-  .cg-nav-row { flex-wrap: wrap; padding-bottom: calc(12px + var(--dock-clearance, 72px)); }
+  /* Let enlarged button labels wrap within the normal-flow action row. */
+  .cg-nav-row { flex-wrap: wrap; }
   .cg-nav-row .cg-btn {
     flex: 1 1 max-content;
     min-width: 0;
@@ -981,6 +979,7 @@ body.certgen-view {
 
 .cg-caption-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -988,6 +987,8 @@ body.certgen-view {
 }
 
 .cg-caption-heading {
+  flex: 1 1 12rem;
+  min-width: 0;
   margin: 0;
   font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
   font-size: 0.8rem;
@@ -998,7 +999,10 @@ body.certgen-view {
 }
 
 .cg-caption-edit {
-  padding: 0;
+  flex: 0 0 auto;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
   border: none;
   background: none;
   color: var(--g-muted);
@@ -1006,6 +1010,8 @@ body.certgen-view {
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
+  white-space: normal;
+  overflow-wrap: anywhere;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -1090,13 +1096,14 @@ body.certgen-view {
 
 .cg-caption-edit-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
 }
 
 .cg-caption-edit-actions .cg-btn {
-  flex: 1 1 0;
-  min-height: 42px;
+  flex: 1 1 8rem;
+  min-height: 44px;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -1135,6 +1142,9 @@ body.certgen-view {
   font-weight: 700;
   letter-spacing: 0.01em;
 }
+
+.cg-cropper-head > div { min-width: 0; overflow-wrap: anywhere; }
+.cg-cropper-head .cg-icon-btn { flex: none; }
 
 .cg-cropper-head p {
   margin: 2px 0 0;
@@ -1218,11 +1228,12 @@ body.certgen-view {
 
 .cg-cropper-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
 .cg-cropper-actions .cg-btn {
-  flex: 1 1 0;
+  flex: 1 1 8rem;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -1305,7 +1316,7 @@ body.certgen-view {
 
 /* Editor chrome is neumorphic; generated certificate pixels remain untouched. */
 @media screen {
-  html[data-gold-mode] body.certgen-view :is(.cg-card,.cg-stepper,.cg-caption-card,.cg-photo-ready,.cg-saveimg-wrap) {
+  html[data-gold-mode] body.certgen-view :is(.cg-card,.cg-stepper,.cg-caption-card) {
     background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-glass-edge);
     border-radius:18px;box-shadow:var(--av-neu-shadow,var(--g-shadow));
   }
@@ -1317,7 +1328,7 @@ body.certgen-view {
   html[data-gold-mode] body.certgen-view :is(.cg-cert-btn,.cg-rating-btn,.cg-btn,.cg-icon-btn):not(:disabled):active {
     box-shadow:var(--av-neu-inset,var(--shadow-inset));
   }
-  html[data-gold-mode] body.certgen-view :is(.cg-field input[type="text"],.cg-caption-input,.cg-photo-drop,.cg-canvas-wrap) {
+  html[data-gold-mode] body.certgen-view :is(.cg-field input[type="text"],.cg-caption-input) {
     background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-line);
     border-radius:12px;box-shadow:var(--av-neu-inset,var(--shadow-inset));
   }
@@ -1335,7 +1346,19 @@ body.certgen-view {
     border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
   }
   html[data-gold-mode] body.certgen-view .cg-photo-drop-actions {
-    background:transparent;gap:12px;padding:12px;overflow:visible;
+    background:transparent;gap:12px;padding:0;overflow:visible;
+  }
+  html[data-gold-mode] body.certgen-view :is(.cg-photo-drop,.cg-photo-ready,.cg-saveimg-wrap) {
+    background:transparent;box-shadow:none;
+  }
+  html[data-gold-mode] body.certgen-view .cg-photo-drop {border:0}
+  html[data-gold-mode] body.certgen-view .cg-photo-drop.is-dragging {outline:2px solid var(--g-accent);outline-offset:6px}
+  html[data-gold-mode] body.certgen-view .cg-photo-ready {border:0;border-top:1px solid var(--g-line);border-radius:0}
+  html[data-gold-mode] body.certgen-view .cg-canvas-wrap {
+    box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));border:0;
+  }
+  html[data-gold-mode] body.certgen-view .cg-nav-row .cg-btn {
+    min-width:0;white-space:normal;overflow-wrap:anywhere;
   }
   html[data-gold-mode] body.certgen-view .cg-zoom-slider {
     appearance:none;-webkit-appearance:none;min-width:0;padding:0;border:0;

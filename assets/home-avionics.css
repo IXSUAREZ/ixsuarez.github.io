@@ -67,7 +67,7 @@ html body.home-page .next-step-number{font:600 12px/1.4 var(--font-sans,system-u
 html body.home-page .next-step-card h3{margin:22px 0 8px;font-size:clamp(1.35rem,2vw,1.65rem);line-height:1.2;letter-spacing:-.025em}
 html body.home-page .next-step-card p{margin:0 0 22px;color:var(--av-muted);font:400 1rem/1.55 var(--font-sans,system-ui)}
 html body.home-page .next-step-link{margin-top:auto;color:var(--av-cyan);font-weight:600}
-html body.home-page .about-panel,html body.home-page .faq-sheet,html body.home-page .contact-sheet{
+html body.home-page .about-panel,html body.home-page .faq-sheet{
   background:var(--av-panel);color:var(--av-ink);border-color:var(--av-line);box-shadow:none;
 }
 html body.home-page .about-text,html body.home-page .about-credential-summary{font-family:var(--font-sans,system-ui);line-height:1.6}
@@ -78,8 +78,7 @@ html body.home-page :is(.about-more,.credentials-more,.email-draft)>summary{
 }
 html body.home-page .about-more-copy{padding:4px 0 8px}
 html body.home-page .contact{max-width:840px;margin-inline:auto;padding:clamp(28px,5vw,56px);background:var(--av-panel);border:1px solid var(--av-line);border-radius:16px;box-shadow:none}
-html body.home-page .contact::before{display:none}
-html body.home-page .contact-sheet{padding:0;background:transparent;border:0;border-radius:0}
+html body.home-page .contact-sheet{padding:0;background:transparent;border:0;border-radius:0;box-shadow:none}
 html body.home-page .contact :is(input,textarea,select){background:var(--av-bg);color:var(--av-ink);border:1px solid var(--av-line)}
 html body.home-page .contact :is(input,textarea)::placeholder{color:var(--av-muted)}
 html body.home-page .contact-direct a{color:var(--av-cyan)}

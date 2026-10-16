@@ -5258,7 +5258,7 @@
   },
   "scope": "Registered active routes and explicit supporting documents. Structural integration only; not material, visual, accessibility, workflow, or export approval. Current rendered and interaction evidence is recorded separately.",
   "template_groups": {
-    "bedc23dfc5f7": {
+    "047eab40e7e2": {
       "stylesheets": [
         "assets/design-system.css",
         "assets/contact-form.css",
@@ -5270,7 +5270,7 @@
         "assets/avionics.css",
         "assets/site-footer.css"
       ],
-      "inline_style_sha256": "aabdee0521ebf03abb37cbea8ed3dcc25cd594270e54aa43a3e5159644426ee8",
+      "inline_style_sha256": "7b78318da6af7d32a06511386f3f6720e489201ff54475b8d676ef6800d4132b",
       "routes": [
         "/"
       ]
@@ -6033,7 +6033,7 @@
       "route": "/",
       "file": "index.html",
       "integration_errors": [],
-      "style_group": "bedc23dfc5f7",
+      "style_group": "047eab40e7e2",
       "inline_color_literals": [],
       "source_controls": {
         "a | type=- | role=native | classes=av-key": 3,

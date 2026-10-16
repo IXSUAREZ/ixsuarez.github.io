@@ -69,7 +69,7 @@ body.tool-page .part61-redesign .group-completion.complete {
 .part61-redesign .field-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 28px; padding: 4px 22px 24px; }
 .part61-redesign .number-field { font-size: 13px; font-weight: 500; gap: 8px; }
 .part61-redesign .number-field label { color: var(--g-ink); }
-.part61-redesign .number-field input { width: 100%; min-width: 0; height: 48px; font-size: 18px; font-weight: 500; padding: 10px 14px; color: var(--g-ink); background: var(--g-raised); border: 1px solid var(--g-line); border-radius: 10px; box-shadow: none; }
+.part61-redesign .number-field input { width: 100%; min-width: 0; min-height: 48px; height: auto; font-size: 18px; line-height: 1.35; font-weight: 500; padding: 10px 14px; color: var(--g-ink); background: var(--g-raised); border: 1px solid var(--g-line); border-radius: 10px; box-shadow: none; }
 .part61-redesign .part61-zero-input-row { grid-template-columns: minmax(0,1fr) auto; }
 .part61-redesign :is(.part61-hour-input,.part61-input-unit) { display: flex; align-items: center; gap: 10px; }
 .part61-redesign .part61-field-hint { font-size: 12px; line-height: 1.5; font-weight: 400; }
@@ -493,7 +493,7 @@ body.tool-page .part61-redesign .part61-menu button{color:var(--g-ink)}
 
 /* Neumorphic CertPath surfaces cover every wizard/result/review state. */
 @media screen {
-  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-step-nav,.part61-stage-card,.field-group,.part61-check-row,.part61-check-group,.part61-event-group,.part61-target-option,.part61-goal-summary,.part61-summary-card,.part61-training-block,.part61-reference-card,.part61-ledger-card,.part61-ledger-total,.summary-block,.dashboard-card,.metric,.part61-hero-banner,.part61-zero-review,.part61-zero-confirm,.part61-edit-dialog,.part61-discard-dialog,.part61-menu>:is(div,section)) {
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-step-nav,.part61-stage-card,.part61-experience-group,.part61-event-group,.part61-goal-summary,.part61-summary-card,.part61-training-block,.part61-reference-card,.part61-ledger-card,.part61-ledger-total,.dashboard-card,.metric,.part61-hero-banner,.part61-zero-review,.part61-zero-confirm,.part61-edit-dialog,.part61-discard-dialog,.part61-menu>:is(div,section)) {
     background:var(--av-neu-surface,var(--g-surface));
     border-color:var(--g-glass-edge);border-radius:16px;
     box-shadow:var(--av-neu-shadow,var(--g-shadow));
@@ -502,14 +502,28 @@ body.tool-page .part61-redesign .part61-menu button{color:var(--g-ink)}
   html[data-gold-mode] body.tool-page .part61-redesign .part61-step-nav {
     padding:8px;gap:8px;border:1px solid var(--g-glass-edge);
   }
-  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-choice-row,.option-button,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-experience-entry button,.part61-button-secondary,.part61-edit-summary button,.part61-menu>summary,.part61-filter-button) {
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-choice-row,.option-button,.part61-target-option,.part61-common-goals button,.part61-no-certificate,.part61-has-certificate,.part61-experience-entry button,.part61-button-secondary,.part61-edit-summary button,.part61-menu>summary,.part61-filter-button) {
     background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-glass-edge);
     border-radius:12px;box-shadow:var(--av-neu-shadow-sm,var(--g-shadow));
   }
-  html[data-gold-mode] body.tool-page .part61-redesign :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea,.part61-ledger-numbers) {
+  html[data-gold-mode] body.tool-page .part61-redesign :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea) {
     background:var(--av-neu-surface,var(--g-surface));border-color:var(--g-line);
     border-radius:10px;box-shadow:var(--av-neu-inset,var(--shadow-inset));
     color:var(--g-ink);
+  }
+  /* One raised group, without a second panel around each header or datum. */
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-experience-group>summary,.part61-event-group>summary,.part61-background-details>summary,.part61-cost-details>summary,.part61-training-block>summary,.part61-ledger-card>summary,.part61-reference-card>summary,.part61-field-help>summary) {
+    background:transparent;box-shadow:none;border-block:0;border-inline-end:0;border-radius:0;
+    min-height:44px;
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign .part61-field-help>summary {padding:8px 0}
+  html[data-gold-mode] body.tool-page .part61-redesign :is(.part61-check-row,.part61-check-group,.part61-ledger-numbers,.summary-block) {
+    background:transparent;box-shadow:none;border-radius:0;
+  }
+  html[data-gold-mode] body.tool-page .part61-redesign .part61-ledger-numbers {border:0}
+  html[data-gold-mode] body.tool-page .part61-redesign .summary-block {border:0;padding-inline:0}
+  html[data-gold-mode] body.tool-page .part61-redesign :is(button,summary) {
+    white-space:normal;overflow-wrap:anywhere;
   }
   html[data-gold-mode] body.tool-page .part61-redesign :is(input[type="checkbox"],input[type="radio"]) {
     box-shadow:var(--av-neu-inset,var(--shadow-inset));
